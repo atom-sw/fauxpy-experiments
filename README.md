@@ -1,4 +1,7 @@
-# FauxPy_Experiments
+# FauxPy experiments on BugsInPy
+
+This repository contains all the materials needed to experiment FauxPy on BugsInPy.
+We may also add the experimental results to this repository later.
 
 ## Requirements
 BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8) being installed on the machine since there are different projects in this framework each working with one of these versions.
