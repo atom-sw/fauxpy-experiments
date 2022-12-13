@@ -1,5 +1,8 @@
 #! /usr/bin/bash
 
+# Exiting when any command fails
+set -e
+
 # Inputs for the current buggy program
 #--------------------------------------------
 BENCHMARK_NAME="cookiecutter"
