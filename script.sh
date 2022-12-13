@@ -25,18 +25,16 @@ FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
 SCRIPT_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd $SCRIPT_DIR
 
-BENCHMARK_DIR="$SCRIPT_DIR/$BENCHMARK_NAME"
+echo "------- Removing previous results"
+find . -type d -name "BugsInPy" | xargs rm -rf
+find . -type d -name $BENCHMARK_NAME | xargs rm -rf
+find . -type d -name "FauxPyReport*" | xargs rm -rf
 
 echo "------- Cloning BugsInPy"
-find . -type d -name "BugsInPy" | xargs rm -rf
 git clone https://github.com/soarsmu/BugsInPy
 
 echo "------- Checking out the buggy program"
-find . -type d -name $BENCHMARK_NAME | xargs rm -rf
 BugsInPy/framework/bin/bugsinpy-checkout -p $BENCHMARK_NAME -i $BUG_NUMBER -v 0 -w $SCRIPT_DIR
-
-echo "------- Removing previous report files"
-find . -type d -name "FauxPyReport*" | xargs rm -rf
 
 cd $BENCHMARK_NAME
 
@@ -46,7 +44,7 @@ python --version
 echo "------- Compiling the buggy program"
 bugsinpy-compile
 
-source "$BENCHMARK_DIR/env/bin/activate"
+source "env/bin/activate"
 python --version
 
 pip install --upgrade pip
@@ -86,4 +84,3 @@ do
     echo "------- Running $family with function granularity"
     python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity function --family "$family"
 done
-
