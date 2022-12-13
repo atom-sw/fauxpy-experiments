@@ -23,20 +23,20 @@ FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
 # Preparing the buggy program
 #--------------------------------------------
 SCRIPT_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-cd $SCRIPT_DIR
+cd "$SCRIPT_DIR"
 
 echo "------- Removing previous results"
 find . -type d -name "BugsInPy" | xargs rm -rf
-find . -type d -name $BENCHMARK_NAME | xargs rm -rf
+find . -type d -name "$BENCHMARK_NAME" | xargs rm -rf
 find . -type d -name "FauxPyReport*" | xargs rm -rf
 
 echo "------- Cloning BugsInPy"
 git clone https://github.com/soarsmu/BugsInPy
 
 echo "------- Checking out the buggy program"
-BugsInPy/framework/bin/bugsinpy-checkout -p $BENCHMARK_NAME -i $BUG_NUMBER -v 0 -w $SCRIPT_DIR
+BugsInPy/framework/bin/bugsinpy-checkout -p "$BENCHMARK_NAME" -i "$BUG_NUMBER" -v 0 -w "$SCRIPT_DIR"
 
-cd $BENCHMARK_NAME
+cd "$BENCHMARK_NAME"
 
 source "$VIRTUAL_ENV_PATH/bin/activate"
 python --version
@@ -51,7 +51,7 @@ pip install --upgrade pip
 pip install wheel
 
 #----------- Benchmark specific commands -----------
-if [ "$BENCHMARK_NAME" = "cookiecutter" ];
+if [ "$BENCHMARK_NAME" == "cookiecutter" ]
 then
     echo "------- Running cookiecutter specific commands"
     pip install -r test_requirements.txt
@@ -59,7 +59,7 @@ fi
 #------------------------------------------------------------
 
 echo "------- Installing FauxPy"
-pip install $FAUXPY_PATH
+pip install "$FAUXPY_PATH"
 #--------------------------------------------
 
 
