@@ -6,9 +6,9 @@ We may also add the experimental results to this repository later.
 ## Requirements
 BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8) being installed on the machine since there are different projects in this framework each working with one of these 3 versions. It is better if all these 3 Python interpreters are virtual environments.
 
-The reason is that BugsInPy does not work with Python commands such as `python3`, `python3.6` or things like that. It only works with the command `python` because the shell scripts of BugsInPy that compiles a project, which means creating a virtual environment for that project and installing all of its dependecies, call the venv creation command using the command `python`.
+The reason is that BugsInPy does not work with Python commands such as `python3`, `python3.6` or things like that. It only works with the command `python` because the shell script of BugsInPy that compiles a project (which means creating a virtual environment for that project and installing all of its dependecies) [call the venv creation command](https://github.com/soarsmu/BugsInPy/blob/master/framework/bin/bugsinpy-compile#L56) using the command `python`.
 
- So, in order to use BugsInPy correctly, one must either change one's OS's `python` command to point to the correct version for the project being compiled, or install 3 virtual envronments for these 3 python vrsions. We prefer the second solution which is as follows:
+ So, in order to use BugsInPy correctly, one must either change one's OS's `python` command to point to the correct version for the project being compiled, or install 3 virtual envronments for these 3 python vrsions and activate the currect one for the project being compiled. We prefer the second solution which is as follows:
 
 
 1. Install Python 3.6, 3.7, and 3.8 on the machine.
