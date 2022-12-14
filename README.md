@@ -1,11 +1,12 @@
 # FauxPy_Experiments
 
 ## Requirements
-BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8) being installed on the machine since there are different projects in this framework each working with one of these versions.
+BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8) being installed on the machine since there are different projects in this framework each working with one of these 3 versions. It is better if all these 3 Python interpreters are virtual environments.
 
- All these 3 Python interpreters must be virtual environments since BugsInPy does not work with Python commands such as `Python3`, `Python3.6` or things like that. It only works with the command `Python`.
+BugsInPy does not work with Python commands such as `python3`, `python3.6` or things like that. It only works with the command `python`. The reason is that the shell scripts of the BugsInPy that compiles a project, which means creating a virtual environment for that project and installing all of its dependecies, call the venv creation command using the command `python`.
 
-Thus, to make the machine ready for the experiments, one must follow these instructions:
+ So, in order to use BugsInPy correctly, one must either change one's OS's `python` command to point to the correct version for the project being compiled, or install 3 virtual envronments for these 3 python vrsions. We prefer the second solution which is as follows:
+
 
 1. Install Python 3.6, 3.7, and 3.8 on the machine.
 
