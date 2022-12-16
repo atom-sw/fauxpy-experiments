@@ -19,31 +19,50 @@ TARGET_DIR="cookiecutter"
 
 VIRTUAL_ENV_PATH="/home/moe/bugsinpyenv36"
 
+PYTHON_V="3.6"
+CONDA_ENV="fauxpy-$PYTHON_V"
+
 # FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
 #--------------------------------------------
 
 
+# conda create --name fauxpy-3.6 python=3.6
+
+
+
 # Preparing the buggy program
 #--------------------------------------------
-SCRIPT_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-cd "$SCRIPT_DIR"
+SCRIPT_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
+HOSTNAME=$(hostname)
+if [[ "$HOSTNAME" =~ ics* ]]; then
+	 TEMP_DIR="/scratch/furia"
+else
+	 TEMP_DIR="$HOME/temp/fauxpy-temp"
+	 mkdir -p "TEMP_DIR"
+fi
+
+VENV_V="$(echo "$PYTHON_V" | sed 's/[.]//')"
+VENV_DIR="$SCRIPT_DIR/bugsinpyenv$VENV_V"
+
 
 FAUXPY_PATH="$SCRIPT_DIR/pytest-FauxPy"
 
-echo "------- Removing previous results"
-find . -type d -name "BugsInPy" | xargs rm -rf
-find . -type d -name "$BENCHMARK_NAME" | xargs rm -rf
-find . -type d -name "FauxPyReport*" | xargs rm -rf
+# echo "------- Removing previous results"
+# find . -type d -name "BugsInPy" | xargs rm -rf
+# find . -type d -name "$BENCHMARK_NAME" | xargs rm -rf
+# find . -type d -name "FauxPyReport*" | xargs rm -rf
+
+cd "$TEMP_DIR"
 
 echo "------- Cloning BugsInPy"
 git clone https://github.com/soarsmu/BugsInPy
 
 echo "------- Checking out the buggy program"
-BugsInPy/framework/bin/bugsinpy-checkout -p "$BENCHMARK_NAME" -i "$BUG_NUMBER" -v 0 -w "$SCRIPT_DIR"
+./BugsInPy/framework/bin/bugsinpy-checkout -p "$BENCHMARK_NAME" -i "$BUG_NUMBER" -v 0 -w "$TEMP_DIR"
 
 cd "$BENCHMARK_NAME"
 
-source "$VIRTUAL_ENV_PATH/bin/activate"
+source "$VENV_DIR/bin/activate"
 python --version
 
 echo "------- Compiling the buggy program"
