@@ -32,11 +32,13 @@ else
 	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B$BUG_NUMBER"
 fi
 
+# Remove a previous run's temp data, if it exists
+rm -rf "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
 cd "$TEMP_DIR"
 
 VENV_V="$(echo "$PYTHON_V" | sed 's/[.]//')"
-VENV_DIR="$SCRIPT_DIR/bugsinpyenv$VENV_V"
+VENV_DIR="$SCRIPT_DIR/../bugsinpyenv$VENV_V"
 
 FAUXPY_PATH="$SCRIPT_DIR/pytest-FauxPy"
 
