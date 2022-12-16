@@ -3,6 +3,7 @@
 # Exiting when any command fails
 set -e
 
+
 # Inputs for the current buggy program
 #--------------------------------------------
 BENCHMARK_NAME="cookiecutter"
@@ -18,7 +19,6 @@ TEST_SUITE="tests"
 TARGET_DIR="cookiecutter"
 
 PYTHON_V="3.6"
-CONDA_ENV="fauxpy-$PYTHON_V"
 
 
 
