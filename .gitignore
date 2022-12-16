@@ -2,3 +2,9 @@ BugsInPy
 .pytest_cache
 FauxPyReport*
 cookiecutter
+
+*~
+*_*.out
+*_*.time
+*_*.cmd
+*.log
