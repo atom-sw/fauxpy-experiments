@@ -19,7 +19,7 @@ TARGET_DIR="cookiecutter"
 
 VIRTUAL_ENV_PATH="/home/moe/bugsinpyenv36"
 
-FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
+# FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
 #--------------------------------------------
 
 
@@ -27,6 +27,8 @@ FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
 #--------------------------------------------
 SCRIPT_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$SCRIPT_DIR"
+
+FAUXPY_PATH="$SCRIPT_DIR/pytest-FauxPy"
 
 echo "------- Removing previous results"
 find . -type d -name "BugsInPy" | xargs rm -rf
@@ -75,7 +77,7 @@ declare -a STATEMENT_FAIMILIES=("sbfl" "mbfl" "ps")
 for family in "${STATEMENT_FAIMILIES[@]}"
 do
     echo "------- Running $family with statement granularity"
-    python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity statement --family "$family"
+    python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity statement --family "$family" || true
 done
 
 
@@ -85,5 +87,5 @@ declare -a FUNCTION_FAIMILIES=("sbfl" "mbfl" "ps" "st")
 for family in "${FUNCTION_FAIMILIES[@]}"
 do
     echo "------- Running $family with function granularity"
-    python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity function --family "$family"
+    python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity function --family "$family" || true
 done
