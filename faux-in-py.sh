@@ -99,7 +99,7 @@ done
 
 # Copy FL results to home
 mkdir -p "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER"
-cp -r "$(find "$TEMP_DIR" -type d -name "FauxPyReport*")" "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER/"
+find "$TEMP_DIR" -type d -name "FauxPyReport*" -exec cp -Rp {} "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER/" \;
 
 # Delete scratch data
 rm -rf "$TEMP_DIR/"
