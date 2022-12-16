@@ -17,36 +17,28 @@ TEST_SUITE="tests"
 
 TARGET_DIR="cookiecutter"
 
-VIRTUAL_ENV_PATH="/home/moe/bugsinpyenv36"
-
 PYTHON_V="3.6"
 CONDA_ENV="fauxpy-$PYTHON_V"
 
-# FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
-#--------------------------------------------
-
-# conda create --name fauxpy-3.6 python=3.6
 
 
 # Preparing the buggy program
 #--------------------------------------------
 SCRIPT_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 HOSTNAME=$(hostname)
-if [[ "$HOSTNAME" =~ ics* ]]; then
+if [[ "$HOSTNAME" =~ ics.* ]]; then
 	 TEMP_DIR="/scratch/furia/$BENCHMARK_NAME/B$BUG_NUMBER"
 else
 	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B$BUG_NUMBER"
 fi
 
-mkdir -p "TEMP_DIR"
+mkdir -p "$TEMP_DIR"
+cd "$TEMP_DIR"
 
 VENV_V="$(echo "$PYTHON_V" | sed 's/[.]//')"
 VENV_DIR="$SCRIPT_DIR/bugsinpyenv$VENV_V"
 
-
 FAUXPY_PATH="$SCRIPT_DIR/pytest-FauxPy"
-
-cd "$TEMP_DIR"
 
 echo "------- Cloning BugsInPy"
 git clone https://github.com/soarsmu/BugsInPy
@@ -60,7 +52,7 @@ source "$VENV_DIR/bin/activate"
 python --version
 
 echo "------- Compiling the buggy program"
-./BugsInPy/framework/bin/bugsinpy-compile
+../BugsInPy/framework/bin/bugsinpy-compile
 
 source "env/bin/activate"
 python --version
@@ -80,9 +72,6 @@ echo "------- Installing FauxPy"
 pip install "$FAUXPY_PATH"
 #--------------------------------------------
 
-
-
-exit 0
 
 # Running FauxPy commands
 # NOTE: the 7 experiments must not run in parallel
@@ -108,7 +97,7 @@ done
 
 # Copy FL results to home
 mkdir -p "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER"
-cp -r "$TEMP_DIR/FauxPyReport*" "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER/"
+cp -r "$(find "$TEMP_DIR" -type d -name "FauxPyReport*")" "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER/"
 
 # Delete scratch data
 rm -rf "$TEMP_DIR/"
