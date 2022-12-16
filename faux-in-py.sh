@@ -66,7 +66,7 @@ source "$VENV_DIR/bin/activate"
 python --version
 
 echo "------- Compiling the buggy program"
-bugsinpy-compile
+./BugsInPy/framework/bin/bugsinpy-compile
 
 source "env/bin/activate"
 python --version
