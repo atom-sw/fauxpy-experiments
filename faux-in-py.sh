@@ -56,6 +56,14 @@ python --version
 echo "------- Compiling the buggy program"
 ../BugsInPy/framework/bin/bugsinpy-compile
 
+if [ -f "$HOME/_bashrc" ]; then
+	 echo "------ Restoring clean .bashrc"
+	 cp "$HOME/_bashrc" "$HOME/.bashrc"
+else
+	 echo "------ ERROR: Could not find clean .bashrc to restore"
+	 exit 1
+fi
+
 source "env/bin/activate"
 python --version
 
