@@ -61,6 +61,7 @@ if [ -f "$HOME/_bashrc" ]; then
 	 cp "$HOME/_bashrc" "$HOME/.bashrc"
 else
 	 echo "------ ERROR: Could not find clean .bashrc to restore"
+	 echo "              Copy a clean version of .bashrc to $HOME/_bashrc"
 	 exit 1
 fi
 
