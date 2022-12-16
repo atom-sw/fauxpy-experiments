@@ -25,9 +25,7 @@ CONDA_ENV="fauxpy-$PYTHON_V"
 # FAUXPY_PATH="/home/moe/Desktop/NewStudy/AFL4Python/pytest-FauxPy"
 #--------------------------------------------
 
-
 # conda create --name fauxpy-3.6 python=3.6
-
 
 
 # Preparing the buggy program
@@ -35,22 +33,18 @@ CONDA_ENV="fauxpy-$PYTHON_V"
 SCRIPT_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 HOSTNAME=$(hostname)
 if [[ "$HOSTNAME" =~ ics* ]]; then
-	 TEMP_DIR="/scratch/furia"
+	 TEMP_DIR="/scratch/furia/$BENCHMARK_NAME/B$BUG_NUMBER"
 else
-	 TEMP_DIR="$HOME/temp/fauxpy-temp"
-	 mkdir -p "TEMP_DIR"
+	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B$BUG_NUMBER"
 fi
+
+mkdir -p "TEMP_DIR"
 
 VENV_V="$(echo "$PYTHON_V" | sed 's/[.]//')"
 VENV_DIR="$SCRIPT_DIR/bugsinpyenv$VENV_V"
 
 
 FAUXPY_PATH="$SCRIPT_DIR/pytest-FauxPy"
-
-# echo "------- Removing previous results"
-# find . -type d -name "BugsInPy" | xargs rm -rf
-# find . -type d -name "$BENCHMARK_NAME" | xargs rm -rf
-# find . -type d -name "FauxPyReport*" | xargs rm -rf
 
 cd "$TEMP_DIR"
 
@@ -87,6 +81,9 @@ pip install "$FAUXPY_PATH"
 #--------------------------------------------
 
 
+
+exit 0
+
 # Running FauxPy commands
 # NOTE: the 7 experiments must not run in parallel
 #--------------------------------------------
@@ -108,3 +105,10 @@ do
     echo "------- Running $family with function granularity"
     python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity function --family "$family" || true
 done
+
+# Copy FL results to home
+mkdir -p "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER"
+cp -r "$TEMP_DIR/FauxPyReport*" "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER/"
+
+# Delete scratch data
+rm -rf "$TEMP_DIR/"
