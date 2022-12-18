@@ -34,3 +34,7 @@ def getTimeout(maxTestTime: float) -> float:
         maxTestTime = 0
     timeout = constants.testTimeoutFactor * maxTestTime + constants.testTimeoutOffset
     return timeout
+
+
+def getProcessTimeout(numAllTests, timeoutLimit):
+    return (numAllTests + 1) * timeoutLimit

@@ -129,8 +129,9 @@ def _runSwitchedPredicateInstance(projectPath: str, testName: str, predicateName
                                                      instanceNumber=instanceNumber,
                                                      timeout=timeoutLimit)
 
-    execStatError = False
-    if exeResultData.isTestCaseTableEmpty():
+    execStatError = exeResultData.isTestCaseTableEmptyOrNone()
+    if execStatError:
+        print("Bad execution")
         return None, None, None, execStatError
 
     testResult, timeoutStat = exeResultData.getTestResult(testName)

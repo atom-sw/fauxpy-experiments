@@ -7,7 +7,7 @@ from .file import saveScoresToFile, saveConfigToFile, saveDeltaTimeToFile, \
     loadAfterCollectModePredicateSequenceTable,\
     saveBeforeCollectModeConfigFile, inCollectModeRemoveEvaluationCounterFile, getFileContentAsString
 # from .timer import startTimer, endTimer
-from .timer import Timer, getTimeout
+from .timer import Timer, getTimeout, getProcessTimeout
 from .ast_manager import getCoveredFunction, FunctionInformation
 from .utils import pathShouldBeLocalized, relativePathToAbsPath, \
     convertArgumentListStringToList, convertListToString, absolutePathToRelativePath, \
@@ -31,4 +31,5 @@ def init(family: str):
 
 def end():
     database.end()
+
 

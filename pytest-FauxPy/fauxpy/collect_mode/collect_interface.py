@@ -25,8 +25,8 @@ class PSCollectModeRunResult:
                 return item[1]
         return ""
 
-    def isTestCaseTableEmpty(self):
-        return len(self.testCaseTable) == 0
+    def isTestCaseTableEmptyOrNone(self):
+        return self.testCaseTable is None or len(self.testCaseTable) == 0
 
 
 def indexPredicateSequence(predicateSequence) -> str:
@@ -89,6 +89,7 @@ def _runProject(src: str,
                 projectPath: str,
                 fileOrDir: List[str],
                 timeout: Optional[float],
+                processTimeout: float = None,
                 mode: str = ""):
     _cleanProject(projectPath)
     command = ["python", "-m", "pytest"] + fileOrDir + ["--src", src, "--family", "collect" + mode,
@@ -96,13 +97,15 @@ def _runProject(src: str,
                                                         ]
     if timeout is not None:
         command += ["--timeout", str(timeout)]
-    common.runCommand(command, projectPath)
+        command += ["--timeout_method", "thread"]
+    common.runCommand(command, projectPath, processTimeout)
 
 
 def runMbflCollectMode(src: str, exclude: List[str],
                        projectPath: str, fileOrDir: List[str],
-                       timeout: Optional[float] = None) -> Optional[List[Tuple[str, str, str]]]:
-    _runProject(src, exclude, projectPath, fileOrDir, timeout, "mbfl")
+                       timeout: float,
+                       processTimeout: float) -> Optional[List[Tuple[str, str, str]]]:
+    _runProject(src, exclude, projectPath, fileOrDir, timeout, processTimeout, "mbfl")
     testCaseTable = common.loadAfterCollectModeTestCaseTable(projectPath)
     return testCaseTable
 

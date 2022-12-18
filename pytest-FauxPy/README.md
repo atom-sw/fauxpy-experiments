@@ -6,7 +6,7 @@
 pytest tests
        --src code
        --family sbfl
-       -- exclude "[code/library_x, code/module_x.py]"
+       --exclude "[code/library_x, code/module_x.py]"
        --granularity statement
        --top-n 3
        --failing-file target_failing_test.txt

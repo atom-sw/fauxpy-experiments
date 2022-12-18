@@ -132,23 +132,30 @@ def _getMutantScoreTerms(mutantTestCaseRunResultTable):
     return failedToPassed, passedToFailed, failedChanged, timeoutHappened
 
 
-def runAllMutantsStoreDb(mutants: List[mutgen.Mutant], fileOrDir: List[str],
-                         granularity: str, src: str, exclude: List[str],
+def runAllMutantsStoreDb(mutants: List[mutgen.Mutant],
+                         fileOrDir: List[str],
+                         granularity: str,
+                         src: str,
+                         exclude: List[str],
                          timeoutLimit: float,
-                         targetFailingTests: common.TargetFailingTests):
+                         targetFailingTests: common.TargetFailingTests,
+                         numberAllTests,
+                         processTimeout):
     tempProjectPath = common.makeProjectCopyInTemp()
-
-    # For the assertions
-    numPassed, numFailed = database.selectNumberOfTests()
 
     numberOfAllMutants = len(mutants)
 
     print(f"-------------- Running {numberOfAllMutants} Mutants --------------")
     for mutant in mutants:
         print(f"------------ Running Mutant ID ----->>>>> {mutant.getId()} / {numberOfAllMutants} ------------")
+
         _mutateTempProject(tempProjectPath, mutant.getModulePath(), mutant.getModuleContent())
-        mutantTestCaseRunResultTable = collect_mode.runMbflCollectMode(src, exclude, tempProjectPath, fileOrDir,
-                                                                       timeout=timeoutLimit)
+        mutantTestCaseRunResultTable = collect_mode.runMbflCollectMode(src,
+                                                                       exclude,
+                                                                       tempProjectPath,
+                                                                       fileOrDir,
+                                                                       timeout=timeoutLimit,
+                                                                       processTimeout=processTimeout)
 
         if (mutantTestCaseRunResultTable is None or
                 len(mutantTestCaseRunResultTable) == 0):
@@ -161,7 +168,7 @@ def runAllMutantsStoreDb(mutants: List[mutgen.Mutant], fileOrDir: List[str],
         # For some reason, some mutant executions might return fewer
         # number of test cases. For now I remove them.
         # TODO: Find the reason. Found in sonic3. Takes around three hours.
-        if numPassed + numFailed != len(mutantTestCaseRunResultTable):
+        if numberAllTests != len(mutantTestCaseRunResultTable):
             print("Missing tests mutant")
             database.updateMutantAsHavingMissingTests(mutant.getId())
             _unmutateTempProject(tempProjectPath, mutant.getModulePath())

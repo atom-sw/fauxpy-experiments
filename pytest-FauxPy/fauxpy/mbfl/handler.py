@@ -121,6 +121,7 @@ def handlerTerminalSummary(terminalreporter):
                         timeoutStat = 1
 
                 database.insertTestCaseRun(testName, key, testTraceBack, timeoutStat, target)
+
     failingLineNumbers = database.selectDistinctLineNumbersCoveredByFailingTests()
     mutants = mutation.getAllMutantsForFailingLineNumbers(failingLineNumbers)
 
@@ -137,7 +138,10 @@ def handlerTerminalSummary(terminalreporter):
     # TODO: Get time from passing tests and target failing tests.
     maxTestTime = database.selectMaxTestTime()
     timeoutLimit = common.getTimeout(maxTestTime)
-    runner.runAllMutantsStoreDb(mutants, _FileOrDir, _Granularity, _Src, _Exclude, timeoutLimit, _TargetFailingTests)
+    numPassed, numFailed = database.selectNumberOfTests()
+    numAllTests = numPassed + numFailed
+    processTimeout = common.getProcessTimeout(numAllTests, timeoutLimit)
+    runner.runAllMutantsStoreDb(mutants, _FileOrDir, _Granularity, _Src, _Exclude, timeoutLimit, _TargetFailingTests, numAllTests, processTimeout)
     mutant_score.computeMutantScoresStoreDb()
     entityScores = entity_score.computeEntityScoresStoreDb(_TopN)
 

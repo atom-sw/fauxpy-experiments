@@ -3,7 +3,8 @@ import pathlib
 import shutil
 import tempfile
 import time
-from typing import List
+from subprocess import TimeoutExpired
+from typing import List, Optional
 
 ProjectWorkingDirectory: str
 
@@ -90,19 +91,33 @@ def makeProjectCopyInTemp() -> str:
     return tempDir
 
 
-def runCommand(command: List[str], workingDir: str):
+def runCommand(command: List[str], workingDir: str, processTimeout: Optional[float]):
     import subprocess
-    print("--------------------HERE_BEGIN---------------------")
+    print("--------------------Subprocess Begin---------------------")
     print("Command to run: ", " ".join(command))
-    execOut = subprocess.run(command,
-                             stdout=subprocess.PIPE,
-                             stderr=subprocess.PIPE,
-                             universal_newlines=True,
-                             cwd=workingDir)
+    execOut = None
+    if processTimeout is None:
+        execOut = subprocess.run(command,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.PIPE,
+                                 universal_newlines=True,
+                                 cwd=workingDir)
+    else:
+        try:
+            execOut = subprocess.run(command,
+                                     stdout=subprocess.PIPE,
+                                     stderr=subprocess.PIPE,
+                                     universal_newlines=True,
+                                     cwd=workingDir,
+                                     timeout=processTimeout)
+        except TimeoutExpired:
+            print("Subprocess timeout")
+            pass
 
-    print(execOut.stdout)
-    print(execOut.stderr)
-    print("--------------------HERE_END---------------------")
+    if execOut is not None:
+        print(execOut.stdout)
+        print(execOut.stderr)
+    print("--------------------Subprocess End---------------------")
 
 
 def csvRowToList(csvRow: str) -> List[str]:

@@ -87,6 +87,7 @@ def handlerTerminalSummary(terminalreporter):
                     if key == "failed":
                         reprTraceback = testReport.longrepr.reprtraceback
                         testTraceBack = common.getShortTraceBackInfo(reprTraceback)
+                        # TODO: probably not needed anymore as --timeout_method is set to thread
                         if common.hasTimeoutHappened(testReport.longreprtext):
                             timeoutStat = 1
 

@@ -33,5 +33,5 @@ def getExceptionSeenFileName():
 
 
 # TODO: Maybe finding better values for these two is a good idea.
-testTimeoutFactor = 5
+testTimeoutFactor = 2
 testTimeoutOffset = 5
