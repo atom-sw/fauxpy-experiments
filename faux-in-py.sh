@@ -10,7 +10,7 @@ BENCHMARK_NAME="cookiecutter"
 
 BUG_NUMBER=1
 
-declare -a TARGET_FAILING_TESTS=(
+TARGET_FAILING_TESTS=(
     "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
     )
 
@@ -18,8 +18,34 @@ TEST_SUITE="tests"
 
 TARGET_DIR="cookiecutter"
 
+EXCLUDE=(
+)
+
 PYTHON_V="3.6"
 
+
+# A function to convert Bash lists to Python lists
+#--------------------------------------------
+bash2python()
+{
+    local bashList=("$@")
+    local firstElement=$(echo $bashList | cut -d" " -f1)
+    local pythonList="$firstElement"
+
+    for i in "${!bashList[@]}"
+    do
+        if [ $i -ne 0 ]
+        then
+            pythonList="$pythonList,${bashList[$i]}"
+        fi
+    done
+
+    pythonList="[$pythonList]"
+    echo $pythonList
+}
+
+TARGET_FAILING_TESTS_LIST=$(bash2python "${TARGET_FAILING_TESTS[@]}")
+EXCLUDE_LIST=$(bash2python "${EXCLUDE[@]}")
 
 
 # Preparing the buggy program
@@ -71,6 +97,7 @@ python --version
 pip install --upgrade pip
 pip install wheel
 
+
 #----------- Benchmark specific commands -----------
 if [ "$BENCHMARK_NAME" == "cookiecutter" ]
 then
@@ -88,27 +115,71 @@ pip install "$FAUXPY_PATH"
 # NOTE: the 7 experiments must not run in parallel
 #--------------------------------------------
 # Statement granularity
-declare -a STATEMENT_FAIMILIES=("sbfl" "mbfl" "ps")
 
-for family in "${STATEMENT_FAIMILIES[@]}"
-do
-    echo "------- Running $family with statement granularity"
-    python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity statement --family "$family" || true
-done
+echo "------- Running SBFL with statement granularity"
+python -m pytest "$TEST_SUITE"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "statement"\
+                 --family "sbfl"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
+echo "------- Running MBFL with statement granularity"
+python -m pytest "$TEST_SUITE"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "statement"\
+                 --family "mbfl"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+
+echo "------- Running PS with statement granularity"
+python -m pytest "${TARGET_FAILING_TESTS[@]}"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "statement"\
+                 --family "ps"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
 # Function granularity
-declare -a FUNCTION_FAIMILIES=("sbfl" "mbfl" "ps" "st")
 
-for family in "${FUNCTION_FAIMILIES[@]}"
-do
-    echo "------- Running $family with function granularity"
-    python -m pytest "$TEST_SUITE" --src "$TARGET_DIR" --granularity function --family "$family" || true
-done
+echo "------- Running SBFL with function granularity"
+python -m pytest "$TEST_SUITE"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "function"\
+                 --family "sbfl"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+
+echo "------- Running MBFL with function granularity"
+python -m pytest "$TEST_SUITE"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "function"\
+                 --family "mbfl"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+
+echo "------- Running PS with function granularity"
+python -m pytest "${TARGET_FAILING_TESTS[@]}"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "function"\
+                 --family "ps"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+
+echo "------- Running ST with function granularity"
+python -m pytest "${TARGET_FAILING_TESTS[@]}"\
+                 --src "$TARGET_DIR"\
+                 --exclude "$EXCLUDE_LIST"\
+                 --granularity "function"\
+                 --family "st"\
+                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+
 
 # Copy FL results to home
 mkdir -p "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER"
 find "$TEMP_DIR" -type d -name "FauxPyReport*" -exec cp -Rp {} "$SCRIPT_DIR/$BENCHMARK_NAME/B$BUG_NUMBER/" \;
 
+
 # Delete scratch data
+echo rm -rf "$TEMP_DIR/"
 rm -rf "$TEMP_DIR/"
