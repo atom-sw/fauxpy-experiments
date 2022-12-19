@@ -112,6 +112,12 @@ then
     echo "------- Running sanic specific commands"
     pip uninstall pytest-sugar
 fi
+
+if [ "$BENCHMARK_NAME" == "httpie" ]
+then
+    echo "------- Running httpie specific commands"
+    python -m fixer.py "httpie"
+fi
 #------------------------------------------------------------
 
 echo "------- Installing FauxPy"
