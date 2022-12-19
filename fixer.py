@@ -23,11 +23,7 @@ def httpie_fixer():
             file.writelines(newLines)
 
 
-def main(benchmark_name: str):
+def main():
+    benchmark_name = sys.argv[1]
     if benchmark_name == "httpie":
         httpie_fixer()
-
-
-if __name__ == '__main__':
-    b_name = sys.argv[1]
-    main(b_name)
