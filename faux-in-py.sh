@@ -24,11 +24,7 @@ EXCLUDE=(
 TARGET_FAILING_TESTS=(
     "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
     )
-
-
-
-
-
+    
 
 # A function to convert Bash lists to Python lists
 #--------------------------------------------
@@ -109,6 +105,12 @@ if [ "$BENCHMARK_NAME" == "cookiecutter" ]
 then
     echo "------- Running cookiecutter specific commands"
     pip install -r test_requirements.txt
+fi
+
+if [ "$BENCHMARK_NAME" == "sanic" ]
+then
+    echo "------- Running sanic specific commands"
+    pip uninstall pytest-sugar
 fi
 #------------------------------------------------------------
 
