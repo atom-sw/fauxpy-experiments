@@ -14,7 +14,9 @@ TARGET_FAILING_TESTS=(
     "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
     )
 
-TEST_SUITE="tests"
+TEST_SUITE=(
+    "tests"
+    )
 
 TARGET_DIR="cookiecutter"
 
@@ -117,7 +119,7 @@ pip install "$FAUXPY_PATH"
 # Statement granularity
 
 echo "------- Running SBFL with statement granularity"
-python -m pytest "$TEST_SUITE"\
+python -m pytest "${TEST_SUITE[@]}"\
                  --src "$TARGET_DIR"\
                  --exclude "$EXCLUDE_LIST"\
                  --granularity "statement"\
@@ -125,7 +127,7 @@ python -m pytest "$TEST_SUITE"\
                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
 echo "------- Running MBFL with statement granularity"
-python -m pytest "$TEST_SUITE"\
+python -m pytest "${TEST_SUITE[@]}"\
                  --src "$TARGET_DIR"\
                  --exclude "$EXCLUDE_LIST"\
                  --granularity "statement"\
@@ -140,10 +142,10 @@ python -m pytest "${TARGET_FAILING_TESTS[@]}"\
                  --family "ps"\
                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-# Function granularity
+# # Function granularity
 
 echo "------- Running SBFL with function granularity"
-python -m pytest "$TEST_SUITE"\
+python -m pytest "${TEST_SUITE[@]}"\
                  --src "$TARGET_DIR"\
                  --exclude "$EXCLUDE_LIST"\
                  --granularity "function"\
@@ -151,7 +153,7 @@ python -m pytest "$TEST_SUITE"\
                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
 echo "------- Running MBFL with function granularity"
-python -m pytest "$TEST_SUITE"\
+python -m pytest "${TEST_SUITE[@]}"\
                  --src "$TARGET_DIR"\
                  --exclude "$EXCLUDE_LIST"\
                  --granularity "function"\
