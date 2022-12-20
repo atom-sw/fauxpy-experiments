@@ -110,13 +110,42 @@ fi
 if [ "$BENCHMARK_NAME" == "sanic" ]
 then
     echo "------- Running sanic specific commands"
-    pip uninstall pytest-sugar
+    pip uninstall -y pytest-sugar
 fi
 
 if [ "$BENCHMARK_NAME" == "httpie" ]
 then
     echo "------- Running httpie specific commands"
-    python -m fixer.py "httpie"
+    # Comment out --tb=native in pytest.ini file
+    HTTPIE_PYTEST_INI="pytest.ini"
+
+    if [ -f "$HTTPIE_PYTEST_INI" ]
+    then
+        cp "$HTTPIE_PYTEST_INI" "$HTTPIE_PYTEST_INI.bak"
+
+        # To handle the final missing new line problem
+        echo >> "$HTTPIE_PYTEST_INI"
+
+        new_lines_list=()
+        while IFS= read -r line; do
+            trimed_line=`echo "$line" | xargs`
+
+            # If contains --tb=native and does not start with #
+            if [[ "$trimed_line" == *"--tb=native"* ]] && [[ "$trimed_line" != "#"* ]]
+            then
+                new_lines_list+=("# $trimed_line")
+            else
+                new_lines_list+=("$trimed_line")
+            fi
+        done < "$HTTPIE_PYTEST_INI"
+
+        > "$HTTPIE_PYTEST_INI"
+
+        for new_line in "${new_lines_list[@]}"
+        do
+            echo "$new_line" >> "$HTTPIE_PYTEST_INI"
+        done
+    fi
 fi
 #------------------------------------------------------------
 
