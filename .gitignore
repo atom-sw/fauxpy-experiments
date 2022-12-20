@@ -1,6 +1,7 @@
 .pytest_cache
 FauxPyReport*
 .idea
+.vscode
 
 *~
 *_*.out
