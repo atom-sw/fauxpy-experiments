@@ -101,6 +101,41 @@ pip install wheel
 
 
 #----------- Benchmark specific commands -----------
+
+commentPatternInpytestIni() 
+{
+    local pytest_ini="pytest.ini"
+
+    echo "$removingItem"
+
+    if [ -f "$pytest_ini" ]
+    then
+        cp "$pytest_ini" "$pytest_ini.bak"
+
+        # To handle the final missing new line problem
+        echo >> "$pytest_ini"
+
+        local new_lines_list=()
+        while IFS= read -r line; do
+            local trimed_line=`echo "$line" | xargs`
+            # If contains the passed argument and does not start with #
+            if [[ "$line" == *"$1"* ]] && [[ "$trimed_line" != "#"* ]]
+            then
+                new_lines_list+=("# $line")
+            else
+                new_lines_list+=("$line")
+            fi
+        done < "$pytest_ini"
+
+        > "$pytest_ini"
+
+        for new_line in "${new_lines_list[@]}"
+        do
+            echo "$new_line" >> "$pytest_ini"
+        done
+    fi
+}
+
 if [ "$BENCHMARK_NAME" == "cookiecutter" ]
 then
     echo "------- Running cookiecutter specific commands"
@@ -117,35 +152,14 @@ if [ "$BENCHMARK_NAME" == "httpie" ]
 then
     echo "------- Running httpie specific commands"
     # Comment out --tb=native in pytest.ini file
-    HTTPIE_PYTEST_INI="pytest.ini"
+    $(commentPatternInpytestIni "--tb=native")
+fi
 
-    if [ -f "$HTTPIE_PYTEST_INI" ]
-    then
-        cp "$HTTPIE_PYTEST_INI" "$HTTPIE_PYTEST_INI.bak"
-
-        # To handle the final missing new line problem
-        echo >> "$HTTPIE_PYTEST_INI"
-
-        new_lines_list=()
-        while IFS= read -r line; do
-            trimed_line=`echo "$line" | xargs`
-
-            # If contains --tb=native and does not start with #
-            if [[ "$trimed_line" == *"--tb=native"* ]] && [[ "$trimed_line" != "#"* ]]
-            then
-                new_lines_list+=("# $trimed_line")
-            else
-                new_lines_list+=("$trimed_line")
-            fi
-        done < "$HTTPIE_PYTEST_INI"
-
-        > "$HTTPIE_PYTEST_INI"
-
-        for new_line in "${new_lines_list[@]}"
-        do
-            echo "$new_line" >> "$HTTPIE_PYTEST_INI"
-        done
-    fi
+if [ "$BENCHMARK_NAME" == "keras" ]
+then
+    echo "------- Running keras specific commands"
+    # Comment out -n 2 option within the pytest.ini file
+    $(commentPatternInpytestIni "-n 2")    
 fi
 #------------------------------------------------------------
 
