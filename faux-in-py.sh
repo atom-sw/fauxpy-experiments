@@ -24,7 +24,7 @@ EXCLUDE=(
 TARGET_FAILING_TESTS=(
     "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
     )
-    
+
 
 # A function to convert Bash lists to Python lists
 #--------------------------------------------
@@ -160,6 +160,19 @@ then
     echo "------- Running keras specific commands"
     # Comment out -n 2 option within the pytest.ini file
     $(commentPatternInpytestIni "-n 2")    
+fi
+
+if [ "$BENCHMARK_NAME" == "thefuck" ]
+then
+    echo "------- Running thefuck specific commands"
+    # Remove three test files that have errors
+    rm -f "tests/rules/test_git_checkout.py"
+    rm -f "tests/rules/test_git_two_dashes.py"
+    rm -f "tests/rules/test_touch.py"
+
+    # Replace conftest.py with the fixed one
+    rm -f "tests/conftest.py"
+    wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
 fi
 #------------------------------------------------------------
 
