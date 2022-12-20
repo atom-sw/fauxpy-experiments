@@ -174,6 +174,14 @@ then
     rm -f "tests/conftest.py"
     wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
 fi
+
+if [ "$BENCHMARK_NAME" == "fastapi" ]
+then
+    echo "------- Running fastapi specific commands"
+    # Update pip (which is done before this command)
+    # Remove the test package tests/test_tutorial
+    rm -rf "tests/test_tutorial"
+fi
 #------------------------------------------------------------
 
 echo "------- Installing FauxPy"
