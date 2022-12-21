@@ -6,24 +6,32 @@ set -e
 
 # Inputs for the current buggy program
 #--------------------------------------------
-PYTHON_V="3.6"
+#PYTHON_V="3.6"
+#BENCHMARK_NAME="cookiecutter"
+#BUG_NUMBER="1"
+#TARGET_DIR="cookiecutter"
+#TEST_SUITE=(
+#    "tests"
+#    )
+#EXCLUDE=(
+#)
+#TARGET_FAILING_TESTS=(
+#    "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
+#    )
 
-BENCHMARK_NAME="cookiecutter"
-
-BUG_NUMBER="1"
-
-TARGET_DIR="cookiecutter"
-
+PYTHON_V="####PYTHON_V####"
+BENCHMARK_NAME="####BENCHMARK_NAME####"
+BUG_NUMBER="####BUG_NUMBER####"
+TARGET_DIR="####TARGET_DIR####"
 TEST_SUITE=(
-    "tests"
-    )
-
-EXCLUDE=(
+    "####TEST_SUITE####"
 )
-
+EXCLUDE=(
+    "####EXCLUDE####"
+)
 TARGET_FAILING_TESTS=(
-    "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
-    )
+    "####TARGET_FAILING_TESTS####"
+)
 
 
 # A function to convert Bash lists to Python lists
