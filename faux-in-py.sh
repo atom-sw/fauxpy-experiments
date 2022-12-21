@@ -106,8 +106,6 @@ commentPatternInpytestIni()
 {
     local pytest_ini="pytest.ini"
 
-    echo "$removingItem"
-
     if [ -f "$pytest_ini" ]
     then
         cp "$pytest_ini" "$pytest_ini.bak"
