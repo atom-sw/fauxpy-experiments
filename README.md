@@ -36,7 +36,7 @@ sudo apt-get install python3.8-dev
 # Nothing needed in Conda
 ```
 
-3. Create 3 venvs for these 3 Python versions in the upper directory where each script (e.g., `cookiecutter_1.sh`) is located. For instance, if the current directory is `scripts` (which contains `cookiecutter_1.sh`), run the following commands:
+3. Create 3 venvs for these 3 Python versions in the directory that contains the parent directory of the scripts (e.g., `cookiecutter_1.sh`). For instance, if the current directory is `scripts` (which contains `cookiecutter_1.sh`), run the following commands:
 
 ```
 cd ..
