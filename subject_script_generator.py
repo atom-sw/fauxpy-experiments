@@ -1,7 +1,8 @@
 import csv
 from pathlib import Path
+from string import Template
 
-SCRIPT_FILE_NAME = "faux-in-py.sh"
+SCRIPT_FILE_NAME = "faux-in-py-template.sh"
 SUBJECT_INFO_FILE_NAME = "subject_info.csv"
 
 
@@ -22,14 +23,35 @@ def read_subject_info():
     return subject_info_table
 
 
+def wrap_item_in_double_quotes(item):
+    return f'"{item}"'
+
+
+def info_list_to_bash_list_items(info_list: str):
+    if info_list.strip() == "-":
+        return ""
+
+    items = info_list.split(";")
+    bash_list = ""
+    for item in items:
+        bash_list += f'"{item.strip()}"\n'
+
+    return bash_list.strip()
+
+
 def produce_script_for_subject(script_template: str,
                                subject: dict):
-    script_subject = script_template
-    for key, value in subject.items():
-        if key != "#":
-            script_subject = script_subject.replace(f"####{key}####", value)
-
-    return script_subject
+    t = Template(script_template)
+    script = t.safe_substitute({
+        'PLACE_HOLDER_PYTHON_V': wrap_item_in_double_quotes(subject["PYTHON_V"]),
+        'PLACE_HOLDER_BENCHMARK_NAME': wrap_item_in_double_quotes(subject["BENCHMARK_NAME"]),
+        'PLACE_HOLDER_BUG_NUMBER': wrap_item_in_double_quotes(subject["BUG_NUMBER"]),
+        'PLACE_HOLDER_TARGET_DIR': wrap_item_in_double_quotes(subject["TARGET_DIR"]),
+        'PLACE_HOLDER_TEST_SUITE': info_list_to_bash_list_items(subject["TEST_SUITE"]),
+        'PLACE_HOLDER_EXCLUDE': info_list_to_bash_list_items(subject["EXCLUDE"]),
+        'PLACE_HOLDER_TARGET_FAILING_TESTS': info_list_to_bash_list_items(subject["TARGET_FAILING_TESTS"])
+    })
+    return script
 
 
 def save_script_string(file_name, script_string):
