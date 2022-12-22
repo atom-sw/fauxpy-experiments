@@ -36,9 +36,11 @@ sudo apt-get install python3.8-dev
 # Nothing needed in Conda
 ```
 
-3. Create 3 venvs for these 3 Python versions in the same directory where script `faux-in-py.sh` is located:
+3. Create 3 venvs for these 3 Python versions in the upper directory where each script (e.g., `cookiecutter_1.sh`) is located. For instance, if the current directory is `scripts` (which contains `cookiecutter_1.sh`), run the following commands:
 
 ```
+cd ..
+
 # Without Conda
 python3.6 -m venv bugsinpyenv36
 python3.7 -m venv bugsinpyenv37
@@ -56,3 +58,13 @@ python3.8 -m venv bugsinpyenv38
 conda deactivate
 ```
 
+4. You must also keep a copy of FauxPy in the same directory where the scripts (e.g., `cookiecutter_1.sh`) are located since FauxPy is not publicly available as a pip package at the moment.
+
+
+## Generating the scripts
+
+In order to generate the bash scripts that run FauxPy on each benchmark, one can use the Python script `subject_script_generator.py`. This Python script requires the bash script template `faux-in-py-template.sh` and the csv file `subject_info.csv` to be in the same directory as this Python script. Running `subject_script_generator.py` makes a directory named `scripts` that contains all of the scripts for the experiments.
+
+```
+python subject_script_generator.py
+```
