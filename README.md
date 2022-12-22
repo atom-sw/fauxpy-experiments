@@ -61,7 +61,7 @@ conda deactivate
 4. You must also keep a copy of FauxPy in the same directory where the scripts (e.g., `cookiecutter_1.sh`) are located since FauxPy is not publicly available as a pip package at the moment.
 
 
-## Generating the scripts
+## Generating the bash scripts
 
 In order to generate the bash scripts that run FauxPy on each benchmark, one can use the Python script `subject_script_generator.py`. This Python script requires the bash script template `faux-in-py-template.sh` and the csv file `subject_info.csv` to be in the same directory as this Python script. Running `subject_script_generator.py` makes a directory named `scripts` that contains all of the scripts for the experiments.
 
