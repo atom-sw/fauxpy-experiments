@@ -227,67 +227,9 @@ pip install "$FAUXPY_PATH"
 
 
 # Running FauxPy commands
-# NOTE: the 7 experiments must not run in parallel
 #--------------------------------------------
-# Statement granularity
 
-echo "------- Running SBFL with statement granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "statement"\
-                 --family "sbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
-
-echo "------- Running MBFL with statement granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "statement"\
-                 --family "mbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
-
-echo "------- Running PS with statement granularity"
-python -m pytest "${TARGET_FAILING_TESTS[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "statement"\
-                 --family "ps"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
-
-# # Function granularity
-
-echo "------- Running SBFL with function granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "sbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
-
-echo "------- Running MBFL with function granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "mbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
-
-echo "------- Running PS with function granularity"
-python -m pytest "${TARGET_FAILING_TESTS[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "ps"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
-
-echo "------- Running ST with function granularity"
-python -m pytest "${TARGET_FAILING_TESTS[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "st"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+$PLACE_HOLDER_EXPERIMENT
 
 
 # Copy FL results to home
