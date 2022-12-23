@@ -1,1 +1,32 @@
 COMPLETED:
+cookiecutter, B1, statement, sbfl
+cookiecutter, B1, statement, mbfl 
+cookiecutter, B1, statement, ps
+cookiecutter, B1, function, sbfl 
+cookiecutter, B1, function, mbfl 
+cookiecutter, B1, function, ps 
+cookiecutter, B1, function, st
+
+spacy, B4, statement, sbfl
+spacy, B4, statement, mbfl 
+spacy, B4, statement, ps
+spacy, B4, function, sbfl 
+spacy, B4, function, mbfl 
+spacy, B4, function, ps 
+spacy, B4, function, st
+
+tornado, B3, statement, sbfl
+tornado, B3, statement, mbfl 
+tornado, B3, statement, ps
+tornado, B3, function, sbfl 
+tornado, B3, function, mbfl 
+tornado, B3, function, ps 
+tornado, B3, function, st 
+
+tqdm, B6, statement, sbfl
+tqdm, B6, statement, mbfl 
+tqdm, B6, statement, ps
+tqdm, B6, function, sbfl 
+tqdm, B6, function, mbfl 
+tqdm, B6, function, ps 
+tqdm, B6, function, st
