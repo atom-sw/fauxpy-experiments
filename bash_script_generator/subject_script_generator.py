@@ -117,6 +117,9 @@ def main():
         save_script(statement, item, PS, STATEMENT)
         save_script(function, item, PS, FUNCTION)
 
+        _, function = get_script(TEMPLATE_ST, item)
+        save_script(function, item, ST, FUNCTION)
+
 
 if __name__ == '__main__':
     main()
