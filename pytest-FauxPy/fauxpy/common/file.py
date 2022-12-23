@@ -16,7 +16,7 @@ _CollectModeDirectoryCreated = False
 _CollectModeDirectory: pathlib.PosixPath
 
 
-def init(family: str):
+def init(family: str, granularity: str):
     global _ReportDirectory, _CollectModeDirectory
 
     projectWd = pathlib.Path(utils.ProjectWorkingDirectory)
@@ -24,7 +24,7 @@ def init(family: str):
     projectParentDirectory = projectWd.parent
     ft = "%Y_%m_%d_%H_%M_%S_%f"
     dateTime = datetime.datetime.now().strftime(ft)
-    reportDirectorName = f"{FileNames.ReportDirectoryNamePrefix}_{projectName}_{family}_{dateTime}"
+    reportDirectorName = f"{FileNames.ReportDirectoryNamePrefix}_{projectName}_{family}_{granularity}_{dateTime}"
     _ReportDirectory = projectParentDirectory / reportDirectorName
 
     if family in ["collectmbfl", "collectpsinfo", "collectpsrun"]:

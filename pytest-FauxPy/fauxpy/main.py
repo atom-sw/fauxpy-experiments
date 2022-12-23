@@ -49,9 +49,10 @@ def pytest_configure(config):
         return
 
     _Family = config.getoption('--family')
+    _Granularity = config.getoption('--granularity')
 
     _ExTimer.startTimer()
-    common.init(_Family)
+    common.init(_Family, _Granularity)
 
     _TopN = config.getoption('--top-n')
     _Exclude = common.convertArgumentListStringToList(config.getoption('--exclude'))
@@ -76,7 +77,7 @@ def pytest_configure(config):
         print("----------- TARGET FAILING TEST -----------")
 
     if _Family == 'sbfl':
-        _Granularity = config.getoption('--granularity')
+        # _Granularity = config.getoption('--granularity')
 
         if _Granularity not in ["statement", "function"]:
             raise Exception(f"Granularity {_Granularity} is not supported.")
@@ -92,7 +93,7 @@ def pytest_configure(config):
                                      topN=_TopN,
                                      targetFailingTests=targetFailingTests)
     elif _Family == "mbfl":
-        _Granularity = config.getoption('--granularity')
+        # _Granularity = config.getoption('--granularity')
 
         if _Granularity not in ["statement", "function"]:
             raise Exception(f"Granularity {_Granularity} is not supported.")
@@ -104,7 +105,7 @@ def pytest_configure(config):
                               fileOrDir=_FileOrDir,
                               targetFailingTests=targetFailingTests)
     elif _Family == "ps":
-        _Granularity = config.getoption('--granularity')
+        # _Granularity = config.getoption('--granularity')
 
         if _Granularity not in ["statement", "function"]:
             raise Exception(f"Granularity {_Granularity} is not supported.")

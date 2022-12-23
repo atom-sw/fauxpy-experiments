@@ -19,12 +19,12 @@ from .failing_tests import TargetFailingTests
 
 
 # TODO: Find a better design for using these libraries.
-def init(family: str):
+def init(family: str, granularity: str):
     # utils must be initialized before file
     # since file uses the ProjectWorkingDirectory variable
     # from utils
     utils.init()
-    file.init(family)
+    file.init(family, granularity)
     log.init()
     database.init()
 
