@@ -1,1 +1,1 @@
-for f in scripts/*.sh; do fn="${f/#scripts\//}"; echo "$fn"; cp "$f" .; chmod u+x "$fn"; slurp --scratch --submit SBATCH --workdir "/home/furia/fauxpy-experiments" "$fn"; done
+for f in $(find scripts/ -type f -name "") do fn="${f/#scripts\//}"; [[ "$fn" =~ ^([0-9]+)_([0-9]+)h_([0-9]+)g_(.*)$ ]] && N="${BASH_REMATCH[1]}"; T="${BASH_REMATCH[2]}"; M="${BASH_REMATCH[3]}"; echo "$fn"; cp "$f" .; chmod u+x "$fn"; slurp --scratch --submit SBATCH --workdir "/home/furia/fauxpy-experiments" "$fn" --time="$T:00:00" --mem="$M000" --output="$fn-%j.out" --error="$fn-%j.out"; done
