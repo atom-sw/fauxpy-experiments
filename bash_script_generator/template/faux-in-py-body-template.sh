@@ -6,18 +6,6 @@ set -e
 
 # Inputs for the current buggy program
 #--------------------------------------------
-#PYTHON_V="3.6"
-#BENCHMARK_NAME="cookiecutter"
-#BUG_NUMBER="1"
-#TARGET_DIR="cookiecutter"
-#TEST_SUITE=(
-#    "tests"
-#    )
-#EXCLUDE=(
-#)
-#TARGET_FAILING_TESTS=(
-#    "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
-#    )
 
 PYTHON_V=$PLACE_HOLDER_PYTHON_V
 BENCHMARK_NAME=$PLACE_HOLDER_BENCHMARK_NAME
@@ -32,6 +20,8 @@ $PLACE_HOLDER_EXCLUDE
 TARGET_FAILING_TESTS=(
 $PLACE_HOLDER_TARGET_FAILING_TESTS
 )
+FAMILY=$PLACE_HOLDER_FAMILY
+GRANULARITY=$PLACE_HOLDER_GRANULARITY
 
 
 # A function to convert Bash lists to Python lists
@@ -63,9 +53,9 @@ EXCLUDE_LIST=$(bash2python "${EXCLUDE[@]}")
 SCRIPT_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 HOSTNAME=$(hostname)
 if [[ "$HOSTNAME" =~ ics.* ]]; then
-	 TEMP_DIR="/scratch/furia/$BENCHMARK_NAME/B$BUG_NUMBER"
+   TEMP_DIR="/scratch/furia/$BENCHMARK_NAME/B${BUG_NUMBER}_F${FAMILY}_G${GRANULARITY}"
 else
-	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B$BUG_NUMBER"
+	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B${BUG_NUMBER}_F${FAMILY}_G${GRANULARITY}"
 fi
 
 # Remove a previous run's temp data, if it exists

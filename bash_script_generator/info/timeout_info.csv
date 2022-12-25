@@ -1,0 +1,13 @@
+"BENCHMARK_NAME","sbfl","mbfl","ps","st"
+"cookiecutter",1,1,1,1
+"spacy",1,1,1,1
+"sanic",1,1,1,1
+"httpie",1,5,1,1
+"keras",2,48,1,1
+"thefuck",1,5,1,1
+"pandas",10,48,100,1
+"black",1,5,24,1
+"fastapi",1,5,1,1
+"tornado",1,1,1,1
+"tqdm",1,2,1,1
+"youtube-dl",1,5,1,1
