@@ -3,5 +3,8 @@
 
 *~
 *_*.out
+*_*.err
 *_*.time
 *_*.cmd
+run_*.sh
+*_*h_*g_*.sh
