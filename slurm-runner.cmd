@@ -112,31 +112,12 @@ echo "$FILES" | while read -d $'\n' f; do
 		  chmod u+x "$fn";
 		  slurp --scratch --submit SBATCH --workdir "$SLURM_WORKDIR" "$fn" --time="$T:00:00" --mem="$M000" --output="$fn-%%j.out" --error="$fn-%%j.out";
 	 else
-		  # Get PID of process on cluster
-		  PID=$(ssh furia@hpc.ics.usi.ch '(ls "$HOME" | sed -n "s/^'"$fn"'-\([0-9]\+\)[.]out$/\1/p")')
-		  if [ -z "$PID" ]; then
-				echo "Could not get PID of: $fn"
-				continue
-		  fi
-		  # Check if process is still running
-		  RUNNING=$(ssh furia@hpc.ics.usi.ch 'squeue --me | grep -o '"$PID")
-		  if [ "$RUNNING" = "$PID" ]; then
-				echo "Job $PID still running: $fn"
-				continue
-		  fi
-		  # Determine location of specific experiment
-		  DIRSTRUCT=$(ssh furia@hpc.ics.usi.ch 'ls "$HOME/'"$fn-$PID"'.out" | sed -n "s/.*[/][0-9]\+_[0-9]\+h_[0-9]\+g_\([^_]\+\)_\([0-9]\+\)_\([^_]\+\)_\([^.]\+\)[.]sh[-][0-9]\+[.]out/\1\/B\2\/FauxPyReport_\1_\3_\4_/p"')
-		  RESULTS_DIR=$(ssh furia@hpc.ics.usi.ch 'ls -d '"$SLURM_WORKDIR/$(basename $(pwd))/$DIRSTRUCT"'*')
-		  # Move log file
-		  ssh furia@hpc.ics.usi.ch 'mv "$HOME/'"$fn-$PID.out $RESULTS_DIR/"
 		  # Collect results
 		  slurp --collect --workdir "$SLURM_WORKDIR" "$fn"
-		  # Move script to done
-		  mkdir -p done
-		  mv "$fn" done/
-		  # Remove results on server
-		  echo "Deleting on server: $RESULTS_DIR"
-		  read -p "Press enter to continue (or C-c to stop)"
-		  $(ssh furia@hpc.ics.usi.ch "rm -r $RESULTS_DIR")
+		  mkdir -p ../logs
+		  # Collect logs
+		  rsync -aquz -e 'ssh -p 22' furia@hpc.ics.usi.ch:/home/furia/*.out ../logs/
+		  # No need to do it for all files
+		  break
 	 fi
 done
