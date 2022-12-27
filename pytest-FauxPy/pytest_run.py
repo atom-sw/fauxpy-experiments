@@ -323,7 +323,8 @@ def runCommandScript(cmd: str, workingDir: str):
 
 
 # workDir = "/home/moe/BugsInPyExp/11.black/bug14/buggy/black"
-# command = 'python -m pytest tests --src . --exclude [env,tests] --granularity statement --family ps'
+# # command = 'python -m pytest tests --src . --exclude [env,tests] --granularity statement --family ps'
+# command = 'python -m pytest tests/test_black.py::BlackTestCase::test_get_future_imports --src . --exclude [env,tests] --granularity statement --family ps --failing-list [tests/test_black.py::BlackTestCase::test_get_future_imports]'
 # runCommandScript(command, workDir)
 
 
@@ -338,10 +339,10 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-workDir = "/home/moe/BugsInPyExp/5.sanic/bug3/buggy/sanic"
-command = 'python -m pytest tests --src sanic --granularity statement --family ps'
-# command = 'python -m pytest tests/test_app.py tests/test_url_for.py --src sanic --granularity statement --family mbfl'
-runCommandScript(command, workDir)
+# workDir = "/home/moe/BugsInPyExp/5.sanic/bug3/buggy/sanic"
+# command = 'python -m pytest tests --src sanic --granularity statement --family ps'
+# # command = 'python -m pytest tests/test_app.py tests/test_url_for.py --src sanic --granularity statement --family mbfl'
+# runCommandScript(command, workDir)
 
 
 # workDir = "/home/moe/BugsInPyExp/12.scrapy/bug34/buggy/scrapy"
@@ -357,3 +358,8 @@ runCommandScript(command, workDir)
 # workDir = "/home/moe/BugsInPyExp/4.spacy/bug4/buggy/spacy"
 # command = 'python -m pytest spacy/tests/test_cli.py spacy/tests/test_json_schemas.py spacy/tests/doc/test_to_json.py spacy/tests/regression/test_issue4665.py --src spacy --exclude [spacy/tests] --granularity statement --family ps'
 # runCommandScript(command, workDir)
+
+
+workDir = "/home/moe/BugsInPyExp/17.youtube-dl/bug13/buggy/youtube-dl"
+command = 'python -m pytest test/test_utils.py::TestUtil::test_urljoin --src youtube_dl --granularity function --family ps --failing-list [test/test_utils.py::TestUtil::test_urljoin]'
+runCommandScript(command, workDir)

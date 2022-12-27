@@ -218,15 +218,17 @@ def _getTestScoredEntityStoreDb(testName: str,
         else:
             raise Exception(f"The granularity {granularity} is not supported.")
 
-        # scoredEntities.append((entity, score))
+        # For function granularity it can happen.
+        # In this case, only one should be stored.
+        # Found in youtube_dl13
+        if database.scoredEntityExistsForTest(testName, entity):
+            continue
 
         database.insertScoredEntity(testName, entity, score)
 
         # Critical predicate closer to the failure location is more suspicious to be buggy.
         # Predicate instance closer to the failure locations is more suspicious to be buggy.
         score = score / 1.1
-
-    # return scoredEntities
 
 
 def _getAllTestsTopNScoredEntities(topN):

@@ -302,6 +302,15 @@ def insertScoredEntity(testName: str, entity: str, score: int):
     _Con.commit()
 
 
+def scoredEntityExistsForTest(testName: str, entity: str):
+    cur = _Con.cursor()
+    cur.execute(f"SELECT DISTINCT TestName, Entity FROM {_Names.scoredEntityTable} "
+                f"WHERE TestName = ? AND Entity = ?", (testName, entity))
+
+    itemsFound = cur.fetchall()
+    return len(itemsFound) > 0
+
+
 def insertTestTime(testName: str, testTime: int):
     cur = _Con.cursor()
     cur.execute(f"INSERT INTO {_Names.testTimeTable} VALUES (NULL, ?, ?)",
