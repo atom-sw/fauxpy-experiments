@@ -1,23 +1,24 @@
 from typing import List
+from .naming import getGeneralizedTestName
 
 
-def _reformatPytestTest(test: str):
-    reformatted = ""
-    testComponents = test.split("::")
-
-    # Target tests are functions in the forms
-    # FilePath::FunctionName or
-    # FilePath::ClassName::FunctionName
-    # So they must have two or three components
-    assert 2 <= len(testComponents) <= 3
-
-    if len(testComponents) == 2:
-        reformatted = "::".join([testComponents[0], testComponents[1]])  # FilePath::FunctionName
-    elif len(testComponents) == 3:
-        functionName = ".".join([testComponents[1], testComponents[2]])  # ClassName.FunctionName
-        reformatted = "::".join([testComponents[0], functionName])  # FilePath::ClassName.FunctionName
-
-    return reformatted
+# def _reformatPytestTest(test: str):
+#     reformatted = ""
+#     testComponents = test.split("::")
+#
+#     # Target tests are functions in the forms
+#     # FilePath::FunctionName or
+#     # FilePath::ClassName::FunctionName
+#     # So they must have two or three components
+#     assert 2 <= len(testComponents) <= 3
+#
+#     if len(testComponents) == 2:
+#         reformatted = "::".join([testComponents[0], testComponents[1]])  # FilePath::FunctionName
+#     elif len(testComponents) == 3:
+#         functionName = ".".join([testComponents[1], testComponents[2]])  # ClassName.FunctionName
+#         reformatted = "::".join([testComponents[0], functionName])  # FilePath::ClassName.FunctionName
+#
+#     return reformatted
 
 
 class TargetFailingTests(object):
@@ -52,10 +53,11 @@ class TargetFailingTests(object):
             return TargetFailingTests(failingListStriped)
 
     def isTargetTest(self, currentTestPath, currentTestMethodName):
-        currentTestFullPath = "::".join([currentTestPath, currentTestMethodName])
+        # currentTestFullPath = "::".join([currentTestPath, currentTestMethodName])
+        currentTestFullPathGeneralized = getGeneralizedTestName(currentTestPath, currentTestMethodName)
         for targetTest in self._targetFailingTestsList:
-            reformattedTargetFilePath = _reformatPytestTest(targetTest)
-            if currentTestFullPath == reformattedTargetFilePath:
+            # reformattedTargetFilePath = _reformatPytestTest(targetTest)
+            if currentTestFullPathGeneralized == targetTest:
                 return True
         return False
 

@@ -1,5 +1,5 @@
 from .naming import getTestName, convertTestNameToComponents, getStatementName, getCoveredFunctionName, \
-    convertStatementNameToComponents, testNameToFileName
+    convertStatementNameToComponents, testNameToFileName, getGeneralizedTestName
 from .file import saveScoresToFile, saveConfigToFile, saveDeltaTimeToFile, \
     getDatabasePath, saveInCollectModeTestCaseTable, loadInCollectModeExecutedPredicateSequenceAndRemoveFile,\
     loadInCollectModeSeenExceptionSequenceAndRemoveFile, loadAfterCollectModeTestCaseTable,\

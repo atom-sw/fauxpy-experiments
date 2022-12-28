@@ -78,24 +78,24 @@ def _getPredicateSequences(projectPath: str,
     return predicateSequences
 
 
-def _getGeneralizedTestName(testName: str) -> str:
-    """
-    Returns the general test name if the test is a parametrized test.
-    i.e., it removes the parameters and keeps only the function name.
-    Thus, the general test name includes all instances of a parametrized test.
-    For non parametrized tests, it does nothing and returns the received test.
-    """
-
-    filePath, _, functionName = common.convertTestNameToComponents(testName)
-    generalizedFunctionName = functionName.split("[")[0]
-
-    # For CLASS_NAME.FUNCTION_NAME
-    if "." in generalizedFunctionName:
-        className, functionName = generalizedFunctionName.split(".")
-        generalizedFunctionName = "::".join([className, functionName])
-
-    generalizedTestFuncPath = "::".join([filePath, generalizedFunctionName])
-    return generalizedTestFuncPath
+# def _getGeneralizedTestName(testName: str) -> str:
+#     """
+#     Returns the general test name if the test is a parametrized test.
+#     i.e., it removes the parameters and keeps only the function name.
+#     Thus, the general test name includes all instances of a parametrized test.
+#     For non parametrized tests, it does nothing and returns the received test.
+#     """
+#
+#     filePath, _, functionName = common.convertTestNameToComponents(testName)
+#     generalizedFunctionName = functionName.split("[")[0]
+#
+#     # For CLASS_NAME.FUNCTION_NAME
+#     if "." in generalizedFunctionName:
+#         className, functionName = generalizedFunctionName.split(".")
+#         generalizedFunctionName = "::".join([className, functionName])
+#
+#     generalizedTestFuncPath = "::".join([filePath, generalizedFunctionName])
+#     return generalizedTestFuncPath
 
 
 def _getGeneralizedFailedTestFunctionPaths():
@@ -107,7 +107,9 @@ def _getGeneralizedFailedTestFunctionPaths():
     generalizedTestNames = []
     failedTestCaseNames = database.selectTestCaseFailed()
     for testName in failedTestCaseNames:
-        generalizedTestName = _getGeneralizedTestName(testName)
+        # generalizedTestName = _getGeneralizedTestName(testName)
+        filePath, _, functionName = common.convertTestNameToComponents(testName)
+        generalizedTestName = common.getGeneralizedTestName(filePath, functionName)
         generalizedTestNames.append(generalizedTestName)
     return generalizedTestNames
 
@@ -120,7 +122,9 @@ def _runSwitchedPredicateInstance(projectPath: str, testName: str, predicateName
     Returns True if the given test passes, and False, if it does not.
     """
 
-    generalizedTestPath = _getGeneralizedTestName(testName)
+    # generalizedTestPath = _getGeneralizedTestName(testName)
+    filePath, _, functionName = common.convertTestNameToComponents(testName)
+    generalizedTestPath = common.getGeneralizedTestName(filePath, functionName)
     exeResultData = collect_mode.runPSCollectModeRun(src=src,
                                                      exclude=exclude,
                                                      projectPath=projectPath,

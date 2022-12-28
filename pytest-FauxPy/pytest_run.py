@@ -350,9 +350,9 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-# workDir = "/home/moe/BugsInPyExp/2.cookiecutter/bug1/buggy/cookiecutter"
-# command = 'python -m pytest tests --src cookiecutter --granularity statement --family ps'
-# runCommandScript(command, workDir)
+workDir = "/home/moe/BugsInPyExp/2.cookiecutter/bug3/buggy/cookiecutter"
+command = 'python -m pytest tests/test_read_user_choice.py::test_click_invocation --src cookiecutter --granularity statement --family sbfl --failing-list [tests/test_read_user_choice.py::test_click_invocation]'
+runCommandScript(command, workDir)
 
 
 # workDir = "/home/moe/BugsInPyExp/4.spacy/bug4/buggy/spacy"
@@ -360,6 +360,6 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-workDir = "/home/moe/BugsInPyExp/17.youtube-dl/bug13/buggy/youtube-dl"
-command = 'python -m pytest test/test_utils.py::TestUtil::test_urljoin --src youtube_dl --granularity function --family ps --failing-list [test/test_utils.py::TestUtil::test_urljoin]'
-runCommandScript(command, workDir)
+# workDir = "/home/moe/BugsInPyExp/17.youtube-dl/bug13/buggy/youtube-dl"
+# command = 'python -m pytest test/test_utils.py::TestUtil::test_urljoin --src youtube_dl --granularity function --family ps --failing-list [test/test_utils.py::TestUtil::test_urljoin]'
+# runCommandScript(command, workDir)

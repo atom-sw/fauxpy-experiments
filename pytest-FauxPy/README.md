@@ -88,15 +88,17 @@ At each line, the test is in the following format:
 
 Examples:
 
-The following is a test in unittest:
+1. The following is a test in unittest:
 
 `test/test_common/test_file.py::Test_IO::test_read_file`
 
-The following is a pytest parametrized tests:
+2. The following is a pytest parametrized tests:
 
-Note: specifying pytest parametrized tests as target failing test is not fully tested.
+Note: do not specify parameters for parametrized failing tests. For instance, if
+the target failing test is `test/test_tuils.py::test_addition[1-2-3]`, remove
+the parameters:
 
-`test/test_tuils.py::test_addition[1-2-3]` (this one is a pytest parametrized test)
+`test/test_tuils.py::test_addition` (this one is a pytest parametrized test)
 
 ###--failing-list
 
@@ -109,13 +111,13 @@ Examples:
 
 [`test/test_common/test_file.py::Test_IO::test_read_file` (this one is a unittest test)
 
-`test/test_tuils.py::test_addition[1-2-3]` (this one is a pytest parametrized test)
+`test/test_tuils.py::test_addition` (this one is a pytest parametrized test. Parameters must be removed.)
 
 ```
 pytest tests
        ...
        --failing-list "[test/test_common/test_file.py::Test_IO::test_read_file,
-                       test/test_tuils.py::test_addition[1-2-3]]"
+                       test/test_tuils.py::test_addition]"
        ...       
 ```
 
