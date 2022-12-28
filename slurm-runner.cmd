@@ -116,7 +116,7 @@ echo "$FILES" | while read -d $'\n' f; do
 		  slurp --collect --workdir "$SLURM_WORKDIR" "$fn"
 		  mkdir -p ../logs
 		  # Collect logs
-		  rsync -aquz -e 'ssh -p 22' furia@hpc.ics.usi.ch:/home/furia/*.out ../logs/
+		  # rsync -aquz -e 'ssh -p 22' furia@hpc.ics.usi.ch:/home/furia/*.out ../logs/
 		  # No need to do it for all files
 		  break
 	 fi
