@@ -11,3 +11,6 @@
 10,3.7,"tornado",3,"tornado","tornado/test","tornado/test","tornado/test/httpclient_test.py::SyncHTTPClientSubprocessTest::test_destructor_log"
 11,3.6,"tqdm",6,"tqdm","tqdm/tests","tqdm/tests","tqdm/tests/test_synchronisation.py::test_imap"
 12,3.7,"youtube-dl",13,"youtube_dl","test","-","test/test_utils.py::TestUtil::test_urljoin"
+13,3.6,"cookiecutter",2,"cookiecutter","tests","-","tests/test_hooks.py::TestFindHooks::test_find_hook;tests/test_hooks.py::TestExternalHooks::test_run_hook"
+14,3.6,"cookiecutter",3,"cookiecutter","tests","-","tests/test_read_user_choice.py::test_click_invocation"
+15,3.6,"cookiecutter",4,"cookiecutter","tests","-","tests/test_hooks.py::TestExternalHooks::test_run_failing_hook"

@@ -10,7 +10,7 @@ PYTHON_V="3.6"
 
 BENCHMARK_NAME="cookiecutter"
 
-BUG_NUMBER="1"
+BUG_NUMBER="4"
 
 TARGET_DIR="cookiecutter"
 
@@ -22,8 +22,12 @@ EXCLUDE=(
 )
 
 TARGET_FAILING_TESTS=(
-    "tests/test_generate_context.py::test_generate_context_decodes_non_ascii_chars"
+    "tests/test_hooks.py::TestExternalHooks::test_run_failing_hook"
     )
+
+FAMILY="sbfl"
+
+GRANULARITY="statement"
 
 
 # A function to convert Bash lists to Python lists
@@ -55,9 +59,9 @@ EXCLUDE_LIST=$(bash2python "${EXCLUDE[@]}")
 SCRIPT_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 HOSTNAME=$(hostname)
 if [[ "$HOSTNAME" =~ ics.* ]]; then
-	 TEMP_DIR="/scratch/furia/$BENCHMARK_NAME/B$BUG_NUMBER"
+	 TEMP_DIR="/scratch/furia/$BENCHMARK_NAME/B${BUG_NUMBER}_F${FAMILY}_G${GRANULARITY}"
 else
-	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B$BUG_NUMBER"
+	 TEMP_DIR="$HOME/temp/fauxpy-temp/$BENCHMARK_NAME/B${BUG_NUMBER}_F${FAMILY}_G${GRANULARITY}"
 fi
 
 # Remove a previous run's temp data, if it exists
@@ -138,6 +142,12 @@ if [ "$BENCHMARK_NAME" == "cookiecutter" ]
 then
     echo "------- Running cookiecutter specific commands"
     # This is a requirement for running tests.
+
+    if [ "$BUG_NUMBER" == "4" ]
+    then
+        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
+    fi
+
     pip install -r test_requirements.txt
 fi
 
@@ -231,55 +241,55 @@ python -m pytest "${TEST_SUITE[@]}"\
                  --family "sbfl"\
                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-echo "------- Running MBFL with statement granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "statement"\
-                 --family "mbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+# echo "------- Running MBFL with statement granularity"
+# python -m pytest "${TEST_SUITE[@]}"\
+#                  --src "$TARGET_DIR"\
+#                  --exclude "$EXCLUDE_LIST"\
+#                  --granularity "statement"\
+#                  --family "mbfl"\
+#                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-echo "------- Running PS with statement granularity"
-python -m pytest "${TARGET_FAILING_TESTS[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "statement"\
-                 --family "ps"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+# echo "------- Running PS with statement granularity"
+# python -m pytest "${TARGET_FAILING_TESTS[@]}"\
+#                  --src "$TARGET_DIR"\
+#                  --exclude "$EXCLUDE_LIST"\
+#                  --granularity "statement"\
+#                  --family "ps"\
+#                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-# # Function granularity
+# Function granularity
 
-echo "------- Running SBFL with function granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "sbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+# echo "------- Running SBFL with function granularity"
+# python -m pytest "${TEST_SUITE[@]}"\
+#                  --src "$TARGET_DIR"\
+#                  --exclude "$EXCLUDE_LIST"\
+#                  --granularity "function"\
+#                  --family "sbfl"\
+#                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-echo "------- Running MBFL with function granularity"
-python -m pytest "${TEST_SUITE[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "mbfl"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+# echo "------- Running MBFL with function granularity"
+# python -m pytest "${TEST_SUITE[@]}"\
+#                  --src "$TARGET_DIR"\
+#                  --exclude "$EXCLUDE_LIST"\
+#                  --granularity "function"\
+#                  --family "mbfl"\
+#                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-echo "------- Running PS with function granularity"
-python -m pytest "${TARGET_FAILING_TESTS[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "ps"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+# echo "------- Running PS with function granularity"
+# python -m pytest "${TARGET_FAILING_TESTS[@]}"\
+#                  --src "$TARGET_DIR"\
+#                  --exclude "$EXCLUDE_LIST"\
+#                  --granularity "function"\
+#                  --family "ps"\
+#                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
-echo "------- Running ST with function granularity"
-python -m pytest "${TARGET_FAILING_TESTS[@]}"\
-                 --src "$TARGET_DIR"\
-                 --exclude "$EXCLUDE_LIST"\
-                 --granularity "function"\
-                 --family "st"\
-                 --failing-list "$TARGET_FAILING_TESTS_LIST" || true
+# echo "------- Running ST with function granularity"
+# python -m pytest "${TARGET_FAILING_TESTS[@]}"\
+#                  --src "$TARGET_DIR"\
+#                  --exclude "$EXCLUDE_LIST"\
+#                  --granularity "function"\
+#                  --family "st"\
+#                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
 
 # Copy FL results to home
