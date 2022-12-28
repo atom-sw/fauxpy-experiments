@@ -139,6 +139,12 @@ if [ "$BENCHMARK_NAME" == "cookiecutter" ]
 then
     echo "------- Running cookiecutter specific commands"
     # This is a requirement for running tests.
+
+    if [ "$BUG_NUMBER" == "4" ]
+    then
+        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
+    fi
+
     pip install -r test_requirements.txt
 fi
 
