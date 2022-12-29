@@ -67,3 +67,10 @@ spacy/tests/parser/test_nn_beam.py;
 spacy/tests/pipeline;
 spacy/tests/regression;
 spacy/tests/serialize/test_serialize_language.py","spacy/tests","spacy/tests/test_language.py::test_evaluate_no_pipe"
+20,3.8,"sanic",1,"examples","tests","-","tests/test_blueprints.py::test_bp_middleware_order"
+21,3.8,"sanic",4,"sanic","tests","-","tests/test_requests.py::test_url_for_without_server_name"
+22,3.8,"sanic",5,"sanic","tests","-","tests/test_logging.py::test_logging_modified_root_logger_config"
+23,3.7,"httpie",1,"httpie","tests","-","tests/test_downloads.py::TestDownloadUtils::test_unique_filename"
+24,3.7,"httpie",3,"httpie","tests","-","tests/test_sessions.py::TestSession::test_download_in_session"
+25,3.7,"httpie",4,"httpie","tests","-","tests/test_regressions.py::test_Host_header_overwrite"
+26,3.7,"httpie",5,"httpie","tests","-","tests/test_all.py::TestItemParsing::test_escape_longsep"
