@@ -6,13 +6,13 @@ set -e
 
 # Inputs for the current buggy program
 #--------------------------------------------
-PYTHON_V="3.6"
+PYTHON_V="3.7"
 
-BENCHMARK_NAME="cookiecutter"
+BENCHMARK_NAME="httpie"
 
-BUG_NUMBER="4"
+BUG_NUMBER="5"
 
-TARGET_DIR="cookiecutter"
+TARGET_DIR="httpie"
 
 TEST_SUITE=(
     "tests"
@@ -22,7 +22,7 @@ EXCLUDE=(
 )
 
 TARGET_FAILING_TESTS=(
-    "tests/test_hooks.py::TestExternalHooks::test_run_failing_hook"
+    "tests/test_all.py::TestItemParsing::test_escape_longsep"
     )
 
 FAMILY="sbfl"
@@ -145,6 +145,7 @@ then
 
     if [ "$BUG_NUMBER" == "4" ]
     then
+        # For bug number 4, I had to make this file from tox.ini.
         wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
     fi
 
@@ -162,8 +163,18 @@ if [ "$BENCHMARK_NAME" == "httpie" ]
 then
     echo "------- Running httpie specific commands"
     # Comment out --tb=native in pytest.ini file.
-    # The corrent version of FauxPy is not compatible with
+    # The current version of FauxPy is not compatible with
     # this option.
+
+    if [ "$BUG_NUMBER" == "5" ]
+    then
+        # Bug number 5 is very old.
+        # Current versions of Pytest do not collect 
+        # test modlues which have names starting with tests or their
+        # names are only test.py
+        cp tests/tests.py tests/test_all.py
+    fi
+
     $(commentPatternInpytestIni "--tb=native")
 fi
 
