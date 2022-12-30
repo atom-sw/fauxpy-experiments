@@ -15,6 +15,62 @@ COMPLETED:
 25_1h_32g_spacy_4_ps_function.sh
 26_1h_32g_spacy_4_st_function.sh
 
+30_1h_32g_sanic_3_sbfl_statement.sh
+31_1h_32g_sanic_3_sbfl_function.sh
+SERVER TIMEOUT
+SERVER TIMEOUT
+34_1h_32g_sanic_3_ps_statement.sh
+35_1h_32g_sanic_3_ps_function.sh
+36_1h_32g_sanic_3_st_function.sh
+
+40_1h_32g_httpie_2_sbfl_statement.sh
+41_1h_32g_httpie_2_sbfl_function.sh
+42_5h_32g_httpie_2_mbfl_statement.sh
+43_5h_32g_httpie_2_mbfl_function.sh
+44_1h_32g_httpie_2_ps_statement.sh
+45_1h_32g_httpie_2_ps_function.sh
+46_1h_32g_httpie_2_st_function.sh
+
+SERVER ERROR
+51_2h_32g_keras_20_sbfl_function.sh
+SERVER TIMEOUT
+SERVER TIMEOUT
+54_1h_32g_keras_20_ps_statement.sh
+55_1h_32g_keras_20_ps_function.sh
+56_1h_32g_keras_20_st_function.sh
+
+60_1h_32g_thefuck_9_sbfl_statement.sh
+61_1h_32g_thefuck_9_sbfl_function.sh
+62_5h_32g_thefuck_9_mbfl_statement.sh
+63_5h_32g_thefuck_9_mbfl_function.sh
+64_1h_32g_thefuck_9_ps_statement.sh
+65_1h_32g_thefuck_9_ps_function.sh
+66_1h_32g_thefuck_9_st_function.sh
+
+70_10h_32g_pandas_56_sbfl_statement.sh
+71_10h_32g_pandas_56_sbfl_function.sh
+UNKNOWN - EMPTY LOG FILE
+SERVER ERROR
+74_48h_32g_pandas_56_ps_statement.sh
+75_48h_32g_pandas_56_ps_function.sh
+76_1h_32g_pandas_56_st_function.sh
+
+80_1h_32g_black_14_sbfl_statement.sh
+SERVER ERROR
+82_5h_32g_black_14_mbfl_statement.sh
+83_5h_32g_black_14_mbfl_function.sh
+84_24h_32g_black_14_ps_statement.sh
+85_24h_32g_black_14_ps_function.sh
+86_1h_32g_black_14_st_function.sh
+
+90_1h_32g_fastapi_10_sbfl_statement.sh
+91_1h_32g_fastapi_10_sbfl_function.sh
+92_5h_32g_fastapi_10_mbfl_statement.sh
+93_5h_32g_fastapi_10_mbfl_function.sh
+94_1h_32g_fastapi_10_ps_statement.sh
+MISSING
+96_1h_32g_fastapi_10_st_function.sh
+
 100_1h_32g_tornado_3_sbfl_statement.sh
 101_1h_32g_tornado_3_sbfl_function.sh
 102_1h_32g_tornado_3_mbfl_statement.sh
@@ -36,7 +92,128 @@ COMPLETED:
 122_5h_32g_youtube-dl_13_mbfl_statement.sh
 123_5h_32g_youtube-dl_13_mbfl_function.sh
 124_1h_32g_youtube-dl_13_ps_statement.sh
-
+125_1h_32g_youtube-dl_13_ps_function.sh
 126_1h_32g_youtube-dl_13_st_function.sh
+
+130_1h_32g_cookiecutter_2_sbfl_statement.sh
+131_1h_32g_cookiecutter_2_sbfl_function.sh
+132_1h_32g_cookiecutter_2_mbfl_statement.sh
+133_1h_32g_cookiecutter_2_mbfl_function.sh
+134_1h_32g_cookiecutter_2_ps_statement.sh
+135_1h_32g_cookiecutter_2_ps_function.sh
+136_1h_32g_cookiecutter_2_st_function.sh
+
+140_1h_32g_cookiecutter_3_sbfl_statement.sh
+141_1h_32g_cookiecutter_3_sbfl_function.sh
+SERVER ERROR
+143_1h_32g_cookiecutter_3_mbfl_function.sh
+144_1h_32g_cookiecutter_3_ps_statement.sh
+145_1h_32g_cookiecutter_3_ps_function.sh
+146_1h_32g_cookiecutter_3_st_function.sh
+
+150_1h_32g_cookiecutter_4_sbfl_statement.sh
+151_1h_32g_cookiecutter_4_sbfl_function.sh
+152_1h_32g_cookiecutter_4_mbfl_statement.sh
+153_1h_32g_cookiecutter_4_mbfl_function.sh
+BUG IN FAUXPY
+BUG IN FAUXPY
+156_1h_32g_cookiecutter_4_st_function.sh
+
+160_1h_32g_spacy_1_sbfl_statement.sh
+161_1h_32g_spacy_1_sbfl_function.sh
+162_1h_32g_spacy_1_mbfl_statement.sh
+163_1h_32g_spacy_1_mbfl_function.sh
+164_1h_32g_spacy_1_ps_statement.sh
+165_1h_32g_spacy_1_ps_function.sh
+166_1h_32g_spacy_1_st_function.sh
+
+170_1h_32g_spacy_2_sbfl_statement.sh
+171_1h_32g_spacy_2_sbfl_function.sh
+SERVER TIMEOUT
+SERVER TIMEOUT
+BUG IN FAUXPY
+BUG IN FAUXPY
+176_1h_32g_spacy_2_st_function.sh
+
+180_1h_32g_spacy_3_sbfl_statement.sh
+181_1h_32g_spacy_3_sbfl_function.sh
+182_1h_32g_spacy_3_mbfl_statement.sh
+183_1h_32g_spacy_3_mbfl_function.sh
+184_1h_32g_spacy_3_ps_statement.sh
+185_1h_32g_spacy_3_ps_function.sh
+186_1h_32g_spacy_3_st_function.sh
+
+190_1h_32g_spacy_5_sbfl_statement.sh
+191_1h_32g_spacy_5_sbfl_function.sh
+SERVER TIMEOUT
+SERVER TIMEOUT
+194_1h_32g_spacy_5_ps_statement.sh
+195_1h_32g_spacy_5_ps_function.sh
+196_1h_32g_spacy_5_st_function.sh
+
+SANIC 1 IS REMOVED FOR NOW. It will be repeated if I can fix the problem.
+200_1h_32g_sanic_1_sbfl_statement.sh
+201_1h_32g_sanic_1_sbfl_function.sh
+202_1h_32g_sanic_1_mbfl_statement.sh
+203_1h_32g_sanic_1_mbfl_function.sh
+204_1h_32g_sanic_1_ps_statement.sh
+205_1h_32g_sanic_1_ps_function.sh
+206_1h_32g_sanic_1_st_function.sh
+
+210_1h_32g_sanic_4_sbfl_statement.sh
+211_1h_32g_sanic_4_sbfl_function.sh
+SERVER TIMEOUT
+NOT FINISHED FOR UNKNOWN REASON - PROBABLY SERVER TIMEOUT
+214_1h_32g_sanic_4_ps_statement.sh
+215_1h_32g_sanic_4_ps_function.sh
+216_1h_32g_sanic_4_st_function.sh
+
+SERVER TIMEOUT
+SERVER TIMEOUT
+SERVER TIMEOUT
+SERVER TIMEOUT
+224_1h_32g_sanic_5_ps_statement.sh
+225_1h_32g_sanic_5_ps_function.sh
+226_1h_32g_sanic_5_st_function.sh
+
+HTTPIE 1 IS REMOVED FOR NOW. It will be repeated if I can fix the problem.
+230_1h_32g_httpie_1_sbfl_statement.sh
+231_1h_32g_httpie_1_sbfl_function.sh
+232_5h_32g_httpie_1_mbfl_statement.sh
+233_5h_32g_httpie_1_mbfl_function.sh
+234_1h_32g_httpie_1_ps_statement.sh
+235_1h_32g_httpie_1_ps_function.sh
+236_1h_32g_httpie_1_st_function.sh
+
+240_1h_32g_httpie_3_sbfl_statement.sh
+241_1h_32g_httpie_3_sbfl_function.sh
+242_5h_32g_httpie_3_mbfl_statement.sh
+243_5h_32g_httpie_3_mbfl_function.sh
+244_1h_32g_httpie_3_ps_statement.sh
+245_1h_32g_httpie_3_ps_function.sh
+246_1h_32g_httpie_3_st_function.sh
+
+250_1h_32g_httpie_4_sbfl_statement.sh
+251_1h_32g_httpie_4_sbfl_function.sh
+252_5h_32g_httpie_4_mbfl_statement.sh
+253_5h_32g_httpie_4_mbfl_function.sh
+254_1h_32g_httpie_4_ps_statement.sh
+255_1h_32g_httpie_4_ps_function.sh
+256_1h_32g_httpie_4_st_function.sh
+
+260_1h_32g_httpie_5_sbfl_statement.sh
+261_1h_32g_httpie_5_sbfl_function.sh
+262_5h_32g_httpie_5_mbfl_statement.sh
+263_5h_32g_httpie_5_mbfl_function.sh
+MISSING
+265_1h_32g_httpie_5_ps_function.sh
+266_1h_32g_httpie_5_st_function.sh
+
+
+
+
+
+
+
 
 
