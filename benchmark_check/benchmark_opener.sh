@@ -7,15 +7,10 @@ set -e
 #--------------------------------------------
 
 BENCHMARK_NAME="keras"
-
 BUG_NUMBER_START="1"
-
 BUG_NUMBER_END="10"
-
 WORKSPACE_PATH="/home/moe/BugsInPyExp/7.keras"
-
 VIRTUAL_ENV="/home/moe/bugsinpyenv37"
-
 TEST_OUTPUT_FILE_STDOUT="bugsinpy_test_output_stdout.txt"
 TEST_OUTPUT_FILE_STDERR="bugsinpy_test_output_stderr.txt"
 
