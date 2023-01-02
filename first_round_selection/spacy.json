@@ -1,0 +1,11 @@
+{
+    "BENCHMARK_NAME": "spacy",
+    "BUG_NUMBER_START": 1,
+    "BUG_NUMBER_END": 10,
+    "PYTHON_V": 3.8,
+    "TARGET_DIR": "spacy",
+    "TEST_SUITE": ["spacy/tests"],
+    "EXCLUDE": ["spacy/tests"],
+    "VIRTUAL_ENV": "/home/moe/bugsinpyenv38"
+}
+  
