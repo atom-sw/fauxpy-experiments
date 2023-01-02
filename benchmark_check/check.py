@@ -1,30 +1,13 @@
-"""
-This script performs the following checks:
-1. The test fails on the buggy version.
-2. The test passes on the fixed version.
-3. The test does not result in an error in either the buggy or the fixed version.
-Having errors in the buggy version while having also failing tests is OK.
-But not errors in the fixed version.
-
-Then, it generates a csv file to be tests by the bash script generator.
-Although, customizing the test suite is still manual.
-This script only returns the whole test suite.
-"""
-
+import json
 import re
+import sys
 from pathlib import Path
 from typing import List, Tuple
 
-BENCHMARK_NAME = "keras"
-BUG_NUMBER_START = "1"
-BUG_NUMBER_END = "10"
-WORKSPACE_PATH = "/home/moe/BugsInPyExp/7.keras"
-TEST_OUTPUT_FILE_STDOUT = "bugsinpy_test_output_stdout.txt"
-TEST_OUTPUT_FILE_STDERR = "bugsinpy_test_output_stderr.txt"
+INPUTS = {}
+GLOBAL_CONSTANTS = {}
 
-VERSION_PREFIX = "bug"
-BUGGY_DIR_NAME = "buggy"
-FIXED_DIR_NAME = "fixed"
+# Constants
 COMPILED_FLAG_FILE = "bugsinpy_compile_flag"
 RUN_TEST_FILE_NAME = "bugsinpy_run_test.sh"
 
@@ -58,11 +41,17 @@ class BenchmarkInfo:
 
 
 def get_buggy_project_path(bug_number: int):
-    return Path(WORKSPACE_PATH) / f"{VERSION_PREFIX}{bug_number}" / BUGGY_DIR_NAME / BENCHMARK_NAME
+    return (Path(GLOBAL_CONSTANTS["WORKSPACE_PATH"]) /
+            f"{GLOBAL_CONSTANTS['VERSION_PREFIX']}{bug_number}" /
+            GLOBAL_CONSTANTS["BUGGY_DIR_NAME"] /
+            INPUTS["BENCHMARK_NAME"])
 
 
 def get_fixed_project_path(bug_number: int):
-    return Path(WORKSPACE_PATH) / f"{VERSION_PREFIX}{bug_number}" / FIXED_DIR_NAME / BENCHMARK_NAME
+    return (Path(GLOBAL_CONSTANTS["WORKSPACE_PATH"]) /
+            f"{GLOBAL_CONSTANTS['VERSION_PREFIX']}{bug_number}"
+            / GLOBAL_CONSTANTS["FIXED_DIR_NAME"] /
+            INPUTS["BENCHMARK_NAME"])
 
 
 def get_match(content, pattern):
@@ -81,8 +70,8 @@ def get_test_info(version_path: Path) -> Tuple[int, int, int]:
     """
     Probably, benchmark specific.
     """
-    test_output_stdout = version_path / TEST_OUTPUT_FILE_STDOUT
-    test_output_stderr = version_path / TEST_OUTPUT_FILE_STDERR
+    test_output_stdout = version_path / GLOBAL_CONSTANTS["TEST_OUTPUT_FILE_STDOUT"]
+    test_output_stderr = version_path / GLOBAL_CONSTANTS["TEST_OUTPUT_FILE_STDERR"]
 
     stderr_content = read_file_content(test_output_stderr)
     assert stderr_content == ""
@@ -160,9 +149,25 @@ def remove_benchmark(info):
     pass
 
 
+def load_json_to_dictionary(file_path: str):
+    with open(file_path) as file:
+        data_dict = json.load(file)
+
+    return data_dict
+
+
 def main():
-    for i in range(int(BUG_NUMBER_START), int(BUG_NUMBER_END) + 1):
-        print(f"{BENCHMARK_NAME}{i}")
+    global INPUTS, GLOBAL_CONSTANTS
+
+    if len(sys.argv) != 2:
+        print("Pass the benchmark info file. For instance:\npython check.py keras.json")
+        exit(1)
+
+    INPUTS = load_json_to_dictionary(sys.argv[1])
+    GLOBAL_CONSTANTS = load_json_to_dictionary("global_constants.json")
+
+    for i in range(int(INPUTS["BUG_NUMBER_START"]), int(INPUTS["BUG_NUMBER_END"]) + 1):
+        print(f"{INPUTS['BENCHMARK_NAME']}{i}")
         benchmark_info = get_benchmark_info(i)
         if benchmark_info.is_included():
             add_benchmark(benchmark_info)

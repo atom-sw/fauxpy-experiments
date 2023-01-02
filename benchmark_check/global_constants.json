@@ -1,0 +1,8 @@
+{
+  "WORKSPACE_PATH": "/home/moe/BugsInPyExp/7.keras",
+  "TEST_OUTPUT_FILE_STDOUT": "bugsinpy_test_output_stdout.txt",
+  "TEST_OUTPUT_FILE_STDERR": "bugsinpy_test_output_stderr.txt",
+  "VERSION_PREFIX": "bug",
+  "BUGGY_DIR_NAME": "buggy",
+  "FIXED_DIR_NAME": "fixed"
+}
