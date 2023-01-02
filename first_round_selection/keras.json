@@ -1,0 +1,10 @@
+{
+  "BENCHMARK_NAME": "keras",
+  "BUG_NUMBER_START": 1,
+  "BUG_NUMBER_END": 3,
+  "PYTHON_V": 3.7,
+  "TARGET_DIR": "keras",
+  "TEST_SUITE": ["tests"],
+  "EXCLUDE": [],
+  "VIRTUAL_ENV": "/home/moe/bugsinpyenv37"
+}

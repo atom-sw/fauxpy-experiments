@@ -19,7 +19,7 @@ projects such as keras. This script checks out all the buggy and
 fixed versions of a given BugsInPy project (e.g., keras), and 
 runs the target failing tests on both the buggy and the fixed
 version, and saves the results (a time-consuming process). Before
-running this command, open the `global_constants.json` file and set the
+running this command, open the `workspace.json` file and set the
 workspace for the script (set the variable `WORKSPACE_PATH`).
 Make sure there is enough space on the path you provide as
 the workspace. It can go up to tens of gigabytes.
@@ -40,7 +40,10 @@ before adding the info in the csv file to the benchmark information
 table since in some cases they might not be correct as they are simply
 hard coded in the `[BugsInPyProjectName].json` file, which should be
 correct in most cases. The items to check manually are:
-1. TARGET_DIR
-2. TEST_SUITE
-3. EXCLUDE
+1. `TARGET_DIR`: for few bugs it might be different.
+2. `TEST_SUITE`: for some projects, we customize test suites.
+3. `EXCLUDE`: most probably if TARGET_DIR is different, this one is also different.
+4. `TARGET_FAILING_TESTS`: although it is collected automatically, it can 
+be parametrized or in unittest format, both of which are not accepted by FauxPy.
+
 

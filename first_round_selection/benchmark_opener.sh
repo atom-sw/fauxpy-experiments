@@ -3,16 +3,34 @@
 # Exiting when any command fails
 set -e
 
+# Constants
+#--------------------------------------------
+TEST_OUTPUT_FILE_STDOUT="bugsinpy_test_output_stdout.txt"
+TEST_OUTPUT_FILE_STDERR="bugsinpy_test_output_stderr.txt"
+WORKSPACE_FILE_NAME="workspace.json"
+
+
 # Inputs for the current project
 #--------------------------------------------
 
-BENCHMARK_NAME="keras"
-BUG_NUMBER_START="1"
-BUG_NUMBER_END="10"
-WORKSPACE_PATH="/home/moe/BugsInPyExp/7.keras"
-VIRTUAL_ENV="/home/moe/bugsinpyenv37"
-TEST_OUTPUT_FILE_STDOUT="bugsinpy_test_output_stdout.txt"
-TEST_OUTPUT_FILE_STDERR="bugsinpy_test_output_stderr.txt"
+if [ $# -eq 0 ]
+then
+    echo "Pass the project info file (e.g., keras.json)"
+    exit -1
+fi
+
+WORKSPACE_PATH=`jq '.WORKSPACE_PATH' $WORKSPACE_FILE_NAME | tr -d '"'`
+BENCHMARK_NAME=`jq '.BENCHMARK_NAME' $1 | tr -d '"'`
+BUG_NUMBER_START=`jq '.BUG_NUMBER_START' $1`
+BUG_NUMBER_END=`jq '.BUG_NUMBER_END' $1`
+VIRTUAL_ENV=`jq '.VIRTUAL_ENV' $1 | tr -d '"'`
+
+echo "WORKSPACE_PATH: $WORKSPACE_PATH"
+echo "BENCHMARK_NAME: $BENCHMARK_NAME"
+echo "BUG_NUMBER_START: $BUG_NUMBER_START"
+echo "BUG_NUMBER_END: $BUG_NUMBER_END"
+echo "VIRTUAL_ENV: $VIRTUAL_ENV"
+
 
 
 # Execution commands
@@ -25,8 +43,8 @@ python --version
 for (( bug="$BUG_NUMBER_START"; bug<="$BUG_NUMBER_END"; bug++))
 do
     echo ">>>>>>>make directories for $BENCHMARK_NAME bug number $bug"
-    BUGGY_PATH="$WORKSPACE_PATH/bug$bug/buggy"
-    FIXED_PATH="$WORKSPACE_PATH/bug$bug/fixed"
+    BUGGY_PATH="$WORKSPACE_PATH/$BENCHMARK_NAME/bug$bug/buggy"
+    FIXED_PATH="$WORKSPACE_PATH/$BENCHMARK_NAME/bug$bug/fixed"
     mkdir -p "$BUGGY_PATH"
     mkdir -p "$FIXED_PATH"
 
