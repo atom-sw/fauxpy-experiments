@@ -1,6 +1,7 @@
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 VERSION_PREFIX = "bug"
 BUGGY_DIR_NAME = "buggy"
@@ -61,3 +62,15 @@ def get_project_info_file_path():
         exit(1)
 
     return Path(sys.argv[1])
+
+
+def save_string_to_file(content: str,
+                        file_path: Path):
+    with file_path.open("w") as file:
+        file.write(content)
+
+
+def save_object_to_json(obj: Any,
+                        file_path: Path):
+    string_object = json.dumps(obj)
+    save_string_to_file(string_object, file_path)
