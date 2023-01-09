@@ -1,7 +1,7 @@
 {
     "BENCHMARK_NAME": "tornado",
     "BUG_NUMBER_START": 1,
-    "BUG_NUMBER_END": 16,
+    "BUG_NUMBER_END": 15,
     "PYTHON_V": 3.7,
     "TARGET_DIR": "tornado",
     "TEST_SUITE": ["tornado/test"],
