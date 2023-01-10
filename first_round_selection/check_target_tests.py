@@ -1,11 +1,12 @@
 import re
 from pathlib import Path
-from typing import Tuple
 
 import common
 
 INPUTS = {}
 WORKSPACE = {}
+
+OUTPUT_DIRECTORY_NAME = "selected"
 
 
 def are_equal_list_items(list_items):
@@ -18,62 +19,39 @@ def are_equal_list_items(list_items):
 
 
 def get_pytest_match(content, pattern):
-    """
-    Probably, benchmark specific.
-    """
-
     regex = re.compile(pattern)
     matches = regex.findall(content)
-    assert len(matches) <= 1 or are_equal_list_items(matches)
-    return 0 if len(matches) == 0 else int(matches[-1])
+    return matches
 
 
-# def get_unittest_match(content, pattern):
-#     """
-#     Probably, benchmark specific.
-#     """
-#
-#     regex = re.compile(pattern)
-#     matches = regex.findall(content)
-#     assert len(matches) <= 1
-#     return 0 if len(matches) == 0 else int(matches[-1])
+def extract_matches(matches, number_of_targets):
+    assert number_of_targets >= 1
+
+    if number_of_targets == 1:
+        if len(matches) == 0:
+            return 0
+        if len(matches) <= 1 or are_equal_list_items(matches):
+            return int(matches[-1])
+        else:
+            raise Exception("Problem!")
+    else:
+        print("Multiple test cases!")
+        if len(matches) == 0:
+            return 0
+        return sum(list(
+            map(lambda x: int(x),
+                matches)
+        ))
 
 
-# def get_test_info(version_path: Path) -> Tuple[int, int, int]:
-#     """
-#     Probably, benchmark specific.
-#     """
-#     test_output_stdout = version_path / common.TEST_OUTPUT_FILE_STDOUT
-#     test_output_stderr = version_path / common.TEST_OUTPUT_FILE_STDERR
-#
-#     stderr_content = common.read_file_content(test_output_stderr)
-#     assert stderr_content == ""
-#
-#     stdout_content = common.read_file_content(test_output_stdout)
-#
-#     failed = get_pytest_match(stdout_content, fr"(\d) failed")
-#     passed = get_pytest_match(stdout_content, fr"(\d) passed")
-#     error = get_pytest_match(stdout_content, fr"(\d) error")
-#
-#     # if INPUTS["BENCHMARK_NAME"] == "keras":
-#     #     failed = get_pytest_match(stdout_content, fr"(\d) failed")
-#     #     passed = get_pytest_match(stdout_content, fr"(\d) passed")
-#     #     error = get_pytest_match(stdout_content, fr"(\d) error")
-#     # elif INPUTS["BENCHMARK_NAME"] == "youtube-dl":
-#     #     failed = get_unittest_match(stdout_content, fr"FAILED (failures=(\d))")
-#     #     passed = get_unittest_match(stdout_content, fr"Ran (\d) test in *\nOK")
-#     #     error = get_unittest_match(stdout_content, fr"FAILED (errors=(\d))")
-#     #     pass
-#     # else:
-#     #     raise Exception("Benchmark not supported.")
-#
-#     return failed, passed, error
-
-
-def get_pytest_info(content):
-    passed = get_pytest_match(content, fr"(\d) passed")
-    failed = get_pytest_match(content, fr"(\d) failed")
-    error = get_pytest_match(content, fr"(\d) error")
+def get_pytest_info(content: str,
+                    number_of_targets: int):
+    passed_matches = get_pytest_match(content, fr"(\d+) passed")
+    passed = extract_matches(passed_matches, number_of_targets)
+    failed_matches = get_pytest_match(content, fr"(\d+) failed")
+    failed = extract_matches(failed_matches, number_of_targets)
+    error_matches = get_pytest_match(content, fr"(\d+) error")
+    error = extract_matches(error_matches, number_of_targets)
 
     return passed, failed, error
 
@@ -87,17 +65,25 @@ def get_target_tests_info(version_path: Path):
     test_output_stderr = version_path / common.TEST_OUTPUT_FILE_STDERR
 
     stderr_content = common.read_file_content(test_output_stderr)
-    assert stderr_content == ""
+    if stderr_content != "":
+        print("STDERROR not empty!")
 
     stdout_content = common.read_file_content(test_output_stdout)
 
+    number_of_targets = common.number_of_target_tests(version_path)
+
     if ("pytest" in stdout_content and
-            "test session starts" in stdout_content):
-        return get_pytest_info(stdout_content)
+            ("collected" in stdout_content or
+             "test session starts")):
+        return get_pytest_info(stdout_content, number_of_targets)
     elif ("unittest" in stdout_content and
-          "RUN EVERY COMMAND" in stdout_content and
-          "Ran" in stdout_content):
-        return get_unittest_info(stdout_content)
+          "pytest" not in stdout_content):
+        raise Exception("UNITTEST not supported yet!")
+        # return get_unittest_info(stdout_content)
+    elif ("unittest" not in stdout_content and
+          "pytest" not in stdout_content):
+        print("Bad test execution!")
+        return -1, -1, -1
     else:
         raise Exception("Problem here!")
 
@@ -117,8 +103,7 @@ def is_included(bug_number: int):
     return (b_failed > 0 and
             f_passed > 0 and
             f_error == 0 and
-            b_failed + b_passed ==
-            f_failed + f_passed)
+            f_passed > b_passed)
 
 
 def main():
@@ -144,11 +129,14 @@ def main():
             print("Rejected")
             rejected_bugs.append(current_bug_number)
 
-    file_path_accepted = common.get_output_dir() / f"{INPUTS['BENCHMARK_NAME']}_accepted_bugs.json"
-    file_path_rejected = common.get_output_dir() / f"{INPUTS['BENCHMARK_NAME']}_rejected_bugs.json"
+    file_path_result = common.get_output_dir(OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
 
-    common.save_object_to_json(accepted_bugs, file_path_accepted)
-    common.save_object_to_json(rejected_bugs, file_path_rejected)
+    common.save_object_to_json({
+        "NUM_ACCEPTED": len(accepted_bugs),
+        "ACCEPTED": accepted_bugs,
+        "NUM_REJECTED": len(rejected_bugs),
+        "REJECTED": rejected_bugs
+    }, file_path_result)
 
 
 if __name__ == '__main__':

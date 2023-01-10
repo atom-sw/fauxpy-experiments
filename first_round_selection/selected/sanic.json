@@ -1,0 +1,13 @@
+{
+     "NUM_ACCEPTED": 4,
+     "ACCEPTED": [
+          1,
+          3,
+          4,
+          5
+     ],
+     "NUM_REJECTED": 1,
+     "REJECTED": [
+          2
+     ]
+}

@@ -10,13 +10,13 @@ FIXED_DIR_NAME = "fixed"
 TEST_OUTPUT_FILE_STDOUT = "bugsinpy_test_output_stdout.txt"
 TEST_OUTPUT_FILE_STDERR = "bugsinpy_test_output_stderr.txt"
 
-OUTPUT_DIR_NAME = "output"
+RUN_TEST_FILE_NAME = "bugsinpy_run_test.sh"
 
 WORKSPACE_FILE_NAME = "workspace.json"
 
 
-def get_output_dir():
-    output_dir = Path(OUTPUT_DIR_NAME)
+def get_output_dir(directory_name: str):
+    output_dir = Path(directory_name)
     if not output_dir.exists():
         output_dir.mkdir()
 
@@ -72,5 +72,18 @@ def save_string_to_file(content: str,
 
 def save_object_to_json(obj: Any,
                         file_path: Path):
-    string_object = json.dumps(obj)
+    string_object = json.dumps(obj, indent=5)
     save_string_to_file(string_object, file_path)
+
+
+def number_of_target_tests(version_path):
+    content = read_file_content(version_path / RUN_TEST_FILE_NAME)
+    tox_count = content.count("tox")
+    pytest_count = content.count("pytest")
+    unittest_count = content.count("unittest")
+    py_test_count = content.count("py.test")
+    lines_count = len(content.splitlines())
+    assert (sum([tox_count, pytest_count, unittest_count, py_test_count]) ==
+            max(tox_count, pytest_count, unittest_count, py_test_count))
+    assert max(tox_count, pytest_count, unittest_count, py_test_count) == lines_count
+    return lines_count
