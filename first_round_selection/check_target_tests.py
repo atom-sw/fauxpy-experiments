@@ -44,6 +44,9 @@ def extract_matches(matches, number_of_targets):
         ))
 
 
+# cookiecutter, fastapi, httpie,
+# keras, pandas, sanic,
+# spacy, thefuck, tqdm
 def get_pytest_info(content: str,
                     number_of_targets: int):
     passed_matches = get_pytest_match(content, fr"(\d+) passed")
@@ -56,8 +59,10 @@ def get_pytest_info(content: str,
     return passed, failed, error
 
 
+# black, tornado, youtube-dl
 def get_unittest_info(content):
-    raise Exception("Not implemented.")
+    exit(0)
+    # raise Exception("Not implemented.")
 
 
 def get_target_tests_info(version_path: Path):
@@ -72,20 +77,22 @@ def get_target_tests_info(version_path: Path):
 
     number_of_targets = common.number_of_target_tests(version_path)
 
-    if ("pytest" in stdout_content and
-            ("collected" in stdout_content or
-             "test session starts")):
-        return get_pytest_info(stdout_content, number_of_targets)
-    elif ("unittest" in stdout_content and
-          "pytest" not in stdout_content):
-        raise Exception("UNITTEST not supported yet!")
-        # return get_unittest_info(stdout_content)
-    elif ("unittest" not in stdout_content and
-          "pytest" not in stdout_content):
-        print("Bad test execution!")
-        return -1, -1, -1
-    else:
-        raise Exception("Problem here!")
+    if ("pytest" in stdout_content or
+            "py.test" in stdout_content):
+        if ("collected" in stdout_content or
+                "test session starts" in stdout_content):
+            return get_pytest_info(stdout_content, number_of_targets)
+        else:
+            print("Bad test execution!")
+            return -1, -1, -1
+    if "unittest" in stdout_content:
+        if True:
+            return get_unittest_info(stdout_content)
+        else:
+            print("Bad test execution!")
+            return -1, -1, -1
+
+    raise Exception("Problem here!")
 
 
 def is_included(bug_number: int):
