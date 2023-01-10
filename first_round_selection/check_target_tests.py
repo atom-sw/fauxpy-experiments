@@ -18,7 +18,7 @@ def are_equal_list_items(list_items):
     return True
 
 
-def get_pytest_match(content, pattern):
+def get_matches_in_content(content, pattern):
     regex = re.compile(pattern)
     matches = regex.findall(content)
     return matches
@@ -49,20 +49,27 @@ def extract_matches(matches, number_of_targets):
 # spacy, thefuck, tqdm
 def get_pytest_info(content: str,
                     number_of_targets: int):
-    passed_matches = get_pytest_match(content, fr"(\d+) passed")
+    passed_matches = get_matches_in_content(content, fr"(\d+) passed")
     passed = extract_matches(passed_matches, number_of_targets)
-    failed_matches = get_pytest_match(content, fr"(\d+) failed")
+    failed_matches = get_matches_in_content(content, fr"(\d+) failed")
     failed = extract_matches(failed_matches, number_of_targets)
-    error_matches = get_pytest_match(content, fr"(\d+) error")
+    error_matches = get_matches_in_content(content, fr"(\d+) error")
     error = extract_matches(error_matches, number_of_targets)
 
     return passed, failed, error
 
 
 # black, tornado, youtube-dl
-def get_unittest_info(content):
-    exit(0)
-    # raise Exception("Not implemented.")
+def get_unittest_info(content: str,
+                      number_of_targets: int):
+    passed_matches = get_matches_in_content(content, fr"Ran (\d+) tests* in \d+.\d+s\n\nOK")
+    passed = extract_matches(passed_matches, number_of_targets)
+    failed_matches = get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*failures=(\d+).*\)")
+    failed = extract_matches(failed_matches, number_of_targets)
+    error_matches = get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*errors=(\d+).*\)")
+    error = extract_matches(error_matches, number_of_targets)
+
+    return passed, failed, error
 
 
 def get_target_tests_info(version_path: Path):
@@ -74,20 +81,24 @@ def get_target_tests_info(version_path: Path):
         print("STDERROR not empty!")
 
     stdout_content = common.read_file_content(test_output_stdout)
+    stdout_content_first_line = stdout_content.partition("\n")[0]
 
     number_of_targets = common.number_of_target_tests(version_path)
 
-    if ("pytest" in stdout_content or
-            "py.test" in stdout_content):
+    if ("pytest" in stdout_content_first_line or
+            "py.test" in stdout_content_first_line or
+            "tox" in stdout_content_first_line):
         if ("collected" in stdout_content or
                 "test session starts" in stdout_content):
             return get_pytest_info(stdout_content, number_of_targets)
         else:
             print("Bad test execution!")
             return -1, -1, -1
-    if "unittest" in stdout_content:
-        if True:
-            return get_unittest_info(stdout_content)
+    if "unittest" in stdout_content_first_line:
+        if ("Ran " in stdout_content and
+                (" test in " in stdout_content or
+                 " tests in " in stdout_content)):
+            return get_unittest_info(stdout_content, number_of_targets)
         else:
             print("Bad test execution!")
             return -1, -1, -1
