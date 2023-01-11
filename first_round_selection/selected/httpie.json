@@ -1,4 +1,5 @@
 {
+     "BENCHMARK_NAME": "httpie",
      "NUM_ACCEPTED": 5,
      "ACCEPTED": [
           1,

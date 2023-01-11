@@ -14,6 +14,8 @@ RUN_TEST_FILE_NAME = "bugsinpy_run_test.sh"
 
 WORKSPACE_FILE_NAME = "workspace.json"
 
+SELECTED_OUTPUT_DIRECTORY_NAME = "selected"
+
 
 def get_output_dir(directory_name: str):
     output_dir = Path(directory_name)
@@ -56,7 +58,7 @@ def load_json_to_dictionary(file_path: str):
     return data_dict
 
 
-def get_project_info_file_path():
+def get_command_line_info_file():
     if len(sys.argv) != 2:
         print("Pass the benchmark info file. For instance:\npython check.py keras.json")
         exit(1)

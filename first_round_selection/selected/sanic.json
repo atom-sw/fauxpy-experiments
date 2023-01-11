@@ -1,4 +1,5 @@
 {
+     "BENCHMARK_NAME": "sanic",
      "NUM_ACCEPTED": 4,
      "ACCEPTED": [
           1,

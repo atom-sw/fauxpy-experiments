@@ -6,8 +6,6 @@ import common
 INPUTS = {}
 WORKSPACE = {}
 
-OUTPUT_DIRECTORY_NAME = "selected"
-
 
 def are_equal_list_items(list_items):
     for item_a in list_items:
@@ -128,7 +126,7 @@ def main():
     global INPUTS
     global WORKSPACE
 
-    project_info_file_path = common.get_project_info_file_path()
+    project_info_file_path = common.get_command_line_info_file()
 
     INPUTS = common.load_json_to_dictionary(project_info_file_path)
     WORKSPACE = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)
@@ -147,9 +145,10 @@ def main():
             print("Rejected")
             rejected_bugs.append(current_bug_number)
 
-    file_path_result = common.get_output_dir(OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
+    file_path_result = common.get_output_dir(common.SELECTED_OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
 
     common.save_object_to_json({
+        "BENCHMARK_NAME": benchmark_name,
         "NUM_ACCEPTED": len(accepted_bugs),
         "ACCEPTED": accepted_bugs,
         "NUM_REJECTED": len(rejected_bugs),

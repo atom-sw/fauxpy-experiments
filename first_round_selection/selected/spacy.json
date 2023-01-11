@@ -1,4 +1,5 @@
 {
+     "BENCHMARK_NAME": "spacy",
      "NUM_ACCEPTED": 6,
      "ACCEPTED": [
           1,

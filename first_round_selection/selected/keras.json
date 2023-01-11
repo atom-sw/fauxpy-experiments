@@ -1,4 +1,5 @@
 {
+     "BENCHMARK_NAME": "keras",
      "NUM_ACCEPTED": 40,
      "ACCEPTED": [
           1,

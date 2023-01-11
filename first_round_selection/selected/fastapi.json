@@ -1,4 +1,5 @@
 {
+     "BENCHMARK_NAME": "fastapi",
      "NUM_ACCEPTED": 16,
      "ACCEPTED": [
           1,
