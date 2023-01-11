@@ -29,6 +29,8 @@ MAX_HR = MAX_DAYS * 24
 
 FIRST_ROUND_BUGS_INFO: Dict = {}
 
+random.seed(0)
+
 
 def read_csv_as_dict_list(file_path):
     subject_info_table = []
