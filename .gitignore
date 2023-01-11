@@ -8,3 +8,5 @@
 *_*.cmd
 run_*.sh
 /*_*h_*g_*.sh
+
+__pycache__
