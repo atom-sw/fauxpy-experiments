@@ -38,7 +38,7 @@ def compile_check():
 def main():
     global INPUTS
     global WORKSPACE
-    project_info_file_path = common.get_project_info_file_path()
+    project_info_file_path = common.get_command_line_info_file()
 
     INPUTS = common.load_json_to_dictionary(project_info_file_path)
     WORKSPACE = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)
