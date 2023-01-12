@@ -1,7 +1,7 @@
 import csv
 import random
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Optional
 
 import common
 
@@ -9,10 +9,6 @@ import common
 # -----------
 NUM_NODES = 15
 
-# Pick these at least
-CONSTANT_NUM_BUG_PER_PROJECT = 10
-
-# If there is time left, pick more randomly until reaching this
 MAX_DAYS = 14
 # -----------
 
@@ -29,7 +25,7 @@ MAX_HR = MAX_DAYS * 24
 
 FIRST_ROUND_BUGS_INFO: Dict = {}
 
-random.seed(0)
+random.seed(13658)
 
 
 def read_csv_as_dict_list(file_path):
@@ -71,24 +67,17 @@ def get_time_for_benchmark(benchmark_name: str):
     return sbfl_time * 2 + mbfl_time * 2 + ps_time * 2 + st_time
 
 
-def select_bugs(benchmark_info, num_bugs_per_benchmark, is_random=False):
-    selected_bugs = []
+def pop_bug_randomly(benchmark_info) -> Optional[int]:
     benchmark_name = benchmark_info["BENCHMARK_NAME"]
 
-    if is_random:
-        if len(benchmark_info["ACCEPTED"]) > 0:
-            rand_index = random.randint(0, len(benchmark_info["ACCEPTED"]) - 1)
-            selected_bugs.append(benchmark_info["ACCEPTED"][rand_index])
-    else:
-        for index, item in enumerate(benchmark_info["ACCEPTED"]):
-            if index < min(benchmark_info["NUM_ACCEPTED"], num_bugs_per_benchmark):
-                selected_bugs.append(item)
-
-    for item in selected_bugs:
-        FIRST_ROUND_BUGS_INFO[benchmark_name]["ACCEPTED"].remove(item)
+    if len(benchmark_info["ACCEPTED"]) > 0:
+        rand_index = random.randint(0, len(benchmark_info["ACCEPTED"]) - 1)
+        selected_bug = benchmark_info["ACCEPTED"][rand_index]
+        FIRST_ROUND_BUGS_INFO[benchmark_name]["ACCEPTED"].remove(selected_bug)
         FIRST_ROUND_BUGS_INFO[benchmark_name]["NUM_ACCEPTED"] -= 1
+        return selected_bug
 
-    return selected_bugs
+    return None
 
 
 def get_needed_time(second_round_info):
@@ -113,26 +102,24 @@ def main():
     selected_bugs_info = {}
 
     for benchmark in FIRST_ROUND_BUGS_INFO.values():
-        constant_bugs = select_bugs(benchmark, CONSTANT_NUM_BUG_PER_PROJECT)
-        selected_bugs_info[benchmark["BENCHMARK_NAME"]] = constant_bugs
+        selected_bugs_info[benchmark["BENCHMARK_NAME"]] = []
 
-    needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
+    needed_time = 0
     available_time = MAX_HR
 
     while needed_time < MAX_HR:
         print("Needed time: ", needed_time)
         print("Available time: ", available_time)
         print("Calc more")
-        for benchmark in FIRST_ROUND_BUGS_INFO.values():
-            constant_bugs = select_bugs(benchmark, 1, True)
-            selected_bugs_info[benchmark["BENCHMARK_NAME"]] += constant_bugs
-            selected_bugs_info[benchmark["BENCHMARK_NAME"]].sort()
-            needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
-
-            if needed_time >= available_time:
-                break
-
         print("---------------")
+        for benchmark in FIRST_ROUND_BUGS_INFO.values():
+            bug = pop_bug_randomly(benchmark)
+            if bug is not None:
+                selected_bugs_info[benchmark["BENCHMARK_NAME"]].append(bug)
+                selected_bugs_info[benchmark["BENCHMARK_NAME"]].sort()
+                needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
+                if needed_time >= available_time:
+                    break
 
     needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     print("Final needed time: ", needed_time)
