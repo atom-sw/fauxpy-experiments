@@ -129,7 +129,7 @@ def main():
     selected_bugs_info["TIME_ESTIMATION_HOURS"] = needed_time
     selected_bugs_info["TIME_ESTIMATION_DAYS"] = needed_time / 24
     selected_bugs_info["TIME_ESTIMATION_WEEKS"] = needed_time / (24 * 7)
-    common.save_object_to_json(selected_bugs_info, Path("time_selected_bugs.json"))
+    common.save_object_to_json(selected_bugs_info, Path(common.TIME_SELECTED_BUGS_FILE_NAME))
 
 
 if __name__ == '__main__':
