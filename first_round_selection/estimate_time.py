@@ -126,6 +126,7 @@ def main():
         for benchmark in FIRST_ROUND_BUGS_INFO.values():
             constant_bugs = select_bugs(benchmark, 1, True)
             selected_bugs_info[benchmark["BENCHMARK_NAME"]] += constant_bugs
+            selected_bugs_info[benchmark["BENCHMARK_NAME"]].sort()
             needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
 
             if needed_time >= available_time:
