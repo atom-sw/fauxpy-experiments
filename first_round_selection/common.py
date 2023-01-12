@@ -16,6 +16,10 @@ WORKSPACE_FILE_NAME = "workspace.json"
 
 SELECTED_OUTPUT_DIRECTORY_NAME = "selected"
 
+TIME_SELECTED_BUGS_FILE_NAME = "time_selected_bugs.json"
+
+SUBJECT_INFO_DIRECTORY_NAME = "info"
+
 
 def get_output_dir(directory_name: str):
     output_dir = Path(directory_name)
@@ -89,3 +93,6 @@ def number_of_target_tests(version_path):
             max(tox_count, pytest_count, unittest_count, py_test_count))
     assert max(tox_count, pytest_count, unittest_count, py_test_count) == lines_count
     return lines_count
+
+
+
