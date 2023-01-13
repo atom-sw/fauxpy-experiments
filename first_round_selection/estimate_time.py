@@ -98,6 +98,14 @@ def get_num_bugs(selected_bugs_info):
     return num_bugs
 
 
+def num_bug_left():
+    count_of_remaining = 0
+    for item in FIRST_ROUND_BUGS_INFO.values():
+        count_of_remaining += item["NUM_ACCEPTED"]
+
+    return count_of_remaining
+
+
 def main():
     load_first_round_selected_bugs_info()
     selected_bugs_info = {}
@@ -121,6 +129,10 @@ def main():
                 needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
                 if needed_time >= available_time:
                     break
+        bug_left = num_bug_left()
+        print(bug_left)
+        if bug_left == 0:
+            break
 
     needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     print("Final needed time: ", needed_time)
