@@ -20,13 +20,16 @@ def load_info():
     del SELECTED["TIME_ESTIMATION_DAYS"]
     del SELECTED["TIME_ESTIMATION_WEEKS"]
 
-    for item in Path(common.SUBJECT_INFO_DIRECTORY_NAME).rglob("*.json"):
+    json_files = list(Path(common.SUBJECT_INFO_DIRECTORY_NAME).rglob("*.json"))
+    json_files.sort()
+    for item in json_files:
         benchmark_info = common.load_json_to_dictionary(str(item.absolute().resolve()))
         INFO[benchmark_info["BENCHMARK_NAME"]] = benchmark_info
 
     WORKSPACE_PATH = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)["WORKSPACE_PATH"]
 
 
+# TODO: HERE
 def get_subject_info_for_bug(benchmark_name: str,
                              bug_num: int):
     record = {
@@ -81,10 +84,19 @@ def get_csv_row(row_num, row_info):
     return record_csv_format
 
 
+def produce_row_number(row_info):
+    benchmark_names = list(INFO.keys())
+    ind = benchmark_names.index(row_info["BENCHMARK_NAME"])
+    row_number = (ind + 1) * 1000 + row_info["BUG_NUMBER"]
+
+    return row_number
+
+
 def save_subject_info_list_as_csv(row_infos: List[Dict]):
     csv_rows: List[str] = []
     for index, row_info in enumerate(row_infos):
-        csv_row = get_csv_row(index + 1, row_info)
+        row_number = produce_row_number(row_info)
+        csv_row = get_csv_row(row_number, row_info)
         csv_rows.append(csv_row)
 
     with open(SUBJECT_INFO_CSV_FILE_NAME, "w") as file:
