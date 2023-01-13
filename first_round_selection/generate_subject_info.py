@@ -1,5 +1,6 @@
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Tuple
+from github import Github
 
 import common
 
@@ -7,6 +8,12 @@ INFO = {}
 SELECTED = {}
 WORKSPACE_PATH: str = ""
 SUBJECT_INFO_CSV_FILE_NAME = "subject_info.csv"
+
+REMOTE_URL_FILE_NAME = "bugsinpy_remote_url.txt"
+
+BUGSINPY_BUG_INFO_FILE_NAME = "bugsinpy_bug.info"
+
+GITHUB_TOKEN_FILE_NAME = "github_token.txt"
 
 
 def load_info():
@@ -57,11 +64,11 @@ def get_reformatted_target_failing_tests(original_target_tests: List[str]) -> Li
             generalized_original = unittest_to_pytest(generalized_original)
             reformatted_target_tests.append(generalized_original)
 
-        if item != generalized_original:
-            print("Reformat test")
-            print(item)
-            print(generalized_original)
-            print("------------")
+        # if item != generalized_original:
+        #     print("Reformat test")
+        #     print(item)
+        #     print(generalized_original)
+        #     print("------------")
 
     return reformatted_target_tests
 
@@ -90,9 +97,45 @@ def get_target_failing_tests(benchmark_name: str,
     return target_failing_tests
 
 
+def get_commit_info(benchmark_name: str,
+                    bug_num: int) -> Tuple[str, str]:
+    buggy_project_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+    remote_url_file_path = buggy_project_path / REMOTE_URL_FILE_NAME
+    bug_info_file_path = buggy_project_path / BUGSINPY_BUG_INFO_FILE_NAME
+    remote_url = common.read_file_content(remote_url_file_path).strip()
+    repo_name = remote_url.replace("https://github.com/", "").strip()
+    if repo_name.endswith("/"):
+        repo_name = repo_name[:-1]
+    fixed_commit_number = list(filter(lambda x: "fixed_commit_id" in x,
+                                      common.read_file_content(bug_info_file_path)
+                                      .strip()
+                                      .splitlines()))[0].split("=")[1].replace('"', '').strip()
+    return repo_name, fixed_commit_number
+
+
+def get_target_dir(benchmark_name: str,
+                   bug_num: int) -> str:
+    repo_name, fixed_commit_number = get_commit_info(benchmark_name, bug_num)
+    github_token = common.read_file_content(Path(GITHUB_TOKEN_FILE_NAME))
+
+    print(benchmark_name, bug_num)
+    print(repo_name)
+    print(fixed_commit_number)
+
+    g = Github(github_token)
+    repo = g.get_repo(repo_name)
+    commit = repo.get_commit(fixed_commit_number)
+    changed_files = [x.filename for x in commit.files]
+
+    print(changed_files)
+
+    return " "
+
+
 def get_subject_info_for_bug(benchmark_name: str,
                              bug_num: int):
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
+    target_dir = get_target_dir(benchmark_name, bug_num)
 
     record = {
         "PYTHON_V": INFO[benchmark_name]["PYTHON_V"],
