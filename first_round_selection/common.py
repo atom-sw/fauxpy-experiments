@@ -1,4 +1,5 @@
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -29,9 +30,15 @@ def get_output_dir(directory_name: str):
     return output_dir
 
 
+def get_matches_in_content(content, pattern):
+    regex = re.compile(pattern)
+    matches = regex.findall(content)
+    return matches
+
+
 def get_buggy_project_path(workspace: str,
                            benchmark_name: str,
-                           bug_number: int):
+                           bug_number: int) -> Path:
     return (Path(workspace) /
             f"{benchmark_name}" /
             f"{VERSION_PREFIX}{bug_number}" /
@@ -93,6 +100,3 @@ def number_of_target_tests(version_path):
             max(tox_count, pytest_count, unittest_count, py_test_count))
     assert max(tox_count, pytest_count, unittest_count, py_test_count) == lines_count
     return lines_count
-
-
-

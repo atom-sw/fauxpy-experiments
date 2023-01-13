@@ -16,12 +16,6 @@ def are_equal_list_items(list_items):
     return True
 
 
-def get_matches_in_content(content, pattern):
-    regex = re.compile(pattern)
-    matches = regex.findall(content)
-    return matches
-
-
 def extract_matches(matches, number_of_targets):
     assert number_of_targets >= 1
 
@@ -47,11 +41,11 @@ def extract_matches(matches, number_of_targets):
 # spacy, thefuck, tqdm
 def get_pytest_info(content: str,
                     number_of_targets: int):
-    passed_matches = get_matches_in_content(content, fr"(\d+) passed")
+    passed_matches = common.get_matches_in_content(content, fr"(\d+) passed")
     passed = extract_matches(passed_matches, number_of_targets)
-    failed_matches = get_matches_in_content(content, fr"(\d+) failed")
+    failed_matches = common.get_matches_in_content(content, fr"(\d+) failed")
     failed = extract_matches(failed_matches, number_of_targets)
-    error_matches = get_matches_in_content(content, fr"(\d+) error")
+    error_matches = common.get_matches_in_content(content, fr"(\d+) error")
     error = extract_matches(error_matches, number_of_targets)
 
     return passed, failed, error
@@ -60,11 +54,11 @@ def get_pytest_info(content: str,
 # black, tornado, youtube-dl
 def get_unittest_info(content: str,
                       number_of_targets: int):
-    passed_matches = get_matches_in_content(content, fr"Ran (\d+) tests* in \d+.\d+s\n\nOK")
+    passed_matches = common.get_matches_in_content(content, fr"Ran (\d+) tests* in \d+.\d+s\n\nOK")
     passed = extract_matches(passed_matches, number_of_targets)
-    failed_matches = get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*failures=(\d+).*\)")
+    failed_matches = common.get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*failures=(\d+).*\)")
     failed = extract_matches(failed_matches, number_of_targets)
-    error_matches = get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*errors=(\d+).*\)")
+    error_matches = common.get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*errors=(\d+).*\)")
     error = extract_matches(error_matches, number_of_targets)
 
     return passed, failed, error
