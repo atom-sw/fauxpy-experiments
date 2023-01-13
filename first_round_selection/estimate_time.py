@@ -51,8 +51,9 @@ def load_first_round_selected_bugs_info():
     global FIRST_ROUND_BUGS_INFO
 
     selected_dir_path = Path(common.SELECTED_OUTPUT_DIRECTORY_NAME)
-
-    for file_path in selected_dir_path.rglob("*.json"):
+    json_files = list(selected_dir_path.rglob("*.json"))
+    json_files.sort()
+    for file_path in json_files:
         selected_benchmark = common.load_json_to_dictionary(str(file_path.absolute().resolve()))
         selected_benchmark_name = selected_benchmark["BENCHMARK_NAME"]
         FIRST_ROUND_BUGS_INFO[selected_benchmark_name] = selected_benchmark
