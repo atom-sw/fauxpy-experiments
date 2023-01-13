@@ -56,7 +56,7 @@ def get_fixed_project_path(workspace: Path,
             benchmark_name)
 
 
-def read_file_content(path):
+def read_file_content(path) -> str:
     with path.open() as file:
         content = file.read()
     return content.strip()
