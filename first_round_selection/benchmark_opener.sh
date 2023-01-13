@@ -7,6 +7,7 @@ set -e
 #--------------------------------------------
 TEST_OUTPUT_FILE_STDOUT="bugsinpy_test_output_stdout.txt"
 TEST_OUTPUT_FILE_STDERR="bugsinpy_test_output_stderr.txt"
+REMOTE_URL_FILE_PATH="bugsinpy_remote_url.txt"
 WORKSPACE_FILE_NAME="workspace.json"
 
 
@@ -61,11 +62,17 @@ do
     echo ">>>>>>>run BugsInPy Test for the buggy version of $BENCHMARK_NAME bug number $bug"
     bugsinpy-test 2> "$TEST_OUTPUT_FILE_STDERR" 1> "$TEST_OUTPUT_FILE_STDOUT"
 
-    echo ">>>>>>>compile the buggy version of $BENCHMARK_NAME bug number $bug"
+    echo ">>>>>>>get the remote url for the buggy version of $BENCHMARK_NAME bug number $bug"
+    git config --get remote.origin.url | tee "$REMOTE_URL_FILE_PATH"
+
+    echo ">>>>>>>compile the fixed version of $BENCHMARK_NAME bug number $bug"
     cd "$FIXED_PATH/$BENCHMARK_NAME"
     bugsinpy-compile
 
     echo ">>>>>>>run BugsInPy Test for the fixed version of $BENCHMARK_NAME bug number $bug"
     bugsinpy-test 2> "$TEST_OUTPUT_FILE_STDERR" 1> "$TEST_OUTPUT_FILE_STDOUT"
+
+    echo ">>>>>>>get the remote url for the fixed version of $BENCHMARK_NAME bug number $bug"
+    git config --get remote.origin.url | tee "$REMOTE_URL_FILE_PATH"
 done
 
