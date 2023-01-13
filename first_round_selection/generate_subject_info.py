@@ -29,9 +29,71 @@ def load_info():
     WORKSPACE_PATH = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)["WORKSPACE_PATH"]
 
 
-# TODO: HERE
+def unittest_to_pytest(item):
+    elements = item.split(".")
+    if len(elements) == 4:
+        return f"{elements[0]}/{elements[1]}.py::{elements[2]}::{elements[3]}"
+    elif len(elements) == 5:
+        return f"{elements[0]}/{elements[1]}/{elements[2]}.py::{elements[3]}::{elements[4]}"
+    else:
+        raise Exception("Problem!")
+
+
+def get_generalized_test(item):
+    return item.split("[")[0]
+
+
+def get_reformatted_target_failing_tests(original_target_tests: List[str]) -> List[str]:
+    reformatted_target_tests = []
+
+    for item in original_target_tests:
+        generalized_original = get_generalized_test(item)
+        if "/" in generalized_original.lower() and ".py" in generalized_original.lower():
+            reformatted_target_tests.append(generalized_original)
+        else:
+            assert "/" not in generalized_original.lower()
+            assert ".py" not in generalized_original.lower()
+
+            generalized_original = unittest_to_pytest(generalized_original)
+            reformatted_target_tests.append(generalized_original)
+
+        if item != generalized_original:
+            print("Reformat test")
+            print(item)
+            print(generalized_original)
+            print("------------")
+
+    return reformatted_target_tests
+
+
+def get_target_failing_tests(benchmark_name: str,
+                             bug_num: int) -> List[str]:
+    buggy_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+    run_test_file_path = buggy_path / common.RUN_TEST_FILE_NAME
+
+    content = common.read_file_content(run_test_file_path)
+
+    target_tests_in_content = list(filter(
+        lambda x: x.lower().startswith("test") or
+                  x.lower().startswith("tests") or
+                  x.lower().startswith("pandas/tests") or
+                  x.lower().startswith("pandas/test") or
+                  x.lower().startswith("spacy/tests") or
+                  x.lower().startswith("spacy/test") or
+                  x.lower().startswith("tornado.test") or
+                  x.lower().startswith("tornado.tests") or
+                  x.lower().startswith("tqdm/tests") or
+                  x.lower().startswith("tqdm/test"), content.split()))
+
+    target_failing_tests = get_reformatted_target_failing_tests(target_tests_in_content)
+
+    return target_failing_tests
+
+
 def get_subject_info_for_bug(benchmark_name: str,
                              bug_num: int):
+    target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
+
     record = {
         "PYTHON_V": INFO[benchmark_name]["PYTHON_V"],
         "BENCHMARK_NAME": benchmark_name,
@@ -39,7 +101,7 @@ def get_subject_info_for_bug(benchmark_name: str,
         "TARGET_DIR": INFO[benchmark_name]["TARGET_DIR"],
         "TEST_SUITE": INFO[benchmark_name]["TEST_SUITE"],
         "EXCLUDE": INFO[benchmark_name]["EXCLUDE"],
-        "TARGET_FAILING_TESTS": "-"
+        "TARGET_FAILING_TESTS": target_failing_tests
     }
 
     return record
