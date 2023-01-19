@@ -3,9 +3,9 @@
     "BUG_NUMBER_START": 1,
     "BUG_NUMBER_END": 5,
     "PYTHON_V": 3.8,
-    "TARGET_DIR": "sanic",
+    "TARGET_DIR": ".",
     "TEST_SUITE": ["tests"],
-    "EXCLUDE": [],
+    "EXCLUDE": ["env", "tests"],
     "VIRTUAL_ENV": "/home/moe/bugsinpyenv38"
 }
   
