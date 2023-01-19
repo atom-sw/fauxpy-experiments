@@ -85,6 +85,9 @@ cd "$BENCHMARK_NAME"
 source "$VENV_DIR/bin/activate"
 python --version
 
+echo "------- Removing the .git directory of the benchmark"
+rm -rf .git
+
 echo "------- Compiling the buggy program"
 ../BugsInPy/framework/bin/bugsinpy-compile
 
