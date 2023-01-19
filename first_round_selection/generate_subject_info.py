@@ -13,7 +13,7 @@ REMOTE_URL_FILE_NAME = "bugsinpy_remote_url.txt"
 
 BUGSINPY_BUG_INFO_FILE_NAME = "bugsinpy_bug.info"
 
-GITHUB_TOKEN_FILE_NAME = "github_token.txt"
+GITHUB_TOKEN = common.read_file_content(Path("github_token.txt"))
 
 
 def load_info():
@@ -113,29 +113,55 @@ def get_commit_info(benchmark_name: str,
     return repo_name, fixed_commit_number
 
 
-def get_target_dir(benchmark_name: str,
-                   bug_num: int) -> str:
+def get_changed_modules(benchmark_name: str,
+                        bug_num: int) -> List[str]:
     repo_name, fixed_commit_number = get_commit_info(benchmark_name, bug_num)
-    github_token = common.read_file_content(Path(GITHUB_TOKEN_FILE_NAME))
 
-    print(benchmark_name, bug_num)
-    print(repo_name)
-    print(fixed_commit_number)
-
-    g = Github(github_token)
+    g = Github(GITHUB_TOKEN)
     repo = g.get_repo(repo_name)
     commit = repo.get_commit(fixed_commit_number)
     changed_files = [x.filename for x in commit.files]
 
-    print(changed_files)
+    changed_modules = list(filter(lambda x:
+                                  x.endswith(".py") and
+                                  "test/" not in x and
+                                  "tests/" not in x,
+                                  changed_files))
 
-    return " "
+    return changed_modules
 
 
+# Only used for analysis. Not in the pipeline.
+def get_target_dir(benchmark_name: str,
+                   bug_num: int):
+    default_target_dir = INFO[benchmark_name]["TARGET_DIR"]
+
+    if default_target_dir == ".":
+        return "."
+
+    changed_modules = get_changed_modules(benchmark_name, bug_num)
+
+    target_dir = INFO[benchmark_name]["TARGET_DIR"]
+    for item in changed_modules:
+        if not item.startswith(target_dir):
+            print(benchmark_name, bug_num)
+            print(item)
+
+
+# These three (among the 320) had target directories other
+# than the default ones. So, we changed their json
+# information files.
+# keras 9
+# docs/autogen.py
+# sanic 1
+# examples/blueprint_middlware_execution_order.py
+# sanic/app.py
+# spacy 3
+# bin/wiki_entity_linking/wikipedia_processor.py
 def get_subject_info_for_bug(benchmark_name: str,
                              bug_num: int):
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
-    target_dir = get_target_dir(benchmark_name, bug_num)
+    # get_target_dir(benchmark_name, bug_num)
 
     record = {
         "PYTHON_V": INFO[benchmark_name]["PYTHON_V"],
@@ -223,5 +249,25 @@ def main():
     save_subject_info_list_as_csv(all_subject_infos)
 
 
+# Only used for analysis. Not in the pipeline.
+def checking():
+    load_info()
+
+    for benchmark_name, bugs in SELECTED.items():
+        if benchmark_name == "spacy":
+            # subject_infos_for_benchmark = get_subject_infos_for_benchmark(benchmark_name, bugs)
+            for bug_num in bugs:
+                buggy_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+                if (buggy_path / "spacy/tests").exists():
+                    print("tests")
+                if (buggy_path / "spacy/test").exists():
+                    print("!!!!!!!!!!!")
+                if (buggy_path / "tests").exists():
+                    print("!!!!!!!!!!!")
+                if (buggy_path / "test").exists():
+                    print("!!!!!!!!!!!")
+
+
 if __name__ == '__main__':
     main()
+    # checking()
