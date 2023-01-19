@@ -3,8 +3,8 @@
   "BUG_NUMBER_START": 1,
   "BUG_NUMBER_END": 45,
   "PYTHON_V": 3.7,
-  "TARGET_DIR": "keras",
+  "TARGET_DIR": ".",
   "TEST_SUITE": ["tests"],
-  "EXCLUDE": [],
+  "EXCLUDE": ["env", "tests"],
   "VIRTUAL_ENV": "/home/moe/bugsinpyenv37"
 }
