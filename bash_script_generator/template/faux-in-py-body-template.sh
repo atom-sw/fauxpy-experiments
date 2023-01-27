@@ -163,14 +163,14 @@ then
     # The current version of FauxPy is not compatible with
     # this option.
 
-    if [ "$BUG_NUMBER" == "5" ]
-    then
-        # Bug number 5 is very old.
-        # Current versions of Pytest do not collect
-        # test modlues which have names starting with tests or their
-        # names are only test.py
-        cp tests/tests.py tests/test_all.py
-    fi
+    # if [ "$BUG_NUMBER" == "5" ]
+    # then
+    #     # Bug number 5 is very old.
+    #     # Current versions of Pytest do not collect
+    #     # test modlues which have names starting with tests or their
+    #     # names are only test.py
+    #     cp tests/tests.py tests/test_all.py
+    # fi
 
     $(commentPatternInpytestIni "--tb=native")
 fi
@@ -209,18 +209,18 @@ then
     rm -rf "tests/test_tutorial"
 fi
 
-if [ "$BENCHMARK_NAME" == "tqdm" ]
-then
-    echo "------- Running tqdm specific commands"
-    # Make a copy of every test module and change the names from tests* to test*.
-    # The reason to make this change is that Pytest cannot collect 
-    # test modules starting with "tests_".
-    for TEST_FILE_NAME in tqdm/tests/test*
-    do
-        NEW_FILE_NAME="${TEST_FILE_NAME/tests_/test_}"
-        cp "$TEST_FILE_NAME" "$NEW_FILE_NAME"
-    done
-fi
+# if [ "$BENCHMARK_NAME" == "tqdm" ]
+# then
+#     echo "------- Running tqdm specific commands"
+#     # Make a copy of every test module and change the names from tests* to test*.
+#     # The reason to make this change is that Pytest cannot collect 
+#     # test modules starting with "tests_".
+#     for TEST_FILE_NAME in tqdm/tests/test*
+#     do
+#         NEW_FILE_NAME="${TEST_FILE_NAME/tests_/test_}"
+#         cp "$TEST_FILE_NAME" "$NEW_FILE_NAME"
+#     done
+# fi
 
 if [ "$BENCHMARK_NAME" == "youtube-dl" ]
 then

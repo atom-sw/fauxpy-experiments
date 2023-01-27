@@ -65,33 +65,6 @@ do
     echo ">>>>>>>get the remote url for the buggy version of $BENCHMARK_NAME bug number $bug"
     git config --get remote.origin.url | tee "$REMOTE_URL_FILE_PATH"
 
-    if [ "$BENCHMARK_NAME" == "httpie" ]
-    then
-        echo "------- Running httpie specific commands"
-
-        if [ "$bug" == "5" ]
-        then
-            # Bug number 5 is very old.
-            # Current versions of Pytest do not collect
-            # test modules which have names starting with tests or their
-            # names are only test.py
-            cp tests/tests.py tests/test_all.py
-        fi
-    fi
-
-    if [ "$BENCHMARK_NAME" == "tqdm" ]
-    then
-        echo "------- Running tqdm specific commands"
-        # Make a copy of every test module and change the names from tests* to test*.
-        # The reason to make this change is that Pytest cannot collect
-        # test modules starting with "tests_".
-        for TEST_FILE_NAME in tqdm/tests/test*
-        do
-            NEW_FILE_NAME="${TEST_FILE_NAME/tests_/test_}"
-            cp "$TEST_FILE_NAME" "$NEW_FILE_NAME"
-        done
-    fi
-
     echo ">>>>>>>compile the fixed version of $BENCHMARK_NAME bug number $bug"
     cd "$FIXED_PATH/$BENCHMARK_NAME"
     bugsinpy-compile
@@ -102,31 +75,5 @@ do
     echo ">>>>>>>get the remote url for the fixed version of $BENCHMARK_NAME bug number $bug"
     git config --get remote.origin.url | tee "$REMOTE_URL_FILE_PATH"
 
-    if [ "$BENCHMARK_NAME" == "httpie" ]
-    then
-        echo "------- Running httpie specific commands"
-
-        if [ "$bug" == "5" ]
-        then
-            # Bug number 5 is very old.
-            # Current versions of Pytest do not collect
-            # test modules which have names starting with tests or their
-            # names are only test.py
-            cp tests/tests.py tests/test_all.py
-        fi
-    fi
-
-    if [ "$BENCHMARK_NAME" == "tqdm" ]
-    then
-        echo "------- Running tqdm specific commands"
-        # Make a copy of every test module and change the names from tests* to test*.
-        # The reason to make this change is that Pytest cannot collect
-        # test modules starting with "tests_".
-        for TEST_FILE_NAME in tqdm/tests/test*
-        do
-            NEW_FILE_NAME="${TEST_FILE_NAME/tests_/test_}"
-            cp "$TEST_FILE_NAME" "$NEW_FILE_NAME"
-        done
-    fi
 done
 
