@@ -194,9 +194,9 @@ if [ "$BENCHMARK_NAME" == "thefuck" ]
 then
     echo "------- Running thefuck specific commands"
     # Remove three test files that have errors.
-    rm -f "tests/rules/test_git_checkout.py"
-    rm -f "tests/rules/test_git_two_dashes.py"
-    rm -f "tests/rules/test_touch.py"
+    # rm -f "tests/rules/test_git_checkout.py"
+    # rm -f "tests/rules/test_git_two_dashes.py"
+    # rm -f "tests/rules/test_touch.py"
 
     # Replace conftest.py with the fixed one.
     # The version of Pytest that FauxPy uses is higher than the one used
@@ -206,14 +206,14 @@ then
     wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
 fi
 
-if [ "$BENCHMARK_NAME" == "fastapi" ]
-then
-    echo "------- Running fastapi specific commands"
-    # Update pip (which is done before this command).
-    # Remove the test package tests/test_tutorial.
-    # These tests have bugs and stops Pytest.
-    rm -rf "tests/test_tutorial"
-fi
+# if [ "$BENCHMARK_NAME" == "fastapi" ]
+# then
+#     echo "------- Running fastapi specific commands"
+#     # Update pip (which is done before this command).
+#     # Remove the test package tests/test_tutorial.
+#     # These tests have bugs and stops Pytest.
+#     rm -rf "tests/test_tutorial"
+# fi
 
 # if [ "$BENCHMARK_NAME" == "tqdm" ]
 # then
@@ -228,13 +228,13 @@ fi
 #     done
 # fi
 
-if [ "$BENCHMARK_NAME" == "youtube-dl" ]
-then
-    echo "------- Running youtube-dl specific commands"
-    # Remove test/test_download.py because it is too slow.
-    # It is not necessary thought.
-    rm -rf "test/test_download.py"
-fi
+# if [ "$BENCHMARK_NAME" == "youtube-dl" ]
+# then
+#     echo "------- Running youtube-dl specific commands"
+#     # Remove test/test_download.py because it is too slow.
+#     # It is not necessary thought.
+#     rm -rf "test/test_download.py"
+# fi
 #------------------------------------------------------------
 
 echo "------- Installing FauxPy"
