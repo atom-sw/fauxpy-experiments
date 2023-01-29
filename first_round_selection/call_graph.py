@@ -14,6 +14,26 @@ def module_path_to_import(src_module: str):
     return import_format_module
 
 
+def affected_test_modules(test_modules: List[str],
+                          source_code_package: str,
+                          changed_modules: List[str]):
+    cg_generator = CallGraphGenerator(test_modules, source_code_package, max_iter=1)
+    cg_generator.analyze()
+    edges = cg_generator.output_edges()
+
+    affected_tests = set()
+    for src_module in changed_modules:
+        # print("Source module: ", src_module)
+        src_import_format = module_path_to_import(src_module)
+        for test_module in test_modules:
+            test_module_name = test_module.split("/")[-1].replace(".py", "")
+            for source, destination in edges:
+                if test_module_name in source and src_import_format in destination:
+                    affected_tests.add(test_module)
+
+    return list(affected_tests)
+
+
 def get_call_graph_edges(test_module: str,
                          source_code_package: str,
                          timeout: int):

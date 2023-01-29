@@ -1,12 +1,12 @@
 # pip install PyGithub
-
+import datetime
 from pathlib import Path
 from typing import List, Dict, Tuple
 
 from github import Github
 
 import common
-from call_graph import is_affecting_test_module
+from call_graph import is_affecting_test_module, affected_test_modules
 
 INFO = {}
 SELECTED = {}
@@ -161,29 +161,8 @@ def get_test_suite(benchmark_name: str,
     buggy_proj_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
     changed_modules = get_changed_modules(benchmark_name, bug_num)
     test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
-    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
-    # target_dir_path = buggy_proj_path / INFO[benchmark_name]["TARGET_DIR"]
-
-    # target_dir_items = list(target_dir_path.iterdir())
-    # source_code_package_dir_paths = list(filter(lambda x:
-    #                                             (x.is_dir() and
-    #                                              "__pycache__" not in x.name and
-    #                                              "test" not in x.name and
-    #                                              "env" not in x.name and
-    #                                              not x.name.startswith(".")),
-    #                                             target_dir_items))
-    # unwanted_dirs = list(filter(lambda x:
-    #                             (x.is_dir() and
-    #                              ("test" in x.name or
-    #                               "env" in x.name)),
-    #                             target_dir_items))
-
-    # if len(source_code_package_dir_paths) == 0 or len(unwanted_dirs) == 0:
-    #     source_code_package_dir_paths = [target_dir_path]
-
-    # source_code_packages = list(map(lambda x:
-    #                                 str(x.absolute().resolve()),
-    #                                 source_code_package_dir_paths))
+    # test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
+    test_module_paths = list(test_suite_path.rglob("*test*.py"))
 
     source_code_packages = [str(buggy_proj_path.absolute().resolve())]
 
@@ -192,7 +171,7 @@ def get_test_suite(benchmark_name: str,
 
     selected_test_modules = []
     for item in test_module_paths:
-        print("Analyze test module: ", item)
+        # print("Analyze test module: ", item)
         # if "tests/test_tutorial/" not in str(item):
         #     continue
 
@@ -229,10 +208,13 @@ def get_test_suite(benchmark_name: str,
             # The call graph generation takes forever.
             keep_it = True
         else:
-            keep_it = is_affecting_test_module(str(item.absolute().resolve()), source_code_packages, changed_modules, 10)
-        print(keep_it)
+            keep_it = is_affecting_test_module(str(item.absolute().resolve()), source_code_packages, changed_modules,
+                                               10)
+        # print(keep_it)
         if keep_it:
             selected_test_modules.append(str(item.relative_to(buggy_proj_path)))
+
+    selected_test_modules.sort()
 
     print(len(selected_test_modules), len(test_module_paths))
     print(changed_modules)
@@ -247,6 +229,86 @@ def get_test_suite(benchmark_name: str,
             print(selected_test_modules)
 
     return selected_test_modules
+
+
+def get_test_suite2(benchmark_name: str,
+                    bug_num: int,
+                    target_failing_tests: List[str]) -> List[str]:
+    buggy_proj_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+    changed_modules = get_changed_modules(benchmark_name, bug_num)
+    test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
+    # test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
+    test_module_paths = list(test_suite_path.rglob("*test*.py"))
+
+    source_code_packages = [str(buggy_proj_path.absolute().resolve())]
+
+    print(benchmark_name, bug_num)
+    print(changed_modules)
+
+    test_modules_analyzing = []
+    for item in test_module_paths:
+        # print("Analyze test module: ", item)
+        # if "tests/test_tutorial/" not in str(item):
+        #     continue
+
+        if "tests/keras/layers/merge_test.py" in str(item) and benchmark_name == "keras":
+            # Let's just select "merge_test.py" module.
+            # It has around 10 tests which are very fast to run.
+            # The call graph generation takes forever.
+            test_modules_analyzing.append(item)
+        elif "test/test_download.py" in str(item) and benchmark_name == "youtube-dl":
+            # Remove test/test_download.py because it is too slow.
+            # It is not necessary thought.
+            pass
+        elif ("tests/rules/test_git_checkout.py" in str(item) or
+              "tests/rules/test_git_two_dashes.py" in str(item) or
+              "tests/rules/test_touch.py" in str(item)) and benchmark_name == "thefuck":
+            # Remove three test files that have errors.
+            # "tests/rules/test_git_checkout.py"
+            # "tests/rules/test_git_two_dashes.py"
+            # "tests/rules/test_touch.py"
+            pass
+        elif "tests/test_tutorial/" in str(item) and benchmark_name == "fastapi":
+            # Remove the test package tests/test_tutorial.
+            # These tests have bugs and stops Pytest.
+            pass
+        elif "spacy/tests/test_gold.py" in str(item) and benchmark_name == "spacy":
+            # Let's just select "spacy/tests/test_gold.py" module.
+            # The tests in it run quickly.
+            # The call graph generation requires more than
+            # my physical and virtual memory. So it stops.
+            test_modules_analyzing.append(item)
+        elif "pandas/tests/test_downstream.py" in str(item) and benchmark_name == "pandas":
+            # Let's just select it.
+            # It has around 10 tests which are very fast to run.
+            # The call graph generation takes forever.
+            test_modules_analyzing.append(item)
+        else:
+            test_modules_analyzing.append(item)
+
+    test_modules_analyzing_absolute = list(map(lambda x: str(x.absolute().resolve()),
+                                               test_modules_analyzing))
+    affected_tests = affected_test_modules(test_modules_analyzing_absolute,
+                                           source_code_packages[0],
+                                           changed_modules)
+    affected_tests_relative = list(map(lambda x: str(Path(x).relative_to(buggy_proj_path)),
+                                       affected_tests))
+
+    affected_tests_relative.sort()
+
+    print(len(affected_tests_relative), len(test_module_paths))
+    print(changed_modules)
+    print(affected_tests_relative)
+
+    for item in target_failing_tests:
+        elems = item.split("::")
+        if elems[0] not in affected_tests_relative:
+            # print(selected_test_modules)
+            print("Adding the modules of the target failing tests")
+            affected_tests_relative = [elems[0]] + affected_tests_relative
+            print(affected_tests_relative)
+
+    return affected_tests_relative
 
 
 # These three (among the 320) had target directories other
@@ -264,7 +326,17 @@ def get_subject_info_for_bug(benchmark_name: str,
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
     # get_target_dir(benchmark_name, bug_num)
 
-    test_suite = get_test_suite(benchmark_name, bug_num, target_failing_tests)
+    # print("Testsuite 1 --------------------")
+    # tm1 = datetime.datetime.now()
+    # test_suite = get_test_suite(benchmark_name, bug_num, target_failing_tests)
+    # tm2 = datetime.datetime.now()
+    # print("Testsuite 1 time:", tm2 - tm1)
+
+    # print("Testsuite 2 --------------------")
+    tm1 = datetime.datetime.now()
+    test_suite2 = get_test_suite2(benchmark_name, bug_num, target_failing_tests)
+    tm2 = datetime.datetime.now()
+    print("Testsuite 2 time:", tm2 - tm1)
 
     record = {
         "PYTHON_V": INFO[benchmark_name]["PYTHON_V"],
@@ -272,7 +344,7 @@ def get_subject_info_for_bug(benchmark_name: str,
         "BUG_NUMBER": bug_num,
         "TARGET_DIR": INFO[benchmark_name]["TARGET_DIR"],
         # "TEST_SUITE": INFO[benchmark_name]["TEST_SUITE"],
-        "TEST_SUITE": test_suite,
+        "TEST_SUITE": test_suite2,
         "EXCLUDE": INFO[benchmark_name]["EXCLUDE"],
         "TARGET_FAILING_TESTS": target_failing_tests
     }
