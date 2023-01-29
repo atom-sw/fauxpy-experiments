@@ -1,8 +1,12 @@
+# pip install PyGithub
+
 from pathlib import Path
 from typing import List, Dict, Tuple
+
 from github import Github
 
 import common
+from call_graph import is_affecting_test_module
 
 INFO = {}
 SELECTED = {}
@@ -148,6 +152,103 @@ def get_target_dir(benchmark_name: str,
             print(item)
 
 
+def get_test_suite(benchmark_name: str,
+                   bug_num: int,
+                   target_failing_tests: List[str]) -> List[str]:
+    # if benchmark_name != "fastapi":
+    #     return []
+
+    buggy_proj_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+    changed_modules = get_changed_modules(benchmark_name, bug_num)
+    test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
+    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
+    # target_dir_path = buggy_proj_path / INFO[benchmark_name]["TARGET_DIR"]
+
+    # target_dir_items = list(target_dir_path.iterdir())
+    # source_code_package_dir_paths = list(filter(lambda x:
+    #                                             (x.is_dir() and
+    #                                              "__pycache__" not in x.name and
+    #                                              "test" not in x.name and
+    #                                              "env" not in x.name and
+    #                                              not x.name.startswith(".")),
+    #                                             target_dir_items))
+    # unwanted_dirs = list(filter(lambda x:
+    #                             (x.is_dir() and
+    #                              ("test" in x.name or
+    #                               "env" in x.name)),
+    #                             target_dir_items))
+
+    # if len(source_code_package_dir_paths) == 0 or len(unwanted_dirs) == 0:
+    #     source_code_package_dir_paths = [target_dir_path]
+
+    # source_code_packages = list(map(lambda x:
+    #                                 str(x.absolute().resolve()),
+    #                                 source_code_package_dir_paths))
+
+    source_code_packages = [str(buggy_proj_path.absolute().resolve())]
+
+    print(benchmark_name, bug_num)
+    print(changed_modules)
+
+    selected_test_modules = []
+    for item in test_module_paths:
+        print("Analyze test module: ", item)
+        # if "tests/test_tutorial/" not in str(item):
+        #     continue
+
+        if "tests/keras/layers/merge_test.py" in str(item) and benchmark_name == "keras":
+            # Let's just select "merge_test.py" module.
+            # It has around 10 tests which are very fast to run.
+            # The call graph generation takes forever.
+            keep_it = True
+        elif "test/test_download.py" in str(item) and benchmark_name == "youtube-dl":
+            # Remove test/test_download.py because it is too slow.
+            # It is not necessary thought.
+            keep_it = False
+        elif ("tests/rules/test_git_checkout.py" in str(item) or
+              "tests/rules/test_git_two_dashes.py" in str(item) or
+              "tests/rules/test_touch.py" in str(item)) and benchmark_name == "thefuck":
+            # Remove three test files that have errors.
+            # "tests/rules/test_git_checkout.py"
+            # "tests/rules/test_git_two_dashes.py"
+            # "tests/rules/test_touch.py"
+            keep_it = False
+        elif "tests/test_tutorial/" in str(item) and benchmark_name == "fastapi":
+            # Remove the test package tests/test_tutorial.
+            # These tests have bugs and stops Pytest.
+            keep_it = False
+        elif "spacy/tests/test_gold.py" in str(item) and benchmark_name == "spacy":
+            # Let's just select "spacy/tests/test_gold.py" module.
+            # The tests in it run quickly.
+            # The call graph generation requires more than
+            # my physical and virtual memory. So it stops.
+            keep_it = True
+        elif "pandas/tests/test_downstream.py" in str(item) and benchmark_name == "pandas":
+            # Let's just select it.
+            # It has around 10 tests which are very fast to run.
+            # The call graph generation takes forever.
+            keep_it = True
+        else:
+            keep_it = is_affecting_test_module(str(item.absolute().resolve()), source_code_packages, changed_modules, 10)
+        print(keep_it)
+        if keep_it:
+            selected_test_modules.append(str(item.relative_to(buggy_proj_path)))
+
+    print(len(selected_test_modules), len(test_module_paths))
+    print(changed_modules)
+    print(selected_test_modules)
+
+    for item in target_failing_tests:
+        elems = item.split("::")
+        if elems[0] not in selected_test_modules:
+            # print(selected_test_modules)
+            print("Adding the modules of the target failing tests")
+            selected_test_modules = [elems[0]] + selected_test_modules
+            print(selected_test_modules)
+
+    return selected_test_modules
+
+
 # These three (among the 320) had target directories other
 # than the default ones. So, we changed their json
 # information files.
@@ -163,12 +264,15 @@ def get_subject_info_for_bug(benchmark_name: str,
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
     # get_target_dir(benchmark_name, bug_num)
 
+    test_suite = get_test_suite(benchmark_name, bug_num, target_failing_tests)
+
     record = {
         "PYTHON_V": INFO[benchmark_name]["PYTHON_V"],
         "BENCHMARK_NAME": benchmark_name,
         "BUG_NUMBER": bug_num,
         "TARGET_DIR": INFO[benchmark_name]["TARGET_DIR"],
-        "TEST_SUITE": INFO[benchmark_name]["TEST_SUITE"],
+        # "TEST_SUITE": INFO[benchmark_name]["TEST_SUITE"],
+        "TEST_SUITE": test_suite,
         "EXCLUDE": INFO[benchmark_name]["EXCLUDE"],
         "TARGET_FAILING_TESTS": target_failing_tests
     }
