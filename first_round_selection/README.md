@@ -39,48 +39,32 @@ After running this command, we realzied tornado 16 cannot be compiled duo to a b
 
 ## Step 3: Checking target failing tests
 
+The BugsInPy framework contains 17 projects, and the total of 501 bugs. For each bug, it has a buggy and a fixed version, a test suite, and one or more tests to reveal each bug, we refer to which as the target failing tests. The idea is that the target failing tests of a bug must fail on the buggy version of that bug while pass on the fixed version of that bug.
 
-
----
-
-
-This project performs the first round check for the experiments.
-In this round we only keep those buggy benchmarks 
-that pass the following criteria:
-1. The target failing tests fail on the buggy version
-2. The target failing tests pass on the fixed version
-3. Running the target failing tests do not result in only errors 
-in either the buggy or the fixed version.
-Having errors in the buggy version while having also failed tests 
-is OK. But, running the target failing tests on the fixed version
-must not result in any errors.
-
-To perform this check, one must first run the following 
-command
-
-
-
-
-UP TO HERE.
+However, due to some reasons (such as dependency problems) it does not always hold. For instance, in some cases, the target failing tests pass or fail on both versions, or produce an error on fixed versions. Such bugs must be removed from our experiments, which is done at this step. To perform this check, run the following command:
 
 ```
-python check.py [BugsInPyProjectName].json
+./check_target_tests_all.sh
 ```
-Running this must not take so much time. When it is finished, it
-generates a csv file for the given BugsInPy project and a file
-containing those bug numbers that do not pass the first round
-criteria.
 
-The csv file can then be used to generate the experiments bash
-scripts. However, the following items must be manually checked
-before adding the info in the csv file to the benchmark information
-table since in some cases they might not be correct as they are simply
-hard coded in the `[BugsInPyProjectName].json` file, which should be
-correct in most cases. The items to check manually are:
-1. `TARGET_DIR`: for few bugs it might be different.
-2. `TEST_SUITE`: for some projects, we customize test suites.
-3. `EXCLUDE`: most probably if TARGET_DIR is different, this one is also different.
-4. `TARGET_FAILING_TESTS`: although it is collected automatically, it can 
-be parametrized or in unittest format, both of which are not accepted by FauxPy.
+When this script is finished running, it produces the `selected` directory, containing a Json file for each project showing which bugs have been removed and kept according to the criteria mentioned above.
 
+## Step 4: Time-based selection
 
+Based on some rough estimate of the amount of time each experiment requires and the proccessing resources we have (a cluster server with 15 available nodes for two weeks), we randomly select a subset of the bugs picked at the pervious step. To perform this simulation, run the following command:
+
+```
+python estimate_time.py
+```
+
+When this script is finished running, it generates the `time_selected_bugs.json` file that contains the randomly selected bugs from each of the 12 projects.
+
+## Step 5: Generating subject_info.csv
+
+This is the final step in which the 'subject_info.csv' file for the bugs in `time_selected_bugs.json` is generated. To perform this step, run the following command:
+
+```
+generate_subject_info.py
+```
+
+This step also performs a call graph based test case selection using [Scalpel](https://github.com/SMAT-Lab/Scalpel), a python static analysis framework.
