@@ -162,16 +162,6 @@ then
     # Comment out --tb=native in pytest.ini file.
     # The current version of FauxPy is not compatible with
     # this option.
-
-    # if [ "$BUG_NUMBER" == "5" ]
-    # then
-    #     # Bug number 5 is very old.
-    #     # Current versions of Pytest do not collect
-    #     # test modlues which have names starting with tests or their
-    #     # names are only test.py
-    #     cp tests/tests.py tests/test_all.py
-    # fi
-
     $(commentPatternInpytestIni "--tb=native")
 fi
 
@@ -187,11 +177,6 @@ fi
 if [ "$BENCHMARK_NAME" == "thefuck" ]
 then
     echo "------- Running thefuck specific commands"
-    # Remove three test files that have errors.
-    # rm -f "tests/rules/test_git_checkout.py"
-    # rm -f "tests/rules/test_git_two_dashes.py"
-    # rm -f "tests/rules/test_touch.py"
-
     # Replace conftest.py with the fixed one.
     # The version of Pytest that FauxPy uses is higher than the one used
     # by this subject. Read the following post for more information.
@@ -199,36 +184,6 @@ then
     rm -f "tests/conftest.py"
     wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
 fi
-
-# if [ "$BENCHMARK_NAME" == "fastapi" ]
-# then
-#     echo "------- Running fastapi specific commands"
-#     # Update pip (which is done before this command).
-#     # Remove the test package tests/test_tutorial.
-#     # These tests have bugs and stops Pytest.
-#     rm -rf "tests/test_tutorial"
-# fi
-
-# if [ "$BENCHMARK_NAME" == "tqdm" ]
-# then
-#     echo "------- Running tqdm specific commands"
-#     # Make a copy of every test module and change the names from tests* to test*.
-#     # The reason to make this change is that Pytest cannot collect 
-#     # test modules starting with "tests_".
-#     for TEST_FILE_NAME in tqdm/tests/test*
-#     do
-#         NEW_FILE_NAME="${TEST_FILE_NAME/tests_/test_}"
-#         cp "$TEST_FILE_NAME" "$NEW_FILE_NAME"
-#     done
-# fi
-
-# if [ "$BENCHMARK_NAME" == "youtube-dl" ]
-# then
-#     echo "------- Running youtube-dl specific commands"
-#     # Remove test/test_download.py because it is too slow.
-#     # It is not necessary thought.
-#     rm -rf "test/test_download.py"
-# fi
 #------------------------------------------------------------
 
 echo "------- Installing FauxPy"
