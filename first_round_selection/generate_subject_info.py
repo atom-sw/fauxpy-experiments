@@ -162,17 +162,20 @@ def get_test_suite(benchmark_name: str,
     changed_modules = get_changed_modules(benchmark_name, bug_num)
     test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
     # test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
-    test_module_paths = list(test_suite_path.rglob("*test*.py"))
+    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py")) + list(test_suite_path.rglob("*tests*.py"))
 
-    source_code_packages = [str(buggy_proj_path.absolute().resolve())]
+    if benchmark_name == "pandas":
+        source_code_packages = [str((buggy_proj_path / "pandas").absolute().resolve())]
+    else:
+        source_code_packages = [str(buggy_proj_path.absolute().resolve())]
 
     print(benchmark_name, bug_num)
     print(changed_modules)
 
     selected_test_modules = []
     for item in test_module_paths:
-        # print("Analyze test module: ", item)
-        # if "tests/test_tutorial/" not in str(item):
+        print("Analyze test module: ", item)
+        # if "test/test_update.py" in str(item):
         #     continue
 
         if "tests/keras/layers/merge_test.py" in str(item) and benchmark_name == "keras":
@@ -202,15 +205,20 @@ def get_test_suite(benchmark_name: str,
             # The call graph generation requires more than
             # my physical and virtual memory. So it stops.
             keep_it = True
-        elif "pandas/tests/test_downstream.py" in str(item) and benchmark_name == "pandas":
-            # Let's just select it.
-            # It has around 10 tests which are very fast to run.
-            # The call graph generation takes forever.
-            keep_it = True
+        # elif any(map(lambda x: x in str(item), [
+        #     "pandas/tests/test_downstream.py",
+        #     # "pandas/tests/test_strings.py"
+        # ])) and benchmark_name == "pandas":
+        #     # Let's just select it.
+        #     # It has around 10 tests which are very fast to run.
+        #     # The call graph generation takes forever.
+        #     keep_it = True
         else:
-            keep_it = is_affecting_test_module(str(item.absolute().resolve()), source_code_packages, changed_modules,
+            keep_it = is_affecting_test_module(str(item.absolute().resolve()),
+                                               source_code_packages,
+                                               changed_modules,
                                                10)
-        # print(keep_it)
+        print(keep_it)
         if keep_it:
             selected_test_modules.append(str(item.relative_to(buggy_proj_path)))
 
@@ -238,14 +246,18 @@ def get_test_suite2(benchmark_name: str,
     changed_modules = get_changed_modules(benchmark_name, bug_num)
     test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
     # test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
-    test_module_paths = list(test_suite_path.rglob("*test*.py"))
+    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py")) + list(test_suite_path.rglob("*tests*.py"))
 
-    source_code_packages = [str(buggy_proj_path.absolute().resolve())]
+    if benchmark_name == "pandas":
+        source_code_packages = [str((buggy_proj_path / "pandas").absolute().resolve())]
+    else:
+        source_code_packages = [str(buggy_proj_path.absolute().resolve())]
 
     print(benchmark_name, bug_num)
     print(changed_modules)
 
     test_modules_analyzing = []
+    test_modules_not_analyzing = []
     for item in test_module_paths:
         # print("Analyze test module: ", item)
         # if "tests/test_tutorial/" not in str(item):
@@ -255,7 +267,7 @@ def get_test_suite2(benchmark_name: str,
             # Let's just select "merge_test.py" module.
             # It has around 10 tests which are very fast to run.
             # The call graph generation takes forever.
-            test_modules_analyzing.append(item)
+            test_modules_not_analyzing.append(item)
         elif "test/test_download.py" in str(item) and benchmark_name == "youtube-dl":
             # Remove test/test_download.py because it is too slow.
             # It is not necessary thought.
@@ -272,17 +284,21 @@ def get_test_suite2(benchmark_name: str,
             # Remove the test package tests/test_tutorial.
             # These tests have bugs and stops Pytest.
             pass
-        elif "spacy/tests/test_gold.py" in str(item) and benchmark_name == "spacy":
-            # Let's just select "spacy/tests/test_gold.py" module.
-            # The tests in it run quickly.
-            # The call graph generation requires more than
-            # my physical and virtual memory. So it stops.
-            test_modules_analyzing.append(item)
-        elif "pandas/tests/test_downstream.py" in str(item) and benchmark_name == "pandas":
-            # Let's just select it.
-            # It has around 10 tests which are very fast to run.
-            # The call graph generation takes forever.
-            test_modules_analyzing.append(item)
+        # elif ("spacy/tests/test_gold.py" in str(item) or
+        #       "spacy/tests/test_displacy.py" in str(item)) and benchmark_name == "spacy":
+        #     # Let's just select "spacy/tests/test_gold.py" module.
+        #     # The call graph generation requires more than
+        #     # my physical and virtual memory. So it stops.
+        #     # For "spacy/tests/test_displacy.py", it cannot generate call graph.
+        #     test_modules_not_analyzing.append(item)
+        # elif "pandas/tests/test_downstream.py" in str(item) and benchmark_name == "pandas":
+        #     # Let's just select it.
+        #     # It has around 10 tests which are very fast to run.
+        #     # The call graph generation takes forever.
+        #     test_modules_not_analyzing.append(item)
+        elif "tornado/test/asyncio_test.py" in str(item) and bug_num in [8, 10, 11, 12] and benchmark_name == "tornado":
+            # This test has a syntactical error.
+            pass
         else:
             test_modules_analyzing.append(item)
 
@@ -293,6 +309,11 @@ def get_test_suite2(benchmark_name: str,
                                            changed_modules)
     affected_tests_relative = list(map(lambda x: str(Path(x).relative_to(buggy_proj_path)),
                                        affected_tests))
+
+    not_analyzed_tests_relative = list(map(lambda x: str(x.relative_to(buggy_proj_path)),
+                                           test_modules_not_analyzing))
+
+    affected_tests_relative = affected_tests_relative + not_analyzed_tests_relative
 
     affected_tests_relative.sort()
 
@@ -326,17 +347,16 @@ def get_subject_info_for_bug(benchmark_name: str,
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
     # get_target_dir(benchmark_name, bug_num)
 
-    # print("Testsuite 1 --------------------")
-    # tm1 = datetime.datetime.now()
-    # test_suite = get_test_suite(benchmark_name, bug_num, target_failing_tests)
-    # tm2 = datetime.datetime.now()
-    # print("Testsuite 1 time:", tm2 - tm1)
-
-    # print("Testsuite 2 --------------------")
-    tm1 = datetime.datetime.now()
-    test_suite2 = get_test_suite2(benchmark_name, bug_num, target_failing_tests)
-    tm2 = datetime.datetime.now()
-    print("Testsuite 2 time:", tm2 - tm1)
+    if benchmark_name in ["spacy", "pandas"]:
+        tm1 = datetime.datetime.now()
+        test_suite = get_test_suite(benchmark_name, bug_num, target_failing_tests)
+        tm2 = datetime.datetime.now()
+        print("Testsuite 1 time:", tm2 - tm1)
+    else:
+        tm1 = datetime.datetime.now()
+        test_suite = get_test_suite2(benchmark_name, bug_num, target_failing_tests)
+        tm2 = datetime.datetime.now()
+        print("Testsuite 2 time:", tm2 - tm1)
 
     record = {
         "PYTHON_V": INFO[benchmark_name]["PYTHON_V"],
@@ -344,7 +364,7 @@ def get_subject_info_for_bug(benchmark_name: str,
         "BUG_NUMBER": bug_num,
         "TARGET_DIR": INFO[benchmark_name]["TARGET_DIR"],
         # "TEST_SUITE": INFO[benchmark_name]["TEST_SUITE"],
-        "TEST_SUITE": test_suite2,
+        "TEST_SUITE": test_suite,
         "EXCLUDE": INFO[benchmark_name]["EXCLUDE"],
         "TARGET_FAILING_TESTS": target_failing_tests
     }
