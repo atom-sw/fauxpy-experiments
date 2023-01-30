@@ -1,3 +1,49 @@
+# First round selection 
+
+The purpose of this step is to produce the `subject_info.csv` file that contains
+all the information about the benchmarks, being used in the experiments. The `subject_info.csv` file can then be used to automatically generate the bash scripts in the `bash_script_generator/scripts` directory. To see how this csv file is used, refer to the readme of the `bash_script_generator` directory.
+
+At the begining, we tired to do this selection process manually. But, after a while, we realized it is so time consuming that doing it manually is almost impossible.
+So, we automated this first round selection process, which is explained in this document.
+
+During the manuall process, we removed 5 out of the 17 projects since they did not pass our criteria for selection. Thus, the process explained below only performs the first round selection on the 12 remaining projects in BugsInPy. This whole process have several steps, each of which requires running a specifc Python or Bash script, resulting in the generation of some files that are used by the next step.
+
+## Step 1: Openning benchmarks
+
+At this step, we clone and compile all the buggy and fixed version in BugsInPy. To do that, we run the following command by passing one of the Json files in the `info` directory. For instance, `[BugsInPyProjectName]` can be `keras`. This script checks out all the buggy and 
+fixed versions of a given BugsInPy project (e.g., keras), and 
+runs the target failing tests on both the buggy and the fixed
+versions, and saves the results.
+
+This script must be executed for every single one of the 12 Json files in the `info` directory, which takes around a week to finish, depending on your machine. Before
+running this command, open the `workspace.json` file and set the
+workspace for the script (set the variable `WORKSPACE_PATH`).
+Make sure there is enough space on the path you provide as
+the workspace. It can go up to tens of gigabytes (542 GB for the 12 selected projects).
+
+
+```
+benchmark_opener.sh info/[BugsInPyProjectName].json
+``` 
+
+## Step 2: Checking the compiled versions
+
+At this step, we check if all the buggy and fixed versions are compiled correctly.
+If any of them is not compiled, we must repeat the previous step for it, or remove it from the experiments. To perform this check, we run the following command that takes no arguments. This script prints on the screen which compilations where not successful, and it should finish quickly (probably in less than 1 minute).
+
+```
+./check_compile_all.sh
+```
+
+After running this command, we realzied tornado 16 cannot be compiled duo to a bug in the BugsInPy framework (missing `requirements.txt` file for bug 16). Thus, we removed tornado 16 from our experiments by setting `BUG_NUMBER_END` in `info/tornado.json` to 15 instead of 16. The std output of this step can be found in the `compile_log` directory.
+
+## Step 3: Checking target failing tests
+
+
+
+---
+
+
 This project performs the first round check for the experiments.
 In this round we only keep those buggy benchmarks 
 that pass the following criteria:
@@ -11,21 +57,12 @@ must not result in any errors.
 
 To perform this check, one must first run the following 
 command
-```
-benchmark_opener.sh [BugsInPyProjectName].json
-``` 
-where `[BugsInPyProjectName]` can be the name of one of BugsInPy 
-projects such as keras. This script checks out all the buggy and 
-fixed versions of a given BugsInPy project (e.g., keras), and 
-runs the target failing tests on both the buggy and the fixed
-version, and saves the results (a time-consuming process). Before
-running this command, open the `workspace.json` file and set the
-workspace for the script (set the variable `WORKSPACE_PATH`).
-Make sure there is enough space on the path you provide as
-the workspace. It can go up to tens of gigabytes.
 
-When the script mentioned above finished working, run the following
-command to perform the benchmark selection process.
+
+
+
+UP TO HERE.
+
 ```
 python check.py [BugsInPyProjectName].json
 ```
