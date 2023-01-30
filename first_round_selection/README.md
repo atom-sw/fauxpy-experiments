@@ -6,7 +6,7 @@ The purpose of this step is to produce the [subject_info.csv](subject_info.csv) 
 contains all the information about the benchmarks, being used in the experiments. 
 The `subject_info.csv` file can then be used to automatically generate the bash scripts in
 the [/bash_script_generator/scripts](/bash_script_generator/scripts) directory. To see
-how this csv file is used, refer to the readme of the `bash_script_generator` directory.
+how this csv file is used, refer to the [readme](/bash_script_generator/README.md) of the `bash_script_generator` directory.
 
 At the beginning, we tired to do this selection process manually. But, after 
 a while, we realized it is so time consuming that doing it manually is 
