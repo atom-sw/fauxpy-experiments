@@ -1,11 +1,14 @@
 # First round selection
 
-## Introduction
+## Purpose
 
 The purpose of this step is to produce the [subject_info.csv](subject_info.csv) file that
 contains all the information about the benchmarks, being used in the experiments. 
 The `subject_info.csv` file can then be used to automatically generate the bash scripts in
-the [/bash_script_generator/scripts](/bash_script_generator/scripts) directory.
+the [bash_script_generator/scripts](/bash_script_generator/scripts) directory.
+We have already generated `subject_info.csv`. So, you do not need to go throw this process. But, if you want to replicate it for any reason, you can follow the instructions below. Keep in mind that going through the whole process can take a week.
+
+## Introduction
 
 At the beginning, we tired to do this selection process manually. But, after 
 a while, we realized it is so time consuming that doing it manually is 
