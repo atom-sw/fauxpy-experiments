@@ -7,26 +7,19 @@ set -e
 # Inputs for the current buggy program
 #--------------------------------------------
 PYTHON_V="3.7"
-
-BENCHMARK_NAME="httpie"
-
-BUG_NUMBER="5"
-
-TARGET_DIR="httpie"
-
+BENCHMARK_NAME="thefuck"
+BUG_NUMBER="3"
+TARGET_DIR="thefuck"
 TEST_SUITE=(
-    "tests"
-    )
-
-EXCLUDE=(
+"tests/shells/test_fish.py"
 )
+EXCLUDE=(
 
+)
 TARGET_FAILING_TESTS=(
-    "tests/test_all.py::TestItemParsing::test_escape_longsep"
-    )
-
+"tests/shells/test_fish.py::TestFish::test_info"
+)
 FAMILY="sbfl"
-
 GRANULARITY="statement"
 
 
@@ -200,10 +193,23 @@ then
 
     # Replace conftest.py with the fixed one.
     # The version of Pytest that FauxPy uses is higher than the one used
-    # by this subject. Read the following post for more information.
+    # by these subject. Read the following post for more information.
     # https://stackoverflow.com/questions/54254337/pytest-attributeerror-function-object-has-no-attribute-get-marker
-    rm -f "tests/conftest.py"
-    wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
+    if [ "$BUG_NUMBER" == "3" ] || 
+    [ "$BUG_NUMBER" == "4" ] || 
+    [ "$BUG_NUMBER" == "6" ] || 
+    [ "$BUG_NUMBER" == "7" ] || 
+    [ "$BUG_NUMBER" == "8" ] || 
+    [ "$BUG_NUMBER" == "13" ] || 
+    [ "$BUG_NUMBER" == "14" ] || 
+    [ "$BUG_NUMBER" == "15" ] || 
+    [ "$BUG_NUMBER" == "17" ] ||
+    [ "$BUG_NUMBER" == "19" ] ||
+    [ "$BUG_NUMBER" == "20" ]
+    then
+        rm -f "tests/conftest.py"
+        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
+    fi
 fi
 
 # if [ "$BENCHMARK_NAME" == "fastapi" ]
