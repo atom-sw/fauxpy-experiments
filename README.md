@@ -8,10 +8,23 @@ BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8), since there are differe
 
 The reason is that BugsInPy does not work with Python commands such as `python3`, `python3.6` or things like that. It only works with the command `python` because the shell script of BugsInPy that compiles a project (which means creating a virtual environment for that project and installing all of its dependecies) [call the venv creation command](https://github.com/soarsmu/BugsInPy/blob/master/framework/bin/bugsinpy-compile#L56) using the command `python`.
 
- So, in order to use BugsInPy correctly, one must either change one's OS's `python` command to point to the correct version for the project being compiled, or install 3 virtual envronments for these 3 python vrsions and activate the currect one for the project being compiled. We prefer the second solution which is as follows:
+So, in order to use BugsInPy correctly, one must either change one's OS's `python` command to point to the correct version for the project being compiled, or install 3 virtual envronments for these 3 python vrsions and activate the currect one for the project being compiled. We prefer the second solution which is explained below.
+
+## Running the experiments
+
+1. To replicate the experiments, all you need is the bash scripts we generated that are available in the directory [bash_script_generator/scripts](bash_script_generator/scripts), and the version of [FauxPy](pytest-FauxPy) existing in this repository. So, first clone this repositry, and then copy the `scripts` directory somewhere on your machine (e.g., `~/fauxpy_exp`). Afterwards, copy `FauxPy` to the `~/fauxpy_exp/scripts` directory on your machine.
 
 
-1. Install Python 3.6, 3.7, and 3.8 on the machine.
+```
+git clone git@github.com:mohrez86/fauxpy_experiments.git
+mkdir ~/fauxpy_exp
+cp -rf fauxpy_experiments/bash_script_generator/scripts ~/fauxpy_exp
+cp -rf fauxpy_experiments/pytest-FauxPy ~/fauxpy_exp/scripts
+cd ~/fauxpy_exp
+```
+
+
+2. Install Python 3.6, 3.7, and 3.8 on the machine.
 
 ```
 # Using APT
@@ -25,7 +38,7 @@ conda create --name fauxpy-3.7 python=3.7
 conda create --name fauxpy-3.8 python=3.8
 ```
 
-2. Install Python dev package for Python 3.6, 3.7, and 3.8 (I am not sure if it is necessary, but installing them does not hurt):
+3. Install Python dev package for Python 3.6, 3.7, and 3.8 (I am not sure if it is necessary, but installing them does not hurt):
 
 ```
 # Using APT
@@ -36,11 +49,9 @@ sudo apt-get install python3.8-dev
 # Nothing needed in Conda
 ```
 
-3. Create 3 venvs for these 3 Python versions in the directory that contains the parent directory of the scripts (e.g., `cookiecutter_1.sh`). For instance, if the current directory is `scripts` (which contains `cookiecutter_1.sh`), run the following commands:
+4. Create 3 venvs for these 3 Python versions in `~/fauxpy_exp`:
 
 ```
-cd ..
-
 # Without Conda
 python3.6 -m venv bugsinpyenv36
 python3.7 -m venv bugsinpyenv37
@@ -58,13 +69,28 @@ python3.8 -m venv bugsinpyenv38
 conda deactivate
 ```
 
-4. You must also keep a copy of FauxPy in the same directory where the scripts (e.g., `cookiecutter_1.sh`) are located since FauxPy is not publicly available as a pip package at the moment.
+5. Go to the `~/fauxpy_exp/scripts` directory and make all the bash scripts executable.
 
+```
+cd scripts
+chmod +x *.sh
+```
+
+6. Make a copy of your `.bashrc` file on your home directory, and name it `_bashrc`.
+Compileing some of the programs in BugsInPy affect your `.bashrc` file. So, our scripts require a backup version of `.bashrc` to fix these side effects.
+
+```
+cp ~/.bashrc ~/_bashrc
+```
+
+7. Run all of the scripts one by one to produce the results. For instance, the following command runs SBFL with statement granularity on bug 2 of cookiecutter:
+
+```
+./20020_1h_32g_cookiecutter_2_sbfl_statement.sh
+```
+
+When a script ends running, a directory by the name of the project for which the script is produced is made in the `~/fauxpy_exp/scripts` directory. This newly made directory contains the results. For instance, for the command above, this directory is `~/fauxpy_exp/scripts/cookiecutter`, which has the result of running SBFL with statement granularity on bug 2 of cookiecutter.
 
 ## Generating the bash scripts
 
-In order to generate the bash scripts that run FauxPy on each benchmark, one can use the Python script `subject_script_generator.py`. This Python script requires the bash script template `faux-in-py-template.sh` and the csv file `subject_info.csv` to be in the same directory as this Python script. Running `subject_script_generator.py` makes a directory named `scripts` that contains all of the scripts for the experiments.
-
-```
-python subject_script_generator.py
-```
+To know how these bash scripts are generated or to produce them yourself, refer to [bash_script_generator/README.md](bash_script_generator/README.md).
