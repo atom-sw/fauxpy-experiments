@@ -1,7 +1,7 @@
 BENCHMARK_NAME,sbfl,mbfl,ps,st
 cookiecutter,1,12,1,1
 spacy,1,12,1,1
-sanic,1,12,1,1
+sanic,12,12,1,1
 httpie,1,24,1,1
 keras,2,48,1,1
 thefuck,1,24,1,1
