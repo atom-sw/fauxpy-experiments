@@ -23,3 +23,7 @@ python subject_script_generator
 ```
 
 When this script finshes, the [scripts](scripts) directory is created, which contains all of the bash scripts required for the experiments.
+
+## Generating subject_info.csv
+
+To know how `info/subject_info.csv` is generated or to produce it yourself, refer to [first_round_selection/README.md](/first_round_selection/README.md).
