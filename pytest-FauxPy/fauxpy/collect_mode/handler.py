@@ -3,6 +3,7 @@ from typing import List
 
 from . import database, report
 from .. import common
+from ..common.testcase import TestInformation
 
 
 class CollectMode(Enum):
@@ -14,7 +15,7 @@ class CollectMode(Enum):
 _Src: str
 _Exclude: List[str]
 _Family: str
-_CurrentTest: str
+_CurrentTestName: str
 
 
 def handlerConfigure(src, exclude, family):
@@ -40,10 +41,10 @@ def handlerRuntestCall(item):
     Runs before the execution of the current test.
     """
 
-    global _CurrentTest
+    global _CurrentTestName
 
     if _Family in [CollectMode.PSINFO, CollectMode.PSRUN]:
-        _CurrentTest = common.getTestName(item.location[0], item.location[1], item.location[2])
+        _CurrentTestName = TestInformation(item.location, item.nodeid).getTestName()
 
 
 def handlerRuntestMakereport(item, call):
@@ -54,9 +55,9 @@ def handlerRuntestMakereport(item, call):
     if call.when == "call":
         if _Family in [CollectMode.PSINFO, CollectMode.PSRUN]:
 
-            testName = common.getTestName(item.location[0], item.location[1], item.location[2])
-            if testName != _CurrentTest:
-                raise Exception(f"Starting coverage for {_CurrentTest}. But closing coverage for {testName}.")
+            testName = TestInformation(item.location, item.nodeid).getTestName()
+            if testName != _CurrentTestName:
+                raise Exception(f"Starting coverage for {_CurrentTestName}. But closing coverage for {testName}.")
 
             if _Family == CollectMode.PSINFO:
                 predicateSequence = common.loadInCollectModeExecutedPredicateSequenceAndRemoveFile()
@@ -80,8 +81,9 @@ def handlerTerminalSummary(terminalreporter):
         for key, value in terminalreporter.stats.items():
             if key in ["passed", "failed"]:
                 for testReport in value:
-                    testName = common.getTestName(testReport.location[0], testReport.location[1],
-                                                  testReport.location[2])
+                    testInformation = TestInformation(testReport.location, testReport.nodeid)
+                    testName = testInformation.getTestName()
+
                     testTraceBack = ""
                     timeoutStat = -1
                     if key == "failed":
@@ -91,7 +93,9 @@ def handlerTerminalSummary(terminalreporter):
                         if common.hasTimeoutHappened(testReport.longreprtext):
                             timeoutStat = 1
 
-                    database.insertTestCase(testName=testName, testType=key, shortTraceback=testTraceBack,
+                    database.insertTestCase(testName=testName,
+                                            testType=key,
+                                            shortTraceback=testTraceBack,
                                             timeoutStat=timeoutStat)
 
         report.saveTestCases()

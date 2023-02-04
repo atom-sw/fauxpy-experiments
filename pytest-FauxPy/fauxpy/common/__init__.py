@@ -1,4 +1,4 @@
-from .naming import getTestName, convertTestNameToComponents, getStatementName, getCoveredFunctionName, \
+from .naming import convertTestNameToComponents, getStatementName, getCoveredFunctionName, \
     convertStatementNameToComponents, testNameToFileName, getGeneralizedTestName
 from .file import saveScoresToFile, saveConfigToFile, saveDeltaTimeToFile, \
     getDatabasePath, saveInCollectModeTestCaseTable, loadInCollectModeExecutedPredicateSequenceAndRemoveFile,\

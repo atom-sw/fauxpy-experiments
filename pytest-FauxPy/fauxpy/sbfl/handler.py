@@ -4,13 +4,14 @@ import coverage
 
 from . import database, ranking_metric, covered_function
 from .. import common
+from ..common.testcase import TestInformation
 
 _Granularity: str
 _Src: str
 _Exclude: List[str]
 _TopN: int
 _Cov: coverage.Coverage
-_CurrentTest: str
+_CurrentTestName: str
 _TargetFailingTests: common.TargetFailingTests
 
 
@@ -32,9 +33,9 @@ def handlerRuntestCall(item):
     """
 
     global _Cov
-    global _CurrentTest
+    global _CurrentTestName
 
-    _CurrentTest = common.getTestName(item.location[0], item.location[1], item.location[2])
+    _CurrentTestName = TestInformation(item.location, item.nodeid).getTestName()
     _Cov.start()
 
 
@@ -43,12 +44,12 @@ def handlerRuntestMakereport(item, call):
     Runs after the execution of the current test.
     """
 
-    global _Cov, _CurrentTest
+    global _Cov, _CurrentTestName
 
     if call.when == "call":
-        testName = common.getTestName(item.location[0], item.location[1], item.location[2])
-        if testName != _CurrentTest:
-            raise Exception(f"Starting coverage for {_CurrentTest}. But closing coverage for {testName}.")
+        testName = TestInformation(item.location, item.nodeid).getTestName()
+        if testName != _CurrentTestName:
+            raise Exception(f"Starting coverage for {_CurrentTestName}. But closing coverage for {testName}.")
         _Cov.stop()
         covDat = _Cov.get_data()
         coveredStatements = []
@@ -84,9 +85,9 @@ def handlerTerminalSummary(terminalreporter):
     for key, value in terminalreporter.stats.items():
         if key in ["passed", "failed"]:
             for testReport in value:
-                testPath = testReport.location[0]
-                testLineNumber = testReport.location[1]
-                testMethodName = testReport.location[2]
+                testInformation = TestInformation(testReport.location, testReport.nodeid)
+                testPath = testInformation.getPath()
+                testMethodName = testInformation.getMethodName()
 
                 target = False
                 if _TargetFailingTests is not None and key == "failed":
@@ -94,7 +95,7 @@ def handlerTerminalSummary(terminalreporter):
                 elif _TargetFailingTests is None and key == "failed":
                     target = True
 
-                testName = common.getTestName(testPath, testLineNumber, testMethodName)
+                testName = testInformation.getTestName()
                 database.insertTestCase(testName, key, target)
 
     scoreEntities = ranking_metric.computeSortedScores(_TopN)

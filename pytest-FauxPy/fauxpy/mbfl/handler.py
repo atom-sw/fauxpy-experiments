@@ -5,13 +5,14 @@ import coverage
 
 from . import database, mutation, runner, mutant_score, entity_score
 from .. import common
+from ..common.testcase import TestInformation
 
 _Granularity: str
 _Src: str
 _Exclude: List[str]
 _TopN: int
 _Cov: coverage.Coverage
-_CurrentTest: str
+_CurrentTestName: str
 _FileOrDir: List[str]
 _TargetFailingTests: common.TargetFailingTests
 
@@ -38,11 +39,11 @@ def handlerRuntestCall(item):
     """
 
     global _Cov
-    global _CurrentTest
+    global _CurrentTestName
 
     _CurrentTestTimer.startTimer()
 
-    _CurrentTest = common.getTestName(item.location[0], item.location[1], item.location[2])
+    _CurrentTestName = TestInformation(item.location, item.nodeid).getTestName()
     # program_tracer.start(isWanted=lambda x: common.pathShouldBeLocalized(_Src, _Exclude, x))
     _Cov.start()
 
@@ -53,7 +54,7 @@ def handlerRuntestMakereport(item, call):
     """
 
     global _Cov
-    global _CurrentTest
+    global _CurrentTestName
 
     # TODO: Replace custom tracer with coverage library (commented code). Coverage tool does not
     #  work on cookiecutter project. Not found the reason. Probably timeout is the problem
@@ -61,9 +62,9 @@ def handlerRuntestMakereport(item, call):
     #  timeout solved the problem for now.
 
     if call.when == "call":
-        testName = common.getTestName(item.location[0], item.location[1], item.location[2])
-        if testName != _CurrentTest:
-            raise Exception(f"Starting coverage for {_CurrentTest}. But closing coverage for {testName}.")
+        testName = TestInformation(item.location, item.nodeid).getTestName()
+        if testName != _CurrentTestName:
+            raise Exception(f"Starting coverage for {_CurrentTestName}. But closing coverage for {testName}.")
 
         # program_tracer.stop()
         # executionTrace = program_tracer.getExecutionTrace()
@@ -103,10 +104,11 @@ def handlerTerminalSummary(terminalreporter):
     for key, value in terminalreporter.stats.items():
         if key in ["passed", "failed"]:
             for testReport in value:
-                testPath = testReport.location[0]
-                testLineNumber = testReport.location[1]
-                testMethodName = testReport.location[2]
-                testName = common.getTestName(testPath, testLineNumber, testMethodName)
+                testInformation = TestInformation(testReport.location, testReport.nodeid)
+                testPath = testInformation.getPath()
+                testMethodName = testInformation.getMethodName()
+
+                testName = testInformation.getTestName()
                 testTraceBack = ""
                 timeoutStat = -1
                 target = False

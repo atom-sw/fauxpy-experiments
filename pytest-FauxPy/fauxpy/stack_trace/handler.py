@@ -1,14 +1,13 @@
 from typing import List
 
-from _pytest._code.code import ReprTraceback
-
 from . import parse, ranking, database
 from .. import common
+from ..common.testcase import TestInformation
 
 _Src: str
 _Exclude: List[str]
 _TopN: int
-_CurrentTest: str
+_CurrentTestName: str
 _TargetFailingTests: common.TargetFailingTests
 
 
@@ -27,8 +26,8 @@ def handlerRuntestCall(item):
     Runs before the execution of the current test.
     """
 
-    global _CurrentTest
-    _CurrentTest = common.getTestName(item.location[0], item.location[1], item.location[2])
+    global _CurrentTestName
+    _CurrentTestName = TestInformation(item.location, item.nodeid).getTestName()
 
 
 def handlerRuntestMakereport(item, call):
@@ -36,12 +35,12 @@ def handlerRuntestMakereport(item, call):
     Runs after the execution of the current test.
     """
 
-    global _CurrentTest
+    global _CurrentTestName
 
     if call.when == "call":
-        testName = common.getTestName(item.location[0], item.location[1], item.location[2])
-        if testName != _CurrentTest:
-            raise Exception(f"Starting coverage for {_CurrentTest}. But closing coverage for {testName}.")
+        testName = TestInformation(item.location, item.nodeid).getTestName()
+        if testName != _CurrentTestName:
+            raise Exception(f"Starting coverage for {_CurrentTestName}. But closing coverage for {testName}.")
 
 
 def handlerTerminalSummary(terminalreporter):
@@ -53,14 +52,14 @@ def handlerTerminalSummary(terminalreporter):
     for key, value in terminalreporter.stats.items():
         if key in ["failed"]:
             for testReport in value:
-                testPath = testReport.location[0]
-                testLineNumber = testReport.location[1]
-                testMethodName = testReport.location[2]
+                testInformation = TestInformation(testReport.location, testReport.nodeid)
+                testPath = testInformation.getPath()
+                testMethodName = testInformation.getMethodName()
 
                 if ((_TargetFailingTests is not None and _TargetFailingTests.isTargetTest(testPath, testMethodName))
                         or _TargetFailingTests is None):
-                    currentTest = common.getTestName(testPath, testLineNumber, testMethodName)
-                    reprTraceback: ReprTraceback = testReport.longrepr.reprtraceback
+                    currentTest = testInformation.getTestName()
+                    reprTraceback = testReport.longrepr.reprtraceback
                     tracebackFunctionNames = parse.getOrderedTracebackFunctionNames(_Src, _Exclude, reprTraceback)
                     currentTestScores = ranking.computeScores(tracebackFunctionNames)
                     database.insertTracebackScores(currentTest, currentTestScores)

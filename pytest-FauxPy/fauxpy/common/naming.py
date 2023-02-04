@@ -1,16 +1,6 @@
 from typing import Tuple
 
 
-def _quoteFreeTestMethodName(methodName: str):
-    qftm = methodName.replace("'", "XquoteX").replace('"', "XdoubleQuoteX")
-    return qftm
-
-
-def getTestName(path: str, lineNumber: int, methodName: str):
-    testName = path + "::" + str(lineNumber) + "::" + _quoteFreeTestMethodName(methodName)
-    return testName
-
-
 def convertTestNameToComponents(testName: str) -> Tuple[str, int, str]:
     components = testName.split("::")
     return components[0], int(components[1]), components[2]

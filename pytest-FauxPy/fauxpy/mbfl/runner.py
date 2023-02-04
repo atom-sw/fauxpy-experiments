@@ -4,7 +4,7 @@ from enum import Enum
 from typing import List, Tuple
 
 from . import mutgen, database
-from .. import common, collect_mode, constants
+from .. import common, collect_mode
 
 
 class TestComparisonState(Enum):
@@ -118,6 +118,15 @@ def _getMutantScoreTerms(mutantTestCaseRunResultTable):
 
     for mutantTestCaseResult in mutantTestCaseRunResultTable:
         normalTestCaseResult = database.selectTestCase(mutantTestCaseResult[0])
+
+        if normalTestCaseResult is None:
+            # In pandas 47, one of the parametrized tests can have names
+            # generated randomly (a very rare case). Thus, the collect mode
+            # can return test names that do not exist in the main execution of the
+            # MBFL method. In these cases, let's just ignore that test
+            # and continue the score terms computation using the remaining tests.
+            continue
+
         f2p, p2f, fc, testCompState = _compareTwoTestCaseResults(normalTestCaseResult, mutantTestCaseResult)
         if testCompState == TestComparisonState.Normal:
             failedToPassed += f2p

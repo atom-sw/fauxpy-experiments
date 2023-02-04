@@ -4,6 +4,7 @@ import coverage
 
 from . import database, algorithm
 from .. import common
+from ..common.testcase import TestInformation
 
 # from .. import program_tracer
 
@@ -14,7 +15,7 @@ _Exclude: List[str]
 _TopN: int
 _TargetFailingTests: common.TargetFailingTests
 _Cov: coverage.Coverage
-_CurrentTest: str
+_CurrentTestName: str
 
 _CurrentTestTimer = common.Timer()
 
@@ -36,11 +37,11 @@ def handlerRuntestCall(item):
     Runs before the execution of the current test.
     """
 
-    global _CurrentTest, _Cov
+    global _CurrentTestName, _Cov
 
     _CurrentTestTimer.startTimer()
 
-    _CurrentTest = common.getTestName(item.location[0], item.location[1], item.location[2])
+    _CurrentTestName = TestInformation(item.location, item.nodeid).getTestName()
     # program_tracer.start(isWanted=lambda x: common.pathShouldBeLocalized(_Src, _Exclude, x))
     _Cov.start()
 
@@ -50,14 +51,14 @@ def handlerRuntestMakereport(item, call):
     Runs after the execution of the current test.
     """
 
-    global _CurrentTest, _Cov
+    global _CurrentTestName, _Cov
 
     # TODO: Replace custom tracer with coverage library (commented code).
 
     if call.when == "call":
-        testName = common.getTestName(item.location[0], item.location[1], item.location[2])
-        if testName != _CurrentTest:
-            raise Exception(f"Starting coverage for {_CurrentTest}. But closing coverage for {testName}.")
+        testName = TestInformation(item.location, item.nodeid).getTestName()
+        if testName != _CurrentTestName:
+            raise Exception(f"Starting coverage for {_CurrentTestName}. But closing coverage for {testName}.")
 
         # program_tracer.stop()
         # executionTrace = program_tracer.getExecutionTrace()
@@ -101,10 +102,11 @@ def handlerTerminalSummary(terminalreporter):
     for key, value in terminalreporter.stats.items():
         if key in ["passed", "failed"]:
             for testReport in value:
-                testPath = testReport.location[0]
-                testLineNumber = testReport.location[1]
-                testMethodName = testReport.location[2]
-                testName = common.getTestName(testPath, testLineNumber, testMethodName)
+                testInformation = TestInformation(testReport.location, testReport.nodeid)
+                testPath = testInformation.getPath()
+                testMethodName = testInformation.getMethodName()
+
+                testName = testInformation.getTestName()
                 exceptionFilePath = ""
                 exceptionLineNumber = -1
                 target = False

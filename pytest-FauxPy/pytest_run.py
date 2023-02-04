@@ -301,7 +301,7 @@ def runCommandScript(cmd: str, workingDir: str):
 
 # workDir = "/home/moe/Desktop/SI_SEMINAR/si_example/example"
 # command = ["python", "-m", "pytest", "test",
-#            "--src", "my_code", "--family", "mbfl", "--granularity", "statement", "--top-n", "30",
+#            "--src", "my_code", "--family", "st", "--granularity", "statement", "--top-n", "30",
 #            # "--no-cov"
 #            ]
 # runCommand(command, workDir)
@@ -350,16 +350,63 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-workDir = "/home/moe/BugsInPyExp/2.cookiecutter/bug3/buggy/cookiecutter"
-command = 'python -m pytest tests/test_read_user_choice.py::test_click_invocation --src cookiecutter --granularity statement --family sbfl --failing-list [tests/test_read_user_choice.py::test_click_invocation]'
-runCommandScript(command, workDir)
+# workDir = "/home/moe/BugsInPyExp/2.cookiecutter/bug3/buggy/cookiecutter"
+# command = 'python -m pytest tests/test_read_user_choice.py::test_click_invocation --src cookiecutter --granularity statement --family sbfl --failing-list [tests/test_read_user_choice.py::test_click_invocation]'
+# runCommandScript(command, workDir)
 
 
-# workDir = "/home/moe/BugsInPyExp/4.spacy/bug4/buggy/spacy"
-# command = 'python -m pytest spacy/tests/test_cli.py spacy/tests/test_json_schemas.py spacy/tests/doc/test_to_json.py spacy/tests/regression/test_issue4665.py --src spacy --exclude [spacy/tests] --granularity statement --family ps'
+# workDir = "/home/moe/BugsInPyExp/4.spacy/bug5/buggy/spacy"
+# command = 'python -m pytest spacy/tests/test_language.py --src spacy --exclude [spacy/tests] --granularity statement --family sbfl --failing-list [spacy/tests/test_language.py::test_evaluate_no_pipe]'
 # runCommandScript(command, workDir)
 
 
 # workDir = "/home/moe/BugsInPyExp/17.youtube-dl/bug13/buggy/youtube-dl"
 # command = 'python -m pytest test/test_utils.py::TestUtil::test_urljoin --src youtube_dl --granularity function --family ps --failing-list [test/test_utils.py::TestUtil::test_urljoin]'
 # runCommandScript(command, workDir)
+
+
+workDir = "/home/moe/BugsInPyExp/pandas/bug54/buggy/pandas"
+command = ("python -m pytest "
+           " pandas/tests/arrays/categorical/test_constructors.py"
+           " pandas/tests/arrays/categorical/test_dtypes.py"
+           " pandas/tests/arrays/categorical/test_missing.py"
+           " pandas/tests/arrays/test_array.py"
+           " pandas/tests/arrays/test_datetimes.py"
+           " pandas/tests/arrays/test_period.py"
+           " pandas/tests/dtypes/cast/test_construct_from_scalar.py"
+           " pandas/tests/dtypes/cast/test_find_common_type.py"
+           " pandas/tests/dtypes/cast/test_promote.py"
+           " pandas/tests/dtypes/test_common.py"
+           " pandas/tests/dtypes/test_dtypes.py"
+           " pandas/tests/dtypes/test_missing.py"
+           " pandas/tests/extension/test_common.py"
+           " pandas/tests/extension/test_datetime.py"
+           " pandas/tests/extension/test_interval.py"
+           " pandas/tests/extension/test_period.py"
+           " pandas/tests/frame/indexing/test_categorical.py"
+           " pandas/tests/frame/test_dtypes.py"
+           " pandas/tests/frame/test_timezones.py"
+           " pandas/tests/indexes/categorical/test_category.py"
+           " pandas/tests/indexes/interval/test_astype.py"
+           " pandas/tests/indexes/interval/test_constructors.py"
+           " pandas/tests/indexes/multi/test_astype.py"
+           " pandas/tests/indexes/period/test_constructors.py"
+           " pandas/tests/indexing/test_categorical.py"
+           " pandas/tests/io/json/test_json_table_schema.py"
+           " pandas/tests/io/parser/test_dtypes.py"
+           " pandas/tests/reshape/merge/test_merge.py"
+           " pandas/tests/reshape/test_concat.py"
+           " pandas/tests/series/test_constructors.py"
+           " pandas/tests/series/test_dtypes.py"
+           " pandas/tests/test_algos.py"
+           " --src pandas --exclude [pandas/tests] --granularity statement --family sbfl --failing-list [pandas/tests/dtypes/test_dtypes.py::TestCategoricalDtype::test_from_values_or_dtype_invalid_dtype]")
+print(command)
+runCommandScript(command, workDir)
+
+
+# workDir = "/home/moe/Desktop/SI_SEMINAR/si_example/example"
+# command = ["python", "-m", "pytest", "test",
+#            "--src", "my_code", "--family", "sbfl", "--granularity", "statement", "--top-n", "30",
+#            # "--no-cov"
+#            ]
+# runCommand(command, workDir)
