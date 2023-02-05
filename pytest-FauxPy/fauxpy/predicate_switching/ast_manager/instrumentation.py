@@ -103,16 +103,24 @@ class InstrumentationTransformer(ast.NodeTransformer):
         return None
 
 
-# TODO: Might cause problem in some modules (probably those importing __future__). Fix it if an example is found.
 def _addInstrumentationImport(astTree):
     def isFromFuture(x) -> bool:
         if isinstance(x, ast.ImportFrom):
             return x.module == "__future__"
         return False
 
+    # Probably it is OK for finding docstrings
+    # at the beginning of a module.
+    def isDocString(x) -> bool:
+        if (isinstance(x, ast.Expr) and
+                ((isinstance(x.value, ast.Str) and isinstance(x.value.s, str)) or  # for Python 3.6 and Python 3.7
+                 (isinstance(x.value, ast.Constant) and isinstance(x.value.value, str)))):  # for Python 3.8 and Python 3.9
+            return True
+        return False
+
     index = 0
     for index, item in enumerate(astTree.body):
-        if not isFromFuture(item):
+        if not isFromFuture(item) and not isDocString(item):
             break
 
     newImport = ast.ImportFrom(module='fauxpy', names=[ast.alias(name='fauxpy_inst', asname=None)], level=0)

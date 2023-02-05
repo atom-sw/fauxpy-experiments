@@ -1,8 +1,10 @@
 import ast
 
+import pytest
+
 from fauxpy.predicate_switching import ast_manager
-from tests.common import getDataPath
 from fauxpy.predicate_switching.ast_manager import instrumentation
+from tests.common import getDataPath
 
 
 def test_instrumentOneLineIfMinimal():
@@ -63,8 +65,13 @@ def test_instrumentNormalIfBlack14():
     assert instrumentationString in instFileContent
 
 
-def test__addInstrumentationImport():
-    filePath = str(getDataPath("predicate_switching", "future_import.py").absolute())
+@pytest.mark.parametrize("fileName", [
+    "future_import.pyt",
+    "cookiecutter_4_utils.pyt",  # bug found in cookiecutter 4 running PS
+    "spacy_2_compat.pyt"  # bug found in spacy 2 running PS
+])
+def test__addInstrumentationImport(fileName):
+    filePath = str(getDataPath("predicate_switching", fileName).absolute())
     with open(filePath, "r") as source:
         treeObj = ast.parse(source.read())
 
@@ -75,7 +82,14 @@ def test__addInstrumentationImport():
             return x.module == "__future__"
         return False
 
+    def isDocString(x) -> bool:
+        if (isinstance(x, ast.Expr) and
+                (isinstance(x.value, ast.Str) or
+                 (isinstance(x.value, ast.Constant) and isinstance(x.value.value, str)))):
+            return True
+        return False
+
     for index, item in enumerate(treeObj.body):
         if isFromFuture(item):
-            beforeFromFuture = list(map(isFromFuture, treeObj.body[0:index]))
-            assert len(beforeFromFuture) == 0 or any(beforeFromFuture)
+            beforeFromFuture = list(map(lambda x: isFromFuture(x) or isDocString(x), treeObj.body[0:index]))
+            assert len(beforeFromFuture) == 0 or all(beforeFromFuture)
