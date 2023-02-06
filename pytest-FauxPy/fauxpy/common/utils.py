@@ -17,7 +17,7 @@ def init():
 
 def _notStartsWith(exclude: List[str], path: str):
     for exld in exclude:
-        absExld = str(pathlib.Path(exld).resolve())
+        absExld = relativePathToAbsPath(exld)
         if path.startswith(absExld):
             return False
     return True

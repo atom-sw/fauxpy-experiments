@@ -412,7 +412,13 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommand(command, workDir)
 
 
-workDir = "/home/moe/BugsInPyExp/cookiecutter/bug4/buggy/cookiecutter"
-command = 'python -m pytest tests/test_hooks.py::TestExternalHooks::test_run_failing_hook --src cookiecutter --granularity statement --family ps'
+# workDir = "/home/moe/BugsInPyExp/cookiecutter/bug4/buggy/cookiecutter"
+# command = 'python -m pytest tests/test_hooks.py::TestExternalHooks::test_run_failing_hook --src cookiecutter --granularity statement --family ps'
+# print(command)
+# runCommandScript(command, workDir)
+
+
+workDir = "/home/moe/BugsInPyExp/keras/bug5/buggy/keras"
+command = 'python -m pytest tests/keras/layers/merge_test.py tests/keras/utils/data_utils_test.py --src . --exclude [env,tests] --granularity statement --family mbfl --failing-list [tests/keras/utils/data_utils_test.py::test_data_utils]'
 print(command)
 runCommandScript(command, workDir)
