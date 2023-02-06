@@ -84,8 +84,8 @@ def test__addInstrumentationImport(fileName):
 
     def isDocString(x) -> bool:
         if (isinstance(x, ast.Expr) and
-                (isinstance(x.value, ast.Str) or
-                 (isinstance(x.value, ast.Constant) and isinstance(x.value.value, str)))):
+                ((isinstance(x.value, ast.Str) and isinstance(x.value.s, str)) or  # for Python 3.6 and Python 3.7
+                 (isinstance(x.value, ast.Constant) and isinstance(x.value.value, str)))):  # for Python 3.8 and Python 3.9
             return True
         return False
 
