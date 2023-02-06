@@ -1,7 +1,7 @@
 
 + 50012
 + 50022
-- 50052: Fishy
+- 50052: Fishy - bug in the tool - fixed - repeat
 - 50082: Timeout - needs 120 more hours
 - 50292: Error during test collection. Dependency issue.
 - 50302: Timeout - needs 380 more hours
@@ -18,9 +18,9 @@
 + 70012
 + 70032
 + 70042
-- 70052: No mutants - fishy
+- 70052: No mutants - fishy - fixed by fixing 50052 - repeat
 
-- 80012: No mutants - fishy
+- 80012: No mutants - fishy - correct 
 + 80022
 + 80032
 + 80042
@@ -30,6 +30,7 @@
 
 --------------------------------
 
+50052
 50422
 
 50072
@@ -57,6 +58,7 @@
 61432
 61462
 
+70052
 
 
 
