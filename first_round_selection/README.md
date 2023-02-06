@@ -80,7 +80,8 @@ this check, run the following command:
 
 When this script is finished running, it produces the [selected](selected) directory, containing a Json
 file for each project showing which bugs have been removed and kept according to 
-the criteria mentioned above.
+the criteria mentioned above. The standard output of this step
+can be found in the [target_tests_log](target_tests_log) directory.
 
 ## Step 4: Time-based selection
 
