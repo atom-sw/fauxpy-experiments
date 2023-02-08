@@ -15,7 +15,7 @@ RUN_TEST_FILE_NAME = "bugsinpy_run_test.sh"
 
 WORKSPACE_FILE_NAME = "workspace.json"
 
-SELECTED_OUTPUT_DIRECTORY_NAME = "selected"
+CORRECT_TEST_OUTPUT_DIRECTORY_NAME = "correct"
 
 TIME_SELECTED_BUGS_FILE_NAME = "time_selected_bugs.json"
 
@@ -102,10 +102,10 @@ def number_of_target_tests(version_path):
     return lines_count
 
 
-def load_correct_test_bugs_info():
+def load_correct_test_bugs():
     correct_test_bugs: Dict = {}
 
-    selected_dir_path = Path(SELECTED_OUTPUT_DIRECTORY_NAME)
+    selected_dir_path = Path(CORRECT_TEST_OUTPUT_DIRECTORY_NAME)
     json_files = list(selected_dir_path.rglob("*.json"))
     json_files.sort()
     for file_path in json_files:

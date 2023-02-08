@@ -78,7 +78,7 @@ this check, run the following command:
 ./check_target_tests_all.sh
 ```
 
-When this script is finished running, it produces the [selected](selected) directory, containing a Json
+When this script is finished running, it produces the [correct](correct) directory, containing a Json
 file for each project showing which bugs have been removed and kept according to 
 the criteria mentioned above. The standard output of this step
 can be found in the [target_tests_log](target_tests_log) directory.
@@ -115,4 +115,4 @@ generate_subject_info.py
 
 This step also performs a call graph based test case selection using
 [Scalpel](https://github.com/SMAT-Lab/Scalpel), a python static
-analysis framework.
+analysis framework. So, it is very slow.

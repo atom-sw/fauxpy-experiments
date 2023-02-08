@@ -138,7 +138,7 @@ def main():
             print("Rejected")
             rejected_bugs.append(current_bug_number)
 
-    file_path_result = common.get_output_dir(common.SELECTED_OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
+    file_path_result = common.get_output_dir(common.CORRECT_TEST_OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
 
     common.save_object_to_json({
         "BENCHMARK_NAME": benchmark_name,
