@@ -2,7 +2,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict
 
 VERSION_PREFIX = "bug"
 BUGGY_DIR_NAME = "buggy"
@@ -100,3 +100,17 @@ def number_of_target_tests(version_path):
             max(tox_count, pytest_count, unittest_count, py_test_count))
     assert max(tox_count, pytest_count, unittest_count, py_test_count) == lines_count
     return lines_count
+
+
+def load_correct_test_bugs_info():
+    correct_test_bugs: Dict = {}
+
+    selected_dir_path = Path(SELECTED_OUTPUT_DIRECTORY_NAME)
+    json_files = list(selected_dir_path.rglob("*.json"))
+    json_files.sort()
+    for file_path in json_files:
+        selected_benchmark = load_json_to_dictionary(str(file_path.absolute().resolve()))
+        selected_benchmark_name = selected_benchmark["BENCHMARK_NAME"]
+        correct_test_bugs[selected_benchmark_name] = selected_benchmark
+
+    return correct_test_bugs

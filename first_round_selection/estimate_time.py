@@ -47,18 +47,6 @@ def get_experiment_timeout(benchmark_name, family) -> int:
     return int(experiment_timeout)
 
 
-def load_first_round_selected_bugs_info():
-    global FIRST_ROUND_BUGS_INFO
-
-    selected_dir_path = Path(common.SELECTED_OUTPUT_DIRECTORY_NAME)
-    json_files = list(selected_dir_path.rglob("*.json"))
-    json_files.sort()
-    for file_path in json_files:
-        selected_benchmark = common.load_json_to_dictionary(str(file_path.absolute().resolve()))
-        selected_benchmark_name = selected_benchmark["BENCHMARK_NAME"]
-        FIRST_ROUND_BUGS_INFO[selected_benchmark_name] = selected_benchmark
-
-
 def get_time_for_benchmark(benchmark_name: str):
     sbfl_time = get_experiment_timeout(benchmark_name, SBFL)
     mbfl_time = get_experiment_timeout(benchmark_name, MBFL)
@@ -107,7 +95,9 @@ def num_bug_left():
 
 
 def main():
-    load_first_round_selected_bugs_info()
+    global FIRST_ROUND_BUGS_INFO
+
+    FIRST_ROUND_BUGS_INFO = common.load_correct_test_bugs_info()
     selected_bugs_info = {}
 
     for benchmark in FIRST_ROUND_BUGS_INFO.values():
