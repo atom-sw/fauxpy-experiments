@@ -71,7 +71,7 @@ def load_json_to_dictionary(file_path: str):
 
 def get_command_line_info_file():
     if len(sys.argv) != 2:
-        print("Pass the benchmark info file. For instance:\npython check.py keras.json")
+        print("Pass the benchmark info file (e.g., info/keras.json).")
         exit(1)
 
     return Path(sys.argv[1])
