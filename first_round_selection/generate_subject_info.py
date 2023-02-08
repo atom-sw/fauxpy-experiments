@@ -9,7 +9,7 @@ import common
 from call_graph import is_affecting_test_module, affected_test_modules
 
 INFO = {}
-SELECTED = {}
+CORRECT = {}
 WORKSPACE_PATH: str = ""
 SUBJECT_INFO_CSV_FILE_NAME = "subject_info.csv"
 
@@ -21,7 +21,7 @@ GITHUB_TOKEN = common.read_file_content(Path("github_token.txt"))
 
 
 def load_info():
-    global SELECTED
+    global CORRECT
     global INFO
     global WORKSPACE_PATH
 
@@ -437,7 +437,7 @@ def main():
 
     all_subject_infos = []
 
-    for benchmark_name, bugs in SELECTED.items():
+    for benchmark_name, bugs in CORRECT.items():
         subject_infos_for_benchmark = get_subject_infos_for_benchmark(benchmark_name, bugs)
         all_subject_infos += subject_infos_for_benchmark
 
@@ -449,7 +449,7 @@ def main():
 def checking():
     load_info()
 
-    for benchmark_name, bugs in SELECTED.items():
+    for benchmark_name, bugs in CORRECT.items():
         if benchmark_name == "spacy":
             # subject_infos_for_benchmark = get_subject_infos_for_benchmark(benchmark_name, bugs)
             for bug_num in bugs:
