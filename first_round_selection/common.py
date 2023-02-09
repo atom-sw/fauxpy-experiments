@@ -164,8 +164,8 @@ def get_changed_modules(benchmark_name: str,
     return changed_modules
 
 
-def get_patch(benchmark_name: str,
-              bug_num: int):
+def get_diff_commit(benchmark_name: str,
+                    bug_num: int):
     repo_name, fixed_commit_number, buggy_commit_info = get_commit_info(benchmark_name, bug_num)
 
     g = Github(GITHUB_TOKEN)
