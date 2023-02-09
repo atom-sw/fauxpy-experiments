@@ -7,11 +7,12 @@ the [subject_info.csv](subject_info.csv) file that
 contains all the information about the benchmarks, being used in the experiments. 
 The `subject_info.csv` file can then be used to automatically generate the bash scripts in
 the [bash_script_generator/scripts](/bash_script_generator/scripts) directory.
-The second file is the [patch_info.json](patch_info.json) file that contains information
-about the patches for the bugs in BugsInPy. The file `patch_info.json` is used 
+The second file is the [ground_truth_info.json](ground_truth_info.json) file that contains information
+about the changes in the commit representing the bugs in BugsInPy. The file 
+`ground_truth_info.json` is used 
 in the [metric_computation](/metric_computation) phase.
-We have already generated `subject_info.csv` and `patch_info.json`. So,
-you do not need to go throw this process. 
+We have already generated `subject_info.csv` and `ground_truth_info.json`. So,
+you do not need to go through this process. 
 But, if you want to replicate it for any reason, you can follow the instructions below.
 Keep in mind that going through the whole process can take a week.
 
