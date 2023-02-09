@@ -2,11 +2,18 @@
 
 ## Purpose
 
-The purpose of this step is to produce the [subject_info.csv](subject_info.csv) file that
+The purpose of this step is to produce two files. The first file is 
+the [subject_info.csv](subject_info.csv) file that
 contains all the information about the benchmarks, being used in the experiments. 
 The `subject_info.csv` file can then be used to automatically generate the bash scripts in
 the [bash_script_generator/scripts](/bash_script_generator/scripts) directory.
-We have already generated `subject_info.csv`. So, you do not need to go throw this process. But, if you want to replicate it for any reason, you can follow the instructions below. Keep in mind that going through the whole process can take a week.
+The second file is the [patch_info.json](patch_info.json) file that contains information
+about the patches for the bugs in BugsInPy. The file `patch_info.json` is used 
+in the [metric_computation](/metric_computation) phase.
+We have already generated `subject_info.csv` and `patch_info.json`. So,
+you do not need to go throw this process. 
+But, if you want to replicate it for any reason, you can follow the instructions below.
+Keep in mind that going through the whole process can take a week.
 
 ## Introduction
 
@@ -34,10 +41,14 @@ versions, and saves the results.
 
 This script must be executed for every single one of the 12 Json files
 in the `info` directory, which takes around a week to finish, depending on
-your machine. Before running this command, open the [workspace.json](workspace.json) file and set
+your machine.
+
+Before running any of the following steps, open the [workspace.json](workspace.json) file and set
 the workspace for the script (set the variable `WORKSPACE_PATH`).
 Make sure there is enough space on the path you provide as
 the workspace. It requires 542 GB for the 12 selected projects.
+Also, add a file named `github_token.txt` to the current directory and 
+put a GitHub token in it as it is needed to fetch data from GitHub.
 
 ```
 benchmark_opener.sh info/[BugsInPyProjectName].json
@@ -102,15 +113,14 @@ contains the randomly selected bugs from each of the 12 projects.
 
 This is the final step in which the [subject_info.csv](subject_info.csv) file for the bugs
 in `time_selected_bugs.json` is generated. To perform this step, we must run
-the following command. However, before running it, add a file named `github_token.txt`
-to the current directory and put a GitHub token in it as it needs to fetch data from GitHub.
+the following command.
 
 ```
 pip install PyGithub
 pip install python-scalpel
 pip install packaging
 
-generate_subject_info.py
+python generate_subject_info.py
 ```
 
 This step also performs a call graph based test case selection using
