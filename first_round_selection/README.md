@@ -52,7 +52,7 @@ Also, add a file named `github_token.txt` to the current directory and
 put a GitHub token in it as it is needed to fetch data from GitHub.
 
 ```
-benchmark_opener.sh info/[BugsInPyProjectName].json
+./benchmark_opener.sh info/[BugsInPyProjectName].json
 ``` 
 
 ## Step 2: Checking the compiled versions
