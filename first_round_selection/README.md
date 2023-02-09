@@ -8,7 +8,7 @@ contains all the information about the benchmarks, being used in the experiments
 The `subject_info.csv` file can then be used to automatically generate the bash scripts in
 the [bash_script_generator/scripts](/bash_script_generator/scripts) directory.
 The second file is the [ground_truth_info.json](ground_truth_info.json) file that contains information
-about the changes in the commit representing the bugs in BugsInPy. The file 
+about the changes in the commits representing the bugs in BugsInPy. The file 
 `ground_truth_info.json` is used 
 in the [metric_computation](/metric_computation) phase.
 We have already generated `subject_info.csv` and `ground_truth_info.json`. So,
@@ -86,6 +86,7 @@ some cases, the target failing tests pass or fail on both versions, or produce a
 versions. Such bugs must be removed from our experiments, which is done at this step. To perform
 this check, run the following command:
 
+
 ```
 ./check_target_tests_all.sh
 ```
@@ -95,7 +96,17 @@ file for each project showing which bugs have been removed and kept according to
 the criteria mentioned above. The standard output of this step
 can be found in the [target_tests_log](target_tests_log) directory.
 
-## Step 4: Time-based selection
+## Step 4: Ground truth generation
+
+At this step, we generate the file [ground_truth_info.json](ground_truth_info.json) that contains
+information about changes made to fix each bug in BugsInPy. This file is then used to calculate
+the metrics we use in the paper. To generate `ground_truth_info.json`, run the following command:
+
+```
+python generate_ground_truth_info.py
+```
+
+## Step 5: Time-based selection
 
 Based on some rough estimate of the amount of time each experiment requires and the processing
 resources we have (a cluster server with 15 available nodes for two weeks), we randomly
@@ -110,7 +121,7 @@ When this script is finished running, it generates
 the [time_selected_bugs.json](time_selected_bugs.json) file that 
 contains the randomly selected bugs from each of the 12 projects.
 
-## Step 5: Generating subject_info.csv
+## Step 6: Generating subject_info.csv
 
 This is the final step in which the [subject_info.csv](subject_info.csv) file for the bugs
 in `time_selected_bugs.json` is generated. To perform this step, we must run
