@@ -1,43 +1,31 @@
 # pip install PyGithub
 import datetime
 from pathlib import Path
-from typing import List, Dict, Tuple
-
-from github import Github
+from typing import List, Dict
 
 import common
 from call_graph import is_affecting_test_module, affected_test_modules
 
 INFO = {}
-CORRECT = {}
-WORKSPACE_PATH: str = ""
+TIME_SELECTED = {}
 SUBJECT_INFO_CSV_FILE_NAME = "subject_info.csv"
-
-REMOTE_URL_FILE_NAME = "bugsinpy_remote_url.txt"
-
-BUGSINPY_BUG_INFO_FILE_NAME = "bugsinpy_bug.info"
-
-GITHUB_TOKEN = common.read_file_content(Path("github_token.txt"))
 
 
 def load_info():
-    global CORRECT
+    global TIME_SELECTED
     global INFO
-    global WORKSPACE_PATH
 
-    SELECTED = common.load_json_to_dictionary(common.TIME_SELECTED_BUGS_FILE_NAME)
-    del SELECTED["NUM_BUGS"]
-    del SELECTED["TIME_ESTIMATION_HOURS"]
-    del SELECTED["TIME_ESTIMATION_DAYS"]
-    del SELECTED["TIME_ESTIMATION_WEEKS"]
+    TIME_SELECTED = common.load_json_to_dictionary(common.TIME_SELECTED_BUGS_FILE_NAME)
+    del TIME_SELECTED["NUM_BUGS"]
+    del TIME_SELECTED["TIME_ESTIMATION_HOURS"]
+    del TIME_SELECTED["TIME_ESTIMATION_DAYS"]
+    del TIME_SELECTED["TIME_ESTIMATION_WEEKS"]
 
     json_files = list(Path(common.SUBJECT_INFO_DIRECTORY_NAME).rglob("*.json"))
     json_files.sort()
     for item in json_files:
         benchmark_info = common.load_json_to_dictionary(str(item.absolute().resolve()))
         INFO[benchmark_info["BENCHMARK_NAME"]] = benchmark_info
-
-    WORKSPACE_PATH = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)["WORKSPACE_PATH"]
 
 
 def unittest_to_pytest(item):
@@ -79,7 +67,7 @@ def get_reformatted_target_failing_tests(original_target_tests: List[str]) -> Li
 
 def get_target_failing_tests(benchmark_name: str,
                              bug_num: int) -> List[str]:
-    buggy_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+    buggy_path = common.get_buggy_project_path(benchmark_name, bug_num)
     run_test_file_path = buggy_path / common.RUN_TEST_FILE_NAME
 
     content = common.read_file_content(run_test_file_path)
@@ -101,40 +89,6 @@ def get_target_failing_tests(benchmark_name: str,
     return target_failing_tests
 
 
-def get_commit_info(benchmark_name: str,
-                    bug_num: int) -> Tuple[str, str]:
-    buggy_project_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
-    remote_url_file_path = buggy_project_path / REMOTE_URL_FILE_NAME
-    bug_info_file_path = buggy_project_path / BUGSINPY_BUG_INFO_FILE_NAME
-    remote_url = common.read_file_content(remote_url_file_path).strip()
-    repo_name = remote_url.replace("https://github.com/", "").strip()
-    if repo_name.endswith("/"):
-        repo_name = repo_name[:-1]
-    fixed_commit_number = list(filter(lambda x: "fixed_commit_id" in x,
-                                      common.read_file_content(bug_info_file_path)
-                                      .strip()
-                                      .splitlines()))[0].split("=")[1].replace('"', '').strip()
-    return repo_name, fixed_commit_number
-
-
-def get_changed_modules(benchmark_name: str,
-                        bug_num: int) -> List[str]:
-    repo_name, fixed_commit_number = get_commit_info(benchmark_name, bug_num)
-
-    g = Github(GITHUB_TOKEN)
-    repo = g.get_repo(repo_name)
-    commit = repo.get_commit(fixed_commit_number)
-    changed_files = [x.filename for x in commit.files]
-
-    changed_modules = list(filter(lambda x:
-                                  x.endswith(".py") and
-                                  "test/" not in x and
-                                  "tests/" not in x,
-                                  changed_files))
-
-    return changed_modules
-
-
 # Only used for analysis. Not in the pipeline.
 def get_target_dir(benchmark_name: str,
                    bug_num: int):
@@ -143,7 +97,7 @@ def get_target_dir(benchmark_name: str,
     if default_target_dir == ".":
         return "."
 
-    changed_modules = get_changed_modules(benchmark_name, bug_num)
+    changed_modules = common.get_changed_modules(benchmark_name, bug_num)
 
     target_dir = INFO[benchmark_name]["TARGET_DIR"]
     for item in changed_modules:
@@ -158,11 +112,12 @@ def get_test_suite(benchmark_name: str,
     # if benchmark_name != "fastapi":
     #     return []
 
-    buggy_proj_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
-    changed_modules = get_changed_modules(benchmark_name, bug_num)
+    buggy_proj_path = common.get_buggy_project_path(benchmark_name, bug_num)
+    changed_modules = common.get_changed_modules(benchmark_name, bug_num)
     test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
     # test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
-    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py")) + list(test_suite_path.rglob("*tests*.py"))
+    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py")) + list(
+        test_suite_path.rglob("*tests*.py"))
 
     if benchmark_name == "pandas":
         source_code_packages = [str((buggy_proj_path / "pandas").absolute().resolve())]
@@ -242,11 +197,12 @@ def get_test_suite(benchmark_name: str,
 def get_test_suite2(benchmark_name: str,
                     bug_num: int,
                     target_failing_tests: List[str]) -> List[str]:
-    buggy_proj_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
-    changed_modules = get_changed_modules(benchmark_name, bug_num)
+    buggy_proj_path = common.get_buggy_project_path(benchmark_name, bug_num)
+    changed_modules = common.get_changed_modules(benchmark_name, bug_num)
     test_suite_path = buggy_proj_path / INFO[benchmark_name]["TEST_SUITE"][0]
     # test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py"))
-    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py")) + list(test_suite_path.rglob("*tests*.py"))
+    test_module_paths = list(test_suite_path.rglob("test_*.py")) + list(test_suite_path.rglob("*_test.py")) + list(
+        test_suite_path.rglob("*tests*.py"))
 
     if benchmark_name == "pandas":
         source_code_packages = [str((buggy_proj_path / "pandas").absolute().resolve())]
@@ -437,7 +393,7 @@ def main():
 
     all_subject_infos = []
 
-    for benchmark_name, bugs in CORRECT.items():
+    for benchmark_name, bugs in TIME_SELECTED.items():
         subject_infos_for_benchmark = get_subject_infos_for_benchmark(benchmark_name, bugs)
         all_subject_infos += subject_infos_for_benchmark
 
@@ -449,11 +405,11 @@ def main():
 def checking():
     load_info()
 
-    for benchmark_name, bugs in CORRECT.items():
+    for benchmark_name, bugs in TIME_SELECTED.items():
         if benchmark_name == "spacy":
             # subject_infos_for_benchmark = get_subject_infos_for_benchmark(benchmark_name, bugs)
             for bug_num in bugs:
-                buggy_path = common.get_buggy_project_path(WORKSPACE_PATH, benchmark_name, bug_num)
+                buggy_path = common.get_buggy_project_path(benchmark_name, bug_num)
                 if (buggy_path / "spacy/tests").exists():
                     print("tests")
                 if (buggy_path / "spacy/test").exists():

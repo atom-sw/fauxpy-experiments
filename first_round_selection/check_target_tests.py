@@ -3,7 +3,6 @@ from pathlib import Path
 import common
 
 INPUTS = {}
-WORKSPACE = {}
 
 
 def are_equal_list_items(list_items):
@@ -55,9 +54,11 @@ def get_unittest_info(content: str,
                       number_of_targets: int):
     passed_matches = common.get_matches_in_content(content, fr"Ran (\d+) tests* in \d+.\d+s\n\nOK")
     passed = extract_matches(passed_matches, number_of_targets)
-    failed_matches = common.get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*failures=(\d+).*\)")
+    failed_matches = common.get_matches_in_content(content,
+                                                   fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*failures=(\d+).*\)")
     failed = extract_matches(failed_matches, number_of_targets)
-    error_matches = common.get_matches_in_content(content, fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*errors=(\d+).*\)")
+    error_matches = common.get_matches_in_content(content,
+                                                  fr"Ran \d+ tests* in \d+.\d+s\n\nFAILED \(.*errors=(\d+).*\)")
     error = extract_matches(error_matches, number_of_targets)
 
     return passed, failed, error
@@ -98,13 +99,10 @@ def get_target_tests_info(version_path: Path):
 
 
 def is_included(bug_number: int):
-    workspace_path = WORKSPACE["WORKSPACE_PATH"]
     benchmark_name = INPUTS['BENCHMARK_NAME']
-    buggy_path = common.get_buggy_project_path(workspace_path,
-                                               benchmark_name,
+    buggy_path = common.get_buggy_project_path(benchmark_name,
                                                bug_number)
-    fixed_path = common.get_fixed_project_path(workspace_path,
-                                               benchmark_name,
+    fixed_path = common.get_fixed_project_path(benchmark_name,
                                                bug_number)
     b_passed, b_failed, b_error = get_target_tests_info(buggy_path)
     f_passed, f_failed, f_error = get_target_tests_info(fixed_path)
@@ -117,12 +115,10 @@ def is_included(bug_number: int):
 
 def main():
     global INPUTS
-    global WORKSPACE
 
     project_info_file_path = common.get_command_line_info_file()
 
     INPUTS = common.load_json_to_dictionary(project_info_file_path)
-    WORKSPACE = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)
 
     accepted_bugs = []
     rejected_bugs = []
@@ -138,7 +134,8 @@ def main():
             print("Rejected")
             rejected_bugs.append(current_bug_number)
 
-    file_path_result = common.get_output_dir(common.CORRECT_TEST_OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
+    file_path_result = common.get_output_dir(
+        common.CORRECT_TEST_OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
 
     common.save_object_to_json({
         "BENCHMARK_NAME": benchmark_name,

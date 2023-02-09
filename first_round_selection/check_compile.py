@@ -1,7 +1,6 @@
 import common
 
 INPUTS = {}
-WORKSPACE = {}
 
 COMPILED_FLAG_FILE = "bugsinpy_compile_flag"
 
@@ -26,8 +25,8 @@ def is_compiled(project_path):
 def compile_check():
     benchmark_name = INPUTS["BENCHMARK_NAME"]
     for current_bug_number in range(INPUTS["BUG_NUMBER_START"], INPUTS["BUG_NUMBER_END"] + 1):
-        buggy_path = common.get_buggy_project_path(WORKSPACE["WORKSPACE_PATH"], benchmark_name, current_bug_number)
-        fixed_path = common.get_fixed_project_path(WORKSPACE["WORKSPACE_PATH"], benchmark_name, current_bug_number)
+        buggy_path = common.get_buggy_project_path(benchmark_name, current_bug_number)
+        fixed_path = common.get_fixed_project_path(benchmark_name, current_bug_number)
 
         if is_compiled(buggy_path) and is_compiled(fixed_path):
             print(f"OK - {benchmark_name}_{current_bug_number}")
@@ -37,11 +36,10 @@ def compile_check():
 
 def main():
     global INPUTS
-    global WORKSPACE
+
     project_info_file_path = common.get_command_line_info_file()
 
     INPUTS = common.load_json_to_dictionary(project_info_file_path)
-    WORKSPACE = common.load_json_to_dictionary(common.WORKSPACE_FILE_NAME)
 
     compile_check()
 
