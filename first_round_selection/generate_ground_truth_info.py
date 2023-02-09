@@ -24,10 +24,21 @@ def get_patch_parts(patch) -> List[List[str]]:
     return patch_parts
 
 
+def get_patch_part_meta_info_buggy_lines(meta_info_line: str):
+    meta_info_list_buggy_start = re.findall(r"@@ -(\d+).*@@", meta_info_line)
+    meta_info_list_buggy_number_lines = re.findall(r"@@ -\d+,(\d+).*@@", meta_info_line)
+    assert len(meta_info_list_buggy_start) == 1
+    assert len(meta_info_list_buggy_number_lines) == 1
+    starting_buggy_line = meta_info_list_buggy_start[0]
+    number_buggy_line = meta_info_list_buggy_number_lines[0]
+    return starting_buggy_line, number_buggy_line
+
+
 def get_file_ground_truth(patch: str) -> Tuple[List[int], List[int]]:
     patch_parts = get_patch_parts(patch)
     for patch_part in patch_parts:
         meta_info_line = patch_part[0]
+        starting_buggy_line, number_buggy_line = get_patch_part_meta_info_buggy_lines(meta_info_line)
         lines = patch_part[1:]
         print(lines)
     return [], []
@@ -61,8 +72,8 @@ def main():
     patch_info_dict = {}
 
     for benchmark_name, benchmark_items in CORRECT.items():
-        if benchmark_name != "sanic":
-            continue
+        # if benchmark_name != "sanic":
+        #     continue
 
         for bug_number in benchmark_items["ACCEPTED"]:
             print(benchmark_name, bug_number)
