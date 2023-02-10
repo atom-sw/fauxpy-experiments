@@ -64,6 +64,8 @@ arguments. This script prints on the screen which compilations where not success
 it should finish quickly (probably in less than 1 minute).
 
 ```
+pip install PyGithub
+
 ./check_compile_all.sh
 ```
 
@@ -128,7 +130,6 @@ in `time_selected_bugs.json` is generated. To perform this step, we must run
 the following command.
 
 ```
-pip install PyGithub
 pip install python-scalpel
 pip install packaging
 
