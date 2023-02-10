@@ -23,7 +23,7 @@ FUNCTION = "function"
 
 MAX_HR = MAX_DAYS * 24
 
-FIRST_ROUND_BUGS_INFO: Dict = {}
+CORRECT_TEST_BUGS_INFO: Dict = {}
 
 random.seed(13658)
 
@@ -47,18 +47,6 @@ def get_experiment_timeout(benchmark_name, family) -> int:
     return int(experiment_timeout)
 
 
-def load_first_round_selected_bugs_info():
-    global FIRST_ROUND_BUGS_INFO
-
-    selected_dir_path = Path(common.SELECTED_OUTPUT_DIRECTORY_NAME)
-    json_files = list(selected_dir_path.rglob("*.json"))
-    json_files.sort()
-    for file_path in json_files:
-        selected_benchmark = common.load_json_to_dictionary(str(file_path.absolute().resolve()))
-        selected_benchmark_name = selected_benchmark["BENCHMARK_NAME"]
-        FIRST_ROUND_BUGS_INFO[selected_benchmark_name] = selected_benchmark
-
-
 def get_time_for_benchmark(benchmark_name: str):
     sbfl_time = get_experiment_timeout(benchmark_name, SBFL)
     mbfl_time = get_experiment_timeout(benchmark_name, MBFL)
@@ -74,8 +62,8 @@ def pop_bug_randomly(benchmark_info) -> Optional[int]:
     if len(benchmark_info["ACCEPTED"]) > 0:
         rand_index = random.randint(0, len(benchmark_info["ACCEPTED"]) - 1)
         selected_bug = benchmark_info["ACCEPTED"][rand_index]
-        FIRST_ROUND_BUGS_INFO[benchmark_name]["ACCEPTED"].remove(selected_bug)
-        FIRST_ROUND_BUGS_INFO[benchmark_name]["NUM_ACCEPTED"] -= 1
+        CORRECT_TEST_BUGS_INFO[benchmark_name]["ACCEPTED"].remove(selected_bug)
+        CORRECT_TEST_BUGS_INFO[benchmark_name]["NUM_ACCEPTED"] -= 1
         return selected_bug
 
     return None
@@ -100,17 +88,19 @@ def get_num_bugs(selected_bugs_info):
 
 def num_bug_left():
     count_of_remaining = 0
-    for item in FIRST_ROUND_BUGS_INFO.values():
+    for item in CORRECT_TEST_BUGS_INFO.values():
         count_of_remaining += item["NUM_ACCEPTED"]
 
     return count_of_remaining
 
 
 def main():
-    load_first_round_selected_bugs_info()
+    global CORRECT_TEST_BUGS_INFO
+
+    CORRECT_TEST_BUGS_INFO = common.load_correct_test_bugs()
     selected_bugs_info = {}
 
-    for benchmark in FIRST_ROUND_BUGS_INFO.values():
+    for benchmark in CORRECT_TEST_BUGS_INFO.values():
         selected_bugs_info[benchmark["BENCHMARK_NAME"]] = []
 
     needed_time = 0
@@ -121,7 +111,7 @@ def main():
         print("Available time: ", available_time)
         print("Calc more")
         print("---------------")
-        for benchmark in FIRST_ROUND_BUGS_INFO.values():
+        for benchmark in CORRECT_TEST_BUGS_INFO.values():
             bug = pop_bug_randomly(benchmark)
             if bug is not None:
                 selected_bugs_info[benchmark["BENCHMARK_NAME"]].append(bug)
