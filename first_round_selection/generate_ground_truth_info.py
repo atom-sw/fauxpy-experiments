@@ -42,84 +42,11 @@ def get_patch_part_meta_info_buggy_lines(meta_info_line: str):
     return int(starting_buggy_line), int(number_buggy_line)
 
 
-# class PatchPartType(Enum):
-#     Remove = 0
-#     Edit = 1
-#     Add = 2
-
-
-# def get_patch_part_type(lines: List[str]):
-#     remove_first_index = None
-#     add_first_index = None
-#
-#     for index, line in enumerate(lines):
-#         if line.startswith("-") and remove_first_index is None:
-#             remove_first_index = index
-#         if line.startswith("+") and add_first_index is None:
-#             add_first_index = index
-#
-#     assert remove_first_index is not None or add_first_index is not None
-#
-#     if remove_first_index is None:
-#         return PatchPartType.Add
-#     if add_first_index is None:
-#         return PatchPartType.Remove
-#
-#     assert remove_first_index < add_first_index
-#     return PatchPartType.Edit
-
-
 def is_code_line(line: str):
     return (line != "" and
             not line.startswith("#") and
             not line.startswith("'''") and
             not line.startswith('"""'))
-
-
-# def map_diff_index_to_buggy_index(lines: List[str],
-#                                   diff_index: int):
-#     number_addition = 0
-#     for index in range(0, diff_index):
-#         if lines[index].startswith("+"):
-#             number_addition += 1
-#
-#     return diff_index - number_addition
-
-
-# def consume2(lines: List[str]) -> Tuple[List[int], List[int]]:
-#     code_lines = []
-#     code_extended_lines = []
-#
-#     patch_part_type = get_patch_part_type(lines)
-#     if patch_part_type == PatchPartType.Remove or patch_part_type == PatchPartType.Edit:
-#         for index, line in enumerate(lines):
-#             if line.startswith("-"):
-#                 buggy_index = map_diff_index_to_buggy_index(lines, index)
-#                 code_lines.append(buggy_index)
-#     elif patch_part_type == PatchPartType.Add:
-#         start_line_adding_index = None
-#         end_line_adding_index = None
-#         for index, line in enumerate(lines):
-#             if line.startswith("+"):
-#                 if start_line_adding_index is None:
-#                     start_line_adding_index = index
-#                 end_line_adding_index = index
-#
-#         for index in range(end_line_adding_index + 1, len(lines)):
-#             if is_code_line(lines[index].strip()):
-#                 buggy_index = map_diff_index_to_buggy_index(lines, index)
-#                 code_lines.append(buggy_index)
-#                 break
-#
-#         for index in range(start_line_adding_index - 1, -1, -1):
-#             if is_code_line(lines[index].strip()):
-#                 buggy_index = map_diff_index_to_buggy_index(lines, index)
-#                 code_extended_lines.append(buggy_index)
-#                 break
-#     else:
-#         raise Exception("It should never happen.")
-#
-#     return code_lines, code_extended_lines
 
 
 def diff_index_to_buggy_index(lines: List[str],
