@@ -1,0 +1,2733 @@
+{
+     "black:1": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    621,
+                    636,
+                    646
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:3": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    397
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:4": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    1483
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:6": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    53,
+                    141,
+                    142,
+                    143,
+                    144,
+                    145,
+                    152,
+                    159,
+                    166,
+                    751,
+                    755,
+                    756,
+                    757,
+                    761,
+                    764,
+                    772,
+                    773
+               ],
+               "EXTENDED_LINES": [
+                    50,
+                    138,
+                    151,
+                    158,
+                    165
+               ]
+          },
+          {
+               "FILE_NAME": "blib2to3/pgen2/driver.py",
+               "LINES": [
+                    32,
+                    39,
+                    100,
+                    114
+               ],
+               "EXTENDED_LINES": [
+                    37
+               ]
+          },
+          {
+               "FILE_NAME": "blib2to3/pgen2/tokenize.py",
+               "LINES": [
+                    34,
+                    140,
+                    337,
+                    360,
+                    509
+               ],
+               "EXTENDED_LINES": [
+                    33,
+                    138,
+                    357
+               ]
+          }
+     ],
+     "black:7": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    2729,
+                    2760
+               ],
+               "EXTENDED_LINES": [
+                    2728
+               ]
+          }
+     ],
+     "black:8": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    2408,
+                    2410,
+                    2411
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:10": [
+          {
+               "FILE_NAME": "blib2to3/pgen2/driver.py",
+               "LINES": [
+                    134,
+                    136,
+                    137
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:11": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    2115,
+                    2116,
+                    2465,
+                    2954
+               ],
+               "EXTENDED_LINES": [
+                    2462,
+                    2952
+               ]
+          }
+     ],
+     "black:14": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    23,
+                    2913,
+                    2932,
+                    2933,
+                    2934,
+                    2935,
+                    2936,
+                    2937,
+                    2938,
+                    2939,
+                    2940
+               ],
+               "EXTENDED_LINES": [
+                    22
+               ]
+          }
+     ],
+     "black:15": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    32,
+                    93,
+                    94,
+                    95,
+                    96,
+                    97,
+                    98,
+                    99,
+                    100,
+                    101,
+                    102,
+                    103,
+                    104,
+                    105,
+                    106,
+                    107,
+                    108,
+                    109,
+                    110,
+                    111,
+                    112,
+                    113,
+                    114,
+                    115,
+                    116,
+                    117,
+                    118,
+                    119,
+                    120,
+                    762,
+                    768,
+                    1309,
+                    1310,
+                    1311,
+                    1312,
+                    1313,
+                    1314,
+                    1315,
+                    1316,
+                    1317,
+                    1318,
+                    1319,
+                    1320,
+                    1321,
+                    1322,
+                    1323,
+                    1324,
+                    1325,
+                    1326,
+                    1327,
+                    1328,
+                    1329,
+                    1330,
+                    1331,
+                    1332,
+                    1333,
+                    1334,
+                    1335,
+                    1336,
+                    1337,
+                    1338,
+                    1339,
+                    1340,
+                    1341,
+                    1342,
+                    1343,
+                    1344,
+                    1345,
+                    1346,
+                    1347,
+                    1348,
+                    1349,
+                    1350,
+                    1351,
+                    1352,
+                    1353,
+                    1354,
+                    1355,
+                    1356,
+                    1357,
+                    1379,
+                    1380,
+                    1381,
+                    1485,
+                    1494,
+                    1495,
+                    1496,
+                    1497,
+                    1501,
+                    1504,
+                    1505,
+                    1506,
+                    1507,
+                    1508,
+                    1509,
+                    1510,
+                    1511,
+                    1512,
+                    1513,
+                    1514,
+                    1515,
+                    1520,
+                    1521,
+                    1522,
+                    1523,
+                    1524,
+                    1525,
+                    1526,
+                    1527,
+                    1528,
+                    1529,
+                    1530,
+                    1531,
+                    1532,
+                    1533,
+                    1534,
+                    1535,
+                    1536,
+                    1537,
+                    1538,
+                    1539,
+                    1540,
+                    1541,
+                    1542,
+                    1543,
+                    1544,
+                    1545,
+                    1546,
+                    1548,
+                    1549,
+                    1550,
+                    1551,
+                    1552,
+                    1553,
+                    1554,
+                    1651,
+                    1652,
+                    1653,
+                    1654,
+                    1655,
+                    1656,
+                    1657,
+                    1658,
+                    1659,
+                    1660,
+                    1661,
+                    1662,
+                    1663,
+                    1664,
+                    1665,
+                    1666,
+                    1667,
+                    1972,
+                    2109,
+                    2110,
+                    2111,
+                    2112,
+                    2113,
+                    2114,
+                    2115,
+                    2116,
+                    2117,
+                    2118,
+                    2191,
+                    2683,
+                    2684,
+                    2685,
+                    2686,
+                    2687,
+                    2688,
+                    2689,
+                    2692,
+                    2695,
+                    2696,
+                    2697,
+                    2698,
+                    2699,
+                    2700,
+                    2702,
+                    2705,
+                    2713,
+                    2736,
+                    2737
+               ],
+               "EXTENDED_LINES": [
+                    1970,
+                    2701,
+                    2704,
+                    2712,
+                    2735
+               ]
+          }
+     ],
+     "black:18": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    7,
+                    468,
+                    469,
+                    478,
+                    487,
+                    506,
+                    517,
+                    521,
+                    582,
+                    593,
+                    594
+               ],
+               "EXTENDED_LINES": [
+                    6,
+                    579
+               ]
+          }
+     ],
+     "black:19": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    1047
+               ],
+               "EXTENDED_LINES": [
+                    1045
+               ]
+          }
+     ],
+     "black:20": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    344,
+                    345
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:22": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    6,
+                    13,
+                    35,
+                    36,
+                    523,
+                    552,
+                    553,
+                    558,
+                    561,
+                    625,
+                    635,
+                    641,
+                    669,
+                    697,
+                    698,
+                    699,
+                    700,
+                    701,
+                    702,
+                    703,
+                    704,
+                    705,
+                    706,
+                    710,
+                    712,
+                    713,
+                    714,
+                    715,
+                    716,
+                    717,
+                    721,
+                    722,
+                    723,
+                    729,
+                    730,
+                    731,
+                    732,
+                    735,
+                    736,
+                    737,
+                    738,
+                    739,
+                    740,
+                    742,
+                    755,
+                    812,
+                    813,
+                    814,
+                    815,
+                    1442,
+                    1447,
+                    1451,
+                    1454,
+                    1455,
+                    1456,
+                    1457,
+                    1458,
+                    1467,
+                    1520,
+                    1521,
+                    1560,
+                    1561,
+                    1595,
+                    1598,
+                    1618,
+                    1619,
+                    1620,
+                    1621,
+                    1622,
+                    1632,
+                    1643
+               ],
+               "EXTENDED_LINES": [
+                    34,
+                    35,
+                    556,
+                    623,
+                    709,
+                    1449,
+                    1592,
+                    1617
+               ]
+          }
+     ],
+     "black:23": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    238,
+                    241,
+                    245,
+                    246,
+                    247,
+                    248,
+                    249,
+                    251,
+                    252,
+                    253,
+                    254,
+                    906,
+                    1541
+               ],
+               "EXTENDED_LINES": [
+                    235,
+                    904
+               ]
+          },
+          {
+               "FILE_NAME": "blib2to3/pygram.py",
+               "LINES": [
+                    39
+               ],
+               "EXTENDED_LINES": [
+                    37
+               ]
+          }
+     ],
+     "cookiecutter:1": [
+          {
+               "FILE_NAME": "cookiecutter/generate.py",
+               "LINES": [
+                    85
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "cookiecutter:2": [
+          {
+               "FILE_NAME": "cookiecutter/hooks.py",
+               "LINES": [
+                    57,
+                    59,
+                    61,
+                    122,
+                    123,
+                    127
+               ],
+               "EXTENDED_LINES": [
+                    55
+               ]
+          }
+     ],
+     "cookiecutter:3": [
+          {
+               "FILE_NAME": "cookiecutter/prompt.py",
+               "LINES": [
+                    91
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "cookiecutter:4": [
+          {
+               "FILE_NAME": "cookiecutter/exceptions.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "cookiecutter/generate.py",
+               "LINES": [
+                    27,
+                    31,
+                    260
+               ],
+               "EXTENDED_LINES": [
+                    26
+               ]
+          },
+          {
+               "FILE_NAME": "cookiecutter/hooks.py",
+               "LINES": [
+                    23,
+                    72,
+                    94,
+                    108,
+                    109
+               ],
+               "EXTENDED_LINES": [
+                    20
+               ]
+          }
+     ],
+     "fastapi:1": [
+          {
+               "FILE_NAME": "fastapi/applications.py",
+               "LINES": [
+                    174,
+                    200,
+                    225,
+                    253,
+                    312,
+                    337,
+                    362,
+                    387,
+                    412,
+                    437,
+                    462,
+                    487,
+                    512,
+                    537,
+                    562,
+                    587,
+                    612,
+                    637,
+                    662,
+                    687
+               ],
+               "EXTENDED_LINES": [
+                    173,
+                    199,
+                    224,
+                    252,
+                    311,
+                    336,
+                    361,
+                    386,
+                    411,
+                    436,
+                    461,
+                    486,
+                    511,
+                    536,
+                    561,
+                    586,
+                    611,
+                    636,
+                    661,
+                    686
+               ]
+          },
+          {
+               "FILE_NAME": "fastapi/encoders.py",
+               "LINES": [
+                    37,
+                    61,
+                    63,
+                    71,
+                    90,
+                    97,
+                    105,
+                    121,
+                    156
+               ],
+               "EXTENDED_LINES": [
+                    60,
+                    62
+               ]
+          },
+          {
+               "FILE_NAME": "fastapi/openapi/utils.py",
+               "LINES": [
+                    84,
+                    313
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    52,
+                    56,
+                    59,
+                    63,
+                    67,
+                    81,
+                    86,
+                    106,
+                    134,
+                    180,
+                    258,
+                    329,
+                    355,
+                    403,
+                    432,
+                    460,
+                    489,
+                    563,
+                    609,
+                    635,
+                    660,
+                    686,
+                    711,
+                    737,
+                    762,
+                    788,
+                    813,
+                    839,
+                    864,
+                    890,
+                    915,
+                    941,
+                    966,
+                    992
+               ],
+               "EXTENDED_LINES": [
+                    80,
+                    105,
+                    133,
+                    179,
+                    257,
+                    328,
+                    354,
+                    402,
+                    431,
+                    459,
+                    488,
+                    562,
+                    608,
+                    634,
+                    659,
+                    685,
+                    710,
+                    736,
+                    761,
+                    787,
+                    812,
+                    838,
+                    863,
+                    889,
+                    914,
+                    940,
+                    965,
+                    991
+               ]
+          }
+     ],
+     "fastapi:2": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    501
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:3": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    51,
+                    63,
+                    64,
+                    65,
+                    66,
+                    67,
+                    68,
+                    69
+               ],
+               "EXTENDED_LINES": [
+                    48
+               ]
+          }
+     ],
+     "fastapi:4": [
+          {
+               "FILE_NAME": "fastapi/openapi/utils.py",
+               "LINES": [
+                    183
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:5": [
+          {
+               "FILE_NAME": "fastapi/utils.py",
+               "LINES": [
+                    100
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:6": [
+          {
+               "FILE_NAME": "fastapi/dependencies/utils.py",
+               "LINES": [
+                    632,
+                    633,
+                    634
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:7": [
+          {
+               "FILE_NAME": "fastapi/exception_handlers.py",
+               "LINES": [
+                    1,
+                    22
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:8": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    351,
+                    352,
+                    490
+               ],
+               "EXTENDED_LINES": [
+                    350,
+                    489
+               ]
+          }
+     ],
+     "fastapi:9": [
+          {
+               "FILE_NAME": "fastapi/dependencies/utils.py",
+               "LINES": [
+                    562,
+                    569,
+                    577
+               ],
+               "EXTENDED_LINES": [
+                    561,
+                    567
+               ]
+          }
+     ],
+     "fastapi:10": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    55
+               ],
+               "EXTENDED_LINES": [
+                    54
+               ]
+          }
+     ],
+     "fastapi:11": [
+          {
+               "FILE_NAME": "fastapi/dependencies/utils.py",
+               "LINES": [
+                    134,
+                    139
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:12": [
+          {
+               "FILE_NAME": "fastapi/security/http.py",
+               "LINES": [
+                    115,
+                    116,
+                    117,
+                    118
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:13": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    288,
+                    290,
+                    291,
+                    292,
+                    302
+               ],
+               "EXTENDED_LINES": [
+                    287
+               ]
+          }
+     ],
+     "fastapi:14": [
+          {
+               "FILE_NAME": "fastapi/openapi/models.py",
+               "LINES": [
+                    102,
+                    123,
+                    223
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:15": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    275
+               ],
+               "EXTENDED_LINES": [
+                    273
+               ]
+          }
+     ],
+     "fastapi:16": [
+          {
+               "FILE_NAME": "fastapi/encoders.py",
+               "LINES": [
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "httpie:1": [
+          {
+               "FILE_NAME": "httpie/downloads.py",
+               "LINES": [
+                    10,
+                    138,
+                    142,
+                    143
+               ],
+               "EXTENDED_LINES": [
+                    9,
+                    135
+               ]
+          }
+     ],
+     "httpie:2": [
+          {
+               "FILE_NAME": "httpie/client.py",
+               "LINES": [
+                    44
+               ],
+               "EXTENDED_LINES": [
+                    42
+               ]
+          },
+          {
+               "FILE_NAME": "httpie/core.py",
+               "LINES": [
+                    195
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "httpie:3": [
+          {
+               "FILE_NAME": "httpie/sessions.py",
+               "LINES": [
+                    104
+               ],
+               "EXTENDED_LINES": [
+                    103
+               ]
+          }
+     ],
+     "httpie:4": [
+          {
+               "FILE_NAME": "httpie/models.py",
+               "LINES": [
+                    105,
+                    106
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "httpie:5": [
+          {
+               "FILE_NAME": "httpie/cli.py",
+               "LINES": [
+                    40,
+                    42,
+                    43,
+                    44,
+                    45,
+                    46
+               ],
+               "EXTENDED_LINES": [
+                    38,
+                    41
+               ]
+          }
+     ],
+     "keras:1": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    17,
+                    1206,
+                    1220,
+                    1234,
+                    2883,
+                    2902,
+                    2903
+               ],
+               "EXTENDED_LINES": [
+                    15,
+                    2880
+               ]
+          },
+          {
+               "FILE_NAME": "keras/backend/theano_backend.py",
+               "LINES": [
+                    1381,
+                    1382
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/initializers.py",
+               "LINES": [
+                    83,
+                    84,
+                    111,
+                    112,
+                    144,
+                    145,
+                    213,
+                    214,
+                    217,
+                    218,
+                    254
+               ],
+               "EXTENDED_LINES": [
+                    253
+               ]
+          }
+     ],
+     "keras:2": [
+          {
+               "FILE_NAME": "keras/backend/numpy_backend.py",
+               "LINES": [
+                    319
+               ],
+               "EXTENDED_LINES": [
+                    316
+               ]
+          }
+     ],
+     "keras:3": [
+          {
+               "FILE_NAME": "keras/models.py",
+               "LINES": [
+                    140,
+                    141,
+                    142,
+                    153,
+                    154,
+                    155
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:4": [
+          {
+               "FILE_NAME": "keras/optimizers.py",
+               "LINES": [
+                    706
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:5": [
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [
+                    173
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:6": [
+          {
+               "FILE_NAME": "keras/engine/training_utils.py",
+               "LINES": [
+                    413
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:7": [
+          {
+               "FILE_NAME": "keras/wrappers/scikit_learn.py",
+               "LINES": [
+                    323
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:8": [
+          {
+               "FILE_NAME": "keras/engine/network.py",
+               "LINES": [
+                    961,
+                    967,
+                    979,
+                    980,
+                    981,
+                    987,
+                    1024,
+                    1027,
+                    1028,
+                    1029,
+                    1031
+               ],
+               "EXTENDED_LINES": [
+                    960,
+                    966,
+                    978,
+                    984,
+                    1019,
+                    1026,
+                    1030
+               ]
+          }
+     ],
+     "keras:9": [
+          {
+               "FILE_NAME": "docs/autogen.py",
+               "LINES": [
+                    120,
+                    121
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:10": [
+          {
+               "FILE_NAME": "keras/engine/training_utils.py",
+               "LINES": [
+                    435,
+                    481,
+                    482,
+                    483,
+                    484,
+                    498,
+                    499,
+                    503,
+                    504,
+                    505,
+                    506,
+                    510,
+                    511,
+                    513,
+                    522,
+                    524,
+                    525,
+                    526,
+                    527
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:11": [
+          {
+               "FILE_NAME": "keras/engine/training_generator.py",
+               "LINES": [
+                    10,
+                    43,
+                    44,
+                    51,
+                    62,
+                    64,
+                    65,
+                    111,
+                    125,
+                    152,
+                    164,
+                    287,
+                    288,
+                    295,
+                    306,
+                    317,
+                    390,
+                    391,
+                    398,
+                    409,
+                    420
+               ],
+               "EXTENDED_LINES": [
+                    8
+               ]
+          },
+          {
+               "FILE_NAME": "keras/engine/training_utils.py",
+               "LINES": [
+                    13
+               ],
+               "EXTENDED_LINES": [
+                    12
+               ]
+          },
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [
+                    344
+               ],
+               "EXTENDED_LINES": [
+                    341
+               ]
+          }
+     ],
+     "keras:13": [
+          {
+               "FILE_NAME": "keras/engine/training_generator.py",
+               "LINES": [
+                    127
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:14": [
+          {
+               "FILE_NAME": "keras/metrics.py",
+               "LINES": [
+                    48
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:16": [
+          {
+               "FILE_NAME": "keras/engine/sequential.py",
+               "LINES": [
+                    90,
+                    222,
+                    223,
+                    274,
+                    276,
+                    280,
+                    284,
+                    285,
+                    289
+               ],
+               "EXTENDED_LINES": [
+                    87,
+                    288
+               ]
+          }
+     ],
+     "keras:17": [
+          {
+               "FILE_NAME": "keras/metrics.py",
+               "LINES": [
+                    37
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:18": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    2548,
+                    2597,
+                    2646,
+                    2676
+               ],
+               "EXTENDED_LINES": [
+                    2595,
+                    2674
+               ]
+          }
+     ],
+     "keras:19": [
+          {
+               "FILE_NAME": "keras/backend/cntk_backend.py",
+               "LINES": [
+                    1442
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    57,
+                    61,
+                    62,
+                    63,
+                    64,
+                    65,
+                    66,
+                    68,
+                    69,
+                    76,
+                    79,
+                    86,
+                    101,
+                    102,
+                    103,
+                    104,
+                    116,
+                    226,
+                    227,
+                    228,
+                    417,
+                    830,
+                    1223,
+                    1798
+               ],
+               "EXTENDED_LINES": [
+                    56,
+                    67,
+                    74,
+                    829,
+                    1222,
+                    1797
+               ]
+          }
+     ],
+     "keras:20": [
+          {
+               "FILE_NAME": "keras/backend/cntk_backend.py",
+               "LINES": [
+                    2189,
+                    2211
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    3436,
+                    3444,
+                    3452,
+                    3589,
+                    3603,
+                    3613,
+                    3630,
+                    3631,
+                    3632
+               ],
+               "EXTENDED_LINES": [
+                    3441,
+                    3600
+               ]
+          },
+          {
+               "FILE_NAME": "keras/backend/theano_backend.py",
+               "LINES": [
+                    2137,
+                    2147,
+                    2180
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/layers/convolutional.py",
+               "LINES": [
+                    734,
+                    750,
+                    823,
+                    827,
+                    839,
+                    870,
+                    875,
+                    880
+               ],
+               "EXTENDED_LINES": [
+                    733,
+                    749
+               ]
+          },
+          {
+               "FILE_NAME": "keras/utils/conv_utils.py",
+               "LINES": [
+                    138,
+                    151,
+                    158
+               ],
+               "EXTENDED_LINES": [
+                    148,
+                    155
+               ]
+          }
+     ],
+     "keras:24": [
+          {
+               "FILE_NAME": "keras/callbacks.py",
+               "LINES": [
+                    789,
+                    790
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:25": [
+          {
+               "FILE_NAME": "keras/applications/imagenet_utils.py",
+               "LINES": [
+                    41
+               ],
+               "EXTENDED_LINES": [
+                    39
+               ]
+          }
+     ],
+     "keras:26": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    2874
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:27": [
+          {
+               "FILE_NAME": "keras/layers/wrappers.py",
+               "LINES": [
+                    490,
+                    496
+               ],
+               "EXTENDED_LINES": [
+                    488,
+                    494
+               ]
+          }
+     ],
+     "keras:28": [
+          {
+               "FILE_NAME": "keras/preprocessing/sequence.py",
+               "LINES": [
+                    329,
+                    331,
+                    344,
+                    348
+               ],
+               "EXTENDED_LINES": [
+                    327
+               ]
+          }
+     ],
+     "keras:29": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    856,
+                    932,
+                    1177,
+                    1178,
+                    1179,
+                    1366,
+                    1367,
+                    1368,
+                    2188,
+                    2189,
+                    2190,
+                    2334,
+                    2335,
+                    2336
+               ],
+               "EXTENDED_LINES": [
+                    855,
+                    931
+               ]
+          }
+     ],
+     "keras:30": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    2215,
+                    2402
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:31": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    3945,
+                    3946
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:32": [
+          {
+               "FILE_NAME": "keras/callbacks.py",
+               "LINES": [
+                    901,
+                    909,
+                    916,
+                    918,
+                    939,
+                    942,
+                    970,
+                    981
+               ],
+               "EXTENDED_LINES": [
+                    915,
+                    969
+               ]
+          }
+     ],
+     "keras:33": [
+          {
+               "FILE_NAME": "keras/preprocessing/text.py",
+               "LINES": [
+                    41,
+                    42,
+                    44,
+                    46
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:34": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    2165,
+                    2197,
+                    2369,
+                    2493
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [
+                    371
+               ],
+               "EXTENDED_LINES": [
+                    367
+               ]
+          }
+     ],
+     "keras:35": [
+          {
+               "FILE_NAME": "keras/preprocessing/image.py",
+               "LINES": [
+                    583,
+                    584,
+                    954,
+                    1230,
+                    1232
+               ],
+               "EXTENDED_LINES": [
+                    953,
+                    1231
+               ]
+          }
+     ],
+     "keras:36": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    3419,
+                    3422
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:37": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    521,
+                    523,
+                    526
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/layers/wrappers.py",
+               "LINES": [
+                    279,
+                    316,
+                    324,
+                    325,
+                    326,
+                    327,
+                    328
+               ],
+               "EXTENDED_LINES": [
+                    277,
+                    314
+               ]
+          }
+     ],
+     "keras:38": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    109
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:39": [
+          {
+               "FILE_NAME": "keras/utils/generic_utils.py",
+               "LINES": [
+                    330
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:40": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    398,
+                    400,
+                    408
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:41": [
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [
+                    14,
+                    556,
+                    617,
+                    634,
+                    639,
+                    641,
+                    645,
+                    689,
+                    690,
+                    691,
+                    707,
+                    708,
+                    709
+               ],
+               "EXTENDED_LINES": [
+                    13,
+                    616
+               ]
+          }
+     ],
+     "keras:42": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    1903,
+                    1944,
+                    1955,
+                    2010,
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2062,
+                    2063,
+                    2064,
+                    2065,
+                    2066,
+                    2067,
+                    2068,
+                    2069,
+                    2070,
+                    2176,
+                    2193,
+                    2228,
+                    2229,
+                    2291,
+                    2308,
+                    2340,
+                    2341
+               ],
+               "EXTENDED_LINES": [
+                    1954,
+                    2006
+               ]
+          },
+          {
+               "FILE_NAME": "keras/models.py",
+               "LINES": [
+                    1119,
+                    1151,
+                    1168,
+                    1226,
+                    1239,
+                    1266,
+                    1278
+               ],
+               "EXTENDED_LINES": [
+                    1150,
+                    1167,
+                    1238,
+                    1277
+               ]
+          }
+     ],
+     "keras:43": [
+          {
+               "FILE_NAME": "keras/utils/np_utils.py",
+               "LINES": [
+                    22
+               ],
+               "EXTENDED_LINES": [
+                    21
+               ]
+          }
+     ],
+     "keras:44": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    734,
+                    741
+               ],
+               "EXTENDED_LINES": [
+                    733,
+                    740
+               ]
+          }
+     ],
+     "keras:45": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    1806,
+                    1807,
+                    1808,
+                    1809
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "sanic:1": [
+          {
+               "FILE_NAME": "examples/blueprint_middlware_execution_order.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "sanic/app.py",
+               "LINES": [
+                    656
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "sanic:3": [
+          {
+               "FILE_NAME": "sanic/app.py",
+               "LINES": [
+                    833,
+                    865
+               ],
+               "EXTENDED_LINES": [
+                    831
+               ]
+          }
+     ],
+     "sanic:4": [
+          {
+               "FILE_NAME": "sanic/request.py",
+               "LINES": [
+                    522,
+                    523
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "sanic:5": [
+          {
+               "FILE_NAME": "sanic/log.py",
+               "LINES": [
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:1": [
+          {
+               "FILE_NAME": "spacy/errors.py",
+               "LINES": [
+                    10,
+                    11
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:2": [
+          {
+               "FILE_NAME": "spacy/util.py",
+               "LINES": [
+                    211
+               ],
+               "EXTENDED_LINES": [
+                    210
+               ]
+          }
+     ],
+     "spacy:3": [
+          {
+               "FILE_NAME": "bin/wiki_entity_linking/wikipedia_processor.py",
+               "LINES": [
+                    33,
+                    288
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:4": [
+          {
+               "FILE_NAME": "spacy/cli/converters/conllu2json.py",
+               "LINES": [
+                    73
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:5": [
+          {
+               "FILE_NAME": "spacy/language.py",
+               "LINES": [
+                    681
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:6": [
+          {
+               "FILE_NAME": "spacy/language.py",
+               "LINES": [
+                    405,
+                    407
+               ],
+               "EXTENDED_LINES": [
+                    404
+               ]
+          }
+     ],
+     "thefuck:1": [
+          {
+               "FILE_NAME": "thefuck/rules/pip_unknown_command.py",
+               "LINES": [
+                    15,
+                    17
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:2": [
+          {
+               "FILE_NAME": "thefuck/utils.py",
+               "LINES": [
+                    121
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:3": [
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    108,
+                    110
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:4": [
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    23,
+                    24,
+                    25
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:5": [
+          {
+               "FILE_NAME": "thefuck/rules/git_push.py",
+               "LINES": [
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:6": [
+          {
+               "FILE_NAME": "thefuck/rules/git_branch_exists.py",
+               "LINES": [
+                    10,
+                    17
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:7": [
+          {
+               "FILE_NAME": "thefuck/rules/php_s.py",
+               "LINES": [
+                    6,
+                    11,
+                    12,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:8": [
+          {
+               "FILE_NAME": "thefuck/rules/dnf_no_such_command.py",
+               "LINES": [
+                    18,
+                    19,
+                    20,
+                    21,
+                    29
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:9": [
+          {
+               "FILE_NAME": "thefuck/rules/git_push.py",
+               "LINES": [
+                    27
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:10": [
+          {
+               "FILE_NAME": "thefuck/rules/man.py",
+               "LINES": [
+                    15,
+                    21,
+                    22,
+                    24,
+                    27
+               ],
+               "EXTENDED_LINES": [
+                    13,
+                    26
+               ]
+          }
+     ],
+     "thefuck:12": [
+          {
+               "FILE_NAME": "thefuck/rules/no_command.py",
+               "LINES": [
+                    3,
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:13": [
+          {
+               "FILE_NAME": "thefuck/rules/git_branch_exists.py",
+               "LINES": [
+                    9,
+                    10,
+                    20,
+                    21
+               ],
+               "EXTENDED_LINES": [
+                    19,
+                    20
+               ]
+          }
+     ],
+     "thefuck:14": [
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    10,
+                    11,
+                    12,
+                    13,
+                    14
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:15": [
+          {
+               "FILE_NAME": "thefuck/rules/git_add.py",
+               "LINES": [
+                    8,
+                    9,
+                    15,
+                    16
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:16": [
+          {
+               "FILE_NAME": "thefuck/shells/bash.py",
+               "LINES": [
+                    9,
+                    10,
+                    11
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    17
+               ],
+               "EXTENDED_LINES": [
+                    16
+               ]
+          },
+          {
+               "FILE_NAME": "thefuck/shells/zsh.py",
+               "LINES": [
+                    10,
+                    12,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    285
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:17": [
+          {
+               "FILE_NAME": "thefuck/shells/bash.py",
+               "LINES": [
+                    1,
+                    4,
+                    12,
+                    27,
+                    29,
+                    30,
+                    31,
+                    32,
+                    33
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/shells/zsh.py",
+               "LINES": [
+                    29
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:18": [
+          {
+               "FILE_NAME": "thefuck/rules/sudo.py",
+               "LINES": [
+                    24
+               ],
+               "EXTENDED_LINES": [
+                    23
+               ]
+          }
+     ],
+     "thefuck:19": [
+          {
+               "FILE_NAME": "thefuck/rules/git_push_force.py",
+               "LINES": [
+                    15
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:20": [
+          {
+               "FILE_NAME": "thefuck/rules/dirty_unzip.py",
+               "LINES": [
+                    6,
+                    16,
+                    31
+               ],
+               "EXTENDED_LINES": [
+                    3
+               ]
+          }
+     ],
+     "thefuck:21": [
+          {
+               "FILE_NAME": "thefuck/rules/git_fix_stash.py",
+               "LINES": [
+                    8,
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:22": [
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    84,
+                    85,
+                    86
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:23": [
+          {
+               "FILE_NAME": "thefuck/utils.py",
+               "LINES": [
+                    5,
+                    179,
+                    183
+               ],
+               "EXTENDED_LINES": [
+                    4,
+                    178
+               ]
+          }
+     ],
+     "thefuck:24": [
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    7,
+                    8,
+                    14,
+                    57,
+                    58,
+                    64,
+                    67,
+                    68,
+                    69
+               ],
+               "EXTENDED_LINES": [
+                    11
+               ]
+          }
+     ],
+     "thefuck:25": [
+          {
+               "FILE_NAME": "thefuck/rules/mkdir_p.py",
+               "LINES": [
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:26": [
+          {
+               "FILE_NAME": "thefuck/rules/vagrant_up.py",
+               "LINES": [
+                    10,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:27": [
+          {
+               "FILE_NAME": "thefuck/rules/open.py",
+               "LINES": [
+                    26
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:28": [
+          {
+               "FILE_NAME": "thefuck/rules/fix_file.py",
+               "LINES": [
+                    3,
+                    7,
+                    23,
+                    26,
+                    27,
+                    31,
+                    59,
+                    63,
+                    64,
+                    65,
+                    66
+               ],
+               "EXTENDED_LINES": [
+                    4,
+                    29,
+                    56
+               ]
+          }
+     ],
+     "thefuck:29": [
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    26,
+                    27,
+                    28
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:30": [
+          {
+               "FILE_NAME": "thefuck/rules/fix_file.py",
+               "LINES": [
+                    53
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:31": [
+          {
+               "FILE_NAME": "thefuck/rules/git_diff_staged.py",
+               "LINES": [
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:32": [
+          {
+               "FILE_NAME": "thefuck/rules/ls_lah.py",
+               "LINES": [
+                    2
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:1": [
+          {
+               "FILE_NAME": "tornado/websocket.py",
+               "LINES": [
+                    561,
+                    562,
+                    718,
+                    1349
+               ],
+               "EXTENDED_LINES": [
+                    715,
+                    1346
+               ]
+          }
+     ],
+     "tornado:3": [
+          {
+               "FILE_NAME": "tornado/httpclient.py",
+               "LINES": [
+                    236,
+                    238
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:4": [
+          {
+               "FILE_NAME": "tornado/web.py",
+               "LINES": [
+                    2603,
+                    2606,
+                    2611,
+                    2612
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:5": [
+          {
+               "FILE_NAME": "tornado/ioloop.py",
+               "LINES": [
+                    1220,
+                    1221
+               ],
+               "EXTENDED_LINES": [
+                    1219
+               ]
+          }
+     ],
+     "tornado:6": [
+          {
+               "FILE_NAME": "tornado/ioloop.py",
+               "LINES": [
+                    50,
+                    188
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "tornado/platform/asyncio.py",
+               "LINES": [
+                    41,
+                    53
+               ],
+               "EXTENDED_LINES": [
+                    40,
+                    51
+               ]
+          }
+     ],
+     "tornado:8": [
+          {
+               "FILE_NAME": "tornado/websocket.py",
+               "LINES": [
+                    619
+               ],
+               "EXTENDED_LINES": [
+                    618
+               ]
+          }
+     ],
+     "tornado:10": [
+          {
+               "FILE_NAME": "tornado/web.py",
+               "LINES": [
+                    998
+               ],
+               "EXTENDED_LINES": [
+                    995
+               ]
+          },
+          {
+               "FILE_NAME": "tornado/websocket.py",
+               "LINES": [
+                    438
+               ],
+               "EXTENDED_LINES": [
+                    436
+               ]
+          }
+     ],
+     "tornado:11": [
+          {
+               "FILE_NAME": "tornado/http1connection.py",
+               "LINES": [
+                    568
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:12": [
+          {
+               "FILE_NAME": "tornado/auth.py",
+               "LINES": [
+                    78,
+                    988,
+                    1065,
+                    1066
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:1": [
+          {
+               "FILE_NAME": "tqdm/contrib/__init__.py",
+               "LINES": [
+                    41
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:2": [
+          {
+               "FILE_NAME": "tqdm/std.py",
+               "LINES": [
+                    488,
+                    489,
+                    505,
+                    506
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "tqdm/utils.py",
+               "LINES": [
+                    363,
+                    365,
+                    366
+               ],
+               "EXTENDED_LINES": [
+                    361
+               ]
+          }
+     ],
+     "tqdm:3": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    950
+               ],
+               "EXTENDED_LINES": [
+                    948
+               ]
+          }
+     ],
+     "tqdm:4": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    323
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:5": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    751,
+                    757,
+                    769,
+                    770,
+                    771,
+                    772,
+                    773,
+                    774
+               ],
+               "EXTENDED_LINES": [
+                    749,
+                    756
+               ]
+          }
+     ],
+     "tqdm:6": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    856
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:7": [
+          {
+               "FILE_NAME": "tqdm/_main.py",
+               "LINES": [
+                    92
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:8": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    225
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:9": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    41,
+                    42,
+                    43,
+                    274,
+                    301,
+                    363,
+                    389,
+                    412
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:1": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2577,
+                    2578
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:2": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/common.py",
+               "LINES": [
+                    2010,
+                    2011,
+                    2012,
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2017,
+                    2018,
+                    2019
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:3": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    599
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:6": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1979,
+                    2023,
+                    2025,
+                    2026
+               ],
+               "EXTENDED_LINES": [
+                    2024
+               ]
+          }
+     ],
+     "youtube-dl:7": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1704,
+                    1705
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:13": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1871
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:15": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2270
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:17": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2736
+               ],
+               "EXTENDED_LINES": [
+                    2735
+               ]
+          }
+     ],
+     "youtube-dl:18": [
+          {
+               "FILE_NAME": "youtube_dl/YoutubeDL.py",
+               "LINES": [
+                    863
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:19": [
+          {
+               "FILE_NAME": "youtube_dl/YoutubeDL.py",
+               "LINES": [
+                    23,
+                    677
+               ],
+               "EXTENDED_LINES": [
+                    22
+               ]
+          }
+     ],
+     "youtube-dl:20": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    368,
+                    370
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:21": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1751,
+                    1755
+               ],
+               "EXTENDED_LINES": [
+                    1750
+               ]
+          }
+     ],
+     "youtube-dl:24": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2348,
+                    2352,
+                    2364
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:25": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2041,
+                    2042,
+                    2048
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:26": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1973
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:27": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1985,
+                    1987
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:29": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    914
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:31": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/minhateca.py",
+               "LINES": [
+                    11,
+                    55,
+                    56
+               ],
+               "EXTENDED_LINES": [
+                    10
+               ]
+          },
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1209,
+                    1213,
+                    1216,
+                    1219,
+                    1220
+               ],
+               "EXTENDED_LINES": [
+                    1208
+               ]
+          }
+     ],
+     "youtube-dl:34": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    676,
+                    1601
+               ],
+               "EXTENDED_LINES": [
+                    675
+               ]
+          }
+     ],
+     "youtube-dl:35": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/arte.py",
+               "LINES": [
+                    89,
+                    93
+               ],
+               "EXTENDED_LINES": [
+                    87
+               ]
+          },
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    893
+               ],
+               "EXTENDED_LINES": [
+                    892
+               ]
+          }
+     ],
+     "youtube-dl:36": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/facebook.py",
+               "LINES": [
+                    23
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:41": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    759,
+                    761
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:43": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1090
+               ],
+               "EXTENDED_LINES": []
+          }
+     ]
+}

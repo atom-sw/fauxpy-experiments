@@ -1,4 +1,5 @@
 import re
+from enum import Enum
 from pathlib import Path
 from typing import Tuple, List
 
@@ -6,6 +7,13 @@ import common
 
 CORRECT = {}
 PATCH_INFO_FILE_NAME: str = "ground_truth_info.json"
+
+
+class ConsumeMode(Enum):
+    Normal = 0
+    Remove = 1
+    Edit = 2
+    Add = 3
 
 
 def get_patch_parts(patch) -> List[List[str]]:
@@ -31,17 +39,162 @@ def get_patch_part_meta_info_buggy_lines(meta_info_line: str):
     assert len(meta_info_list_buggy_number_lines) == 1
     starting_buggy_line = meta_info_list_buggy_start[0]
     number_buggy_line = meta_info_list_buggy_number_lines[0]
-    return starting_buggy_line, number_buggy_line
+    return int(starting_buggy_line), int(number_buggy_line)
+
+
+# class PatchPartType(Enum):
+#     Remove = 0
+#     Edit = 1
+#     Add = 2
+
+
+# def get_patch_part_type(lines: List[str]):
+#     remove_first_index = None
+#     add_first_index = None
+#
+#     for index, line in enumerate(lines):
+#         if line.startswith("-") and remove_first_index is None:
+#             remove_first_index = index
+#         if line.startswith("+") and add_first_index is None:
+#             add_first_index = index
+#
+#     assert remove_first_index is not None or add_first_index is not None
+#
+#     if remove_first_index is None:
+#         return PatchPartType.Add
+#     if add_first_index is None:
+#         return PatchPartType.Remove
+#
+#     assert remove_first_index < add_first_index
+#     return PatchPartType.Edit
+
+
+def is_code_line(line: str):
+    return (line != "" and
+            not line.startswith("#") and
+            not line.startswith("'''") and
+            not line.startswith('"""'))
+
+
+# def map_diff_index_to_buggy_index(lines: List[str],
+#                                   diff_index: int):
+#     number_addition = 0
+#     for index in range(0, diff_index):
+#         if lines[index].startswith("+"):
+#             number_addition += 1
+#
+#     return diff_index - number_addition
+
+
+# def consume2(lines: List[str]) -> Tuple[List[int], List[int]]:
+#     code_lines = []
+#     code_extended_lines = []
+#
+#     patch_part_type = get_patch_part_type(lines)
+#     if patch_part_type == PatchPartType.Remove or patch_part_type == PatchPartType.Edit:
+#         for index, line in enumerate(lines):
+#             if line.startswith("-"):
+#                 buggy_index = map_diff_index_to_buggy_index(lines, index)
+#                 code_lines.append(buggy_index)
+#     elif patch_part_type == PatchPartType.Add:
+#         start_line_adding_index = None
+#         end_line_adding_index = None
+#         for index, line in enumerate(lines):
+#             if line.startswith("+"):
+#                 if start_line_adding_index is None:
+#                     start_line_adding_index = index
+#                 end_line_adding_index = index
+#
+#         for index in range(end_line_adding_index + 1, len(lines)):
+#             if is_code_line(lines[index].strip()):
+#                 buggy_index = map_diff_index_to_buggy_index(lines, index)
+#                 code_lines.append(buggy_index)
+#                 break
+#
+#         for index in range(start_line_adding_index - 1, -1, -1):
+#             if is_code_line(lines[index].strip()):
+#                 buggy_index = map_diff_index_to_buggy_index(lines, index)
+#                 code_extended_lines.append(buggy_index)
+#                 break
+#     else:
+#         raise Exception("It should never happen.")
+#
+#     return code_lines, code_extended_lines
+
+
+def diff_index_to_buggy_index(lines: List[str],
+                              diff_index: int):
+    offset = 0
+    for index in range(0, diff_index):
+        if lines[index].startswith("+"):
+            offset += 1
+
+    return diff_index - offset
+
+
+def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
+    code_lines = []
+    code_extended_lines = []
+    consume_mode = ConsumeMode.Normal
+
+    start_add_index = None
+    end_add_index = None
+
+    for index, line in enumerate(lines):
+        if line.startswith("-"):
+            assert consume_mode == ConsumeMode.Normal or consume_mode == ConsumeMode.Remove
+
+            consume_mode = ConsumeMode.Remove
+            buggy_index = diff_index_to_buggy_index(lines, index)
+            if buggy_index not in code_lines:
+                code_lines.append(buggy_index)
+        elif line.startswith("+"):
+            if consume_mode == ConsumeMode.Normal:
+                consume_mode = ConsumeMode.Add
+            elif consume_mode == ConsumeMode.Remove or consume_mode == ConsumeMode.Edit:
+                consume_mode = ConsumeMode.Edit
+                # Ignore the added lines.
+
+            if consume_mode == ConsumeMode.Add:
+                if start_add_index is None:
+                    start_add_index = index
+                end_add_index = index
+        else:
+            if consume_mode == ConsumeMode.Add:
+                for ind in range(end_add_index + 1, len(lines)):
+                    if is_code_line(lines[ind].strip()):
+                        buggy_index = diff_index_to_buggy_index(lines, ind)
+                        if buggy_index not in code_lines:
+                            code_lines.append(buggy_index)
+                        break
+
+                for ind in range(start_add_index - 1, -1, -1):
+                    if is_code_line(lines[ind].strip()):
+                        buggy_index = diff_index_to_buggy_index(lines, ind)
+                        if buggy_index not in code_extended_lines:
+                            code_extended_lines.append(buggy_index)
+                        break
+
+            consume_mode = ConsumeMode.Normal
+            start_add_index = None
+            end_add_index = None
+
+    return code_lines, code_extended_lines
 
 
 def get_file_ground_truth(patch: str) -> Tuple[List[int], List[int]]:
+    code_lines = []
+    code_extended_lines = []
+
     patch_parts = get_patch_parts(patch)
     for patch_part in patch_parts:
         meta_info_line = patch_part[0]
         starting_buggy_line, number_buggy_line = get_patch_part_meta_info_buggy_lines(meta_info_line)
         lines = patch_part[1:]
-        print(lines)
-    return [], []
+        relative_code_lines, relative_code_extended_lines = consume(lines)
+        code_lines += [x + starting_buggy_line for x in relative_code_lines]
+        code_extended_lines += [x + starting_buggy_line for x in relative_code_extended_lines]
+    return code_lines, code_extended_lines
 
 
 def get_bug_ground_truth(benchmark_name: str,
@@ -50,7 +203,13 @@ def get_bug_ground_truth(benchmark_name: str,
 
     but_ground_truth = []
 
-    for file in diff_commit.files:
+    python_none_test_files = list(filter(lambda x:
+                                         x.filename.endswith(".py") and
+                                         "test/" not in x.filename and
+                                         "tests/" not in x.filename,
+                                         diff_commit.files))
+
+    for file in python_none_test_files:
         filename = file.filename
         patch = file.patch
         lines, extended_lines = get_file_ground_truth(patch)
@@ -72,13 +231,13 @@ def main():
     patch_info_dict = {}
 
     for benchmark_name, benchmark_items in CORRECT.items():
-        # if benchmark_name != "sanic":
-        #     continue
 
         for bug_number in benchmark_items["ACCEPTED"]:
+            if benchmark_name == "pandas":
+                continue
+
             print(benchmark_name, bug_number)
             bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
-            print(bug_patch_info)
             patch_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
 
     common.save_object_to_json(patch_info_dict, Path(PATCH_INFO_FILE_NAME))
