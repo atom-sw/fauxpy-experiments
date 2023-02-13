@@ -68,6 +68,8 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
     start_add_index = None
     end_add_index = None
 
+    none_code_line_added_in_edit_counter = 0
+
     for index, line in enumerate(lines):
         if line.startswith("-"):
             assert consume_mode == ConsumeMode.Normal or consume_mode == ConsumeMode.Remove
@@ -76,6 +78,8 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
             buggy_index = diff_index_to_buggy_index(lines, index)
             if buggy_index not in code_lines:
                 code_lines.append(buggy_index)
+                if not is_code_line(line[1:]):
+                    none_code_line_added_in_edit_counter += 1
         elif line.startswith("+"):
             if consume_mode == ConsumeMode.Normal:
                 consume_mode = ConsumeMode.Add
@@ -88,6 +92,10 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
                     start_add_index = index
                 end_add_index = index
         else:
+            if consume_mode == ConsumeMode.Edit:
+                if none_code_line_added_in_edit_counter == len(code_lines):
+                    print("Manual check! Edit none code!")
+            none_code_line_added_in_edit_counter = 0
             if consume_mode == ConsumeMode.Add:
                 for ind in range(end_add_index + 1, len(lines)):
                     if is_code_line(lines[ind]):
