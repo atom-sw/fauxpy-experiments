@@ -150,6 +150,14 @@ def get_bug_ground_truth(benchmark_name: str,
     return but_ground_truth
 
 
+def calculate_all_line_nums(bug_patch_info):
+    lines_num = 0
+    for item in bug_patch_info:
+        lines_num += len(item["LINES"])
+
+    return lines_num
+
+
 def main():
     global CORRECT
 
@@ -162,6 +170,9 @@ def main():
         for bug_number in benchmark_items["ACCEPTED"]:
             print(benchmark_name, bug_number)
             bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
+            all_line_nums = calculate_all_line_nums(bug_patch_info)
+            if all_line_nums <= 0:
+                print("Empty lines in: ", benchmark_name, bug_number)
             patch_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
 
     common.save_object_to_json(patch_info_dict, Path(PATCH_INFO_FILE_NAME))
