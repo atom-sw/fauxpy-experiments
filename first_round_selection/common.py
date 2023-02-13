@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Tuple, List
 
-from github import Github
+from github import Github, UnknownObjectException
 
 VERSION_PREFIX = "bug"
 BUGGY_DIR_NAME = "buggy"
@@ -170,7 +170,11 @@ def get_diff_commit(benchmark_name: str,
 
     g = Github(GITHUB_TOKEN)
     repo = g.get_repo(repo_name)
-    x = repo.compare(buggy_commit_info, fixed_commit_number)
+    try:
+        x = repo.compare(buggy_commit_info, fixed_commit_number)
+    except UnknownObjectException:
+        print("PyGithub compare problem fixed. Check it: ", benchmark_name, bug_num)
+        x = repo.compare(f"{fixed_commit_number}^", fixed_commit_number)
 
     return x
 

@@ -160,9 +160,6 @@ def main():
     for benchmark_name, benchmark_items in CORRECT.items():
 
         for bug_number in benchmark_items["ACCEPTED"]:
-            if benchmark_name == "pandas":
-                continue
-
             print(benchmark_name, bug_number)
             bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
             patch_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
@@ -172,4 +169,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    pass
