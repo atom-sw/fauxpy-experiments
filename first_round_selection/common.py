@@ -1,10 +1,16 @@
 import json
+import os
 import re
 import sys
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Tuple, List
 
-from github import Github, UnknownObjectException
+from github import Github
+from github import UnknownObjectException, GithubException
+
+import pickle
 
 VERSION_PREFIX = "bug"
 BUGGY_DIR_NAME = "buggy"
@@ -26,6 +32,8 @@ CORRECT_TEST_OUTPUT_DIRECTORY_NAME = "correct"
 TIME_SELECTED_BUGS_FILE_NAME = "time_selected_bugs.json"
 
 SUBJECT_INFO_DIRECTORY_NAME = "info"
+
+CACHE_DIR_NAME = "cache"
 
 
 def read_file_content(path) -> str:
@@ -164,12 +172,64 @@ def get_changed_modules(benchmark_name: str,
     return changed_modules
 
 
+def api_wait_search(github,
+                    function,
+                    *args,
+                    **kwargs):
+    # Code adapted from Souhaila's module
+    limits = github.get_rate_limit()
+    reset = limits.search.reset.replace(tzinfo=timezone.utc)
+    now = datetime.now(timezone.utc)
+    seconds = (reset - now).total_seconds()
+    print("Rate limit exceeded")
+    print(f"Reset is in {seconds:.3g} seconds.")
+    if seconds > 0.0:
+        print(f"Waiting for {seconds:.3g} seconds...")
+        time.sleep(seconds)
+        print("Done waiting - resume!")
+
+    ret_fuc = function(*args, **kwargs)
+    return ret_fuc
+
+
 def get_diff_commit(benchmark_name: str,
                     bug_num: int):
+    cache_file_path = CACHE_DIR_NAME / Path(f"{benchmark_name}_{bug_num}")
+    if cache_file_path.exists():
+        with cache_file_path.open("rb") as file:
+            python_none_test_files = pickle.load(file)
+        return python_none_test_files
+
     repo_name, fixed_commit_number, buggy_commit_info = get_commit_info(benchmark_name, bug_num)
 
     g = Github(GITHUB_TOKEN)
     repo = g.get_repo(repo_name)
-    x = repo.get_commit(fixed_commit_number)
-    return x
+    # repo = api_wait_search(g, g.get_repo, repo_name)
+    fixed_commit = repo.get_commit(fixed_commit_number)
 
+    python_none_test_files = list(filter(lambda x:
+                                         x.filename.endswith(".py") and
+                                         "test/" not in x.filename and
+                                         "tests/" not in x.filename,
+                                         fixed_commit.files))
+
+    for ind, file in enumerate(python_none_test_files):
+        filename = file.filename
+        try:
+            buggy_content = repo.get_contents(filename, ref=buggy_commit_info).decoded_content
+        except UnknownObjectException:
+            print("File not found in the buggy version!")
+            buggy_content = None
+        except GithubException:
+            print("Using sha of the fixed version!")
+            buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_number}^").decoded_content
+
+        python_none_test_files[ind].buggy_content = buggy_content
+
+    if not os.path.exists(Path(CACHE_DIR_NAME)):
+        os.mkdir(CACHE_DIR_NAME)
+
+    with cache_file_path.open("wb") as file:
+        pickle.dump(python_none_test_files, file)
+
+    return python_none_test_files
