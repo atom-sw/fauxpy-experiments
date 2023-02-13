@@ -1,7 +1,7 @@
 import re
 from enum import Enum
 from pathlib import Path
-from typing import Tuple, List
+from typing import Tuple, List, Optional
 
 import common
 
@@ -18,7 +18,8 @@ class ConsumeMode(Enum):
 
 def get_patch_parts(patch) -> List[List[str]]:
     patch_parts = []
-    patch_lines = patch.split("\n")
+    # patch_lines = patch.split("\n")
+    patch_lines = patch.splitlines()
     part_lines = []
     for patch_line in patch_lines:
         meta_line_list = re.findall(r"@@.*@@", patch_line)
@@ -60,7 +61,9 @@ def diff_index_to_buggy_index(lines: List[str],
     return diff_index - offset
 
 
-def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
+def consume(lines: List[str],
+            patch_part_starting_line: int,
+            buggy_content_lines: Optional[List[str]]) -> Tuple[List[int], List[int]]:
     code_lines = []
     code_extended_lines = []
     consume_mode = ConsumeMode.Normal
@@ -75,9 +78,10 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
             assert consume_mode == ConsumeMode.Normal or consume_mode == ConsumeMode.Remove
 
             consume_mode = ConsumeMode.Remove
-            buggy_index = diff_index_to_buggy_index(lines, index)
-            if buggy_index not in code_lines:
-                code_lines.append(buggy_index)
+            rel_buggy_index = diff_index_to_buggy_index(lines, index)
+            abs_buggy_index = rel_buggy_index + patch_part_starting_line
+            if abs_buggy_index not in code_lines:
+                code_lines.append(abs_buggy_index)
                 if not is_code_line(line[1:]):
                     none_code_line_added_in_edit_counter += 1
         elif line.startswith("+"):
@@ -99,16 +103,18 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
             if consume_mode == ConsumeMode.Add:
                 for ind in range(end_add_index + 1, len(lines)):
                     if is_code_line(lines[ind]):
-                        buggy_index = diff_index_to_buggy_index(lines, ind)
-                        if buggy_index not in code_lines:
-                            code_lines.append(buggy_index)
+                        rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                        abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                        if abs_buggy_index not in code_lines:
+                            code_lines.append(abs_buggy_index)
                         break
 
                 for ind in range(start_add_index - 1, -1, -1):
                     if is_code_line(lines[ind]):
-                        buggy_index = diff_index_to_buggy_index(lines, ind)
-                        if buggy_index not in code_extended_lines and buggy_index not in code_lines:
-                            code_extended_lines.append(buggy_index)
+                        rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                        abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                        if abs_buggy_index not in code_extended_lines and abs_buggy_index not in code_lines:
+                            code_extended_lines.append(abs_buggy_index)
                         break
 
             consume_mode = ConsumeMode.Normal
@@ -118,37 +124,41 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
     return code_lines, code_extended_lines
 
 
-def get_file_ground_truth(patch: str) -> Tuple[List[int], List[int]]:
+def get_file_ground_truth(patch: str, buggy_content: str) -> Tuple[List[int], List[int]]:
     code_lines = []
     code_extended_lines = []
 
+    buggy_content_lines = buggy_content.splitlines() if buggy_content is not None else None
     patch_parts = get_patch_parts(patch)
     for patch_part in patch_parts:
         meta_info_line = patch_part[0]
         starting_buggy_line, number_buggy_line = get_patch_part_meta_info_buggy_lines(meta_info_line)
         lines = patch_part[1:]
-        relative_code_lines, relative_code_extended_lines = consume(lines)
-        code_lines += [x + starting_buggy_line for x in relative_code_lines]
-        code_extended_lines += [x + starting_buggy_line for x in relative_code_extended_lines]
+        current_code_lines, current_code_extended_lines = consume(lines, starting_buggy_line, buggy_content_lines)
+        # code_lines += [x + starting_buggy_line for x in relative_code_lines]
+        # code_extended_lines += [x + starting_buggy_line for x in relative_code_extended_lines]
+        code_lines += current_code_lines
+        code_extended_lines += current_code_extended_lines
     return code_lines, code_extended_lines
 
 
 def get_bug_ground_truth(benchmark_name: str,
                          bug_number: int):
-    diff_commit = common.get_diff_commit(benchmark_name, bug_number)
+    python_none_test_files = common.get_diff_commit(benchmark_name, bug_number)
 
     but_ground_truth = []
 
-    python_none_test_files = list(filter(lambda x:
-                                         x.filename.endswith(".py") and
-                                         "test/" not in x.filename and
-                                         "tests/" not in x.filename,
-                                         diff_commit.files))
+    # python_none_test_files = list(filter(lambda x:
+    #                                      x.filename.endswith(".py") and
+    #                                      "test/" not in x.filename and
+    #                                      "tests/" not in x.filename,
+    #                                      diff_commit.files))
 
     for file in python_none_test_files:
         filename = file.filename
         patch = file.patch
-        lines, extended_lines = get_file_ground_truth(patch)
+        buggy_content = file.buggy_content
+        lines, extended_lines = get_file_ground_truth(patch, buggy_content)
         but_ground_truth.append(
             {
                 "FILE_NAME": filename,
@@ -175,8 +185,11 @@ def main():
     patch_info_dict = {}
 
     for benchmark_name, benchmark_items in CORRECT.items():
-
         for bug_number in benchmark_items["ACCEPTED"]:
+
+            # if benchmark_name != "pandas":
+            #     continue
+
             print(benchmark_name, bug_number)
             bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
             all_line_nums = calculate_all_line_nums(bug_patch_info)
