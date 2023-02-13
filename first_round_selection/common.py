@@ -173,7 +173,7 @@ def get_diff_commit(benchmark_name: str,
     try:
         x = repo.compare(buggy_commit_info, fixed_commit_number)
     except UnknownObjectException:
-        print("PyGithub compare problem fixed. Check it: ", benchmark_name, bug_num)
+        print("Manual check! PyGithub compare problem fixed: ", benchmark_name, bug_num)
         x = repo.compare(f"{fixed_commit_number}^", fixed_commit_number)
 
     return x

@@ -43,10 +43,11 @@ def get_patch_part_meta_info_buggy_lines(meta_info_line: str):
 
 
 def is_code_line(line: str):
-    return (line != "" and
-            not line.startswith("#") and
-            not line.startswith("'''") and
-            not line.startswith('"""'))
+    line_strip = line.strip()
+    return (line_strip != "" and
+            not line_strip.startswith("#") and
+            not line_strip.startswith("'''") and
+            not line_strip.startswith('"""'))
 
 
 def diff_index_to_buggy_index(lines: List[str],
@@ -89,16 +90,16 @@ def consume(lines: List[str]) -> Tuple[List[int], List[int]]:
         else:
             if consume_mode == ConsumeMode.Add:
                 for ind in range(end_add_index + 1, len(lines)):
-                    if is_code_line(lines[ind].strip()):
+                    if is_code_line(lines[ind]):
                         buggy_index = diff_index_to_buggy_index(lines, ind)
                         if buggy_index not in code_lines:
                             code_lines.append(buggy_index)
                         break
 
                 for ind in range(start_add_index - 1, -1, -1):
-                    if is_code_line(lines[ind].strip()):
+                    if is_code_line(lines[ind]):
                         buggy_index = diff_index_to_buggy_index(lines, ind)
-                        if buggy_index not in code_extended_lines:
+                        if buggy_index not in code_extended_lines and buggy_index not in code_lines:
                             code_extended_lines.append(buggy_index)
                         break
 
@@ -172,7 +173,7 @@ def main():
             bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
             all_line_nums = calculate_all_line_nums(bug_patch_info)
             if all_line_nums <= 0:
-                print("Empty lines in: ", benchmark_name, bug_number)
+                print("Manual check! Empty lines in: ", benchmark_name, bug_number)
             patch_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
 
     common.save_object_to_json(patch_info_dict, Path(PATCH_INFO_FILE_NAME))
