@@ -176,7 +176,7 @@ def api_wait_search(github,
                     function,
                     *args,
                     **kwargs):
-    # Code adapted from Souhaila's module
+    # Code adopted from Souhaila's module
     limits = github.get_rate_limit()
     reset = limits.search.reset.replace(tzinfo=timezone.utc)
     now = datetime.now(timezone.utc)
