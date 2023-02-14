@@ -194,6 +194,13 @@ def api_wait_search(github,
 
 def get_diff_commit(benchmark_name: str,
                     bug_num: int):
+    """
+    This function gets the diff commit of the given buggy
+    version in the BugsInPy framework. It caches
+    the results since fetching this much information
+    form GitHub using its API makes
+    it stop from providing services.
+    """
     cache_file_path = CACHE_DIR_NAME / Path(f"{benchmark_name}_{bug_num}")
     if cache_file_path.exists():
         with cache_file_path.open("rb") as file:
