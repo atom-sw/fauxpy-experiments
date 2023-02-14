@@ -223,13 +223,13 @@ def get_diff_commit(benchmark_name: str,
     for ind, file in enumerate(python_none_test_files):
         filename = file.filename
         try:
-            buggy_content = repo.get_contents(filename, ref=buggy_commit_info).decoded_content
+            buggy_content = repo.get_contents(filename, ref=buggy_commit_info).decoded_content.decode('utf-8')
         except UnknownObjectException:
             print("File not found in the buggy version!")
-            buggy_content = None
+            buggy_content = ""
         except GithubException:
             print("Using sha of the fixed version!")
-            buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_number}^").decoded_content
+            buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_number}^").decoded_content.decode('utf-8')
 
         python_none_test_files[ind].buggy_content = buggy_content
 

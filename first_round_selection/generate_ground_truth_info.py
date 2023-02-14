@@ -94,6 +94,7 @@ def consume(lines: List[str],
 
     none_code_line_removed_in_edit_counter = 0
     code_line_added_in_edit_counter = 0
+    code_line_added_in_add_counter = 0
 
     for index, line in enumerate(lines):
         if line.startswith("-"):
@@ -111,12 +112,13 @@ def consume(lines: List[str],
                 consume_mode = ConsumeMode.Add
             elif consume_mode == ConsumeMode.Remove:
                 consume_mode = ConsumeMode.Edit
-                # Ignore the added lines.
 
             if consume_mode == ConsumeMode.Add:
                 if start_add_index is None:
                     start_add_index = index
                 end_add_index = index
+                if is_code_line(line[1:]):
+                    code_line_added_in_add_counter += 1
             elif consume_mode == ConsumeMode.Edit:
                 if is_code_line(line[1:]):
                     code_line_added_in_edit_counter += 1
@@ -129,26 +131,50 @@ def consume(lines: List[str],
             none_code_line_removed_in_edit_counter = 0
             code_line_added_in_edit_counter = 0
 
-            if consume_mode == ConsumeMode.Add:
-                for ind in range(end_add_index + 1, len(lines)):
-                    if is_code_line(lines[ind]):
-                        rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                        abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                        if abs_buggy_index not in code_lines:
-                            code_lines.append(abs_buggy_index)
+            if consume_mode == ConsumeMode.Add and code_line_added_in_add_counter > 0:
+                # for ind in range(end_add_index + 1, len(lines)):
+                #     if is_code_line(lines[ind]):
+                #         rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                #         abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                #         if abs_buggy_index not in code_lines:
+                #             code_lines.append(abs_buggy_index)
+                #         break
+
+                rel_diff_buggy_start_add_index = diff_index_to_buggy_index(lines, start_add_index)
+                rel_diff_buggy_before_add_index = rel_diff_buggy_start_add_index - 1
+                abs_file_buggy_before_add_line_num = patch_part_starting_line + rel_diff_buggy_before_add_index
+                abs_file_buggy_before_add_index = abs_file_buggy_before_add_line_num - 1
+                for ind in range(abs_file_buggy_before_add_index + 1, len(buggy_content_lines)):
+                    # lxt = buggy_content_lines[ind]
+                    if is_code_line(buggy_content_lines[ind]):
+                        # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                        # abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                        file_line_num = ind + 1
+                        if file_line_num not in code_lines:
+                            code_lines.append(file_line_num)
                         break
 
-                for ind in range(start_add_index - 1, -1, -1):
-                    if is_code_line(lines[ind]):
-                        rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                        abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                        if abs_buggy_index not in code_extended_lines and abs_buggy_index not in code_lines:
-                            code_extended_lines.append(abs_buggy_index)
+                # for ind in range(start_add_index - 1, -1, -1):
+                #     if is_code_line(lines[ind]):
+                #         rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                #         abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                #         if abs_buggy_index not in code_extended_lines and abs_buggy_index not in code_lines:
+                #             code_extended_lines.append(abs_buggy_index)
+                #         break
+
+                for ind in range(abs_file_buggy_before_add_index, -1, -1):
+                    if is_code_line(buggy_content_lines[ind]):
+                        # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                        # abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                        file_line_num = ind + 1
+                        if file_line_num not in code_extended_lines and file_line_num not in code_lines:
+                            code_extended_lines.append(file_line_num)
                         break
 
             consume_mode = ConsumeMode.Normal
             start_add_index = None
             end_add_index = None
+            code_line_added_in_add_counter = 0
 
     return code_lines, code_extended_lines
 
@@ -157,7 +183,7 @@ def get_file_ground_truth(patch: str, buggy_content: str) -> Tuple[List[int], Li
     code_lines = []
     code_extended_lines = []
 
-    buggy_content_lines = buggy_content.splitlines() if buggy_content is not None else None
+    buggy_content_lines = buggy_content.splitlines()
     patch_parts = get_patch_parts(patch)
     for patch_part in patch_parts:
         meta_info_line = patch_part[0]
@@ -216,7 +242,7 @@ def main():
     for benchmark_name, benchmark_items in CORRECT.items():
         for bug_number in benchmark_items["ACCEPTED"]:
 
-            # if benchmark_name != "pandas":
+            # if benchmark_name != "keras" or bug_number != 19:
             #     continue
 
             print(benchmark_name, bug_number)
