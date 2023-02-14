@@ -64,6 +64,27 @@ def diff_index_to_buggy_index(lines: List[str],
 def consume(lines: List[str],
             patch_part_starting_line: int,
             buggy_content_lines: Optional[List[str]]) -> Tuple[List[int], List[int]]:
+    """
+    This function implements a state machine that consumes diffs
+    to figure out which lines need to be included in
+    the ground truth (i.e., code_lines). It looks for
+    three cases:
+
+    1. one or more minus (-) signs, which means remove.
+    they should all be included in the ground truth.
+
+    2. One or more plus (+) signs, proceeding one or more minus
+    signs which means edit. In this case, only the removed lines
+    are included in the ground truth.
+
+    3. One or more plus signs with no minus signs
+    before them, which means add.
+    In this case, the code line (not empty or comment lines) coming
+    right after the plus signs is added to the ground truth.
+    We also add the code line before the plus signs to the
+    extended version of the ground truth (i.e., code_extended_lines).
+    """
+
     code_lines = []
     code_extended_lines = []
     consume_mode = ConsumeMode.Normal
