@@ -71,7 +71,8 @@ def consume(lines: List[str],
     start_add_index = None
     end_add_index = None
 
-    none_code_line_added_in_edit_counter = 0
+    none_code_line_removed_in_edit_counter = 0
+    code_line_added_in_edit_counter = 0
 
     for index, line in enumerate(lines):
         if line.startswith("-"):
@@ -83,11 +84,11 @@ def consume(lines: List[str],
             if abs_buggy_index not in code_lines:
                 code_lines.append(abs_buggy_index)
                 if not is_code_line(line[1:]):
-                    none_code_line_added_in_edit_counter += 1
+                    none_code_line_removed_in_edit_counter += 1
         elif line.startswith("+"):
             if consume_mode == ConsumeMode.Normal:
                 consume_mode = ConsumeMode.Add
-            elif consume_mode == ConsumeMode.Remove or consume_mode == ConsumeMode.Edit:
+            elif consume_mode == ConsumeMode.Remove:
                 consume_mode = ConsumeMode.Edit
                 # Ignore the added lines.
 
@@ -95,11 +96,18 @@ def consume(lines: List[str],
                 if start_add_index is None:
                     start_add_index = index
                 end_add_index = index
+            elif consume_mode == ConsumeMode.Edit:
+                if is_code_line(line[1:]):
+                    code_line_added_in_edit_counter += 1
         else:
             if consume_mode == ConsumeMode.Edit:
-                if none_code_line_added_in_edit_counter == len(code_lines):
+                if (none_code_line_removed_in_edit_counter == len(code_lines) and
+                        code_line_added_in_edit_counter != 0):
                     print("Manual check! Edit none code!")
-            none_code_line_added_in_edit_counter = 0
+
+            none_code_line_removed_in_edit_counter = 0
+            code_line_added_in_edit_counter = 0
+
             if consume_mode == ConsumeMode.Add:
                 for ind in range(end_add_index + 1, len(lines)):
                     if is_code_line(lines[ind]):
