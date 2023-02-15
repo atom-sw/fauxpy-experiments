@@ -126,12 +126,10 @@
                "LINES": [
                     2115,
                     2116,
-                    2465,
-                    2954
+                    2465
                ],
                "EXTENDED_LINES": [
-                    2462,
-                    2952
+                    2462
                ]
           }
      ],
@@ -346,7 +344,6 @@
                ],
                "EXTENDED_LINES": [
                     1970,
-                    2701,
                     2704,
                     2712,
                     2735
@@ -1091,24 +1088,14 @@
                "LINES": [
                     961,
                     967,
-                    979,
                     980,
                     981,
-                    987,
-                    1024,
-                    1027,
                     1028,
-                    1029,
-                    1031
+                    1029
                ],
                "EXTENDED_LINES": [
                     960,
-                    966,
-                    978,
-                    984,
-                    1019,
-                    1026,
-                    1030
+                    966
                ]
           }
      ],
@@ -1176,7 +1163,8 @@
                     420
                ],
                "EXTENDED_LINES": [
-                    8
+                    8,
+                    58
                ]
           },
           {
@@ -1278,7 +1266,6 @@
                     64,
                     65,
                     66,
-                    68,
                     69,
                     76,
                     79,
@@ -1298,7 +1285,6 @@
                ],
                "EXTENDED_LINES": [
                     56,
-                    67,
                     74,
                     829,
                     1222,
@@ -1893,9 +1879,7 @@
                     238,
                     243
                ],
-               "EXTENDED_LINES": [
-                    230
-               ]
+               "EXTENDED_LINES": []
           }
      ],
      "pandas:14": [
@@ -2098,7 +2082,6 @@
                "FILE_NAME": "pandas/core/arrays/interval.py",
                "LINES": [
                     545,
-                    548,
                     549,
                     550,
                     551,
@@ -2163,7 +2146,6 @@
           {
                "FILE_NAME": "pandas/core/resample.py",
                "LINES": [
-                    1425,
                     1431
                ],
                "EXTENDED_LINES": []
@@ -2389,6 +2371,7 @@
                     11,
                     18,
                     35,
+                    107,
                     431
                ],
                "EXTENDED_LINES": [
@@ -2401,7 +2384,8 @@
                "FILE_NAME": "pandas/core/indexes/datetimes.py",
                "LINES": [
                     10,
-                    13
+                    13,
+                    304
                ],
                "EXTENDED_LINES": [
                     299
@@ -2412,6 +2396,7 @@
                "LINES": [
                     12,
                     27,
+                    304,
                     457,
                     458,
                     459,
@@ -2450,12 +2435,8 @@
      "pandas:46": [
           {
                "FILE_NAME": "pandas/core/indexes/multi.py",
-               "LINES": [
-                    568
-               ],
-               "EXTENDED_LINES": [
-                    566
-               ]
+               "LINES": [],
+               "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "pandas/core/reshape/util.py",
@@ -2864,11 +2845,10 @@
                     892,
                     893,
                     894,
-                    896,
                     897
                ],
                "EXTENDED_LINES": [
-                    895
+                    896
                ]
           }
      ],
@@ -2916,14 +2896,12 @@
                "FILE_NAME": "pandas/core/indexes/period.py",
                "LINES": [
                     489,
-                    570,
                     571,
                     572,
                     577,
                     582
                ],
                "EXTENDED_LINES": [
-                    569,
                     580
                ]
           }
@@ -3239,7 +3217,8 @@
                     261,
                     262,
                     489,
-                    490
+                    490,
+                    656
                ],
                "EXTENDED_LINES": [
                     651
@@ -3634,12 +3613,9 @@
           {
                "FILE_NAME": "pandas/core/reshape/pivot.py",
                "LINES": [
-                    264,
                     266
                ],
-               "EXTENDED_LINES": [
-                    263
-               ]
+               "EXTENDED_LINES": []
           }
      ],
      "pandas:120": [
@@ -3742,7 +3718,6 @@
           {
                "FILE_NAME": "pandas/core/strings.py",
                "LINES": [
-                    3404,
                     3409,
                     3415,
                     3421,
@@ -3754,7 +3729,6 @@
                     3457
                ],
                "EXTENDED_LINES": [
-                    3403,
                     3408,
                     3414,
                     3420,
@@ -3770,14 +3744,18 @@
      "pandas:125": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
-               "LINES": [],
+               "LINES": [
+                    2477
+               ],
                "EXTENDED_LINES": [
                     2471
                ]
           },
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
-               "LINES": [],
+               "LINES": [
+                    2932
+               ],
                "EXTENDED_LINES": [
                     2925
                ]
@@ -3865,12 +3843,8 @@
           },
           {
                "FILE_NAME": "pandas/core/series.py",
-               "LINES": [
-                    3991
-               ],
-               "EXTENDED_LINES": [
-                    3989
-               ]
+               "LINES": [],
+               "EXTENDED_LINES": []
           }
      ],
      "pandas:133": [
@@ -4289,7 +4263,9 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/period.py",
-               "LINES": [],
+               "LINES": [
+                    180
+               ],
                "EXTENDED_LINES": [
                     175
                ]
@@ -4604,12 +4580,8 @@
           },
           {
                "FILE_NAME": "thefuck/shells/fish.py",
-               "LINES": [
-                    17
-               ],
-               "EXTENDED_LINES": [
-                    16
-               ]
+               "LINES": [],
+               "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "thefuck/shells/zsh.py",
@@ -4711,12 +4683,10 @@
                "FILE_NAME": "thefuck/utils.py",
                "LINES": [
                     5,
-                    179,
                     183
                ],
                "EXTENDED_LINES": [
-                    4,
-                    178
+                    4
                ]
           }
      ],
@@ -4772,7 +4742,6 @@
                "FILE_NAME": "thefuck/rules/fix_file.py",
                "LINES": [
                     3,
-                    7,
                     23,
                     26,
                     27,
@@ -4784,7 +4753,6 @@
                     66
                ],
                "EXTENDED_LINES": [
-                    4,
                     29,
                     56
                ]
