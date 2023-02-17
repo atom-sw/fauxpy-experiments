@@ -8,12 +8,8 @@ def number_id(filename: str):
 
 def get_pred_for_select(item):
     return (
-            "mbfl" in item and
-            "statement" in item and
-            "keras" not in item and
-            "pandas" not in item and
-            "sanic" not in item and
-            "spacy" not in item
+            "ps" in item and
+            "statement" in item
     )
 
 
@@ -39,6 +35,8 @@ def main():
     selected = list(filter(lambda x: get_pred_for_select(x.name),
                            bash_scripts))
     selected.sort()
+
+    # print(len(selected))
 
     # vertical_print(selected)
     horizontal_print(selected)
