@@ -296,9 +296,6 @@ def fixed_to_buggy_map(patch_parts, fixed_content_line_numbers):
             f_to_b_map[fixed_line] = fixed_line - delta
             last_seen_fixed_line = fixed_line
 
-        # c_1_m = list(f_to_b_map.items())[-1]
-        # print(c_1_m)
-
         lines = patch_part[1:]
         rem_line_num = 0
         for patch_index, patch_line in enumerate(lines):
@@ -310,18 +307,11 @@ def fixed_to_buggy_map(patch_parts, fixed_content_line_numbers):
                 delta -= 1
                 rem_line_num += 1
             else:
-                # fixed_line = patch_index - rem_line_num + starting_fixed_line
                 f_to_b_map[fixed_line] = fixed_line - delta
                 last_seen_fixed_line = fixed_line
 
-        # c_1_m = list(f_to_b_map.items())[-1]
-        # print(c_1_m)
-
     for fixed_line in range(last_seen_fixed_line + 1, fixed_content_line_numbers + 1):
         f_to_b_map[fixed_line] = fixed_line - delta
-
-    # c_1_m = list(f_to_b_map.items())[-1]
-    # print(c_1_m)
 
     return f_to_b_map
 
@@ -335,9 +325,6 @@ def map_check(fixed_buggy_map: Dict[int, int],
     for key, value in fixed_buggy_map.items():
         buggy_line = buggy_content_lines[value - 1]
         fixed_line = fixed_content_lines[key - 1]
-        if fixed_line != buggy_line:
-            print(key, fixed_line)
-            print(value, buggy_line)
         assert fixed_line == buggy_line
 
 
