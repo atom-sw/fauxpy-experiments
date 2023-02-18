@@ -207,12 +207,12 @@ def get_diff_commit(benchmark_name: str,
             python_none_test_files = pickle.load(file)
         return python_none_test_files
 
-    repo_name, fixed_commit_number, buggy_commit_info = get_commit_info(benchmark_name, bug_num)
+    repo_name, fixed_commit_info, buggy_commit_info = get_commit_info(benchmark_name, bug_num)
 
     g = Github(GITHUB_TOKEN)
     repo = g.get_repo(repo_name)
     # repo = api_wait_search(g, g.get_repo, repo_name)
-    fixed_commit = repo.get_commit(fixed_commit_number)
+    fixed_commit = repo.get_commit(fixed_commit_info)
 
     python_none_test_files = list(filter(lambda x:
                                          x.filename.endswith(".py") and
@@ -222,6 +222,7 @@ def get_diff_commit(benchmark_name: str,
 
     for ind, file in enumerate(python_none_test_files):
         filename = file.filename
+        fixed_content = repo.get_contents(filename, ref=fixed_commit_info).decoded_content.decode('utf-8')
         try:
             buggy_content = repo.get_contents(filename, ref=buggy_commit_info).decoded_content.decode('utf-8')
         except UnknownObjectException:
@@ -229,9 +230,10 @@ def get_diff_commit(benchmark_name: str,
             buggy_content = ""
         except GithubException:
             print("Using sha of the fixed version!")
-            buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_number}^").decoded_content.decode('utf-8')
+            buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_info}^").decoded_content.decode('utf-8')
 
         python_none_test_files[ind].buggy_content = buggy_content
+        python_none_test_files[ind].fixed_content = fixed_content
 
     if not os.path.exists(Path(CACHE_DIR_NAME)):
         os.mkdir(CACHE_DIR_NAME)
