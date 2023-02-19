@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Tuple, List, Any, Dict
 
 import common
-from ast_manager import ScopeManager
+from ast_manager import AddModeManager
 
 CORRECT = {}
 PATCH_INFO_FILE_NAME: str = "ground_truth_info.json"
@@ -122,7 +122,7 @@ def is_docstring(buggy_content: str,
     return is_that
 
 
-def consume(lines: List[str],
+def consume(patch_part_lines: List[str],
             patch_part_starting_buggy_line: int,
             patch_part_starting_fixed_line: int,
             buggy_content: str,
@@ -162,12 +162,12 @@ def consume(lines: List[str],
     code_line_added_in_edit_counter = 0
     code_line_added_in_add_counter = 0
 
-    for index, line in enumerate(lines):
+    for index, line in enumerate(patch_part_lines):
         if line.startswith("-"):
             assert consume_mode == ConsumeMode.Normal or consume_mode == ConsumeMode.Remove
 
             consume_mode = ConsumeMode.Remove
-            rel_buggy_index = diff_index_to_buggy_index(lines, index)
+            rel_buggy_index = diff_index_to_buggy_index(patch_part_lines, index)
             abs_buggy_index = rel_buggy_index + patch_part_starting_buggy_line
             if abs_buggy_index not in code_lines:
                 code_lines.append(abs_buggy_index)
@@ -206,14 +206,12 @@ def consume(lines: List[str],
                 #             code_lines.append(abs_buggy_index)
                 #         break
 
-                rel_diff_fixed_start_add_index = diff_index_to_fixed_index(lines, start_add_diff_index)
-                abs_file_fixed_start_add_index = rel_diff_fixed_start_add_index + patch_part_starting_fixed_line
-                rel_diff_fixed_end_add_index = diff_index_to_fixed_index(lines, end_add_diff_index)
-                abs_diff_fixed_end_add_index = rel_diff_fixed_end_add_index + patch_part_starting_fixed_line
+                rel_diff_fixed_start_add_index = diff_index_to_fixed_index(patch_part_lines, start_add_diff_index)
+                abs_file_fixed_start_add_line_num = rel_diff_fixed_start_add_index + patch_part_starting_fixed_line
+                rel_diff_fixed_end_add_index = diff_index_to_fixed_index(patch_part_lines, end_add_diff_index)
+                abs_diff_fixed_end_add_line_num = rel_diff_fixed_end_add_index + patch_part_starting_fixed_line
 
-                print(abs_file_fixed_start_add_index, abs_diff_fixed_end_add_index)
-
-                rel_diff_buggy_start_add_index = diff_index_to_buggy_index(lines, start_add_diff_index)
+                rel_diff_buggy_start_add_index = diff_index_to_buggy_index(patch_part_lines, start_add_diff_index)
                 # rel_diff_buggy_end_add_index = diff_index_to_buggy_index(lines, end_add_diff_index)
                 # abs_file_buggy_start_add_line_num = patch_part_starting_line + rel_diff_buggy_start_add_index
                 # abs_file_buggy_end_add_line_num = patch_part_starting_line + rel_diff_buggy_end_add_index
@@ -223,9 +221,15 @@ def consume(lines: List[str],
 
                 # assert abs_file_buggy_start_add_line_num == abs_file_buggy_end_add_line_num == abs_file_buggy_before_add_line_num + 1
 
-                scope_range_obj = ScopeManager(buggy_content,
-                                               abs_file_buggy_before_add_line_num)
-                scope_lines = scope_range_obj.get_sorted_scope_lines()
+                add_mode_manager_object = AddModeManager(buggy_content,
+                                                         fixed_content,
+                                                         abs_file_fixed_start_add_line_num,
+                                                         abs_diff_fixed_end_add_line_num,
+                                                         fixed_buggy_map)
+                abs_buggy_before_add_line_num, abs_buggy_after_add_line_num = add_mode_manager_object.get_add_mode_ground_truth()
+
+                scope_lines = add_mode_manager_object.get_sorted_scope_lines()
+
                 if len(scope_lines) == 0:
                     print("Scope empty!")
 
