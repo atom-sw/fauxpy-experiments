@@ -1,5 +1,10 @@
 # First round selection
 
+*Note: the Python scripts in this directory are tested on Python 3.9.
+Due to extensive usage of Python's AST library, which changes from
+one Python version to another one, these scripts might not work
+properly on other versions of Python.* 
+
 ## Purpose
 
 The purpose of this step is to produce two files. The first file is 
