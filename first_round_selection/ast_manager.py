@@ -27,9 +27,6 @@ class ScopeItem:
     def get_type(self):
         return self.node_type
 
-    # def get_scope_lines(self):
-    #     return list(range(self.node_range[0], self.node_range[1] + 1))
-
 
 class AddModeManager:
 
@@ -45,48 +42,89 @@ class AddModeManager:
         self.__fixed_to_buggy_map = fixed_to_buggy_map
         self.__buggy_content_ast = ast.parse(buggy_content)
         self.__fixed_content_ast = ast.parse(fixed_content)
-        # self.__buggy_content_line_num = len(buggy_content.splitlines())
+        self.__buggy_content_line_num = len(buggy_content.splitlines())
         self.__fixed_content_line_num = len(fixed_content.splitlines())
 
     def get_add_mode_ground_truth(self) -> Tuple[int, int]:
-        start_add_line_fixed_scope = self.get_scope_line_numbers(self.__fixed_content_ast,
-                                                                 self.__fixed_content_line_num,
-                                                                 self.__fixed_start_add_line_num)
-        end_add_line_fixed_scope = self.get_scope_line_numbers(self.__fixed_content_ast, self.__fixed_content_line_num,
-                                                               self.__fixed_end_add_line_num)
-        start_add_line_fixed_scope.sort()
-        end_add_line_fixed_scope.sort()
+        before_start_add_line = -1
+        after_end_add_line = -1
 
+        # Finding the scope of the starting and ending added lines in fixed version.
+        start_add_line_fixed_scope = self.get_sorted_scope_line_numbers(self.__fixed_content_ast,
+                                                                        self.__fixed_content_line_num,
+                                                                        self.__fixed_start_add_line_num)
+        end_add_line_fixed_scope = self.get_sorted_scope_line_numbers(self.__fixed_content_ast,
+                                                                      self.__fixed_content_line_num,
+                                                                      self.__fixed_end_add_line_num)
+
+        # Getting the scope of start add line in the fixed version.
         before_start_add_line_fixed_scope = list(
             filter(lambda x: x < self.__fixed_start_add_line_num, start_add_line_fixed_scope))
+
+        # Getting the scope of end add line in the fixed version.
         after_end_add_line_fixed_scope = list(
             filter(lambda x: x > self.__fixed_end_add_line_num, end_add_line_fixed_scope))
 
-        before_start_add_line_buggy_scope = self.map_fixed_scope_to_buggy_scope(before_start_add_line_fixed_scope)
-        tmp = before_start_add_line_buggy_scope.copy()
-        tmp.reverse()
-        before_start_add_line_selected = self.select_localizable_line_number(tmp)
+        if len(before_start_add_line_fixed_scope) != 0:
+            # Finding a line before the starting added line
+            # in the fixed version, within its scope and
+            # mapping it to the buggy version.
+            tmp = before_start_add_line_fixed_scope.copy()
+            tmp.reverse()
+            buggy_one_line_before_start_add_line_num = -1
+            for item in tmp:
+                if item in self.__fixed_to_buggy_map.keys():
+                    buggy_one_line_before_start_add_line_num = self.__fixed_to_buggy_map[item]
+                    break
+            assert buggy_one_line_before_start_add_line_num != -1
 
-        after_end_add_line_buggy_scope = self.map_fixed_scope_to_buggy_scope(after_end_add_line_fixed_scope)
-        after_end_add_line_selected = self.select_localizable_line_number(after_end_add_line_buggy_scope)
+            # Finding the scope of the before line in the buggy version.
+            one_line_before_start_add_line_buggy_scope = self.get_sorted_scope_line_numbers(self.__buggy_content_ast,
+                                                                                            self.__buggy_content_line_num,
+                                                                                            buggy_one_line_before_start_add_line_num)
 
-        return before_start_add_line_selected, after_end_add_line_selected
+            # Getting the scope before start add line in the buggy version.
+            before_start_add_line_buggy_scope = list(
+                filter(lambda x: x <= buggy_one_line_before_start_add_line_num,
+                       one_line_before_start_add_line_buggy_scope))
+
+            # Find a localizable line before start add line in the buggy version.
+            tmp = before_start_add_line_buggy_scope.copy()
+            tmp.reverse()
+            before_start_add_line_selected = self.select_localizable_line_number(tmp)
+            before_start_add_line = before_start_add_line_selected
+
+        if len(after_end_add_line_fixed_scope) != 0:
+            # Finding a line after the ending added line
+            # in the fixed version, within its scope and
+            # mapping it to the buggy version.
+            buggy_one_line_after_end_add_line_num = -1
+            for item in after_end_add_line_fixed_scope:
+                if item in self.__fixed_to_buggy_map.keys():
+                    buggy_one_line_after_end_add_line_num = self.__fixed_to_buggy_map[item]
+                    break
+            assert buggy_one_line_after_end_add_line_num != -1
+
+            # Finding the scope of the after line in the buggy version.
+            one_line_after_end_add_line_buggy_scope = self.get_sorted_scope_line_numbers(self.__buggy_content_ast,
+                                                                                         self.__buggy_content_line_num,
+                                                                                         buggy_one_line_after_end_add_line_num)
+
+            # Getting the scope after end add line in the buggy version.
+            after_end_add_line_buggy_scope = list(
+                filter(lambda x: x >= buggy_one_line_after_end_add_line_num, one_line_after_end_add_line_buggy_scope))
+
+            # Find a localizable line after end add line in the buggy version.
+            after_end_add_line_selected = self.select_localizable_line_number(after_end_add_line_buggy_scope)
+            after_end_add_line = after_end_add_line_selected
+
+        return before_start_add_line, after_end_add_line
 
     def select_localizable_line_number(self, line_numbers: List) -> int:
-        # TODO: HERE
         executable_line_object = ExecutableLine(self.__buggy_content_lines, self.__buggy_content_ast)
         for line in line_numbers:
             if executable_line_object.is_executable(line):
                 return line
-
-    def map_fixed_scope_to_buggy_scope(self, start_add_line_fixed_scope):
-        buggy_scope = []
-
-        for line_number in start_add_line_fixed_scope:
-            if line_number in self.__fixed_to_buggy_map.keys():
-                buggy_scope.append(self.__fixed_to_buggy_map[line_number])
-
-        return buggy_scope
 
     @staticmethod
     def get_high_level_none_decl_lines(ast_node: ast.AST,
@@ -101,7 +139,7 @@ class AddModeManager:
         return high_level_none_decl_line_numbers
 
     @staticmethod
-    def get_scope_line_numbers(file_ast_tree, file_line_num: int, line_number) -> List[int]:
+    def get_sorted_scope_line_numbers(file_ast_tree, file_line_num: int, line_number) -> List[int]:
         scope_finder_visitor = ScopeFinderVisitor(line_number)
         scope_finder_visitor.visit(file_ast_tree)
         scopes = scope_finder_visitor.get_scopes()
@@ -122,6 +160,8 @@ class AddModeManager:
                                                                                          1,
                                                                                          file_line_num)
             scope_line_numbers = high_level_class_scope_lines
+
+            scope_line_numbers.sort()
 
         return scope_line_numbers
 
@@ -222,6 +262,7 @@ class ExecutableLine:
     def is_executable(self, line):
         return (not self.is_comment(line) and
                 not self.is_empty(line) and
+                not self.is_none_node(line) and
                 not self.is_decl(line) and
                 not self.is_docstring(line) and
                 not self.is_decorator(line))
@@ -232,13 +273,18 @@ class ExecutableLine:
     def is_empty(self, line):
         return self.file_lines[line - 1].strip() == ""
 
-    def is_decl(self, line):
+    def is_none_node(self, line):
         decl_visitor = LineFinderVisitor(line)
         decl_visitor.visit(self.file_ast)
         line_node = decl_visitor.get_line_node()
-        line_string = self.file_lines[line - 1]
         if line_node is None:
-            x = 12
+            return True
+        return False
+
+    def is_decl(self, line):
+        return (self.file_lines[line - 1].strip().startswith("def") or
+                self.file_lines[line - 1].strip().startswith("class") or
+                self.file_lines[line - 1].strip().startswith("async def"))
 
     def is_docstring(self, line):
         pass
