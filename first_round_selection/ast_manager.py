@@ -125,6 +125,7 @@ class AddModeManager:
         for line in line_numbers:
             if executable_line_object.is_executable(line):
                 return line
+        return -1
 
     @staticmethod
     def get_high_level_none_decl_lines(ast_node: ast.AST,
