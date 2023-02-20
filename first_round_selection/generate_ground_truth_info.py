@@ -1,8 +1,7 @@
-import ast
 import re
 from enum import Enum
 from pathlib import Path
-from typing import Tuple, List, Any, Dict
+from typing import Tuple, List, Dict
 
 import common
 from ast_manager import AddModeManager
@@ -61,25 +60,6 @@ def is_code_line(line: str):
             not line_strip.startswith('"""'))
 
 
-def is_decl(line: str):
-    """
-    FauxPy uses Coverage.py, which does not report
-    function and class declarations
-    and decorators in its execution trace,
-    which is the case for most
-    fault localization tools. Thus,
-    for the add mode, if we see any of these,
-    we skip them and keep the code
-    line before (ground truth extension)
-    or after them (ground truth).
-    """
-
-    line_strip = line.strip()
-    return (line_strip.startswith("def") or
-            line_strip.startswith("class") and
-            line_strip.startswith('@'))
-
-
 def diff_index_to_buggy_index(lines: List[str],
                               diff_index: int):
     offset = 0
@@ -98,28 +78,6 @@ def diff_index_to_fixed_index(lines: List[str],
             offset += 1
 
     return diff_index - offset
-
-
-def is_docstring(buggy_content: str,
-                 file_line_num: int):
-    class DocstringVisitor(ast.NodeVisitor):
-        def __init__(self, line_num: int):
-            self.line_num = line_num
-            self.line_num_is_docstring = False
-
-        def visit_Expr(self, node: ast.Expr) -> Any:
-            if node.lineno <= self.line_num <= node.end_lineno:
-                self.line_num_is_docstring = True
-            ast.NodeVisitor.generic_visit(self, node)
-
-        def is_docstring(self):
-            return self.line_num_is_docstring
-
-    ast_tree = ast.parse(buggy_content)
-    visitor = DocstringVisitor(file_line_num)
-    visitor.visit(ast_tree)
-    is_that = visitor.is_docstring()
-    return is_that
 
 
 def consume(patch_part_lines: List[str],
@@ -155,8 +113,6 @@ def consume(patch_part_lines: List[str],
 
     start_add_diff_index = None
     end_add_diff_index = None
-
-    buggy_content_lines = buggy_content.splitlines()
 
     none_code_line_removed_in_edit_counter = 0
     code_line_added_in_edit_counter = 0
@@ -203,16 +159,6 @@ def consume(patch_part_lines: List[str],
                 rel_diff_fixed_end_add_index = diff_index_to_fixed_index(patch_part_lines, end_add_diff_index)
                 abs_diff_fixed_end_add_line_num = rel_diff_fixed_end_add_index + patch_part_starting_fixed_line
 
-                rel_diff_buggy_start_add_index = diff_index_to_buggy_index(patch_part_lines, start_add_diff_index)
-                # rel_diff_buggy_end_add_index = diff_index_to_buggy_index(lines, end_add_diff_index)
-                # abs_file_buggy_start_add_line_num = patch_part_starting_line + rel_diff_buggy_start_add_index
-                # abs_file_buggy_end_add_line_num = patch_part_starting_line + rel_diff_buggy_end_add_index
-                rel_diff_buggy_before_add_index = rel_diff_buggy_start_add_index - 1
-                abs_file_buggy_before_add_line_num = patch_part_starting_buggy_line + rel_diff_buggy_before_add_index
-                abs_file_buggy_before_add_index = abs_file_buggy_before_add_line_num - 1
-
-                # assert abs_file_buggy_start_add_line_num == abs_file_buggy_end_add_line_num == abs_file_buggy_before_add_line_num + 1
-
                 add_mode_manager_object = AddModeManager(buggy_content,
                                                          fixed_content,
                                                          abs_file_fixed_start_add_line_num,
@@ -223,51 +169,6 @@ def consume(patch_part_lines: List[str],
                     code_lines.append(abs_buggy_after_add_line_num)
                 if abs_buggy_before_add_line_num != -1 and abs_buggy_before_add_line_num not in code_extended_lines:
                     code_extended_lines.append(abs_buggy_before_add_line_num)
-
-                # scope_lines = add_mode_manager_object.get_sorted_scope_lines()
-                #
-                # if len(scope_lines) == 0:
-                #     print("Scope empty!")
-
-                # for ind in range(abs_file_buggy_before_add_index + 1, len(buggy_content_lines)):
-                # for file_line_num in scope_lines:
-                #     ind = file_line_num - 1
-                #     if ind <= abs_file_buggy_before_add_index:
-                #         continue
-                #     # lxt = buggy_content_lines[ind]
-                #     # file_line_num = ind + 1
-                #     if (is_code_line(buggy_content_lines[ind]) and
-                #             not is_decl(buggy_content_lines[ind]) and
-                #             not is_docstring(buggy_content, file_line_num)):
-                #         # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                #         # abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                #         if file_line_num not in code_lines:
-                #             code_lines.append(file_line_num)
-                #         break
-
-                # for ind in range(start_add_diff_index - 1, -1, -1):
-                #     if is_code_line(lines[ind]):
-                #         rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                #         abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                #         if abs_buggy_index not in code_extended_lines and abs_buggy_index not in code_lines:
-                #             code_extended_lines.append(abs_buggy_index)
-                #         break
-
-                # scope_lines.reverse()
-                # # for ind in range(abs_file_buggy_before_add_index, -1, -1):
-                # for file_line_num in scope_lines:
-                #     ind = file_line_num - 1
-                #     if ind > abs_file_buggy_before_add_index:
-                #         continue
-                #     # file_line_num = ind + 1
-                #     if (is_code_line(buggy_content_lines[ind]) and
-                #             not is_decl(buggy_content_lines[ind]) and
-                #             not is_docstring(buggy_content, file_line_num)):
-                #         # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                #         # abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                #         if file_line_num not in code_extended_lines and file_line_num not in code_lines:
-                #             code_extended_lines.append(file_line_num)
-                #         break
 
             consume_mode = ConsumeMode.Normal
             start_add_diff_index = None
