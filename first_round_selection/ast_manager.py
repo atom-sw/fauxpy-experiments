@@ -1,5 +1,5 @@
 import ast
-from _ast import FunctionDef, AsyncFunctionDef, ClassDef
+from _ast import FunctionDef, AsyncFunctionDef, ClassDef, Expr
 from enum import Enum
 from typing import Tuple, List, Any, Dict, Optional
 
@@ -287,7 +287,17 @@ class ExecutableLine:
                 self.file_lines[line - 1].strip().startswith("async def"))
 
     def is_docstring(self, line):
-        pass
+        line_text = self.file_lines[line - 1]
+        if (line_text.startswith("'''") or
+                line_text.startswith('"""') or
+                line_text.endswith("'''") or
+                line_text.endswith('"""')):
+            return True
+
+        docstring_visitor = DocstringVisitor(line)
+        docstring_visitor.visit(self.file_ast)
+        temp = docstring_visitor.is_docstring()
+        return temp
 
     def is_decorator(self, line):
         return self.file_lines[line - 1].strip().startswith("@")
@@ -317,3 +327,20 @@ class LineFinderVisitor(ast.NodeVisitor):
                 max_col_offset = item.end_col_offset - item.col_offset
 
         return self.found_nodes[max_index]
+
+
+class DocstringVisitor(ast.NodeVisitor):
+    def __init__(self,
+                 line: int):
+        self.__line = line
+        self.__is_string = False
+
+    def visit_Expr(self, node: Expr) -> Any:
+        if node.lineno <= self.__line <= node.end_lineno:
+            if (hasattr(node, "value") and
+                    isinstance(node.value, ast.Constant) and
+                    hasattr(node.value, "value")):
+                self.__is_string = True
+
+    def is_docstring(self):
+        return self.__is_string
