@@ -198,14 +198,6 @@ def consume(patch_part_lines: List[str],
             code_line_added_in_edit_counter = 0
 
             if consume_mode == ConsumeMode.Add and code_line_added_in_add_counter > 0:
-                # for ind in range(end_add_diff_index + 1, len(lines)):
-                #     if is_code_line(lines[ind]):
-                #         rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                #         abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                #         if abs_buggy_index not in code_lines:
-                #             code_lines.append(abs_buggy_index)
-                #         break
-
                 rel_diff_fixed_start_add_index = diff_index_to_fixed_index(patch_part_lines, start_add_diff_index)
                 abs_file_fixed_start_add_line_num = rel_diff_fixed_start_add_index + patch_part_starting_fixed_line
                 rel_diff_fixed_end_add_index = diff_index_to_fixed_index(patch_part_lines, end_add_diff_index)
@@ -227,27 +219,31 @@ def consume(patch_part_lines: List[str],
                                                          abs_diff_fixed_end_add_line_num,
                                                          fixed_buggy_map)
                 abs_buggy_before_add_line_num, abs_buggy_after_add_line_num = add_mode_manager_object.get_add_mode_ground_truth()
+                if abs_buggy_after_add_line_num != -1 and abs_buggy_after_add_line_num not in code_lines:
+                    code_lines.append(abs_buggy_after_add_line_num)
+                if abs_buggy_before_add_line_num != -1 and abs_buggy_before_add_line_num not in code_extended_lines:
+                    code_extended_lines.append(abs_buggy_before_add_line_num)
 
-                scope_lines = add_mode_manager_object.get_sorted_scope_lines()
-
-                if len(scope_lines) == 0:
-                    print("Scope empty!")
+                # scope_lines = add_mode_manager_object.get_sorted_scope_lines()
+                #
+                # if len(scope_lines) == 0:
+                #     print("Scope empty!")
 
                 # for ind in range(abs_file_buggy_before_add_index + 1, len(buggy_content_lines)):
-                for file_line_num in scope_lines:
-                    ind = file_line_num - 1
-                    if ind <= abs_file_buggy_before_add_index:
-                        continue
-                    # lxt = buggy_content_lines[ind]
-                    # file_line_num = ind + 1
-                    if (is_code_line(buggy_content_lines[ind]) and
-                            not is_decl(buggy_content_lines[ind]) and
-                            not is_docstring(buggy_content, file_line_num)):
-                        # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                        # abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                        if file_line_num not in code_lines:
-                            code_lines.append(file_line_num)
-                        break
+                # for file_line_num in scope_lines:
+                #     ind = file_line_num - 1
+                #     if ind <= abs_file_buggy_before_add_index:
+                #         continue
+                #     # lxt = buggy_content_lines[ind]
+                #     # file_line_num = ind + 1
+                #     if (is_code_line(buggy_content_lines[ind]) and
+                #             not is_decl(buggy_content_lines[ind]) and
+                #             not is_docstring(buggy_content, file_line_num)):
+                #         # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                #         # abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                #         if file_line_num not in code_lines:
+                #             code_lines.append(file_line_num)
+                #         break
 
                 # for ind in range(start_add_diff_index - 1, -1, -1):
                 #     if is_code_line(lines[ind]):
@@ -257,21 +253,21 @@ def consume(patch_part_lines: List[str],
                 #             code_extended_lines.append(abs_buggy_index)
                 #         break
 
-                scope_lines.reverse()
-                # for ind in range(abs_file_buggy_before_add_index, -1, -1):
-                for file_line_num in scope_lines:
-                    ind = file_line_num - 1
-                    if ind > abs_file_buggy_before_add_index:
-                        continue
-                    # file_line_num = ind + 1
-                    if (is_code_line(buggy_content_lines[ind]) and
-                            not is_decl(buggy_content_lines[ind]) and
-                            not is_docstring(buggy_content, file_line_num)):
-                        # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
-                        # abs_buggy_index = rel_buggy_index + patch_part_starting_line
-                        if file_line_num not in code_extended_lines and file_line_num not in code_lines:
-                            code_extended_lines.append(file_line_num)
-                        break
+                # scope_lines.reverse()
+                # # for ind in range(abs_file_buggy_before_add_index, -1, -1):
+                # for file_line_num in scope_lines:
+                #     ind = file_line_num - 1
+                #     if ind > abs_file_buggy_before_add_index:
+                #         continue
+                #     # file_line_num = ind + 1
+                #     if (is_code_line(buggy_content_lines[ind]) and
+                #             not is_decl(buggy_content_lines[ind]) and
+                #             not is_docstring(buggy_content, file_line_num)):
+                #         # rel_buggy_index = diff_index_to_buggy_index(lines, ind)
+                #         # abs_buggy_index = rel_buggy_index + patch_part_starting_line
+                #         if file_line_num not in code_extended_lines and file_line_num not in code_lines:
+                #             code_extended_lines.append(file_line_num)
+                #         break
 
             consume_mode = ConsumeMode.Normal
             start_add_diff_index = None
