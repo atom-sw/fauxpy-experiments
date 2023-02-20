@@ -8,8 +8,11 @@ def number_id(filename: str):
 
 def get_pred_for_select(item):
     return (
-            "ps" in item and
-            "statement" in item
+            "st" in item and
+            "sbfl" not in item and
+            "mbfl" not in item and
+            "ps" not in item and
+            "function" in item
     )
 
 
@@ -36,7 +39,7 @@ def main():
                            bash_scripts))
     selected.sort()
 
-    # print(len(selected))
+    print(len(selected))
 
     # vertical_print(selected)
     horizontal_print(selected)
