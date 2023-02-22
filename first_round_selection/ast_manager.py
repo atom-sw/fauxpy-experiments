@@ -52,10 +52,10 @@ class AddModeManager:
 
         # Finding the scope of the starting and ending added lines in fixed version.
         start_add_line_fixed_scope = self.get_sorted_scope_line_numbers(self.__fixed_content_ast,
-                                                                        self.__fixed_content_line_num,
+                                                                        self.__fixed_content_lines,
                                                                         self.__fixed_start_add_line_num)
         end_add_line_fixed_scope = self.get_sorted_scope_line_numbers(self.__fixed_content_ast,
-                                                                      self.__fixed_content_line_num,
+                                                                      self.__fixed_content_lines,
                                                                       self.__fixed_end_add_line_num)
 
         # Getting the scope of start add line in the fixed version.
@@ -85,7 +85,7 @@ class AddModeManager:
                 # Finding the scope of the before line in the buggy version.
                 none_empty_one_line_before_start_add_line_buggy_scope = self.get_sorted_scope_line_numbers(
                     self.__buggy_content_ast,
-                    self.__buggy_content_line_num,
+                    self.__buggy_content_lines,
                     buggy_one_line_before_start_add_line_num)
 
                 # Getting the scope before start add line in the buggy version.
@@ -115,7 +115,7 @@ class AddModeManager:
             else:
                 # Finding the scope of the after line in the buggy version.
                 one_line_after_end_add_line_buggy_scope = self.get_sorted_scope_line_numbers(self.__buggy_content_ast,
-                                                                                             self.__buggy_content_line_num,
+                                                                                             self.__buggy_content_lines,
                                                                                              buggy_one_line_after_end_add_line_num)
 
                 # Getting the scope after end add line in the buggy version.
@@ -149,7 +149,7 @@ class AddModeManager:
         return high_level_none_decl_line_numbers
 
     @staticmethod
-    def get_sorted_scope_line_numbers(file_ast_tree, file_line_num: int, line_number) -> List[int]:
+    def get_sorted_scope_line_numbers(file_ast_tree: ast.AST, file_lines: List[str], line_number: int) -> List[int]:
         scope_finder_visitor = ScopeFinderVisitor(line_number)
         scope_finder_visitor.visit(file_ast_tree)
         scopes = scope_finder_visitor.get_scopes()
@@ -168,10 +168,16 @@ class AddModeManager:
         else:
             high_level_class_scope_lines = AddModeManager.get_high_level_none_decl_lines(file_ast_tree,
                                                                                          1,
-                                                                                         file_line_num)
+                                                                                         len(file_lines))
             scope_line_numbers = high_level_class_scope_lines
 
             scope_line_numbers.sort()
+
+        if file_lines[line_number - 1].strip().startswith("@"):
+            # For decorators, we trim its scope to only
+            # contain code lines before the decorators that
+            # are not intercepted by other scopes.
+            scope_line_numbers = AddModeManager.get_decorator_trimmed_scope(scope_line_numbers, line_number)
 
         return scope_line_numbers
 
@@ -185,11 +191,22 @@ class AddModeManager:
         scope_len_min_index = AddModeManager.arg_min(scope_len_list)
         return scopes[scope_len_min_index]
 
-    def find_scopes(self):
-        visitor = ScopeFinderVisitor(self.__fixed_start_add_line_num)
-        visitor.visit(self.__fixed_content_ast)
-        scopes = visitor.get_scopes()
-        return scopes
+    @staticmethod
+    def get_decorator_trimmed_scope(scope_line_nums: List[int],
+                                    line_number) -> List[int]:
+        trimmed_scope = []
+        before_decorator_scope_line_nums = list(filter(lambda x: x <= line_number, scope_line_nums))
+        before_decorator_scope_line_nums.reverse()
+        previous_scope_line = before_decorator_scope_line_nums[0]
+        trimmed_scope.append(previous_scope_line)
+        for index in range(1, len(before_decorator_scope_line_nums)):
+            current_scope_line = before_decorator_scope_line_nums[index]
+            if previous_scope_line - current_scope_line == 1:
+                trimmed_scope.append(current_scope_line)
+                previous_scope_line = current_scope_line
+
+        trimmed_scope.reverse()
+        return trimmed_scope
 
 
 class ScopeFinderVisitor(ast.NodeVisitor):
