@@ -113,6 +113,10 @@ the metrics we use in the paper. To generate `ground_truth_info.json`, run the f
 python generate_ground_truth_info.py
 ```
 
+This script also generates the file [empty_ground_truth_info.json](empty_ground_truth_info.json) that contains
+those bugs in BugsInPy for which the computed ground truth is empty. This file is used at the
+next step.
+
 ## Step 5: Time-based selection
 
 Based on some rough estimate of the amount of time each experiment requires and the processing
