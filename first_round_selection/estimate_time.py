@@ -14,10 +14,13 @@ MAX_DAYS = 14
 
 # Constants
 TIMEOUT_FILE = "timeout_info.csv"
+MANUALLY_REMOVED_BUGS_FILE_NAME = "manually_removed_bugs.json"
+
 SBFL = "sbfl"
 MBFL = "mbfl"
 PS = "ps"
 ST = "st"
+
 STATEMENT = "statement"
 FUNCTION = "function"
 
@@ -94,10 +97,24 @@ def num_bug_left():
     return count_of_remaining
 
 
+def replace_items(selected_bugs_info: Dict,
+                  empty_ground_truth_bugs_info: Dict,
+                  manually_removed_bugs_info: Dict):
+    removed_bugs_info = {}
+    items_1 = empty_ground_truth_bugs_info.items()
+    items_2 = manually_removed_bugs_info.items()
+
+    # TODO: Here
+    pass
+
+
 def main():
     global CORRECT_TEST_BUGS_INFO
 
     CORRECT_TEST_BUGS_INFO = common.load_correct_test_bugs()
+    empty_ground_truth_bugs_info = common.load_json_to_dictionary(common.EMPTY_GROUND_TRUTH_FILE_NAME)
+    manually_removed_bugs_info = common.load_json_to_dictionary(MANUALLY_REMOVED_BUGS_FILE_NAME)
+
     selected_bugs_info = {}
 
     for benchmark in CORRECT_TEST_BUGS_INFO.values():
@@ -123,6 +140,8 @@ def main():
         print(bug_left)
         if bug_left == 0:
             break
+
+    replace_items(selected_bugs_info, empty_ground_truth_bugs_info, manually_removed_bugs_info)
 
     needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     print("Final needed time: ", needed_time)
