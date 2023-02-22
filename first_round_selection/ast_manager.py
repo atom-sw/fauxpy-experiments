@@ -1,7 +1,7 @@
 import ast
 from _ast import FunctionDef, AsyncFunctionDef, ClassDef, Expr
 from enum import Enum
-from typing import Tuple, List, Any, Dict, Optional
+from typing import Tuple, List, Any, Dict
 
 
 class ScopeType(Enum):
@@ -182,9 +182,6 @@ class AddModeManager:
         scopes = visitor.get_scopes()
         return scopes
 
-    def get_sorted_scope_lines(self) -> List[int]:
-        return []
-
 
 class ScopeFinderVisitor(ast.NodeVisitor):
     def __init__(self,
@@ -263,10 +260,13 @@ class ExecutableLine:
     def is_executable(self, line):
         return (not self.is_comment(line) and
                 not self.is_empty(line) and
-                not self.is_none_node(line) and
+                # not self.is_none_node(line) and
                 not self.is_decl(line) and
                 not self.is_docstring(line) and
-                not self.is_decorator(line))
+                not self.is_decorator(line) and
+                not self.is_only_brackets(line) and
+                not self.is_else(line) and
+                not self.is_finally(line))
 
     def is_comment(self, line):
         return self.file_lines[line - 1].strip().startswith("#")
@@ -274,13 +274,13 @@ class ExecutableLine:
     def is_empty(self, line):
         return self.file_lines[line - 1].strip() == ""
 
-    def is_none_node(self, line):
-        decl_visitor = LineFinderVisitor(line)
-        decl_visitor.visit(self.file_ast)
-        line_node = decl_visitor.get_line_node()
-        if line_node is None:
-            return True
-        return False
+    # def is_none_node(self, line):
+    #     decl_visitor = LineFinderVisitor(line)
+    #     decl_visitor.visit(self.file_ast)
+    #     line_node = decl_visitor.get_line_node()
+    #     if line_node is None:
+    #         return True
+    #     return False
 
     def is_decl(self, line):
         return (self.file_lines[line - 1].strip().startswith("def") or
@@ -303,31 +303,46 @@ class ExecutableLine:
     def is_decorator(self, line):
         return self.file_lines[line - 1].strip().startswith("@")
 
+    def is_only_brackets(self, line: int):
+        line_text = self.file_lines[line - 1].strip()
+        bracket_count = 0
+        for c in line_text:
+            if c in [",", "[", "(", "{", "}", ")", "]"]:
+                bracket_count += 1
 
-class LineFinderVisitor(ast.NodeVisitor):
-    def __init__(self,
-                 line: int):
-        self.line = line
-        self.found_nodes = []
+        return len(line_text) == bracket_count
 
-    def visit(self, node):
-        if hasattr(node, "lineno") and hasattr(node, "end_lineno"):
-            if node.lineno == node.end_lineno == self.line:
-                self.found_nodes.append(node)
-        self.generic_visit(node)
+    def is_else(self, line):
+        return self.file_lines[line - 1].strip().startswith("else")
 
-    def get_line_node(self) -> Optional[ast.AST]:
-        if len(self.found_nodes) == 0:
-            return None
+    def is_finally(self, line):
+        return self.file_lines[line - 1].strip().startswith("finally")
 
-        max_index = -1
-        max_col_offset = -1
-        for index, item in enumerate(self.found_nodes):
-            if item.end_col_offset - item.col_offset > max_col_offset:
-                max_index = index
-                max_col_offset = item.end_col_offset - item.col_offset
 
-        return self.found_nodes[max_index]
+# class LineFinderVisitor(ast.NodeVisitor):
+#     def __init__(self,
+#                  line: int):
+#         self.line = line
+#         self.found_nodes = []
+#
+#     def visit(self, node):
+#         if hasattr(node, "lineno") and hasattr(node, "end_lineno"):
+#             if node.lineno == node.end_lineno == self.line:
+#                 self.found_nodes.append(node)
+#         self.generic_visit(node)
+#
+#     def get_line_node(self) -> Optional[ast.AST]:
+#         if len(self.found_nodes) == 0:
+#             return None
+#
+#         max_index = -1
+#         max_col_offset = -1
+#         for index, item in enumerate(self.found_nodes):
+#             if item.end_col_offset - item.col_offset > max_col_offset:
+#                 max_index = index
+#                 max_col_offset = item.end_col_offset - item.col_offset
+#
+#         return self.found_nodes[max_index]
 
 
 class DocstringVisitor(ast.NodeVisitor):
