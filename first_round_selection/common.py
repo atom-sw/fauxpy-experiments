@@ -35,6 +35,8 @@ SUBJECT_INFO_DIRECTORY_NAME = "info"
 
 CACHE_DIR_NAME = "cache"
 
+EMPTY_GROUND_TRUTH_FILE_NAME = "empty_ground_truth_info.json"
+
 
 def read_file_content(path) -> str:
     with path.open() as file:

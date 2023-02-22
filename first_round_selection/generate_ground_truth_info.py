@@ -9,7 +9,6 @@ from ast_manager import AddModeManager, ExecutableLine
 
 CORRECT = {}
 GROUND_TRUTH_INFO_FILE_NAME: str = "ground_truth_info.json"
-EMPTY_GROUND_TRUTH_FILE_NAME: str = "empty_ground_truth_info.json"
 
 
 class ConsumeMode(Enum):
@@ -319,7 +318,7 @@ def main():
             ground_truth_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
 
     common.save_object_to_json(ground_truth_info_dict, Path(GROUND_TRUTH_INFO_FILE_NAME))
-    common.save_object_to_json(empty_ground_truth_info_dict, Path(EMPTY_GROUND_TRUTH_FILE_NAME))
+    common.save_object_to_json(empty_ground_truth_info_dict, Path(common.EMPTY_GROUND_TRUTH_FILE_NAME))
 
 
 if __name__ == '__main__':
