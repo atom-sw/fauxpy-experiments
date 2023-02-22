@@ -163,7 +163,8 @@ def consume(patch_part_lines: List[str],
                         abs_buggy_after_add_line_num not in code_lines):
                     code_lines.append(abs_buggy_after_add_line_num)
                 if (abs_buggy_before_add_line_num != -1 and
-                        abs_buggy_before_add_line_num not in code_lines and abs_buggy_before_add_line_num not in code_extended_lines):
+                        abs_buggy_before_add_line_num not in code_lines and
+                        abs_buggy_before_add_line_num not in code_extended_lines):
                     code_extended_lines.append(abs_buggy_before_add_line_num)
 
             consume_mode = ConsumeMode.Normal
@@ -248,8 +249,16 @@ def get_file_ground_truth(patch: str,
         current_code_lines, current_code_extended_lines = consume(lines, starting_buggy_line, starting_fixed_line,
                                                                   buggy_content, fixed_content, fixed_buggy_map)
 
-        code_lines += current_code_lines
-        code_extended_lines += current_code_extended_lines
+        code_lines += list(filter(lambda x: x not in code_lines, current_code_lines))
+        code_extended_lines += list(filter(lambda x: x not in code_lines and x not in code_extended_lines, current_code_extended_lines))
+
+        for item in code_lines:
+            if item in code_extended_lines:
+                code_extended_lines.remove(item)
+
+        code_lines.sort()
+        code_extended_lines.sort()
+
     return code_lines, code_extended_lines
 
 
@@ -293,7 +302,7 @@ def main():
     for benchmark_name, benchmark_items in CORRECT.items():
         for bug_number in benchmark_items["ACCEPTED"]:
 
-            # if benchmark_name != "keras" or bug_number != 28:
+            # if benchmark_name != "keras" or bug_number != 1:
             #     continue
 
             print(benchmark_name, bug_number)

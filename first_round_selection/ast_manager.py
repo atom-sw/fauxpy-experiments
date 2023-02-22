@@ -43,8 +43,6 @@ class AddModeManager:
         self.__fixed_to_buggy_map = fixed_to_buggy_map
         self.__buggy_content_ast = ast.parse(buggy_content)
         self.__fixed_content_ast = ast.parse(fixed_content)
-        self.__buggy_content_line_num = len(buggy_content.splitlines())
-        self.__fixed_content_line_num = len(fixed_content.splitlines())
 
     def get_add_mode_ground_truth(self) -> Tuple[int, int]:
         before_start_add_line = -1
@@ -173,12 +171,6 @@ class AddModeManager:
 
             scope_line_numbers.sort()
 
-        if file_lines[line_number - 1].strip().startswith("@"):
-            # For decorators, we trim its scope to only
-            # contain code lines before the decorators that
-            # are not intercepted by other scopes.
-            scope_line_numbers = AddModeManager.get_decorator_trimmed_scope(scope_line_numbers, line_number)
-
         return scope_line_numbers
 
     @staticmethod
@@ -191,22 +183,14 @@ class AddModeManager:
         scope_len_min_index = AddModeManager.arg_min(scope_len_list)
         return scopes[scope_len_min_index]
 
-    @staticmethod
-    def get_decorator_trimmed_scope(scope_line_nums: List[int],
-                                    line_number) -> List[int]:
-        trimmed_scope = []
-        before_decorator_scope_line_nums = list(filter(lambda x: x <= line_number, scope_line_nums))
-        before_decorator_scope_line_nums.reverse()
-        previous_scope_line = before_decorator_scope_line_nums[0]
-        trimmed_scope.append(previous_scope_line)
-        for index in range(1, len(before_decorator_scope_line_nums)):
-            current_scope_line = before_decorator_scope_line_nums[index]
-            if previous_scope_line - current_scope_line == 1:
-                trimmed_scope.append(current_scope_line)
-                previous_scope_line = current_scope_line
 
-        trimmed_scope.reverse()
-        return trimmed_scope
+def get_function_class_ast_node_start_end_lines(node):
+    start_line_num = node.lineno
+    end_line_num = node.end_lineno
+    for item in node.decorator_list:
+        start_line_num = min(start_line_num, item.lineno)
+
+    return start_line_num, end_line_num
 
 
 class ScopeFinderVisitor(ast.NodeVisitor):
@@ -216,24 +200,27 @@ class ScopeFinderVisitor(ast.NodeVisitor):
         self.__scopes = []
 
     def visit_FunctionDef(self, node: FunctionDef) -> Any:
-        if node.lineno <= self.__target_line_number <= node.end_lineno:
-            scope_item = ScopeItem((node.lineno, node.end_lineno),
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        if start_line_num <= self.__target_line_number <= end_line_num:
+            scope_item = ScopeItem((start_line_num, end_line_num),
                                    node,
                                    ScopeType.Function)
             self.__scopes.append(scope_item)
         self.generic_visit(node)
 
     def visit_AsyncFunctionDef(self, node: AsyncFunctionDef) -> Any:
-        if node.lineno <= self.__target_line_number <= node.end_lineno:
-            scope_item = ScopeItem((node.lineno, node.end_lineno),
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        if start_line_num <= self.__target_line_number <= end_line_num:
+            scope_item = ScopeItem((start_line_num, end_line_num),
                                    node,
                                    ScopeType.Function)
             self.__scopes.append(scope_item)
         self.generic_visit(node)
 
     def visit_ClassDef(self, node: ClassDef) -> Any:
-        if node.lineno <= self.__target_line_number <= node.end_lineno:
-            scope_item = ScopeItem((node.lineno, node.end_lineno),
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        if start_line_num <= self.__target_line_number <= end_line_num:
+            scope_item = ScopeItem((start_line_num, end_line_num),
                                    node,
                                    ScopeType.Class)
             self.__scopes.append(scope_item)
@@ -251,23 +238,26 @@ class HighLevelNoneDeclVisitor(ast.NodeVisitor):
         self.line_numbers = line_numbers.copy()
 
     def visit_FunctionDef(self, node: FunctionDef) -> Any:
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
         if node != self.ast_node:
-            self.remove_lines_in_range(node.lineno, node.end_lineno)
+            self._remove_lines_in_range(start_line_num, end_line_num)
         self.generic_visit(node)
 
     def visit_AsyncFunctionDef(self, node: AsyncFunctionDef) -> Any:
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
         if node != self.ast_node:
-            self.remove_lines_in_range(node.lineno, node.end_lineno)
+            self._remove_lines_in_range(start_line_num, end_line_num)
         self.generic_visit(node)
 
     def visit_ClassDef(self, node: ClassDef) -> Any:
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
         if node != self.ast_node:
-            self.remove_lines_in_range(node.lineno, node.end_lineno)
+            self._remove_lines_in_range(start_line_num, end_line_num)
         self.generic_visit(node)
 
-    def remove_lines_in_range(self,
-                              start_line_num: int,
-                              end_line_num: int):
+    def _remove_lines_in_range(self,
+                               start_line_num: int,
+                               end_line_num: int):
         for line_number in range(start_line_num, end_line_num + 1):
             if line_number in self.line_numbers:
                 self.line_numbers.remove(line_number)
@@ -299,14 +289,6 @@ class ExecutableLine:
 
     def is_empty(self, line):
         return self.file_lines[line - 1].strip() == ""
-
-    # def is_none_node(self, line):
-    #     decl_visitor = LineFinderVisitor(line)
-    #     decl_visitor.visit(self.file_ast)
-    #     line_node = decl_visitor.get_line_node()
-    #     if line_node is None:
-    #         return True
-    #     return False
 
     def is_decl(self, line):
         return (self.file_lines[line - 1].strip().startswith("def") or
@@ -343,32 +325,6 @@ class ExecutableLine:
 
     def is_finally(self, line):
         return self.file_lines[line - 1].strip().startswith("finally")
-
-
-# class LineFinderVisitor(ast.NodeVisitor):
-#     def __init__(self,
-#                  line: int):
-#         self.line = line
-#         self.found_nodes = []
-#
-#     def visit(self, node):
-#         if hasattr(node, "lineno") and hasattr(node, "end_lineno"):
-#             if node.lineno == node.end_lineno == self.line:
-#                 self.found_nodes.append(node)
-#         self.generic_visit(node)
-#
-#     def get_line_node(self) -> Optional[ast.AST]:
-#         if len(self.found_nodes) == 0:
-#             return None
-#
-#         max_index = -1
-#         max_col_offset = -1
-#         for index, item in enumerate(self.found_nodes):
-#             if item.end_col_offset - item.col_offset > max_col_offset:
-#                 max_index = index
-#                 max_col_offset = item.end_col_offset - item.col_offset
-#
-#         return self.found_nodes[max_index]
 
 
 class DocstringVisitor(ast.NodeVisitor):
