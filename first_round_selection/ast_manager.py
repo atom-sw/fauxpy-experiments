@@ -37,6 +37,7 @@ class AddModeManager:
                  end_add_line_num: int,
                  fixed_to_buggy_map: Dict[int, int]):
         self.__buggy_content_lines = buggy_content.splitlines()
+        self.__fixed_content_lines = fixed_content.splitlines()
         self.__fixed_start_add_line_num = start_add_line_num
         self.__fixed_end_add_line_num = end_add_line_num
         self.__fixed_to_buggy_map = fixed_to_buggy_map
@@ -74,25 +75,29 @@ class AddModeManager:
             buggy_one_line_before_start_add_line_num = -1
             for item in tmp:
                 if item in self.__fixed_to_buggy_map.keys():
-                    buggy_one_line_before_start_add_line_num = self.__fixed_to_buggy_map[item]
-                    break
-            assert buggy_one_line_before_start_add_line_num != -1
+                    if self.__fixed_content_lines[item - 1] != "":
+                        buggy_one_line_before_start_add_line_num = self.__fixed_to_buggy_map[item]
+                        break
 
-            # Finding the scope of the before line in the buggy version.
-            one_line_before_start_add_line_buggy_scope = self.get_sorted_scope_line_numbers(self.__buggy_content_ast,
-                                                                                            self.__buggy_content_line_num,
-                                                                                            buggy_one_line_before_start_add_line_num)
+            if buggy_one_line_before_start_add_line_num == -1:
+                before_start_add_line = -1
+            else:
+                # Finding the scope of the before line in the buggy version.
+                none_empty_one_line_before_start_add_line_buggy_scope = self.get_sorted_scope_line_numbers(
+                    self.__buggy_content_ast,
+                    self.__buggy_content_line_num,
+                    buggy_one_line_before_start_add_line_num)
 
-            # Getting the scope before start add line in the buggy version.
-            before_start_add_line_buggy_scope = list(
-                filter(lambda x: x <= buggy_one_line_before_start_add_line_num,
-                       one_line_before_start_add_line_buggy_scope))
+                # Getting the scope before start add line in the buggy version.
+                before_start_add_line_buggy_scope = list(
+                    filter(lambda x: x <= buggy_one_line_before_start_add_line_num,
+                           none_empty_one_line_before_start_add_line_buggy_scope))
 
-            # Find a localizable line before start add line in the buggy version.
-            tmp = before_start_add_line_buggy_scope.copy()
-            tmp.reverse()
-            before_start_add_line_selected = self.select_localizable_line_number(tmp)
-            before_start_add_line = before_start_add_line_selected
+                # Find a localizable line before start add line in the buggy version.
+                tmp = before_start_add_line_buggy_scope.copy()
+                tmp.reverse()
+                before_start_add_line_selected = self.select_localizable_line_number(tmp)
+                before_start_add_line = before_start_add_line_selected
 
         if len(after_end_add_line_fixed_scope) != 0:
             # Finding a line after the ending added line
@@ -101,22 +106,26 @@ class AddModeManager:
             buggy_one_line_after_end_add_line_num = -1
             for item in after_end_add_line_fixed_scope:
                 if item in self.__fixed_to_buggy_map.keys():
-                    buggy_one_line_after_end_add_line_num = self.__fixed_to_buggy_map[item]
-                    break
-            assert buggy_one_line_after_end_add_line_num != -1
+                    if self.__fixed_content_lines[item - 1] != "":
+                        buggy_one_line_after_end_add_line_num = self.__fixed_to_buggy_map[item]
+                        break
 
-            # Finding the scope of the after line in the buggy version.
-            one_line_after_end_add_line_buggy_scope = self.get_sorted_scope_line_numbers(self.__buggy_content_ast,
-                                                                                         self.__buggy_content_line_num,
-                                                                                         buggy_one_line_after_end_add_line_num)
+            if buggy_one_line_after_end_add_line_num == -1:
+                after_end_add_line = -1
+            else:
+                # Finding the scope of the after line in the buggy version.
+                one_line_after_end_add_line_buggy_scope = self.get_sorted_scope_line_numbers(self.__buggy_content_ast,
+                                                                                             self.__buggy_content_line_num,
+                                                                                             buggy_one_line_after_end_add_line_num)
 
-            # Getting the scope after end add line in the buggy version.
-            after_end_add_line_buggy_scope = list(
-                filter(lambda x: x >= buggy_one_line_after_end_add_line_num, one_line_after_end_add_line_buggy_scope))
+                # Getting the scope after end add line in the buggy version.
+                after_end_add_line_buggy_scope = list(
+                    filter(lambda x: x >= buggy_one_line_after_end_add_line_num,
+                           one_line_after_end_add_line_buggy_scope))
 
-            # Find a localizable line after end add line in the buggy version.
-            after_end_add_line_selected = self.select_localizable_line_number(after_end_add_line_buggy_scope)
-            after_end_add_line = after_end_add_line_selected
+                # Find a localizable line after end add line in the buggy version.
+                after_end_add_line_selected = self.select_localizable_line_number(after_end_add_line_buggy_scope)
+                after_end_add_line = after_end_add_line_selected
 
         return before_start_add_line, after_end_add_line
 
