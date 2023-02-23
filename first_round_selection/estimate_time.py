@@ -59,12 +59,11 @@ def get_time_for_benchmark(benchmark_name: str):
     return sbfl_time * 2 + mbfl_time * 2 + ps_time * 2 + st_time
 
 
-def pop_bug_randomly(benchmark_info) -> Optional[int]:
-    benchmark_name = benchmark_info["BENCHMARK_NAME"]
-
-    if len(benchmark_info["ACCEPTED"]) > 0:
-        rand_index = random.randint(0, len(benchmark_info["ACCEPTED"]) - 1)
-        selected_bug = benchmark_info["ACCEPTED"][rand_index]
+def pop_bug_randomly(benchmark_name: str) -> Optional[int]:
+    accepted_bug_list = CORRECT_TEST_BUGS_INFO[benchmark_name]["ACCEPTED"]
+    if len(accepted_bug_list) > 0:
+        rand_index = random.randint(0, len(accepted_bug_list) - 1)
+        selected_bug = accepted_bug_list[rand_index]
         CORRECT_TEST_BUGS_INFO[benchmark_name]["ACCEPTED"].remove(selected_bug)
         CORRECT_TEST_BUGS_INFO[benchmark_name]["NUM_ACCEPTED"] -= 1
         return selected_bug
@@ -100,12 +99,37 @@ def num_bug_left():
 def replace_items(selected_bugs_info: Dict,
                   empty_ground_truth_bugs_info: Dict,
                   manually_removed_bugs_info: Dict):
-    removed_bugs_info = {}
-    items_1 = empty_ground_truth_bugs_info.items()
-    items_2 = manually_removed_bugs_info.items()
+    # Combining unwanted items from empty ground truth and manually removed ones.
+    combined_removing_bugs_info = dict()
+    for correct_key, correct_value in CORRECT_TEST_BUGS_INFO.items():
+        removing_values = set()
+        if correct_key in empty_ground_truth_bugs_info.keys():
+            empty_values = empty_ground_truth_bugs_info[correct_key]
+            removing_values.update(empty_values)
+        if correct_key in manually_removed_bugs_info.keys():
+            manually_values = manually_removed_bugs_info[correct_key]
+            removing_values.update(manually_values)
+        removing_values_list = list(removing_values)
+        removing_values_list.sort()
+        combined_removing_bugs_info[correct_key] = removing_values_list
 
-    # TODO: Here
-    pass
+    # Remove unwanted items from CORRECT_TEST_BUGS_INFO.
+    for combined_key, combined_value in combined_removing_bugs_info.items():
+        correct_value = CORRECT_TEST_BUGS_INFO[combined_key]["ACCEPTED"]
+        new_correct_value = list(filter(lambda x: x not in combined_value, correct_value))
+        CORRECT_TEST_BUGS_INFO[combined_key]["ACCEPTED"] = new_correct_value
+        CORRECT_TEST_BUGS_INFO[combined_key]["NUM_ACCEPTED"] = len(new_correct_value)
+
+    # Replacing unwanted items in selected_bugs_info.
+    for selected_key, selected_value in selected_bugs_info.items():
+        combined_value = combined_removing_bugs_info[selected_key]
+        for item in combined_value:
+            if item in selected_value:
+                selected_value.remove(item)
+                bug = pop_bug_randomly(selected_key)
+                if bug is not None:
+                    selected_bugs_info[selected_key].append(bug)
+                    selected_bugs_info[selected_key].sort()
 
 
 def main():
@@ -129,7 +153,7 @@ def main():
         print("Calc more")
         print("---------------")
         for benchmark in CORRECT_TEST_BUGS_INFO.values():
-            bug = pop_bug_randomly(benchmark)
+            bug = pop_bug_randomly(benchmark["BENCHMARK_NAME"])
             if bug is not None:
                 selected_bugs_info[benchmark["BENCHMARK_NAME"]].append(bug)
                 selected_bugs_info[benchmark["BENCHMARK_NAME"]].sort()
@@ -141,6 +165,11 @@ def main():
         if bug_left == 0:
             break
 
+    # Since this part is added after we ran some experiments, we
+    # cannot just remove bugs from the start, otherwise, the simulation
+    # may select totally different bugs as the selection process is
+    # random, and we may end up with results we wouldn't use
+    # in paper. So, this part is begins after the simulation ends.
     replace_items(selected_bugs_info, empty_ground_truth_bugs_info, manually_removed_bugs_info)
 
     needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
