@@ -1,13 +1,13 @@
 # First round selection
 
-*Note: the Python scripts in this directory are tested on Python 3.9.
+*The Python scripts in this directory are tested on Python 3.9.
 Due to extensive usage of Python's AST library, which changes from
 one Python version to another one, these scripts might not work
 properly on other versions of Python.* 
 
 ## Purpose
 
-The purpose of this step is to produce two files. The first file is 
+The purpose of this phase is to produce two files. The first file is 
 the [subject_info.csv](subject_info.csv) file that
 contains all the information about the benchmarks, being used in the experiments. 
 The `subject_info.csv` file can then be used to automatically generate the bash scripts in
