@@ -39,6 +39,12 @@ class Item:
     def __repr__(self):
         return self.pretty_representation()
 
+    def __eq__(self, other):
+        return self._experiment_id == other.get_experiment_id()
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def pretty_representation(self):
         return (f"{self._experiment_id}, "
                 f"{self._timeout}, "
@@ -68,6 +74,9 @@ class ResultItem(Item):
         self._load_info_from_script_name_part(script_name_part)
         self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
 
+    def is_fishy(self):
+        dir_paths = []
+
 
 class TimeoutItem(Item):
     def __init__(self, timeout_log_file_path: Path):
@@ -84,6 +93,34 @@ class ResultManager:
         self._result_items = result_items
         self._timeout_items = timeout_items
         self._script_items = script_items
+
+    def get_fishy_result_items(self) -> List[ResultItem]:
+        fishy_result_items = []
+        for result_item in self._result_items:
+            if result_item.is_fishy():
+                fishy_result_items.append(result_item)
+
+        return fishy_result_items
+
+    def get_multiple_result_items(self) -> List[ResultItem]:
+        multiple_result_items = []
+        for index1 in range(len(self._result_items)):
+            for index2 in range(index1 + 1, len(self._result_items)):
+                if self._result_items[index1] == self._result_items[index2]:
+                    multiple_result_items.append(self._result_items[index1])
+                    multiple_result_items.append(self._result_items[index2])
+
+        return multiple_result_items
+
+    def get_multiple_timeout_items(self):
+        multiple_timeout_items = []
+        for index1 in range(len(self._timeout_items)):
+            for index2 in range(index1 + 1, len(self._timeout_items)):
+                if self._timeout_items[index1] == self._timeout_items[index2]:
+                    multiple_timeout_items.append(self._timeout_items[index1])
+                    multiple_timeout_items.append(self._timeout_items[index2])
+
+        return multiple_timeout_items
 
 
 def load_json_to_dictionary(file_path: str):

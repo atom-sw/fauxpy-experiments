@@ -43,6 +43,23 @@ def main():
     script_items = load_script_items(scripts_path)
     result_manager = ResultManager(result_items, timeout_items, script_items)
 
+    multiple_result_items = result_manager.get_multiple_result_items()
+    multiple_timeout_items = result_manager.get_multiple_timeout_items()
+
+    print("Multiple result items:")
+    for item in multiple_result_items:
+        print(item)
+
+    print("Multiple timeout items:")
+    for item in multiple_timeout_items:
+        print(item)
+
+    fishy_result_items = result_manager.get_fishy_result_items()
+
+    print("Fishy result items:")
+    for item in fishy_result_items:
+        print(item)
+
     x = 1
 
 
