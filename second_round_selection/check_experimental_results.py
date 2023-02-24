@@ -1,7 +1,7 @@
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
-from common import ScriptItem, PathManager
+from common import ScriptItem, ResultItem, TimeoutItem, PathManager, ResultManager
 
 PATH_ITEMS_FILE_NAME = "path_items.json"
 
@@ -15,17 +15,33 @@ def load_script_items(scripts_path: Path) -> List[ScriptItem]:
     return script_items
 
 
+def load_result_timeout_items(results_path: Path) -> Tuple[List[ResultItem], List[TimeoutItem]]:
+    result_items = []
+    timeout_items = []
+
+    for result_path in results_path.iterdir():
+        if result_path.name != "Timeouts":
+            result_object = ResultItem(result_path)
+            result_items.append(result_object)
+    result_items.sort(key=lambda x: x.get_experiment_id())
+
+    timeouts_path = results_path / "Timeouts"
+    for timeout_path in timeouts_path.iterdir():
+        timeout_object = TimeoutItem(timeout_path)
+        timeout_items.append(timeout_object)
+    timeout_items.sort(key=lambda x: x.get_experiment_id())
+
+    return result_items, timeout_items
+
+
 def main():
     path_manager = PathManager(PATH_ITEMS_FILE_NAME)
-
-    scripts_path = path_manager.get_scripts_path()
     results_path = path_manager.get_results_path()
+    scripts_path = path_manager.get_scripts_path()
 
+    result_items, timeout_items = load_result_timeout_items(results_path)
     script_items = load_script_items(scripts_path)
-    # result_items = load_result_items(results_path)
-
-    for script_item in script_items:
-        print(script_item)
+    result_manager = ResultManager(result_items, timeout_items, script_items)
 
     x = 1
 
