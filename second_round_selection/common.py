@@ -1,6 +1,7 @@
 import json
+import os.path
 from pathlib import Path
-from typing import Any
+from typing import Any, List
 
 
 class PathManager:
@@ -21,33 +22,25 @@ class PathManager:
         return self._scripts_path
 
 
-class ScriptItem:
-    def __init__(self, script_name: str):
-        self.script_name = script_name
-
-        (self._experiment_id,
-         self._timeout,
-         self._memory,
-         self._project_name,
-         self._bug_num,
-         self._family,
-         self._granularity) = self._load_info_from_name()
-
-    def _load_info_from_name(self) -> tuple[int, int, int, str, int, str, str]:
-        file_name = self.script_name.split(".")[0]
-        name_parts = file_name.split("_")
-        experiment_id = int(name_parts[0])
-        timeout = int(name_parts[1][:-1])
-        memory = int(name_parts[2][:-1])
-        project_name = name_parts[3]
-        bug_num = int(name_parts[4])
-        family = name_parts[5]
-        granularity = name_parts[6]
-        return experiment_id, timeout, memory, project_name, bug_num, family, granularity
+class Item:
+    def _load_info_from_script_name_part(self, script_name_part):
+        name_parts = script_name_part.split("_")
+        self._experiment_id = int(name_parts[0])
+        self._timeout = int(name_parts[1][:-1])
+        self._memory = int(name_parts[2][:-1])
+        self._project_name = name_parts[3]
+        self._bug_num = int(name_parts[4])
+        self._family = name_parts[5]
+        self._granularity = name_parts[6]
 
     def __str__(self):
-        return (f"{self.script_name}, "
-                f"{self._experiment_id}, "
+        return self.pretty_representation()
+
+    def __repr__(self):
+        return self.pretty_representation()
+
+    def pretty_representation(self):
+        return (f"{self._experiment_id}, "
                 f"{self._timeout}, "
                 f"{self._memory}, "
                 f"{self._project_name}, "
@@ -57,6 +50,40 @@ class ScriptItem:
 
     def get_experiment_id(self) -> int:
         return self._experiment_id
+
+
+class ScriptItem(Item):
+    def __init__(self, script_name: str):
+        self._script_name = script_name
+
+        script_name_part = self._script_name.split(".")[0]
+        self._load_info_from_script_name_part(script_name_part)
+
+
+class ResultItem(Item):
+    def __init__(self, result_dir_path: Path):
+        self._result_dir_path = result_dir_path
+
+        script_name_part = "_".join(str(result_dir_path.name).split("_")[:-1])
+        self._load_info_from_script_name_part(script_name_part)
+        self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
+
+
+class TimeoutItem(Item):
+    def __init__(self, timeout_log_file_path: Path):
+        self._timeout_log_file_path = timeout_log_file_path
+
+        script_name_part = self._timeout_log_file_path.name.split(".")[0]
+        self._load_info_from_script_name_part(script_name_part)
+
+
+class ResultManager:
+    def __init__(self, result_items: List[ResultItem],
+                 timeout_items: List[TimeoutItem],
+                 script_items: List[ScriptItem]):
+        self._result_items = result_items
+        self._timeout_items = timeout_items
+        self._script_items = script_items
 
 
 def load_json_to_dictionary(file_path: str):
