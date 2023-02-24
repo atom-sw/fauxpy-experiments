@@ -75,7 +75,46 @@ class ResultItem(Item):
         self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
 
     def is_fishy(self):
-        dir_paths = []
+        assert not self.is_corrupt()
+        dir_paths = list(filter(lambda x: x.is_dir() and x, self._result_dir_path.iterdir()))
+        assert len(dir_paths) == 1
+
+    def is_corrupt(self):
+        dir_paths = list(filter(lambda x: x.is_dir() and x, self._result_dir_path.iterdir()))
+        if len(dir_paths) != 1:
+            return True
+
+        fauxpy_result_dir_path = dir_paths[0]
+        if not self._has_score_files(fauxpy_result_dir_path):
+            return True
+
+        if not self._has_delta_time(fauxpy_result_dir_path):
+            return True
+
+    def _has_score_files(self, dir_path):
+        dir_path_items = [str(x.name) for x in dir_path.iterdir()]
+
+        if self._family == "sbfl":
+            return ("Scores_Tarantula.csv" in dir_path_items and
+                    "Scores_Ochiai.csv" in dir_path_items and
+                    "Scores_Dstar.csv" in dir_path_items)
+        elif self._family == "mbfl":
+            return ("Scores_Metallaxis.csv" in dir_path_items and
+                    "Scores_Muse.csv" in dir_path_items)
+        elif self._family == "ps":
+            score_files = filter(lambda x: x.startswith("Scores_") or x.endswith(".csv"), dir_path_items)
+            return ("Scores_fauxpy_no_swapped_instances.csv" in dir_path_items or
+                    "Scores_fauxpy_no_candidate_predicates.csv" in dir_path_items or
+                    any(score_files))
+        elif self._family == "st":
+            return "Scores_default.csv" in dir_path_items
+        else:
+            raise Exception("This must not happen!")
+
+    @staticmethod
+    def _has_delta_time(dir_path):
+        dir_path_items = [str(x.name) for x in dir_path.iterdir()]
+        return "deltaTime.txt" in dir_path_items
 
 
 class TimeoutItem(Item):
@@ -93,14 +132,6 @@ class ResultManager:
         self._result_items = result_items
         self._timeout_items = timeout_items
         self._script_items = script_items
-
-    def get_fishy_result_items(self) -> List[ResultItem]:
-        fishy_result_items = []
-        for result_item in self._result_items:
-            if result_item.is_fishy():
-                fishy_result_items.append(result_item)
-
-        return fishy_result_items
 
     def get_multiple_result_items(self) -> List[ResultItem]:
         multiple_result_items = []
@@ -121,6 +152,22 @@ class ResultManager:
                     multiple_timeout_items.append(self._timeout_items[index2])
 
         return multiple_timeout_items
+
+    def get_fishy_result_items(self) -> List[ResultItem]:
+        fishy_result_items = []
+        for result_item in self._result_items:
+            if result_item.is_fishy():
+                fishy_result_items.append(result_item)
+
+        return fishy_result_items
+
+    def get_corrupt_result_items(self) -> List[ResultItem]:
+        bad_result_items = []
+        for result_item in self._result_items:
+            if result_item.is_corrupt():
+                bad_result_items.append(result_item)
+
+        return bad_result_items
 
 
 def load_json_to_dictionary(file_path: str):

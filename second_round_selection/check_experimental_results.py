@@ -54,13 +54,14 @@ def main():
     for item in multiple_timeout_items:
         print(item)
 
-    fishy_result_items = result_manager.get_fishy_result_items()
+    corrupt_result_items = result_manager.get_corrupt_result_items()
 
-    print("Fishy result items:")
-    for item in fishy_result_items:
+    print("Corrupt result items:")
+    for item in corrupt_result_items:
         print(item)
 
-    x = 1
+    fishy_result_items = result_manager.get_fishy_result_items()
+
 
 
 if __name__ == '__main__':
