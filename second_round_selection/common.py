@@ -1,6 +1,7 @@
 import csv
 import json
 import os.path
+import shutil
 from pathlib import Path
 from typing import Any, List
 
@@ -83,6 +84,9 @@ class ResultItem(Item):
         script_name_part = "_".join(str(result_dir_path.name).split("_")[:-1])
         self._load_info_from_script_name_part(script_name_part)
         self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
+
+    def get_path(self):
+        return self._result_dir_path
 
     def is_fishy(self):
         if self.is_corrupted():
@@ -172,6 +176,9 @@ class TimeoutItem(Item):
 
         script_name_part = self._timeout_log_file_path.name.split(".")[0]
         self._load_info_from_script_name_part(script_name_part)
+
+    def get_path(self):
+        return self._timeout_log_file_path
 
 
 class ResultManager:
@@ -302,3 +309,7 @@ def save_object_to_json(obj: Any,
                         file_path: Path):
     string_object = json.dumps(obj, indent=5)
     save_string_to_file(string_object, file_path)
+
+
+def remove_file_or_dir(path_item: Path):
+    shutil.rmtree(str(path_item.resolve().absolute()))

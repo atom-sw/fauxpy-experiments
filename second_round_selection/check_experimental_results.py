@@ -78,9 +78,9 @@ def main():
     # for item in fixable_timeout_result_items:
     #     print(item)
 
-    fixable_timeout_result_items = result_manager.get_unfixable_timeout_result_items()
+    unfixable_timeout_result_items = result_manager.get_unfixable_timeout_result_items()
     print("Unfixable timeout items:")
-    for item in fixable_timeout_result_items:
+    for item in unfixable_timeout_result_items:
         print(item)
 
     # garbage_result_items = result_manager.get_garbage_result_items()
