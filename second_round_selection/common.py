@@ -248,11 +248,27 @@ class ResultManager:
 
     def get_fixable_timeout_result_items(self) -> List[TimeoutItem]:
         fixable_timeout_items = []
-        for timeout in self._timeout_items:
-            if timeout.get_timeout() < 48:
-                fixable_timeout_items.append(timeout)
+        for timeout_item in self._timeout_items:
+            if timeout_item.get_timeout() < 48:
+                fixable_timeout_items.append(timeout_item)
 
         return fixable_timeout_items
+
+    def get_garbage_timeout_items(self):
+        garbage_timeout_items = []
+        for timeout_item in self._timeout_items:
+            if timeout_item not in self._script_items:
+                garbage_timeout_items.append(timeout_item)
+
+        return garbage_timeout_items
+
+    def get_garbage_result_items(self):
+        garbage_result_items = []
+        for result_item in self._result_items:
+            if result_item not in self._script_items:
+                garbage_result_items.append(result_item)
+
+        return garbage_result_items
 
 
 def load_json_to_dictionary(file_path: str):
