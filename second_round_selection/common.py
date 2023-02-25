@@ -1,7 +1,11 @@
+import csv
 import json
 import os.path
 from pathlib import Path
 from typing import Any, List
+
+NO_SWAPPED_INSTANCES_SCORES_FILE_NAME = "Scores_fauxpy_no_swapped_instances.csv"
+NO_CANDIDATE_PREDICATES_SCORES_FILE_NAME = "Scores_fauxpy_no_candidate_predicates.csv"
 
 
 class PathManager:
@@ -74,12 +78,43 @@ class ResultItem(Item):
         self._load_info_from_script_name_part(script_name_part)
         self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
 
+    def is_normal(self):
+        return not self.is_corrupted() and not self.is_fishy()
+
     def is_fishy(self):
-        assert not self.is_corrupt()
+        if self.is_corrupted():
+            return False
+
         dir_paths = list(filter(lambda x: x.is_dir() and x, self._result_dir_path.iterdir()))
         assert len(dir_paths) == 1
 
-    def is_corrupt(self):
+        dir_path = dir_paths[0]
+        dir_path_items = [x for x in dir_path.iterdir()]
+        csv_items = list(filter(lambda x: x.name.endswith(".csv"), dir_path_items))
+        if self._family == "sbfl":
+            assert len(csv_items) == 3
+            for csv_file in csv_items:
+                if self.is_csv_fishy(csv_file):
+                    return True
+        elif self._family == "mbfl":
+            assert len(csv_items) == 2
+            metallaxis_file_csv = list(filter(lambda x: "Scores_Metallaxis.csv" in x.name, csv_items))[0]
+            return self.is_csv_fishy(metallaxis_file_csv)
+        elif self._family == "ps":
+            assert len(csv_items) >= 1
+            for csv_file in csv_items:
+                if (csv_file.name != NO_SWAPPED_INSTANCES_SCORES_FILE_NAME and
+                        csv_file.name != NO_CANDIDATE_PREDICATES_SCORES_FILE_NAME and
+                        self.is_csv_fishy(csv_file)):
+                    return True
+        elif self._family == "st":
+            assert len(csv_items) == 1
+        else:
+            raise Exception("This must not happen!")
+
+        return False
+
+    def is_corrupted(self):
         dir_paths = list(filter(lambda x: x.is_dir() and x, self._result_dir_path.iterdir()))
         if len(dir_paths) != 1:
             return True
@@ -103,8 +138,8 @@ class ResultItem(Item):
                     "Scores_Muse.csv" in dir_path_items)
         elif self._family == "ps":
             score_files = filter(lambda x: x.startswith("Scores_") or x.endswith(".csv"), dir_path_items)
-            return ("Scores_fauxpy_no_swapped_instances.csv" in dir_path_items or
-                    "Scores_fauxpy_no_candidate_predicates.csv" in dir_path_items or
+            return (NO_SWAPPED_INSTANCES_SCORES_FILE_NAME in dir_path_items or
+                    NO_CANDIDATE_PREDICATES_SCORES_FILE_NAME in dir_path_items or
                     any(score_files))
         elif self._family == "st":
             return "Scores_default.csv" in dir_path_items
@@ -115,6 +150,17 @@ class ResultItem(Item):
     def _has_delta_time(dir_path):
         dir_path_items = [str(x.name) for x in dir_path.iterdir()]
         return "deltaTime.txt" in dir_path_items
+
+    @staticmethod
+    def is_csv_fishy(csv_file):
+        all_technique_scores = []
+        with open(csv_file, "r") as csv_file:
+            csv_reader = csv.reader(csv_file)
+            next(csv_reader, None)  # ignore the header
+            for row in csv_reader:
+                all_technique_scores.append(float(row[1]))
+        any_none_zero_item_values = any([x > 0 for x in all_technique_scores])
+        return not any_none_zero_item_values
 
 
 class TimeoutItem(Item):
@@ -161,13 +207,13 @@ class ResultManager:
 
         return fishy_result_items
 
-    def get_corrupt_result_items(self) -> List[ResultItem]:
-        bad_result_items = []
+    def get_corrupted_result_items(self) -> List[ResultItem]:
+        corrupted_result_items = []
         for result_item in self._result_items:
-            if result_item.is_corrupt():
-                bad_result_items.append(result_item)
+            if result_item.is_corrupted():
+                corrupted_result_items.append(result_item)
 
-        return bad_result_items
+        return corrupted_result_items
 
 
 def load_json_to_dictionary(file_path: str):

@@ -44,24 +44,24 @@ def main():
     result_manager = ResultManager(result_items, timeout_items, script_items)
 
     multiple_result_items = result_manager.get_multiple_result_items()
-    multiple_timeout_items = result_manager.get_multiple_timeout_items()
-
     print("Multiple result items:")
     for item in multiple_result_items:
         print(item)
 
+    multiple_timeout_items = result_manager.get_multiple_timeout_items()
     print("Multiple timeout items:")
     for item in multiple_timeout_items:
         print(item)
 
-    corrupt_result_items = result_manager.get_corrupt_result_items()
-
-    print("Corrupt result items:")
-    for item in corrupt_result_items:
+    corrupted_result_items = result_manager.get_corrupted_result_items()
+    print("Corrupted result items:")
+    for item in corrupted_result_items:
         print(item)
 
     fishy_result_items = result_manager.get_fishy_result_items()
-
+    print("Fishy result items:")
+    for item in fishy_result_items:
+        print(item)
 
 
 if __name__ == '__main__':
