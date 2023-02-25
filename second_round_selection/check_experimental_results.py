@@ -43,24 +43,34 @@ def main():
     script_items = load_script_items(scripts_path)
     result_manager = ResultManager(result_items, timeout_items, script_items)
 
-    multiple_result_items = result_manager.get_multiple_result_items()
-    print("Multiple result items:")
-    for item in multiple_result_items:
-        print(item)
+    # multiple_result_items = result_manager.get_multiple_result_items()
+    # print("Multiple result items:")
+    # for item in multiple_result_items:
+    #     print(item)
 
-    multiple_timeout_items = result_manager.get_multiple_timeout_items()
-    print("Multiple timeout items:")
-    for item in multiple_timeout_items:
-        print(item)
+    # multiple_timeout_items = result_manager.get_multiple_timeout_items()
+    # print("Multiple timeout items:")
+    # for item in multiple_timeout_items:
+    #     print(item)
 
-    corrupted_result_items = result_manager.get_corrupted_result_items()
-    print("Corrupted result items:")
-    for item in corrupted_result_items:
-        print(item)
+    # corrupted_result_items = result_manager.get_corrupted_result_items()
+    # print("Corrupted result items:")
+    # for item in corrupted_result_items:
+    #     print(item)
 
-    fishy_result_items = result_manager.get_fishy_result_items()
-    print("Fishy result items:")
-    for item in fishy_result_items:
+    # fishy_result_items = result_manager.get_fishy_result_items()
+    # print("Fishy result items:")
+    # for item in fishy_result_items:
+    #     print(item)
+
+    # normal_result_items = result_manager.get_normal_result_items()
+    # print("Normal result items:")
+    # for item in normal_result_items:
+    #     print(item)
+
+    missing_statement_result_items = result_manager.get_missing_statement_result_items()
+    print("Missing statement result items:")
+    for item in missing_statement_result_items:
         print(item)
 
 

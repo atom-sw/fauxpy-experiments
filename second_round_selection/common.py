@@ -61,6 +61,9 @@ class Item:
     def get_experiment_id(self) -> int:
         return self._experiment_id
 
+    def get_granularity(self) -> str:
+        return self._granularity
+
 
 class ScriptItem(Item):
     def __init__(self, script_name: str):
@@ -78,9 +81,6 @@ class ResultItem(Item):
         self._load_info_from_script_name_part(script_name_part)
         self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
 
-    def is_normal(self):
-        return not self.is_corrupted() and not self.is_fishy()
-
     def is_fishy(self):
         if self.is_corrupted():
             return False
@@ -94,18 +94,18 @@ class ResultItem(Item):
         if self._family == "sbfl":
             assert len(csv_items) == 3
             for csv_file in csv_items:
-                if self.is_csv_fishy(csv_file):
+                if self._is_csv_fishy(csv_file):
                     return True
         elif self._family == "mbfl":
             assert len(csv_items) == 2
             metallaxis_file_csv = list(filter(lambda x: "Scores_Metallaxis.csv" in x.name, csv_items))[0]
-            return self.is_csv_fishy(metallaxis_file_csv)
+            return self._is_csv_fishy(metallaxis_file_csv)
         elif self._family == "ps":
             assert len(csv_items) >= 1
             for csv_file in csv_items:
                 if (csv_file.name != NO_SWAPPED_INSTANCES_SCORES_FILE_NAME and
                         csv_file.name != NO_CANDIDATE_PREDICATES_SCORES_FILE_NAME and
-                        self.is_csv_fishy(csv_file)):
+                        self._is_csv_fishy(csv_file)):
                     return True
         elif self._family == "st":
             assert len(csv_items) == 1
@@ -152,7 +152,7 @@ class ResultItem(Item):
         return "deltaTime.txt" in dir_path_items
 
     @staticmethod
-    def is_csv_fishy(csv_file):
+    def _is_csv_fishy(csv_file):
         all_technique_scores = []
         with open(csv_file, "r") as csv_file:
             csv_reader = csv.reader(csv_file)
@@ -214,6 +214,34 @@ class ResultManager:
                 corrupted_result_items.append(result_item)
 
         return corrupted_result_items
+
+    def get_normal_result_items(self):
+        normal_result_items = []
+        for result_item in self._result_items:
+            if (not result_item.is_corrupted() and
+                    not result_item.is_fishy()):
+                normal_result_items.append(result_item)
+
+        return normal_result_items
+
+    def get_missing_statement_result_items(self):
+        return self._get_missing_result_items("statement")
+
+    def get_missing_function_result_items(self):
+        return self._get_missing_result_items("function")
+
+    def _get_missing_result_items(self, granularity: str) -> List[ScriptItem]:
+        corrupted_list = self.get_corrupted_result_items()
+        fishy_list = self.get_fishy_result_items()
+        normal_list = self.get_normal_result_items()
+
+        missing_statement_items = []
+        for script_item in self._script_items:
+            if (script_item.get_granularity() == granularity and
+                    script_item not in corrupted_list + fishy_list + normal_list + self._timeout_items):
+                missing_statement_items.append(script_item)
+
+        return missing_statement_items
 
 
 def load_json_to_dictionary(file_path: str):
