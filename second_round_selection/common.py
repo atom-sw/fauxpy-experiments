@@ -64,6 +64,9 @@ class Item:
     def get_granularity(self) -> str:
         return self._granularity
 
+    def get_timeout(self) -> int:
+        return self._timeout
+
 
 class ScriptItem(Item):
     def __init__(self, script_name: str):
@@ -242,6 +245,14 @@ class ResultManager:
                 missing_statement_items.append(script_item)
 
         return missing_statement_items
+
+    def get_fixable_timeout_result_items(self) -> List[TimeoutItem]:
+        fixable_timeout_items = []
+        for timeout in self._timeout_items:
+            if timeout.get_timeout() < 48:
+                fixable_timeout_items.append(timeout)
+
+        return fixable_timeout_items
 
 
 def load_json_to_dictionary(file_path: str):

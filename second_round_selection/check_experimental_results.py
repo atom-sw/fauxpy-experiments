@@ -68,9 +68,14 @@ def main():
     # for item in normal_result_items:
     #     print(item)
 
-    missing_statement_result_items = result_manager.get_missing_statement_result_items()
-    print("Missing statement result items:")
-    for item in missing_statement_result_items:
+    # missing_statement_result_items = result_manager.get_missing_statement_result_items()
+    # print("Missing statement result items:")
+    # for item in missing_statement_result_items:
+    #     print(item)
+
+    fixable_timeout_result_items = result_manager.get_fixable_timeout_result_items()
+    print("Fixable result items:")
+    for item in fixable_timeout_result_items:
         print(item)
 
 
