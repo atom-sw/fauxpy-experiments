@@ -74,19 +74,24 @@ def main():
     #     print(item)
 
     # fixable_timeout_result_items = result_manager.get_fixable_timeout_result_items()
-    # print("Fixable result items:")
+    # print("Fixable timeout items:")
     # for item in fixable_timeout_result_items:
     #     print(item)
 
-    garbage_result_items = result_manager.get_garbage_result_items()
-    print("garbage result items:")
-    for item in garbage_result_items:
+    fixable_timeout_result_items = result_manager.get_unfixable_timeout_result_items()
+    print("Unfixable timeout items:")
+    for item in fixable_timeout_result_items:
         print(item)
 
-    garbage_result_items = result_manager.get_garbage_timeout_items()
-    print("garbage timeout items:")
-    for item in garbage_result_items:
-        print(item)
+    # garbage_result_items = result_manager.get_garbage_result_items()
+    # print("garbage result items:")
+    # for item in garbage_result_items:
+    #     print(item)
+
+    # garbage_result_items = result_manager.get_garbage_timeout_items()
+    # print("garbage timeout items:")
+    # for item in garbage_result_items:
+    #     print(item)
 
 
 if __name__ == '__main__':

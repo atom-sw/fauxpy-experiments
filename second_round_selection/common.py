@@ -254,6 +254,14 @@ class ResultManager:
 
         return fixable_timeout_items
 
+    def get_unfixable_timeout_result_items(self) -> List[TimeoutItem]:
+        unfixable_timeout_items = []
+        for timeout_item in self._timeout_items:
+            if timeout_item.get_timeout() == 48:
+                unfixable_timeout_items.append(timeout_item)
+
+        return unfixable_timeout_items
+
     def get_garbage_timeout_items(self):
         garbage_timeout_items = []
         for timeout_item in self._timeout_items:
