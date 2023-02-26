@@ -3,10 +3,29 @@ import json
 import os.path
 import shutil
 from pathlib import Path
-from typing import Any, List
+from typing import Any, List, Tuple
 
+PATH_ITEMS_FILE_NAME = "path_items.json"
 NO_SWAPPED_INSTANCES_SCORES_FILE_NAME = "Scores_fauxpy_no_swapped_instances.csv"
 NO_CANDIDATE_PREDICATES_SCORES_FILE_NAME = "Scores_fauxpy_no_candidate_predicates.csv"
+
+
+class GarbageManager:
+    GarbageDirName = "Garbage"
+
+    def __init__(self, results_path: Path):
+        self._results_path = results_path
+        self._garbage_path = self._make_garbage_directory()
+
+    def _make_garbage_directory(self):
+        garbage_dir_path = self._results_path / GarbageManager.GarbageDirName
+        if not garbage_dir_path.exists():
+            garbage_dir_path.mkdir()
+        return garbage_dir_path
+
+    def move_to_garbage(self, item_path: Path):
+        print("Moving to garbage ", item_path.name)
+        shutil.move(item_path, self._garbage_path)
 
 
 class PathManager:
@@ -67,6 +86,12 @@ class Item:
 
     def get_timeout(self) -> int:
         return self._timeout
+
+    def get_project_name(self):
+        return self._project_name
+
+    def get_bug_number(self):
+        return self._bug_num
 
 
 class ScriptItem(Item):
@@ -184,10 +209,47 @@ class TimeoutItem(Item):
 class ResultManager:
     def __init__(self, result_items: List[ResultItem],
                  timeout_items: List[TimeoutItem],
-                 script_items: List[ScriptItem]):
+                 script_items: List[ScriptItem],
+                 garbage_manager: GarbageManager):
         self._result_items = result_items
         self._timeout_items = timeout_items
         self._script_items = script_items
+        self._garbage_manager = garbage_manager
+
+    def remove_bug_from_results_and_timeout(self,
+                                            benchmark_name: str,
+                                            bug_number: int):
+        new_result_items = []
+        for item in self._result_items:
+            if (item.get_project_name() == benchmark_name and
+                    item.get_bug_number() == bug_number):
+                self._garbage_manager.move_to_garbage(item.get_path())
+            else:
+                new_result_items.append(item)
+        self._result_items = new_result_items
+
+        new_timeout_items = []
+        for item in self._timeout_items:
+            if (item.get_project_name() == benchmark_name and
+                    item.get_bug_number() == bug_number):
+                self._garbage_manager.move_to_garbage(item.get_path())
+            else:
+                new_timeout_items.append(item)
+        self._timeout_items = new_timeout_items
+    def remove_result_item(self, item: ResultItem):
+        self._garbage_manager.move_to_garbage(item.get_path())
+        self._result_items.remove(item)
+
+
+    # def remove_result_item_by_id(self, experiment_id):
+    #     items_found = list(
+    #         filter(lambda x: x.get_experiment_id() == experiment_id, self._result_items))
+    #     assert len(items_found) <= 1
+    #     item = items_found[0]
+    #     self._garbage_manager.move_to_garbage(item.get_path())
+    #
+    #     if item in self._result_items:
+    #         self._result_items.remove(item)
 
     def get_multiple_result_items(self) -> List[ResultItem]:
         multiple_result_items = []
@@ -269,7 +331,7 @@ class ResultManager:
 
         return unfixable_timeout_items
 
-    def get_garbage_timeout_items(self):
+    def get_floating_timeout_items(self):
         garbage_timeout_items = []
         for timeout_item in self._timeout_items:
             if timeout_item not in self._script_items:
@@ -277,7 +339,7 @@ class ResultManager:
 
         return garbage_timeout_items
 
-    def get_garbage_result_items(self):
+    def get_floating_result_items(self):
         garbage_result_items = []
         for result_item in self._result_items:
             if result_item not in self._script_items:
@@ -311,5 +373,42 @@ def save_object_to_json(obj: Any,
     save_string_to_file(string_object, file_path)
 
 
-def remove_file_or_dir(path_item: Path):
-    shutil.rmtree(str(path_item.resolve().absolute()))
+def _load_script_items(scripts_path: Path) -> List[ScriptItem]:
+    script_items = []
+    for script_path in scripts_path.iterdir():
+        script_object = ScriptItem(str(script_path.name))
+        script_items.append(script_object)
+    script_items.sort(key=lambda x: x.get_experiment_id())
+    return script_items
+
+
+def _load_result_timeout_items(results_path: Path) -> Tuple[List[ResultItem], List[TimeoutItem]]:
+    result_items = []
+    timeout_items = []
+
+    for result_path in results_path.iterdir():
+        if result_path.name not in ["Timeouts", GarbageManager.GarbageDirName]:
+            result_object = ResultItem(result_path)
+            result_items.append(result_object)
+    result_items.sort(key=lambda x: x.get_experiment_id())
+
+    timeouts_path = results_path / "Timeouts"
+    for timeout_path in timeouts_path.iterdir():
+        timeout_object = TimeoutItem(timeout_path)
+        timeout_items.append(timeout_object)
+    timeout_items.sort(key=lambda x: x.get_experiment_id())
+
+    return result_items, timeout_items
+
+
+def get_result_manager():
+    path_manager = PathManager(PATH_ITEMS_FILE_NAME)
+    results_path = path_manager.get_results_path()
+    scripts_path = path_manager.get_scripts_path()
+
+    result_items, timeout_items = _load_result_timeout_items(results_path)
+    script_items = _load_script_items(scripts_path)
+    garbage_manager = GarbageManager(results_path)
+    result_manager = ResultManager(result_items, timeout_items, script_items, garbage_manager)
+
+    return result_manager
