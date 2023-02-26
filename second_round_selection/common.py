@@ -8,6 +8,7 @@ from typing import Any, List, Tuple
 PATH_ITEMS_FILE_NAME = "path_items.json"
 NO_SWAPPED_INSTANCES_SCORES_FILE_NAME = "Scores_fauxpy_no_swapped_instances.csv"
 NO_CANDIDATE_PREDICATES_SCORES_FILE_NAME = "Scores_fauxpy_no_candidate_predicates.csv"
+CORRECT_FISHY_CSV_FILE_NAME = "correct_fishy.csv"
 
 
 class GarbageManager:
@@ -105,16 +106,20 @@ class ScriptItem(Item):
 class ResultItem(Item):
     def __init__(self, result_dir_path: Path):
         self._result_dir_path = result_dir_path
+        self._is_correct_fishy = None
 
         script_name_part = "_".join(str(result_dir_path.name).split("_")[:-1])
         self._load_info_from_script_name_part(script_name_part)
         self._creation_time = os.path.getctime(str(result_dir_path.absolute().resolve()))
 
+    def set_is_correct_fishy(self, value):
+        self._is_correct_fishy = value
+
     def get_path(self):
         return self._result_dir_path
 
     def is_fishy(self):
-        if self.is_corrupted():
+        if self.is_corrupted() or self._is_correct_fishy:
             return False
 
         dir_paths = list(filter(lambda x: x.is_dir() and x, self._result_dir_path.iterdir()))
@@ -236,10 +241,10 @@ class ResultManager:
             else:
                 new_timeout_items.append(item)
         self._timeout_items = new_timeout_items
+
     def remove_result_item(self, item: ResultItem):
         self._garbage_manager.move_to_garbage(item.get_path())
         self._result_items.remove(item)
-
 
     # def remove_result_item_by_id(self, experiment_id):
     #     items_found = list(
@@ -382,13 +387,16 @@ def _load_script_items(scripts_path: Path) -> List[ScriptItem]:
     return script_items
 
 
-def _load_result_timeout_items(results_path: Path) -> Tuple[List[ResultItem], List[TimeoutItem]]:
+def _load_result_timeout_items(results_path: Path,
+                               correct_fishy_ids: List[int]) -> Tuple[List[ResultItem], List[TimeoutItem]]:
     result_items = []
     timeout_items = []
 
     for result_path in results_path.iterdir():
         if result_path.name not in ["Timeouts", GarbageManager.GarbageDirName]:
             result_object = ResultItem(result_path)
+            if result_object.get_experiment_id() in correct_fishy_ids:
+                result_object.set_is_correct_fishy(True)
             result_items.append(result_object)
     result_items.sort(key=lambda x: x.get_experiment_id())
 
@@ -401,14 +409,29 @@ def _load_result_timeout_items(results_path: Path) -> Tuple[List[ResultItem], Li
     return result_items, timeout_items
 
 
+def _get_correct_fishy_ids():
+    correct_fishy_ids = []
+    correct_fishy_file_path = Path(CORRECT_FISHY_CSV_FILE_NAME)
+    with correct_fishy_file_path.open("r") as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for row in csv_reader:
+            correct_fishy_ids.append(int(row[0]))
+
+    return correct_fishy_ids
+
+
 def get_result_manager():
     path_manager = PathManager(PATH_ITEMS_FILE_NAME)
     results_path = path_manager.get_results_path()
     scripts_path = path_manager.get_scripts_path()
 
-    result_items, timeout_items = _load_result_timeout_items(results_path)
+    correct_fishy_ids = _get_correct_fishy_ids()
+    result_items, timeout_items = _load_result_timeout_items(results_path, correct_fishy_ids)
     script_items = _load_script_items(scripts_path)
     garbage_manager = GarbageManager(results_path)
-    result_manager = ResultManager(result_items, timeout_items, script_items, garbage_manager)
+    result_manager = ResultManager(result_items,
+                                   timeout_items,
+                                   script_items,
+                                   garbage_manager)
 
     return result_manager
