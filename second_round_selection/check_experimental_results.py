@@ -70,6 +70,12 @@ class ProcedureManager:
             print("Corrupted result items:")
             self.print_list(items)
 
+    def remove_corrupted_result_items(self, activate_flag: int):
+        if self._is_active(activate_flag):
+            items = self._result_manager.get_corrupted_result_items()
+            for item in items:
+                self._result_manager.remove_result_item(item)
+
     def print_fishy_result_items(self, activate_flag: int):
         if self._is_active(activate_flag):
             items = self._result_manager.get_fishy_result_items()
@@ -223,7 +229,7 @@ def main():
     pass
 
     # Step 6.1: Print fixable timeout items.
-    procedure_manager.print_fixable_timeout_items(1)
+    procedure_manager.print_fixable_timeout_items(0)
 
     # Step 6.2: For fixable ones, skip for now.
     pass
@@ -235,12 +241,14 @@ def main():
     pass
 
     # Step 7.1: Print corrupted result items again:
-    procedure_manager.print_corrupted_result_items(0)
+    procedure_manager.print_corrupted_result_items(1)
 
     # Step 7.2: They must all be fixable:
     # - Fix them.
-    # - Put to garbage their results and timeouts.
     pass
+
+    # Step 7.3: Put to garbage their results.
+    procedure_manager.remove_corrupted_result_items(0)
 
     # Step 8.1: Print fishy result items again:
     procedure_manager.print_fishy_result_items(0)
