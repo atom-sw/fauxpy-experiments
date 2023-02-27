@@ -82,6 +82,12 @@ class ProcedureManager:
             print("Fixable timeout items:")
             self.print_list(items)
 
+    def remove_fixable_timeout_items(self, activate_flag: int):
+        if self._is_active(activate_flag):
+            items = self._result_manager.get_fixable_timeout_result_items()
+            for item in items:
+                self._result_manager.remove_timeout_item(item)
+
     def print_floating_result_items(self, activate_flag: int):
         if self._is_internal_active(activate_flag):
             items = self._result_manager.get_floating_result_items()
@@ -204,7 +210,7 @@ def main():
     pass
 
     # Step 5.1: Print fishy result items:
-    procedure_manager.print_fishy_result_items(1)
+    procedure_manager.print_fishy_result_items(0)
 
     # Step 5.2:
     # - For correct ones, add their id to correct fishy file.
@@ -217,7 +223,7 @@ def main():
     pass
 
     # Step 6.1: Print fixable timeout items.
-    procedure_manager.print_fixable_timeout_items(0)
+    procedure_manager.print_fixable_timeout_items(1)
 
     # Step 6.2: For fixable ones, skip for now.
     pass
@@ -248,9 +254,10 @@ def main():
     procedure_manager.print_fixable_timeout_items(0)
 
     # Step 9.2: They must all be fixable:
-    # - Fix their timeouts in script generation phase.
-    # - Put them to garbage.
-    pass
+    # - Set their timeouts to 48 hrs in script generation phase.
+
+    # Step 9.3: Put them to garbage.
+    procedure_manager.remove_fixable_timeout_items(0)
 
     # Step 10: See the code of generate_scripts function (the function below).
     procedure_manager.generate_scripts(0)

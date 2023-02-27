@@ -246,6 +246,10 @@ class ResultManager:
         self._garbage_manager.move_to_garbage(item.get_path())
         self._result_items.remove(item)
 
+    def remove_timeout_item(self, item: TimeoutItem):
+        self._garbage_manager.move_to_garbage(item.get_path())
+        self._timeout_items.remove(item)
+
     # def remove_result_item_by_id(self, experiment_id):
     #     items_found = list(
     #         filter(lambda x: x.get_experiment_id() == experiment_id, self._result_items))
