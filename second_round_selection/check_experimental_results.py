@@ -155,9 +155,10 @@ class ProcedureManager:
 def main():
     """
     Rule 1: Steps having pass as code are manual.
-    Rule 2: Only one step must be active (pass 1 to activate) at each run.
-    Rule 3: If more than one step is active, the first
+    Rule 2: Only one automated step must be active (pass 1 to activate) at each run.
+    Rule 3: If more than one automated step is active, the first
      one runs and the script complains.
+    Rule 4: Steps must be taken in order.
     """
 
     procedure_manager = ProcedureManager()
