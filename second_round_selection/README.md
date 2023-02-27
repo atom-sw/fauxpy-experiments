@@ -12,13 +12,15 @@ their target failing tests.
 2. Due to timeout, some buggy versions do not finish. The cluster server
 we are using for the experiments has a timeout limit of 48 hours, and buggy
 version that require more than 48 hours, cannot be used in out experiments.
-3. Due to FauxPy's limitations, FauxPy does not
+3. In some cases, running the target failing test does not result in any
+execution traces (e.g., fastapi 8).
+4. Due to FauxPy's limitations, FauxPy does not
 report any suspicious statements for some buggy versions. For instance,
 if some parts of a buggy version that are executed by the selected test suite call
 the function `sys.settrace()`, FauxPy may not be able to work properly as
 FauxPy uses the `Coverage.py` tool through its APIs, and this tool may not
 work properly on source code that calls the function `sys.settrace()`.
-4. Due to package conflicts, or for any other reason, FauxPy may not
+4. Due to package conflicts, or any other reasons, FauxPy may not
 be able to run on some buggy versions.
 
 After finding those that have problems, we check them manually to see if the 
