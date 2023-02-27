@@ -6,6 +6,8 @@ from common import get_result_manager, ResultManager
 
 MANUALLY_REMOVED_CSV_FILE_NAME = "manually_removed_bugs.csv"
 MANUALLY_REMOVED_JSON_FILE_NAME = "manually_removed_bugs.json"
+MISSING_STATEMENT_RESULT_ITEMS_FILE = "missing_statement_results.txt"
+MISSING_FUNCTION_RESULT_ITEMS_FILE = "missing_function_results.txt"
 
 
 class ProcedureManager:
@@ -82,6 +84,12 @@ class ProcedureManager:
             print("Fishy result items:")
             self.print_list(items)
 
+    def remove_fishy_result_items(self, activate_flag: int):
+        if self._is_active(activate_flag):
+            items = self._result_manager.get_fishy_result_items()
+            for item in items:
+                self._result_manager.remove_result_item(item)
+
     def print_fixable_timeout_items(self, activate_flag: int):
         if self._is_active(activate_flag):
             items = self._result_manager.get_fixable_timeout_result_items()
@@ -124,6 +132,24 @@ class ProcedureManager:
             print("Missing statement result items:")
             self.print_list(items)
 
+    def save_file_missing_statement_result_items(self, activate_flag: int):
+        if self._is_active(activate_flag):
+            items = self._result_manager.get_missing_statement_result_items()
+            print("Saving missing statement result items:")
+            missing_items_string = ""
+            for item in items:
+                missing_items_string += f"{item.get_experiment_id()} "
+            common.save_string_to_file(missing_items_string, Path(MISSING_STATEMENT_RESULT_ITEMS_FILE))
+
+    def save_file_missing_function_result_items(self, activate_flag: int):
+        if self._is_active(activate_flag):
+            items = self._result_manager.get_missing_function_result_items()
+            print("Saving missing function result items:")
+            missing_items_string = ""
+            for item in items:
+                missing_items_string += f"{item.get_experiment_id()} "
+            common.save_string_to_file(missing_items_string, Path(MISSING_FUNCTION_RESULT_ITEMS_FILE))
+
     def print_missing_function_result_items(self, activate_flag: int):
         if self._is_active(activate_flag):
             items = self._result_manager.get_missing_function_result_items()
@@ -143,6 +169,7 @@ class ProcedureManager:
                         dict_object[benchmark_name] = []
                     assert bug_number not in dict_object[benchmark_name]
                     dict_object[benchmark_name].append(bug_number)
+                    dict_object[benchmark_name].sort()
 
             common.save_object_to_json(dict_object, Path(MANUALLY_REMOVED_JSON_FILE_NAME))
 
@@ -241,7 +268,7 @@ def main():
     pass
 
     # Step 7.1: Print corrupted result items again:
-    procedure_manager.print_corrupted_result_items(1)
+    procedure_manager.print_corrupted_result_items(0)
 
     # Step 7.2: They must all be fixable:
     # - Fix them.
@@ -255,14 +282,17 @@ def main():
 
     # Step 8.2: They must all be fixable:
     # - Fix them.
-    # - Put to garbage their results and timeouts.
     pass
+
+    # Step 8.3: Put to garbage their results.
+    procedure_manager.remove_fishy_result_items(0)
 
     # Step 9.1: Print fixable timeout items.
     procedure_manager.print_fixable_timeout_items(0)
 
     # Step 9.2: They must all be fixable:
     # - Set their timeouts to 48 hrs in script generation phase.
+    pass
 
     # Step 9.3: Put them to garbage.
     procedure_manager.remove_fixable_timeout_items(0)
@@ -273,10 +303,16 @@ def main():
     # Step 11.1: Print missing statement result items.
     procedure_manager.print_missing_statement_result_items(0)
 
-    # Step 11.2: Print missing function result items (not for now).
+    # Step 11.2: Save missing statement result items' ids horizontally.
+    procedure_manager.save_file_missing_statement_result_items(0)
+
+    # Step 11.3: Print missing function result items (not for now).
     procedure_manager.print_missing_function_result_items(0)
 
-    # Step 11.3: Add them to the experiments batch.
+    # Step 11.4: Save missing function result items' ids horizontally (not for now).
+    procedure_manager.save_file_missing_function_result_items(0)
+
+    # Step 11.5: Add them to the experiments batch.
     pass
 
     # Step 12.1: Generate manually removed json file.
