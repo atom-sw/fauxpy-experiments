@@ -191,14 +191,17 @@ class ResultItem(Item):
     @classmethod
     def _is_csv_fishy(cls, csv_file):
         all_technique_scores = []
+        all_statements = []
         with open(csv_file, "r") as csv_file:
             csv_reader = csv.reader(csv_file)
             next(csv_reader, None)  # ignore the header
             for row in csv_reader:
+                all_statements.append(row[0])
                 all_technique_scores.append(float(row[1]))
         any_none_zero_item_values = any([x > 0 for x in all_technique_scores])
         is_values_all_same = cls.is_values_all_same(all_technique_scores)
-        return not any_none_zero_item_values or is_values_all_same
+        is_test_localized = cls.is_test_localized(all_statements)
+        return not any_none_zero_item_values or is_values_all_same or is_test_localized
 
     @classmethod
     def is_values_all_same(cls, all_technique_scores: List[float]) -> bool:
@@ -211,6 +214,13 @@ class ResultItem(Item):
                 return False
 
         return True
+
+    @classmethod
+    def is_test_localized(cls, all_statements: List[str]) -> bool:
+        for item in all_statements:
+            if "test" in item:
+                return True
+        return False
 
 
 class TimeoutItem(Item):
