@@ -243,7 +243,7 @@ def main():
     pass
 
     # Step 5.1: Print fishy result items:
-    procedure_manager.print_fishy_result_items(0)
+    procedure_manager.print_fishy_result_items(1)
 
     # Step 5.2:
     # - For correct ones, add their id to correct fishy file.

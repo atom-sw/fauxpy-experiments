@@ -188,8 +188,8 @@ class ResultItem(Item):
         dir_path_items = [str(x.name) for x in dir_path.iterdir()]
         return "deltaTime.txt" in dir_path_items
 
-    @staticmethod
-    def _is_csv_fishy(csv_file):
+    @classmethod
+    def _is_csv_fishy(cls, csv_file):
         all_technique_scores = []
         with open(csv_file, "r") as csv_file:
             csv_reader = csv.reader(csv_file)
@@ -197,7 +197,20 @@ class ResultItem(Item):
             for row in csv_reader:
                 all_technique_scores.append(float(row[1]))
         any_none_zero_item_values = any([x > 0 for x in all_technique_scores])
-        return not any_none_zero_item_values
+        is_values_all_same = cls.is_values_all_same(all_technique_scores)
+        return not any_none_zero_item_values or is_values_all_same
+
+    @classmethod
+    def is_values_all_same(cls, all_technique_scores: List[float]) -> bool:
+        if len(all_technique_scores) <= 1:
+            return False
+
+        first_item = all_technique_scores[0]
+        for item in all_technique_scores:
+            if item != first_item:
+                return False
+
+        return True
 
 
 class TimeoutItem(Item):
