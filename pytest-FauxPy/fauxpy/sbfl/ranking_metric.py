@@ -7,22 +7,24 @@ from typing import List, Tuple
 
 from . import database
 
+EPSILON = 0.1
+
 
 # ToDo: Find better ways to handle the division by zero issue.
 def _tarantula(ef, ep, nf, np):
-    numerator = float(ef) / (ef + nf + 0.1)
-    denominator = (float(ef) / (ef + nf + 0.1)) + (float(ep) / (ep + np))
-    score = numerator / denominator
+    numerator = float(ef) / (ef + nf + EPSILON)
+    denominator = (float(ef) / (ef + nf + EPSILON)) + (float(ep) / (ep + np + EPSILON))
+    score = numerator / denominator + EPSILON
     return score
 
 
 def _ochiai(ef, ep, nf, np):
-    score = float(ef) / (math.sqrt((ef + nf) * (ef + ep)) + 0.1)
+    score = float(ef) / (math.sqrt((ef + nf) * (ef + ep)) + EPSILON)
     return score
 
 
 def _dstar(ef, ep, nf, np):
-    score = float(math.pow(ef, 2)) / (ep + nf + 0.1)
+    score = float(math.pow(ef, 2)) / (ep + nf + EPSILON)
     return score
 
 
