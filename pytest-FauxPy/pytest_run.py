@@ -418,7 +418,44 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-workDir = "/home/moe/BugsInPyExp/keras/bug5/buggy/keras"
-command = 'python -m pytest tests/keras/layers/merge_test.py tests/keras/utils/data_utils_test.py --src . --exclude [env,tests] --granularity statement --family mbfl --failing-list [tests/keras/utils/data_utils_test.py::test_data_utils]'
+# workDir = "/home/moe/BugsInPyExp/keras/bug5/buggy/keras"
+# command = 'python -m pytest tests/keras/layers/merge_test.py tests/keras/utils/data_utils_test.py --src . --exclude [env,tests] --granularity statement --family mbfl --failing-list [tests/keras/utils/data_utils_test.py::test_data_utils]'
+# print(command)
+# runCommandScript(command, workDir)
+
+
+# workDir = "/home/moe/BugsInPyExp/sanic/bug5/buggy/sanic"
+# command = 'python -m pytest tests/test_logging.py --src . --granularity statement --family mbfl --exclude [env,tests]'
+# print(command)
+# runCommandScript(command, workDir)
+
+
+# workDir = "/home/moe/BugsInPyExp/fastapi/bug3/buggy/fastapi"
+# command = ("python -m pytest "
+#            " tests/test_serialize_response_model.py"
+#            " tests/test_additional_response_extra.py"
+#            " tests/test_additional_responses_router.py"
+#            " tests/test_custom_route_class.py"
+#            " tests/test_default_response_class.py"
+#            " tests/test_default_response_class_router.py"
+#            " tests/test_dependency_overrides.py"
+#            " tests/test_empty_router.py"
+#            " tests/test_include_route.py"
+#            " tests/test_infer_param_optionality.py"
+#            " tests/test_router_events.py"
+#            " tests/test_router_prefix_with_template.py"
+#            " tests/test_sub_callbacks.py"
+#            " tests/test_ws_router.py"
+#            " --src fastapi --granularity function --family st")
+# print(command)
+# runCommandScript(command, workDir)
+
+
+workDir = "/home/moe/BugsInPyExp/pandas/bug12/buggy/pandas"
+command = ("python -m pytest "
+           " pandas/tests/frame/methods/test_cov_corr.py"
+           " pandas/tests/frame/test_validate.py"
+           " pandas/tests/io/test_stata.py"
+           " --src pandas --granularity function --family st --failing-list [pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer]")
 print(command)
 runCommandScript(command, workDir)

@@ -3,6 +3,10 @@ from typing import List
 from .. import common
 
 
+def _is_python_module(path: str):
+    return path.endswith(".py")
+
+
 # TODO: Move to traceback_utils.py
 def getOrderedTracebackFunctionNames(src, exclude, reprTraceback) -> List[str]:
     tracebackNames = []
@@ -11,6 +15,9 @@ def getOrderedTracebackFunctionNames(src, exclude, reprTraceback) -> List[str]:
         path = reprEnt.reprfileloc.path
         lineNumber = reprEnt.reprfileloc.lineno
         absolutePath = common.relativePathToAbsPath(path)
+
+        if not _is_python_module(path):
+            continue
 
         if common.pathShouldBeLocalized(src, exclude, absolutePath):
             coveredFunction = common.getCoveredFunction(absolutePath, lineNumber)

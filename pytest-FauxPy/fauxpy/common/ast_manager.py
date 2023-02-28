@@ -32,6 +32,13 @@ class Analyzer(ast.NodeVisitor):
         self.functionRangeList.append((functionName, lineStart, lineEnd))
         self.generic_visit(node)
 
+    def visit_AsyncFunctionDef(self, node: FunctionDef) -> Any:
+        functionName = node.name
+        lineStart = node.lineno
+        lineEnd = Analyzer._getEndingLine(node)
+        self.functionRangeList.append((functionName, lineStart, lineEnd))
+        self.generic_visit(node)
+
     # TODO: This method is copied in other places. Combine them somehow.
     # TODO: if node.end_lineno exists, use it. Otherwise, the following one.
     @staticmethod
