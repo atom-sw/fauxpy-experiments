@@ -40,8 +40,8 @@ setup(
                       'coverage>=6.2',
                       'cosmic-ray==8.3.5',
                       # 'cosmic-ray~=8.3.5',
-                      'astor==0.8.1',
-                      # 'astor~=0.8.1',
+                      # 'astor',
+                      'astor~=0.8.1',
                       'pytest-timeout==2.1.0',
                       'wheel'],
     classifiers=[

@@ -19,7 +19,13 @@ def _getInstrumentedModules() -> List[Tuple[str, str]]:
         candidatePredicates = database.selectCandidatePredicatesForFilePath(filePath)
         seenExceptions = database.selectSeenExceptionsForFilePath(filePath)
         instFileContent = ast_manager.instrumentCurrentFilePath(filePath, candidatePredicates, seenExceptions)
-        instFilePathsContent.append((filePath, instFileContent))
+        if instFileContent is None:
+            # For cases that astor cannot perform correctly
+            for item in candidatePredicates:
+                lineStart, lineEnd, predicateName = item
+                database.insertAstorAssertErrorInfo(filePath, lineStart, lineEnd, predicateName)
+        else:
+            instFilePathsContent.append((filePath, instFileContent))
 
     return instFilePathsContent
 
@@ -202,8 +208,6 @@ def _runPredicateSequence(projectPath: str,
 def _getTestScoredEntityStoreDb(testName: str,
                                 passingPredicateInstanceSequence: List[str],
                                 granularity: str):
-    # scoredEntities = []
-
     score = 1
     for predicateInstance in passingPredicateInstanceSequence:
         predicateName, instanceNumber = predicateInstance.split("::")

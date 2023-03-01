@@ -65,6 +65,26 @@ def test_instrumentNormalIfBlack14():
     assert instrumentationString in instFileContent
 
 
+def test_instrumentAstorAssertionError():
+    # Found in fastapi 11 running PS.
+    # It is a bug in astor. It cannot
+    # even transform back the untouched ast.
+    # We fix the bug by simply ignoring
+    # Python modules that cannot be instrumented.
+
+    filePath = str(getDataPath("predicate_switching", "utils.pyt").absolute())
+    candidatePredicates = [(131, 131, 'Pred_1'), (134, 134, 'Pred_2'),
+                           (137, 137, 'Pred_3'), (149, 149, 'Pred_4'),
+                           (157, 157, 'Pred_5'), (159, 159, 'Pred_6'),
+                           (80, 80, 'Pred_7'), (242, 242, 'Pred_8'),
+                           (117, 117, 'Pred_9'), (124, 124, 'Pred_10'),
+                           (253, 253, 'Pred_11')]
+    seenExceptions = [(87, 'Exception_0'), (87, 'Exception_3')]
+    instFileContent = ast_manager.instrumentCurrentFilePath(filePath,
+                                                            candidatePredicates,
+                                                            seenExceptions)
+
+
 @pytest.mark.parametrize("fileName", [
     "future_import.pyt",
     "cookiecutter_4_utils.pyt",  # bug found in cookiecutter 4 running PS

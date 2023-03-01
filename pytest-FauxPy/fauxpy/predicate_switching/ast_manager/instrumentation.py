@@ -1,5 +1,5 @@
 import ast
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Optional
 
 import astor
 
@@ -129,7 +129,7 @@ def _addInstrumentationImport(astTree):
 
 def instrumentCurrentFilePath(filePath: str,
                               candidatePredicates: List[Tuple[int, int, str]],
-                              seenExceptions: List[Tuple[int, str]]):
+                              seenExceptions: List[Tuple[int, str]]) -> Optional[str]:
     with open(filePath, "r") as source:
         tree = ast.parse(source.read())
 
@@ -137,5 +137,8 @@ def instrumentCurrentFilePath(filePath: str,
     newAst = astTransformer.visit(tree)
     _addInstrumentationImport(newAst)
     ast.fix_missing_locations(newAst)
-    newAstContentAsText = astor.to_source(newAst)
+    try:
+        newAstContentAsText = astor.to_source(newAst)
+    except AssertionError:
+        return None
     return newAstContentAsText

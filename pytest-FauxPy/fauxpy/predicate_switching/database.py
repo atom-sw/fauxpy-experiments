@@ -20,6 +20,7 @@ class _Names(object):
     testTimeTable = "TestTime"
     timeoutPredicateInstanceTable = "TimeoutPredicateInstance"
     badExecutionPredicateInstanceTable = "BadExecutionPredicateInstance"
+    astorAssertErrorInfoTable = "AstorAssertErrorInfo"
 
 
 # TODO: Add indices.
@@ -99,6 +100,13 @@ def init():
                                                           f"PredicateName TEXT NOT NULL," \
                                                           f"PredicateInstanceNumber INTEGER NOT NULL);"
 
+        astorAssertErrorInfoTableTableCreateCommand = f"CREATE TABLE {_Names.astorAssertErrorInfoTable} " \
+                                                      f"(Rowid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " \
+                                                      f"filePath TEXT NOT NULL, " \
+                                                      f"lineStart INTEGER NOT NULL ," \
+                                                      f"lineEnd INTEGER NOT NULL, " \
+                                                      f"PredicateName TEXT NOT NULL);"
+        # astorAssertErrorInfoTable
         viewCreateCommand = f"CREATE VIEW {_Names.coveredLinesWithTestTypesView} AS " \
                             f"SELECT {_Names.coveredLinesForTestTable}.Rowid, " \
                             f"{_Names.coveredLinesForTestTable}.TestName, " \
@@ -123,7 +131,8 @@ def init():
                     scoredEntityTableCreateCommand,
                     testTimeTableCreateCommand,
                     timeoutPredicateInstanceTableCreateCommand,
-                    badExecutionPredicateInstanceTableCreateCommand
+                    badExecutionPredicateInstanceTableCreateCommand,
+                    astorAssertErrorInfoTableTableCreateCommand
                     ]
 
         return commands
@@ -377,5 +386,13 @@ def insertBadExecutionPredicateInstance(testName, predName, instNum):
     cur = _Con.cursor()
     cur.execute(f"INSERT INTO {_Names.badExecutionPredicateInstanceTable} VALUES (NULL, ?, ?, ?)",
                 (testName, predName, instNum))
+
+    _Con.commit()
+
+
+def insertAstorAssertErrorInfo(filePath: str, lineStart: int, lineEnd: int, predicateName: str):
+    cur = _Con.cursor()
+    cur.execute(f"INSERT INTO {_Names.astorAssertErrorInfoTable} VALUES (NULL, ?, ?, ?, ?)",
+                (filePath, lineStart, lineEnd, predicateName))
 
     _Con.commit()
