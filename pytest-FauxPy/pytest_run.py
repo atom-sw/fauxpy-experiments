@@ -451,27 +451,24 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-# workDir = "/home/moe/BugsInPyExp/pandas/bug12/buggy/pandas"
-# command = ("python -m pytest "
-#            " pandas/tests/frame/methods/test_cov_corr.py"
-#            " pandas/tests/frame/test_validate.py"
-#            " pandas/tests/io/test_stata.py"
-#            " --src pandas --granularity function --family st --failing-list [pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer]")
-# print(command)
-# runCommandScript(command, workDir)
-
-
-workDir = "/home/moe/BugsInPyExp/fastapi/bug11/buggy/fastapi"
-command = ("python -m pytest "
-           " tests/test_union_inherited_body.py"
-           " tests/test_union_body.py"
-           " --src fastapi --granularity statement --family ps --failing-list ["
-           "tests/test_union_body.py::test_item_openapi_schema,"
-           "tests/test_union_body.py::test_post_other_item,"
-           "tests/test_union_body.py::test_post_item,"
-           "tests/test_union_inherited_body.py::test_inherited_item_openapi_schema,"
-           "tests/test_union_inherited_body.py::test_post_extended_item,"
-           "tests/test_union_inherited_body.py::test_post_item"
-           "]")
+workDir = "/home/moe/BugsInPyExp/pandas/bug12/buggy/pandas"
+command = ("python -m pytest pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer "
+           " --src pandas --granularity statement --family ps --failing-list [pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer]")
 print(command)
 runCommandScript(command, workDir)
+
+
+# workDir = "/home/moe/BugsInPyExp/fastapi/bug11/buggy/fastapi"
+# command = ("python -m pytest "
+#            " tests/test_union_inherited_body.py"
+#            " tests/test_union_body.py"
+#            " --src fastapi --granularity statement --family ps --failing-list ["
+#            "tests/test_union_body.py::test_item_openapi_schema,"
+#            "tests/test_union_body.py::test_post_other_item,"
+#            "tests/test_union_body.py::test_post_item,"
+#            "tests/test_union_inherited_body.py::test_inherited_item_openapi_schema,"
+#            "tests/test_union_inherited_body.py::test_post_extended_item,"
+#            "tests/test_union_inherited_body.py::test_post_item"
+#            "]")
+# print(command)
+# runCommandScript(command, workDir)
