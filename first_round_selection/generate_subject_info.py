@@ -1,5 +1,7 @@
 # pip install PyGithub
 import datetime
+import os
+import pickle
 from pathlib import Path
 from typing import List, Dict
 
@@ -9,6 +11,7 @@ from call_graph import is_affecting_test_module, affected_test_modules
 INFO = {}
 TIME_SELECTED = {}
 SUBJECT_INFO_CSV_FILE_NAME = "subject_info.csv"
+CACHE_DIR_NAME = "cache_subject_info"
 
 
 def load_info():
@@ -300,6 +303,12 @@ def get_test_suite2(benchmark_name: str,
 # bin/wiki_entity_linking/wikipedia_processor.py
 def get_subject_info_for_bug(benchmark_name: str,
                              bug_num: int):
+    cache_file_path = CACHE_DIR_NAME / Path(f"{benchmark_name}_{bug_num}")
+    if cache_file_path.exists():
+        with cache_file_path.open("rb") as file:
+            record = pickle.load(file)
+        return record
+
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
     # get_target_dir(benchmark_name, bug_num)
 
@@ -324,6 +333,12 @@ def get_subject_info_for_bug(benchmark_name: str,
         "EXCLUDE": INFO[benchmark_name]["EXCLUDE"],
         "TARGET_FAILING_TESTS": target_failing_tests
     }
+
+    if not os.path.exists(Path(CACHE_DIR_NAME)):
+        os.mkdir(CACHE_DIR_NAME)
+
+    with cache_file_path.open("wb") as file:
+        pickle.dump(record, file)
 
     return record
 
