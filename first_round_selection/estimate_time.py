@@ -132,18 +132,7 @@ def replace_items(selected_bugs_info: Dict,
                     selected_bugs_info[selected_key].sort()
 
 
-def main():
-    global CORRECT_TEST_BUGS_INFO
-
-    CORRECT_TEST_BUGS_INFO = common.load_correct_test_bugs()
-    empty_ground_truth_bugs_info = common.load_json_to_dictionary(common.EMPTY_GROUND_TRUTH_FILE_NAME)
-    manually_removed_bugs_info = common.load_json_to_dictionary(MANUALLY_REMOVED_BUGS_FILE_NAME)
-
-    selected_bugs_info = {}
-
-    for benchmark in CORRECT_TEST_BUGS_INFO.values():
-        selected_bugs_info[benchmark["BENCHMARK_NAME"]] = []
-
+def select_bugs_randomly(selected_bugs_info: Dict):
     needed_time = 0
     available_time = MAX_HR
 
@@ -165,6 +154,22 @@ def main():
         if bug_left == 0:
             break
 
+    return selected_bugs_info
+
+
+def main():
+    global CORRECT_TEST_BUGS_INFO
+
+    CORRECT_TEST_BUGS_INFO = common.load_correct_test_bugs()
+    empty_ground_truth_bugs_info = common.load_json_to_dictionary(common.EMPTY_GROUND_TRUTH_FILE_NAME)
+    manually_removed_bugs_info = common.load_json_to_dictionary(MANUALLY_REMOVED_BUGS_FILE_NAME)
+
+    selected_bugs_info = {}
+    for benchmark in CORRECT_TEST_BUGS_INFO.values():
+        selected_bugs_info[benchmark["BENCHMARK_NAME"]] = []
+
+    select_bugs_randomly(selected_bugs_info)
+
     # Since this part is added after we ran some experiments, we
     # cannot just remove bugs from the start, otherwise, the simulation
     # may select totally different bugs as the selection process is
@@ -172,9 +177,11 @@ def main():
     # in paper. So, this part is begins after the simulation ends.
     replace_items(selected_bugs_info, empty_ground_truth_bugs_info, manually_removed_bugs_info)
 
+    select_bugs_randomly(selected_bugs_info)
+
     needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     print("Final needed time: ", needed_time)
-    print("Available time: ", available_time)
+    print("Available time: ", MAX_HR)
 
     selected_bugs_info["NUM_BUGS"] = get_num_bugs(selected_bugs_info)
     selected_bugs_info["TIME_ESTIMATION_HOURS"] = needed_time
