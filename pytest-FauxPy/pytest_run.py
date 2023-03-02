@@ -451,11 +451,11 @@ def runCommandScript(cmd: str, workingDir: str):
 # runCommandScript(command, workDir)
 
 
-workDir = "/home/moe/BugsInPyExp/pandas/bug12/buggy/pandas"
-command = ("python -m pytest pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer "
-           " --src pandas --granularity statement --family ps --failing-list [pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer]")
-print(command)
-runCommandScript(command, workDir)
+# workDir = "/home/moe/BugsInPyExp/pandas/bug12/buggy/pandas"
+# command = ("python -m pytest pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer "
+#            " --src pandas --granularity statement --family ps --failing-list [pandas/tests/frame/methods/test_cov_corr.py::TestDataFrameCov::test_cov_nullable_integer]")
+# print(command)
+# runCommandScript(command, workDir)
 
 
 # workDir = "/home/moe/BugsInPyExp/fastapi/bug11/buggy/fastapi"
@@ -472,3 +472,15 @@ runCommandScript(command, workDir)
 #            "]")
 # print(command)
 # runCommandScript(command, workDir)
+
+
+workDir = "/home/moe/BugsInPyExp/pandas/bug141/buggy/pandas"
+command = ("python -m pytest "
+           " pandas/tests/indexes/test_range.py::TestRangeIndex::test_get_indexer_decreasing"
+           " --src pandas --granularity statement --family ps "
+           "--failing-list ["
+           "pandas/tests/indexes/test_range.py::TestRangeIndex::test_get_indexer_decreasing"
+           "]"
+           )
+print(command)
+runCommandScript(command, workDir)

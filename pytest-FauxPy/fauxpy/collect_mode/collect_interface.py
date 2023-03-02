@@ -13,11 +13,11 @@ class PSCollectModeRunResult:
         self.testCaseTable = testCaseTable
         self.seenExceptionList = seenExceptionList
 
-    def getTestResult(self, testName: str) -> Tuple[str, float]:
+    def getTestResult(self, testName: str) -> Tuple[Optional[str], Optional[float]]:
         for currentTest, testType, stacktrace, timeoutStat in self.testCaseTable:
             if currentTest == testName:
                 return testType, timeoutStat
-        raise Exception("It should never happen")
+        return None, None
 
     def getTestSeenExceptionList(self, testName: str) -> str:
         for item in self.seenExceptionList:

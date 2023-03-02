@@ -145,6 +145,13 @@ def _runSwitchedPredicateInstance(projectPath: str, testName: str, predicateName
         return None, None, None, execStatError
 
     testResult, timeoutStat = exeResultData.getTestResult(testName)
+    if testResult is None and timeoutStat is None:
+        # The parametrized tests might be executed with different parameters in the
+        # main mode and the collect mode. In this situation, the test name from
+        # main cannot be found in the tests executed in collect mode. Found by pandas 141.
+        print("Non-deterministic execution")
+        return None, None, None, False
+
     seenExceptionListStr = exeResultData.getTestSeenExceptionList(testName)
     seenExceptionList = common.csvRowToList(seenExceptionListStr)
 
