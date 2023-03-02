@@ -93,4 +93,27 @@ When a script ends running, a directory by the name of the project for which the
 
 ## Generating the bash scripts
 
-To know how these bash scripts are generated or to produce them yourself, refer to [bash_script_generator/README.md](bash_script_generator/README.md).
+We generated the [final bash scripts](bash_script_generator/scripts) in an iterative process that iterates through the following three phases:
+1. [first round selection](first_round_selection)
+2. [bash script generation](bash_script_generator)
+3. [second round selection](second_round_selection)
+
+We have already generated these scripts. So, you do not need to go throw this process. But, if you want to replicate it for any reason, you can follow the instructions below, which is a loop:
+
+- S1. First go to [first round selection](first_round_selection), run all the six steps to generate the `subject_info.csv` file.
+Then, pass `subject_info.csv` to the [bash script generation](bash_script_generator) phase.
+
+- S2. Go to [bash script generation](bash_script_generator) and generate the scripts.
+
+- S3. Run all the generated bash scripts and store the results.
+
+- S4. Go to [second round selection](second_round_selection), and perform one iteration of the second round selection.
+By doing so, some bugs are removed from the experiments, and thus, some new bugs have to be added to the experiments.
+If the `manually_removed_bugs.json` file is not changed, stop this loop right here. Otherwise, go to S5.
+
+
+- S5. Pass `manually_removed_bugs.json` from `second round selection` to [first round selection](first_round_selection), but, skip the first four steps of `first round selection` and run the rest to generate a new version of `subject_info.csv`.
+
+- S6. Go to S2.
+
+
