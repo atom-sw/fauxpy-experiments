@@ -442,7 +442,8 @@ def _get_correct_fishy_ids():
     with correct_fishy_file_path.open("r") as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
-            correct_fishy_ids.append(int(row[0]))
+            if len(row) == 1:
+                correct_fishy_ids.append(int(row[0]))
 
     return correct_fishy_ids
 
