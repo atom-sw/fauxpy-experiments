@@ -24,6 +24,7 @@ TEST_SUITE=(
 "tornado/test/process_test.py"
 "tornado/test/queues_test.py"
 "tornado/test/runtests.py"
+"tornado/test/simple_httpclient_test.py"
 "tornado/test/stack_context_test.py"
 "tornado/test/tcpclient_test.py"
 "tornado/test/testing_test.py"
