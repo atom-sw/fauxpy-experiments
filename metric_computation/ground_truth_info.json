@@ -1,0 +1,4855 @@
+{
+     "black:1": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    621,
+                    636,
+                    646
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:3": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    397
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:4": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    1483
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:6": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    53,
+                    142,
+                    143,
+                    144,
+                    145,
+                    153,
+                    160,
+                    751,
+                    755,
+                    756,
+                    757,
+                    761,
+                    764,
+                    772,
+                    773,
+                    800
+               ],
+               "EXTENDED_LINES": [
+                    50,
+                    138,
+                    151,
+                    158,
+                    165
+               ]
+          },
+          {
+               "FILE_NAME": "blib2to3/pgen2/driver.py",
+               "LINES": [
+                    32,
+                    100,
+                    114
+               ],
+               "EXTENDED_LINES": [
+                    37
+               ]
+          },
+          {
+               "FILE_NAME": "blib2to3/pgen2/tokenize.py",
+               "LINES": [
+                    34,
+                    337,
+                    360,
+                    509
+               ],
+               "EXTENDED_LINES": [
+                    33,
+                    357
+               ]
+          }
+     ],
+     "black:7": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    2729,
+                    2760
+               ],
+               "EXTENDED_LINES": [
+                    2728
+               ]
+          }
+     ],
+     "black:8": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    2410,
+                    2411
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:10": [
+          {
+               "FILE_NAME": "blib2to3/pgen2/driver.py",
+               "LINES": [
+                    134,
+                    136,
+                    137
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:11": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    2115,
+                    2116
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:14": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    23,
+                    2913,
+                    2932,
+                    2933,
+                    2934,
+                    2935,
+                    2936,
+                    2937,
+                    2938,
+                    2939,
+                    2940
+               ],
+               "EXTENDED_LINES": [
+                    22
+               ]
+          }
+     ],
+     "black:15": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    32,
+                    93,
+                    100,
+                    101,
+                    102,
+                    104,
+                    105,
+                    107,
+                    109,
+                    110,
+                    113,
+                    117,
+                    762,
+                    768,
+                    1309,
+                    1312,
+                    1320,
+                    1321,
+                    1322,
+                    1323,
+                    1324,
+                    1326,
+                    1327,
+                    1328,
+                    1329,
+                    1330,
+                    1332,
+                    1337,
+                    1338,
+                    1340,
+                    1341,
+                    1342,
+                    1343,
+                    1345,
+                    1347,
+                    1349,
+                    1351,
+                    1353,
+                    1355,
+                    1379,
+                    1380,
+                    1485,
+                    1494,
+                    1495,
+                    1496,
+                    1497,
+                    1501,
+                    1504,
+                    1509,
+                    1511,
+                    1513,
+                    1514,
+                    1520,
+                    1521,
+                    1522,
+                    1524,
+                    1525,
+                    1527,
+                    1528,
+                    1530,
+                    1532,
+                    1534,
+                    1535,
+                    1537,
+                    1538,
+                    1539,
+                    1540,
+                    1542,
+                    1545,
+                    1546,
+                    1548,
+                    1549,
+                    1550,
+                    1551,
+                    1552,
+                    1553,
+                    1554,
+                    1651,
+                    1653,
+                    1654,
+                    1655,
+                    1657,
+                    1658,
+                    1659,
+                    1660,
+                    1661,
+                    1662,
+                    1663,
+                    1665,
+                    1667,
+                    1972,
+                    2109,
+                    2110,
+                    2112,
+                    2113,
+                    2114,
+                    2116,
+                    2117,
+                    2118,
+                    2191,
+                    2692,
+                    2695,
+                    2696,
+                    2697,
+                    2698,
+                    2699,
+                    2700,
+                    2702,
+                    2705,
+                    2713,
+                    2737
+               ],
+               "EXTENDED_LINES": [
+                    1970,
+                    2704,
+                    2711
+               ]
+          }
+     ],
+     "black:18": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    7,
+                    468,
+                    469,
+                    478,
+                    487,
+                    506,
+                    517,
+                    521,
+                    593,
+                    594
+               ],
+               "EXTENDED_LINES": [
+                    6
+               ]
+          }
+     ],
+     "black:19": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    1047
+               ],
+               "EXTENDED_LINES": [
+                    1045
+               ]
+          }
+     ],
+     "black:20": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    344,
+                    345
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "black:22": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    6,
+                    13,
+                    35,
+                    36,
+                    523,
+                    552,
+                    553,
+                    561,
+                    635,
+                    641,
+                    669,
+                    697,
+                    706,
+                    710,
+                    712,
+                    713,
+                    714,
+                    716,
+                    721,
+                    722,
+                    723,
+                    729,
+                    730,
+                    731,
+                    732,
+                    735,
+                    737,
+                    738,
+                    739,
+                    740,
+                    742,
+                    755,
+                    812,
+                    814,
+                    1442,
+                    1447,
+                    1451,
+                    1454,
+                    1455,
+                    1458,
+                    1467,
+                    1520,
+                    1521,
+                    1560,
+                    1561,
+                    1602,
+                    1619,
+                    1620,
+                    1621,
+                    1622,
+                    1632,
+                    1643
+               ],
+               "EXTENDED_LINES": [
+                    34,
+                    709,
+                    1449
+               ]
+          }
+     ],
+     "black:23": [
+          {
+               "FILE_NAME": "black.py",
+               "LINES": [
+                    241,
+                    245,
+                    246,
+                    247,
+                    248,
+                    249,
+                    251,
+                    252,
+                    253,
+                    254,
+                    267,
+                    906,
+                    1541
+               ],
+               "EXTENDED_LINES": [
+                    37,
+                    904
+               ]
+          },
+          {
+               "FILE_NAME": "blib2to3/pygram.py",
+               "LINES": [
+                    39
+               ],
+               "EXTENDED_LINES": [
+                    37
+               ]
+          }
+     ],
+     "cookiecutter:1": [
+          {
+               "FILE_NAME": "cookiecutter/generate.py",
+               "LINES": [
+                    85
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "cookiecutter:2": [
+          {
+               "FILE_NAME": "cookiecutter/hooks.py",
+               "LINES": [
+                    57,
+                    59,
+                    61,
+                    122,
+                    123,
+                    127
+               ],
+               "EXTENDED_LINES": [
+                    55
+               ]
+          }
+     ],
+     "cookiecutter:3": [
+          {
+               "FILE_NAME": "cookiecutter/prompt.py",
+               "LINES": [
+                    91
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "cookiecutter:4": [
+          {
+               "FILE_NAME": "cookiecutter/exceptions.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "cookiecutter/generate.py",
+               "LINES": [
+                    27,
+                    31,
+                    260
+               ],
+               "EXTENDED_LINES": [
+                    26
+               ]
+          },
+          {
+               "FILE_NAME": "cookiecutter/hooks.py",
+               "LINES": [
+                    23,
+                    72,
+                    94,
+                    108,
+                    109
+               ],
+               "EXTENDED_LINES": [
+                    20
+               ]
+          }
+     ],
+     "fastapi:1": [
+          {
+               "FILE_NAME": "fastapi/applications.py",
+               "LINES": [
+                    174,
+                    200,
+                    225,
+                    253,
+                    312,
+                    337,
+                    362,
+                    387,
+                    412,
+                    437,
+                    462,
+                    487,
+                    512,
+                    537,
+                    562,
+                    587,
+                    612,
+                    637,
+                    662,
+                    687
+               ],
+               "EXTENDED_LINES": [
+                    173,
+                    198,
+                    224,
+                    251,
+                    311,
+                    335,
+                    361,
+                    385,
+                    411,
+                    435,
+                    461,
+                    485,
+                    511,
+                    535,
+                    561,
+                    585,
+                    611,
+                    635,
+                    661,
+                    685
+               ]
+          },
+          {
+               "FILE_NAME": "fastapi/encoders.py",
+               "LINES": [
+                    37,
+                    63,
+                    71,
+                    90,
+                    97,
+                    105,
+                    121,
+                    156
+               ],
+               "EXTENDED_LINES": [
+                    60
+               ]
+          },
+          {
+               "FILE_NAME": "fastapi/openapi/utils.py",
+               "LINES": [
+                    84,
+                    313
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    52,
+                    56,
+                    59,
+                    63,
+                    67,
+                    81,
+                    86,
+                    108,
+                    134,
+                    180,
+                    258,
+                    329,
+                    355,
+                    403,
+                    432,
+                    460,
+                    489,
+                    563,
+                    609,
+                    635,
+                    660,
+                    686,
+                    711,
+                    737,
+                    762,
+                    788,
+                    813,
+                    839,
+                    864,
+                    890,
+                    915,
+                    941,
+                    966,
+                    992
+               ],
+               "EXTENDED_LINES": [
+                    80,
+                    105,
+                    133,
+                    179,
+                    257,
+                    328,
+                    354,
+                    402,
+                    430,
+                    459,
+                    487,
+                    562,
+                    608,
+                    633,
+                    659,
+                    684,
+                    710,
+                    735,
+                    761,
+                    786,
+                    812,
+                    837,
+                    863,
+                    888,
+                    914,
+                    939,
+                    965,
+                    990
+               ]
+          }
+     ],
+     "fastapi:2": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    501
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:3": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    63,
+                    64,
+                    65,
+                    66,
+                    67,
+                    68,
+                    69
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:4": [
+          {
+               "FILE_NAME": "fastapi/openapi/utils.py",
+               "LINES": [
+                    183
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:5": [
+          {
+               "FILE_NAME": "fastapi/utils.py",
+               "LINES": [
+                    100
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:6": [
+          {
+               "FILE_NAME": "fastapi/dependencies/utils.py",
+               "LINES": [
+                    632,
+                    633,
+                    634
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:7": [
+          {
+               "FILE_NAME": "fastapi/exception_handlers.py",
+               "LINES": [
+                    1,
+                    22
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:8": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    351,
+                    352,
+                    491
+               ],
+               "EXTENDED_LINES": [
+                    350,
+                    489
+               ]
+          }
+     ],
+     "fastapi:9": [
+          {
+               "FILE_NAME": "fastapi/dependencies/utils.py",
+               "LINES": [
+                    562,
+                    569,
+                    577
+               ],
+               "EXTENDED_LINES": [
+                    561,
+                    567
+               ]
+          }
+     ],
+     "fastapi:10": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    55
+               ],
+               "EXTENDED_LINES": [
+                    54
+               ]
+          }
+     ],
+     "fastapi:11": [
+          {
+               "FILE_NAME": "fastapi/dependencies/utils.py",
+               "LINES": [
+                    134,
+                    139
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:12": [
+          {
+               "FILE_NAME": "fastapi/security/http.py",
+               "LINES": [
+                    115,
+                    116,
+                    117,
+                    118
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:13": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [
+                    288,
+                    290,
+                    291,
+                    292,
+                    302
+               ],
+               "EXTENDED_LINES": [
+                    287
+               ]
+          }
+     ],
+     "fastapi:14": [
+          {
+               "FILE_NAME": "fastapi/openapi/models.py",
+               "LINES": [
+                    102,
+                    123,
+                    223
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "fastapi:15": [
+          {
+               "FILE_NAME": "fastapi/routing.py",
+               "LINES": [],
+               "EXTENDED_LINES": [
+                    272
+               ]
+          }
+     ],
+     "fastapi:16": [
+          {
+               "FILE_NAME": "fastapi/encoders.py",
+               "LINES": [
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "httpie:1": [
+          {
+               "FILE_NAME": "httpie/downloads.py",
+               "LINES": [
+                    10,
+                    142,
+                    143
+               ],
+               "EXTENDED_LINES": [
+                    9
+               ]
+          }
+     ],
+     "httpie:2": [
+          {
+               "FILE_NAME": "httpie/client.py",
+               "LINES": [
+                    44
+               ],
+               "EXTENDED_LINES": [
+                    42
+               ]
+          },
+          {
+               "FILE_NAME": "httpie/core.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "httpie:3": [
+          {
+               "FILE_NAME": "httpie/sessions.py",
+               "LINES": [
+                    104
+               ],
+               "EXTENDED_LINES": [
+                    103
+               ]
+          }
+     ],
+     "httpie:4": [
+          {
+               "FILE_NAME": "httpie/models.py",
+               "LINES": [
+                    106
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "httpie:5": [
+          {
+               "FILE_NAME": "httpie/cli.py",
+               "LINES": [
+                    42,
+                    43,
+                    44,
+                    45,
+                    46
+               ],
+               "EXTENDED_LINES": [
+                    38,
+                    41
+               ]
+          }
+     ],
+     "keras:1": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    17,
+                    1206,
+                    1220,
+                    1234,
+                    2903
+               ],
+               "EXTENDED_LINES": [
+                    15
+               ]
+          },
+          {
+               "FILE_NAME": "keras/backend/theano_backend.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/initializers.py",
+               "LINES": [
+                    83,
+                    84,
+                    111,
+                    112,
+                    144,
+                    145,
+                    213,
+                    214,
+                    217,
+                    218,
+                    254
+               ],
+               "EXTENDED_LINES": [
+                    253
+               ]
+          }
+     ],
+     "keras:2": [
+          {
+               "FILE_NAME": "keras/backend/numpy_backend.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:3": [
+          {
+               "FILE_NAME": "keras/models.py",
+               "LINES": [
+                    140,
+                    141,
+                    142,
+                    153,
+                    154,
+                    155
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:4": [
+          {
+               "FILE_NAME": "keras/optimizers.py",
+               "LINES": [
+                    706
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:5": [
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [
+                    173
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:6": [
+          {
+               "FILE_NAME": "keras/engine/training_utils.py",
+               "LINES": [
+                    413
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:7": [
+          {
+               "FILE_NAME": "keras/wrappers/scikit_learn.py",
+               "LINES": [
+                    323
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:8": [
+          {
+               "FILE_NAME": "keras/engine/network.py",
+               "LINES": [
+                    980,
+                    981,
+                    1028,
+                    1029
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:9": [
+          {
+               "FILE_NAME": "docs/autogen.py",
+               "LINES": [
+                    120,
+                    121
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:10": [
+          {
+               "FILE_NAME": "keras/engine/training_utils.py",
+               "LINES": [
+                    481,
+                    482,
+                    483,
+                    498,
+                    499,
+                    503,
+                    504,
+                    505,
+                    506,
+                    510,
+                    511,
+                    513,
+                    522,
+                    524,
+                    525,
+                    526,
+                    527
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:11": [
+          {
+               "FILE_NAME": "keras/engine/training_generator.py",
+               "LINES": [
+                    10,
+                    43,
+                    44,
+                    51,
+                    62,
+                    64,
+                    65,
+                    111,
+                    125,
+                    152,
+                    164,
+                    287,
+                    288,
+                    295,
+                    306,
+                    317,
+                    390,
+                    391,
+                    398,
+                    409,
+                    420
+               ],
+               "EXTENDED_LINES": [
+                    8,
+                    58
+               ]
+          },
+          {
+               "FILE_NAME": "keras/engine/training_utils.py",
+               "LINES": [
+                    13
+               ],
+               "EXTENDED_LINES": [
+                    12
+               ]
+          },
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:13": [
+          {
+               "FILE_NAME": "keras/engine/training_generator.py",
+               "LINES": [
+                    127
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:14": [
+          {
+               "FILE_NAME": "keras/metrics.py",
+               "LINES": [
+                    48
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:16": [
+          {
+               "FILE_NAME": "keras/engine/sequential.py",
+               "LINES": [
+                    90,
+                    222,
+                    223,
+                    274,
+                    276,
+                    280,
+                    284,
+                    285,
+                    289
+               ],
+               "EXTENDED_LINES": [
+                    87,
+                    288
+               ]
+          }
+     ],
+     "keras:17": [
+          {
+               "FILE_NAME": "keras/metrics.py",
+               "LINES": [
+                    37
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:18": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    2548,
+                    2597,
+                    2646,
+                    2676
+               ],
+               "EXTENDED_LINES": [
+                    2595,
+                    2674
+               ]
+          }
+     ],
+     "keras:19": [
+          {
+               "FILE_NAME": "keras/backend/cntk_backend.py",
+               "LINES": [
+                    1442
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    57,
+                    69,
+                    79,
+                    86,
+                    101,
+                    102,
+                    103,
+                    104,
+                    116,
+                    417,
+                    830,
+                    1223,
+                    1798
+               ],
+               "EXTENDED_LINES": [
+                    56,
+                    829,
+                    1222,
+                    1797
+               ]
+          }
+     ],
+     "keras:20": [
+          {
+               "FILE_NAME": "keras/backend/cntk_backend.py",
+               "LINES": [
+                    2189,
+                    2211
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    3436,
+                    3452,
+                    3589,
+                    3613,
+                    3630,
+                    3631,
+                    3632
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/backend/theano_backend.py",
+               "LINES": [
+                    2137,
+                    2180
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/layers/convolutional.py",
+               "LINES": [
+                    734,
+                    750,
+                    823,
+                    827,
+                    839,
+                    870,
+                    875,
+                    880
+               ],
+               "EXTENDED_LINES": [
+                    733,
+                    749
+               ]
+          },
+          {
+               "FILE_NAME": "keras/utils/conv_utils.py",
+               "LINES": [
+                    138,
+                    158
+               ],
+               "EXTENDED_LINES": [
+                    155
+               ]
+          }
+     ],
+     "keras:24": [
+          {
+               "FILE_NAME": "keras/callbacks.py",
+               "LINES": [
+                    789,
+                    790
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:25": [
+          {
+               "FILE_NAME": "keras/applications/imagenet_utils.py",
+               "LINES": [
+                    41
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:26": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    2874
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:27": [
+          {
+               "FILE_NAME": "keras/layers/wrappers.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:28": [
+          {
+               "FILE_NAME": "keras/preprocessing/sequence.py",
+               "LINES": [
+                    331,
+                    344,
+                    348
+               ],
+               "EXTENDED_LINES": [
+                    327
+               ]
+          }
+     ],
+     "keras:29": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    856,
+                    932,
+                    1177,
+                    1178,
+                    1179,
+                    1366,
+                    1367,
+                    1368,
+                    2188,
+                    2189,
+                    2190,
+                    2334,
+                    2335,
+                    2336
+               ],
+               "EXTENDED_LINES": [
+                    855,
+                    931
+               ]
+          }
+     ],
+     "keras:30": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    2215,
+                    2402
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:31": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    3945,
+                    3946
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:32": [
+          {
+               "FILE_NAME": "keras/callbacks.py",
+               "LINES": [
+                    909,
+                    916,
+                    918,
+                    939,
+                    942,
+                    970,
+                    981
+               ],
+               "EXTENDED_LINES": [
+                    915,
+                    969
+               ]
+          }
+     ],
+     "keras:33": [
+          {
+               "FILE_NAME": "keras/preprocessing/text.py",
+               "LINES": [
+                    41,
+                    42,
+                    44,
+                    46
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:34": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    2165,
+                    2197,
+                    2369,
+                    2493
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:35": [
+          {
+               "FILE_NAME": "keras/preprocessing/image.py",
+               "LINES": [
+                    583,
+                    584,
+                    954,
+                    1230,
+                    1232
+               ],
+               "EXTENDED_LINES": [
+                    953,
+                    1231
+               ]
+          }
+     ],
+     "keras:36": [
+          {
+               "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "LINES": [
+                    3419,
+                    3422
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:37": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    521,
+                    523,
+                    526
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "keras/layers/wrappers.py",
+               "LINES": [
+                    324,
+                    325,
+                    326,
+                    327,
+                    328
+               ],
+               "EXTENDED_LINES": [
+                    277
+               ]
+          }
+     ],
+     "keras:38": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    109
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:39": [
+          {
+               "FILE_NAME": "keras/utils/generic_utils.py",
+               "LINES": [
+                    330
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:40": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    398,
+                    400,
+                    408
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:41": [
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "LINES": [
+                    14,
+                    556,
+                    617,
+                    634,
+                    639,
+                    641,
+                    645,
+                    689,
+                    690,
+                    691,
+                    707,
+                    708,
+                    709
+               ],
+               "EXTENDED_LINES": [
+                    13,
+                    616
+               ]
+          }
+     ],
+     "keras:42": [
+          {
+               "FILE_NAME": "keras/engine/training.py",
+               "LINES": [
+                    1903,
+                    2010,
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2062,
+                    2063,
+                    2064,
+                    2065,
+                    2066,
+                    2067,
+                    2068,
+                    2069,
+                    2070,
+                    2176,
+                    2228,
+                    2229,
+                    2291,
+                    2340,
+                    2341
+               ],
+               "EXTENDED_LINES": [
+                    2006
+               ]
+          },
+          {
+               "FILE_NAME": "keras/models.py",
+               "LINES": [
+                    1119,
+                    1226,
+                    1266
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "keras:43": [
+          {
+               "FILE_NAME": "keras/utils/np_utils.py",
+               "LINES": [
+                    22
+               ],
+               "EXTENDED_LINES": [
+                    21
+               ]
+          }
+     ],
+     "keras:44": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    734,
+                    741
+               ],
+               "EXTENDED_LINES": [
+                    740
+               ]
+          }
+     ],
+     "keras:45": [
+          {
+               "FILE_NAME": "keras/layers/recurrent.py",
+               "LINES": [
+                    1806,
+                    1807,
+                    1808,
+                    1809
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:1": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/common.py",
+               "LINES": [
+                    602
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:2": [
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    2019,
+                    2022,
+                    2036
+               ],
+               "EXTENDED_LINES": [
+                    2018
+               ]
+          }
+     ],
+     "pandas:3": [
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    4687,
+                    4714
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:4": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    3531
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:6": [
+          {
+               "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "LINES": [
+                    757
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:7": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    3076,
+                    3077,
+                    3078
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:8": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    731,
+                    732,
+                    733,
+                    734
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:9": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    40,
+                    1837
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/category.py",
+               "LINES": [
+                    22,
+                    368,
+                    371
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:10": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    1602
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:11": [
+          {
+               "FILE_NAME": "pandas/core/reshape/concat.py",
+               "LINES": [
+                    622,
+                    623,
+                    624,
+                    625
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:12": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    87,
+                    7874,
+                    7877,
+                    7879,
+                    7883,
+                    8009,
+                    8013,
+                    8014,
+                    8016,
+                    8017,
+                    8019,
+                    8021
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:13": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "LINES": [
+                    137,
+                    141,
+                    143,
+                    168,
+                    172,
+                    174,
+                    210,
+                    211,
+                    212,
+                    214,
+                    215,
+                    216,
+                    217,
+                    219,
+                    221,
+                    222,
+                    223,
+                    226,
+                    227,
+                    229,
+                    232,
+                    236,
+                    237,
+                    243
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:14": [
+          {
+               "FILE_NAME": "pandas/core/ops/dispatch.py",
+               "LINES": [
+                    74
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:16": [
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "LINES": [
+                    91,
+                    454,
+                    461
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:18": [
+          {
+               "FILE_NAME": "pandas/core/window/common.py",
+               "LINES": [
+                    340
+               ],
+               "EXTENDED_LINES": [
+                    339
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/window/rolling.py",
+               "LINES": [
+                    475,
+                    481
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:19": [
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    1089,
+                    1091,
+                    1094,
+                    1095,
+                    1097,
+                    1098,
+                    1099,
+                    1100,
+                    1101,
+                    1102,
+                    1103,
+                    1104,
+                    1105,
+                    1106,
+                    1107,
+                    1109,
+                    1110,
+                    1111,
+                    1112,
+                    1113,
+                    1114
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:20": [
+          {
+               "FILE_NAME": "pandas/tseries/offsets.py",
+               "LINES": [
+                    1152,
+                    1873,
+                    1874,
+                    1875,
+                    1959,
+                    1960,
+                    1961
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:21": [
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    952,
+                    954,
+                    956
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:22": [
+          {
+               "FILE_NAME": "pandas/core/window/common.py",
+               "LINES": [
+                    331
+               ],
+               "EXTENDED_LINES": [
+                    330
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/window/rolling.py",
+               "LINES": [
+                    1174,
+                    1175,
+                    1942
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:23": [
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "LINES": [
+                    727,
+                    730
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:24": [
+          {
+               "FILE_NAME": "pandas/core/arrays/datetimes.py",
+               "LINES": [
+                    976
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:25": [
+          {
+               "FILE_NAME": "pandas/core/arrays/datetimes.py",
+               "LINES": [
+                    1280
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:26": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    2146,
+                    2181
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:27": [
+          {
+               "FILE_NAME": "pandas/core/arrays/datetimes.py",
+               "LINES": [
+                    21,
+                    1100
+               ],
+               "EXTENDED_LINES": [
+                    19
+               ]
+          }
+     ],
+     "pandas:28": [
+          {
+               "FILE_NAME": "pandas/core/strings.py",
+               "LINES": [
+                    2300
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:29": [
+          {
+               "FILE_NAME": "pandas/core/arrays/interval.py",
+               "LINES": [
+                    545,
+                    549,
+                    550,
+                    551,
+                    555,
+                    556,
+                    557
+               ],
+               "EXTENDED_LINES": [
+                    543
+               ]
+          }
+     ],
+     "pandas:30": [
+          {
+               "FILE_NAME": "pandas/io/json/_json.py",
+               "LINES": [
+                    985
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:31": [
+          {
+               "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "LINES": [
+                    47,
+                    48,
+                    1870,
+                    1872
+               ],
+               "EXTENDED_LINES": [
+                    46
+               ]
+          }
+     ],
+     "pandas:32": [
+          {
+               "FILE_NAME": "pandas/io/sas/sas_xport.py",
+               "LINES": [
+                    12,
+                    267,
+                    268,
+                    269,
+                    270,
+                    271,
+                    272
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:33": [
+          {
+               "FILE_NAME": "pandas/core/arrays/integer.py",
+               "LINES": [
+                    502
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:34": [
+          {
+               "FILE_NAME": "pandas/core/resample.py",
+               "LINES": [
+                    1431
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:35": [
+          {
+               "FILE_NAME": "pandas/core/indexes/period.py",
+               "LINES": [
+                    328
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:36": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "LINES": [
+                    19,
+                    20,
+                    27,
+                    31,
+                    37,
+                    42,
+                    142,
+                    143,
+                    144,
+                    145,
+                    146,
+                    147,
+                    148,
+                    149,
+                    150,
+                    151,
+                    152,
+                    161,
+                    192,
+                    227,
+                    229,
+                    232,
+                    233,
+                    234,
+                    239,
+                    240,
+                    241,
+                    242,
+                    244,
+                    245,
+                    248,
+                    250,
+                    252,
+                    253,
+                    255,
+                    256,
+                    257,
+                    278,
+                    280,
+                    281,
+                    282,
+                    283,
+                    284,
+                    285,
+                    287,
+                    559,
+                    560,
+                    561,
+                    562,
+                    563,
+                    564
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:37": [
+          {
+               "FILE_NAME": "pandas/core/arrays/string_.py",
+               "LINES": [
+                    16,
+                    274
+               ],
+               "EXTENDED_LINES": [
+                    273
+               ]
+          }
+     ],
+     "pandas:38": [
+          {
+               "FILE_NAME": "pandas/core/reshape/reshape.py",
+               "LINES": [
+                    341,
+                    366
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:39": [
+          {
+               "FILE_NAME": "pandas/core/ops/methods.py",
+               "LINES": [
+                    99
+               ],
+               "EXTENDED_LINES": [
+                    95
+               ]
+          }
+     ],
+     "pandas:40": [
+          {
+               "FILE_NAME": "pandas/core/reshape/merge.py",
+               "LINES": [
+                    9,
+                    16,
+                    27,
+                    1274,
+                    1286,
+                    1289,
+                    1825,
+                    1837,
+                    1839,
+                    1895
+               ],
+               "EXTENDED_LINES": [
+                    26,
+                    1281,
+                    1838,
+                    1893
+               ]
+          }
+     ],
+     "pandas:41": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    14,
+                    1636,
+                    1639,
+                    1641,
+                    2058,
+                    2076,
+                    2095,
+                    2242,
+                    2243,
+                    2484,
+                    2485,
+                    2528,
+                    2620
+               ],
+               "EXTENDED_LINES": [
+                    13,
+                    2274
+               ]
+          }
+     ],
+     "pandas:42": [
+          {
+               "FILE_NAME": "pandas/_testing.py",
+               "LINES": [
+                    1163,
+                    1173
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:43": [
+          {
+               "FILE_NAME": "pandas/core/ops/__init__.py",
+               "LINES": [
+                    714,
+                    721,
+                    782
+               ],
+               "EXTENDED_LINES": [
+                    719
+               ]
+          }
+     ],
+     "pandas:44": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    32,
+                    535,
+                    4660,
+                    4662,
+                    4663
+               ],
+               "EXTENDED_LINES": [
+                    534
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "LINES": [
+                    11,
+                    18,
+                    35
+               ],
+               "EXTENDED_LINES": [
+                    17
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimes.py",
+               "LINES": [
+                    10,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/period.py",
+               "LINES": [
+                    12,
+                    27,
+                    457,
+                    458,
+                    459,
+                    460,
+                    462
+               ],
+               "EXTENDED_LINES": [
+                    24
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "LINES": [
+                    4
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:45": [
+          {
+               "FILE_NAME": "pandas/core/construction.py",
+               "LINES": [
+                    8,
+                    450
+               ],
+               "EXTENDED_LINES": [
+                    448
+               ]
+          }
+     ],
+     "pandas:46": [
+          {
+               "FILE_NAME": "pandas/core/indexes/multi.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/reshape/util.py",
+               "LINES": [
+                    5,
+                    54,
+                    55,
+                    56,
+                    57,
+                    58,
+                    59
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:47": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    2690
+               ],
+               "EXTENDED_LINES": [
+                    2688
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    11,
+                    584
+               ],
+               "EXTENDED_LINES": [
+                    10
+               ]
+          }
+     ],
+     "pandas:48": [
+          {
+               "FILE_NAME": "pandas/core/groupby/generic.py",
+               "LINES": [
+                    1086
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:49": [
+          {
+               "FILE_NAME": "pandas/core/strings.py",
+               "LINES": [
+                    778
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:50": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    106
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:51": [
+          {
+               "FILE_NAME": "pandas/core/indexes/category.py",
+               "LINES": [
+                    33
+               ],
+               "EXTENDED_LINES": [
+                    31
+               ]
+          }
+     ],
+     "pandas:52": [
+          {
+               "FILE_NAME": "pandas/core/groupby/generic.py",
+               "LINES": [
+                    596,
+                    598,
+                    599,
+                    600,
+                    601,
+                    602,
+                    603,
+                    604,
+                    605,
+                    606,
+                    607,
+                    609,
+                    614,
+                    617
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:53": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    3114
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    974
+               ],
+               "EXTENDED_LINES": [
+                    970
+               ]
+          }
+     ],
+     "pandas:54": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/dtypes.py",
+               "LINES": [
+                    327
+               ],
+               "EXTENDED_LINES": [
+                    325
+               ]
+          }
+     ],
+     "pandas:55": [
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    3470,
+                    3476
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    1417,
+                    1418,
+                    1419
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:56": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    2625,
+                    2626
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:57": [
+          {
+               "FILE_NAME": "pandas/_testing.py",
+               "LINES": [
+                    1077,
+                    1213
+               ],
+               "EXTENDED_LINES": [
+                    1076
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    2444,
+                    2445,
+                    2446,
+                    2447,
+                    2449,
+                    2450,
+                    2451,
+                    2453,
+                    2455
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:58": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    647
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:59": [
+          {
+               "FILE_NAME": "pandas/core/window/rolling.py",
+               "LINES": [
+                    1785
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:60": [
+          {
+               "FILE_NAME": "pandas/core/window/rolling.py",
+               "LINES": [],
+               "EXTENDED_LINES": [
+                    1305
+               ]
+          }
+     ],
+     "pandas:61": [
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    922
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:62": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    834
+               ],
+               "EXTENDED_LINES": [
+                    831
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/io/stata.py",
+               "LINES": [
+                    1681
+               ],
+               "EXTENDED_LINES": [
+                    1680
+               ]
+          }
+     ],
+     "pandas:63": [
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    2090,
+                    2091,
+                    2092,
+                    2093,
+                    2094,
+                    2095,
+                    2096,
+                    2097,
+                    2098,
+                    2099,
+                    2100,
+                    2101,
+                    2102,
+                    2103,
+                    2104
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:64": [
+          {
+               "FILE_NAME": "pandas/io/formats/excel.py",
+               "LINES": [
+                    406
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:65": [
+          {
+               "FILE_NAME": "pandas/io/common.py",
+               "LINES": [
+                    6,
+                    362,
+                    364,
+                    440
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/io/parsers.py",
+               "LINES": [
+                    8,
+                    1875
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:66": [
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    3445,
+                    3452,
+                    3453
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/internals/managers.py",
+               "LINES": [
+                    1568
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:67": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    10
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:68": [
+          {
+               "FILE_NAME": "pandas/core/arrays/interval.py",
+               "LINES": [
+                    30
+               ],
+               "EXTENDED_LINES": [
+                    29
+               ]
+          }
+     ],
+     "pandas:69": [
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    2127
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:70": [
+          {
+               "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "LINES": [
+                    817,
+                    818
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/groupby/ops.py",
+               "LINES": [
+                    547
+               ],
+               "EXTENDED_LINES": [
+                    545
+               ]
+          }
+     ],
+     "pandas:71": [
+          {
+               "FILE_NAME": "pandas/core/reshape/tile.py",
+               "LINES": [
+                    17,
+                    18,
+                    208
+               ],
+               "EXTENDED_LINES": [
+                    16,
+                    206
+               ]
+          }
+     ],
+     "pandas:72": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    880,
+                    892,
+                    893,
+                    894,
+                    897
+               ],
+               "EXTENDED_LINES": [
+                    878,
+                    896
+               ]
+          }
+     ],
+     "pandas:73": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    5344,
+                    5371,
+                    5379,
+                    5380
+               ],
+               "EXTENDED_LINES": [
+                    5376
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/ops/missing.py",
+               "LINES": [
+                    112,
+                    118,
+                    120,
+                    121,
+                    125,
+                    127,
+                    128,
+                    129,
+                    131
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:74": [
+          {
+               "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "LINES": [
+                    166
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:75": [
+          {
+               "FILE_NAME": "pandas/core/indexes/period.py",
+               "LINES": [
+                    489,
+                    571,
+                    572,
+                    577,
+                    582
+               ],
+               "EXTENDED_LINES": [
+                    580
+               ]
+          }
+     ],
+     "pandas:76": [
+          {
+               "FILE_NAME": "pandas/io/json/_json.py",
+               "LINES": [
+                    945
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:77": [
+          {
+               "FILE_NAME": "pandas/core/ops/array_ops.py",
+               "LINES": [
+                    280,
+                    301
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:78": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    8016
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:79": [
+          {
+               "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "LINES": [
+                    30,
+                    568
+               ],
+               "EXTENDED_LINES": [
+                    29
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimes.py",
+               "LINES": [
+                    30,
+                    645,
+                    680
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/multi.py",
+               "LINES": [
+                    2781
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    984
+               ],
+               "EXTENDED_LINES": [
+                    982
+               ]
+          }
+     ],
+     "pandas:80": [
+          {
+               "FILE_NAME": "pandas/core/arrays/masked.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    1396,
+                    1397
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    2236
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:81": [
+          {
+               "FILE_NAME": "pandas/core/arrays/integer.py",
+               "LINES": [
+                    23,
+                    445,
+                    450
+               ],
+               "EXTENDED_LINES": [
+                    21,
+                    447
+               ]
+          }
+     ],
+     "pandas:82": [
+          {
+               "FILE_NAME": "pandas/core/internals/concat.py",
+               "LINES": [
+                    353
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:83": [
+          {
+               "FILE_NAME": "pandas/core/indexes/api.py",
+               "LINES": [
+                    66,
+                    90,
+                    108,
+                    146
+               ],
+               "EXTENDED_LINES": [
+                    145
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/reshape/concat.py",
+               "LINES": [
+                    520
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:84": [
+          {
+               "FILE_NAME": "pandas/core/reshape/reshape.py",
+               "LINES": [
+                    320
+               ],
+               "EXTENDED_LINES": [
+                    318
+               ]
+          }
+     ],
+     "pandas:85": [
+          {
+               "FILE_NAME": "pandas/core/indexes/multi.py",
+               "LINES": [
+                    1260
+               ],
+               "EXTENDED_LINES": [
+                    1258
+               ]
+          }
+     ],
+     "pandas:86": [
+          {
+               "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "LINES": [
+                    432
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:87": [
+          {
+               "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "LINES": [
+                    584,
+                    592,
+                    602
+               ],
+               "EXTENDED_LINES": [
+                    583,
+                    598
+               ]
+          }
+     ],
+     "pandas:88": [
+          {
+               "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "LINES": [
+                    120
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:89": [
+          {
+               "FILE_NAME": "pandas/core/reshape/reshape.py",
+               "LINES": [
+                    361
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:90": [
+          {
+               "FILE_NAME": "pandas/_testing.py",
+               "LINES": [
+                    11,
+                    25,
+                    104,
+                    120,
+                    121,
+                    122,
+                    123,
+                    124
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/io/pickle.py",
+               "LINES": [
+                    3,
+                    5,
+                    7,
+                    10,
+                    66,
+                    67,
+                    78,
+                    137,
+                    138
+               ],
+               "EXTENDED_LINES": [
+                    2,
+                    75
+               ]
+          }
+     ],
+     "pandas:91": [
+          {
+               "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "LINES": [
+                    360,
+                    361,
+                    362,
+                    364
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:92": [
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    6975,
+                    6976
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/period.py",
+               "LINES": [
+                    472,
+                    473,
+                    474,
+                    475,
+                    478,
+                    482,
+                    706,
+                    707
+               ],
+               "EXTENDED_LINES": [
+                    480
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/resample.py",
+               "LINES": [
+                    1589
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:94": [
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "LINES": [
+                    31,
+                    254,
+                    259,
+                    260,
+                    261,
+                    489,
+                    490
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:95": [
+          {
+               "FILE_NAME": "pandas/core/arrays/period.py",
+               "LINES": [
+                    76,
+                    84,
+                    87,
+                    88
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:96": [
+          {
+               "FILE_NAME": "pandas/tseries/offsets.py",
+               "LINES": [
+                    899
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:97": [
+          {
+               "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "LINES": [
+                    260,
+                    268,
+                    279
+               ],
+               "EXTENDED_LINES": [
+                    277
+               ]
+          }
+     ],
+     "pandas:98": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    298,
+                    299,
+                    300,
+                    301,
+                    302,
+                    332,
+                    333
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:99": [
+          {
+               "FILE_NAME": "pandas/core/tools/datetimes.py",
+               "LINES": [
+                    41,
+                    319,
+                    320
+               ],
+               "EXTENDED_LINES": [
+                    39
+               ]
+          }
+     ],
+     "pandas:100": [
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    9860,
+                    9861,
+                    9862,
+                    9863,
+                    9864
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:101": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/cast.py",
+               "LINES": [
+                    826,
+                    838
+               ],
+               "EXTENDED_LINES": [
+                    825,
+                    837
+               ]
+          }
+     ],
+     "pandas:102": [
+          {
+               "FILE_NAME": "pandas/core/internals/construction.py",
+               "LINES": [
+                    155,
+                    156,
+                    157
+               ],
+               "EXTENDED_LINES": [
+                    153
+               ]
+          }
+     ],
+     "pandas:103": [
+          {
+               "FILE_NAME": "pandas/core/groupby/generic.py",
+               "LINES": [
+                    812
+               ],
+               "EXTENDED_LINES": [
+                    809
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "LINES": [
+                    2365
+               ],
+               "EXTENDED_LINES": [
+                    2362
+               ]
+          }
+     ],
+     "pandas:104": [
+          {
+               "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "LINES": [
+                    1940,
+                    1941,
+                    1942,
+                    1945,
+                    1946,
+                    1947,
+                    1949,
+                    1950,
+                    1951,
+                    1953,
+                    1954
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:105": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    2488,
+                    2581
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    646,
+                    670,
+                    671,
+                    672,
+                    673,
+                    674,
+                    677,
+                    678,
+                    680,
+                    681,
+                    682,
+                    683,
+                    684,
+                    685,
+                    687,
+                    688
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:106": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    4554
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:107": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    6760,
+                    6761,
+                    6762,
+                    6765,
+                    6772,
+                    6773,
+                    6774,
+                    6775,
+                    6776,
+                    6778
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:108": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/cast.py",
+               "LINES": [
+                    44,
+                    605
+               ],
+               "EXTENDED_LINES": [
+                    603
+               ]
+          }
+     ],
+     "pandas:109": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    2128,
+                    2155
+               ],
+               "EXTENDED_LINES": [
+                    2127,
+                    2154
+               ]
+          }
+     ],
+     "pandas:110": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    2985
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/category.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:111": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    2942,
+                    2946
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/category.py",
+               "LINES": [
+                    699,
+                    700
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:112": [
+          {
+               "FILE_NAME": "pandas/core/indexes/interval.py",
+               "LINES": [
+                    22,
+                    39,
+                    961
+               ],
+               "EXTENDED_LINES": [
+                    21,
+                    38,
+                    960
+               ]
+          }
+     ],
+     "pandas:114": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    72,
+                    4492,
+                    4493,
+                    4500,
+                    4501,
+                    4502,
+                    4503,
+                    4504,
+                    4505,
+                    4506,
+                    4507
+               ],
+               "EXTENDED_LINES": [
+                    71
+               ]
+          }
+     ],
+     "pandas:115": [
+          {
+               "FILE_NAME": "pandas/core/missing.py",
+               "LINES": [
+                    280
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:116": [
+          {
+               "FILE_NAME": "pandas/core/reshape/merge.py",
+               "LINES": [
+                    1030
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:117": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "LINES": [
+                    179
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:118": [
+          {
+               "FILE_NAME": "pandas/core/reshape/melt.py",
+               "LINES": [
+                    14,
+                    50,
+                    72
+               ],
+               "EXTENDED_LINES": [
+                    13
+               ]
+          }
+     ],
+     "pandas:119": [
+          {
+               "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "LINES": [
+                    266
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:120": [
+          {
+               "FILE_NAME": "pandas/core/groupby/generic.py",
+               "LINES": [
+                    560,
+                    712
+               ],
+               "EXTENDED_LINES": [
+                    716
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "LINES": [
+                    42,
+                    1299,
+                    1743,
+                    2383,
+                    2429,
+                    2451
+               ],
+               "EXTENDED_LINES": [
+                    40,
+                    1741
+               ]
+          }
+     ],
+     "pandas:121": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    2828
+               ],
+               "EXTENDED_LINES": [
+                    2827
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/internals/managers.py",
+               "LINES": [
+                    632
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:122": [
+          {
+               "FILE_NAME": "pandas/core/internals/managers.py",
+               "LINES": [
+                    1402
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:123": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    384
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/numeric.py",
+               "LINES": [
+                    18,
+                    30,
+                    49
+               ],
+               "EXTENDED_LINES": [
+                    17,
+                    28
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/range.py",
+               "LINES": [
+                    17,
+                    168,
+                    169,
+                    171,
+                    172
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:124": [
+          {
+               "FILE_NAME": "pandas/core/strings.py",
+               "LINES": [
+                    3410,
+                    3416,
+                    3422,
+                    3428,
+                    3434,
+                    3440,
+                    3446,
+                    3452
+               ],
+               "EXTENDED_LINES": [
+                    3408,
+                    3414,
+                    3420,
+                    3426,
+                    3432,
+                    3438,
+                    3444,
+                    3450,
+                    3456
+               ]
+          }
+     ],
+     "pandas:125": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:126": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    6946,
+                    6947,
+                    6948,
+                    6949
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:127": [
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    10446
+               ],
+               "EXTENDED_LINES": [
+                    10445
+               ]
+          }
+     ],
+     "pandas:128": [
+          {
+               "FILE_NAME": "pandas/io/json/_json.py",
+               "LINES": [
+                    581
+               ],
+               "EXTENDED_LINES": [
+                    579
+               ]
+          }
+     ],
+     "pandas:129": [
+          {
+               "FILE_NAME": "pandas/core/arrays/datetimelike.py",
+               "LINES": [
+                    1306
+               ],
+               "EXTENDED_LINES": [
+                    1303
+               ]
+          }
+     ],
+     "pandas:130": [
+          {
+               "FILE_NAME": "pandas/core/groupby/ops.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:131": [
+          {
+               "FILE_NAME": "pandas/core/indexes/accessors.py",
+               "LINES": [
+                    19,
+                    80,
+                    327
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:132": [
+          {
+               "FILE_NAME": "pandas/core/nanops.py",
+               "LINES": [
+                    708,
+                    709,
+                    712
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:133": [
+          {
+               "FILE_NAME": "pandas/core/generic.py",
+               "LINES": [
+                    7051,
+                    7057,
+                    7058
+               ],
+               "EXTENDED_LINES": [
+                    7049
+               ]
+          }
+     ],
+     "pandas:134": [
+          {
+               "FILE_NAME": "pandas/tseries/holiday.py",
+               "LINES": [
+                    349
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:135": [
+          {
+               "FILE_NAME": "pandas/core/groupby/ops.py",
+               "LINES": [
+                    675
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:136": [
+          {
+               "FILE_NAME": "pandas/core/reshape/merge.py",
+               "LINES": [
+                    31,
+                    1644
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:137": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    60,
+                    523
+               ],
+               "EXTENDED_LINES": [
+                    522
+               ]
+          }
+     ],
+     "pandas:138": [
+          {
+               "FILE_NAME": "pandas/core/reshape/tile.py",
+               "LINES": [
+                    14,
+                    441
+               ],
+               "EXTENDED_LINES": [
+                    13,
+                    439
+               ]
+          }
+     ],
+     "pandas:139": [
+          {
+               "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "LINES": [
+                    333
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:140": [
+          {
+               "FILE_NAME": "pandas/core/groupby/generic.py",
+               "LINES": [
+                    1916
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:141": [
+          {
+               "FILE_NAME": "pandas/core/indexes/range.py",
+               "LINES": [
+                    392
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:142": [
+          {
+               "FILE_NAME": "pandas/core/algorithms.py",
+               "LINES": [
+                    1913,
+                    1922,
+                    1963
+               ],
+               "EXTENDED_LINES": [
+                    1912,
+                    1920,
+                    1961
+               ]
+          }
+     ],
+     "pandas:143": [
+          {
+               "FILE_NAME": "pandas/core/indexes/range.py",
+               "LINES": [
+                    383,
+                    384
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:144": [
+          {
+               "FILE_NAME": "pandas/plotting/_matplotlib/core.py",
+               "LINES": [
+                    1438,
+                    1439
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:145": [
+          {
+               "FILE_NAME": "pandas/core/ops/__init__.py",
+               "LINES": [
+                    501,
+                    502
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:146": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "LINES": [
+                    448,
+                    449
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    4327,
+                    4328,
+                    4329,
+                    4330,
+                    4331,
+                    4332
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:147": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/dtypes.py",
+               "LINES": [
+                    688,
+                    740,
+                    741,
+                    742,
+                    743,
+                    745,
+                    747
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:148": [
+          {
+               "FILE_NAME": "pandas/core/apply.py",
+               "LINES": [
+                    208,
+                    210,
+                    217
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:150": [
+          {
+               "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "LINES": [
+                    448
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:151": [
+          {
+               "FILE_NAME": "pandas/core/arrays/numpy_.py",
+               "LINES": [
+                    238,
+                    239,
+                    240,
+                    241,
+                    242,
+                    243,
+                    244,
+                    245,
+                    246
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:152": [
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    2733
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:153": [
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "LINES": [
+                    10,
+                    709
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:154": [
+          {
+               "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "LINES": [
+                    2266,
+                    2269,
+                    2272,
+                    2279,
+                    2285,
+                    2294
+               ],
+               "EXTENDED_LINES": [
+                    2265
+               ]
+          }
+     ],
+     "pandas:155": [
+          {
+               "FILE_NAME": "pandas/core/window/rolling.py",
+               "LINES": [
+                    1656
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:156": [
+          {
+               "FILE_NAME": "pandas/core/sparse/frame.py",
+               "LINES": [
+                    579,
+                    580,
+                    606
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:157": [
+          {
+               "FILE_NAME": "pandas/core/reshape/merge.py",
+               "LINES": [
+                    25,
+                    1638
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:158": [
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "LINES": [
+                    4168,
+                    4169,
+                    4170,
+                    4171,
+                    4173
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:159": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    111,
+                    5308
+               ],
+               "EXTENDED_LINES": [
+                    109
+               ]
+          }
+     ],
+     "pandas:160": [
+          {
+               "FILE_NAME": "pandas/core/computation/expressions.py",
+               "LINES": [
+                    83,
+                    88
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:161": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "LINES": [
+                    1843,
+                    1844
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:162": [
+          {
+               "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "LINES": [
+                    615,
+                    616,
+                    617,
+                    619,
+                    620,
+                    631,
+                    636,
+                    646,
+                    648,
+                    649
+               ],
+               "EXTENDED_LINES": [
+                    629,
+                    634,
+                    643
+               ]
+          }
+     ],
+     "pandas:163": [
+          {
+               "FILE_NAME": "pandas/core/window.py",
+               "LINES": [
+                    250
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:164": [
+          {
+               "FILE_NAME": "pandas/core/tools/datetimes.py",
+               "LINES": [
+                    338
+               ],
+               "EXTENDED_LINES": [
+                    336
+               ]
+          }
+     ],
+     "pandas:165": [
+          {
+               "FILE_NAME": "pandas/core/arrays/datetimelike.py",
+               "LINES": [
+                    1210,
+                    1276,
+                    1343
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:166": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    7213,
+                    7216
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:167": [
+          {
+               "FILE_NAME": "pandas/core/indexes/base.py",
+               "LINES": [
+                    247
+               ],
+               "EXTENDED_LINES": [
+                    245
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/datetimes.py",
+               "LINES": [
+                    242
+               ],
+               "EXTENDED_LINES": [
+                    240
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/period.py",
+               "LINES": [
+                    916
+               ],
+               "EXTENDED_LINES": [
+                    175
+               ]
+          },
+          {
+               "FILE_NAME": "pandas/core/indexing.py",
+               "LINES": [
+                    1707,
+                    1722,
+                    1732,
+                    2337
+               ],
+               "EXTENDED_LINES": [
+                    1705
+               ]
+          }
+     ],
+     "pandas:168": [
+          {
+               "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "LINES": [
+                    609,
+                    612
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "pandas:169": [
+          {
+               "FILE_NAME": "pandas/core/frame.py",
+               "LINES": [
+                    8218
+               ],
+               "EXTENDED_LINES": [
+                    8216
+               ]
+          }
+     ],
+     "sanic:1": [
+          {
+               "FILE_NAME": "examples/blueprint_middlware_execution_order.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "sanic/app.py",
+               "LINES": [
+                    656
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "sanic:3": [
+          {
+               "FILE_NAME": "sanic/app.py",
+               "LINES": [
+                    833,
+                    865
+               ],
+               "EXTENDED_LINES": [
+                    830
+               ]
+          }
+     ],
+     "sanic:4": [
+          {
+               "FILE_NAME": "sanic/request.py",
+               "LINES": [
+                    522,
+                    523
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "sanic:5": [
+          {
+               "FILE_NAME": "sanic/log.py",
+               "LINES": [
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:1": [
+          {
+               "FILE_NAME": "spacy/errors.py",
+               "LINES": [
+                    10,
+                    11
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:2": [
+          {
+               "FILE_NAME": "spacy/util.py",
+               "LINES": [
+                    211
+               ],
+               "EXTENDED_LINES": [
+                    210
+               ]
+          }
+     ],
+     "spacy:3": [
+          {
+               "FILE_NAME": "bin/wiki_entity_linking/wikipedia_processor.py",
+               "LINES": [
+                    33,
+                    288
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:4": [
+          {
+               "FILE_NAME": "spacy/cli/converters/conllu2json.py",
+               "LINES": [
+                    73
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:5": [
+          {
+               "FILE_NAME": "spacy/language.py",
+               "LINES": [
+                    681
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "spacy:6": [
+          {
+               "FILE_NAME": "spacy/language.py",
+               "LINES": [
+                    405,
+                    407
+               ],
+               "EXTENDED_LINES": [
+                    404
+               ]
+          }
+     ],
+     "thefuck:1": [
+          {
+               "FILE_NAME": "thefuck/rules/pip_unknown_command.py",
+               "LINES": [
+                    15,
+                    17
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:2": [
+          {
+               "FILE_NAME": "thefuck/utils.py",
+               "LINES": [
+                    121
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:3": [
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    108,
+                    110
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:4": [
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    23,
+                    24,
+                    25
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:5": [
+          {
+               "FILE_NAME": "thefuck/rules/git_push.py",
+               "LINES": [
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:6": [
+          {
+               "FILE_NAME": "thefuck/rules/git_branch_exists.py",
+               "LINES": [
+                    10,
+                    17
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:7": [
+          {
+               "FILE_NAME": "thefuck/rules/php_s.py",
+               "LINES": [
+                    6,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:8": [
+          {
+               "FILE_NAME": "thefuck/rules/dnf_no_such_command.py",
+               "LINES": [
+                    21,
+                    29
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:9": [
+          {
+               "FILE_NAME": "thefuck/rules/git_push.py",
+               "LINES": [
+                    27
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:10": [
+          {
+               "FILE_NAME": "thefuck/rules/man.py",
+               "LINES": [
+                    15,
+                    21,
+                    24
+               ],
+               "EXTENDED_LINES": [
+                    13,
+                    26
+               ]
+          }
+     ],
+     "thefuck:12": [
+          {
+               "FILE_NAME": "thefuck/rules/no_command.py",
+               "LINES": [
+                    3,
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:13": [
+          {
+               "FILE_NAME": "thefuck/rules/git_branch_exists.py",
+               "LINES": [
+                    9,
+                    10,
+                    20,
+                    21
+               ],
+               "EXTENDED_LINES": [
+                    19
+               ]
+          }
+     ],
+     "thefuck:14": [
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [
+                    10,
+                    11,
+                    12,
+                    13,
+                    14
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:15": [
+          {
+               "FILE_NAME": "thefuck/rules/git_add.py",
+               "LINES": [
+                    8,
+                    9,
+                    15,
+                    16
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:16": [
+          {
+               "FILE_NAME": "thefuck/shells/bash.py",
+               "LINES": [
+                    9,
+                    10,
+                    11
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/shells/zsh.py",
+               "LINES": [
+                    10,
+                    12,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    285
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:17": [
+          {
+               "FILE_NAME": "thefuck/shells/bash.py",
+               "LINES": [
+                    1,
+                    4,
+                    12,
+                    27,
+                    29,
+                    30,
+                    31,
+                    32,
+                    33
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "thefuck/shells/zsh.py",
+               "LINES": [
+                    29
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:18": [
+          {
+               "FILE_NAME": "thefuck/rules/sudo.py",
+               "LINES": [
+                    24
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:19": [
+          {
+               "FILE_NAME": "thefuck/rules/git_push_force.py",
+               "LINES": [
+                    15
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:20": [
+          {
+               "FILE_NAME": "thefuck/rules/dirty_unzip.py",
+               "LINES": [
+                    16,
+                    31,
+                    45
+               ],
+               "EXTENDED_LINES": [
+                    3
+               ]
+          }
+     ],
+     "thefuck:21": [
+          {
+               "FILE_NAME": "thefuck/rules/git_fix_stash.py",
+               "LINES": [
+                    8,
+                    9
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:22": [
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    84,
+                    85,
+                    86
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:23": [
+          {
+               "FILE_NAME": "thefuck/utils.py",
+               "LINES": [
+                    5,
+                    183
+               ],
+               "EXTENDED_LINES": [
+                    4
+               ]
+          }
+     ],
+     "thefuck:24": [
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    7,
+                    57,
+                    58,
+                    64,
+                    67,
+                    68,
+                    69
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:25": [
+          {
+               "FILE_NAME": "thefuck/rules/mkdir_p.py",
+               "LINES": [
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:26": [
+          {
+               "FILE_NAME": "thefuck/rules/vagrant_up.py",
+               "LINES": [
+                    10,
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:27": [
+          {
+               "FILE_NAME": "thefuck/rules/open.py",
+               "LINES": [
+                    26
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:28": [
+          {
+               "FILE_NAME": "thefuck/rules/fix_file.py",
+               "LINES": [
+                    3,
+                    23,
+                    27,
+                    31,
+                    60,
+                    64,
+                    65,
+                    66
+               ],
+               "EXTENDED_LINES": [
+                    29
+               ]
+          }
+     ],
+     "thefuck:29": [
+          {
+               "FILE_NAME": "thefuck/types.py",
+               "LINES": [
+                    27,
+                    28
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:30": [
+          {
+               "FILE_NAME": "thefuck/rules/fix_file.py",
+               "LINES": [
+                    53
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:31": [
+          {
+               "FILE_NAME": "thefuck/rules/git_diff_staged.py",
+               "LINES": [
+                    13
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "thefuck:32": [
+          {
+               "FILE_NAME": "thefuck/rules/ls_lah.py",
+               "LINES": [
+                    2
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:1": [
+          {
+               "FILE_NAME": "tornado/websocket.py",
+               "LINES": [
+                    561,
+                    562
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:3": [
+          {
+               "FILE_NAME": "tornado/httpclient.py",
+               "LINES": [
+                    236,
+                    238
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:4": [
+          {
+               "FILE_NAME": "tornado/web.py",
+               "LINES": [
+                    2603,
+                    2611,
+                    2612
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:5": [
+          {
+               "FILE_NAME": "tornado/ioloop.py",
+               "LINES": [
+                    1220,
+                    1221
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:6": [
+          {
+               "FILE_NAME": "tornado/ioloop.py",
+               "LINES": [
+                    50,
+                    188
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "tornado/platform/asyncio.py",
+               "LINES": [
+                    41
+               ],
+               "EXTENDED_LINES": [
+                    40,
+                    51
+               ]
+          }
+     ],
+     "tornado:8": [
+          {
+               "FILE_NAME": "tornado/websocket.py",
+               "LINES": [
+                    619
+               ],
+               "EXTENDED_LINES": [
+                    618
+               ]
+          }
+     ],
+     "tornado:10": [
+          {
+               "FILE_NAME": "tornado/web.py",
+               "LINES": [
+                    998
+               ],
+               "EXTENDED_LINES": [
+                    995
+               ]
+          },
+          {
+               "FILE_NAME": "tornado/websocket.py",
+               "LINES": [],
+               "EXTENDED_LINES": [
+                    436
+               ]
+          }
+     ],
+     "tornado:11": [
+          {
+               "FILE_NAME": "tornado/http1connection.py",
+               "LINES": [
+                    568
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tornado:12": [
+          {
+               "FILE_NAME": "tornado/auth.py",
+               "LINES": [
+                    78,
+                    988,
+                    1065,
+                    1066
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:1": [
+          {
+               "FILE_NAME": "tqdm/contrib/__init__.py",
+               "LINES": [
+                    41
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:2": [
+          {
+               "FILE_NAME": "tqdm/std.py",
+               "LINES": [
+                    488,
+                    489,
+                    505,
+                    506
+               ],
+               "EXTENDED_LINES": []
+          },
+          {
+               "FILE_NAME": "tqdm/utils.py",
+               "LINES": [
+                    363,
+                    365,
+                    366
+               ],
+               "EXTENDED_LINES": [
+                    361
+               ]
+          }
+     ],
+     "tqdm:3": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:4": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    323
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:5": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    751,
+                    757,
+                    769,
+                    770,
+                    771,
+                    772,
+                    773
+               ],
+               "EXTENDED_LINES": [
+                    749,
+                    756
+               ]
+          }
+     ],
+     "tqdm:6": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    856
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:7": [
+          {
+               "FILE_NAME": "tqdm/_main.py",
+               "LINES": [
+                    92
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:8": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    225
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "tqdm:9": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "LINES": [
+                    41,
+                    42,
+                    43,
+                    274,
+                    301,
+                    363,
+                    389,
+                    412
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:1": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2577,
+                    2578
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:2": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/common.py",
+               "LINES": [
+                    2010,
+                    2011,
+                    2012,
+                    2013,
+                    2014,
+                    2015,
+                    2016,
+                    2017,
+                    2018,
+                    2019
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:3": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    599
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:6": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1979,
+                    2023,
+                    2025,
+                    2026
+               ],
+               "EXTENDED_LINES": [
+                    2024
+               ]
+          }
+     ],
+     "youtube-dl:7": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1704,
+                    1705
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:13": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1871
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:15": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2270
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:17": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2736
+               ],
+               "EXTENDED_LINES": [
+                    2735
+               ]
+          }
+     ],
+     "youtube-dl:18": [
+          {
+               "FILE_NAME": "youtube_dl/YoutubeDL.py",
+               "LINES": [
+                    863
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:19": [
+          {
+               "FILE_NAME": "youtube_dl/YoutubeDL.py",
+               "LINES": [
+                    23,
+                    677
+               ],
+               "EXTENDED_LINES": [
+                    22
+               ]
+          }
+     ],
+     "youtube-dl:20": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    368,
+                    370
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:21": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1751,
+                    1755
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:24": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2348,
+                    2352,
+                    2364
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:25": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    2041,
+                    2042,
+                    2048
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:26": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1973
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:27": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1985,
+                    1987
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:29": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    914
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:31": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/minhateca.py",
+               "LINES": [
+                    11,
+                    55,
+                    56
+               ],
+               "EXTENDED_LINES": [
+                    10
+               ]
+          },
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1209,
+                    1213,
+                    1216,
+                    1219,
+                    1220
+               ],
+               "EXTENDED_LINES": [
+                    1208
+               ]
+          }
+     ],
+     "youtube-dl:34": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    676,
+                    1601
+               ],
+               "EXTENDED_LINES": [
+                    675
+               ]
+          }
+     ],
+     "youtube-dl:35": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/arte.py",
+               "LINES": [
+                    89,
+                    93
+               ],
+               "EXTENDED_LINES": [
+                    87
+               ]
+          },
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    893
+               ],
+               "EXTENDED_LINES": [
+                    892
+               ]
+          }
+     ],
+     "youtube-dl:36": [
+          {
+               "FILE_NAME": "youtube_dl/extractor/facebook.py",
+               "LINES": [
+                    23
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:41": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    759,
+                    761
+               ],
+               "EXTENDED_LINES": []
+          }
+     ],
+     "youtube-dl:43": [
+          {
+               "FILE_NAME": "youtube_dl/utils.py",
+               "LINES": [
+                    1090
+               ],
+               "EXTENDED_LINES": []
+          }
+     ]
+}
