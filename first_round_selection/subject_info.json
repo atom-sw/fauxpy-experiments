@@ -195,38 +195,6 @@
      {
           "PYTHON_V": 3.8,
           "BENCHMARK_NAME": "black",
-          "BUG_NUMBER": 20,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/test_black.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_black.py::BlackTestCase::test_expression_diff"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "black",
-          "BUG_NUMBER": 22,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/test_black.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_black.py::BlackTestCase::test_comments3"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "black",
           "BUG_NUMBER": 23,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
@@ -519,29 +487,6 @@
      {
           "PYTHON_V": 3.8,
           "BENCHMARK_NAME": "fastapi",
-          "BUG_NUMBER": 8,
-          "TARGET_DIR": "fastapi",
-          "TEST_SUITE": [
-               "tests/test_additional_response_extra.py",
-               "tests/test_additional_responses_router.py",
-               "tests/test_custom_route_class.py",
-               "tests/test_default_response_class.py",
-               "tests/test_default_response_class_router.py",
-               "tests/test_dependency_overrides.py",
-               "tests/test_empty_router.py",
-               "tests/test_include_route.py",
-               "tests/test_infer_param_optionality.py",
-               "tests/test_router_prefix_with_template.py",
-               "tests/test_ws_router.py"
-          ],
-          "EXCLUDE": [],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_custom_route_class.py::test_route_classes"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "fastapi",
           "BUG_NUMBER": 9,
           "TARGET_DIR": "fastapi",
           "TEST_SUITE": [
@@ -614,20 +559,6 @@
      {
           "PYTHON_V": 3.8,
           "BENCHMARK_NAME": "fastapi",
-          "BUG_NUMBER": 13,
-          "TARGET_DIR": "fastapi",
-          "TEST_SUITE": [
-               "tests/test_additional_response_extra.py",
-               "tests/test_additional_responses_router.py"
-          ],
-          "EXCLUDE": [],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_additional_responses_router.py::test_openapi_schema"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "fastapi",
           "BUG_NUMBER": 14,
           "TARGET_DIR": "fastapi",
           "TEST_SUITE": [
@@ -641,20 +572,6 @@
      {
           "PYTHON_V": 3.8,
           "BENCHMARK_NAME": "fastapi",
-          "BUG_NUMBER": 15,
-          "TARGET_DIR": "fastapi",
-          "TEST_SUITE": [
-               "tests/test_ws_router.py"
-          ],
-          "EXCLUDE": [],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_ws_router.py::test_router",
-               "tests/test_ws_router.py::test_prefix_router"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "fastapi",
           "BUG_NUMBER": 16,
           "TARGET_DIR": "fastapi",
           "TEST_SUITE": [
@@ -663,19 +580,6 @@
           "EXCLUDE": [],
           "TARGET_FAILING_TESTS": [
                "tests/test_jsonable_encoder.py::test_encode_model_with_config"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "httpie",
-          "BUG_NUMBER": 1,
-          "TARGET_DIR": "httpie",
-          "TEST_SUITE": [
-               "tests/test_downloads.py"
-          ],
-          "EXCLUDE": [],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_downloads.py::TestDownloadUtils::test_unique_filename"
           ]
      },
      {
@@ -757,18 +661,23 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 2,
+          "BUG_NUMBER": 3,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
-               "tests/keras/backend/backend_test.py",
-               "tests/keras/layers/merge_test.py"
+               "tests/integration_tests/test_tensorflow_integration.py",
+               "tests/keras/layers/cudnn_recurrent_test.py",
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/layers/recurrent_test.py",
+               "tests/keras/losses_test.py",
+               "tests/keras/test_sequential_model.py",
+               "tests/keras/utils/multi_gpu_test.py"
           ],
           "EXCLUDE": [
                "env",
                "tests"
           ],
           "TARGET_FAILING_TESTS": [
-               "tests/keras/backend/backend_test.py::TestBackend::test_in_top_k"
+               "tests/keras/test_sequential_model.py::test_clone_functional_model_with_multi_outputs"
           ]
      },
      {
@@ -791,6 +700,25 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
+          "BUG_NUMBER": 6,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/keras/engine/test_training.py",
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/test_sequential_model.py",
+               "tests/test_loss_masking.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_loss_masking.py::test_masking_is_all_zeros"
+          ]
+     },
+     {
+          "PYTHON_V": 3.7,
+          "BENCHMARK_NAME": "keras",
           "BUG_NUMBER": 7,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
@@ -803,55 +731,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "tests/keras/wrappers/scikit_learn_test.py::test_regression_predict_shape_correct_num_test_1"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 8,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/integration_tests/imagenet_utils_test.py",
-               "tests/keras/engine/test_topology.py",
-               "tests/keras/engine/test_training.py",
-               "tests/keras/layers/convolutional_recurrent_test.py",
-               "tests/keras/layers/core_test.py",
-               "tests/keras/layers/merge_test.py",
-               "tests/keras/layers/normalization_test.py",
-               "tests/keras/layers/recurrent_test.py",
-               "tests/keras/layers/wrappers_test.py",
-               "tests/keras/losses_test.py",
-               "tests/keras/optimizers_test.py",
-               "tests/keras/regularizers_test.py",
-               "tests/keras/test_callbacks.py",
-               "tests/keras/utils/multi_gpu_test.py",
-               "tests/test_dynamic_trainability.py",
-               "tests/test_loss_weighting.py",
-               "tests/test_model_saving.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/keras/engine/test_topology.py::test_layer_sharing_at_heterogeneous_depth_order"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 9,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/keras/layers/merge_test.py",
-               "tests/test_doc_auto_generation.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_doc_auto_generation.py::test_doc_lists"
           ]
      },
      {
@@ -910,19 +789,46 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 24,
+          "BUG_NUMBER": 18,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
-               "tests/keras/engine/test_training.py",
-               "tests/keras/layers/merge_test.py",
-               "tests/keras/test_callbacks.py"
+               "tests/keras/backend/backend_test.py",
+               "tests/keras/layers/merge_test.py"
           ],
           "EXCLUDE": [
                "env",
                "tests"
           ],
           "TARGET_FAILING_TESTS": [
-               "tests/keras/test_callbacks.py::test_TensorBoard_multi_input_output"
+               "tests/keras/backend/backend_test.py::TestBackend::test_function_tf_run_options_with_run_metadata"
+          ]
+     },
+     {
+          "PYTHON_V": 3.7,
+          "BENCHMARK_NAME": "keras",
+          "BUG_NUMBER": 20,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/keras/backend/backend_test.py",
+               "tests/keras/engine/test_topology.py",
+               "tests/keras/engine/test_training.py",
+               "tests/keras/layers/convolutional_recurrent_test.py",
+               "tests/keras/layers/convolutional_test.py",
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/layers/recurrent_test.py",
+               "tests/keras/legacy/interface_test.py",
+               "tests/keras/test_callbacks.py",
+               "tests/keras/utils/conv_utils_test.py",
+               "tests/keras/utils/layer_utils_test.py",
+               "tests/keras/utils/vis_utils_test.py",
+               "tests/test_model_saving.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/keras/layers/convolutional_test.py::test_conv2d_transpose_dilation"
           ]
      },
      {
@@ -945,84 +851,6 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 29,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/integration_tests/test_temporal_data_tasks.py",
-               "tests/integration_tests/test_vector_data_tasks.py",
-               "tests/keras/applications/imagenet_utils_test.py",
-               "tests/keras/engine/test_topology.py",
-               "tests/keras/engine/test_training.py",
-               "tests/keras/layers/convolutional_recurrent_test.py",
-               "tests/keras/layers/core_test.py",
-               "tests/keras/layers/cudnn_recurrent_test.py",
-               "tests/keras/layers/merge_test.py",
-               "tests/keras/layers/normalization_test.py",
-               "tests/keras/layers/recurrent_test.py",
-               "tests/keras/layers/wrappers_test.py",
-               "tests/keras/legacy/interface_test.py",
-               "tests/keras/legacy/layers_test.py",
-               "tests/keras/losses_test.py",
-               "tests/keras/metrics_test.py",
-               "tests/keras/optimizers_test.py",
-               "tests/keras/regularizers_test.py",
-               "tests/keras/test_callbacks.py",
-               "tests/keras/test_sequential_model.py",
-               "tests/keras/utils/multi_gpu_test.py",
-               "tests/test_loss_masking.py",
-               "tests/test_loss_weighting.py",
-               "tests/test_model_saving.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/keras/metrics_test.py::test_stateful_metrics"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 30,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/integration_tests/test_temporal_data_tasks.py",
-               "tests/integration_tests/test_vector_data_tasks.py",
-               "tests/keras/applications/imagenet_utils_test.py",
-               "tests/keras/engine/test_topology.py",
-               "tests/keras/engine/test_training.py",
-               "tests/keras/layers/convolutional_recurrent_test.py",
-               "tests/keras/layers/core_test.py",
-               "tests/keras/layers/cudnn_recurrent_test.py",
-               "tests/keras/layers/merge_test.py",
-               "tests/keras/layers/normalization_test.py",
-               "tests/keras/layers/recurrent_test.py",
-               "tests/keras/layers/wrappers_test.py",
-               "tests/keras/legacy/interface_test.py",
-               "tests/keras/legacy/layers_test.py",
-               "tests/keras/losses_test.py",
-               "tests/keras/metrics_test.py",
-               "tests/keras/optimizers_test.py",
-               "tests/keras/regularizers_test.py",
-               "tests/keras/test_callbacks.py",
-               "tests/keras/test_sequential_model.py",
-               "tests/keras/utils/multi_gpu_test.py",
-               "tests/test_loss_masking.py",
-               "tests/test_loss_weighting.py",
-               "tests/test_model_saving.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/keras/engine/test_training.py::test_model_with_external_loss"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "keras",
           "BUG_NUMBER": 31,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
@@ -1035,6 +863,65 @@
           ],
           "TARGET_FAILING_TESTS": [
                "tests/keras/backend/backend_test.py::TestBackend::test_ctc"
+          ]
+     },
+     {
+          "PYTHON_V": 3.7,
+          "BENCHMARK_NAME": "keras",
+          "BUG_NUMBER": 33,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/preprocessing/text_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/keras/preprocessing/text_test.py::test_text_to_word_sequence_multichar_split",
+               "tests/keras/preprocessing/text_test.py::test_text_to_word_sequence_unicode_multichar_split"
+          ]
+     },
+     {
+          "PYTHON_V": 3.7,
+          "BENCHMARK_NAME": "keras",
+          "BUG_NUMBER": 34,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_multiprocessing.py",
+               "tests/integration_tests/test_temporal_data_tasks.py",
+               "tests/integration_tests/test_vector_data_tasks.py",
+               "tests/keras/applications/imagenet_utils_test.py",
+               "tests/keras/engine/test_topology.py",
+               "tests/keras/engine/test_training.py",
+               "tests/keras/layers/convolutional_recurrent_test.py",
+               "tests/keras/layers/core_test.py",
+               "tests/keras/layers/cudnn_recurrent_test.py",
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/layers/normalization_test.py",
+               "tests/keras/layers/recurrent_test.py",
+               "tests/keras/layers/wrappers_test.py",
+               "tests/keras/legacy/interface_test.py",
+               "tests/keras/legacy/layers_test.py",
+               "tests/keras/losses_test.py",
+               "tests/keras/metrics_test.py",
+               "tests/keras/optimizers_test.py",
+               "tests/keras/regularizers_test.py",
+               "tests/keras/test_callbacks.py",
+               "tests/keras/test_sequential_model.py",
+               "tests/keras/utils/data_utils_test.py",
+               "tests/keras/utils/multi_gpu_test.py",
+               "tests/test_loss_masking.py",
+               "tests/test_loss_weighting.py",
+               "tests/test_model_saving.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_multiprocessing.py::test_multiprocessing_training"
           ]
      },
      {
@@ -1058,54 +945,34 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 42,
+          "BUG_NUMBER": 37,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
-               "tests/integration_tests/test_image_data_tasks.py",
-               "tests/integration_tests/test_temporal_data_tasks.py",
-               "tests/integration_tests/test_vector_data_tasks.py",
-               "tests/keras/applications/applications_test.py",
                "tests/keras/engine/test_topology.py",
-               "tests/keras/engine/test_training.py",
-               "tests/keras/layers/convolutional_recurrent_test.py",
-               "tests/keras/layers/convolutional_test.py",
-               "tests/keras/layers/core_test.py",
                "tests/keras/layers/cudnn_recurrent_test.py",
                "tests/keras/layers/merge_test.py",
-               "tests/keras/layers/normalization_test.py",
                "tests/keras/layers/recurrent_test.py",
                "tests/keras/layers/wrappers_test.py",
                "tests/keras/legacy/interface_test.py",
                "tests/keras/legacy/layers_test.py",
-               "tests/keras/legacy/models_test.py",
-               "tests/keras/losses_test.py",
-               "tests/keras/optimizers_test.py",
-               "tests/keras/regularizers_test.py",
-               "tests/keras/test_callbacks.py",
                "tests/keras/test_sequential_model.py",
-               "tests/keras/utils/io_utils_test.py",
-               "tests/keras/utils/layer_utils_test.py",
-               "tests/keras/utils/multi_gpu_test.py",
                "tests/keras/utils/vis_utils_test.py",
-               "tests/keras/wrappers/scikit_learn_test.py",
-               "tests/test_dynamic_trainability.py",
                "tests/test_loss_masking.py",
                "tests/test_loss_weighting.py",
-               "tests/test_model_saving.py",
-               "tests/test_multiprocessing.py"
+               "tests/test_model_saving.py"
           ],
           "EXCLUDE": [
                "env",
                "tests"
           ],
           "TARGET_FAILING_TESTS": [
-               "tests/keras/engine/test_training.py::test_model_methods"
+               "tests/keras/layers/wrappers_test.py::test_Bidirectional_state_reuse"
           ]
      },
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 45,
+          "BUG_NUMBER": 40,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
                "tests/keras/layers/cudnn_recurrent_test.py",
@@ -1123,7 +990,31 @@
                "tests"
           ],
           "TARGET_FAILING_TESTS": [
-               "tests/keras/layers/recurrent_test.py::test_implementation_mode"
+               "tests/keras/layers/recurrent_test.py::test_stacked_rnn_compute_output_shape"
+          ]
+     },
+     {
+          "PYTHON_V": 3.7,
+          "BENCHMARK_NAME": "keras",
+          "BUG_NUMBER": 44,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/keras/layers/cudnn_recurrent_test.py",
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/layers/recurrent_test.py",
+               "tests/keras/layers/wrappers_test.py",
+               "tests/keras/legacy/interface_test.py",
+               "tests/keras/legacy/layers_test.py",
+               "tests/keras/utils/vis_utils_test.py",
+               "tests/test_loss_weighting.py",
+               "tests/test_model_saving.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/keras/layers/recurrent_test.py::test_trainability"
           ]
      },
      {
@@ -1178,6 +1069,21 @@
                "pandas/tests/indexes/datetimes/test_setops.py::TestDatetimeIndexSetOps::test_intersection_empty",
                "pandas/tests/indexes/datetimes/test_setops.py::TestBusinessDatetimeIndex::test_intersection_bug",
                "pandas/tests/indexes/datetimes/test_setops.py::TestCustomDatetimeIndex::test_intersection_bug"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "pandas",
+          "BUG_NUMBER": 43,
+          "TARGET_DIR": "pandas",
+          "TEST_SUITE": [
+               "pandas/tests/frame/test_arithmetic.py"
+          ],
+          "EXCLUDE": [
+               "pandas/tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "pandas/tests/frame/test_arithmetic.py::test_pow_with_realignment"
           ]
      },
      {
@@ -1282,6 +1188,22 @@
      {
           "PYTHON_V": 3.8,
           "BENCHMARK_NAME": "pandas",
+          "BUG_NUMBER": 72,
+          "TARGET_DIR": "pandas",
+          "TEST_SUITE": [
+               "pandas/tests/frame/indexing/test_categorical.py",
+               "pandas/tests/extension/test_external_block.py"
+          ],
+          "EXCLUDE": [
+               "pandas/tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "pandas/tests/frame/indexing/test_categorical.py::TestDataFrameIndexingCategorical::test_setitem_single_row_categorical"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "pandas",
           "BUG_NUMBER": 74,
           "TARGET_DIR": "pandas",
           "TEST_SUITE": [
@@ -1348,25 +1270,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "pandas/tests/reshape/merge/test_merge_asof.py::TestAsOfMerge::test_merge_index_column_tz"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "pandas",
-          "BUG_NUMBER": 125,
-          "TARGET_DIR": "pandas",
-          "TEST_SUITE": [
-               "pandas/tests/frame/test_replace.py",
-               "pandas/tests/arrays/categorical/test_algos.py",
-               "pandas/tests/arrays/categorical/test_api.py",
-               "pandas/tests/extension/test_external_block.py"
-          ],
-          "EXCLUDE": [
-               "pandas/tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "pandas/tests/arrays/categorical/test_algos.py::test_replace",
-               "pandas/tests/frame/test_replace.py::TestDataFrameReplace::test_categorical_replace_with_dict"
           ]
      },
      {
@@ -1529,22 +1432,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "tests/test_requests.py::test_url_for_without_server_name"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "sanic",
-          "BUG_NUMBER": 5,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/test_logging.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_logging.py::test_logging_modified_root_logger_config"
           ]
      },
      {
@@ -1942,28 +1829,6 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "tornado",
-          "BUG_NUMBER": 3,
-          "TARGET_DIR": "tornado",
-          "TEST_SUITE": [
-               "tornado/test.py",
-               "tornado/test/httpclient_test.py",
-               "tornado/test/httpserver_test.py",
-               "tornado/test/process_test.py",
-               "tornado/test/runtests.py",
-               "tornado/test/simple_httpclient_test.py",
-               "tornado/test/twisted_test.py",
-               "tornado/test/util_test.py"
-          ],
-          "EXCLUDE": [
-               "tornado/test"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tornado/test.py::httpclient_test::SyncHTTPClientSubprocessTest"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "tornado",
           "BUG_NUMBER": 4,
           "TARGET_DIR": "tornado",
           "TEST_SUITE": [
@@ -2007,6 +1872,7 @@
                "tornado/test/process_test.py",
                "tornado/test/queues_test.py",
                "tornado/test/runtests.py",
+               "tornado/test/simple_httpclient_test.py",
                "tornado/test/stack_context_test.py",
                "tornado/test/tcpclient_test.py",
                "tornado/test/testing_test.py",
@@ -2039,6 +1905,7 @@
                "tornado/test/process_test.py",
                "tornado/test/queues_test.py",
                "tornado/test/runtests.py",
+               "tornado/test/simple_httpclient_test.py",
                "tornado/test/stack_context_test.py",
                "tornado/test/tcpclient_test.py",
                "tornado/test/testing_test.py",
@@ -2067,50 +1934,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "tornado/test/websocket_test.py::WebSocketTest::test_missing_websocket_key"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "tornado",
-          "BUG_NUMBER": 10,
-          "TARGET_DIR": "tornado",
-          "TEST_SUITE": [
-               "tornado/test/auth_test.py",
-               "tornado/test/curl_httpclient_test.py",
-               "tornado/test/gen_test.py",
-               "tornado/test/httpclient_test.py",
-               "tornado/test/httpserver_test.py",
-               "tornado/test/iostream_test.py",
-               "tornado/test/process_test.py",
-               "tornado/test/routing_test.py",
-               "tornado/test/simple_httpclient_test.py",
-               "tornado/test/stack_context_test.py",
-               "tornado/test/twisted_test.py",
-               "tornado/test/web_test.py",
-               "tornado/test/websocket_test.py",
-               "tornado/test/wsgi_test.py"
-          ],
-          "EXCLUDE": [
-               "tornado/test"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tornado/test/websocket_test.py::WebSocketTest::test_render_message"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "tornado",
-          "BUG_NUMBER": 11,
-          "TARGET_DIR": "tornado",
-          "TEST_SUITE": [
-               "tornado/test/http1connection_test.py",
-               "tornado/test/httpserver_test.py"
-          ],
-          "EXCLUDE": [
-               "tornado/test"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tornado/test/httpserver_test.py::HTTPServerRawTest::test_chunked_request_uppercase"
           ]
      },
      {
@@ -2159,24 +1982,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "tqdm/tests/tests_tqdm.py::test_format_meter"
-          ]
-     },
-     {
-          "PYTHON_V": 3.6,
-          "BENCHMARK_NAME": "tqdm",
-          "BUG_NUMBER": 3,
-          "TARGET_DIR": "tqdm",
-          "TEST_SUITE": [
-               "tqdm/tests/tests_pandas.py",
-               "tqdm/tests/tests_perf.py",
-               "tqdm/tests/tests_synchronisation.py",
-               "tqdm/tests/tests_tqdm.py"
-          ],
-          "EXCLUDE": [
-               "tqdm/tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tqdm/tests/tests_tqdm.py::test_bool"
           ]
      },
      {
