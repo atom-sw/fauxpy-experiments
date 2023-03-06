@@ -1,8 +1,9 @@
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
-import common
+import file_manager
+from ranker import ScoredEntity, ScoredStatement, ScoredFunction
 
 
 class FLTechnique(Enum):
@@ -27,21 +28,23 @@ class CsvScoreItem:
                  project_name: str,
                  bug_number: int,
                  localization_technique: FLTechnique,
-                 granularity: FLGranularity):
-        self.csv_paths = csv_paths
-        self.script_id = script_id
-        self.project_name = project_name
-        self.bug_number = bug_number
-        self.localization_technique = localization_technique
-        self.granularity = granularity
+                 granularity: FLGranularity,
+                 scored_entities: List[ScoredEntity]):
+        self._csv_paths = csv_paths
+        self._script_id = script_id
+        self._project_name = project_name
+        self._bug_number = bug_number
+        self._localization_technique = localization_technique
+        self._granularity = granularity
+        self._scored_entities = scored_entities
 
     def _pretty_representation(self):
-        csv_files = [x.name for x in self.csv_paths]
-        return (f"{self.script_id} "
-                f"{self.project_name} "
-                f"{self.bug_number} "
-                f"{self.localization_technique.name} "
-                f"{self.granularity.name} "
+        csv_files = [x.name for x in self._csv_paths]
+        return (f"{self._script_id} "
+                f"{self._project_name} "
+                f"{self._bug_number} "
+                f"{self._localization_technique.name} "
+                f"{self._granularity.name} "
                 f"{csv_files}")
 
     def __str__(self):
@@ -49,6 +52,15 @@ class CsvScoreItem:
 
     def __repr__(self):
         return self._pretty_representation()
+
+    def get_script_id(self) -> int:
+        return self._script_id
+
+    def get_technique(self):
+        return self._localization_technique
+
+    def get_scored_entities(self):
+        return self._scored_entities
 
 
 class ResultManager:
@@ -88,22 +100,26 @@ class CsvScoreItemLoadManager:
         cls._check_fauxpy_csv_paths(family, fauxpy_csv_paths)
 
         if family == "ps":
+            score_table = cls.load_csv_score_file(fauxpy_csv_paths, family, granularity)
             current_csv_score = CsvScoreItem(fauxpy_csv_paths,
                                              script_id,
                                              project_name,
                                              bug_num,
                                              FLTechnique.PS,
-                                             granularity)
+                                             granularity,
+                                             score_table)
             family_csv_score_items.append(current_csv_score)
         else:
             for csv_score_path in fauxpy_csv_paths:
+                score_table = cls.load_csv_score_file([csv_score_path], family, granularity)
                 technique = cls._get_technique_from_csv_name(csv_score_path.name)
                 current_csv_score = CsvScoreItem([csv_score_path],
                                                  script_id,
                                                  project_name,
                                                  bug_num,
                                                  technique,
-                                                 granularity)
+                                                 granularity,
+                                                 score_table)
                 family_csv_score_items.append(current_csv_score)
 
         return family_csv_score_items
@@ -152,12 +168,95 @@ class CsvScoreItemLoadManager:
         if "Scores_default.csv" in csv_file_name:
             return FLTechnique.ST
 
+    @classmethod
+    def load_csv_score_file(cls,
+                            csv_paths: List[Path],
+                            family: str,
+                            granularity: FLGranularity) -> List[ScoredEntity]:
+        if granularity == FLGranularity.Statement:
+            if family in ["sbfl", "mbfl"]:
+                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+                scored_entity_items = cls.csv_content_to_scored_sbfl_mbfl_statement_items(csv_file_content)
+            elif family == "ps":
+                # TODO: Fix this.
+                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+                scored_entity_items = cls.csv_content_to_scored_ps_statement_items(csv_file_content)
+            else:
+                raise Exception("This should never happen.")
+        elif granularity == FLGranularity.Function:
+            if family == "ps":
+                # TODO: Fix this.
+                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+                scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
+            else:
+                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+                scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
+        else:
+            raise Exception("This should never happen.")
+
+        scored_entity_items.sort(key=lambda x: x.get_score(), reverse=True)
+        return scored_entity_items
+
+    @classmethod
+    def csv_content_to_scored_sbfl_mbfl_statement_items(cls,
+                                                        csv_file_content: List[List[str]]) -> List[ScoredStatement]:
+        scored_statement_items = []
+        for row in csv_file_content:
+            col1_parts = row[0].split("::")
+            file_path_parts = col1_parts[0].split("/")
+            relative_file_path = "/".join(file_path_parts[5:])
+            line_number = int(col1_parts[1])
+            score = float(row[1])
+            scored_statement_item = ScoredStatement(relative_file_path, score, line_number)
+            scored_statement_items.append(scored_statement_item)
+
+        return scored_statement_items
+
+    @classmethod
+    def csv_content_to_scored_ps_statement_items(cls,
+                                                 csv_file_content: List[List[str]]) -> List[ScoredStatement]:
+        scored_statement_items = []
+        for row in csv_file_content:
+            col1_parts = row[0].split("::")
+            file_path_parts = col1_parts[0].split("/")
+            relative_file_path = "/".join(file_path_parts[5:])
+            line_start = int(col1_parts[1])
+            line_end = int(col1_parts[2])
+            score = float(row[1])
+            for line_number in range(line_start, line_end + 1):
+                scored_statement_item = ScoredStatement(relative_file_path, score, line_number)
+                scored_statement_items.append(scored_statement_item)
+
+        return scored_statement_items
+
+    @classmethod
+    def csv_content_to_scored_function_items(cls,
+                                             csv_file_content: List[List[str]]):
+        scored_function_items = []
+        for row in csv_file_content:
+            col1_parts = row[0].split("::")
+            file_path_parts = col1_parts[0].split("/")
+            relative_file_path = "/".join(file_path_parts[5:])
+            function_name = col1_parts[1]
+            line_start = int(col1_parts[2])
+            line_end = int(col1_parts[3])
+            function_range = (line_start, line_end)
+            score = float(row[1])
+            scored_function_item = ScoredFunction(relative_file_path, score, function_range, function_name)
+            scored_function_items.append(scored_function_item)
+
+        return scored_function_items
+
 
 def get_result_manager():
-    path_manager = common.PathManager()
+    path_manager = file_manager.PathManager()
     csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
+    # csv_score_items = file_manager.Cache.load("csv_score_items")
+    # if csv_score_items is None:
+    #     csv_score_items = csv_score_item_load_manager.load_csv_score_items()
+    #     file_manager.Cache.save(csv_score_items, "csv_score_items")
     csv_score_items = csv_score_item_load_manager.load_csv_score_items()
-    ground_truth_info = common.load_json_to_dictionary(path_manager.get_ground_truth_path())
+    ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_path())
     result_manager = ResultManager(csv_score_items, ground_truth_info)
 
     return result_manager
