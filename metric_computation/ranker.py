@@ -74,9 +74,6 @@ class BestCaseRanker(Ranker):
     def __init__(self):
         super().__init__()
 
-    def get_non_existing_rank(self):
-        pass
-
     def rank(self, scored_entities: List[ScoredEntity]) -> Tuple[List[RankedEntity], int]:
         """
         Takes a list of scored entities, and returns a list of
@@ -113,9 +110,6 @@ class WorstCaseRanker(Ranker):
     def __init__(self):
         super().__init__()
 
-    def get_non_existing_rank(self):
-        pass
-
     def rank(self, scored_entities: List[ScoredEntity]) -> Tuple[List[RankedEntity], int]:
         pass
 
@@ -123,9 +117,6 @@ class WorstCaseRanker(Ranker):
 class AverageCaseRanker(Ranker):
     def __init__(self):
         super().__init__()
-
-    def get_non_existing_rank(self):
-        pass
 
     def rank(self, scored_entities: List[ScoredEntity]) -> Tuple[List[RankedEntity], int]:
         pass
