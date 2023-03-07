@@ -7,24 +7,18 @@ LINE_COUNT_FILE_NAME = "line_counts.json"
 CACHE_DIR_NAME = "cache_line_count"
 
 
-def is_in_list_path(current_path: Path,
-                    excluded_dir_path_list: List[Path]):
-    excluded_python_file_paths = []
-
-    for item in excluded_dir_path_list:
-        current_excluded_python_paths = list(item.rglob("*.py"))
-        excluded_python_file_paths += current_excluded_python_paths
-
-    return current_path in excluded_python_file_paths
-
-
 def get_non_excluded_python_file_paths(target_dir_path: Path,
                                        excluded_dir_path_list: List[Path]) -> List[Path]:
     non_excluded_python_file_paths = []
     all_python_in_target_dir = list(target_dir_path.rglob("*.py"))
 
+    excluded_python_file_paths = []
+    for item in excluded_dir_path_list:
+        current_excluded_python_paths = list(item.rglob("*.py"))
+        excluded_python_file_paths += current_excluded_python_paths
+
     for item in all_python_in_target_dir:
-        if not is_in_list_path(item, excluded_dir_path_list):
+        if item not in excluded_python_file_paths:
             non_excluded_python_file_paths.append(item)
 
     return non_excluded_python_file_paths
@@ -105,6 +99,8 @@ def main():
             if line_count is None:
                 line_count = get_line_counts(benchmark_name, bug_number, target_dir, exclude)
                 cache_manager.save(line_count, cache_file_name_current)
+
+            print(line_count)
 
             current_key = f"{benchmark_name}:{bug_number}"
             line_numbers_dict[current_key] = line_count
