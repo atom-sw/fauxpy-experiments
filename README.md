@@ -112,7 +112,7 @@ By doing so, some bugs are removed from the experiments, and thus, some new bugs
 If the `manually_removed_bugs.json` file is not changed, stop this loop right here. Otherwise, go to S5.
 
 
-- S5. Pass `manually_removed_bugs.json` from `second round selection` to [first round selection](first_round_selection), but, skip the first four steps of `first round selection` and run the rest to generate a new version of `subject_info.csv`.
+- S5. Pass `manually_removed_bugs.json` from `second round selection` to [first round selection](first_round_selection), but, skip the first five steps of `first round selection` and run the rest to generate a new version of `subject_info.csv`.
 
 - S6. Go to S2.
 

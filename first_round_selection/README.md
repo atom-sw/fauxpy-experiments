@@ -106,18 +106,34 @@ can be found in the [target_tests_log](target_tests_log) directory.
 ## Step 4: Ground truth generation
 
 At this step, we generate the file [ground_truth_info.json](ground_truth_info.json) that contains
-information about changes made to fix each bug in BugsInPy. This file is then used to calculate
+information about changes made to fix each bug in BugsInPy. This file is then used 
+at the [metric_computation](/metric_computation) phase to calculate
 the metrics we use in the paper. To generate `ground_truth_info.json`, run the following command:
 
 ```
 python generate_ground_truth_info.py
 ```
 
-This script also generates the file [empty_ground_truth_info.json](empty_ground_truth_info.json) that contains
-those bugs in BugsInPy for which the computed ground truth is empty. This file is used at the
-next step.
+This script also generates the file [empty_ground_truth_info.json](empty_ground_truth_info.json) that
+contains those bugs in BugsInPy for which the computed ground truth is empty. This file is used at 
+step 6 to exclude such cases from the experiments.
 
-## Step 5: Time-based selection
+
+## Step 5: LOC counting
+
+At this step, we count the number of lines in every buggy version, excluding empty lines
+and comment lines.
+We need this information to compute the *Exam Score* at 
+the [metric_computation](/metric_computation) phase.
+To run this step, run the following command, which generates 
+the [line_counts.json](line_counts.json]) file:
+
+```
+python line_number_counter.py
+```
+
+
+## Step 6: Time-based selection
 
 Based on some rough estimate of the amount of time each experiment requires and the processing
 resources we have (a cluster server with 15 available nodes for two weeks), we randomly
@@ -132,7 +148,7 @@ When this script is finished running, it generates
 the [time_selected_bugs.json](time_selected_bugs.json) file that 
 contains the randomly selected bugs from each of the 12 projects.
 
-## Step 6: Generating subject_info.csv
+## Step 7: Generating subject_info.csv
 
 This is the final step in which the [subject_info.csv](subject_info.csv) file for the bugs
 in `time_selected_bugs.json` is generated. To perform this step, we must run
