@@ -122,10 +122,12 @@ step 6 to exclude such cases from the experiments.
 ## Step 5: LOC counting
 
 At this step, we count the number of lines in every buggy version, excluding empty lines
-and comment lines.
+and comment lines. We only consider lines from modules that are used in
+fault localization, which are those in target directories (not in test modules).
+
 We need this information to compute the *Exam Score* at 
 the [metric_computation](/metric_computation) phase.
-To run this step, run the following command, which generates 
+Run the following command (which is slow) to generate 
 the [line_counts.json](line_counts.json]) file:
 
 ```
