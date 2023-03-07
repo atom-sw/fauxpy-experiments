@@ -12,7 +12,7 @@ file we generated at the [first round selection](/first_round_selection) phase.
 file we generated at the [first round selection](/first_round_selection) phase.
 
 To run this phase, first copy `ground_truth_info.json` and `line_counts.json` from `first_round_selection` directory to this directory, and
-then, set the results path in the [workspace.json](workspace.json) file. The
+then, set the results path in the [path_item.json](path_item.json) file. The
 results path should be similar to the one you set at the [second_round_selection](/second_round_selection) phase.
 Then, you can run the following command to compute all the metrics.
 
