@@ -244,3 +244,29 @@ def get_diff_commit(benchmark_name: str,
         pickle.dump(python_none_test_files, file)
 
     return python_none_test_files
+
+
+class CacheManager:
+    def __init__(self, cache_directory_name):
+        self._cache_directory_name = cache_directory_name
+
+    def load(self, file_name: str):
+        cache_dir_path = self._get_cache_dir_path()
+        cached_file_path = cache_dir_path / file_name
+        if cached_file_path.exists():
+            with cached_file_path.open("rb") as file:
+                loaded_object = pickle.load(file)
+            return loaded_object
+        return None
+
+    def save(self, obj: Any, file_name):
+        cache_dir_path = self._get_cache_dir_path()
+        cached_file_path = cache_dir_path / file_name
+        with cached_file_path.open("wb") as file:
+            pickle.dump(obj, file)
+
+    def _get_cache_dir_path(self):
+        cache_dir_path = Path(self._cache_directory_name)
+        if not cache_dir_path.exists():
+            cache_dir_path.mkdir()
+        return cache_dir_path

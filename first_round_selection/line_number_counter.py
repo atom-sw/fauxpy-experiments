@@ -4,6 +4,7 @@ from typing import List
 import common
 
 LINE_COUNT_FILE_NAME = "line_counts.json"
+CACHE_DIR_NAME = "cache_line_count"
 
 
 def is_in_list_path(current_path: Path,
@@ -87,19 +88,24 @@ def load_info_files():
 
 
 def main():
+    cache_manager = common.CacheManager(CACHE_DIR_NAME)
     correct_test_bugs_dict = common.load_correct_test_bugs()
     info_files_dict = load_info_files()
 
     line_numbers_dict = {}
 
     for benchmark_name, benchmark_items in correct_test_bugs_dict.items():
-        if benchmark_name != "pandas":
-            continue
         for bug_number in benchmark_items["ACCEPTED"]:
             print(benchmark_name, bug_number)
             target_dir = info_files_dict[benchmark_name]["TARGET_DIR"]
             exclude = info_files_dict[benchmark_name]["EXCLUDE"]
-            line_count = get_line_counts(benchmark_name, bug_number, target_dir, exclude)
+
+            cache_file_name_current = f"{benchmark_name}_{bug_number}"
+            line_count = cache_manager.load(cache_file_name_current)
+            if line_count is None:
+                line_count = get_line_counts(benchmark_name, bug_number, target_dir, exclude)
+                cache_manager.save(line_count, cache_file_name_current)
+
             current_key = f"{benchmark_name}:{bug_number}"
             line_numbers_dict[current_key] = line_count
 
