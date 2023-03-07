@@ -6,15 +6,16 @@ from typing import List, Any
 
 
 class PathManager:
-    _Workspace_file_name = "path_item.json"
+    _Path_item_file_name = "path_item.json"
     _Ground_truth_file_name = "ground_truth_info.json"
+    _Line_counts_file_name = "line_counts.json"
 
     def __init__(self):
         self._results_path = self._load_path_items()
 
     def _load_path_items(self):
-        workspace_object = load_json_to_dictionary(self._Workspace_file_name)
-        results_path = Path(workspace_object["RESULTS_PATH"])
+        path_item_object = load_json_to_dictionary(self._Path_item_file_name)
+        results_path = Path(path_item_object["RESULTS_PATH"])
         return results_path
 
     def get_results_path(self) -> Path:
@@ -22,6 +23,9 @@ class PathManager:
 
     def get_ground_truth_path(self) -> str:
         return self._Ground_truth_file_name
+
+    def get_line_counts_path(self) -> str:
+        return self._Line_counts_file_name
 
 
 def load_json_to_dictionary(file_path: str):

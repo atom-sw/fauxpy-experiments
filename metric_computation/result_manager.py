@@ -65,9 +65,11 @@ class CsvScoreItem:
 
 class ResultManager:
     def __init__(self, csv_score_items: List[CsvScoreItem],
-                 ground_truth_info: Dict):
+                 ground_truth_info: Dict,
+                 line_counts_manager: Dict):
         self._csv_score_items = csv_score_items
         self._ground_truth_info = ground_truth_info
+        self._line_counts_manager = line_counts_manager
 
     def get_all_csv_score_items(self):
         return self._csv_score_items
@@ -257,6 +259,7 @@ def get_result_manager():
     #     file_manager.Cache.save(csv_score_items, "csv_score_items")
     csv_score_items = csv_score_item_load_manager.load_csv_score_items()
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_path())
-    result_manager = ResultManager(csv_score_items, ground_truth_info)
+    line_counts_manager = file_manager.load_json_to_dictionary(path_manager.get_line_counts_path())
+    result_manager = ResultManager(csv_score_items, ground_truth_info, line_counts_manager)
 
     return result_manager
