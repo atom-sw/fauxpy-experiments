@@ -6,7 +6,7 @@ from typing import List, Any
 
 
 class PathManager:
-    _Workspace_file_name = "workspace.json"
+    _Workspace_file_name = "path_item.json"
     _Ground_truth_file_name = "ground_truth_info.json"
 
     def __init__(self):
