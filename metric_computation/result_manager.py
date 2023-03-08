@@ -1,9 +1,9 @@
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional
 
 import file_manager
-from ranker import ScoredEntity, ScoredStatement, ScoredFunction
+from metrics import ScoredEntity, ScoredStatement, ScoredFunction, EInspect
 
 
 class FLTechnique(Enum):
@@ -37,6 +37,7 @@ class CsvScoreItem:
         self._localization_technique = localization_technique
         self._granularity = granularity
         self._scored_entities = scored_entities
+        self._e_inspect = None
 
     def _pretty_representation(self):
         csv_files = [x.name for x in self._csv_paths]
@@ -62,14 +63,32 @@ class CsvScoreItem:
     def get_scored_entities(self):
         return self._scored_entities
 
+    def get_project_name(self) -> str:
+        return self._project_name
+
+    def get_bug_number(self) -> int:
+        return self._bug_number
+
+    def get_e_inspect(self) -> Optional[float]:
+        return self._e_inspect
+
 
 class ResultManager:
     def __init__(self, csv_score_items: List[CsvScoreItem],
-                 ground_truth_info: Dict,
-                 line_counts_manager: Dict):
+                 ground_truth_info_dict: Dict,
+                 line_counts_dict: Dict):
         self._csv_score_items = csv_score_items
-        self._ground_truth_info = ground_truth_info
-        self._line_counts_manager = line_counts_manager
+        self._ground_truth_info_dict = ground_truth_info_dict
+        self._line_counts_dict = line_counts_dict
+
+    def compute_e_inspect_for_all(self):
+        for item in self._csv_score_items:
+            bug_key = f"{item.get_project_name()}:{item.get_bug_number()}"
+            bug_ground_truth_dict = self._ground_truth_info_dict[bug_key]
+            bug_line_count = self._line_counts_dict[bug_key]
+            e_inspect_object = EInspect(item.get_scored_entities(), bug_line_count, bug_ground_truth_dict)
+            e_inspect_value = e_inspect_object.get_e_inspect()
+            item._e_inspect = e_inspect_value
 
     def get_all_csv_score_items(self):
         return self._csv_score_items
@@ -206,7 +225,7 @@ class CsvScoreItemLoadManager:
         for row in csv_file_content:
             col1_parts = row[0].split("::")
             file_path_parts = col1_parts[0].split("/")
-            relative_file_path = "/".join(file_path_parts[5:])
+            relative_file_path = "/".join(file_path_parts[6:])
             line_number = int(col1_parts[1])
             score = float(row[1])
             scored_statement_item = ScoredStatement(relative_file_path, score, line_number)
@@ -221,7 +240,7 @@ class CsvScoreItemLoadManager:
         for row in csv_file_content:
             col1_parts = row[0].split("::")
             file_path_parts = col1_parts[0].split("/")
-            relative_file_path = "/".join(file_path_parts[5:])
+            relative_file_path = "/".join(file_path_parts[6:])
             line_start = int(col1_parts[1])
             line_end = int(col1_parts[2])
             score = float(row[1])
@@ -238,7 +257,7 @@ class CsvScoreItemLoadManager:
         for row in csv_file_content:
             col1_parts = row[0].split("::")
             file_path_parts = col1_parts[0].split("/")
-            relative_file_path = "/".join(file_path_parts[5:])
+            relative_file_path = "/".join(file_path_parts[6:])
             function_name = col1_parts[1]
             line_start = int(col1_parts[2])
             line_end = int(col1_parts[3])
@@ -259,7 +278,7 @@ def get_result_manager():
     #     file_manager.Cache.save(csv_score_items, "csv_score_items")
     csv_score_items = csv_score_item_load_manager.load_csv_score_items()
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_path())
-    line_counts_manager = file_manager.load_json_to_dictionary(path_manager.get_line_counts_path())
-    result_manager = ResultManager(csv_score_items, ground_truth_info, line_counts_manager)
+    line_counts_info = file_manager.load_json_to_dictionary(path_manager.get_line_counts_path())
+    result_manager = ResultManager(csv_score_items, ground_truth_info, line_counts_info)
 
     return result_manager
