@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 import file_manager
-from metrics import ScoredEntity, ScoredStatement, ScoredFunction, EInspect
+from e_inspect import ScoredEntity, ScoredStatement, ScoredFunction, EInspect
 
 
 class FLTechnique(Enum):
@@ -29,7 +29,8 @@ class CsvScoreItem:
                  bug_number: int,
                  localization_technique: FLTechnique,
                  granularity: FLGranularity,
-                 scored_entities: List[ScoredEntity]):
+                 scored_entities: List[ScoredEntity],
+                 experiment_time_seconds: float):
         self._csv_paths = csv_paths
         self._script_id = script_id
         self._project_name = project_name
@@ -37,6 +38,7 @@ class CsvScoreItem:
         self._localization_technique = localization_technique
         self._granularity = granularity
         self._scored_entities = scored_entities
+        self._experiment_time_seconds = experiment_time_seconds
         self._e_inspect = None
 
     def _pretty_representation(self):
@@ -46,6 +48,7 @@ class CsvScoreItem:
                 f"{self._bug_number} "
                 f"{self._localization_technique.name} "
                 f"{self._granularity.name} "
+                f"SEC:{self._experiment_time_seconds} "
                 f"{csv_files}")
 
     def __str__(self):
@@ -71,6 +74,9 @@ class CsvScoreItem:
 
     def get_e_inspect(self) -> Optional[float]:
         return self._e_inspect
+
+    def get_experiment_time_seconds(self) -> float:
+        return self._experiment_time_seconds
 
 
 class ResultManager:
@@ -116,6 +122,11 @@ class CsvScoreItemLoadManager:
         result_path_dirs = list(filter(lambda x: x.is_dir(), result_path.iterdir()))
         assert len(result_path_dirs) == 1
         fauxpy_result_path = result_path_dirs[0]
+
+        experiment_time_seconds_path = fauxpy_result_path / "deltaTime.txt"
+        experiment_time_seconds = cls._extract_experiment_time_seconds_from_file_path(experiment_time_seconds_path)
+        assert 0 < experiment_time_seconds <= 48 * 3600
+
         fauxpy_csv_paths = list(filter(lambda x: x.name.endswith(".csv"), fauxpy_result_path.iterdir()))
 
         cls._check_fauxpy_csv_paths(family, fauxpy_csv_paths)
@@ -128,7 +139,8 @@ class CsvScoreItemLoadManager:
                                              bug_num,
                                              FLTechnique.PS,
                                              granularity,
-                                             score_table)
+                                             score_table,
+                                             experiment_time_seconds)
             family_csv_score_items.append(current_csv_score)
         else:
             for csv_score_path in fauxpy_csv_paths:
@@ -140,7 +152,8 @@ class CsvScoreItemLoadManager:
                                                  bug_num,
                                                  technique,
                                                  granularity,
-                                                 score_table)
+                                                 score_table,
+                                                 experiment_time_seconds)
                 family_csv_score_items.append(current_csv_score)
 
         return family_csv_score_items
@@ -267,6 +280,14 @@ class CsvScoreItemLoadManager:
             scored_function_items.append(scored_function_item)
 
         return scored_function_items
+
+    @classmethod
+    def _extract_experiment_time_seconds_from_file_path(cls, experiment_time_seconds_path):
+        file_content = file_manager.load_file_content(experiment_time_seconds_path)
+        content_parts = file_content.split("=")
+        time_part = content_parts[1].strip()
+        num_value_time = float(time_part)
+        return num_value_time
 
 
 def get_result_manager():

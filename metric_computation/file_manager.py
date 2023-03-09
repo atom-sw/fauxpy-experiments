@@ -71,3 +71,10 @@ class Cache:
         if not cache_dir_path.exists():
             cache_dir_path.mkdir()
         return cache_dir_path
+
+
+def load_file_content(file_path: Path):
+    with file_path.open("r") as file:
+        content = file.read()
+
+    return content
