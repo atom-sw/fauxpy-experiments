@@ -100,7 +100,7 @@ class EInspect:
         def num(k):
             return k * math.comb(t_tie_size - k - 1, tf_faulty_count - 1)
 
-        den = float(math.comb(t_tie_size, tf_faulty_count))
+        den = math.comb(t_tie_size, tf_faulty_count)
         sigma_result = cls._math_sigma(num, 1, t_tie_size - tf_faulty_count)
 
         return p_start + sigma_result / den
