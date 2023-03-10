@@ -116,6 +116,7 @@ class ResultManager:
                  ground_truth_info_dict: Dict,
                  line_counts_dict: Dict):
         self._csv_score_items = csv_score_items
+        assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
         self._ground_truth_info_dict = ground_truth_info_dict
         self._line_counts_dict = line_counts_dict
 

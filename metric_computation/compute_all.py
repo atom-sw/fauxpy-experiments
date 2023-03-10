@@ -1,5 +1,3 @@
-import sys
-
 from result_manager import get_result_manager
 
 
