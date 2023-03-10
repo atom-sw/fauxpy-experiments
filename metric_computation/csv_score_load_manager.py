@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List
 
 import file_manager
-from literature_metrics import ScoredEntity, ScoredStatement
+from entity_type import ScoredEntity, ScoredStatement
 
 
 class FLTechnique(Enum):
