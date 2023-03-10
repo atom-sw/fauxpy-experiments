@@ -128,24 +128,17 @@ class ResultManager:
     def get_all_csv_score_items(self):
         return self._csv_score_items
 
-        # tarantula = 0
-        # ochiai = 1
-        # dstar = 2
-        # metallaxis = 3
-        # muse = 4
-        # ps = 5
-        # st = 6
-
     # Call this method after calling compute_all_metrics_for_all.
     def save_all_metrics_for_all(self):
         technique_statement_csv_items = {}
         for item in FLTechnique:
-            technique_statement_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value), FLGranularity.Statement)
+            technique_statement_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
+                                                                                   FLGranularity.Statement)
 
         for technique_name, csv_items in technique_statement_csv_items.items():
             self._save_detailed_results(technique_name, FLGranularity.Statement.name, csv_items)
 
-    def _compute_e_inspect_for_csv_score_item(self, csv_score_item) -> float:
+    def _compute_e_inspect_for_csv_score_item(self, csv_score_item: CsvScoreItem) -> float:
         bug_key = f"{csv_score_item.get_project_name()}:{csv_score_item.get_bug_number()}"
         bug_ground_truth_dict = self._ground_truth_info_dict[bug_key]
         bug_line_count = self._line_counts_dict[bug_key]
@@ -200,7 +193,7 @@ class CsvScoreItemLoadManager:
 
     @classmethod
     def _get_family_csv_score_items(cls, result_path: Path) -> List[CsvScoreItem]:
-        family_csv_score_items = []
+        technique_statement_csv_score_items = []
         name_parts = result_path.name.split("_")
         script_id = int(name_parts[0])
         project_name = name_parts[3]
@@ -208,9 +201,14 @@ class CsvScoreItemLoadManager:
         family = name_parts[5]
         if name_parts[6] == "statement":
             granularity = FLGranularity.Statement
-        elif name_parts[6] == "function":
-            granularity = FLGranularity.Function
+        elif name_parts[6] == "function" and family == "st":
+            # We load ST as statement as well
+            granularity = FLGranularity.Statement
         else:
+            # We are not allowed to have function granularity
+            # for other families in the results directory.
+            # We compute function granularity from the statement
+            # granularity results that we have.
             raise Exception("This should never happen.")
 
         result_path_dirs = list(filter(lambda x: x.is_dir(), result_path.iterdir()))
@@ -219,7 +217,7 @@ class CsvScoreItemLoadManager:
 
         experiment_time_seconds_path = fauxpy_result_path / "deltaTime.txt"
         experiment_time_seconds = cls._extract_experiment_time_seconds_from_file_path(experiment_time_seconds_path)
-        assert 0 < experiment_time_seconds <= 48 * 3600
+        assert 0 < experiment_time_seconds <= 48 * 3600  # Less that 48 hours, the cluster server timeout limit.
 
         fauxpy_csv_paths = list(filter(lambda x: x.name.endswith(".csv"), fauxpy_result_path.iterdir()))
 
@@ -235,7 +233,7 @@ class CsvScoreItemLoadManager:
                                              granularity,
                                              score_table,
                                              experiment_time_seconds)
-            family_csv_score_items.append(current_csv_score)
+            technique_statement_csv_score_items.append(current_csv_score)
         else:
             for csv_score_path in fauxpy_csv_paths:
                 score_table = cls.load_csv_score_file([csv_score_path], family, granularity)
@@ -248,9 +246,9 @@ class CsvScoreItemLoadManager:
                                                  granularity,
                                                  score_table,
                                                  experiment_time_seconds)
-                family_csv_score_items.append(current_csv_score)
+                technique_statement_csv_score_items.append(current_csv_score)
 
-        return family_csv_score_items
+        return technique_statement_csv_score_items
 
     def load_csv_score_items(self) -> List[CsvScoreItem]:
         csv_score_items = []
@@ -301,6 +299,8 @@ class CsvScoreItemLoadManager:
                             csv_paths: List[Path],
                             family: str,
                             granularity: FLGranularity) -> List[ScoredEntity]:
+        assert granularity == FLGranularity.Statement
+
         if granularity == FLGranularity.Statement:
             if family in ["sbfl", "mbfl"]:
                 csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
@@ -309,18 +309,21 @@ class CsvScoreItemLoadManager:
                 # TODO: Fix this.
                 csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
                 scored_entity_items = cls.csv_content_to_scored_ps_statement_items(csv_file_content)
+            elif family == "st":
+                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+                scored_entity_items = cls.csv_content_to_scored_st_statement_items(csv_file_content)
             else:
                 raise Exception("This should never happen.")
-        elif granularity == FLGranularity.Function:
-            if family == "ps":
-                # TODO: Fix this.
-                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
-                scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
-            else:
-                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
-                scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
-        else:
-            raise Exception("This should never happen.")
+        # elif granularity == FLGranularity.Function:
+        #     if family == "ps":
+        #         # TODO: Fix this.
+        #         csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+        #         scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
+        #     else:
+        #         csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
+        #         scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
+        # else:
+        #     raise Exception("This should never happen.")
 
         scored_entity_items.sort(key=lambda x: x.get_score(), reverse=True)
         return scored_entity_items
@@ -358,22 +361,39 @@ class CsvScoreItemLoadManager:
         return scored_statement_items
 
     @classmethod
-    def csv_content_to_scored_function_items(cls,
-                                             csv_file_content: List[List[str]]):
-        scored_function_items = []
+    def csv_content_to_scored_st_statement_items(cls,
+                                                 csv_file_content: List[List[str]]) -> List[ScoredStatement]:
+        scored_statement_items = []
         for row in csv_file_content:
             col1_parts = row[0].split("::")
             file_path_parts = col1_parts[0].split("/")
             relative_file_path = "/".join(file_path_parts[6:])
-            function_name = col1_parts[1]
             line_start = int(col1_parts[2])
             line_end = int(col1_parts[3])
-            function_range = (line_start, line_end)
             score = float(row[1])
-            scored_function_item = ScoredFunction(relative_file_path, score, function_range, function_name)
-            scored_function_items.append(scored_function_item)
+            for line_number in range(line_start, line_end + 1):
+                scored_statement_item = ScoredStatement(relative_file_path, score, line_number)
+                scored_statement_items.append(scored_statement_item)
 
-        return scored_function_items
+        return scored_statement_items
+
+    # @classmethod
+    # def csv_content_to_scored_function_items(cls,
+    #                                          csv_file_content: List[List[str]]):
+    #     scored_function_items = []
+    #     for row in csv_file_content:
+    #         col1_parts = row[0].split("::")
+    #         file_path_parts = col1_parts[0].split("/")
+    #         relative_file_path = "/".join(file_path_parts[6:])
+    #         function_name = col1_parts[1]
+    #         line_start = int(col1_parts[2])
+    #         line_end = int(col1_parts[3])
+    #         function_range = (line_start, line_end)
+    #         score = float(row[1])
+    #         scored_function_item = ScoredFunction(relative_file_path, score, function_range, function_name)
+    #         scored_function_items.append(scored_function_item)
+    #
+    #     return scored_function_items
 
     @classmethod
     def _extract_experiment_time_seconds_from_file_path(cls, experiment_time_seconds_path):
