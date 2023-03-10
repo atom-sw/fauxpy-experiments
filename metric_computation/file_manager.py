@@ -83,16 +83,17 @@ def load_file_content(file_path: Path):
     return content
 
 
-CLEANED = False
+FIRST_CALL = False
 
 
 def _get_output_directory_path() -> Path:
-    global CLEANED
+    global FIRST_CALL
 
     output_directory_path = Path(OUTPUT_DIRECTORY_NAME)
-    if output_directory_path.exists() and not CLEANED:
+    if output_directory_path.exists() and not FIRST_CALL:
         shutil.rmtree(str(output_directory_path.absolute().resolve()))
-        CLEANED = True
+
+    FIRST_CALL = True
 
     if not output_directory_path.exists():
         output_directory_path.mkdir()
