@@ -78,3 +78,10 @@ def load_file_content(file_path: Path):
         content = file.read()
 
     return content
+
+
+def save_as_csv_file(table_list: List[List],
+                     file_name: str):
+    with open(file_name, "w") as file:
+        csv_writer = csv.writer(file)
+        csv_writer.writerows(table_list)

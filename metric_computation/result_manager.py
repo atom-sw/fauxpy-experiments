@@ -1,9 +1,9 @@
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Tuple
 
 import file_manager
-from e_inspect import ScoredEntity, ScoredStatement, ScoredFunction, EInspect
+from literature_metrics import ScoredEntity, ScoredStatement, ScoredFunction, EInspect
 
 
 class FLTechnique(Enum):
@@ -19,6 +19,32 @@ class FLTechnique(Enum):
 class FLGranularity(Enum):
     Statement = 0
     Function = 1
+
+
+class MetricVal:
+    def __init__(self,
+                 experiment_time: float,
+                 e_inspect: float,
+                 exam_score: float):
+        self._experiment_time = experiment_time
+        self._e_inspect = e_inspect
+        self._exam_score = exam_score
+        self._top_1 = self._compute_top(1)
+        self._top_3 = self._compute_top(3)
+        self._top_5 = self._compute_top(5)
+        self._top_10 = self._compute_top(10)
+
+    def _compute_top(self, top_x):
+        return self._e_inspect <= top_x
+
+    def get_experiment_time(self) -> float:
+        return self._experiment_time
+
+    def get_e_inspect(self) -> float:
+        return self._e_inspect
+
+    def get_exam_score(self) -> float:
+        return self._exam_score
 
 
 class CsvScoreItem:
@@ -39,7 +65,7 @@ class CsvScoreItem:
         self._granularity = granularity
         self._scored_entities = scored_entities
         self._experiment_time_seconds = experiment_time_seconds
-        self._e_inspect = None
+        self._metric_val = None
 
     def _pretty_representation(self):
         csv_files = [x.name for x in self._csv_paths]
@@ -72,11 +98,17 @@ class CsvScoreItem:
     def get_bug_number(self) -> int:
         return self._bug_number
 
-    def get_e_inspect(self) -> Optional[float]:
-        return self._e_inspect
-
     def get_experiment_time_seconds(self) -> float:
         return self._experiment_time_seconds
+
+    def set_metric_val(self, metric_val: MetricVal):
+        self._metric_val = metric_val
+
+    def get_metric_val(self) -> MetricVal:
+        return self._metric_val
+
+    def get_granularity(self) -> FLGranularity:
+        return self._granularity
 
 
 class ResultManager:
@@ -87,17 +119,79 @@ class ResultManager:
         self._ground_truth_info_dict = ground_truth_info_dict
         self._line_counts_dict = line_counts_dict
 
-    def compute_e_inspect_for_all(self):
+    def compute_all_metrics_for_all(self):
         for item in self._csv_score_items:
-            bug_key = f"{item.get_project_name()}:{item.get_bug_number()}"
-            bug_ground_truth_dict = self._ground_truth_info_dict[bug_key]
-            bug_line_count = self._line_counts_dict[bug_key]
-            e_inspect_object = EInspect(item.get_scored_entities(), bug_line_count, bug_ground_truth_dict)
-            e_inspect_value = e_inspect_object.get_e_inspect()
-            item._e_inspect = e_inspect_value
+            e_inspect, exam_score = self._compute_literature_metrics_for_csv_item(item)
+            metric_val = MetricVal(item.get_experiment_time_seconds(), e_inspect, exam_score)
+            item.set_metric_val(metric_val)
 
     def get_all_csv_score_items(self):
         return self._csv_score_items
+
+        # tarantula = 0
+        # ochiai = 1
+        # dstar = 2
+        # metallaxis = 3
+        # muse = 4
+        # ps = 5
+        # st = 6
+
+    # Call this method after calling compute_all_metrics_for_all.
+    def save_all_metrics_for_all(self):
+        technique_statement_csv_items = {}
+        for item in FLTechnique:
+            technique_statement_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value), FLGranularity.Statement)
+
+        for technique_name, csv_items in technique_statement_csv_items.items():
+            self._save_detailed_results(technique_name, FLGranularity.Statement.name, csv_items)
+
+    def _compute_e_inspect_for_csv_score_item(self, csv_score_item) -> float:
+        bug_key = f"{csv_score_item.get_project_name()}:{csv_score_item.get_bug_number()}"
+        bug_ground_truth_dict = self._ground_truth_info_dict[bug_key]
+        bug_line_count = self._line_counts_dict[bug_key]
+        e_inspect_object = EInspect(csv_score_item.get_scored_entities(), bug_line_count, bug_ground_truth_dict)
+        e_inspect_value = e_inspect_object.get_e_inspect()
+
+        return e_inspect_value
+
+    def _compute_exam_score_for_csv_score_item(self, csv_score_item, e_inspect: float) -> float:
+        bug_key = f"{csv_score_item.get_project_name()}:{csv_score_item.get_bug_number()}"
+        bug_line_count = self._line_counts_dict[bug_key]
+        exam_score = e_inspect / bug_line_count
+
+        return exam_score
+
+    def _compute_literature_metrics_for_csv_item(self, csv_score_item) -> Tuple[float, float]:
+        e_inspect = self._compute_e_inspect_for_csv_score_item(csv_score_item)
+        exam_score = self._compute_exam_score_for_csv_score_item(csv_score_item, e_inspect)
+        return e_inspect, exam_score
+
+    def _get_all_csv_items_for(self, tech: FLTechnique, granularity: FLGranularity) -> List[CsvScoreItem]:
+        technique_csv_items = []
+        for item in self._csv_score_items:
+            if item.get_technique() == tech and item.get_granularity() == granularity:
+                technique_csv_items.append(item)
+
+        technique_csv_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
+        return technique_csv_items
+
+    @staticmethod
+    def _save_detailed_results(technique_name: str, granularity_name: str, csv_items: List[CsvScoreItem]):
+        result_header = ["project_name", "bug_number", "experiment_time_seconds", "e_inspect", "exam_score"]
+        result_rows = [result_header]
+        for item in csv_items:
+            project_name = item.get_project_name()
+            bug_number = item.get_bug_number()
+            metric_val: MetricVal = item.get_metric_val()
+            experiment_time_seconds = metric_val.get_experiment_time()
+            assert experiment_time_seconds == item.get_experiment_time_seconds()
+            e_inspect = metric_val.get_e_inspect()
+            exam_score = metric_val.get_exam_score()
+            result_row = [project_name, bug_number, experiment_time_seconds, e_inspect, exam_score]
+            result_rows.append(result_row)
+
+        file_name = f"detailed_{technique_name}_{granularity_name}.csv"
+        file_manager.save_as_csv_file(result_rows, file_name)
 
 
 class CsvScoreItemLoadManager:
