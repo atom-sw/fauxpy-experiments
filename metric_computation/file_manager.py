@@ -1,8 +1,11 @@
 import csv
 import json
 import pickle
+import shutil
 from pathlib import Path
 from typing import List, Any
+
+OUTPUT_DIRECTORY_NAME = "output"
 
 
 class PathManager:
@@ -80,8 +83,27 @@ def load_file_content(file_path: Path):
     return content
 
 
+CLEANED = False
+
+
+def _get_output_directory_path() -> Path:
+    global CLEANED
+
+    output_directory_path = Path(OUTPUT_DIRECTORY_NAME)
+    if output_directory_path.exists() and not CLEANED:
+        shutil.rmtree(str(output_directory_path.absolute().resolve()))
+        CLEANED = True
+
+    if not output_directory_path.exists():
+        output_directory_path.mkdir()
+
+    return output_directory_path
+
+
 def save_as_csv_file(table_list: List[List],
                      file_name: str):
-    with open(file_name, "w") as file:
+    output_directory_path = _get_output_directory_path()
+    file_path = output_directory_path / file_name
+    with file_path.open("w") as file:
         csv_writer = csv.writer(file)
         csv_writer.writerows(table_list)
