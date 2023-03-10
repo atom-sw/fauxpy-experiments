@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 import file_manager
-from literature_metrics import ScoredEntity, ScoredStatement, ScoredFunction, EInspect
+from literature_metrics import ScoredEntity, ScoredStatement, EInspect
 
 
 class FLTechnique(Enum):
@@ -29,13 +29,6 @@ class MetricVal:
         self._experiment_time = experiment_time
         self._e_inspect = e_inspect
         self._exam_score = exam_score
-        self._top_1 = self._compute_top(1)
-        self._top_3 = self._compute_top(3)
-        self._top_5 = self._compute_top(5)
-        self._top_10 = self._compute_top(10)
-
-    def _compute_top(self, top_x):
-        return self._e_inspect <= top_x
 
     def get_experiment_time(self) -> float:
         return self._experiment_time
@@ -136,8 +129,18 @@ class ResultManager:
             technique_statement_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                                    FLGranularity.Statement)
 
+        overall_results_header = ["technique", "experiment_time_seconds", "@1", "@3", "@5", "@10", "exam_score"]
+        technique_statement_overall_table = [overall_results_header]
         for technique_name, csv_items in technique_statement_csv_items.items():
-            self._save_detailed_results(technique_name, FLGranularity.Statement.name, csv_items)
+            technique_statement_detailed_table = self._get_technique_detailed_results_table(csv_items)
+            technique_statement_detailed_file_name = f"detailed_{technique_name}_{FLGranularity.Statement.name}.csv"
+            file_manager.save_as_csv_file(technique_statement_detailed_table, technique_statement_detailed_file_name)
+
+            technique_statement_overall_row = self._get_technique_overall_results_row(technique_name, csv_items)
+            technique_statement_overall_table.append(technique_statement_overall_row)
+
+        technique_statement_overall_file_name = f"overall_{FLGranularity.Statement.name}.csv"
+        file_manager.save_as_csv_file(technique_statement_overall_table, technique_statement_overall_file_name)
 
     def _compute_e_inspect_for_csv_score_item(self, csv_score_item: CsvScoreItem) -> float:
         bug_key = f"{csv_score_item.get_project_name()}:{csv_score_item.get_bug_number()}"
@@ -170,7 +173,7 @@ class ResultManager:
         return technique_csv_items
 
     @staticmethod
-    def _save_detailed_results(technique_name: str, granularity_name: str, csv_items: List[CsvScoreItem]):
+    def _get_technique_detailed_results_table(csv_items: List[CsvScoreItem]):
         result_header = ["project_name", "bug_number", "experiment_time_seconds", "e_inspect", "exam_score"]
         result_rows = [result_header]
         for item in csv_items:
@@ -184,8 +187,33 @@ class ResultManager:
             result_row = [project_name, bug_number, experiment_time_seconds, e_inspect, exam_score]
             result_rows.append(result_row)
 
-        file_name = f"detailed_{technique_name}_{granularity_name}.csv"
-        file_manager.save_as_csv_file(result_rows, file_name)
+        return result_rows
+
+    @staticmethod
+    def _get_technique_overall_results_row(technique_name: str,
+                                           csv_items: List[CsvScoreItem]) -> List:
+        # ["technique", "experiment_time_seconds", "@1", "@3", "@5", "@10", "exam_score"]
+
+        def at_x(top_num: int) -> int:
+            top_x_items = list(filter(lambda x: x.get_metric_val().get_e_inspect() <= top_num, csv_items))
+            return len(top_x_items)
+
+        def average(nums: List) -> float:
+            avg_value = sum(nums) / float(len(nums))
+            return avg_value
+
+        experiment_time_seconds_list = [x.get_metric_val().get_experiment_time() for x in csv_items]
+        exam_score_list = [x.get_metric_val().get_exam_score() for x in csv_items]
+
+        technique_result = [technique_name,
+                            average(experiment_time_seconds_list),
+                            at_x(1),
+                            at_x(3),
+                            at_x(5),
+                            at_x(10),
+                            average(exam_score_list)]
+
+        return technique_result
 
 
 class CsvScoreItemLoadManager:
