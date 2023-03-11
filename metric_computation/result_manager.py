@@ -2,27 +2,31 @@ from typing import Dict, List, Tuple
 
 import file_manager
 import mathematics
+from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, FLGranularity, MetricVal, CsvScoreItem
 from literature_metrics import EInspect
 
 
 class ResultManager:
-    def __init__(self, csv_score_items: List[CsvScoreItem],
+    def __init__(self,
+                 statement_csv_score_items: List[CsvScoreItem],
+                 function_csv_score_items: List[CsvScoreItem],
                  ground_truth_info_dict: Dict,
                  line_counts_dict: Dict):
-        self._csv_score_items = csv_score_items
-        assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
+        self._statement_csv_score_items = statement_csv_score_items
+        self._function_csv_score_items = function_csv_score_items
+        assert any([x.get_granularity() == FLGranularity.Statement for x in self._statement_csv_score_items])
         self._ground_truth_info_dict = ground_truth_info_dict
         self._line_counts_dict = line_counts_dict
 
     def compute_all_metrics_for_all(self):
-        for item in self._csv_score_items:
+        for item in self._statement_csv_score_items:
             e_inspect, exam_score = self._compute_literature_metrics_for_csv_item(item)
             metric_val = MetricVal(item.get_experiment_time_seconds(), e_inspect, exam_score)
             item.set_metric_val(metric_val)
 
     def get_all_csv_score_items(self):
-        return self._csv_score_items
+        return self._statement_csv_score_items
 
     # Call this method after calling compute_all_metrics_for_all.
     def save_all_metrics_for_all(self):
@@ -31,7 +35,8 @@ class ResultManager:
             technique_statement_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                                    FLGranularity.Statement)
 
-        overall_results_header = ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score"]
+        overall_results_header = ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10",
+                                  "@10%", "exam_score"]
         technique_statement_overall_table = [overall_results_header]
         for technique_name, csv_items in technique_statement_csv_items.items():
             technique_statement_detailed_table = self._get_technique_detailed_results_table(csv_items)
@@ -67,7 +72,7 @@ class ResultManager:
 
     def _get_all_csv_items_for(self, tech: FLTechnique, granularity: FLGranularity) -> List[CsvScoreItem]:
         technique_csv_items = []
-        for item in self._csv_score_items:
+        for item in self._statement_csv_score_items:
             if item.get_technique() == tech and item.get_granularity() == granularity:
                 technique_csv_items.append(item)
 
@@ -125,13 +130,16 @@ class ResultManager:
 def get_result_manager():
     path_manager = file_manager.PathManager()
     csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
-    # csv_score_items = file_manager.Cache.load("csv_score_items")
-    # if csv_score_items is None:
-    #     csv_score_items = csv_score_item_load_manager.load_csv_score_items()
-    #     file_manager.Cache.save(csv_score_items, "csv_score_items")
-    csv_score_items = csv_score_item_load_manager.load_csv_score_items()
+    statement_csv_score_items = csv_score_item_load_manager.load_csv_score_items()
+
+    csv_score_item_function_granularity_manager = CsvScoreItemFunctionGranularityManager(statement_csv_score_items)
+    function_csv_score_items = csv_score_item_function_granularity_manager.get_function_csv_score_items()
+
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_path())
     line_counts_info = file_manager.load_json_to_dictionary(path_manager.get_line_counts_path())
-    result_manager = ResultManager(csv_score_items, ground_truth_info, line_counts_info)
+    result_manager = ResultManager(statement_csv_score_items,
+                                   function_csv_score_items,
+                                   ground_truth_info,
+                                   line_counts_info)
 
     return result_manager
