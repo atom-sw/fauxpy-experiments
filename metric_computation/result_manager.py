@@ -135,6 +135,7 @@ def get_result_manager():
     csv_score_item_function_granularity_manager = CsvScoreItemFunctionGranularityManager(statement_csv_score_items,
                                                                                          path_manager.get_workspace_path())
     function_csv_score_items = csv_score_item_function_granularity_manager.get_function_csv_score_items()
+    file_manager.save_function_csv_score_items(function_csv_score_items)
 
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_path())
     line_counts_info = file_manager.load_json_to_dictionary(path_manager.get_line_counts_path())
