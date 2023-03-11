@@ -263,6 +263,30 @@ def get_file_ground_truth(patch: str,
     return code_lines, code_extended_lines
 
 
+def get_content_line_numbers(buggy_content: str):
+    num_empty_lines_top = 0
+    num_empty_lines_bottom = 0
+    buggy_content_lines = buggy_content.splitlines()
+
+    for line_str in buggy_content_lines:
+        if line_str.strip() == "":
+            num_empty_lines_top += 1
+        else:
+            break
+
+    for index in range(len(buggy_content_lines) - 1, -1, -1):
+        if buggy_content_lines[index].strip() == "":
+            num_empty_lines_bottom += 1
+        else:
+            break
+
+    if num_empty_lines_top + num_empty_lines_bottom > 0:
+        pass
+
+    content_size_lines = len(buggy_content_lines) - num_empty_lines_top - num_empty_lines_bottom
+    return content_size_lines
+
+
 def get_bug_ground_truth(benchmark_name: str,
                          bug_number: int):
     python_none_test_files = common.get_diff_commit(benchmark_name, bug_number)
@@ -273,11 +297,13 @@ def get_bug_ground_truth(benchmark_name: str,
         filename = file.filename
         patch = file.patch
         buggy_content = file.buggy_content
+        buggy_content_size = get_content_line_numbers(buggy_content)
         fixed_content = file.fixed_content
         lines, extended_lines = get_file_ground_truth(patch, buggy_content, fixed_content)
         but_ground_truth.append(
             {
                 "FILE_NAME": filename,
+                "MODULE_SIZE": buggy_content_size,
                 "LINES": lines,
                 "EXTENDED_LINES": extended_lines
             }
