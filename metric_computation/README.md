@@ -1,7 +1,12 @@
 # Metric computation
 
-The purpose of this phase is to generate the 
-tabular data files in the [output](output) directory.
+*The Python scripts in this directory are tested on Python 3.9.
+Since we use Python's AST library here, which changes from
+one Python version to another one, these scripts might not work
+properly on other versions of Python.* 
+
+At this phase, we generate the tabular data 
+files in the [output](output) directory.
 We have already done this phase and generated the results.
 But, if you want to replicate the process, you can
 follow the instructions below.
@@ -16,6 +21,8 @@ the [bash_script_generator](/bash_script_generator) phase, and
 file we generated at the [first round selection](/first_round_selection) phase.
 3. the [line_counts.json](/first_round_selection/line_counts.json)
 file we generated at the [first round selection](/first_round_selection) phase.
+
+## Running the script
 
 To run this phase, first copy `ground_truth_info.json` and `line_counts.json` from `first_round_selection` directory to this directory, and
 then, set the *results path* and *workspace path*
