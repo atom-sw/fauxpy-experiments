@@ -132,7 +132,8 @@ def get_result_manager():
     csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
     statement_csv_score_items = csv_score_item_load_manager.load_csv_score_items()
 
-    csv_score_item_function_granularity_manager = CsvScoreItemFunctionGranularityManager(statement_csv_score_items)
+    csv_score_item_function_granularity_manager = CsvScoreItemFunctionGranularityManager(statement_csv_score_items,
+                                                                                         path_manager.get_workspace_path())
     function_csv_score_items = csv_score_item_function_granularity_manager.get_function_csv_score_items()
 
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_path())
