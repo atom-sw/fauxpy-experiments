@@ -1,6 +1,7 @@
 from typing import Dict, List, Tuple
 
 import file_manager
+import mathematics
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, FLGranularity, MetricVal, CsvScoreItem
 from literature_metrics import EInspect
 
@@ -99,20 +100,16 @@ class ResultManager:
             top_x_items = list(filter(lambda x: x.get_metric_val().get_e_inspect() <= top_num, csv_items))
             return len(top_x_items)
 
-        def average(nums: List) -> float:
-            avg_value = sum(nums) / float(len(nums))
-            return avg_value
-
         experiment_time_seconds_list = [x.get_metric_val().get_experiment_time() for x in csv_items]
         exam_score_list = [x.get_metric_val().get_exam_score() for x in csv_items]
 
         technique_result = [technique_name,
-                            average(experiment_time_seconds_list),
+                            mathematics.average(experiment_time_seconds_list),
                             at_x(1),
                             at_x(3),
                             at_x(5),
                             at_x(10),
-                            average(exam_score_list)]
+                            mathematics.average(exam_score_list)]
 
         return technique_result
 

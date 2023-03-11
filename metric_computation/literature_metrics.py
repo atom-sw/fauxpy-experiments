@@ -1,6 +1,7 @@
 import math
 from typing import List, Dict
 
+import mathematics
 from entity_type import ScoredEntity, ScoredStatement, ScoredFunction
 
 
@@ -25,13 +26,6 @@ class EInspect:
         self._line_counts = line_counts
         self._bug_ground_truth = bug_ground_truth
 
-    @staticmethod
-    def _math_sigma(function_item, from_value: int, to_value: int) -> float:
-        sigma_result = 0
-        for i in range(from_value, to_value + 1):
-            sigma_result += function_item(i)
-        return sigma_result
-
     @classmethod
     def _e_inspect(cls, p_start: float, t_tie_size: int, tf_faulty_count: int):
         """
@@ -52,7 +46,7 @@ class EInspect:
             return k * math.comb(t_tie_size - k - 1, tf_faulty_count - 1)
 
         den = math.comb(t_tie_size, tf_faulty_count)
-        sigma_result = cls._math_sigma(num, 1, t_tie_size - tf_faulty_count)
+        sigma_result = mathematics.math_sigma(num, 1, t_tie_size - tf_faulty_count)
 
         return p_start + sigma_result / den
 
@@ -156,7 +150,3 @@ class EInspect:
             number_of_faulty_elements_in_ground_truth_info += len(item["LINES"]) + len(item["EXTENDED_LINES"])
 
         return number_of_faulty_elements_in_ground_truth_info
-
-
-
-
