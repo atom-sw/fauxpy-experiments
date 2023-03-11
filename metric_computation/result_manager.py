@@ -31,7 +31,7 @@ class ResultManager:
             technique_statement_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                                    FLGranularity.Statement)
 
-        overall_results_header = ["technique", "experiment_time_seconds", "@1", "@3", "@5", "@10", "exam_score"]
+        overall_results_header = ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score"]
         technique_statement_overall_table = [overall_results_header]
         for technique_name, csv_items in technique_statement_csv_items.items():
             technique_statement_detailed_table = self._get_technique_detailed_results_table(csv_items)
@@ -94,11 +94,15 @@ class ResultManager:
     @staticmethod
     def _get_technique_overall_results_row(technique_name: str,
                                            csv_items: List[CsvScoreItem]) -> List:
-        # ["technique", "experiment_time_seconds", "@1", "@3", "@5", "@10", "exam_score"]
+        # ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score"]
 
         def at_x(top_num: int) -> int:
             top_x_items = list(filter(lambda x: x.get_metric_val().get_e_inspect() <= top_num, csv_items))
             return len(top_x_items)
+
+        def at_x_percentage(top_num: int) -> float:
+            percentage = (float(at_x(top_num)) / len(csv_items)) * 100
+            return percentage
 
         experiment_time_seconds_list = [x.get_metric_val().get_experiment_time() for x in csv_items]
         exam_score_list = [x.get_metric_val().get_exam_score() for x in csv_items]
@@ -106,9 +110,13 @@ class ResultManager:
         technique_result = [technique_name,
                             mathematics.average(experiment_time_seconds_list),
                             at_x(1),
+                            at_x_percentage(1),
                             at_x(3),
+                            at_x_percentage(3),
                             at_x(5),
+                            at_x_percentage(5),
                             at_x(10),
+                            at_x_percentage(10),
                             mathematics.average(exam_score_list)]
 
         return technique_result
