@@ -2,6 +2,7 @@
      "black:1": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 6376,
                "LINES": [
                     621,
                     636,
@@ -13,6 +14,7 @@
      "black:3": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 4194,
                "LINES": [
                     397
                ],
@@ -22,6 +24,7 @@
      "black:4": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3973,
                "LINES": [
                     1483
                ],
@@ -31,6 +34,7 @@
      "black:6": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3820,
                "LINES": [
                     53,
                     142,
@@ -59,6 +63,7 @@
           },
           {
                "FILE_NAME": "blib2to3/pgen2/driver.py",
+               "MODULE_SIZE": 221,
                "LINES": [
                     32,
                     100,
@@ -70,6 +75,7 @@
           },
           {
                "FILE_NAME": "blib2to3/pgen2/tokenize.py",
+               "MODULE_SIZE": 568,
                "LINES": [
                     34,
                     337,
@@ -85,6 +91,7 @@
      "black:7": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3763,
                "LINES": [
                     2729,
                     2760
@@ -97,6 +104,7 @@
      "black:8": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3756,
                "LINES": [
                     2410,
                     2411
@@ -107,6 +115,7 @@
      "black:10": [
           {
                "FILE_NAME": "blib2to3/pgen2/driver.py",
+               "MODULE_SIZE": 223,
                "LINES": [
                     134,
                     136,
@@ -118,6 +127,7 @@
      "black:11": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3669,
                "LINES": [
                     2115,
                     2116
@@ -128,6 +138,7 @@
      "black:14": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3511,
                "LINES": [
                     23,
                     2913,
@@ -149,6 +160,7 @@
      "black:15": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3604,
                "LINES": [
                     32,
                     93,
@@ -272,6 +284,7 @@
      "black:18": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 3305,
                "LINES": [
                     7,
                     468,
@@ -292,6 +305,7 @@
      "black:19": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 2527,
                "LINES": [
                     1047
                ],
@@ -303,6 +317,7 @@
      "black:20": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 2519,
                "LINES": [
                     344,
                     345
@@ -313,6 +328,7 @@
      "black:22": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 1901,
                "LINES": [
                     6,
                     13,
@@ -377,6 +393,7 @@
      "black:23": [
           {
                "FILE_NAME": "black.py",
+               "MODULE_SIZE": 1609,
                "LINES": [
                     241,
                     245,
@@ -399,6 +416,7 @@
           },
           {
                "FILE_NAME": "blib2to3/pygram.py",
+               "MODULE_SIZE": 40,
                "LINES": [
                     39
                ],
@@ -410,6 +428,7 @@
      "cookiecutter:1": [
           {
                "FILE_NAME": "cookiecutter/generate.py",
+               "MODULE_SIZE": 380,
                "LINES": [
                     85
                ],
@@ -419,6 +438,7 @@
      "cookiecutter:2": [
           {
                "FILE_NAME": "cookiecutter/hooks.py",
+               "MODULE_SIZE": 127,
                "LINES": [
                     57,
                     59,
@@ -435,6 +455,7 @@
      "cookiecutter:3": [
           {
                "FILE_NAME": "cookiecutter/prompt.py",
+               "MODULE_SIZE": 242,
                "LINES": [
                     91
                ],
@@ -444,11 +465,13 @@
      "cookiecutter:4": [
           {
                "FILE_NAME": "cookiecutter/exceptions.py",
+               "MODULE_SIZE": 83,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "cookiecutter/generate.py",
+               "MODULE_SIZE": 323,
                "LINES": [
                     27,
                     31,
@@ -460,6 +483,7 @@
           },
           {
                "FILE_NAME": "cookiecutter/hooks.py",
+               "MODULE_SIZE": 109,
                "LINES": [
                     23,
                     72,
@@ -475,6 +499,7 @@
      "fastapi:1": [
           {
                "FILE_NAME": "fastapi/applications.py",
+               "MODULE_SIZE": 691,
                "LINES": [
                     174,
                     200,
@@ -522,6 +547,7 @@
           },
           {
                "FILE_NAME": "fastapi/encoders.py",
+               "MODULE_SIZE": 159,
                "LINES": [
                     37,
                     63,
@@ -538,6 +564,7 @@
           },
           {
                "FILE_NAME": "fastapi/openapi/utils.py",
+               "MODULE_SIZE": 313,
                "LINES": [
                     84,
                     313
@@ -546,6 +573,7 @@
           },
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 996,
                "LINES": [
                     52,
                     56,
@@ -617,6 +645,7 @@
      "fastapi:2": [
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 991,
                "LINES": [
                     501
                ],
@@ -626,6 +655,7 @@
      "fastapi:3": [
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 973,
                "LINES": [
                     63,
                     64,
@@ -641,6 +671,7 @@
      "fastapi:4": [
           {
                "FILE_NAME": "fastapi/openapi/utils.py",
+               "MODULE_SIZE": 311,
                "LINES": [
                     183
                ],
@@ -650,6 +681,7 @@
      "fastapi:5": [
           {
                "FILE_NAME": "fastapi/utils.py",
+               "MODULE_SIZE": 161,
                "LINES": [
                     100
                ],
@@ -659,6 +691,7 @@
      "fastapi:6": [
           {
                "FILE_NAME": "fastapi/dependencies/utils.py",
+               "MODULE_SIZE": 776,
                "LINES": [
                     632,
                     633,
@@ -670,6 +703,7 @@
      "fastapi:7": [
           {
                "FILE_NAME": "fastapi/exception_handlers.py",
+               "MODULE_SIZE": 23,
                "LINES": [
                     1,
                     22
@@ -680,6 +714,7 @@
      "fastapi:8": [
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 858,
                "LINES": [
                     351,
                     352,
@@ -694,6 +729,7 @@
      "fastapi:9": [
           {
                "FILE_NAME": "fastapi/dependencies/utils.py",
+               "MODULE_SIZE": 579,
                "LINES": [
                     562,
                     569,
@@ -708,6 +744,7 @@
      "fastapi:10": [
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 854,
                "LINES": [
                     55
                ],
@@ -719,6 +756,7 @@
      "fastapi:11": [
           {
                "FILE_NAME": "fastapi/dependencies/utils.py",
+               "MODULE_SIZE": 561,
                "LINES": [
                     134,
                     139
@@ -729,6 +767,7 @@
      "fastapi:12": [
           {
                "FILE_NAME": "fastapi/security/http.py",
+               "MODULE_SIZE": 145,
                "LINES": [
                     115,
                     116,
@@ -741,6 +780,7 @@
      "fastapi:13": [
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 593,
                "LINES": [
                     288,
                     290,
@@ -756,6 +796,7 @@
      "fastapi:14": [
           {
                "FILE_NAME": "fastapi/openapi/models.py",
+               "MODULE_SIZE": 354,
                "LINES": [
                     102,
                     123,
@@ -767,6 +808,7 @@
      "fastapi:15": [
           {
                "FILE_NAME": "fastapi/routing.py",
+               "MODULE_SIZE": 529,
                "LINES": [],
                "EXTENDED_LINES": [
                     272
@@ -776,6 +818,7 @@
      "fastapi:16": [
           {
                "FILE_NAME": "fastapi/encoders.py",
+               "MODULE_SIZE": 79,
                "LINES": [
                     18,
                     19,
@@ -795,6 +838,7 @@
      "httpie:1": [
           {
                "FILE_NAME": "httpie/downloads.py",
+               "MODULE_SIZE": 435,
                "LINES": [
                     10,
                     142,
@@ -808,6 +852,7 @@
      "httpie:2": [
           {
                "FILE_NAME": "httpie/client.py",
+               "MODULE_SIZE": 147,
                "LINES": [
                     44
                ],
@@ -817,6 +862,7 @@
           },
           {
                "FILE_NAME": "httpie/core.py",
+               "MODULE_SIZE": 211,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -824,6 +870,7 @@
      "httpie:3": [
           {
                "FILE_NAME": "httpie/sessions.py",
+               "MODULE_SIZE": 152,
                "LINES": [
                     104
                ],
@@ -835,6 +882,7 @@
      "httpie:4": [
           {
                "FILE_NAME": "httpie/models.py",
+               "MODULE_SIZE": 130,
                "LINES": [
                     106
                ],
@@ -844,6 +892,7 @@
      "httpie:5": [
           {
                "FILE_NAME": "httpie/cli.py",
+               "MODULE_SIZE": 301,
                "LINES": [
                     42,
                     43,
@@ -860,6 +909,7 @@
      "keras:1": [
           {
                "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "MODULE_SIZE": 4493,
                "LINES": [
                     17,
                     1206,
@@ -873,11 +923,13 @@
           },
           {
                "FILE_NAME": "keras/backend/theano_backend.py",
+               "MODULE_SIZE": 2949,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "keras/initializers.py",
+               "MODULE_SIZE": 509,
                "LINES": [
                     83,
                     84,
@@ -899,6 +951,7 @@
      "keras:2": [
           {
                "FILE_NAME": "keras/backend/numpy_backend.py",
+               "MODULE_SIZE": 754,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -906,6 +959,7 @@
      "keras:3": [
           {
                "FILE_NAME": "keras/models.py",
+               "MODULE_SIZE": 251,
                "LINES": [
                     140,
                     141,
@@ -920,6 +974,7 @@
      "keras:4": [
           {
                "FILE_NAME": "keras/optimizers.py",
+               "MODULE_SIZE": 801,
                "LINES": [
                     706
                ],
@@ -929,6 +984,7 @@
      "keras:5": [
           {
                "FILE_NAME": "keras/utils/data_utils.py",
+               "MODULE_SIZE": 730,
                "LINES": [
                     173
                ],
@@ -938,6 +994,7 @@
      "keras:6": [
           {
                "FILE_NAME": "keras/engine/training_utils.py",
+               "MODULE_SIZE": 606,
                "LINES": [
                     413
                ],
@@ -947,6 +1004,7 @@
      "keras:7": [
           {
                "FILE_NAME": "keras/wrappers/scikit_learn.py",
+               "MODULE_SIZE": 345,
                "LINES": [
                     323
                ],
@@ -956,6 +1014,7 @@
      "keras:8": [
           {
                "FILE_NAME": "keras/engine/network.py",
+               "MODULE_SIZE": 1456,
                "LINES": [
                     980,
                     981,
@@ -968,6 +1027,7 @@
      "keras:9": [
           {
                "FILE_NAME": "docs/autogen.py",
+               "MODULE_SIZE": 410,
                "LINES": [
                     120,
                     121
@@ -978,6 +1038,7 @@
      "keras:10": [
           {
                "FILE_NAME": "keras/engine/training_utils.py",
+               "MODULE_SIZE": 606,
                "LINES": [
                     481,
                     482,
@@ -1003,6 +1064,7 @@
      "keras:11": [
           {
                "FILE_NAME": "keras/engine/training_generator.py",
+               "MODULE_SIZE": 472,
                "LINES": [
                     10,
                     43,
@@ -1033,6 +1095,7 @@
           },
           {
                "FILE_NAME": "keras/engine/training_utils.py",
+               "MODULE_SIZE": 591,
                "LINES": [
                     13
                ],
@@ -1042,6 +1105,7 @@
           },
           {
                "FILE_NAME": "keras/utils/data_utils.py",
+               "MODULE_SIZE": 709,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -1049,6 +1113,7 @@
      "keras:13": [
           {
                "FILE_NAME": "keras/engine/training_generator.py",
+               "MODULE_SIZE": 477,
                "LINES": [
                     127
                ],
@@ -1058,6 +1123,7 @@
      "keras:14": [
           {
                "FILE_NAME": "keras/metrics.py",
+               "MODULE_SIZE": 82,
                "LINES": [
                     48
                ],
@@ -1067,6 +1133,7 @@
      "keras:16": [
           {
                "FILE_NAME": "keras/engine/sequential.py",
+               "MODULE_SIZE": 289,
                "LINES": [
                     90,
                     222,
@@ -1087,6 +1154,7 @@
      "keras:17": [
           {
                "FILE_NAME": "keras/metrics.py",
+               "MODULE_SIZE": 80,
                "LINES": [
                     37
                ],
@@ -1096,6 +1164,7 @@
      "keras:18": [
           {
                "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "MODULE_SIZE": 4388,
                "LINES": [
                     2548,
                     2597,
@@ -1111,6 +1180,7 @@
      "keras:19": [
           {
                "FILE_NAME": "keras/backend/cntk_backend.py",
+               "MODULE_SIZE": 2540,
                "LINES": [
                     1442
                ],
@@ -1118,6 +1188,7 @@
           },
           {
                "FILE_NAME": "keras/layers/recurrent.py",
+               "MODULE_SIZE": 2273,
                "LINES": [
                     57,
                     69,
@@ -1144,6 +1215,7 @@
      "keras:20": [
           {
                "FILE_NAME": "keras/backend/cntk_backend.py",
+               "MODULE_SIZE": 2539,
                "LINES": [
                     2189,
                     2211
@@ -1152,6 +1224,7 @@
           },
           {
                "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "MODULE_SIZE": 4373,
                "LINES": [
                     3436,
                     3452,
@@ -1165,6 +1238,7 @@
           },
           {
                "FILE_NAME": "keras/backend/theano_backend.py",
+               "MODULE_SIZE": 2852,
                "LINES": [
                     2137,
                     2180
@@ -1173,6 +1247,7 @@
           },
           {
                "FILE_NAME": "keras/layers/convolutional.py",
+               "MODULE_SIZE": 2546,
                "LINES": [
                     734,
                     750,
@@ -1190,6 +1265,7 @@
           },
           {
                "FILE_NAME": "keras/utils/conv_utils.py",
+               "MODULE_SIZE": 176,
                "LINES": [
                     138,
                     158
@@ -1202,6 +1278,7 @@
      "keras:24": [
           {
                "FILE_NAME": "keras/callbacks.py",
+               "MODULE_SIZE": 1171,
                "LINES": [
                     789,
                     790
@@ -1212,6 +1289,7 @@
      "keras:25": [
           {
                "FILE_NAME": "keras/applications/imagenet_utils.py",
+               "MODULE_SIZE": 316,
                "LINES": [
                     41
                ],
@@ -1221,6 +1299,7 @@
      "keras:26": [
           {
                "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "MODULE_SIZE": 4294,
                "LINES": [
                     2874
                ],
@@ -1230,6 +1309,7 @@
      "keras:27": [
           {
                "FILE_NAME": "keras/layers/wrappers.py",
+               "MODULE_SIZE": 520,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -1237,6 +1317,7 @@
      "keras:28": [
           {
                "FILE_NAME": "keras/preprocessing/sequence.py",
+               "MODULE_SIZE": 357,
                "LINES": [
                     331,
                     344,
@@ -1250,6 +1331,7 @@
      "keras:29": [
           {
                "FILE_NAME": "keras/engine/training.py",
+               "MODULE_SIZE": 2568,
                "LINES": [
                     856,
                     932,
@@ -1275,6 +1357,7 @@
      "keras:30": [
           {
                "FILE_NAME": "keras/engine/training.py",
+               "MODULE_SIZE": 2560,
                "LINES": [
                     2215,
                     2402
@@ -1285,6 +1368,7 @@
      "keras:31": [
           {
                "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "MODULE_SIZE": 4156,
                "LINES": [
                     3945,
                     3946
@@ -1295,6 +1379,7 @@
      "keras:32": [
           {
                "FILE_NAME": "keras/callbacks.py",
+               "MODULE_SIZE": 1149,
                "LINES": [
                     909,
                     916,
@@ -1313,6 +1398,7 @@
      "keras:33": [
           {
                "FILE_NAME": "keras/preprocessing/text.py",
+               "MODULE_SIZE": 362,
                "LINES": [
                     41,
                     42,
@@ -1325,6 +1411,7 @@
      "keras:34": [
           {
                "FILE_NAME": "keras/engine/training.py",
+               "MODULE_SIZE": 2543,
                "LINES": [
                     2165,
                     2197,
@@ -1335,6 +1422,7 @@
           },
           {
                "FILE_NAME": "keras/utils/data_utils.py",
+               "MODULE_SIZE": 787,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -1342,6 +1430,7 @@
      "keras:35": [
           {
                "FILE_NAME": "keras/preprocessing/image.py",
+               "MODULE_SIZE": 1270,
                "LINES": [
                     583,
                     584,
@@ -1358,6 +1447,7 @@
      "keras:36": [
           {
                "FILE_NAME": "keras/backend/tensorflow_backend.py",
+               "MODULE_SIZE": 4150,
                "LINES": [
                     3419,
                     3422
@@ -1368,6 +1458,7 @@
      "keras:37": [
           {
                "FILE_NAME": "keras/layers/recurrent.py",
+               "MODULE_SIZE": 2183,
                "LINES": [
                     521,
                     523,
@@ -1377,6 +1468,7 @@
           },
           {
                "FILE_NAME": "keras/layers/wrappers.py",
+               "MODULE_SIZE": 427,
                "LINES": [
                     324,
                     325,
@@ -1392,6 +1484,7 @@
      "keras:38": [
           {
                "FILE_NAME": "keras/layers/recurrent.py",
+               "MODULE_SIZE": 2154,
                "LINES": [
                     109
                ],
@@ -1401,6 +1494,7 @@
      "keras:39": [
           {
                "FILE_NAME": "keras/utils/generic_utils.py",
+               "MODULE_SIZE": 422,
                "LINES": [
                     330
                ],
@@ -1410,6 +1504,7 @@
      "keras:40": [
           {
                "FILE_NAME": "keras/layers/recurrent.py",
+               "MODULE_SIZE": 2082,
                "LINES": [
                     398,
                     400,
@@ -1421,6 +1516,7 @@
      "keras:41": [
           {
                "FILE_NAME": "keras/utils/data_utils.py",
+               "MODULE_SIZE": 715,
                "LINES": [
                     14,
                     556,
@@ -1445,6 +1541,7 @@
      "keras:42": [
           {
                "FILE_NAME": "keras/engine/training.py",
+               "MODULE_SIZE": 2403,
                "LINES": [
                     1903,
                     2010,
@@ -1474,6 +1571,7 @@
           },
           {
                "FILE_NAME": "keras/models.py",
+               "MODULE_SIZE": 1625,
                "LINES": [
                     1119,
                     1226,
@@ -1485,6 +1583,7 @@
      "keras:43": [
           {
                "FILE_NAME": "keras/utils/np_utils.py",
+               "MODULE_SIZE": 46,
                "LINES": [
                     22
                ],
@@ -1496,6 +1595,7 @@
      "keras:44": [
           {
                "FILE_NAME": "keras/layers/recurrent.py",
+               "MODULE_SIZE": 2096,
                "LINES": [
                     734,
                     741
@@ -1508,6 +1608,7 @@
      "keras:45": [
           {
                "FILE_NAME": "keras/layers/recurrent.py",
+               "MODULE_SIZE": 2101,
                "LINES": [
                     1806,
                     1807,
@@ -1520,6 +1621,7 @@
      "pandas:1": [
           {
                "FILE_NAME": "pandas/core/dtypes/common.py",
+               "MODULE_SIZE": 1780,
                "LINES": [
                     602
                ],
@@ -1529,6 +1631,7 @@
      "pandas:2": [
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2307,
                "LINES": [
                     2019,
                     2022,
@@ -1542,6 +1645,7 @@
      "pandas:3": [
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4751,
                "LINES": [
                     4687,
                     4714
@@ -1552,6 +1656,7 @@
      "pandas:4": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5832,
                "LINES": [
                     3531
                ],
@@ -1561,6 +1666,7 @@
      "pandas:6": [
           {
                "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "MODULE_SIZE": 836,
                "LINES": [
                     757
                ],
@@ -1570,6 +1676,7 @@
      "pandas:7": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5770,
                "LINES": [
                     3076,
                     3077,
@@ -1581,6 +1688,7 @@
      "pandas:8": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 2875,
                "LINES": [
                     731,
                     732,
@@ -1593,6 +1701,7 @@
      "pandas:9": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2720,
                "LINES": [
                     40,
                     1837
@@ -1601,6 +1710,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/category.py",
+               "MODULE_SIZE": 770,
                "LINES": [
                     22,
                     368,
@@ -1612,6 +1722,7 @@
      "pandas:10": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 2872,
                "LINES": [
                     1602
                ],
@@ -1621,6 +1732,7 @@
      "pandas:11": [
           {
                "FILE_NAME": "pandas/core/reshape/concat.py",
+               "MODULE_SIZE": 692,
                "LINES": [
                     622,
                     623,
@@ -1633,6 +1745,7 @@
      "pandas:12": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8998,
                "LINES": [
                     87,
                     7874,
@@ -1653,6 +1766,7 @@
      "pandas:13": [
           {
                "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "MODULE_SIZE": 573,
                "LINES": [
                     137,
                     141,
@@ -1685,6 +1799,7 @@
      "pandas:14": [
           {
                "FILE_NAME": "pandas/core/ops/dispatch.py",
+               "MODULE_SIZE": 78,
                "LINES": [
                     74
                ],
@@ -1694,6 +1809,7 @@
      "pandas:16": [
           {
                "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "MODULE_SIZE": 995,
                "LINES": [
                     91,
                     454,
@@ -1705,6 +1821,7 @@
      "pandas:18": [
           {
                "FILE_NAME": "pandas/core/window/common.py",
+               "MODULE_SIZE": 347,
                "LINES": [
                     340
                ],
@@ -1714,6 +1831,7 @@
           },
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
+               "MODULE_SIZE": 2102,
                "LINES": [
                     475,
                     481
@@ -1724,6 +1842,7 @@
      "pandas:19": [
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2336,
                "LINES": [
                     1089,
                     1091,
@@ -1753,6 +1872,7 @@
      "pandas:20": [
           {
                "FILE_NAME": "pandas/tseries/offsets.py",
+               "MODULE_SIZE": 2821,
                "LINES": [
                     1152,
                     1873,
@@ -1768,6 +1888,7 @@
      "pandas:21": [
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4635,
                "LINES": [
                     952,
                     954,
@@ -1779,6 +1900,7 @@
      "pandas:22": [
           {
                "FILE_NAME": "pandas/core/window/common.py",
+               "MODULE_SIZE": 345,
                "LINES": [
                     331
                ],
@@ -1788,6 +1910,7 @@
           },
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
+               "MODULE_SIZE": 2095,
                "LINES": [
                     1174,
                     1175,
@@ -1799,6 +1922,7 @@
      "pandas:23": [
           {
                "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "MODULE_SIZE": 963,
                "LINES": [
                     727,
                     730
@@ -1809,6 +1933,7 @@
      "pandas:24": [
           {
                "FILE_NAME": "pandas/core/arrays/datetimes.py",
+               "MODULE_SIZE": 2328,
                "LINES": [
                     976
                ],
@@ -1818,6 +1943,7 @@
      "pandas:25": [
           {
                "FILE_NAME": "pandas/core/arrays/datetimes.py",
+               "MODULE_SIZE": 2324,
                "LINES": [
                     1280
                ],
@@ -1827,6 +1953,7 @@
      "pandas:26": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2773,
                "LINES": [
                     2146,
                     2181
@@ -1837,6 +1964,7 @@
      "pandas:27": [
           {
                "FILE_NAME": "pandas/core/arrays/datetimes.py",
+               "MODULE_SIZE": 2317,
                "LINES": [
                     21,
                     1100
@@ -1849,6 +1977,7 @@
      "pandas:28": [
           {
                "FILE_NAME": "pandas/core/strings.py",
+               "MODULE_SIZE": 3630,
                "LINES": [
                     2300
                ],
@@ -1858,6 +1987,7 @@
      "pandas:29": [
           {
                "FILE_NAME": "pandas/core/arrays/interval.py",
+               "MODULE_SIZE": 1334,
                "LINES": [
                     545,
                     549,
@@ -1875,6 +2005,7 @@
      "pandas:30": [
           {
                "FILE_NAME": "pandas/io/json/_json.py",
+               "MODULE_SIZE": 1177,
                "LINES": [
                     985
                ],
@@ -1884,6 +2015,7 @@
      "pandas:31": [
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "MODULE_SIZE": 2561,
                "LINES": [
                     47,
                     48,
@@ -1898,6 +2030,7 @@
      "pandas:32": [
           {
                "FILE_NAME": "pandas/io/sas/sas_xport.py",
+               "MODULE_SIZE": 495,
                "LINES": [
                     12,
                     267,
@@ -1913,6 +2046,7 @@
      "pandas:33": [
           {
                "FILE_NAME": "pandas/core/arrays/integer.py",
+               "MODULE_SIZE": 774,
                "LINES": [
                     502
                ],
@@ -1922,6 +2056,7 @@
      "pandas:34": [
           {
                "FILE_NAME": "pandas/core/resample.py",
+               "MODULE_SIZE": 1815,
                "LINES": [
                     1431
                ],
@@ -1931,6 +2066,7 @@
      "pandas:35": [
           {
                "FILE_NAME": "pandas/core/indexes/period.py",
+               "MODULE_SIZE": 802,
                "LINES": [
                     328
                ],
@@ -1940,6 +2076,7 @@
      "pandas:36": [
           {
                "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "MODULE_SIZE": 608,
                "LINES": [
                     19,
                     20,
@@ -1999,6 +2136,7 @@
      "pandas:37": [
           {
                "FILE_NAME": "pandas/core/arrays/string_.py",
+               "MODULE_SIZE": 337,
                "LINES": [
                     16,
                     274
@@ -2011,6 +2149,7 @@
      "pandas:38": [
           {
                "FILE_NAME": "pandas/core/reshape/reshape.py",
+               "MODULE_SIZE": 1079,
                "LINES": [
                     341,
                     366
@@ -2021,6 +2160,7 @@
      "pandas:39": [
           {
                "FILE_NAME": "pandas/core/ops/methods.py",
+               "MODULE_SIZE": 233,
                "LINES": [
                     99
                ],
@@ -2032,6 +2172,7 @@
      "pandas:40": [
           {
                "FILE_NAME": "pandas/core/reshape/merge.py",
+               "MODULE_SIZE": 2001,
                "LINES": [
                     9,
                     16,
@@ -2055,6 +2196,7 @@
      "pandas:41": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3158,
                "LINES": [
                     14,
                     1636,
@@ -2079,6 +2221,7 @@
      "pandas:42": [
           {
                "FILE_NAME": "pandas/_testing.py",
+               "MODULE_SIZE": 2677,
                "LINES": [
                     1163,
                     1173
@@ -2089,6 +2232,7 @@
      "pandas:43": [
           {
                "FILE_NAME": "pandas/core/ops/__init__.py",
+               "MODULE_SIZE": 883,
                "LINES": [
                     714,
                     721,
@@ -2102,6 +2246,7 @@
      "pandas:44": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5824,
                "LINES": [
                     32,
                     535,
@@ -2115,6 +2260,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "MODULE_SIZE": 949,
                "LINES": [
                     11,
                     18,
@@ -2126,6 +2272,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/datetimes.py",
+               "MODULE_SIZE": 1066,
                "LINES": [
                     10,
                     13
@@ -2134,6 +2281,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/period.py",
+               "MODULE_SIZE": 793,
                "LINES": [
                     12,
                     27,
@@ -2149,6 +2297,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "MODULE_SIZE": 355,
                "LINES": [
                     4
                ],
@@ -2158,6 +2307,7 @@
      "pandas:45": [
           {
                "FILE_NAME": "pandas/core/construction.py",
+               "MODULE_SIZE": 627,
                "LINES": [
                     8,
                     450
@@ -2170,11 +2320,13 @@
      "pandas:46": [
           {
                "FILE_NAME": "pandas/core/indexes/multi.py",
+               "MODULE_SIZE": 3570,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "pandas/core/reshape/util.py",
+               "MODULE_SIZE": 59,
                "LINES": [
                     5,
                     54,
@@ -2190,6 +2342,7 @@
      "pandas:47": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8512,
                "LINES": [
                     2690
                ],
@@ -2199,6 +2352,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2276,
                "LINES": [
                     11,
                     584
@@ -2211,6 +2365,7 @@
      "pandas:48": [
           {
                "FILE_NAME": "pandas/core/groupby/generic.py",
+               "MODULE_SIZE": 1900,
                "LINES": [
                     1086
                ],
@@ -2220,6 +2375,7 @@
      "pandas:49": [
           {
                "FILE_NAME": "pandas/core/strings.py",
+               "MODULE_SIZE": 3558,
                "LINES": [
                     778
                ],
@@ -2229,6 +2385,7 @@
      "pandas:50": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2695,
                "LINES": [
                     106
                ],
@@ -2238,6 +2395,7 @@
      "pandas:51": [
           {
                "FILE_NAME": "pandas/core/indexes/category.py",
+               "MODULE_SIZE": 769,
                "LINES": [
                     33
                ],
@@ -2249,6 +2407,7 @@
      "pandas:52": [
           {
                "FILE_NAME": "pandas/core/groupby/generic.py",
+               "MODULE_SIZE": 1914,
                "LINES": [
                     596,
                     598,
@@ -2271,6 +2430,7 @@
      "pandas:53": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5787,
                "LINES": [
                     3114
                ],
@@ -2278,6 +2438,7 @@
           },
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4550,
                "LINES": [
                     974
                ],
@@ -2289,6 +2450,7 @@
      "pandas:54": [
           {
                "FILE_NAME": "pandas/core/dtypes/dtypes.py",
+               "MODULE_SIZE": 1170,
                "LINES": [
                     327
                ],
@@ -2300,6 +2462,7 @@
      "pandas:55": [
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11174,
                "LINES": [
                     3470,
                     3476
@@ -2308,6 +2471,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2327,
                "LINES": [
                     1417,
                     1418,
@@ -2319,6 +2483,7 @@
      "pandas:56": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8354,
                "LINES": [
                     2625,
                     2626
@@ -2329,6 +2494,7 @@
      "pandas:57": [
           {
                "FILE_NAME": "pandas/_testing.py",
+               "MODULE_SIZE": 2789,
                "LINES": [
                     1077,
                     1213
@@ -2339,6 +2505,7 @@
           },
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2686,
                "LINES": [
                     2444,
                     2445,
@@ -2356,6 +2523,7 @@
      "pandas:58": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2686,
                "LINES": [
                     647
                ],
@@ -2365,6 +2533,7 @@
      "pandas:59": [
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
+               "MODULE_SIZE": 2118,
                "LINES": [
                     1785
                ],
@@ -2374,6 +2543,7 @@
      "pandas:60": [
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
+               "MODULE_SIZE": 2117,
                "LINES": [],
                "EXTENDED_LINES": [
                     1305
@@ -2383,6 +2553,7 @@
      "pandas:61": [
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4590,
                "LINES": [
                     922
                ],
@@ -2392,6 +2563,7 @@
      "pandas:62": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3216,
                "LINES": [
                     834
                ],
@@ -2401,6 +2573,7 @@
           },
           {
                "FILE_NAME": "pandas/io/stata.py",
+               "MODULE_SIZE": 3382,
                "LINES": [
                     1681
                ],
@@ -2412,6 +2585,7 @@
      "pandas:63": [
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2367,
                "LINES": [
                     2090,
                     2091,
@@ -2435,6 +2609,7 @@
      "pandas:64": [
           {
                "FILE_NAME": "pandas/io/formats/excel.py",
+               "MODULE_SIZE": 741,
                "LINES": [
                     406
                ],
@@ -2444,6 +2619,7 @@
      "pandas:65": [
           {
                "FILE_NAME": "pandas/io/common.py",
+               "MODULE_SIZE": 526,
                "LINES": [
                     6,
                     362,
@@ -2454,6 +2630,7 @@
           },
           {
                "FILE_NAME": "pandas/io/parsers.py",
+               "MODULE_SIZE": 3667,
                "LINES": [
                     8,
                     1875
@@ -2464,6 +2641,7 @@
      "pandas:66": [
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11183,
                "LINES": [
                     3445,
                     3452,
@@ -2473,6 +2651,7 @@
           },
           {
                "FILE_NAME": "pandas/core/internals/managers.py",
+               "MODULE_SIZE": 1994,
                "LINES": [
                     1568
                ],
@@ -2482,6 +2661,7 @@
      "pandas:67": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3206,
                "LINES": [
                     10
                ],
@@ -2491,6 +2671,7 @@
      "pandas:68": [
           {
                "FILE_NAME": "pandas/core/arrays/interval.py",
+               "MODULE_SIZE": 1333,
                "LINES": [
                     30
                ],
@@ -2502,6 +2683,7 @@
      "pandas:69": [
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2396,
                "LINES": [
                     2127
                ],
@@ -2511,6 +2693,7 @@
      "pandas:70": [
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "MODULE_SIZE": 2569,
                "LINES": [
                     817,
                     818
@@ -2519,6 +2702,7 @@
           },
           {
                "FILE_NAME": "pandas/core/groupby/ops.py",
+               "MODULE_SIZE": 930,
                "LINES": [
                     547
                ],
@@ -2530,6 +2714,7 @@
      "pandas:71": [
           {
                "FILE_NAME": "pandas/core/reshape/tile.py",
+               "MODULE_SIZE": 591,
                "LINES": [
                     17,
                     18,
@@ -2544,6 +2729,7 @@
      "pandas:72": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3185,
                "LINES": [
                     880,
                     892,
@@ -2560,6 +2746,7 @@
      "pandas:73": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8550,
                "LINES": [
                     5344,
                     5371,
@@ -2572,6 +2759,7 @@
           },
           {
                "FILE_NAME": "pandas/core/ops/missing.py",
+               "MODULE_SIZE": 179,
                "LINES": [
                     112,
                     118,
@@ -2589,6 +2777,7 @@
      "pandas:74": [
           {
                "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "MODULE_SIZE": 399,
                "LINES": [
                     166
                ],
@@ -2598,6 +2787,7 @@
      "pandas:75": [
           {
                "FILE_NAME": "pandas/core/indexes/period.py",
+               "MODULE_SIZE": 893,
                "LINES": [
                     489,
                     571,
@@ -2613,6 +2803,7 @@
      "pandas:76": [
           {
                "FILE_NAME": "pandas/io/json/_json.py",
+               "MODULE_SIZE": 1186,
                "LINES": [
                     945
                ],
@@ -2622,6 +2813,7 @@
      "pandas:77": [
           {
                "FILE_NAME": "pandas/core/ops/array_ops.py",
+               "MODULE_SIZE": 392,
                "LINES": [
                     280,
                     301
@@ -2632,6 +2824,7 @@
      "pandas:78": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8526,
                "LINES": [
                     8016
                ],
@@ -2641,6 +2834,7 @@
      "pandas:79": [
           {
                "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "MODULE_SIZE": 658,
                "LINES": [
                     30,
                     568
@@ -2651,6 +2845,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/datetimes.py",
+               "MODULE_SIZE": 1202,
                "LINES": [
                     30,
                     645,
@@ -2660,6 +2855,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/multi.py",
+               "MODULE_SIZE": 3504,
                "LINES": [
                     2781
                ],
@@ -2667,6 +2863,7 @@
           },
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4539,
                "LINES": [
                     984
                ],
@@ -2678,11 +2875,13 @@
      "pandas:80": [
           {
                "FILE_NAME": "pandas/core/arrays/masked.py",
+               "MODULE_SIZE": 250,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11049,
                "LINES": [
                     1396,
                     1397
@@ -2691,6 +2890,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2398,
                "LINES": [
                     2236
                ],
@@ -2700,6 +2900,7 @@
      "pandas:81": [
           {
                "FILE_NAME": "pandas/core/arrays/integer.py",
+               "MODULE_SIZE": 798,
                "LINES": [
                     23,
                     445,
@@ -2714,6 +2915,7 @@
      "pandas:82": [
           {
                "FILE_NAME": "pandas/core/internals/concat.py",
+               "MODULE_SIZE": 493,
                "LINES": [
                     353
                ],
@@ -2723,6 +2925,7 @@
      "pandas:83": [
           {
                "FILE_NAME": "pandas/core/indexes/api.py",
+               "MODULE_SIZE": 301,
                "LINES": [
                     66,
                     90,
@@ -2735,6 +2938,7 @@
           },
           {
                "FILE_NAME": "pandas/core/reshape/concat.py",
+               "MODULE_SIZE": 694,
                "LINES": [
                     520
                ],
@@ -2744,6 +2948,7 @@
      "pandas:84": [
           {
                "FILE_NAME": "pandas/core/reshape/reshape.py",
+               "MODULE_SIZE": 1080,
                "LINES": [
                     320
                ],
@@ -2755,6 +2960,7 @@
      "pandas:85": [
           {
                "FILE_NAME": "pandas/core/indexes/multi.py",
+               "MODULE_SIZE": 3500,
                "LINES": [
                     1260
                ],
@@ -2766,6 +2972,7 @@
      "pandas:86": [
           {
                "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "MODULE_SIZE": 715,
                "LINES": [
                     432
                ],
@@ -2775,6 +2982,7 @@
      "pandas:87": [
           {
                "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "MODULE_SIZE": 707,
                "LINES": [
                     584,
                     592,
@@ -2789,6 +2997,7 @@
      "pandas:88": [
           {
                "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "MODULE_SIZE": 705,
                "LINES": [
                     120
                ],
@@ -2798,6 +3007,7 @@
      "pandas:89": [
           {
                "FILE_NAME": "pandas/core/reshape/reshape.py",
+               "MODULE_SIZE": 1080,
                "LINES": [
                     361
                ],
@@ -2807,6 +3017,7 @@
      "pandas:90": [
           {
                "FILE_NAME": "pandas/_testing.py",
+               "MODULE_SIZE": 2742,
                "LINES": [
                     11,
                     25,
@@ -2821,6 +3032,7 @@
           },
           {
                "FILE_NAME": "pandas/io/pickle.py",
+               "MODULE_SIZE": 161,
                "LINES": [
                     3,
                     5,
@@ -2841,6 +3053,7 @@
      "pandas:91": [
           {
                "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "MODULE_SIZE": 502,
                "LINES": [
                     360,
                     361,
@@ -2853,6 +3066,7 @@
      "pandas:92": [
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11198,
                "LINES": [
                     6975,
                     6976
@@ -2861,6 +3075,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/period.py",
+               "MODULE_SIZE": 908,
                "LINES": [
                     472,
                     473,
@@ -2877,6 +3092,7 @@
           },
           {
                "FILE_NAME": "pandas/core/resample.py",
+               "MODULE_SIZE": 1796,
                "LINES": [
                     1589
                ],
@@ -2886,6 +3102,7 @@
      "pandas:94": [
           {
                "FILE_NAME": "pandas/core/indexes/datetimelike.py",
+               "MODULE_SIZE": 952,
                "LINES": [
                     31,
                     254,
@@ -2901,6 +3118,7 @@
      "pandas:95": [
           {
                "FILE_NAME": "pandas/core/arrays/period.py",
+               "MODULE_SIZE": 1126,
                "LINES": [
                     76,
                     84,
@@ -2913,6 +3131,7 @@
      "pandas:96": [
           {
                "FILE_NAME": "pandas/tseries/offsets.py",
+               "MODULE_SIZE": 2830,
                "LINES": [
                     899
                ],
@@ -2922,6 +3141,7 @@
      "pandas:97": [
           {
                "FILE_NAME": "pandas/core/indexes/timedeltas.py",
+               "MODULE_SIZE": 556,
                "LINES": [
                     260,
                     268,
@@ -2935,6 +3155,7 @@
      "pandas:98": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5564,
                "LINES": [
                     298,
                     299,
@@ -2950,6 +3171,7 @@
      "pandas:99": [
           {
                "FILE_NAME": "pandas/core/tools/datetimes.py",
+               "MODULE_SIZE": 1026,
                "LINES": [
                     41,
                     319,
@@ -2963,6 +3185,7 @@
      "pandas:100": [
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11146,
                "LINES": [
                     9860,
                     9861,
@@ -2976,6 +3199,7 @@
      "pandas:101": [
           {
                "FILE_NAME": "pandas/core/dtypes/cast.py",
+               "MODULE_SIZE": 1516,
                "LINES": [
                     826,
                     838
@@ -2989,6 +3213,7 @@
      "pandas:102": [
           {
                "FILE_NAME": "pandas/core/internals/construction.py",
+               "MODULE_SIZE": 618,
                "LINES": [
                     155,
                     156,
@@ -3002,6 +3227,7 @@
      "pandas:103": [
           {
                "FILE_NAME": "pandas/core/groupby/generic.py",
+               "MODULE_SIZE": 2062,
                "LINES": [
                     812
                ],
@@ -3011,6 +3237,7 @@
           },
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "MODULE_SIZE": 2571,
                "LINES": [
                     2365
                ],
@@ -3022,6 +3249,7 @@
      "pandas:104": [
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "MODULE_SIZE": 2558,
                "LINES": [
                     1940,
                     1941,
@@ -3041,6 +3269,7 @@
      "pandas:105": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8159,
                "LINES": [
                     2488,
                     2581
@@ -3049,6 +3278,7 @@
           },
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11182,
                "LINES": [
                     646,
                     670,
@@ -3073,6 +3303,7 @@
      "pandas:106": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5464,
                "LINES": [
                     4554
                ],
@@ -3082,6 +3313,7 @@
      "pandas:107": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8166,
                "LINES": [
                     6760,
                     6761,
@@ -3100,6 +3332,7 @@
      "pandas:108": [
           {
                "FILE_NAME": "pandas/core/dtypes/cast.py",
+               "MODULE_SIZE": 1508,
                "LINES": [
                     44,
                     605
@@ -3112,6 +3345,7 @@
      "pandas:109": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2664,
                "LINES": [
                     2128,
                     2155
@@ -3125,6 +3359,7 @@
      "pandas:110": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5465,
                "LINES": [
                     2985
                ],
@@ -3132,6 +3367,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/category.py",
+               "MODULE_SIZE": 923,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -3139,6 +3375,7 @@
      "pandas:111": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5465,
                "LINES": [
                     2942,
                     2946
@@ -3147,6 +3384,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/category.py",
+               "MODULE_SIZE": 921,
                "LINES": [
                     699,
                     700
@@ -3157,6 +3395,7 @@
      "pandas:112": [
           {
                "FILE_NAME": "pandas/core/indexes/interval.py",
+               "MODULE_SIZE": 1548,
                "LINES": [
                     22,
                     39,
@@ -3172,6 +3411,7 @@
      "pandas:114": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5500,
                "LINES": [
                     72,
                     4492,
@@ -3193,6 +3433,7 @@
      "pandas:115": [
           {
                "FILE_NAME": "pandas/core/missing.py",
+               "MODULE_SIZE": 687,
                "LINES": [
                     280
                ],
@@ -3202,6 +3443,7 @@
      "pandas:116": [
           {
                "FILE_NAME": "pandas/core/reshape/merge.py",
+               "MODULE_SIZE": 2049,
                "LINES": [
                     1030
                ],
@@ -3211,6 +3453,7 @@
      "pandas:117": [
           {
                "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "MODULE_SIZE": 598,
                "LINES": [
                     179
                ],
@@ -3220,6 +3463,7 @@
      "pandas:118": [
           {
                "FILE_NAME": "pandas/core/reshape/melt.py",
+               "MODULE_SIZE": 472,
                "LINES": [
                     14,
                     50,
@@ -3233,6 +3477,7 @@
      "pandas:119": [
           {
                "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "MODULE_SIZE": 702,
                "LINES": [
                     266
                ],
@@ -3242,6 +3487,7 @@
      "pandas:120": [
           {
                "FILE_NAME": "pandas/core/groupby/generic.py",
+               "MODULE_SIZE": 1937,
                "LINES": [
                     560,
                     712
@@ -3252,6 +3498,7 @@
           },
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "MODULE_SIZE": 2507,
                "LINES": [
                     42,
                     1299,
@@ -3269,6 +3516,7 @@
      "pandas:121": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3195,
                "LINES": [
                     2828
                ],
@@ -3278,6 +3526,7 @@
           },
           {
                "FILE_NAME": "pandas/core/internals/managers.py",
+               "MODULE_SIZE": 2032,
                "LINES": [
                     632
                ],
@@ -3287,6 +3536,7 @@
      "pandas:122": [
           {
                "FILE_NAME": "pandas/core/internals/managers.py",
+               "MODULE_SIZE": 2032,
                "LINES": [
                     1402
                ],
@@ -3296,6 +3546,7 @@
      "pandas:123": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5611,
                "LINES": [
                     384
                ],
@@ -3303,6 +3554,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/numeric.py",
+               "MODULE_SIZE": 514,
                "LINES": [
                     18,
                     30,
@@ -3315,6 +3567,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/range.py",
+               "MODULE_SIZE": 836,
                "LINES": [
                     17,
                     168,
@@ -3328,6 +3581,7 @@
      "pandas:124": [
           {
                "FILE_NAME": "pandas/core/strings.py",
+               "MODULE_SIZE": 3462,
                "LINES": [
                     3410,
                     3416,
@@ -3354,11 +3608,13 @@
      "pandas:125": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2740,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3171,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -3366,6 +3622,7 @@
      "pandas:126": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8333,
                "LINES": [
                     6946,
                     6947,
@@ -3378,6 +3635,7 @@
      "pandas:127": [
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11743,
                "LINES": [
                     10446
                ],
@@ -3389,6 +3647,7 @@
      "pandas:128": [
           {
                "FILE_NAME": "pandas/io/json/_json.py",
+               "MODULE_SIZE": 1194,
                "LINES": [
                     581
                ],
@@ -3400,6 +3659,7 @@
      "pandas:129": [
           {
                "FILE_NAME": "pandas/core/arrays/datetimelike.py",
+               "MODULE_SIZE": 1660,
                "LINES": [
                     1306
                ],
@@ -3411,6 +3671,7 @@
      "pandas:130": [
           {
                "FILE_NAME": "pandas/core/groupby/ops.py",
+               "MODULE_SIZE": 893,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -3418,6 +3679,7 @@
      "pandas:131": [
           {
                "FILE_NAME": "pandas/core/indexes/accessors.py",
+               "MODULE_SIZE": 340,
                "LINES": [
                     19,
                     80,
@@ -3429,6 +3691,7 @@
      "pandas:132": [
           {
                "FILE_NAME": "pandas/core/nanops.py",
+               "MODULE_SIZE": 1424,
                "LINES": [
                     708,
                     709,
@@ -3438,6 +3701,7 @@
           },
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4797,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -3445,6 +3709,7 @@
      "pandas:133": [
           {
                "FILE_NAME": "pandas/core/generic.py",
+               "MODULE_SIZE": 11750,
                "LINES": [
                     7051,
                     7057,
@@ -3458,6 +3723,7 @@
      "pandas:134": [
           {
                "FILE_NAME": "pandas/tseries/holiday.py",
+               "MODULE_SIZE": 535,
                "LINES": [
                     349
                ],
@@ -3467,6 +3733,7 @@
      "pandas:135": [
           {
                "FILE_NAME": "pandas/core/groupby/ops.py",
+               "MODULE_SIZE": 962,
                "LINES": [
                     675
                ],
@@ -3476,6 +3743,7 @@
      "pandas:136": [
           {
                "FILE_NAME": "pandas/core/reshape/merge.py",
+               "MODULE_SIZE": 2020,
                "LINES": [
                     31,
                     1644
@@ -3486,6 +3754,7 @@
      "pandas:137": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2739,
                "LINES": [
                     60,
                     523
@@ -3498,6 +3767,7 @@
      "pandas:138": [
           {
                "FILE_NAME": "pandas/core/reshape/tile.py",
+               "MODULE_SIZE": 596,
                "LINES": [
                     14,
                     441
@@ -3511,6 +3781,7 @@
      "pandas:139": [
           {
                "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "MODULE_SIZE": 683,
                "LINES": [
                     333
                ],
@@ -3520,6 +3791,7 @@
      "pandas:140": [
           {
                "FILE_NAME": "pandas/core/groupby/generic.py",
+               "MODULE_SIZE": 1926,
                "LINES": [
                     1916
                ],
@@ -3529,6 +3801,7 @@
      "pandas:141": [
           {
                "FILE_NAME": "pandas/core/indexes/range.py",
+               "MODULE_SIZE": 839,
                "LINES": [
                     392
                ],
@@ -3538,6 +3811,7 @@
      "pandas:142": [
           {
                "FILE_NAME": "pandas/core/algorithms.py",
+               "MODULE_SIZE": 1968,
                "LINES": [
                     1913,
                     1922,
@@ -3553,6 +3827,7 @@
      "pandas:143": [
           {
                "FILE_NAME": "pandas/core/indexes/range.py",
+               "MODULE_SIZE": 837,
                "LINES": [
                     383,
                     384
@@ -3563,6 +3838,7 @@
      "pandas:144": [
           {
                "FILE_NAME": "pandas/plotting/_matplotlib/core.py",
+               "MODULE_SIZE": 1527,
                "LINES": [
                     1438,
                     1439
@@ -3573,6 +3849,7 @@
      "pandas:145": [
           {
                "FILE_NAME": "pandas/core/ops/__init__.py",
+               "MODULE_SIZE": 1190,
                "LINES": [
                     501,
                     502
@@ -3583,6 +3860,7 @@
      "pandas:146": [
           {
                "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "MODULE_SIZE": 589,
                "LINES": [
                     448,
                     449
@@ -3591,6 +3869,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5636,
                "LINES": [
                     4327,
                     4328,
@@ -3605,6 +3884,7 @@
      "pandas:147": [
           {
                "FILE_NAME": "pandas/core/dtypes/dtypes.py",
+               "MODULE_SIZE": 1114,
                "LINES": [
                     688,
                     740,
@@ -3620,6 +3900,7 @@
      "pandas:148": [
           {
                "FILE_NAME": "pandas/core/apply.py",
+               "MODULE_SIZE": 448,
                "LINES": [
                     208,
                     210,
@@ -3631,6 +3912,7 @@
      "pandas:150": [
           {
                "FILE_NAME": "pandas/core/dtypes/missing.py",
+               "MODULE_SIZE": 589,
                "LINES": [
                     448
                ],
@@ -3640,6 +3922,7 @@
      "pandas:151": [
           {
                "FILE_NAME": "pandas/core/arrays/numpy_.py",
+               "MODULE_SIZE": 467,
                "LINES": [
                     238,
                     239,
@@ -3657,6 +3940,7 @@
      "pandas:152": [
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4817,
                "LINES": [
                     2733
                ],
@@ -3666,6 +3950,7 @@
      "pandas:153": [
           {
                "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3252,
                "LINES": [
                     10,
                     709
@@ -3676,6 +3961,7 @@
      "pandas:154": [
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
+               "MODULE_SIZE": 2515,
                "LINES": [
                     2266,
                     2269,
@@ -3692,6 +3978,7 @@
      "pandas:155": [
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
+               "MODULE_SIZE": 1939,
                "LINES": [
                     1656
                ],
@@ -3701,6 +3988,7 @@
      "pandas:156": [
           {
                "FILE_NAME": "pandas/core/sparse/frame.py",
+               "MODULE_SIZE": 1060,
                "LINES": [
                     579,
                     580,
@@ -3712,6 +4000,7 @@
      "pandas:157": [
           {
                "FILE_NAME": "pandas/core/reshape/merge.py",
+               "MODULE_SIZE": 2019,
                "LINES": [
                     25,
                     1638
@@ -3722,6 +4011,7 @@
      "pandas:158": [
           {
                "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4822,
                "LINES": [
                     4168,
                     4169,
@@ -3735,6 +4025,7 @@
      "pandas:159": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8427,
                "LINES": [
                     111,
                     5308
@@ -3747,6 +4038,7 @@
      "pandas:160": [
           {
                "FILE_NAME": "pandas/core/computation/expressions.py",
+               "MODULE_SIZE": 264,
                "LINES": [
                     83,
                     88
@@ -3757,6 +4049,7 @@
      "pandas:161": [
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2760,
                "LINES": [
                     1843,
                     1844
@@ -3767,6 +4060,7 @@
      "pandas:162": [
           {
                "FILE_NAME": "pandas/core/reshape/pivot.py",
+               "MODULE_SIZE": 671,
                "LINES": [
                     615,
                     616,
@@ -3789,6 +4083,7 @@
      "pandas:163": [
           {
                "FILE_NAME": "pandas/core/window.py",
+               "MODULE_SIZE": 2856,
                "LINES": [
                     250
                ],
@@ -3798,6 +4093,7 @@
      "pandas:164": [
           {
                "FILE_NAME": "pandas/core/tools/datetimes.py",
+               "MODULE_SIZE": 1096,
                "LINES": [
                     338
                ],
@@ -3809,6 +4105,7 @@
      "pandas:165": [
           {
                "FILE_NAME": "pandas/core/arrays/datetimelike.py",
+               "MODULE_SIZE": 1691,
                "LINES": [
                     1210,
                     1276,
@@ -3820,6 +4117,7 @@
      "pandas:166": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8423,
                "LINES": [
                     7213,
                     7216
@@ -3830,6 +4128,7 @@
      "pandas:167": [
           {
                "FILE_NAME": "pandas/core/indexes/base.py",
+               "MODULE_SIZE": 5733,
                "LINES": [
                     247
                ],
@@ -3839,6 +4138,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/datetimes.py",
+               "MODULE_SIZE": 1698,
                "LINES": [
                     242
                ],
@@ -3848,6 +4148,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexes/period.py",
+               "MODULE_SIZE": 1048,
                "LINES": [
                     916
                ],
@@ -3857,6 +4158,7 @@
           },
           {
                "FILE_NAME": "pandas/core/indexing.py",
+               "MODULE_SIZE": 2530,
                "LINES": [
                     1707,
                     1722,
@@ -3871,6 +4173,7 @@
      "pandas:168": [
           {
                "FILE_NAME": "pandas/core/groupby/grouper.py",
+               "MODULE_SIZE": 679,
                "LINES": [
                     609,
                     612
@@ -3881,6 +4184,7 @@
      "pandas:169": [
           {
                "FILE_NAME": "pandas/core/frame.py",
+               "MODULE_SIZE": 8431,
                "LINES": [
                     8218
                ],
@@ -3892,11 +4196,13 @@
      "sanic:1": [
           {
                "FILE_NAME": "examples/blueprint_middlware_execution_order.py",
+               "MODULE_SIZE": 0,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "sanic/app.py",
+               "MODULE_SIZE": 1438,
                "LINES": [
                     656
                ],
@@ -3906,6 +4212,7 @@
      "sanic:3": [
           {
                "FILE_NAME": "sanic/app.py",
+               "MODULE_SIZE": 1468,
                "LINES": [
                     833,
                     865
@@ -3918,6 +4225,7 @@
      "sanic:4": [
           {
                "FILE_NAME": "sanic/request.py",
+               "MODULE_SIZE": 612,
                "LINES": [
                     522,
                     523
@@ -3928,6 +4236,7 @@
      "sanic:5": [
           {
                "FILE_NAME": "sanic/log.py",
+               "MODULE_SIZE": 58,
                "LINES": [
                     9
                ],
@@ -3937,6 +4246,7 @@
      "spacy:1": [
           {
                "FILE_NAME": "spacy/errors.py",
+               "MODULE_SIZE": 593,
                "LINES": [
                     10,
                     11
@@ -3947,6 +4257,7 @@
      "spacy:2": [
           {
                "FILE_NAME": "spacy/util.py",
+               "MODULE_SIZE": 820,
                "LINES": [
                     211
                ],
@@ -3958,6 +4269,7 @@
      "spacy:3": [
           {
                "FILE_NAME": "bin/wiki_entity_linking/wikipedia_processor.py",
+               "MODULE_SIZE": 563,
                "LINES": [
                     33,
                     288
@@ -3968,6 +4280,7 @@
      "spacy:4": [
           {
                "FILE_NAME": "spacy/cli/converters/conllu2json.py",
+               "MODULE_SIZE": 141,
                "LINES": [
                     73
                ],
@@ -3977,6 +4290,7 @@
      "spacy:5": [
           {
                "FILE_NAME": "spacy/language.py",
+               "MODULE_SIZE": 1151,
                "LINES": [
                     681
                ],
@@ -3986,6 +4300,7 @@
      "spacy:6": [
           {
                "FILE_NAME": "spacy/language.py",
+               "MODULE_SIZE": 1149,
                "LINES": [
                     405,
                     407
@@ -3998,6 +4313,7 @@
      "thefuck:1": [
           {
                "FILE_NAME": "thefuck/rules/pip_unknown_command.py",
+               "MODULE_SIZE": 19,
                "LINES": [
                     15,
                     17
@@ -4008,6 +4324,7 @@
      "thefuck:2": [
           {
                "FILE_NAME": "thefuck/utils.py",
+               "MODULE_SIZE": 337,
                "LINES": [
                     121
                ],
@@ -4017,6 +4334,7 @@
      "thefuck:3": [
           {
                "FILE_NAME": "thefuck/shells/fish.py",
+               "MODULE_SIZE": 128,
                "LINES": [
                     108,
                     110
@@ -4027,6 +4345,7 @@
      "thefuck:4": [
           {
                "FILE_NAME": "thefuck/shells/fish.py",
+               "MODULE_SIZE": 113,
                "LINES": [
                     23,
                     24,
@@ -4038,6 +4357,7 @@
      "thefuck:5": [
           {
                "FILE_NAME": "thefuck/rules/git_push.py",
+               "MODULE_SIZE": 44,
                "LINES": [
                     9
                ],
@@ -4047,6 +4367,7 @@
      "thefuck:6": [
           {
                "FILE_NAME": "thefuck/rules/git_branch_exists.py",
+               "MODULE_SIZE": 24,
                "LINES": [
                     10,
                     17
@@ -4057,6 +4378,7 @@
      "thefuck:7": [
           {
                "FILE_NAME": "thefuck/rules/php_s.py",
+               "MODULE_SIZE": 13,
                "LINES": [
                     6,
                     13
@@ -4067,6 +4389,7 @@
      "thefuck:8": [
           {
                "FILE_NAME": "thefuck/rules/dnf_no_such_command.py",
+               "MODULE_SIZE": 40,
                "LINES": [
                     21,
                     29
@@ -4077,6 +4400,7 @@
      "thefuck:9": [
           {
                "FILE_NAME": "thefuck/rules/git_push.py",
+               "MODULE_SIZE": 30,
                "LINES": [
                     27
                ],
@@ -4086,6 +4410,7 @@
      "thefuck:10": [
           {
                "FILE_NAME": "thefuck/rules/man.py",
+               "MODULE_SIZE": 27,
                "LINES": [
                     15,
                     21,
@@ -4100,6 +4425,7 @@
      "thefuck:12": [
           {
                "FILE_NAME": "thefuck/rules/no_command.py",
+               "MODULE_SIZE": 42,
                "LINES": [
                     3,
                     9
@@ -4110,6 +4436,7 @@
      "thefuck:13": [
           {
                "FILE_NAME": "thefuck/rules/git_branch_exists.py",
+               "MODULE_SIZE": 23,
                "LINES": [
                     9,
                     10,
@@ -4124,6 +4451,7 @@
      "thefuck:14": [
           {
                "FILE_NAME": "thefuck/shells/fish.py",
+               "MODULE_SIZE": 66,
                "LINES": [
                     10,
                     11,
@@ -4137,6 +4465,7 @@
      "thefuck:15": [
           {
                "FILE_NAME": "thefuck/rules/git_add.py",
+               "MODULE_SIZE": 19,
                "LINES": [
                     8,
                     9,
@@ -4149,6 +4478,7 @@
      "thefuck:16": [
           {
                "FILE_NAME": "thefuck/shells/bash.py",
+               "MODULE_SIZE": 45,
                "LINES": [
                     9,
                     10,
@@ -4158,11 +4488,13 @@
           },
           {
                "FILE_NAME": "thefuck/shells/fish.py",
+               "MODULE_SIZE": 65,
                "LINES": [],
                "EXTENDED_LINES": []
           },
           {
                "FILE_NAME": "thefuck/shells/zsh.py",
+               "MODULE_SIZE": 47,
                "LINES": [
                     10,
                     12,
@@ -4172,6 +4504,7 @@
           },
           {
                "FILE_NAME": "thefuck/types.py",
+               "MODULE_SIZE": 286,
                "LINES": [
                     285
                ],
@@ -4181,6 +4514,7 @@
      "thefuck:17": [
           {
                "FILE_NAME": "thefuck/shells/bash.py",
+               "MODULE_SIZE": 49,
                "LINES": [
                     1,
                     4,
@@ -4196,6 +4530,7 @@
           },
           {
                "FILE_NAME": "thefuck/shells/zsh.py",
+               "MODULE_SIZE": 47,
                "LINES": [
                     29
                ],
@@ -4205,6 +4540,7 @@
      "thefuck:18": [
           {
                "FILE_NAME": "thefuck/rules/sudo.py",
+               "MODULE_SIZE": 35,
                "LINES": [
                     24
                ],
@@ -4214,6 +4550,7 @@
      "thefuck:19": [
           {
                "FILE_NAME": "thefuck/rules/git_push_force.py",
+               "MODULE_SIZE": 18,
                "LINES": [
                     15
                ],
@@ -4223,6 +4560,7 @@
      "thefuck:20": [
           {
                "FILE_NAME": "thefuck/rules/dirty_unzip.py",
+               "MODULE_SIZE": 45,
                "LINES": [
                     16,
                     31,
@@ -4236,6 +4574,7 @@
      "thefuck:21": [
           {
                "FILE_NAME": "thefuck/rules/git_fix_stash.py",
+               "MODULE_SIZE": 33,
                "LINES": [
                     8,
                     9
@@ -4246,6 +4585,7 @@
      "thefuck:22": [
           {
                "FILE_NAME": "thefuck/types.py",
+               "MODULE_SIZE": 107,
                "LINES": [
                     84,
                     85,
@@ -4257,6 +4597,7 @@
      "thefuck:23": [
           {
                "FILE_NAME": "thefuck/utils.py",
+               "MODULE_SIZE": 191,
                "LINES": [
                     5,
                     183
@@ -4269,6 +4610,7 @@
      "thefuck:24": [
           {
                "FILE_NAME": "thefuck/types.py",
+               "MODULE_SIZE": 101,
                "LINES": [
                     7,
                     57,
@@ -4284,6 +4626,7 @@
      "thefuck:25": [
           {
                "FILE_NAME": "thefuck/rules/mkdir_p.py",
+               "MODULE_SIZE": 13,
                "LINES": [
                     13
                ],
@@ -4293,6 +4636,7 @@
      "thefuck:26": [
           {
                "FILE_NAME": "thefuck/rules/vagrant_up.py",
+               "MODULE_SIZE": 13,
                "LINES": [
                     10,
                     13
@@ -4303,6 +4647,7 @@
      "thefuck:27": [
           {
                "FILE_NAME": "thefuck/rules/open.py",
+               "MODULE_SIZE": 26,
                "LINES": [
                     26
                ],
@@ -4312,6 +4657,7 @@
      "thefuck:28": [
           {
                "FILE_NAME": "thefuck/rules/fix_file.py",
+               "MODULE_SIZE": 67,
                "LINES": [
                     3,
                     23,
@@ -4330,6 +4676,7 @@
      "thefuck:29": [
           {
                "FILE_NAME": "thefuck/types.py",
+               "MODULE_SIZE": 29,
                "LINES": [
                     27,
                     28
@@ -4340,6 +4687,7 @@
      "thefuck:30": [
           {
                "FILE_NAME": "thefuck/rules/fix_file.py",
+               "MODULE_SIZE": 62,
                "LINES": [
                     53
                ],
@@ -4349,6 +4697,7 @@
      "thefuck:31": [
           {
                "FILE_NAME": "thefuck/rules/git_diff_staged.py",
+               "MODULE_SIZE": 13,
                "LINES": [
                     13
                ],
@@ -4358,6 +4707,7 @@
      "thefuck:32": [
           {
                "FILE_NAME": "thefuck/rules/ls_lah.py",
+               "MODULE_SIZE": 8,
                "LINES": [
                     2
                ],
@@ -4367,6 +4717,7 @@
      "tornado:1": [
           {
                "FILE_NAME": "tornado/websocket.py",
+               "MODULE_SIZE": 1656,
                "LINES": [
                     561,
                     562
@@ -4377,6 +4728,7 @@
      "tornado:3": [
           {
                "FILE_NAME": "tornado/httpclient.py",
+               "MODULE_SIZE": 773,
                "LINES": [
                     236,
                     238
@@ -4387,6 +4739,7 @@
      "tornado:4": [
           {
                "FILE_NAME": "tornado/web.py",
+               "MODULE_SIZE": 3582,
                "LINES": [
                     2603,
                     2611,
@@ -4398,6 +4751,7 @@
      "tornado:5": [
           {
                "FILE_NAME": "tornado/ioloop.py",
+               "MODULE_SIZE": 1223,
                "LINES": [
                     1220,
                     1221
@@ -4408,6 +4762,7 @@
      "tornado:6": [
           {
                "FILE_NAME": "tornado/ioloop.py",
+               "MODULE_SIZE": 1224,
                "LINES": [
                     50,
                     188
@@ -4416,6 +4771,7 @@
           },
           {
                "FILE_NAME": "tornado/platform/asyncio.py",
+               "MODULE_SIZE": 279,
                "LINES": [
                     41
                ],
@@ -4428,6 +4784,7 @@
      "tornado:8": [
           {
                "FILE_NAME": "tornado/websocket.py",
+               "MODULE_SIZE": 1239,
                "LINES": [
                     619
                ],
@@ -4439,6 +4796,7 @@
      "tornado:10": [
           {
                "FILE_NAME": "tornado/web.py",
+               "MODULE_SIZE": 3282,
                "LINES": [
                     998
                ],
@@ -4448,6 +4806,7 @@
           },
           {
                "FILE_NAME": "tornado/websocket.py",
+               "MODULE_SIZE": 1226,
                "LINES": [],
                "EXTENDED_LINES": [
                     436
@@ -4457,6 +4816,7 @@
      "tornado:11": [
           {
                "FILE_NAME": "tornado/http1connection.py",
+               "MODULE_SIZE": 737,
                "LINES": [
                     568
                ],
@@ -4466,6 +4826,7 @@
      "tornado:12": [
           {
                "FILE_NAME": "tornado/auth.py",
+               "MODULE_SIZE": 1134,
                "LINES": [
                     78,
                     988,
@@ -4478,6 +4839,7 @@
      "tqdm:1": [
           {
                "FILE_NAME": "tqdm/contrib/__init__.py",
+               "MODULE_SIZE": 80,
                "LINES": [
                     41
                ],
@@ -4487,6 +4849,7 @@
      "tqdm:2": [
           {
                "FILE_NAME": "tqdm/std.py",
+               "MODULE_SIZE": 1468,
                "LINES": [
                     488,
                     489,
@@ -4497,6 +4860,7 @@
           },
           {
                "FILE_NAME": "tqdm/utils.py",
+               "MODULE_SIZE": 367,
                "LINES": [
                     363,
                     365,
@@ -4510,6 +4874,7 @@
      "tqdm:3": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 1333,
                "LINES": [],
                "EXTENDED_LINES": []
           }
@@ -4517,6 +4882,7 @@
      "tqdm:4": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 1307,
                "LINES": [
                     323
                ],
@@ -4526,6 +4892,7 @@
      "tqdm:5": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 1236,
                "LINES": [
                     751,
                     757,
@@ -4544,6 +4911,7 @@
      "tqdm:6": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 1232,
                "LINES": [
                     856
                ],
@@ -4553,6 +4921,7 @@
      "tqdm:7": [
           {
                "FILE_NAME": "tqdm/_main.py",
+               "MODULE_SIZE": 206,
                "LINES": [
                     92
                ],
@@ -4562,6 +4931,7 @@
      "tqdm:8": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 832,
                "LINES": [
                     225
                ],
@@ -4571,6 +4941,7 @@
      "tqdm:9": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 610,
                "LINES": [
                     41,
                     42,
@@ -4587,6 +4958,7 @@
      "youtube-dl:1": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3887,
                "LINES": [
                     2577,
                     2578
@@ -4597,6 +4969,7 @@
      "youtube-dl:2": [
           {
                "FILE_NAME": "youtube_dl/extractor/common.py",
+               "MODULE_SIZE": 2624,
                "LINES": [
                     2010,
                     2011,
@@ -4615,6 +4988,7 @@
      "youtube-dl:3": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3826,
                "LINES": [
                     599
                ],
@@ -4624,6 +4998,7 @@
      "youtube-dl:6": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 2542,
                "LINES": [
                     1979,
                     2023,
@@ -4638,6 +5013,7 @@
      "youtube-dl:7": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 2504,
                "LINES": [
                     1704,
                     1705
@@ -4648,6 +5024,7 @@
      "youtube-dl:13": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3990,
                "LINES": [
                     1871
                ],
@@ -4657,6 +5034,7 @@
      "youtube-dl:15": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3848,
                "LINES": [
                     2270
                ],
@@ -4666,6 +5044,7 @@
      "youtube-dl:17": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3824,
                "LINES": [
                     2736
                ],
@@ -4677,6 +5056,7 @@
      "youtube-dl:18": [
           {
                "FILE_NAME": "youtube_dl/YoutubeDL.py",
+               "MODULE_SIZE": 2323,
                "LINES": [
                     863
                ],
@@ -4686,6 +5066,7 @@
      "youtube-dl:19": [
           {
                "FILE_NAME": "youtube_dl/YoutubeDL.py",
+               "MODULE_SIZE": 2309,
                "LINES": [
                     23,
                     677
@@ -4698,6 +5079,7 @@
      "youtube-dl:20": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3824,
                "LINES": [
                     368,
                     370
@@ -4708,6 +5090,7 @@
      "youtube-dl:21": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3643,
                "LINES": [
                     1751,
                     1755
@@ -4718,6 +5101,7 @@
      "youtube-dl:24": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3244,
                "LINES": [
                     2348,
                     2352,
@@ -4729,6 +5113,7 @@
      "youtube-dl:25": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 3106,
                "LINES": [
                     2041,
                     2042,
@@ -4740,6 +5125,7 @@
      "youtube-dl:26": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 2854,
                "LINES": [
                     1973
                ],
@@ -4749,6 +5135,7 @@
      "youtube-dl:27": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 2547,
                "LINES": [
                     1985,
                     1987
@@ -4759,6 +5146,7 @@
      "youtube-dl:29": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 2496,
                "LINES": [
                     914
                ],
@@ -4768,6 +5156,7 @@
      "youtube-dl:31": [
           {
                "FILE_NAME": "youtube_dl/extractor/minhateca.py",
+               "MODULE_SIZE": 71,
                "LINES": [
                     11,
                     55,
@@ -4779,6 +5168,7 @@
           },
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 1515,
                "LINES": [
                     1209,
                     1213,
@@ -4794,6 +5184,7 @@
      "youtube-dl:34": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 1639,
                "LINES": [
                     676,
                     1601
@@ -4806,6 +5197,7 @@
      "youtube-dl:35": [
           {
                "FILE_NAME": "youtube_dl/extractor/arte.py",
+               "MODULE_SIZE": 275,
                "LINES": [
                     89,
                     93
@@ -4816,6 +5208,7 @@
           },
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 1638,
                "LINES": [
                     893
                ],
@@ -4827,6 +5220,7 @@
      "youtube-dl:36": [
           {
                "FILE_NAME": "youtube_dl/extractor/facebook.py",
+               "MODULE_SIZE": 132,
                "LINES": [
                     23
                ],
@@ -4836,6 +5230,7 @@
      "youtube-dl:41": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 1222,
                "LINES": [
                     759,
                     761
@@ -4846,6 +5241,7 @@
      "youtube-dl:43": [
           {
                "FILE_NAME": "youtube_dl/utils.py",
+               "MODULE_SIZE": 1093,
                "LINES": [
                     1090
                ],
