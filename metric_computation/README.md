@@ -1,5 +1,11 @@
 # Metric computation
 
+The purpose of this phase is to generate the 
+tabular data files in the [output](output) directory.
+We have already done this phase and generated the results.
+But, if you want to replicate the process, you can
+follow the instructions below.
+
 ## Purpose
 
 At this phase, we compute the metrics we picked for 
@@ -12,9 +18,13 @@ file we generated at the [first round selection](/first_round_selection) phase.
 file we generated at the [first round selection](/first_round_selection) phase.
 
 To run this phase, first copy `ground_truth_info.json` and `line_counts.json` from `first_round_selection` directory to this directory, and
-then, set the results path in the [path_item.json](path_item.json) file. The
-results path should be similar to the one you set at the [second_round_selection](/second_round_selection) phase.
-Then, you can run the following command to compute all the metrics.
+then, set the *results path* and *workspace path*
+in the [path_item.json](path_item.json) file. The results path should be similar to the one you set 
+at the [second_round_selection](/second_round_selection) phase, and
+the workspace path should be similar to the one you set at
+the [first_round_selection](/first_round_selection).
+Then, you can run the following command to compute all the metrics, which generates
+the [output](output) directory with all the results in a tabular format.
 
 ```
 python compute_all.py
