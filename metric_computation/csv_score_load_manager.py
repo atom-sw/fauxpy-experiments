@@ -1,6 +1,6 @@
 from enum import Enum
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 import file_manager
 from entity_type import ScoredEntity, ScoredStatement
@@ -48,7 +48,7 @@ class CsvScoreItem:
                  bug_number: int,
                  localization_technique: FLTechnique,
                  granularity: FLGranularity,
-                 scored_entities: List[ScoredEntity],
+                 scored_entities: Optional[List[ScoredEntity]],
                  experiment_time_seconds: float):
         self._csv_paths = csv_paths
         self._script_id = script_id
@@ -102,6 +102,12 @@ class CsvScoreItem:
 
     def get_granularity(self) -> FLGranularity:
         return self._granularity
+
+    def set_granularity(self, granularity: FLGranularity):
+        self._granularity = granularity
+
+    def set_scored_entities(self, scored_entities: Optional[List[ScoredEntity]]):
+        self._scored_entities = scored_entities
 
 
 class CsvScoreItemLoadManager:
