@@ -1,0 +1,12 @@
+Entity,Score
+black.py::main::469::564,0.26704027144547143
+black.py::find_project_root::5754::5780,0.0
+black.py::re_compile_maybe_verbose::6083::6091,0.0
+black.py::reformat_many::612::636,-0.001143783373964876
+black.py::read_pyproject_toml::286::321,-0.0019607714982255017
+black.py::get_cache_key::244::258,-0.0026143619976340023
+black.py::write_cache::6307::6317,-0.0026143619976340023
+black.py::from_configuration::150::159,-0.003267952497042503
+black.py::gen_python_files_in_dir::5696::5750,-0.006535904994085006
+black.py::path_empty::567::576,-0.021568486480480518
+black.py::get_cache_file::6263::6264,-0.024836438977523023

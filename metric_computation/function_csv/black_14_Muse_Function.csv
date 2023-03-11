@@ -1,0 +1,17 @@
+Entity,Score
+black.py::get_future_imports::2911::2943,0.0
+black.py::lib2to3_parse::646::670,0.0
+blib2to3/pgen2/driver.py::__init__::32::37,0.0
+blib2to3/pgen2/driver.py::parse_tokens::39::96,0.0
+blib2to3/pgen2/parse.py::setup::89::111,0.0
+blib2to3/pgen2/parse.py::addtoken::113::159,0.0
+blib2to3/pgen2/parse.py::classify::161::173,0.0
+blib2to3/pgen2/parse.py::shift::175::182,0.0
+blib2to3/pgen2/parse.py::push::184::189,0.0
+blib2to3/pgen2/parse.py::pop::191::201,0.0
+blib2to3/pgen2/parse.py::__init__::57::87,0.0
+blib2to3/pgen2/tokenize.py::generate_tokens::337::562,0.0
+blib2to3/pytree.py::__init__::208::232,0.0
+blib2to3/pytree.py::__init__::340::357,0.0
+blib2to3/pytree.py::convert::410::426,0.0
+blib2to3/pytree.py::__new__::49::52,0.0

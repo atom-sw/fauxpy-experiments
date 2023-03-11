@@ -1,0 +1,14 @@
+Entity,Score
+thefuck/types.py::__repr__::48::50,0.9677419354838709
+thefuck/utils.py::eager::137::138,0.784470698758991
+thefuck/shells/generic.py::and_::60::61,0.784470698758991
+thefuck/rules/git_branch_exists.py::get_new_command::16::23,0.784470698758991
+thefuck/specific/git.py::git_support::8::32,0.49180327868852464
+thefuck/utils.py::wrapper::34::44,0.4406448499110493
+thefuck/types.py::__init__::18::28,0.4406448499110493
+thefuck/rules/git_branch_exists.py::match::8::11,0.280575614273374
+thefuck/utils.py::is_app::159::169,0.15760446264166192
+thefuck/types.py::script_parts::31::39,0.15760446264166192
+thefuck/shells/generic.py::split_command::66::70,0.15760446264166192
+thefuck/types.py::update::52::61,0.0
+thefuck/shells/generic.py::quote::72::80,0.0

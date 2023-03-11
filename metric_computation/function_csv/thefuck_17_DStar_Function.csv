@@ -1,0 +1,15 @@
+Entity,Score
+thefuck/utils.py::_cache::212::239,4.285714285714286
+thefuck/shells/bash.py::get_aliases::28::33,4.285714285714286
+thefuck/shells/bash.py::_parse_alias::20::24,4.285714285714286
+thefuck/utils.py::wrapper::31::41,2.903225806451613
+thefuck/shells/generic.py::from_shell::21::23,1.2903225806451613
+thefuck/shells/generic.py::_expand_aliases::13::19,1.2903225806451613
+thefuck/shells/generic.py::_script_from_history::82::83,0.0
+thefuck/shells/generic.py::and_::60::61,0.0
+thefuck/shells/generic.py::_get_history_lines::43::58,0.0
+thefuck/shells/generic.py::get_history::40::41,0.0
+thefuck/shells/generic.py::to_shell::25::27,0.0
+thefuck/shells/bash.py::_get_history_file_name::35::37,0.0
+thefuck/shells/bash.py::app_alias::9::18,0.0
+thefuck/conf.py::__getattr__::10::11,0.0

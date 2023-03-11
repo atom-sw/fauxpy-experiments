@@ -1,0 +1,12 @@
+Entity,Score
+thefuck/types.py::__repr__::54::56,1.0
+thefuck/utils.py::_for_app::177::181,0.6944444444444444
+thefuck/rules/php_s.py::match::5::6,0.6944444444444444
+thefuck/utils.py::wrapper::29::39,0.6024096385542169
+thefuck/utils.py::is_app::162::172,0.6024096385542169
+thefuck/types.py::script_parts::37::46,0.6024096385542169
+thefuck/shells/generic.py::decode_utf8::96::99,0.6024096385542169
+thefuck/shells/generic.py::encode_utf8::91::94,0.6024096385542169
+thefuck/shells/generic.py::split_command::80::89,0.6024096385542169
+thefuck/utils.py::replace_argument::123::131,0.0
+thefuck/rules/php_s.py::get_new_command::9::10,0.0

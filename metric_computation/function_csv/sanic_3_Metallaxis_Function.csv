@@ -1,0 +1,7 @@
+Entity,Score
+sanic/app.py::url_for::798::925,1.0
+sanic/router.py::_add::187::334,0.5773502691896258
+sanic/router.py::find_route_by_view_name::387::400,0.5773502691896258
+sanic/app.py::route::163::227,0.09128709291752768
+sanic/router.py::add::121::185,0.06415002990995841
+sanic/app.py::response::196::225,0.0

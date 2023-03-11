@@ -1,0 +1,16 @@
+Entity,Score
+thefuck/rules/dnf_no_such_command.py::_get_operations::25::31,90.0
+thefuck/rules/dnf_no_such_command.py::_parse_operations::17::22,90.0
+thefuck/utils.py::replace_command::154::158,3.6363636363636362
+thefuck/types.py::__repr__::54::56,3.6363636363636362
+thefuck/rules/dnf_no_such_command.py::get_new_command::35::37,3.6363636363636362
+thefuck/specific/sudo.py::sudo_support::6::18,1.2903225806451613
+thefuck/types.py::__init__::16::24,0.7843137254901962
+thefuck/utils.py::wrapper::29::39,0.0
+thefuck/utils.py::_for_app::177::181,0.0
+thefuck/utils.py::is_app::162::172,0.0
+thefuck/types.py::script_parts::37::46,0.0
+thefuck/shells/generic.py::decode_utf8::96::99,0.0
+thefuck/shells/generic.py::encode_utf8::91::94,0.0
+thefuck/shells/generic.py::split_command::80::89,0.0
+thefuck/rules/dnf_no_such_command.py::match::13::14,0.0

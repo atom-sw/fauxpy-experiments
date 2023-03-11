@@ -1,0 +1,14 @@
+Entity,Score
+httpie/cli.py::parse_items::66::103,0.47619047619047616
+httpie/cli.py::__init__::37::38,0.3225806451612903
+httpie/cli.py::__call__::40::63,0.10989010989010989
+httpie/pretty.py::body::52::68,0.0
+httpie/pretty.py::headers::49::50,0.0
+httpie/pretty.py::__init__::42::47,0.0
+httpie/cli.py::_validate_auth_options::123::125,0.0
+httpie/cli.py::_validate_output_options::118::121,0.0
+httpie/cli.py::parse_args::112::116,0.0
+httpie/__main__.py::main::85::191,0.0
+httpie/__main__.py::make_response_message::71::82,0.0
+httpie/__main__.py::format_http_message::32::50,0.0
+httpie/__main__.py::__init__::24::29,0.0

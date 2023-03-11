@@ -1,0 +1,4 @@
+Entity,Score
+thefuck/utils.py::replace_argument::107::115,1.0
+thefuck/specific/git.py::git_support::8::31,0.42008402520840293
+thefuck/utils.py::wrapper::25::30,0.3611575592573076

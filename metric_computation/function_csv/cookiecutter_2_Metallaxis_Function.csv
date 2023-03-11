@@ -1,0 +1,11 @@
+Entity,Score
+cookiecutter/extensions.py::random_ascii_string::30::35,1.0
+cookiecutter/hooks.py::run_script_with_context::93::111,1.0
+cookiecutter/hooks.py::valid_hook::22::36,1.0
+cookiecutter/hooks.py::run_script::64::90,1.0
+cookiecutter/hooks.py::run_hook::114::127,0.8164965809277261
+cookiecutter/hooks.py::find_hook::39::61,0.8164965809277261
+cookiecutter/utils.py::work_in::49::60,0.8164965809277261
+cookiecutter/environment.py::__init__::14::36,0.7071067811865475
+cookiecutter/environment.py::_read_extensions::38::49,0.7071067811865475
+cookiecutter/utils.py::make_executable::63::69,0.7071067811865475

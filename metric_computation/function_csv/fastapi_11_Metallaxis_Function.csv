@@ -1,0 +1,17 @@
+Entity,Score
+fastapi/applications.py::openapi::71::81,1.0
+fastapi/dependencies/utils.py::get_flat_dependant::111::130,1.0
+fastapi/dependencies/utils.py::is_scalar_sequence_field::142::153,1.0
+fastapi/dependencies/utils.py::solve_dependencies::296::409,1.0
+fastapi/dependencies/utils.py::request_params_to_args::412::446,1.0
+fastapi/openapi/utils.py::generate_operation_id::116::120,1.0
+fastapi/openapi/utils.py::generate_operation_summary::123::126,1.0
+fastapi/openapi/utils.py::get_openapi_operation_metadata::129::139,1.0
+fastapi/openapi/utils.py::get_openapi_path::142::229,1.0
+fastapi/openapi/utils.py::get_openapi::232::272,1.0
+fastapi/openapi/utils.py::get_openapi_params::47::54,1.0
+fastapi/openapi/utils.py::get_openapi_security_definitions::57::69,1.0
+fastapi/openapi/utils.py::get_openapi_operation_parameters::72::94,1.0
+fastapi/routing.py::app::82::132,1.0
+fastapi/utils.py::get_flat_models_from_routes::13::32,1.0
+fastapi/utils.py::get_model_definitions::35::46,1.0

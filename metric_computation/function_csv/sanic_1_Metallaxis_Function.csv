@@ -1,0 +1,8 @@
+Entity,Score
+sanic/app.py::_run_response_middleware::1309::1324,1.0
+sanic/app.py::register_named_middleware::642::656,1.0
+sanic/app.py::_run_request_middleware::1294::1307,0.09950371902099892
+sanic/app.py::run::1057::1180,0.0663723311599972
+sanic/app.py::_helper::1326::1422,0.0659380473395787
+sanic/app.py::handle_request::917::1039,0.0
+sanic/app.py::response::607::614,0.0

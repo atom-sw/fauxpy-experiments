@@ -1,0 +1,7 @@
+Entity,Score
+pandas/core/dtypes/cast.py::astype_nansafe::799::899,1.0
+pandas/core/indexes/numeric.py::astype::372::384,0.5
+pandas/core/arrays/interval.py::_simple_new::188::241,0.3333333333333333
+pandas/core/arrays/interval.py::__new__::152::185,0.25
+pandas/core/arrays/interval.py::_from_sequence::244::245,0.2
+pandas/core/arrays/base.py::shift::584::636,0.16666666666666666

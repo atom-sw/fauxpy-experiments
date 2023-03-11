@@ -1,0 +1,5 @@
+Entity,Score
+thefuck/rules/fix_file.py::get_new_command::59::67,0.8779857972885732
+thefuck/rules/fix_file.py::_search::45::49,0.7367280606717227
+thefuck/utils.py::wrapper::116::121,0.6346243583761082
+thefuck/rules/fix_file.py::match::52::56,0.0

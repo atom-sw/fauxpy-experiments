@@ -1,0 +1,17 @@
+Entity,Score
+spacy/analysis.py::analyze_all_pipes::41::51,1.0
+spacy/language.py::remove_pipe::395::407,1.0
+spacy/analysis.py::validate_attrs::71::114,0.0
+spacy/analysis.py::analyze_pipes::11::38,0.0
+spacy/errors.py::_warn::610::626,0.0
+spacy/language.py::__call__::1025::1043,0.0
+spacy/language.py::__init__::136::177,0.0
+spacy/language.py::create_lookups::49::60,0.0
+spacy/language.py::create_vocab::63::78,0.0
+spacy/language.py::create_tokenizer::81::101,0.0
+spacy/lemmatizer.py::__init__::23::32,0.0
+spacy/util.py::get_entry_points::330::340,0.0
+spacy/util.py::compile_prefix_regex::432::446,0.0
+spacy/language.py::add_pipe::300::348,-0.010751821089697066
+spacy/analysis.py::dot_to_dict::54::68,-0.0161277316345456
+spacy/language.py::create_lemmatizer::43::46,-0.0161277316345456

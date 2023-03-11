@@ -1,0 +1,5 @@
+Entity,Score
+tqdm/_tqdm.py::format_meter::253::451,1.0
+tqdm/_tqdm.py::__repr__::965::966,0.5
+tqdm/_tqdm.py::display::1283::1299,0.3333333333333333
+tqdm/_tqdm.py::__init__::702::932,0.25

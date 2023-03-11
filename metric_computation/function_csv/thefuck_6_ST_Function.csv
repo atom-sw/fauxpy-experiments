@@ -1,0 +1,4 @@
+Entity,Score
+thefuck/rules/git_branch_exists.py::get_new_command::15::24,1.0
+thefuck/utils.py::eager::135::136,0.5
+thefuck/specific/git.py::git_support::8::32,0.3333333333333333

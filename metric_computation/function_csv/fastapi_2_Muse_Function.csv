@@ -1,0 +1,6 @@
+Entity,Score
+fastapi/applications.py::__call__::145::151,0.0
+fastapi/dependencies/utils.py::is_coroutine_callable::403::409,0.0
+fastapi/dependencies/utils.py::solve_dependencies::422::555,0.0
+fastapi/dependencies/utils.py::request_params_to_args::558::603,0.0
+fastapi/routing.py::app::198::209,0.0

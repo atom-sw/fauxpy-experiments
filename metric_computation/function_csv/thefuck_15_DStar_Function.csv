@@ -1,0 +1,13 @@
+Entity,Score
+thefuck/types.py::__repr__::48::50,40.0
+thefuck/rules/git_add.py::match::7::9,40.0
+thefuck/specific/git.py::git_support::8::32,0.39603960396039606
+thefuck/utils.py::wrapper::31::41,0.3603603603603604
+thefuck/utils.py::is_app::156::166,0.3603603603603604
+thefuck/types.py::script_parts::31::39,0.3603603603603604
+thefuck/shells/generic.py::split_command::66::70,0.3603603603603604
+thefuck/types.py::__init__::18::28,0.3053435114503817
+thefuck/types.py::update::52::61,0.0
+thefuck/shells/generic.py::quote::72::80,0.0
+thefuck/shells/generic.py::and_::60::61,0.0
+thefuck/rules/git_add.py::get_new_command::13::19,0.0
