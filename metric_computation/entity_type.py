@@ -48,5 +48,8 @@ class ScoredFunction(ScoredEntity):
     def __str__(self):
         return self._pretty_representation()
 
+    def get_function_name(self):
+        return self._function_name
+
     def get_function_range(self):
         return self._function_range
