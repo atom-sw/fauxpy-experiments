@@ -1,7 +1,7 @@
 import ast
 from _ast import FunctionDef
 from pathlib import Path
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Optional
 
 
 class FunctionInformation:
@@ -14,6 +14,9 @@ class FunctionInformation:
         self._function_name = function_name
         self._line_start = line_start
         self._line_end = line_end
+
+    def get_function_range(self):
+        return self._line_start, self._line_end
 
     def _pretty_representation(self):
         return f"{self._function_name} ({self._line_start}, {self._line_end})"
@@ -56,7 +59,9 @@ class FunctionInformation:
 
 
 class ModuleInformation:
-    def __init__(self, module_path: str, function_info_list: List[FunctionInformation]):
+    def __init__(self,
+                 module_path: str,
+                 function_info_list: List[FunctionInformation]):
         self._module_path = module_path
         self._function_info_list = function_info_list
 
@@ -72,14 +77,18 @@ class ModuleInformation:
     def get_module_path(self):
         return self._module_path
 
-    def get_function_information(self, line_number: int):
-        function_info_list_for_line = list(filter(lambda x: x.has_statement(line_number), self._function_info_list))
-        assert len(function_info_list_for_line) >= 1
+    def get_function_information(self, line_number: int) -> Optional[FunctionInformation]:
+        function_info_list_for_line = list(filter(lambda x:
+                                                  x.has_statement(self._module_path, line_number),
+                                                  self._function_info_list))
         min_function_info = self._get_min_function_info(function_info_list_for_line)
         return min_function_info
 
     @staticmethod
-    def _get_min_function_info(function_info_list):
+    def _get_min_function_info(function_info_list: List[FunctionInformation]) -> Optional[FunctionInformation]:
+        if len(function_info_list) == 0:
+            return None
+
         min_function_info = function_info_list[0]
         for item in function_info_list:
             if item.get_range_length() < min_function_info.get_range_length():
@@ -92,7 +101,7 @@ class StatementFunctionMap:
     def __init__(self, module_info_list: List[ModuleInformation]):
         self._module_info_list = module_info_list
 
-    def get_function_info(self, module_path: str, line_number: int) -> FunctionInformation:
+    def get_function_info(self, module_path: str, line_number: int) -> Optional[FunctionInformation]:
         module_info_list_for_path = list(filter(lambda x: x.get_module_path() == module_path, self._module_info_list))
         assert len(module_info_list_for_path) == 1
         module_info_for_path = module_info_list_for_path[0]
@@ -144,7 +153,7 @@ class FunctionManager:
         return statement_function_map
 
     def _get_module_function_info_list(self, module_path: str):
-        module_file_path = self.get_buggy_project_path() / module_path
+        module_file_path = self._get_buggy_project_path() / module_path
         with module_file_path.open("r") as file:
             tree = ast.parse(file.read())
 
@@ -160,7 +169,7 @@ class FunctionManager:
 
         return function_info_list
 
-    def get_buggy_project_path(self) -> Path:
+    def _get_buggy_project_path(self) -> Path:
         version_prefix = "bug"
         buggy_dir_name = "buggy"
         return (Path(self._workspace_path) /
