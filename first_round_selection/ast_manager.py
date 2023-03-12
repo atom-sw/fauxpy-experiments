@@ -339,6 +339,7 @@ class DocstringVisitor(ast.NodeVisitor):
                     isinstance(node.value, ast.Constant) and
                     hasattr(node.value, "value")):
                 self.__is_string = True
+        self.generic_visit(node)
 
     def is_docstring(self):
         return self.__is_string
