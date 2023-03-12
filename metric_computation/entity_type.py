@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from typing import Tuple
 
 
@@ -13,6 +14,10 @@ class ScoredEntity:
 
     def get_file_path(self):
         return self._file_path
+
+    @abstractmethod
+    def get_entity_name(self):
+        pass
 
 
 class ScoredStatement(ScoredEntity):
@@ -31,6 +36,9 @@ class ScoredStatement(ScoredEntity):
 
     def get_line_number(self) -> int:
         return self._line_number
+
+    def get_entity_name(self) -> str:
+        return f"{self._file_path}::{self._line_number}"
 
 
 class ScoredFunction(ScoredEntity):
@@ -53,3 +61,6 @@ class ScoredFunction(ScoredEntity):
 
     def get_function_range(self):
         return self._function_range
+
+    def get_entity_name(self) -> str:
+        return f"{self._file_path}::{self._function_name}::{self._function_range[0]}::{self._function_range[1]}"
