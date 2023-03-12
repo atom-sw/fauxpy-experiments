@@ -12,7 +12,7 @@ from entity_type import ScoredStatement, ScoredFunction
 class PathManager:
     _Path_item_file_name = "path_item.json"
     _Ground_truth_file_name = "ground_truth_info.json"
-    _Line_counts_file_name = "line_counts.json"
+    _Size_counts_file_name = "size_counts.json"
     _Output_directory_name = "output"
     _Statement_csv_score_directory_name = "statement_csv"
     _Function_csv_score_directory_name = "function_csv"
@@ -35,8 +35,8 @@ class PathManager:
     def get_ground_truth_file_name(self) -> str:
         return self._Ground_truth_file_name
 
-    def get_line_counts_file_name(self) -> str:
-        return self._Line_counts_file_name
+    def get_size_counts_file_name(self) -> str:
+        return self._Size_counts_file_name
 
     def get_function_csv_score_directory_path(self) -> Path:
         return self._get_csv_score_directory_path(self._Function_csv_score_directory_name)

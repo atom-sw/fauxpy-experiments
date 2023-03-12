@@ -12,15 +12,20 @@ class ResultManager:
                  statement_csv_score_items: List[CsvScoreItem],
                  function_csv_score_items: List[CsvScoreItem],
                  ground_truth_info_dict: Dict,
-                 line_counts_dict: Dict):
+                 size_counts_dict: Dict):
         self._statement_csv_score_items = statement_csv_score_items
-        self._function_csv_score_items = function_csv_score_items
         assert any([x.get_granularity() == FLGranularity.Statement for x in self._statement_csv_score_items])
+        self._function_csv_score_items = function_csv_score_items
+        assert any([x.get_granularity() == FLGranularity.Function for x in self._function_csv_score_items])
         self._ground_truth_info_dict = ground_truth_info_dict
-        self._line_counts_dict = line_counts_dict
+        self._size_counts_dict = size_counts_dict
 
-    def compute_all_metrics_for_all(self):
-        for item in self._statement_csv_score_items:
+    def perform(self):
+        self._compute_all_metrics_for_granularity(self._statement_csv_score_items)
+        # self._compute_all_metrics_for_granularity(self._function_csv_score_items)
+
+    def _compute_all_metrics_for_granularity(self, csv_score_items: List[CsvScoreItem]):
+        for item in csv_score_items:
             e_inspect, exam_score = self._compute_literature_metrics_for_csv_item(item)
             metric_val = MetricVal(item.get_experiment_time_seconds(), e_inspect, exam_score)
             item.set_metric_val(metric_val)
@@ -52,7 +57,7 @@ class ResultManager:
     def _compute_e_inspect_for_csv_score_item(self, csv_score_item: CsvScoreItem) -> float:
         bug_key = f"{csv_score_item.get_project_name()}:{csv_score_item.get_bug_number()}"
         bug_ground_truth_dict = self._ground_truth_info_dict[bug_key]
-        bug_line_count = self._line_counts_dict[bug_key]
+        bug_line_count = self._size_counts_dict[bug_key]["LINE_COUNT"]
         e_inspect_object = EInspect(csv_score_item.get_scored_entities(), bug_line_count, bug_ground_truth_dict)
         e_inspect_value = e_inspect_object.get_e_inspect()
 
@@ -60,7 +65,7 @@ class ResultManager:
 
     def _compute_exam_score_for_csv_score_item(self, csv_score_item, e_inspect: float) -> float:
         bug_key = f"{csv_score_item.get_project_name()}:{csv_score_item.get_bug_number()}"
-        bug_line_count = self._line_counts_dict[bug_key]
+        bug_line_count = self._size_counts_dict[bug_key]["LINE_COUNT"]
         exam_score = e_inspect / bug_line_count
 
         return exam_score
@@ -141,10 +146,10 @@ def get_result_manager():
                                                           function_csv_score_items)
 
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
-    line_counts_info = file_manager.load_json_to_dictionary(path_manager.get_line_counts_file_name())
+    size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
     result_manager = ResultManager(statement_csv_score_items,
                                    function_csv_score_items,
                                    ground_truth_info,
-                                   line_counts_info)
+                                   size_counts_info)
 
     return result_manager
