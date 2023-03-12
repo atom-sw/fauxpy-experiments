@@ -119,19 +119,20 @@ contains those bugs in BugsInPy for which the computed ground truth is empty. Th
 step 6 to exclude such cases from the experiments.
 
 
-## Step 5: LOC counting
+## Step 5: Counting loc and the number of functions
 
 At this step, we count the number of lines in every buggy version, excluding empty lines
 and comment lines. We only consider lines from modules that are used in
 fault localization, which are those in target directories (not in test modules).
+We also count the number of functions in each buggy version.
 
 We need this information to compute the *Exam Score* at 
 the [metric_computation](/metric_computation) phase.
 Run the following command (which is slow) to generate 
-the [line_counts.json](line_counts.json]) file:
+the [size_counts.json](size_counts.json) file:
 
 ```
-python line_number_counter.py
+python size_counter.py
 ```
 
 
