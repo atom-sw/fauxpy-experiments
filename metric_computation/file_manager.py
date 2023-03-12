@@ -6,15 +6,16 @@ from pathlib import Path
 from typing import List, Any
 
 from csv_score_load_manager import CsvScoreItem
-
-OUTPUT_DIRECTORY_NAME = "output"
-FUNCTION_CSV_SCORE_DIR_NAME = "function_csv"
+from entity_type import ScoredStatement, ScoredFunction
 
 
 class PathManager:
     _Path_item_file_name = "path_item.json"
     _Ground_truth_file_name = "ground_truth_info.json"
     _Line_counts_file_name = "line_counts.json"
+    _Output_directory_name = "output"
+    _Statement_csv_score_directory_name = "statement_csv"
+    _Function_csv_score_directory_name = "function_csv"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
@@ -31,11 +32,44 @@ class PathManager:
     def get_workspace_path(self) -> Path:
         return self._workspace_path
 
-    def get_ground_truth_path(self) -> str:
+    def get_ground_truth_file_name(self) -> str:
         return self._Ground_truth_file_name
 
-    def get_line_counts_path(self) -> str:
+    def get_line_counts_file_name(self) -> str:
         return self._Line_counts_file_name
+
+    def get_function_csv_score_directory_path(self) -> Path:
+        return self._get_csv_score_directory_path(self._Function_csv_score_directory_name)
+
+    def get_statement_csv_score_directory_path(self):
+        return self._get_csv_score_directory_path(self._Statement_csv_score_directory_name)
+
+    def get_output_dir_path(self) -> Path:
+        return self._get_output_directory_path()
+
+    _Output_first_call = False
+
+    @classmethod
+    def _get_output_directory_path(cls) -> Path:
+        output_directory_path = Path(cls._Output_directory_name)
+        if output_directory_path.exists() and not cls._Output_first_call:
+            shutil.rmtree(str(output_directory_path.absolute().resolve()))
+
+        cls._Output_first_call = True
+
+        if not output_directory_path.exists():
+            output_directory_path.mkdir()
+
+        return output_directory_path
+
+    @staticmethod
+    def _get_csv_score_directory_path(csv_score_directory_name: str) -> Path:
+        report_dir_path = Path(csv_score_directory_name)
+        if report_dir_path.exists():
+            shutil.rmtree(str(report_dir_path.absolute().resolve()))
+        report_dir_path.mkdir()
+
+        return report_dir_path
 
 
 def load_json_to_dictionary(file_path: str):
@@ -90,41 +124,22 @@ def load_file_content(file_path: Path):
     return content
 
 
-FIRST_CALL = False
-
-
-def _get_output_directory_path() -> Path:
-    global FIRST_CALL
-
-    output_directory_path = Path(OUTPUT_DIRECTORY_NAME)
-    if output_directory_path.exists() and not FIRST_CALL:
-        shutil.rmtree(str(output_directory_path.absolute().resolve()))
-
-    FIRST_CALL = True
-
-    if not output_directory_path.exists():
-        output_directory_path.mkdir()
-
-    return output_directory_path
-
-
-def save_as_csv_file(table_list: List[List],
-                     file_name: str):
-    output_directory_path = _get_output_directory_path()
+def save_csv_to_output_dir(table_list: List[List],
+                           file_name: str):
+    path_manager = PathManager()
+    output_directory_path = path_manager.get_output_dir_path()
     file_path = output_directory_path / file_name
     with file_path.open("w") as file:
         csv_writer = csv.writer(file)
         csv_writer.writerows(table_list)
 
 
-def save_function_csv_score_items(function_csv_score_items: List[CsvScoreItem]):
-    report_dir_path = Path(FUNCTION_CSV_SCORE_DIR_NAME)
-    if report_dir_path.exists():
-        shutil.rmtree(str(report_dir_path.absolute().resolve()))
-    report_dir_path.mkdir()
+def save_score_items_to_given_directory_path(directory_path: Path,
+                                             csv_score_items: List[CsvScoreItem]):
+    report_dir_path = directory_path
 
     csv_header_items = ["Entity", "Score"]
-    for function_csv_item in function_csv_score_items:
+    for function_csv_item in csv_score_items:
         current_file_name = f"{function_csv_item.get_project_name()}_" \
                             f"{function_csv_item.get_bug_number()}_" \
                             f"{function_csv_item.get_technique().name}_" \
@@ -135,7 +150,13 @@ def save_function_csv_score_items(function_csv_score_items: List[CsvScoreItem]):
             csv_writer = csv.writer(file)
             csv_writer.writerow(csv_header_items)
             for item in function_csv_item.get_scored_entities():
-                function_range = item.get_function_range()
-                entity_str = f"{item.get_file_path()}::{item.get_function_name()}::{function_range[0]}::{function_range[1]}"
+                if isinstance(item, ScoredStatement):
+                    entity_str = f"{item.get_file_path()}::{item.get_line_number()}"
+                elif isinstance(item, ScoredFunction):
+                    function_range = item.get_function_range()
+                    entity_str = f"{item.get_file_path()}::{item.get_function_name()}::{function_range[0]}::{function_range[1]}"
+                else:
+                    raise Exception()
+
                 score = item.get_score()
                 csv_writer.writerow([entity_str, score])
