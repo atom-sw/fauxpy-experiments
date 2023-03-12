@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import List, Tuple
 
 import common
-import ast_function_manager
+import ast_function_counter
 
 LINE_COUNT_FILE_NAME = "size_counts.json"
 CACHE_DIR_NAME = "cache_size_count"
@@ -67,7 +67,7 @@ def get_line_function_counts(benchmark_name: str,
     counter_function = 0
     for item in non_excluded_python_file_paths:
         current_loc = get_module_loc(item)
-        current_function_num = ast_function_manager.count_function_num(item)
+        current_function_num = ast_function_counter.count_function_num(item)
         counter_line += current_loc
         counter_function += current_function_num
 
