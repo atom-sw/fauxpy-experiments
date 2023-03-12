@@ -110,22 +110,29 @@ class StatementFunctionMap:
         return function_info_for_line
 
 
+def get_function_class_ast_node_start_end_lines(node):
+    start_line_num = node.lineno
+    end_line_num = node.end_lineno
+    for item in node.decorator_list:
+        start_line_num = min(start_line_num, item.lineno)
+
+    return start_line_num, end_line_num
+
+
 class FunctionVisitor(ast.NodeVisitor):
     def __init__(self):
         self._function_range_list = []
 
     def visit_FunctionDef(self, node: FunctionDef) -> Any:
         function_name = node.name
-        line_start = node.lineno
-        line_end = node.end_lineno
-        self._function_range_list.append((function_name, line_start, line_end))
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        self._function_range_list.append((function_name, start_line_num, end_line_num))
         self.generic_visit(node)
 
     def visit_AsyncFunctionDef(self, node: FunctionDef) -> Any:
         function_name = node.name
-        line_start = node.lineno
-        line_end = node.end_lineno
-        self._function_range_list.append((function_name, line_start, line_end))
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        self._function_range_list.append((function_name, start_line_num, end_line_num))
         self.generic_visit(node)
 
     def get_function_range_list(self):
