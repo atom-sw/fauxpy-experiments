@@ -24,4 +24,4 @@ cookiecutter/environment.py::_read_extensions::42::53,0.0
 cookiecutter/environment.py::__init__::17::40,0.0
 cookiecutter/config.py::get_user_config::88::125,0.0
 cookiecutter/cli.py::validate_extra_context::35::46,0.0
-cookiecutter/cli.py::main::91::142,0.0
+cookiecutter/cli.py::main::49::142,0.0

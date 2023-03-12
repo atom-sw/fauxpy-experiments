@@ -80,7 +80,7 @@ youtube_dl/postprocessor/common.py::__init__::34::35,0.0
 youtube_dl/extractor/youtube.py::__init__::751::753,0.0
 youtube_dl/extractor/common.py::_sort_formats::764::825,0.0
 youtube_dl/extractor/common.py::_formats_key::768::824,0.0
-youtube_dl/extractor/common.py::ie_key::311::313,0.0
+youtube_dl/extractor/common.py::ie_key::310::313,0.0
 youtube_dl/extractor/common.py::set_downloader::298::300,0.0
 youtube_dl/extractor/common.py::__init__::251::254,0.0
 youtube_dl/extractor/__init__.py::gen_extractors::871::875,0.0
@@ -113,7 +113,7 @@ youtube_dl/YoutubeDL.py::_build_format_filter::864::919,0.0
 youtube_dl/YoutubeDL.py::_filter::914::918,0.0
 youtube_dl/YoutubeDL.py::process_ie_result::699::862,0.0
 youtube_dl/YoutubeDL.py::iter_playlistitems::762::769,0.0
-youtube_dl/YoutubeDL.py::add_extra_info::633::636,0.0
+youtube_dl/YoutubeDL.py::add_extra_info::632::636,0.0
 youtube_dl/YoutubeDL.py::_match_entry::590::630,0.0
 youtube_dl/YoutubeDL.py::prepare_filename::547::588,0.0
 youtube_dl/YoutubeDL.py::to_stdout::426::435,0.0
@@ -127,7 +127,7 @@ youtube_dl/YoutubeDL.py::__init__::279::354,0.0
 youtube_dl/YoutubeDL.py::_setup_opener::1951::1990,0.0
 youtube_dl/YoutubeDL.py::print_debug_header::1886::1949,0.0
 youtube_dl/YoutubeDL.py::_format_note::1788::1836,0.0
-youtube_dl/YoutubeDL.py::format_resolution::1772::1786,0.0
+youtube_dl/YoutubeDL.py::format_resolution::1771::1786,0.0
 youtube_dl/YoutubeDL.py::in_download_archive::1743::1760,0.0
 youtube_dl/YoutubeDL.py::post_process::1710::1730,0.0
 youtube_dl/YoutubeDL.py::process_info::1399::1661,0.0

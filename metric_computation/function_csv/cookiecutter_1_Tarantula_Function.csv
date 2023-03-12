@@ -1,7 +1,7 @@
 Entity,Score
 cookiecutter/generate.py::generate_context::70::111,1.0
 cookiecutter/utils.py::make_executable::63::69,0.0
-cookiecutter/utils.py::work_in::49::60,0.0
+cookiecutter/utils.py::work_in::48::60,0.0
 cookiecutter/utils.py::make_sure_path_exists::33::45,0.0
 cookiecutter/utils.py::rmtree::25::30,0.0
 cookiecutter/hooks.py::run_script::67::93,0.0

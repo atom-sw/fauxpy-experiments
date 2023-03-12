@@ -25,12 +25,12 @@ httpie/output/formatters/xml.py::format_body::42::61,0.6944444444444444
 httpie/output/formatters/json.py::format_body::12::26,0.6944444444444444
 httpie/output/formatters/headers.py::format_headers::6::14,0.6944444444444444
 httpie/output/formatters/colors.py::__init__::30::48,0.6944444444444444
-httpie/models.py::encoding::82::83,0.6944444444444444
+httpie/models.py::encoding::81::83,0.6944444444444444
 httpie/models.py::__init__::7::8,0.6944444444444444
-httpie/models.py::headers::53::79,0.6944444444444444
+httpie/models.py::headers::52::79,0.6944444444444444
 httpie/models.py::iter_body::45::46,0.6944444444444444
-httpie/models.py::content_type::34::39,0.6944444444444444
-httpie/context.py::config::77::84,0.6944444444444444
+httpie/models.py::content_type::33::39,0.6944444444444444
+httpie/context.py::config::76::84,0.6944444444444444
 httpie/context.py::__init__::53::74,0.6944444444444444
 httpie/config.py::save::58::70,0.6944444444444444
 httpie/client.py::get_default_headers::75::91,0.6944444444444444
@@ -41,7 +41,7 @@ httpie/client.py::get_requests_kwargs::94::147,0.6944444444444444
 httpie/config.py::_get_path::96::97,0.6024096385542169
 httpie/config.py::__init__::91::94,0.6024096385542169
 httpie/config.py::is_new::40::41,0.6024096385542169
-httpie/config.py::path::30::38,0.6024096385542169
+httpie/config.py::path::29::38,0.6024096385542169
 httpie/plugins/manager.py::load_installed_plugins::27::32,0.47619047619047616
 httpie/input.py::parse_items::624::685,0.47619047619047616
 httpie/input.py::_validate_download_options::385::391,0.47619047619047616

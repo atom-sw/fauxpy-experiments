@@ -4,7 +4,7 @@ youtube_dl/YoutubeDL.py::_setup_opener::2268::2319,0.0
 youtube_dl/YoutubeDL.py::__init__::334::426,0.0
 youtube_dl/extractor/common.py::_sort_formats::1067::1141,0.0
 youtube_dl/extractor/common.py::_formats_key::1077::1140,0.0
-youtube_dl/extractor/common.py::_xpath_ns::1507::1516,0.0
+youtube_dl/extractor/common.py::_xpath_ns::1506::1516,0.0
 youtube_dl/extractor/common.py::is_drm_protected::1769::1770,0.0
 youtube_dl/extractor/common.py::extract_common::1778::1802,0.0
 youtube_dl/extractor/common.py::extract_multisegment_info::1772::1828,0.0

@@ -12,12 +12,12 @@ youtube_dl/YoutubeDL.py::process_video_result::1238::1438,0.0
 youtube_dl/YoutubeDL.py::process_subtitles::1440::1487,0.0
 youtube_dl/YoutubeDL.py::process_info::1489::1777,0.0
 youtube_dl/YoutubeDL.py::in_download_archive::1859::1876,0.0
-youtube_dl/YoutubeDL.py::format_resolution::1888::1902,0.0
+youtube_dl/YoutubeDL.py::format_resolution::1887::1902,0.0
 youtube_dl/YoutubeDL.py::_setup_opener::2070::2121,0.0
 youtube_dl/YoutubeDL.py::__init__::301::383,0.0
 youtube_dl/YoutubeDL.py::prepare_filename::577::618,0.0
 youtube_dl/YoutubeDL.py::_match_entry::620::660,0.0
-youtube_dl/YoutubeDL.py::add_extra_info::663::666,0.0
+youtube_dl/YoutubeDL.py::add_extra_info::662::666,0.0
 youtube_dl/YoutubeDL.py::process_ie_result::730::893,0.0
 youtube_dl/utils.py::__init__::1015::1018,0.0
 youtube_dl/utils.py::determine_ext::1155::1165,0.0

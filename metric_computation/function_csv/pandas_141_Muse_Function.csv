@@ -1,14 +1,14 @@
 Entity,Score
 pandas/core/common.py::all_none::182::186,1.9897162641091903
 pandas/core/common.py::any_not_none::189::193,1.9897162641091903
-pandas/core/dtypes/base.py::is_dtype::232::269,1.9897162641091903
-pandas/core/indexes/range.py::_simple_new::149::166,1.9897162641091903
+pandas/core/dtypes/base.py::is_dtype::231::269,1.9897162641091903
+pandas/core/indexes/range.py::_simple_new::148::166,1.9897162641091903
 pandas/core/dtypes/common.py::_is_dtype::1812::1834,1.8663114334194755
 pandas/core/dtypes/common.py::_get_dtype::1837::1870,1.8663114334194755
 pandas/core/dtypes/common.py::_is_dtype_type::1873::1915,1.8663114334194755
 pandas/util/testing.py::assert_numpy_array_equal::934::1014,1.7223391309481415
-pandas/core/indexes/range.py::get_indexer::382::407,1.326477509406127
-pandas/core/indexes/range.py::_validate_dtype::171::174,0.9742906602729761
+pandas/core/indexes/range.py::get_indexer::381::407,1.326477509406127
+pandas/core/indexes/range.py::_validate_dtype::170::174,0.9742906602729761
 pandas/core/dtypes/common.py::ensure_python_int::181::207,0.9382975846551425
 pandas/core/indexes/range.py::__new__::83::128,0.627233237034399
 pandas/core/dtypes/common.py::classes_and_not_datetimelike::215::223,0.537231884913569
@@ -30,7 +30,7 @@ pandas/util/testing.py::assert_class_equal::707::731,0.0
 pandas/util/testing.py::raise_assert_detail::907::931,0.0
 pandas/util/testing.py::_get_base::969::970,0.0
 pandas/core/dtypes/common.py::is_datetime64tz_dtype::528::563,-0.010283735890809578
-pandas/core/dtypes/dtypes.py::is_dtype::920::939,-0.010283735890809578
+pandas/core/dtypes/dtypes.py::is_dtype::919::939,-0.010283735890809578
 pandas/core/dtypes/inference.py::is_sequence::423::452,-0.010283735890809578
 pandas/core/dtypes/common.py::condition::730::731,-0.4062075676869783
 pandas/core/dtypes/common.py::pandas_dtype::2007::2054,-0.8124151353739566

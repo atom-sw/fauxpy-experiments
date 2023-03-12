@@ -1,5 +1,5 @@
 Entity,Score
-cookiecutter/utils.py::work_in::58::69,0.8641975308641975
+cookiecutter/utils.py::work_in::57::69,0.8641975308641975
 cookiecutter/utils.py::make_executable::72::79,0.0
 cookiecutter/hooks.py::run_script_with_context::75::94,0.0
 cookiecutter/hooks.py::run_script::52::72,0.0

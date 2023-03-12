@@ -1,4 +1,4 @@
 Entity,Score
-thefuck/rules/mkdir_p.py::get_new_command::12::13,0.784470698758991
-thefuck/utils.py::wrapper::61::75,0.4175002964823492
-thefuck/rules/mkdir_p.py::match::6::8,0.0
+thefuck/rules/mkdir_p.py::get_new_command::11::13,0.784470698758991
+thefuck/utils.py::wrapper::60::75,0.4175002964823492
+thefuck/rules/mkdir_p.py::match::5::8,0.0

@@ -8,8 +8,8 @@ pandas/core/groupby/grouper.py::is_in_obj::594::598,0.09205746178983235
 pandas/core/groupby/groupby.py::__init__::344::401,0.08391813582966891
 pandas/core/indexes/numeric.py::__new__::47::73,0.08019269397646255
 pandas/core/generic.py::groupby::7721::7858,0.07352146220938077
-pandas/core/generic.py::_get_axis_number::402::412,0.04721921646498856
-pandas/core/base.py::_ndarray_values::1013::1027,0.0
+pandas/core/generic.py::_get_axis_number::401::412,0.04721921646498856
+pandas/core/base.py::_ndarray_values::1012::1027,0.0
 pandas/core/dtypes/common.py::is_datetime64_any_dtype::1164::1201,0.0
 pandas/core/dtypes/common.py::is_extension_array_dtype::1744::1790,0.0
 pandas/core/dtypes/common.py::is_categorical::358::388,0.0
@@ -21,11 +21,11 @@ pandas/core/dtypes/inference.py::is_iterator::120::151,0.0
 pandas/core/frame.py::__init__::393::483,0.0
 pandas/core/generic.py::__init__::163::184,0.0
 pandas/core/generic.py::_protect_consolidate::5207::5215,0.0
-pandas/core/groupby/groupby.py::groupby::2464::2476,0.0
+pandas/core/groupby/groupby.py::groupby::2463::2476,0.0
 pandas/core/groupby/grouper.py::_is_label_like::662::663,0.0
 pandas/core/indexes/base.py::__new__::254::512,0.0
 pandas/core/indexes/base.py::ensure_index::5636::5700,0.0
-pandas/core/indexes/base.py::_simple_new::546::580,0.0
+pandas/core/indexes/base.py::_simple_new::545::580,0.0
 pandas/core/internals/blocks.py::__init__::119::128,0.0
 pandas/core/internals/blocks.py::_check_ndim::130::158,0.0
 pandas/core/internals/blocks.py::get_block_type::3109::3152,0.0

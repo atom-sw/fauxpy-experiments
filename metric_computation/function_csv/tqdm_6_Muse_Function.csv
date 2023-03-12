@@ -5,4 +5,4 @@ tqdm/_monitor.py::__init__::31::46,0.0
 tqdm/_tqdm.py::__new__::397::418,0.0
 tqdm/_tqdm.py::release::97::99,0.0
 tqdm/_tqdm.py::__eq__::883::884,-0.004504352330439288
-tqdm/_tqdm.py::_get_free_pos::421::425,-0.0360348186435143
+tqdm/_tqdm.py::_get_free_pos::420::425,-0.0360348186435143

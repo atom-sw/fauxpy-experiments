@@ -2,7 +2,7 @@ Entity,Score
 spacy/language.py::evaluate::652::692,1.0
 spacy/analysis.py::analyze_pipes::11::38,0.0
 spacy/language.py::__init__::136::177,0.0
-spacy/language.py::create_tokenizer::81::101,0.0
+spacy/language.py::create_tokenizer::80::101,0.0
 spacy/lemmatizer.py::__init__::23::32,0.0
 spacy/scorer.py::__init__::15::18,0.0
 spacy/scorer.py::__init__::72::107,0.0

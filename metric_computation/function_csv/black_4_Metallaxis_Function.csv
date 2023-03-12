@@ -6,11 +6,11 @@ black.py::normalize_prefix::2693::2708,0.20851441405707477
 black.py::whitespace::1796::2023,0.17677669529663687
 black.py::normalize_string_quotes::2727::2799,0.17677669529663687
 black.py::normalize_string_prefix::2711::2724,0.16222142113076254
-black.py::is_decorator::1207::1209,0.15617376188860607
+black.py::is_decorator::1206::1209,0.15617376188860607
 black.py::is_line_short_enough::3748::3759,0.15617376188860607
 black.py::format_str::707::745,0.15617376188860607
-black.py::is_def::1233::1249,0.1543033499620919
-black.py::is_class::1217::1223,0.14586499149789456
+black.py::is_def::1232::1249,0.1543033499620919
+black.py::is_class::1216::1223,0.14586499149789456
 black.py::contains_inner_type_comments::1284::1309,0.14586499149789456
 black.py::append_comment::1375::1409,0.14586499149789456
 black.py::split_line::2288::2361,0.14586499149789456
@@ -31,7 +31,7 @@ black.py::__bool__::1456::1458,0.1270001270001905
 black.py::visit_default::1601::1629,0.1270001270001905
 black.py::preceding_leaf::2026::2041,0.1270001270001905
 black.py::visit_default::858::862,0.1270001270001905
-blib2to3/pytree.py::prev_sibling::169::179,0.1270001270001905
+blib2to3/pytree.py::prev_sibling::168::179,0.1270001270001905
 blib2to3/pytree.py::update_sibling_maps::321::329,0.1270001270001905
 blib2to3/pytree.py::__unicode__::366::372,0.1270001270001905
 black.py::maybe_decrement_after_for_loop_variable::1100::1112,0.1259881576697424
@@ -51,10 +51,10 @@ blib2to3/pytree.py::__new__::49::52,0.11785113019775793
 black.py::maybe_increment_for_loop_variable::1087::1098,0.0
 black.py::maybe_increment_lambda_arguments::1114::1125,0.0
 black.py::get_open_lsqb::1140::1142,0.0
-black.py::is_comment::1202::1204,0.0
+black.py::is_comment::1201::1204,0.0
 black.py::is_split_after_delimiter::2077::2088,0.0
 black.py::generate_comments::2191::2211,0.0
-black.py::list_comments::2233::2266,0.0
+black.py::list_comments::2232::2266,0.0
 black.py::normalize_fmt_off::2913::2917,0.0
 black.py::convert_one_fmt_off_pair::2920::2971,0.0
 black.py::is_vararg::3083::3103,0.0

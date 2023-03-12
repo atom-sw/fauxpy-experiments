@@ -1,7 +1,7 @@
 Entity,Score
 cookiecutter/hooks.py::find_hook::39::61,0.784470698758991
 cookiecutter/hooks.py::valid_hook::22::36,0.6130686006343101
-cookiecutter/utils.py::work_in::49::60,0.561151228546748
+cookiecutter/utils.py::work_in::48::60,0.561151228546748
 cookiecutter/hooks.py::run_script::64::90,0.47619047619047616
 cookiecutter/hooks.py::run_hook::114::127,0.47619047619047616
 cookiecutter/hooks.py::run_script_with_context::93::111,0.3922353493794955

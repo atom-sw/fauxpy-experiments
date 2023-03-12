@@ -1,7 +1,7 @@
 Entity,Score
-thefuck/rules/git_add.py::match::7::9,1.0
-thefuck/specific/git.py::git_support::8::32,0.4082482904638631
-thefuck/types.py::script_parts::31::39,0.3651483716701107
-thefuck/utils.py::is_app::156::166,0.3651483716701107
-thefuck/utils.py::wrapper::31::41,0.3651483716701107
+thefuck/rules/git_add.py::match::6::9,1.0
+thefuck/specific/git.py::git_support::7::32,0.4082482904638631
+thefuck/types.py::script_parts::30::39,0.3651483716701107
+thefuck/utils.py::is_app::155::166,0.3651483716701107
+thefuck/utils.py::wrapper::30::41,0.3651483716701107
 thefuck/shells/generic.py::split_command::66::70,0.0

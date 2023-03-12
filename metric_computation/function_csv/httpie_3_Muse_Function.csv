@@ -5,10 +5,10 @@ httpie/client.py::get_response::39::58,0.7105271814214601
 httpie/client.py::get_requests_kwargs::94::147,0.0
 httpie/client.py::get_requests_session::30::36,0.0
 httpie/client.py::get_default_headers::75::91,0.0
-httpie/config.py::path::30::38,0.0
+httpie/config.py::path::29::38,0.0
 httpie/config.py::save::58::70,0.0
 httpie/context.py::__init__::53::74,0.0
-httpie/context.py::config::77::84,0.0
+httpie/context.py::config::76::84,0.0
 httpie/downloads.py::__init__::149::171,0.0
 httpie/downloads.py::pre_request::173::189,0.0
 httpie/downloads.py::__init__::293::298,0.0

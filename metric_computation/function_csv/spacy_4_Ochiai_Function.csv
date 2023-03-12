@@ -16,10 +16,10 @@ spacy/lookups.py::__init__::24::31,0.0
 spacy/lookups.py::has_table::94::102,0.0
 spacy/lemmatizer.py::__call__::34::70,0.0
 spacy/lemmatizer.py::__init__::23::32,0.0
-spacy/language.py::create_tokenizer::81::101,0.0
-spacy/language.py::create_vocab::63::78,0.0
-spacy/language.py::create_lookups::49::60,0.0
-spacy/language.py::create_lemmatizer::43::46,0.0
+spacy/language.py::create_tokenizer::80::101,0.0
+spacy/language.py::create_vocab::62::78,0.0
+spacy/language.py::create_lookups::48::60,0.0
+spacy/language.py::create_lemmatizer::42::46,0.0
 spacy/language.py::make_doc::452::453,0.0
 spacy/language.py::__call__::410::438,0.0
 spacy/language.py::__init__::136::177,0.0

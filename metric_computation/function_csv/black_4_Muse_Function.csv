@@ -3,10 +3,10 @@ black.py::normalize_prefix::2693::2708,0.97438237544863
 black.py::format_str::707::745,0.9719258909026084
 black.py::append_comment::1375::1409,0.9635036581733909
 blib2to3/pytree.py::__init__::340::357,0.9628018054459561
-black.py::is_decorator::1207::1209,0.5330182846412606
-black.py::is_class::1217::1223,0.5313026446408643
+black.py::is_decorator::1206::1209,0.5330182846412606
+black.py::is_class::1216::1223,0.5313026446408643
 black.py::_maybe_empty_lines::1488::1525,0.31578701514746355
-black.py::is_def::1233::1249,0.29451502385948347
+black.py::is_def::1232::1249,0.29451502385948347
 blib2to3/pgen2/tokenize.py::generate_tokens::337::566,0.08797726862781473
 black.py::maybe_increment_for_loop_variable::1087::1098,0.0
 black.py::maybe_decrement_after_for_loop_variable::1100::1112,0.0
@@ -43,9 +43,9 @@ blib2to3/pytree.py::pre_order::266::270,-0.011931496366391455
 black.py::__str__::1441::1454,-0.013335201821261036
 black.py::is_split_after_delimiter::2077::2088,-0.014037054548695829
 black.py::mark::1024::1062,-0.01552849159449476
-black.py::list_comments::2233::2266,-0.017546318185869787
+black.py::list_comments::2232::2266,-0.017546318185869787
 black.py::split_line::2288::2361,-0.018950023640739368
-black.py::is_comment::1202::1204,-0.019932617459148077
+black.py::is_comment::1201::1204,-0.019932617459148077
 blib2to3/pgen2/parse.py::classify::161::173,-0.023687529550924208
 blib2to3/pytree.py::convert::410::426,-0.02526669818765249
 black.py::visit_default::1601::1629,-0.025968550915087284
@@ -54,7 +54,7 @@ black.py::line::1585::1599,-0.029924448106083378
 black.py::visit::842::856,-0.031483108059217786
 black.py::__bool__::1456::1458,-0.04281301637352228
 black.py::visit_default::858::862,-0.04281301637352228
-blib2to3/pytree.py::prev_sibling::169::179,-0.04281301637352228
+blib2to3/pytree.py::prev_sibling::168::179,-0.04281301637352228
 blib2to3/pytree.py::update_sibling_maps::321::329,-0.04281301637352228
 blib2to3/pytree.py::__unicode__::366::372,-0.042813016373522285
 blib2to3/pytree.py::__init__::208::232,-0.04351486910095707

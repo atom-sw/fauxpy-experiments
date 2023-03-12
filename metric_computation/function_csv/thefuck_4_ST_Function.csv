@@ -1,7 +1,5 @@
 Entity,Score
-thefuck/shells/fish.py::_get_aliases::20::28,1.0
-thefuck/utils.py::cache_decorator::260::269,0.5
-thefuck/utils.py::wrapper::263::267,0.5
-thefuck/utils.py::memoize::24::41,0.3333333333333333
-thefuck/utils.py::wrapper::29::39,0.3333333333333333
+thefuck/shells/fish.py::_get_aliases::19::28,1.0
+thefuck/utils.py::wrapper::261::267,0.5
+thefuck/utils.py::wrapper::28::39,0.3333333333333333
 thefuck/shells/fish.py::get_aliases::57::62,0.25

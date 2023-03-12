@@ -4,4 +4,4 @@ sanic/app.py::response::196::225,0.0
 sanic/app.py::url_for::798::925,0.0
 sanic/router.py::add::121::185,0.0
 sanic/router.py::_add::187::334,0.0
-sanic/router.py::find_route_by_view_name::387::400,0.0
+sanic/router.py::find_route_by_view_name::386::400,0.0

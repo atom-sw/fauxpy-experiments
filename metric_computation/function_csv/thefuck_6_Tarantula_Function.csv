@@ -1,10 +1,10 @@
 Entity,Score
-thefuck/utils.py::eager::135::136,0.8854166666666667
-thefuck/rules/git_branch_exists.py::get_new_command::15::24,0.8854166666666667
-thefuck/specific/git.py::git_support::8::32,0.5246913580246914
-thefuck/utils.py::wrapper::29::39,0.5074626865671642
-thefuck/utils.py::is_app::162::172,0.5074626865671642
-thefuck/types.py::script_parts::37::46,0.5074626865671642
+thefuck/utils.py::eager::134::136,0.8854166666666667
+thefuck/rules/git_branch_exists.py::get_new_command::13::24,0.8854166666666667
+thefuck/specific/git.py::git_support::7::32,0.5246913580246914
+thefuck/utils.py::wrapper::28::39,0.5074626865671642
+thefuck/utils.py::is_app::161::172,0.5074626865671642
+thefuck/types.py::script_parts::36::46,0.5074626865671642
 thefuck/shells/generic.py::decode_utf8::96::99,0.5074626865671642
 thefuck/shells/generic.py::encode_utf8::91::94,0.5074626865671642
 thefuck/shells/generic.py::split_command::80::89,0.5074626865671642
@@ -12,4 +12,4 @@ thefuck/types.py::__init__::16::24,0.47619047619047616
 thefuck/types.py::update::58::66,0.0
 thefuck/shells/generic.py::and_::71::72,0.0
 thefuck/shells/generic.py::quote::101::109,0.0
-thefuck/rules/git_branch_exists.py::match::8::10,0.0
+thefuck/rules/git_branch_exists.py::match::7::10,0.0

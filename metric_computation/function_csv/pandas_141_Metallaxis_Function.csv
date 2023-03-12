@@ -8,12 +8,12 @@ pandas/util/testing.py::raise_assert_detail::907::931,1.0
 pandas/util/testing.py::assert_numpy_array_equal::934::1014,1.0
 pandas/core/common.py::all_none::182::186,0.8164965809277261
 pandas/core/common.py::any_not_none::189::193,0.8164965809277261
-pandas/core/dtypes/base.py::is_dtype::232::269,0.8164965809277261
+pandas/core/dtypes/base.py::is_dtype::231::269,0.8164965809277261
 pandas/core/dtypes/inference.py::is_sequence::423::452,0.8164965809277261
 pandas/core/indexes/range.py::__new__::83::128,0.8164965809277261
-pandas/core/indexes/range.py::_simple_new::149::166,0.8164965809277261
-pandas/core/indexes/range.py::_validate_dtype::171::174,0.8164965809277261
-pandas/core/indexes/range.py::get_indexer::382::407,0.8164965809277261
+pandas/core/indexes/range.py::_simple_new::148::166,0.8164965809277261
+pandas/core/indexes/range.py::_validate_dtype::170::174,0.8164965809277261
+pandas/core/indexes/range.py::get_indexer::381::407,0.8164965809277261
 pandas/core/dtypes/common.py::ensure_python_int::181::207,0.3922322702763681
 pandas/core/dtypes/common.py::classes_and_not_datetimelike::215::223,0.3922322702763681
 pandas/core/dtypes/common.py::_is_dtype::1812::1834,0.3651483716701107
@@ -33,5 +33,5 @@ pandas/_config/config.py::_get_single_key::83::98,0.0
 pandas/core/dtypes/common.py::needs_i8_conversion::1456::1497,0.0
 pandas/core/dtypes/common.py::is_datetime64tz_dtype::528::563,0.0
 pandas/core/dtypes/common.py::is_period_dtype::597::628,0.0
-pandas/core/dtypes/dtypes.py::is_dtype::920::939,0.0
+pandas/core/dtypes/dtypes.py::is_dtype::919::939,0.0
 pandas/util/testing.py::_get_base::969::970,0.0

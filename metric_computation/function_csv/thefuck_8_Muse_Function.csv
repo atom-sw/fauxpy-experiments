@@ -1,4 +1,4 @@
 Entity,Score
-thefuck/rules/dnf_no_such_command.py::get_new_command::35::37,0.0
-thefuck/specific/sudo.py::sudo_support::6::18,0.0
+thefuck/rules/dnf_no_such_command.py::get_new_command::34::37,0.0
+thefuck/specific/sudo.py::sudo_support::5::18,0.0
 thefuck/utils.py::replace_command::154::158,0.0

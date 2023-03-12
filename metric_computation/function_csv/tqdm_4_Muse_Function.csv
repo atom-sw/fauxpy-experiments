@@ -1,12 +1,12 @@
 Entity,Score
 tqdm/_monitor.py::__init__::32::48,0.0
 tqdm/_tqdm.py::display::1283::1299,0.0
-tqdm/_tqdm.py::status_printer::230::250,0.0
-tqdm/_tqdm.py::format_meter::253::451,0.0
+tqdm/_tqdm.py::status_printer::229::250,0.0
+tqdm/_tqdm.py::format_meter::252::451,0.0
 tqdm/_tqdm.py::__new__::453::473,0.0
-tqdm/_tqdm.py::_get_free_pos::476::480,0.0
-tqdm/_tqdm.py::get_lock::557::561,0.0
+tqdm/_tqdm.py::_get_free_pos::475::480,0.0
+tqdm/_tqdm.py::get_lock::556::561,0.0
 tqdm/_tqdm.py::__init__::702::932,0.0
 tqdm/_tqdm.py::release::93::95,0.0
-tqdm/_tqdm.py::format_dict::951::963,0.0
+tqdm/_tqdm.py::format_dict::950::963,0.0
 tqdm/_utils.py::_is_utf::145::156,0.0

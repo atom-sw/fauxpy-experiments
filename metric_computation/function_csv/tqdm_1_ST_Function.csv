@@ -1,5 +1,5 @@
 Entity,Score
-tqdm/std.py::format_meter::311::509,1.0
+tqdm/std.py::format_meter::310::509,1.0
 tqdm/std.py::__repr__::1064::1065,0.5
 tqdm/std.py::display::1417::1437,0.3333333333333333
 tqdm/std.py::refresh::1289::1314,0.25

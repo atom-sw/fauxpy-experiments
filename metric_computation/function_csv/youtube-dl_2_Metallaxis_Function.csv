@@ -1,5 +1,5 @@
 Entity,Score
-youtube_dl/extractor/common.py::_xpath_ns::1507::1516,0.5
+youtube_dl/extractor/common.py::_xpath_ns::1506::1516,0.5
 youtube_dl/extractor/common.py::_parse_mpd_formats::1753::2022,0.5
 youtube_dl/extractor/common.py::is_drm_protected::1769::1770,0.5
 youtube_dl/extractor/common.py::extract_common::1778::1802,0.5

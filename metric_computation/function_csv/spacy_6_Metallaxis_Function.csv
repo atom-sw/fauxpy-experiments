@@ -8,10 +8,10 @@ spacy/language.py::__call__::1025::1043,1.0
 spacy/language.py::__init__::136::177,1.0
 spacy/language.py::add_pipe::300::348,1.0
 spacy/language.py::remove_pipe::395::407,1.0
-spacy/language.py::create_lookups::49::60,1.0
-spacy/language.py::create_vocab::63::78,1.0
-spacy/language.py::create_tokenizer::81::101,1.0
+spacy/language.py::create_lookups::48::60,1.0
+spacy/language.py::create_vocab::62::78,1.0
+spacy/language.py::create_tokenizer::80::101,1.0
 spacy/lemmatizer.py::__init__::23::32,1.0
 spacy/util.py::get_entry_points::330::340,1.0
 spacy/util.py::compile_prefix_regex::432::446,1.0
-spacy/language.py::create_lemmatizer::43::46,0.7071067811865475
+spacy/language.py::create_lemmatizer::42::46,0.7071067811865475
