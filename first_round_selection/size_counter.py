@@ -1,10 +1,11 @@
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 
 import common
+import ast_function_manager
 
-LINE_COUNT_FILE_NAME = "line_counts.json"
-CACHE_DIR_NAME = "cache_line_count"
+LINE_COUNT_FILE_NAME = "size_counts.json"
+CACHE_DIR_NAME = "cache_size_count"
 
 
 def get_non_excluded_python_file_paths(target_dir_path: Path,
@@ -46,13 +47,13 @@ def get_module_loc(module_path: Path) -> int:
     return line_counter
 
 
-def get_line_counts(benchmark_name: str,
-                    bug_number: int,
-                    target_dir: str,
-                    exclude: List[str]):
+def get_line_function_counts(benchmark_name: str,
+                             bug_number: int,
+                             target_dir: str,
+                             exclude: List[str]) -> Tuple[int, int]:
     """
     1. Counts the number of non-empty and non-comment lines.
-    2. Only counts line numbers in the target directory.
+    2. Only counts line numbers and number of functions in the target directory.
     3. Does not count excluded directories.
     """
 
@@ -63,11 +64,14 @@ def get_line_counts(benchmark_name: str,
     non_excluded_python_file_paths = get_non_excluded_python_file_paths(target_dir_path, excluded_dir_path_list)
 
     counter_line = 0
+    counter_function = 0
     for item in non_excluded_python_file_paths:
         current_loc = get_module_loc(item)
+        current_function_num = ast_function_manager.count_function_num(item)
         counter_line += current_loc
+        counter_function += current_function_num
 
-    return counter_line
+    return counter_line, counter_function
 
 
 def load_info_files():
@@ -82,7 +86,7 @@ def load_info_files():
 
 
 def main():
-    cache_manager = common.CacheManager(CACHE_DIR_NAME)
+    # cache_manager = common.CacheManager(CACHE_DIR_NAME)
     correct_test_bugs_dict = common.load_correct_test_bugs()
     info_files_dict = load_info_files()
 
@@ -94,16 +98,20 @@ def main():
             target_dir = info_files_dict[benchmark_name]["TARGET_DIR"]
             exclude = info_files_dict[benchmark_name]["EXCLUDE"]
 
-            cache_file_name_current = f"{benchmark_name}_{bug_number}"
-            line_count = cache_manager.load(cache_file_name_current)
-            if line_count is None:
-                line_count = get_line_counts(benchmark_name, bug_number, target_dir, exclude)
-                cache_manager.save(line_count, cache_file_name_current)
+            # cache_file_name_current = f"{benchmark_name}_{bug_number}"
+            # cache_obj = cache_manager.load(cache_file_name_current)
+            # if cache_obj is None:
+            #     line_count, function_count = get_line_function_counts(benchmark_name, bug_number, target_dir, exclude)
+            #     cache_manager.save((line_count, function_count), cache_file_name_current)
+            # else:
+            #     line_count, function_count = cache_obj
 
-            print(line_count)
+            line_count, function_count = get_line_function_counts(benchmark_name, bug_number, target_dir, exclude)
+            print(line_count, function_count)
 
             current_key = f"{benchmark_name}:{bug_number}"
-            line_numbers_dict[current_key] = line_count
+            line_numbers_dict[current_key] = {"LINE_COUNT": line_count,
+                                              "FUNCTION_COUNT": function_count}
 
     common.save_object_to_json(line_numbers_dict, Path(LINE_COUNT_FILE_NAME))
 
