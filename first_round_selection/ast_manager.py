@@ -343,3 +343,46 @@ class DocstringVisitor(ast.NodeVisitor):
 
     def is_docstring(self):
         return self.__is_string
+
+
+class FunctionVisitor(ast.NodeVisitor):
+    def __init__(self,
+                 lines: List[int]):
+        self._lines = lines
+        self._functions = []
+
+    def visit_FunctionDef(self, node: FunctionDef) -> Any:
+        if self._is_in_lines(node):
+            function_name = self._get_function_name(node)
+            self._functions.append(function_name)
+        self.generic_visit(node)
+
+    def visit_AsyncFunctionDef(self, node: AsyncFunctionDef) -> Any:
+        if self._is_in_lines(node):
+            function_name = self._get_function_name(node)
+            self._functions.append(function_name)
+        self.generic_visit(node)
+
+    def get_functions(self) -> List[str]:
+        return self._functions
+
+    def _is_in_lines(self, node) -> bool:
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        for line in self._lines:
+            if start_line_num <= line <= end_line_num:
+                return True
+        return False
+
+    @staticmethod
+    def _get_function_name(node):
+        start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+        return f"{node.name}::{start_line_num}::{end_line_num}"
+
+
+def get_functions_for_lines(module_content: str,
+                            lines: List[int]) -> List[str]:
+    tree = ast.parse(module_content)
+    function_visitor = FunctionVisitor(lines)
+    function_visitor.visit(tree)
+    functions = function_visitor.get_functions()
+    return functions

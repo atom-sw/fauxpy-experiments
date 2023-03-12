@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Tuple, List, Dict
 
 import common
+import ast_manager
 from ast_manager import AddModeManager, ExecutableLine
 
 CORRECT = {}
@@ -287,6 +288,17 @@ def get_content_line_numbers(buggy_content: str):
     return content_size_lines
 
 
+def _get_buggy_functions_for_line_list(module_content: str, lines: List[int]) -> List[str]:
+    buggy_functions = set()
+
+    current_functions = ast_manager.get_functions_for_lines(module_content,
+                                                            lines)
+    for item in current_functions:
+        buggy_functions.add(item)
+
+    return list(buggy_functions)
+
+
 def get_bug_ground_truth(benchmark_name: str,
                          bug_number: int):
     python_none_test_files = common.get_diff_commit(benchmark_name, bug_number)
@@ -300,24 +312,39 @@ def get_bug_ground_truth(benchmark_name: str,
         buggy_content_size = get_content_line_numbers(buggy_content)
         fixed_content = file.fixed_content
         lines, extended_lines = get_file_ground_truth(patch, buggy_content, fixed_content)
+
+        functions = _get_buggy_functions_for_line_list(buggy_content, lines)
+        extended_function = _get_buggy_functions_for_line_list(buggy_content, extended_lines)
+
         but_ground_truth.append(
             {
                 "FILE_NAME": filename,
                 "MODULE_SIZE": buggy_content_size,
                 "LINES": lines,
-                "EXTENDED_LINES": extended_lines
+                "EXTENDED_LINES": extended_lines,
+                "FUNCTIONS": functions,
+                "EXTENDED_FUNCTIONS": extended_function
             }
         )
     return but_ground_truth
 
 
-def calculate_all_line_nums(bug_patch_info):
+def count_all_line_nums(bug_patch_info):
     lines_num = 0
     for item in bug_patch_info:
         lines_num += len(item["LINES"])
         lines_num += len(item["EXTENDED_LINES"])
 
     return lines_num
+
+
+def count_all_functions(bug_patch_info):
+    function_num = 0
+    for item in bug_patch_info:
+        function_num += len(item["FUNCTIONS"])
+        function_num += len(item["EXTENDED_FUNCTIONS"])
+
+    return function_num
 
 
 def main():
@@ -336,7 +363,10 @@ def main():
 
             print(benchmark_name, bug_number)
             bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
-            all_line_nums = calculate_all_line_nums(bug_patch_info)
+            all_line_nums = count_all_line_nums(bug_patch_info)
+            all_functions = count_all_functions(bug_patch_info)
+            if all_functions == 0:
+                print("EMPTY_FUNC")
             if all_line_nums <= 0:
                 if benchmark_name not in empty_ground_truth_info_dict.keys():
                     empty_ground_truth_info_dict[benchmark_name] = []
