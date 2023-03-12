@@ -70,4 +70,5 @@ class CsvScoreItemFunctionGranularityManager:
                                                      item_function_info.get_function_range(),
                                                      item_function_info.get_function_name())
             scored_function_list.append(current_scored_function)
+            scored_function_list.sort(key=lambda x: x.get_score(), reverse=True)
         return scored_function_list
