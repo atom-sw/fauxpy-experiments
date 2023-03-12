@@ -1,8 +1,8 @@
 import math
-from typing import List, Dict
+from typing import List, Tuple
 
 import mathematics
-from entity_type import ScoredEntity, ScoredStatement, ScoredFunction
+from entity_type import ScoredEntity
 
 
 class EInspect:
@@ -19,12 +19,13 @@ class EInspect:
      average case). So, we used this one.
     """
 
-    def __init__(self, scored_entities: List[ScoredEntity],
-                 line_counts: int,
-                 bug_ground_truth: Dict):
+    def __init__(self,
+                 scored_entities: List[ScoredEntity],
+                 entity_count_in_project: int,
+                 buggy_entity_names: List[str]):
         self._scored_entities = scored_entities
-        self._line_counts = line_counts
-        self._bug_ground_truth = bug_ground_truth
+        self._entity_count_in_project = entity_count_in_project
+        self._buggy_entity_names = buggy_entity_names
 
     @classmethod
     def _e_inspect(cls, p_start: float, t_tie_size: int, tf_faulty_count: int):
@@ -84,44 +85,15 @@ class EInspect:
 
         # Fault localization technique did not find the bug.
         else:
-            num_faulty_in_tie = self._get_number_of_faulty_elements_in_ground_truth_info()
             first_tie_item_rank = len(self._scored_entities) + 1
-            tie_size = self._line_counts - len(self._scored_entities)
-            e_inspect = self._e_inspect(first_tie_item_rank, tie_size, num_faulty_in_tie)
+            tie_size = self._entity_count_in_project - len(self._scored_entities)
+            e_inspect = self._e_inspect(first_tie_item_rank, tie_size, len(self._buggy_entity_names))
             return e_inspect
 
-    def _is_bug_location(self, scored_entity):
-        if isinstance(scored_entity, ScoredStatement):
-            lines_covered_entity = [scored_entity.get_line_number()]
-        elif isinstance(scored_entity, ScoredFunction):
-            function_range = scored_entity.get_function_range()
-            lines_covered_entity = list(range(function_range[0], function_range[1] + 1))
-        else:
-            raise Exception("Should never happen!")
+    def _is_bug_location(self, scored_entity: ScoredEntity) -> bool:
+        return scored_entity.get_entity_name() in self._buggy_entity_names
 
-        scored_entity_ground_truth_line_numbers = self._get_scored_entity_ground_truth_line_numbers(
-            scored_entity.get_file_path())
-        for cov_line in lines_covered_entity:
-            if cov_line in scored_entity_ground_truth_line_numbers:
-                return True
-
-        return False
-
-    def _get_scored_entity_ground_truth_line_numbers(self, scored_entity_file_path) -> List[int]:
-        scored_entity_ground_truth_file_path_list = list(
-            filter(lambda x: x["FILE_NAME"] == scored_entity_file_path, self._bug_ground_truth))
-        assert len(scored_entity_ground_truth_file_path_list) <= 1
-
-        if len(scored_entity_ground_truth_file_path_list) > 0:
-            scored_entity_ground_truth_file_path = scored_entity_ground_truth_file_path_list[0]
-            lines = scored_entity_ground_truth_file_path["LINES"]
-            extended_lines = scored_entity_ground_truth_file_path["EXTENDED_LINES"]
-
-            return lines + extended_lines
-        else:
-            return []
-
-    def _get_tied_range(self, bug_location_score):
+    def _get_tied_range(self, bug_location_score: float) -> Tuple[int, int]:
         tied_index_list = []
         for index, item in enumerate(self._scored_entities):
             if item.get_score() == bug_location_score:
@@ -142,11 +114,3 @@ class EInspect:
             if self._is_bug_location(self._scored_entities[index]):
                 num_faulty += 1
         return num_faulty
-
-    def _get_number_of_faulty_elements_in_ground_truth_info(self):
-        number_of_faulty_elements_in_ground_truth_info = 0
-
-        for item in self._bug_ground_truth:
-            number_of_faulty_elements_in_ground_truth_info += len(item["LINES"]) + len(item["EXTENDED_LINES"])
-
-        return number_of_faulty_elements_in_ground_truth_info
