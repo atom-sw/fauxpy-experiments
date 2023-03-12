@@ -1,0 +1,12 @@
+Entity,Score
+pandas/core/dtypes/common.py::1481,1.0
+pandas/core/dtypes/common.py::1485,1.0
+pandas/core/ops/array_ops.py::274,1.0
+pandas/core/ops/array_ops.py::275,1.0
+pandas/core/ops/array_ops.py::277,1.0
+pandas/core/dtypes/common.py::1474,0.0
+pandas/core/dtypes/common.py::1610,0.0
+pandas/core/dtypes/common.py::1691,0.0
+pandas/core/dtypes/dtypes.py::87,0.0
+pandas/core/dtypes/dtypes.py::89,0.0
+pandas/core/dtypes/dtypes.py::91,0.0

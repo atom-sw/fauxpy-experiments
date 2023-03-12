@@ -1,0 +1,13 @@
+Entity,Score
+thefuck/rules/git_branch_exists.py::18,0.8164965809277261
+thefuck/rules/git_branch_exists.py::22,0.8164965809277261
+thefuck/specific/git.py::17,0.5
+thefuck/types.py::32,0.4472135954999579
+thefuck/utils.py::163,0.4472135954999579
+thefuck/utils.py::37,0.4472135954999579
+thefuck/shells/generic.py::68,0.3849001794597505
+thefuck/utils.py::166,0.3849001794597505
+thefuck/specific/git.py::13,0.3333333333333333
+thefuck/utils.py::167,0.3333333333333333
+thefuck/utils.py::162,0.0
+thefuck/utils.py::35,0.0
