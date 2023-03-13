@@ -1,0 +1,135 @@
+---
+title: "Fault localization experiments in Python"
+author: "Mohammad Rezaalipour and Carlo A. Furia"
+header-includes:
+   - \usepackage[T1]{fontenc}
+   - \usepackage[scaled=0.81]{beramono}
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    df_print: paged
+link-citations: yes
+fontsize: 10pt
+---
+
+```{r setup include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, cache=TRUE, cache.lazy=FALSE)
+```
+
+```{r render, eval=FALSE, include=FALSE}
+## Evaluate this snippet to knit this document.
+rmarkdown::render("pyfl.Rmd")
+```
+
+```{r include=FALSE}
+
+# Assertions
+library(assertthat)
+# Regex and string manipulation
+library(stringr)
+# Powerful table manipulation
+library(dplyr)
+
+## For determinism
+my.seed <- 73544204
+set.seed(my.seed)
+```
+
+```{r include=FALSE}
+
+family <- "/pyfl/"
+stored.values <- list()
+stored.values.str <- list()
+
+sanitize <- function(name)
+{
+  gsub("&", "+", name)
+}
+
+store <- function(name, value, force.string=FALSE)
+{
+   name <- sanitize(name)
+   if (force.string)
+     stored.values.str[[name]] <<- as.character(value)
+   else
+    stored.values[[name]] <<- value
+}
+
+dump.constants <- function(filename, out_dir="data", force.string=FALSE)
+{
+   require(readr)
+   fn <- file.path(out_dir, filename)
+   
+   if (force.string)
+     stored <- stored.values.str
+   else
+     stored <- stored.values
+   constants <- paste0("\\pgfkeyssetvalue{", family, names(stored), "}{", unlist(stored), "}")
+   write_lines(constants, fn)
+}
+
+
+## dump data frame `df` to file `filename` as pseudo-LaTeX table commented-out content
+dump.table <- function(df, filename, out_dir="data")
+{
+  require(readr)
+  fn <- file.path(out_dir, filename)
+  write.table(df, fn, sep=" & ", eol=" \\\\\n", dec=".", row.names=FALSE, quote=FALSE, append=FALSE)
+  write_lines(paste0("%  ", read_lines(fn)), fn)
+}
+
+dump.figure <- function(p, filename, out_dir="data", height=NA, units="mm")
+{
+  ggsave(filename, plot=p, device="pdf", path=out_dir, limitsize=FALSE, height=height, units=units)
+}
+
+dump.string <- function(s, filename, out_dir="data")
+{
+  require(readr)
+  fn <- file.path(out_dir, filename)
+  write_lines(s, fn)
+}
+```
+
+
+
+# Data input
+
+Let's start with reading the computed metrics for all projects.
+
+```{r data input, include=TRUE}
+metrics.dir <- "../metric_computation/output/"
+assertthat::assert_that(dir.exists(metrics.dir))
+
+GRANULARITIES <- factor(c("function", "statement"))
+FAMILIES <- list(sbfl=c("DStar", "Ochiai", "Tarantula"), mbfl=c("Metallaxis", "Muse"), ps=c("PS"), st=c("ST"))
+  
+datas <- data.frame()
+for (granularity in GRANULARITIES) {
+  pat <- str_c("^detailed_", granularity, "_(.*)[.]csv$")
+  infiles <- list.files(path=metrics.dir, pattern=pat, ignore.case=TRUE)
+  for (fname in infiles) {
+    technique <- str_extract(fname, regex(pat, ignore_case=TRUE), group=1)
+    family <- names(which(sapply(FAMILIES, function(x) technique %in% x)))
+    cur.data <- read.csv(file.path(metrics.dir, fname))
+    datas <- datas %>% bind_rows(cbind(granularity=granularity, family=family, technique=technique, cur.data))
+  }
+}
+
+# convert to factors relevant columns
+datas$family <- factor(datas$family)
+datas$technique <- factor(datas$technique)
+datas$project_name <- factor(datas$project_name)
+
+# show some data
+str(datas)
+```
+
+
+# Dump all constants
+
+```{r}
+dump.constants("pyfl-constants.tex")
+dump.constants("pyfl-constants-2.tex", force.string=TRUE)
+```
