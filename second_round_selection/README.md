@@ -23,8 +23,18 @@ work properly on source code that calls the function `sys.settrace()`.
 4. Due to package conflicts, or any other reasons, FauxPy may not
 be able to run on some buggy versions.
 
+We also go through the fishy results. A run is fishy if it does not have any
+record in its csv files, or all of the records in a csv file are of 
+the same score. If a fishy run is correct, we add it 
+to the [correct_fishy.csv](correct_fishy.csv) file so that we do not
+analyze them in other iterations of the second round selection.
+
 After finding those that have problems, we check them manually to see if the 
-problems can be fixed. If they cannot be fixed, we go back to 
-the first round selection and add that buggy version to the 
-manually removed bugs and run the simulation again
+problems can be fixed. If they cannot be fixed, we add them
+to the [manually_removed_bugs.csv](manually_removed_bugs.csv) file, which
+produces the [manually_removed_bugs.json](manually_removed_bugs.json) file.
+Then, we copy `manually_removed_bugs.json` to the 
+the first round selection directory and run the simulation again
 to find replacements for the ones that are removed at this phase.
+
+
