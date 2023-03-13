@@ -9,30 +9,20 @@ set -e
 
 PYTHON_V="3.7"
 BENCHMARK_NAME="keras"
-BUG_NUMBER="37"
+BUG_NUMBER="41"
 TARGET_DIR="."
 TEST_SUITE=(
-"tests/keras/engine/test_topology.py"
-"tests/keras/layers/cudnn_recurrent_test.py"
 "tests/keras/layers/merge_test.py"
-"tests/keras/layers/recurrent_test.py"
-"tests/keras/layers/wrappers_test.py"
-"tests/keras/legacy/interface_test.py"
-"tests/keras/legacy/layers_test.py"
-"tests/keras/test_sequential_model.py"
-"tests/keras/utils/vis_utils_test.py"
-"tests/test_loss_masking.py"
-"tests/test_loss_weighting.py"
-"tests/test_model_saving.py"
+"tests/keras/utils/data_utils_test.py"
 )
 EXCLUDE=(
 "env"
 "tests"
 )
 TARGET_FAILING_TESTS=(
-"tests/keras/layers/wrappers_test.py::test_Bidirectional_state_reuse"
+"tests/keras/utils/data_utils_test.py::test_generator_enqueuer_fail_threads"
 )
-FAMILY="mbfl"
+FAMILY="sbfl"
 GRANULARITY="statement"
 
 
@@ -221,12 +211,12 @@ pip install "$FAUXPY_PATH"
 
 # statement granularity
 
-echo "------- Running MBFL with statement granularity"
+echo "------- Running SBFL with statement granularity"
 python -m pytest "${TEST_SUITE[@]}"\
                  --src "$TARGET_DIR"\
                  --exclude "$EXCLUDE_LIST"\
                  --granularity "statement"\
-                 --family "mbfl"\
+                 --family "sbfl"\
                  --failing-list "$TARGET_FAILING_TESTS_LIST" || true
 
 

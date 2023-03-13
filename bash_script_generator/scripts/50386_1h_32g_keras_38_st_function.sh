@@ -9,7 +9,7 @@ set -e
 
 PYTHON_V="3.7"
 BENCHMARK_NAME="keras"
-BUG_NUMBER="44"
+BUG_NUMBER="38"
 TARGET_DIR="."
 TEST_SUITE=(
 "tests/keras/layers/cudnn_recurrent_test.py"
@@ -27,7 +27,7 @@ EXCLUDE=(
 "tests"
 )
 TARGET_FAILING_TESTS=(
-"tests/keras/layers/recurrent_test.py::test_trainability"
+"tests/keras/layers/recurrent_test.py::test_minimal_rnn_cell_layer"
 )
 FAMILY="st"
 GRANULARITY="function"

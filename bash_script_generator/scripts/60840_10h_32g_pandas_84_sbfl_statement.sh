@@ -7,27 +7,19 @@ set -e
 # Inputs for the current buggy program
 #--------------------------------------------
 
-PYTHON_V="3.7"
-BENCHMARK_NAME="keras"
-BUG_NUMBER="44"
-TARGET_DIR="."
+PYTHON_V="3.8"
+BENCHMARK_NAME="pandas"
+BUG_NUMBER="84"
+TARGET_DIR="pandas"
 TEST_SUITE=(
-"tests/keras/layers/cudnn_recurrent_test.py"
-"tests/keras/layers/merge_test.py"
-"tests/keras/layers/recurrent_test.py"
-"tests/keras/layers/wrappers_test.py"
-"tests/keras/legacy/interface_test.py"
-"tests/keras/legacy/layers_test.py"
-"tests/keras/utils/vis_utils_test.py"
-"tests/test_loss_weighting.py"
-"tests/test_model_saving.py"
+"pandas/tests/frame/test_reshape.py"
 )
 EXCLUDE=(
-"env"
-"tests"
+"pandas/tests"
 )
 TARGET_FAILING_TESTS=(
-"tests/keras/layers/recurrent_test.py::test_trainability"
+"pandas/tests/frame/test_reshape.py::TestDataFrameReshape::test_unstack_tuplename_in_multiindex"
+"pandas/tests/frame/test_reshape.py::TestDataFrameReshape::test_unstack_mixed_type_name_in_multiindex"
 )
 FAMILY="sbfl"
 GRANULARITY="statement"
