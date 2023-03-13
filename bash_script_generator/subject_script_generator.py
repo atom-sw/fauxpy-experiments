@@ -160,19 +160,19 @@ def main():
         index = 0
         save_script(statement, item, SBFL, STATEMENT, index)
         index += 1
-        save_script(function, item, SBFL, FUNCTION, index)
+        # save_script(function, item, SBFL, FUNCTION, index)
 
         statement, function = get_script(MBFL, item)
         index += 1
         save_script(statement, item, MBFL, STATEMENT, index)
         index += 1
-        save_script(function, item, MBFL, FUNCTION, index)
+        # save_script(function, item, MBFL, FUNCTION, index)
 
         statement, function = get_script(PS, item)
         index += 1
         save_script(statement, item, PS, STATEMENT, index)
         index += 1
-        save_script(function, item, PS, FUNCTION, index)
+        # save_script(function, item, PS, FUNCTION, index)
 
         _, function = get_script(ST, item)
         index += 1
