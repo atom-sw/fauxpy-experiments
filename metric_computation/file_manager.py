@@ -103,7 +103,7 @@ class Cache:
         return None
 
     @classmethod
-    def save(cls, obj: Any, file_name):
+    def save(cls, obj: Any, file_name: str):
         cache_dir_path = cls._get_cache_dir_path()
         cached_file_path = cache_dir_path / file_name
         with cached_file_path.open("wb") as file:
