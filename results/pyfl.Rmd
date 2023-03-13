@@ -1,0 +1,305 @@
+---
+title: "Fault localization experiments in Python"
+author: "Mohammad Rezaalipour and Carlo A. Furia"
+header-includes:
+   - \usepackage[T1]{fontenc}
+   - \usepackage[scaled=0.81]{beramono}
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    df_print: paged
+link-citations: yes
+fontsize: 10pt
+---
+
+```{r setup include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, cache=TRUE, cache.lazy=FALSE)
+```
+
+```{r render, eval=FALSE, include=FALSE}
+## Evaluate this snippet to knit this document.
+rmarkdown::render("pyfl.Rmd")
+```
+
+```{r include=FALSE}
+
+# Assertions
+library(assertthat)
+
+# Regex and string manipulation
+library(stringr)
+
+# Powerful table manipulation
+library(dplyr)
+library(tidyr)
+## Data reshaping documentation: https://uc-r.github.io/tidyr
+
+# Fancy, easy plots
+library(ggplot2)
+# More complicated plots
+library(GGally)
+## ggpairs extensive documentation: https://ggobi.github.io/ggally/articles/ggpairs.html
+
+# Beautiful, readable color palettes
+library(MetBrewer)
+
+# Various effect size calculations
+library(effsize)
+
+## For determinism
+my.seed <- 73544204
+set.seed(my.seed)
+
+P.PALETTE <- "Renoir"
+P.COLORS <- met.brewer(P.PALETTE, n=12)
+```
+
+```{r include=FALSE}
+
+family <- "/pyfl/"
+stored.values <- list()
+stored.values.str <- list()
+
+PAPER.DIR <- file.path("data")
+PAPER.FNAME <- "data.tex"
+
+STORED.NUMS <- list()
+STORED.STRINGS <- list()
+
+sanitize_ <- function(name)
+{
+  res <- name
+  res <- gsub("&", "+", res)
+  res <- gsub("%", "p", res)
+  res
+}
+
+# Store `value` under `key` as numeric value.
+# If `as.string` store it as string value instead.
+# Use `family/group` as a hierarchical prefixes.
+store_ <- function(key, value, group="", family=paste0("pyfl", DATASAMPLE), as.string=FALSE)
+{
+  maybe.group <- if (group == "") "" else paste0(group, "/")
+  key <- sanitize_(paste0("/", family, "/", maybe.group, key))
+  if (as.string)
+    STORED.STRINGS[[key]] <<- seqinr::stresc(as.character(value))
+  else {
+    STORED.NUMS[[key]] <<- value
+  }
+}
+
+# Store all content of table `df` as numeric or string values,
+# under keys of the form `row.ids`:`col.ids`, using `tabname` as the group name.
+#
+# If `row.ids` is NULL and `df`'s row names are unique, use them as row identifiers;
+# if `row.ids` is NULL and `df`'s row names are NOT unique, use row numbers as row identifiers.
+# Argument `col.ids` works as `row.ids` but for column names.
+#
+# If `replace.probs` is TRUE and row identifiers are unique, change 
+# row identifiers that denote lower bounds "|0.p" to "lower p0", 
+# and row identifiers that denote upper bounds "0.p|" to "upper p0".
+#
+# If `vectorize` is TRUE and `df` consists of a single column, use keys 
+# of the form `row.ids` (i.e., a single index instead of a pair of indexes).
+store.table_ <- function(df, tabname, replace.probs=FALSE, row.ids=NULL, col.ids=NULL, vectorize=TRUE)
+{
+  if (is.null(row.ids)) {
+    if (any(duplicated(rownames(df))))
+      row.ids <- 1:nrow(df)
+    else
+      row.ids <- rownames(df)
+  }
+  if (is.null(col.ids)) {
+    if (any(duplicated(colnames(df))))
+      col.ids <- 1:ncol(df)
+    else
+      col.ids <- colnames(df)
+  }
+  if (replace.probs && !any(duplicated(row.ids))) {
+    mo <- (row.ids %>% str_match("^[|]([0-9]+[.]?[0-9]*)$"))[, 2]
+    row.ids <- ifelse(is.na(mo), row.ids, paste0("lower ", 100*as.numeric(mo)))
+    mo <- (row.ids %>% str_match("^([0-9]+[.]?[0-9]*)[|]$"))[, 2]
+    row.ids <- ifelse(is.na(mo), row.ids, paste0("upper ", 100*as.numeric(mo)))
+  }
+  for (row in 1:length(row.ids)) {
+    for (col in 1:length(col.ids)) {
+      if (length(col.ids) == 1 && vectorize)
+        key <- paste0(row.ids[row])
+      else
+        key <- paste0(row.ids[row], ":", col.ids[col])
+      value <- df[row, col]
+      store_(key, value, group=tabname, as.string=!is.numeric(value))
+    }
+  }
+}
+
+# Write all numeric constants to `filename` in `out_dir`.
+# If `strings`, write all string constants instead.
+# If `reset`, empty the content of the variable store that has been dumped.
+dump.constants_ <- function(filename, out_dir="", strings=FALSE, append=FALSE, reset=FALSE)
+{
+   fn <- file.path(out_dir, filename)
+   if (strings)
+     to.store <- STORED.STRINGS
+   else
+     to.store <- STORED.NUMS
+   constants <- paste0("\\pgfkeyssetvalue{", names(to.store), "}{", unlist(to.store), "}")
+   write_lines(constants, fn, append=append)
+   if (reset) {
+     if (strings)
+       STORED.STRINGS <<- list()
+    else
+      STORED.NUMS <<- list()
+   }
+}
+
+# Write all stored constants into default file
+dump.all_ <- function(filename=PAPER.FNAME, out_dir=PAPER.DIR, append=TRUE, reset=TRUE)
+{
+  dump.constants_(filename, out_dir=out_dir, strings=FALSE, append=append)
+  dump.constants_(filename, out_dir=out_dir, strings=TRUE, append=append)
+}
+```
+
+
+
+# Data input
+
+Let's start with reading the computed metrics for all projects.
+
+```{r data input, include=TRUE}
+metrics.dir <- "../metric_computation/output/"
+assertthat::assert_that(dir.exists(metrics.dir))
+
+GRANULARITIES <- factor(c("function", "statement"))
+FAMILIES <- list(sbfl=c("DStar", "Ochiai", "Tarantula"), mbfl=c("Metallaxis", "Muse"), ps=c("PS"), st=c("ST"))
+  
+datas <- data.frame()
+for (granularity in GRANULARITIES) {
+  pat <- str_c("^detailed_", granularity, "_(.*)[.]csv$")
+  infiles <- list.files(path=metrics.dir, pattern=pat, ignore.case=TRUE)
+  for (fname in infiles) {
+    technique <- str_extract(fname, regex(pat, ignore_case=TRUE), group=1)
+    family <- names(which(sapply(FAMILIES, function(x) technique %in% x)))
+    cur.data <- read.csv(file.path(metrics.dir, fname))
+    datas <- datas %>% bind_rows(cbind(granularity=granularity, family=family, technique=technique, cur.data))
+  }
+}
+
+# convert to factors relevant columns
+datas$family <- factor(datas$family)
+datas$technique <- factor(datas$technique)
+datas$project_name <- factor(datas$project_name)
+
+# show some data
+str(datas)
+```
+
+# Pairwise comparisons
+
+Let's see an example of visual and statistical comparison of two groups of experiments for the same bugs.
+
+To make the example concrete, let's pick two groups and compare their $E_{\text{inspect}}$ scores on statement-level fault localization:
+
+   - $S$ are the experiments done with any SBFL technique
+   - $M$ are the experiments done with any MBFL technique
+
+Since there are three experiments per bug using SBFL, but only two experiments per bug using MBFL,
+we'll aggregate scores for the same bug by average.
+
+
+```{r group aggregation}
+data <- datas %>% filter(granularity == "statement") %>% filter(family == c("sbfl", "mbfl"))
+data <- data %>% group_by(family, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
+
+S <- data %>% filter(family == "sbfl")
+M <- data %>% filter(family == "mbfl")
+
+# Match the scores in each family
+joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+```
+
+Let's start with some visualization: a scatterplot with a point for each bug;
+each point has coordinates $x, y$ where $x$ is its score in SBFL and $y$ its score in MBFL.
+
+```{r scatterplot}
+p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=3) + scale_color_met_d(P.PALETTE) + theme_classic()
+
+# x = y reference line
+p <- p + geom_abline(slope=1, intercept=0)
+
+p
+```
+
+As you can see, there are a bunch of bugs for which SBFL performs very similarly to MBFL 
+(points close to the $x = y$ straight line).
+However, for several other bugs, SBFL is much better (remember that lower is better for this score).
+Looking at the colors, which denote the projects, we don't see a clear pattern based on projects.
+
+Analyzing the same data numerically, we can compute the correlation (Kendall's $\tau$) between $S$ and $M$:
+
+```{r correlation}
+corr <- cor.test(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL, method="kendall")
+corr
+```
+
+A correlation of `r corr` is not insignificant, but it is not strong either.
+
+Finally, we may also perform a statistical test (Wilcoxon's paired test)
+and compute a matching effect size (Cliff's delta).
+
+```{r tests}
+wilcox.test(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL, paired=TRUE)
+
+cliff.delta(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL)
+```
+
+These statistics, for what they're worth,
+seem to confirm that there is a noticeable difference in favor of SBFL.
+
+Finally, we may also display all $6 = 3 \times 2$ scatterplots,
+one for each pair of SBFL and MBFL techniques.
+
+```{r grid plot}
+data <- datas %>% filter(granularity == "statement") %>% filter(family == c("sbfl", "mbfl"))
+data <- data %>% group_by(family, technique, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
+
+S <- data %>% filter(family == "sbfl")
+M <- data %>% filter(family == "mbfl")
+
+# Match the scores in each family
+joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+
+p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+```
+
+The same overall pattern seems to be visible in all pairs, and hence it is a genuine characterization of the SBFL vs. MBFL comparison.
+
+Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
+
+```{r scatterplot matrix}
+data <- datas %>% filter(granularity == "statement") %>% mutate(family=factor(family, levels=c("sbfl", "st", "ps", "mbfl")))
+data <- data %>% group_by(family, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
+data <- data %>% spread(family, e_inspect)
+
+pp <- ggpairs(data, columns=3:6, lower=list(mapping=aes(color=project_name)), upper=list(continuous=wrap("cor", method="kendall"))) + theme_light()
+
+# Match the scores in each family
+joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+
+p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+```
+
+
+In upper: correlation kendall, Wilcoxon paired, Cliff's delta
+In diagonal: trank/bar plot
+Color by category instead of single project
+Do for all metrics.
+
+
+# Dump all constants
+
+```{r}
+dump.all_()
+```
