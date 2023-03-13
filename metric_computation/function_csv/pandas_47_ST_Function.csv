@@ -1,9 +1,0 @@
-Entity,Score
-pandas/core/indexing.py::_validate_read_indexer::1231::1289,1.0
-pandas/core/indexing.py::_get_listlike_indexer::1184::1229,0.5
-pandas/core/frame.py::_setitem_array::2672::2694,0.3333333333333333
-pandas/core/indexing.py::_convert_to_indexer::1113::1182,0.3333333333333333
-pandas/core/frame.py::__setitem__::2647::2663,0.25
-pandas/core/indexing.py::_convert_tuple::672::689,0.25
-pandas/core/indexing.py::_get_setitem_indexer::580::612,0.2
-pandas/core/indexing.py::__setitem__::614::623,0.16666666666666666

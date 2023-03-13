@@ -886,47 +886,6 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 34,
-          "TARGET_DIR": ".",
-          "TEST_SUITE": [
-               "tests/test_multiprocessing.py",
-               "tests/integration_tests/test_temporal_data_tasks.py",
-               "tests/integration_tests/test_vector_data_tasks.py",
-               "tests/keras/applications/imagenet_utils_test.py",
-               "tests/keras/engine/test_topology.py",
-               "tests/keras/engine/test_training.py",
-               "tests/keras/layers/convolutional_recurrent_test.py",
-               "tests/keras/layers/core_test.py",
-               "tests/keras/layers/cudnn_recurrent_test.py",
-               "tests/keras/layers/merge_test.py",
-               "tests/keras/layers/normalization_test.py",
-               "tests/keras/layers/recurrent_test.py",
-               "tests/keras/layers/wrappers_test.py",
-               "tests/keras/legacy/interface_test.py",
-               "tests/keras/legacy/layers_test.py",
-               "tests/keras/losses_test.py",
-               "tests/keras/metrics_test.py",
-               "tests/keras/optimizers_test.py",
-               "tests/keras/regularizers_test.py",
-               "tests/keras/test_callbacks.py",
-               "tests/keras/test_sequential_model.py",
-               "tests/keras/utils/data_utils_test.py",
-               "tests/keras/utils/multi_gpu_test.py",
-               "tests/test_loss_masking.py",
-               "tests/test_loss_weighting.py",
-               "tests/test_model_saving.py"
-          ],
-          "EXCLUDE": [
-               "env",
-               "tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tests/test_multiprocessing.py::test_multiprocessing_training"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "keras",
           "BUG_NUMBER": 35,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
@@ -945,19 +904,16 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 37,
+          "BUG_NUMBER": 38,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
-               "tests/keras/engine/test_topology.py",
                "tests/keras/layers/cudnn_recurrent_test.py",
                "tests/keras/layers/merge_test.py",
                "tests/keras/layers/recurrent_test.py",
                "tests/keras/layers/wrappers_test.py",
                "tests/keras/legacy/interface_test.py",
                "tests/keras/legacy/layers_test.py",
-               "tests/keras/test_sequential_model.py",
                "tests/keras/utils/vis_utils_test.py",
-               "tests/test_loss_masking.py",
                "tests/test_loss_weighting.py",
                "tests/test_model_saving.py"
           ],
@@ -966,7 +922,7 @@
                "tests"
           ],
           "TARGET_FAILING_TESTS": [
-               "tests/keras/layers/wrappers_test.py::test_Bidirectional_state_reuse"
+               "tests/keras/layers/recurrent_test.py::test_minimal_rnn_cell_layer"
           ]
      },
      {
@@ -996,25 +952,44 @@
      {
           "PYTHON_V": 3.7,
           "BENCHMARK_NAME": "keras",
-          "BUG_NUMBER": 44,
+          "BUG_NUMBER": 41,
           "TARGET_DIR": ".",
           "TEST_SUITE": [
-               "tests/keras/layers/cudnn_recurrent_test.py",
                "tests/keras/layers/merge_test.py",
-               "tests/keras/layers/recurrent_test.py",
-               "tests/keras/layers/wrappers_test.py",
-               "tests/keras/legacy/interface_test.py",
-               "tests/keras/legacy/layers_test.py",
-               "tests/keras/utils/vis_utils_test.py",
-               "tests/test_loss_weighting.py",
-               "tests/test_model_saving.py"
+               "tests/keras/utils/data_utils_test.py"
           ],
           "EXCLUDE": [
                "env",
                "tests"
           ],
           "TARGET_FAILING_TESTS": [
-               "tests/keras/layers/recurrent_test.py::test_trainability"
+               "tests/keras/utils/data_utils_test.py::test_generator_enqueuer_fail_threads"
+          ]
+     },
+     {
+          "PYTHON_V": 3.7,
+          "BENCHMARK_NAME": "keras",
+          "BUG_NUMBER": 43,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/integration_tests/test_image_data_tasks.py",
+               "tests/integration_tests/test_temporal_data_tasks.py",
+               "tests/integration_tests/test_vector_data_tasks.py",
+               "tests/keras/layers/merge_test.py",
+               "tests/keras/legacy/models_test.py",
+               "tests/keras/optimizers_test.py",
+               "tests/keras/regularizers_test.py",
+               "tests/keras/test_callbacks.py",
+               "tests/keras/test_sequential_model.py",
+               "tests/keras/utils/np_utils_test.py",
+               "tests/test_loss_weighting.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/keras/utils/np_utils_test.py::test_to_categorical"
           ]
      },
      {
@@ -1084,27 +1059,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "pandas/tests/frame/test_arithmetic.py::test_pow_with_realignment"
-          ]
-     },
-     {
-          "PYTHON_V": 3.8,
-          "BENCHMARK_NAME": "pandas",
-          "BUG_NUMBER": 47,
-          "TARGET_DIR": "pandas",
-          "TEST_SUITE": [
-               "pandas/tests/indexing/test_loc.py",
-               "pandas/tests/frame/indexing/test_indexing.py",
-               "pandas/tests/frame/test_validate.py",
-               "pandas/tests/indexing/multiindex/test_slice.py",
-               "pandas/tests/indexing/test_indexing.py",
-               "pandas/tests/io/test_stata.py"
-          ],
-          "EXCLUDE": [
-               "pandas/tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "pandas/tests/frame/indexing/test_indexing.py::TestDataFrameIndexing::test_setitem_list_missing_columns",
-               "pandas/tests/indexing/test_loc.py::TestLoc2::test_loc_setitem_missing_columns"
           ]
      },
      {
@@ -1253,6 +1207,22 @@
           ],
           "TARGET_FAILING_TESTS": [
                "pandas/tests/arrays/test_integer.py::TestCasting::test_astype_boolean"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "pandas",
+          "BUG_NUMBER": 84,
+          "TARGET_DIR": "pandas",
+          "TEST_SUITE": [
+               "pandas/tests/frame/test_reshape.py"
+          ],
+          "EXCLUDE": [
+               "pandas/tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "pandas/tests/frame/test_reshape.py::TestDataFrameReshape::test_unstack_tuplename_in_multiindex",
+               "pandas/tests/frame/test_reshape.py::TestDataFrameReshape::test_unstack_mixed_type_name_in_multiindex"
           ]
      },
      {
@@ -1824,34 +1794,6 @@
           ],
           "TARGET_FAILING_TESTS": [
                "tornado/test/websocket_test.py::WebSocketTest::test_nodelay"
-          ]
-     },
-     {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "tornado",
-          "BUG_NUMBER": 4,
-          "TARGET_DIR": "tornado",
-          "TEST_SUITE": [
-               "tornado/test/auth_test.py",
-               "tornado/test/curl_httpclient_test.py",
-               "tornado/test/gen_test.py",
-               "tornado/test/httpclient_test.py",
-               "tornado/test/httpserver_test.py",
-               "tornado/test/iostream_test.py",
-               "tornado/test/process_test.py",
-               "tornado/test/routing_test.py",
-               "tornado/test/simple_httpclient_test.py",
-               "tornado/test/testing_test.py",
-               "tornado/test/twisted_test.py",
-               "tornado/test/web_test.py",
-               "tornado/test/websocket_test.py"
-          ],
-          "EXCLUDE": [
-               "tornado/test"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tornado/test/web_test.py::StaticFileTest::test_static_with_range_neg_past_start",
-               "tornado/test/web_test.py::StaticFileTest::test_static_unsatisfiable_range_end_less_than_start"
           ]
      },
      {

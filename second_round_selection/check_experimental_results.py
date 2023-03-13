@@ -217,13 +217,17 @@ def main():
     # Step 3.1: Print unfixable timeout items.
     procedure_manager.print_unfixable_timeout_items(0)
 
-    # Step 3.2: Put their info in the removed bugs csv file.
+    # Step 3.2: If timeout out due to server problem
+    # put timeout to garbage.
+    # Delete redundant result from before.
+
+    # Step 3.3: Put their info in manually_removed_bugs.csv.
     pass
 
-    # Step 3.3: Remove their buggy version from info.csv in script generation phase.
+    # Step 3.4: Remove their buggy version from info.csv in script generation phase.
     pass
 
-    # Step 3.4: Put to garbage the results and timeouts of their 7 experiments.
+    # Step 3.5: Put to garbage the results and timeouts of their 7 experiments.
     procedure_manager.remove_bugs_of_unfixable_timeout_items(0)
 
     # Step 4.1: Print corrupted result items:
@@ -231,6 +235,7 @@ def main():
 
     # Step 4.3: Put to garbage results and timeouts
     # of those happening due to bugs in server.
+    # Delete redundant result from before.
     pass
 
     # Step: 4.2:
@@ -243,14 +248,16 @@ def main():
     pass
 
     # Step 5.1: Print fishy result items:
-    procedure_manager.print_fishy_result_items(1)
+    procedure_manager.print_fishy_result_items(0)
 
     # Step 5.2:
     # - For correct ones, add their id to correct fishy file.
     # - For fixable ones, skip for now.
     # - For those happening because of bugs in tool, take note.
     # - For unfixable ones:
-    #       * Put their info in the removed bugs csv file.
+    #       * Delete redundant results and their timeouts from before.
+    #       IF NOT REDUNDANT:
+    #       * Put their info in manually_removed_bugs.csv.
     #       * Put to garbage the results and timeouts of their 7 experiments.
     #       * Remove their bugs from info.csv in script generation phase.
     pass
@@ -262,6 +269,8 @@ def main():
     pass
 
     # Step 6.3: For unfixable ones:
+    # - Delete redundant ones from before.
+    # If not redundant:
     # - Put their info in the removed bugs csv file.
     # - Put to garbage the results and timeouts of their 7 experiments.
     # - Remove their bugs from info.csv in script generation phase.
@@ -306,17 +315,17 @@ def main():
     # Step 11.2: Save missing statement result items' ids horizontally.
     procedure_manager.save_file_missing_statement_result_items(0)
 
-    # Step 11.3: Print missing function result items (not for now).
+    # Step 11.3: Print missing function result items (only for Stack Trace).
     procedure_manager.print_missing_function_result_items(0)
 
-    # Step 11.4: Save missing function result items' ids horizontally (not for now).
+    # Step 11.4: Save missing function result items' ids horizontally (only for Stack Trace).
     procedure_manager.save_file_missing_function_result_items(0)
 
     # Step 11.5: Add them to the experiments batch.
     pass
 
     # Step 12.1: Generate manually removed json file.
-    procedure_manager.generate_manually_removed_json_file(0)
+    procedure_manager.generate_manually_removed_json_file(1)
 
     # Step 12.2: Send it to first round selection.
     pass

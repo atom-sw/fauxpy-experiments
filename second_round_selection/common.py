@@ -25,8 +25,12 @@ class GarbageManager:
         return garbage_dir_path
 
     def move_to_garbage(self, item_path: Path):
-        print("Moving to garbage ", item_path.name)
-        shutil.move(item_path, self._garbage_path)
+        try:
+            shutil.move(item_path, self._garbage_path)
+            print("Moved to garbage ", item_path.name)
+        except shutil.Error:
+            shutil.rmtree(item_path)
+            print("Deleted ", item_path.name)
 
 
 class PathManager:
