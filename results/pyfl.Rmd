@@ -26,14 +26,24 @@ rmarkdown::render("pyfl.Rmd")
 
 # Assertions
 library(assertthat)
+
 # Regex and string manipulation
 library(stringr)
+
 # Powerful table manipulation
 library(dplyr)
+library(tidyr)
+## Data reshaping documentation: https://uc-r.github.io/tidyr
+
 # Fancy, easy plots
 library(ggplot2)
+# More complicated plots
+library(GGally)
+## ggpairs extensive documentation: https://ggobi.github.io/ggally/articles/ggpairs.html
+
 # Beautiful, readable color palettes
 library(MetBrewer)
+
 # Various effect size calculations
 library(effsize)
 
@@ -261,10 +271,31 @@ M <- data %>% filter(family == "mbfl")
 # Match the scores in each family
 joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
 
-p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + facet_grid(vars(technique.SBFL), vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
 ```
 
 The same overall pattern seems to be visible in all pairs, and hence it is a genuine characterization of the SBFL vs. MBFL comparison.
+
+Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
+
+```{r scatterplot matrix}
+data <- datas %>% filter(granularity == "statement") %>% mutate(family=factor(family, levels=c("sbfl", "st", "ps", "mbfl")))
+data <- data %>% group_by(family, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
+data <- data %>% spread(family, e_inspect)
+
+pp <- ggpairs(data, columns=3:6, lower=list(mapping=aes(color=project_name)), upper=list(continuous=wrap("cor", method="kendall"))) + theme_light()
+
+# Match the scores in each family
+joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+
+p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+```
+
+
+In upper: correlation kendall, Wilcoxon paired, Cliff's delta
+In diagonal: trank/bar plot
+Color by category instead of single project
+Do for all metrics.
 
 
 # Dump all constants
