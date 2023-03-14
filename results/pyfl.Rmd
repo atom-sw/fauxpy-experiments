@@ -13,7 +13,7 @@ link-citations: yes
 fontsize: 10pt
 ---
 
-```{r setup include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo=FALSE, cache=TRUE, cache.lazy=FALSE)
 ```
 
@@ -257,11 +257,11 @@ joint.data <- S %>% inner_join(M,
 ```
 
 Let's start with some visualization: a scatterplot with a point for each bug;
-each point has coordinates $x, y$ where $x$ is its score in SBFL and $y$ its score in MBFL.
+each point has coordinates $x, y$ where $x$ is its score in MBFL and $y$ its score in SBFL.
 
 ```{r scatterplot}
 p <- ggplot(joint.data, 
-            aes(x=e_inspect.SBFL, y=e_inspect.MBFL, color=category)) + geom_point(size=3) + scale_color_met_d(C.PALETTE) + theme_classic()
+            aes(x=e_inspect.MBFL, y=e_inspect.SBFL, color=category)) + geom_point(size=3) + scale_color_met_d(C.PALETTE) + theme_classic()
 
 # x = y reference line
 p <- p + geom_abline(slope=1, intercept=0)
@@ -282,7 +282,7 @@ corr <- cor.test(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL, method="k
 corr
 ```
 
-A correlation of `r corr` is not insignificant, but it is not strong either.
+A correlation of `r corr$estimate` is not insignificant, but it is not strong either.
 
 Finally, we may also perform a statistical test (Wilcoxon's paired test)
 and compute a matching effect size (Cliff's delta).
@@ -295,31 +295,6 @@ cliff.delta(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL)
 
 These statistics, for what they're worth,
 seem to confirm that there is a noticeable difference in favor of SBFL.
-
-Finally, we may also display all $6 = 3 \times 2$ scatterplots,
-one for each pair of SBFL and MBFL techniques.
-
-```{r grid plot}
-data <- (datas 
-         %>% filter(granularity == "statement") 
-         %>% filter(family == c("sbfl", "mbfl")))
-data <- (data 
-         %>% group_by(family, technique, category, project_name, bug_number) 
-         %>% summarize(e_inspect=mean(e_inspect)))
-
-S <- data %>% filter(family == "sbfl")
-M <- data %>% filter(family == "mbfl")
-
-# Match the scores in each family
-joint.data <- S %>% inner_join(M, 
-                               by=c("category", "project_name", "bug_number"), 
-                               suffix=c(".SBFL", ".MBFL"))
-
-p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, color=category)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
-p
-```
-
-The same overall pattern seems to be visible in all pairs, and hence it is a genuine characterization of the SBFL vs. MBFL comparison.
 
 Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
 
@@ -431,12 +406,15 @@ data.time <- data.time %>% spread(family, time)
 p.time <- pairwise.comparison.plot(data.time, 
                                    columns=which(names(data.time) %in% FAMILIES),
                                    color_var="category", palette=C.PALETTE)
+p.time <- p.time + scale_x_continuous(
+  labels=scales::scientific
+  )
 p.time
 ```
 
 
 # Dump all constants
 
-```{r}
-dump.all_()
+```{r epilogue}
+# dump.all_()
 ```
