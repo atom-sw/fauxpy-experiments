@@ -406,9 +406,7 @@ data.time <- data.time %>% spread(family, time)
 p.time <- pairwise.comparison.plot(data.time, 
                                    columns=which(names(data.time) %in% FAMILIES),
                                    color_var="category", palette=C.PALETTE)
-p.time <- p.time + scale_x_continuous(
-  labels=scales::scientific
-  )
+p.time <- p.time + theme(axis.text.x=element_text(angle=90))
 p.time
 ```
 
