@@ -32,6 +32,8 @@ library(stringr)
 
 # Powerful table manipulation
 library(dplyr)
+# Disable warning when summarize groups by default
+options(dplyr.summarise.inform = FALSE)
 library(tidyr)
 ## Data reshaping documentation: https://uc-r.github.io/tidyr
 
@@ -51,8 +53,13 @@ library(effsize)
 my.seed <- 73544204
 set.seed(my.seed)
 
+# Colors for projects
 P.PALETTE <- "Renoir"
 P.COLORS <- met.brewer(P.PALETTE, n=12)
+
+# Colors for categories
+C.PALETTE <- "Archambault"
+C.COLORS <- met.brewer(C.PALETTE, n=4)
 ```
 
 ```{r include=FALSE}
@@ -196,6 +203,29 @@ datas$project_name <- factor(datas$project_name)
 str(datas)
 ```
 
+We have a total of `r length(unique(datas$project_name))` projects, which we can classify by category:
+
+   - Data science (`ds`): `spacy`, `keras`, `pandas`
+   - Developer tools (`dev`): `cookiecutter`, `black`
+   - Web tools (`web`): `sanic`, `fastapi`, `tornado`
+   - Command line tools (`cl`): `httpie`, `thefuck`, `tqdm`, `youtube-dl`
+   
+Let's add this categorization to the data.
+
+```{r categories}
+CATEGORIES <- list(ds=c("spacy", "keras", "pandas"),
+                   dev=c("cookiecutter", "black"),
+                   web=c("sanic", "fastapi", "tornado"),
+                   cl=c("httpie", "thefuck", "tqdm", "youtube-dl"))
+
+categories <- sapply(datas$project_name, 
+                     function(project)
+                       names(which(sapply(CATEGORIES,
+                                          function(categories) 
+                                            project %in% categories))))
+datas$category <- categories
+```
+
 # Pairwise comparisons
 
 Let's see an example of visual and statistical comparison of two groups of experiments for the same bugs.
@@ -210,21 +240,28 @@ we'll aggregate scores for the same bug by average.
 
 
 ```{r group aggregation}
-data <- datas %>% filter(granularity == "statement") %>% filter(family == c("sbfl", "mbfl"))
-data <- data %>% group_by(family, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
+data <- (datas 
+         %>% filter(granularity == "statement") 
+         %>% filter(family == c("sbfl", "mbfl")))
+data <- (data 
+         %>% group_by(family, category, project_name, bug_number) 
+         %>% summarize(e_inspect=mean(e_inspect)))
 
 S <- data %>% filter(family == "sbfl")
 M <- data %>% filter(family == "mbfl")
 
 # Match the scores in each family
-joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+joint.data <- S %>% inner_join(M, 
+                               by=c("category", "project_name", "bug_number"), 
+                               suffix=c(".SBFL", ".MBFL"))
 ```
 
 Let's start with some visualization: a scatterplot with a point for each bug;
 each point has coordinates $x, y$ where $x$ is its score in SBFL and $y$ its score in MBFL.
 
 ```{r scatterplot}
-p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=3) + scale_color_met_d(P.PALETTE) + theme_classic()
+p <- ggplot(joint.data, 
+            aes(x=e_inspect.SBFL, y=e_inspect.MBFL, color=category)) + geom_point(size=3) + scale_color_met_d(C.PALETTE) + theme_classic()
 
 # x = y reference line
 p <- p + geom_abline(slope=1, intercept=0)
@@ -235,7 +272,8 @@ p
 As you can see, there are a bunch of bugs for which SBFL performs very similarly to MBFL 
 (points close to the $x = y$ straight line).
 However, for several other bugs, SBFL is much better (remember that lower is better for this score).
-Looking at the colors, which denote the projects, we don't see a clear pattern based on projects.
+
+Looking at the colors, which denote the project categories, it seems data science (and possibly web frameworks) are overrepresented among the "harder" bugs on which SBFL behaves consistenly better than MBFL.
 
 Analyzing the same data numerically, we can compute the correlation (Kendall's $\tau$) between $S$ and $M$:
 
@@ -262,16 +300,23 @@ Finally, we may also display all $6 = 3 \times 2$ scatterplots,
 one for each pair of SBFL and MBFL techniques.
 
 ```{r grid plot}
-data <- datas %>% filter(granularity == "statement") %>% filter(family == c("sbfl", "mbfl"))
-data <- data %>% group_by(family, technique, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
+data <- (datas 
+         %>% filter(granularity == "statement") 
+         %>% filter(family == c("sbfl", "mbfl")))
+data <- (data 
+         %>% group_by(family, technique, category, project_name, bug_number) 
+         %>% summarize(e_inspect=mean(e_inspect)))
 
 S <- data %>% filter(family == "sbfl")
 M <- data %>% filter(family == "mbfl")
 
 # Match the scores in each family
-joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+joint.data <- S %>% inner_join(M, 
+                               by=c("category", "project_name", "bug_number"), 
+                               suffix=c(".SBFL", ".MBFL"))
 
-p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, color=category)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+p
 ```
 
 The same overall pattern seems to be visible in all pairs, and hence it is a genuine characterization of the SBFL vs. MBFL comparison.
@@ -279,23 +324,115 @@ The same overall pattern seems to be visible in all pairs, and hence it is a gen
 Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
 
 ```{r scatterplot matrix}
-data <- datas %>% filter(granularity == "statement") %>% mutate(family=factor(family, levels=c("sbfl", "st", "ps", "mbfl")))
-data <- data %>% group_by(family, project_name, bug_number) %>% summarize(e_inspect=mean(e_inspect))
-data <- data %>% spread(family, e_inspect)
+FAMILIES <- c("mbfl", "ps", "st", "sbfl")
 
-pp <- ggpairs(data, columns=3:6, lower=list(mapping=aes(color=project_name)), upper=list(continuous=wrap("cor", method="kendall"))) + theme_light()
+pairs_text_fn <- function(x, y, digits, corr.method, conf.level)
+{
+  alpha <- 1 - conf.level
+  # correlation
+  corObj <- stats::cor.test(x, y, method=corr.method, conf.level=conf.level)
+  cor_est <- as.numeric(corObj$estimate)
+  cor_txt <- formatC(cor_est, digits=digits, format="f")
+  cor_sig <- corObj$p.value < alpha
+  cor_abs <- abs(cor_est)
+  cor_stars <- ifelse(cor_abs <= 0.3, 0,
+                      ifelse(cor_abs <= 0.5, 1,
+                             ifelse(cor_abs <= 0.7, 2,
+                                    3)))
+  cor_txt <- str_c(cor_txt, strrep("*", cor_stars))
+  # Wilcoxon
+  sigObj <- wilcox.test(x, y, paired=TRUE, conf.level=conf.level)
+  sig_est <- as.numeric(sigObj$p.value)
+  sig_txt <- formatC(sig_est, digits=digits, format="f")
+  sig_sig <- sigObj$p.value < alpha
+  if (sig_sig)
+    sig_txt <- str_c(sig_txt, signif_stars(sigObj$p.value, point=NULL))
+  # Cliff's delta
+  deltaObj <- cliff.delta(x, y, conf.level=conf.level)
+  delta_est <- as.numeric(deltaObj$estimate)
+  delta_txt <- formatC(delta_est, digits=digits, format="f")
+  delta_sig <- deltaObj$magnitude
+  n_stars <- switch(as.character(delta_sig),
+                    "negligible"=0,
+                    "small"=1,
+                    "medium"=2,
+                    "large"=3)
+  delta_txt <- str_c(delta_txt, strrep("*", n_stars))
+  # add \n at the end of each statistic
+  sapply(c(cor_txt, sig_txt, delta_txt), function(s) str_c(s, "\n"))
+}
 
-# Match the scores in each family
-joint.data <- S %>% inner_join(M, by=c("project_name", "bug_number"), suffix=c(".SBFL", ".MBFL"))
+pairs.stats <- function (data, mapping, ..., 
+                         digits=2, na.rm=TRUE, 
+                         corr.method="kendall", conf.level=0.95)
+{
+    ggally_statistic(data=data, 
+                     mapping=mapping, 
+                     title=c("Corr", "p-value", "Effect"),
+                     na.rm=na.rm,
+                     justify_text="left", justify_labels="left", sep=": ",
+                     title_args=list(color="black"),
+                     text_fn=function(x, y) pairs_text_fn(x, y, 
+                                                          digits, 
+                                                          corr.method, 
+                                                          conf.level))
+}
 
-p <- ggplot(joint.data, aes(x=e_inspect.SBFL, y=e_inspect.MBFL, col=project_name)) + geom_point(size=2) + geom_abline(slope=1, intercept=0) + facet_grid(cols=vars(technique.SBFL), rows=vars(technique.MBFL)) + scale_color_met_d(P.PALETTE)
+points_abline <- function(data, mapping)
+{
+  pp <- ggplot(data=data, mapping=mapping) + geom_point()
+  pp <- pp + geom_abline(intercept=0, slope=1)
+  pp
+}
+
+pairwise.comparison.plot <- function(data, columns, 
+                                     color_var="category", palette=NULL)
+{
+  pp <- ggpairs(data, columns, 
+                legend=1,
+                lower=list(mapping=aes(color=.data[[color_var]]),
+                           continuous=wrap(points_abline)),
+                diag=list(continuous=wrap("barDiag", bins=15),
+                          mapping=aes(color=.data[[color_var]])),
+                upper=list(continuous=wrap(pairs.stats)))
+  if (!is.null(palette))
+    pp <- pp + scale_color_met_d(palette) + scale_fill_met_d(palette)
+  pp <- pp + theme_light()
+  # change theme selectively for upper cells
+  # this only works if no other theme is set in the rest of the plot
+  # pp <- add_to_ggmatrix(pp, 
+  #                       # this "casting" is needed in my version of GGally
+  #                       ggproto(ggplot2::theme_minimal()), 
+  #                       location="upper")
+  return(pp)
+}
+
+data <- (datas 
+         %>% filter(granularity == "statement") 
+         %>% mutate(family=factor(family, levels=FAMILIES)))
+data.e_inspect <- (data 
+                   %>% group_by(family, category, project_name, bug_number) 
+                   %>% summarize(e_inspect=mean(e_inspect)))
+data.e_inspect <- data.e_inspect %>% spread(family, e_inspect)
+p.e_inspect <- pairwise.comparison.plot(
+  data.e_inspect, 
+  columns=which(names(data.e_inspect) %in% FAMILIES),
+  color_var="category", palette=C.PALETTE)
+p.e_inspect
 ```
 
+Now, it's easy to compute a similar plot for other metrics.
 
-In upper: correlation kendall, Wilcoxon paired, Cliff's delta
-In diagonal: trank/bar plot
-Color by category instead of single project
-Do for all metrics.
+```{r pairwise other metrics}
+data.time <- (data 
+              %>% group_by(family, category, project_name, bug_number) 
+              %>% summarize(time=mean(experiment_time_seconds)))
+data.time <- data.time %>% spread(family, time)
+p.time <- pairwise.comparison.plot(data.time, 
+                                   columns=which(names(data.time) %in% FAMILIES),
+                                   color_var="category", palette=C.PALETTE)
+p.time
+```
 
 
 # Dump all constants
