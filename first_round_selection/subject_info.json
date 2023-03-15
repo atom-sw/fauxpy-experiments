@@ -1879,54 +1879,6 @@
           ]
      },
      {
-          "PYTHON_V": 3.7,
-          "BENCHMARK_NAME": "tornado",
-          "BUG_NUMBER": 12,
-          "TARGET_DIR": "tornado",
-          "TEST_SUITE": [
-               "tornado/test/auth_test.py"
-          ],
-          "EXCLUDE": [
-               "tornado/test"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tornado/test/auth_test.py::AuthTest::test_facebook_login"
-          ]
-     },
-     {
-          "PYTHON_V": 3.6,
-          "BENCHMARK_NAME": "tqdm",
-          "BUG_NUMBER": 1,
-          "TARGET_DIR": "tqdm",
-          "TEST_SUITE": [
-               "tqdm/tests/tests_contrib.py"
-          ],
-          "EXCLUDE": [
-               "tqdm/tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tqdm/tests/tests_contrib.py::test_enumerate"
-          ]
-     },
-     {
-          "PYTHON_V": 3.6,
-          "BENCHMARK_NAME": "tqdm",
-          "BUG_NUMBER": 2,
-          "TARGET_DIR": "tqdm",
-          "TEST_SUITE": [
-               "tqdm/tests/tests_pandas.py",
-               "tqdm/tests/tests_perf.py",
-               "tqdm/tests/tests_synchronisation.py",
-               "tqdm/tests/tests_tqdm.py"
-          ],
-          "EXCLUDE": [
-               "tqdm/tests"
-          ],
-          "TARGET_FAILING_TESTS": [
-               "tqdm/tests/tests_tqdm.py::test_format_meter"
-          ]
-     },
-     {
           "PYTHON_V": 3.6,
           "BENCHMARK_NAME": "tqdm",
           "BUG_NUMBER": 4,

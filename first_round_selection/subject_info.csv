@@ -566,12 +566,6 @@ tornado/test/util_test.py;
 tornado/test/web_test.py","tornado/test","tornado/test/asyncio_test.py::LeakTest::test_ioloop_close_leak;
 tornado/test/asyncio_test.py::LeakTest::test_asyncio_close_leak"
 10008,3.7,tornado,8,tornado,"tornado/test/websocket_test.py","tornado/test","tornado/test/websocket_test.py::WebSocketTest::test_missing_websocket_key"
-10012,3.7,tornado,12,tornado,"tornado/test/auth_test.py","tornado/test","tornado/test/auth_test.py::AuthTest::test_facebook_login"
-11001,3.6,tqdm,1,tqdm,"tqdm/tests/tests_contrib.py","tqdm/tests","tqdm/tests/tests_contrib.py::test_enumerate"
-11002,3.6,tqdm,2,tqdm,"tqdm/tests/tests_pandas.py;
-tqdm/tests/tests_perf.py;
-tqdm/tests/tests_synchronisation.py;
-tqdm/tests/tests_tqdm.py","tqdm/tests","tqdm/tests/tests_tqdm.py::test_format_meter"
 11004,3.6,tqdm,4,tqdm,"tqdm/tests/tests_pandas.py;
 tqdm/tests/tests_perf.py;
 tqdm/tests/tests_synchronisation.py;
