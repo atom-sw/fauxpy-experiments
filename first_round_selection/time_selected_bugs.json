@@ -116,12 +116,9 @@
           1,
           5,
           6,
-          8,
-          12
+          8
      ],
      "tqdm": [
-          1,
-          2,
           4,
           5,
           6,
@@ -147,8 +144,8 @@
           41,
           43
      ],
-     "NUM_BUGS": 124,
-     "TIME_ESTIMATION_HOURS": 341.06666666666666,
-     "TIME_ESTIMATION_DAYS": 14.21111111111111,
-     "TIME_ESTIMATION_WEEKS": 2.03015873015873
+     "NUM_BUGS": 121,
+     "TIME_ESTIMATION_HOURS": 339.6666666666667,
+     "TIME_ESTIMATION_DAYS": 14.152777777777779,
+     "TIME_ESTIMATION_WEEKS": 2.0218253968253967
 }
