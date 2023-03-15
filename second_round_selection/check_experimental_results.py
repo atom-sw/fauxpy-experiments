@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 
 import common
-from common import get_result_manager, ResultManager
+from common import get_result_manager
 
 MANUALLY_REMOVED_CSV_FILE_NAME = "manually_removed_bugs.csv"
 MANUALLY_REMOVED_JSON_FILE_NAME = "manually_removed_bugs.json"
