@@ -19,3 +19,6 @@ tornado,11,"MBFL +48 hrs."
 keras,34,PS +48 hrs.
 pandas,47,PS +48 hrs.
 tornado,4,MBFL +48 hrs.
+tornado,12,PS +48 hrs. - tornado/test/auth_test.py never stops.
+tqdm,1,PS +48 hrs.
+tqdm,2,SBFL and MBFL +48 hrs. - tqdm/tests/tests_perf.py never stops.
