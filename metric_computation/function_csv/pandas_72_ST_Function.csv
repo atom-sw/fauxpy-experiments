@@ -1,0 +1,7 @@
+Entity,Score
+pandas/core/internals/blocks.py::setitem::808::909,1.0
+pandas/core/internals/managers.py::apply::345::425,0.5
+pandas/core/internals/managers.py::setitem::539::540,0.3333333333333333
+pandas/core/indexing.py::setter::909::931,0.25
+pandas/core/indexing.py::_setitem_with_indexer::748::1031,0.2
+pandas/core/indexing.py::__setitem__::631::637,0.16666666666666666

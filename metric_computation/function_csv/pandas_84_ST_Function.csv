@@ -1,0 +1,5 @@
+Entity,Score
+pandas/core/indexes/multi.py::_get_level_number::1279::1304,1.0
+pandas/core/reshape/reshape.py::_unstack_multiple::312::390,0.5
+pandas/core/reshape/reshape.py::unstack::393::421,0.25
+pandas/core/frame.py::unstack::6373::6434,0.2
