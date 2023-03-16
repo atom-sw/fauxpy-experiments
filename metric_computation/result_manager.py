@@ -2,6 +2,7 @@ from typing import Dict, List, Tuple
 
 import file_manager
 import mathematics
+import our_metrcis
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, FLGranularity, MetricVal, CsvScoreItem
 from literature_metrics import EInspect
@@ -29,6 +30,7 @@ class ResultManager:
     def _compute_all_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         for item in csv_score_items:
             e_inspect, exam_score = self._compute_literature_metrics_for_csv_item(item)
+            # our_metrics = self._compute_our_metrics(item)
             metric_val = MetricVal(item.get_experiment_time_seconds(), e_inspect, exam_score)
             item.set_metric_val(metric_val)
 
@@ -142,13 +144,20 @@ class ResultManager:
 
         def at_x_percentage(top_num: int) -> float:
             percentage = (float(at_x(top_num)) / len(csv_items)) * 100
-            return percentage
+            round_percentage = round(percentage)
+            return round_percentage
 
         experiment_time_seconds_list = [x.get_metric_val().get_experiment_time() for x in csv_items]
         exam_score_list = [x.get_metric_val().get_exam_score() for x in csv_items]
 
+        average_experiment_time = mathematics.average(experiment_time_seconds_list)
+        round_average_experiment_time = round(average_experiment_time)
+
+        average_exam_score = mathematics.average(exam_score_list)
+        round_average_exam_score = round(average_exam_score, 3)
+
         technique_result = [technique_name,
-                            mathematics.average(experiment_time_seconds_list),
+                            round_average_experiment_time,
                             at_x(1),
                             at_x_percentage(1),
                             at_x(3),
@@ -157,7 +166,7 @@ class ResultManager:
                             at_x_percentage(5),
                             at_x(10),
                             at_x_percentage(10),
-                            mathematics.average(exam_score_list)]
+                            round_average_exam_score]
 
         return technique_result
 
@@ -185,12 +194,15 @@ class ResultManager:
 
         return buggy_entity_names
 
+    # def _compute_our_metrics(self, csv_score_item: CsvScoreItem):
+    #     our_metrics = our_metrcis.compute_our_metrics(csv_score_item.get_scored_entities())
+
 
 def get_result_manager():
-    result_manager_cache_file_name = "result_manager"
-    result_manager = file_manager.Cache.load(result_manager_cache_file_name)
-    if result_manager is not None:
-        return result_manager
+    # result_manager_cache_file_name = "result_manager"
+    # result_manager = file_manager.Cache.load(result_manager_cache_file_name)
+    # if result_manager is not None:
+    #     return result_manager
 
     path_manager = file_manager.PathManager()
     csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
@@ -214,6 +226,6 @@ def get_result_manager():
                                    ground_truth_info,
                                    size_counts_info)
 
-    file_manager.Cache.save(result_manager, result_manager_cache_file_name)
+    # file_manager.Cache.save(result_manager, result_manager_cache_file_name)
 
     return result_manager
