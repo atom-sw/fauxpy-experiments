@@ -13,7 +13,7 @@ class EInspectBase:
         self._buggy_entity_names = buggy_entity_names
 
     @classmethod
-    def _e_inspect(cls, p_start: float, t_tie_size: int, tf_faulty_count: int):
+    def e_inspect(cls, p_start: float, t_tie_size: int, tf_faulty_count: int):
         """
         An implementation of E_Inspect based on the paper
         "An Empirical Study of Fault Localization Families and
@@ -36,10 +36,10 @@ class EInspectBase:
 
         return p_start + sigma_result / den
 
-    def _is_bug_location(self, scored_entity: ScoredEntity) -> bool:
+    def is_bug_location(self, scored_entity: ScoredEntity) -> bool:
         return scored_entity.get_entity_name() in self._buggy_entity_names
 
-    def _get_tied_range(self, bug_location_score: float) -> Tuple[int, int]:
+    def get_tied_range(self, bug_location_score: float) -> Tuple[int, int]:
         tied_index_list = []
         for index, item in enumerate(self._scored_entities):
             if item.get_score() == bug_location_score:
@@ -54,10 +54,10 @@ class EInspectBase:
 
         return tied_index_list[0], tied_index_list[0]
 
-    def _get_number_of_faulty_elements_in_tie(self, start_index, end_index):
+    def get_number_of_faulty_elements_in_tie(self, start_index, end_index):
         num_faulty = 0
         for index in range(start_index, end_index + 1):
-            if self._is_bug_location(self._scored_entities[index]):
+            if self.is_bug_location(self._scored_entities[index]):
                 num_faulty += 1
         return num_faulty
 
@@ -86,14 +86,14 @@ class EInspect(EInspectBase):
 
         # Find the first bug location in scored entities.
         for index, scored_entity in enumerate(self._scored_entities):
-            if self._is_bug_location(scored_entity):
+            if self.is_bug_location(scored_entity):
                 bug_location_index = index
                 break
 
         # Fault localization technique found the bug.
         if bug_location_index != -1:
             bug_location_score = self._scored_entities[bug_location_index].get_score()
-            start_index, end_index = self._get_tied_range(bug_location_score)
+            start_index, end_index = self.get_tied_range(bug_location_score)
 
             # The first found bug location is not in a tie.
             if end_index - start_index == 0:
@@ -104,10 +104,10 @@ class EInspect(EInspectBase):
             # The first found bug location is in a tie.
             elif end_index - start_index > 0:
                 assert start_index <= bug_location_index <= end_index
-                num_faulty_in_tie = self._get_number_of_faulty_elements_in_tie(start_index, end_index)
+                num_faulty_in_tie = self.get_number_of_faulty_elements_in_tie(start_index, end_index)
                 first_tie_item_rank = start_index + 1
                 tie_size = end_index - start_index + 1
-                e_inspect = self._e_inspect(first_tie_item_rank, tie_size, num_faulty_in_tie)
+                e_inspect = self.e_inspect(first_tie_item_rank, tie_size, num_faulty_in_tie)
                 return e_inspect
 
             else:
@@ -117,5 +117,5 @@ class EInspect(EInspectBase):
         else:
             first_tie_item_rank = len(self._scored_entities) + 1
             tie_size = self._entity_count_in_project - len(self._scored_entities)
-            e_inspect = self._e_inspect(first_tie_item_rank, tie_size, len(self._buggy_entity_names))
+            e_inspect = self.e_inspect(first_tie_item_rank, tie_size, len(self._buggy_entity_names))
             return e_inspect
