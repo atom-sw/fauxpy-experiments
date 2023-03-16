@@ -37,6 +37,16 @@ class ScoredStatement(ScoredEntity):
     def get_line_number(self) -> int:
         return self._line_number
 
+    def get_package(self) -> str:
+        file_path_parts = self._file_path.split("/")
+        package_path = "/".join(file_path_parts[:-1])
+        return package_path
+
+    def get_module(self) -> str:
+        file_path_parts = self._file_path.split("/")
+        module_path = file_path_parts[-1]
+        return module_path
+
     def get_entity_name(self) -> str:
         return f"{self._file_path}::{self._line_number}"
 
