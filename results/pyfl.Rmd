@@ -293,6 +293,10 @@ wilcox.test(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL, paired=TRUE)
 cliff.delta(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL)
 ```
 
+Cliff's delta, in particular, measures how often the value in one set are larger than the value in the other set.
+Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 35\% of the cases.
+
+
 These statistics, for what they're worth,
 seem to confirm that there is a noticeable difference in favor of SBFL.
 
