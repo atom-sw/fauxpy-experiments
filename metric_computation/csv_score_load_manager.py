@@ -109,6 +109,10 @@ class CsvScoreItem:
     def set_scored_entities(self, scored_entities: Optional[List[ScoredEntity]]):
         self._scored_entities = scored_entities
 
+    def get_bug_key(self) -> str:
+        bug_key = f"{self.get_project_name()}:{self.get_bug_number()}"
+        return bug_key
+
 
 class CsvScoreItemLoadManager:
     def __init__(self, results_path: Path):
