@@ -5,26 +5,11 @@ import mathematics
 from entity_type import ScoredEntity
 
 
-class EInspect:
-    """
-    Computes the E_Inspect of a given scored entity list.
-    A scored entity list is a list of line numbers
-    and their scores resulting from running a fault
-    localization technique (e.g., Tarantula) on a buggy version.
-
-    This class os based on paper "An Empirical Study of Fault Localization Families
-    and Their Combinations". This ranking methods
-    seems to be more reasonable that
-    other methods (i.e., best case, worst case, and
-     average case). So, we used this one.
-    """
-
+class EInspectBase:
     def __init__(self,
                  scored_entities: List[ScoredEntity],
-                 entity_count_in_project: int,
                  buggy_entity_names: List[str]):
         self._scored_entities = scored_entities
-        self._entity_count_in_project = entity_count_in_project
         self._buggy_entity_names = buggy_entity_names
 
     @classmethod
@@ -50,6 +35,51 @@ class EInspect:
         sigma_result = mathematics.math_sigma(num, 1, t_tie_size - tf_faulty_count)
 
         return p_start + sigma_result / den
+
+    def _is_bug_location(self, scored_entity: ScoredEntity) -> bool:
+        return scored_entity.get_entity_name() in self._buggy_entity_names
+
+    def _get_tied_range(self, bug_location_score: float) -> Tuple[int, int]:
+        tied_index_list = []
+        for index, item in enumerate(self._scored_entities):
+            if item.get_score() == bug_location_score:
+                tied_index_list.append(index)
+
+        assert len(tied_index_list) != 0
+
+        if len(tied_index_list) != 1:
+            for index in range(1, len(tied_index_list)):
+                assert tied_index_list[index] == tied_index_list[index - 1] + 1
+            return tied_index_list[0], tied_index_list[-1]
+
+        return tied_index_list[0], tied_index_list[0]
+
+    def _get_number_of_faulty_elements_in_tie(self, start_index, end_index):
+        num_faulty = 0
+        for index in range(start_index, end_index + 1):
+            if self._is_bug_location(self._scored_entities[index]):
+                num_faulty += 1
+        return num_faulty
+
+
+class EInspect(EInspectBase):
+    """
+    Computes the E_Inspect of a given scored entity list.
+    A scored entity list is a list of line numbers
+    and their scores resulting from running a fault
+    localization technique (e.g., Tarantula) on a buggy version.
+
+    This class os based on paper "An Empirical Study of Fault Localization Families
+    and Their Combinations". This ranking methods
+    seems to be more reasonable that
+    other methods (i.e., best case, worst case, and
+     average case). So, we used this one.
+    """
+
+    def __init__(self, scored_entities: List[ScoredEntity], entity_count_in_project: int,
+                 buggy_entity_names: List[str]):
+        super().__init__(scored_entities, buggy_entity_names)
+        self._entity_count_in_project = entity_count_in_project
 
     def get_e_inspect(self) -> float:
         bug_location_index = -1
@@ -89,28 +119,3 @@ class EInspect:
             tie_size = self._entity_count_in_project - len(self._scored_entities)
             e_inspect = self._e_inspect(first_tie_item_rank, tie_size, len(self._buggy_entity_names))
             return e_inspect
-
-    def _is_bug_location(self, scored_entity: ScoredEntity) -> bool:
-        return scored_entity.get_entity_name() in self._buggy_entity_names
-
-    def _get_tied_range(self, bug_location_score: float) -> Tuple[int, int]:
-        tied_index_list = []
-        for index, item in enumerate(self._scored_entities):
-            if item.get_score() == bug_location_score:
-                tied_index_list.append(index)
-
-        assert len(tied_index_list) != 0
-
-        if len(tied_index_list) != 1:
-            for index in range(1, len(tied_index_list)):
-                assert tied_index_list[index] == tied_index_list[index - 1] + 1
-            return tied_index_list[0], tied_index_list[-1]
-
-        return tied_index_list[0], tied_index_list[0]
-
-    def _get_number_of_faulty_elements_in_tie(self, start_index, end_index):
-        num_faulty = 0
-        for index in range(start_index, end_index + 1):
-            if self._is_bug_location(self._scored_entities[index]):
-                num_faulty += 1
-        return num_faulty
