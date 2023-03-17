@@ -3,6 +3,7 @@ from typing import List, Dict, Tuple
 
 import mathematics
 from entity_type import ScoredStatement
+from literature_metrics import EInspectBase
 
 
 class DistanceBase:
@@ -75,6 +76,8 @@ class TechniqueBugOverallBase:
         self._distance_base = distance_base
         self._program_locations = program_locations
         self._e_inspect = e_inspect
+        self._e_inspect_base = EInspectBase(program_locations,
+                                            distance_base.get_buggy_line_names())
 
     def _get_m_of_technique_and_bug(self) -> int:
         """
@@ -97,14 +100,14 @@ class TechniqueBugOverallBase:
 
         return m_of_technique_and_bug
 
-    def _get_average_distance_tie(self,
+    def _get_average_value_of_tie(self,
                                   start_index: int,
                                   end_index: int) -> float:
-        tie_distances = []
+        tie_values = []
         for index in range(start_index, end_index + 1):
             current_program_location = self._program_locations[index]
-            current_bug_dist = self._distance_base.get_value(current_program_location)
-            tie_distances.append(current_bug_dist)
+            current_bug_value = self._distance_base.get_value(current_program_location)
+            tie_values.append(current_bug_value)
 
-        average_tie_distances = mathematics.average(tie_distances)
-        return average_tie_distances
+        average_tie_values = mathematics.average(tie_values)
+        return average_tie_values
