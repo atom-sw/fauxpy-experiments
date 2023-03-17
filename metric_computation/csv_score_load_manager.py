@@ -42,11 +42,16 @@ class MetricLiteratureVal:
 
 class MetricOurVal:
     def __init__(self,
-                 cumulative_distance: float):
+                 cumulative_distance: float,
+                 sv_comp_overall_score: float):
         self._cumulative_distance = cumulative_distance
+        self._sv_comp_overall_score = sv_comp_overall_score
 
     def get_cumulative_distance(self) -> float:
         return self._cumulative_distance
+
+    def get_sv_comp_overall_score(self) -> float:
+        return self._sv_comp_overall_score
 
 
 class CsvScoreItem:
