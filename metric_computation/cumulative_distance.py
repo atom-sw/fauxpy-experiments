@@ -1,7 +1,6 @@
 from typing import List, Dict, Tuple
 
 from entity_type import ScoredStatement
-from literature_metrics import EInspectBase
 from our_base_types import DistanceBase, TechniqueBugOverallBase
 
 
@@ -13,17 +12,14 @@ class DistanceToBug(DistanceBase):
     corresponding to b: D_b(L) = min_{L_k in b} D(L, L_k).
     """
 
-    def get_value(self, program_location: ScoredStatement):
-        return self._get_d_distance_to_bug(program_location)
-
     def __init__(self,
                  buggy_line_names: List[str],
                  buggy_module_sizes: Dict[str, int]):
         super().__init__(buggy_line_names,
                          buggy_module_sizes)
 
-    def get_buggy_line_names(self):
-        return self._buggy_line_names
+    def get_value(self, program_location: ScoredStatement):
+        return self._get_d_distance_to_bug(program_location)
 
     def _get_d_distance_to_bug(self, program_location: ScoredStatement) -> float:
         distance_to_bug_list = []
@@ -61,8 +57,6 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
         super().__init__(distance_to_bug_object,
                          program_locations,
                          e_inspect)
-        self._e_inspect_base = EInspectBase(program_locations,
-                                            distance_to_bug_object.get_buggy_line_names())
 
     def get_cumulative_distance(self) -> float:
         # M(f, b) counts from 1, not 0.
@@ -80,7 +74,7 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
                 cumulative_distance += k * self._distance_base.get_value(current_prog_location)
             else:
                 # in tie
-                distance_tie_avg = self._get_average_distance_tie(start_index, end_index)
+                distance_tie_avg = self._get_average_value_of_tie(start_index, end_index)
                 cumulative_distance += k * distance_tie_avg
 
         return cumulative_distance
