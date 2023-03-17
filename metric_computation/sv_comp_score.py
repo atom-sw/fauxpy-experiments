@@ -2,10 +2,16 @@ from typing import List, Dict
 
 from entity_type import ScoredStatement
 from literature_metrics import EInspectBase
-from our_distance import Distance
+from our_base_types import DistanceBase
 
 
-class SvCompScoreForBug(Distance):
+class SvCompScoreForBug(DistanceBase):
+    """
+    S_b(L) is defined as the "best" score with
+    respect to any of the locations
+    corresponding to b: S_b(L) = max_{L_k in b} S(L, L_k).
+    """
+
     N_for_sv_comp_score = 10
 
     def __init__(self,
@@ -14,13 +20,10 @@ class SvCompScoreForBug(Distance):
         super().__init__(buggy_line_names,
                          buggy_module_sizes)
 
-    def get_sv_comp_best_score_for_bug(self, program_location: ScoredStatement) -> float:
-        """
-        S_b(L) is defined as the "best" score with
-        respect to any of the locations
-        corresponding to b: S_b(L) = max_{L_k in b} S(L, L_k).
-        """
+    def get_value(self, program_location: ScoredStatement):
+        return self._get_sv_comp_best_score_for_bug(program_location)
 
+    def _get_sv_comp_best_score_for_bug(self, program_location: ScoredStatement) -> float:
         sv_comp_best_score_for_bug_list = []
         for item in self._buggy_line_names:
             current_score = self._get_sv_comp_score(item, program_location)
@@ -58,4 +61,3 @@ class TechniqueBugSvCompOverallScore:
 
     def get_sv_comp_overall_score(self):
         pass
-
