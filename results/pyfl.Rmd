@@ -49,9 +49,19 @@ library(MetBrewer)
 # Various effect size calculations
 library(effsize)
 
+# Bayesian inference
+library(posterior)
+library(brms)
+library(rethinking)
+
+
 ## For determinism
-my.seed <- 73544204
-set.seed(my.seed)
+MY.SEED <- 73544204
+set.seed(MY.SEED)
+# No need to thread safe RNGs
+options(future.rng.onMisuse="ignore")
+
+
 
 # Colors for projects
 P.PALETTE <- "Renoir"
@@ -469,6 +479,59 @@ p.exam <- pairwise.comparison.plot(
   )
 p.exam
 ```
+
+
+
+# Regression models
+
+Let's build a simple multivariate regression model, 
+where we predict `e_inspect` and `time` from bug and technique.
+
+First, we need a unique identifier for every bug, 
+which combines project and bug number within that project.
+
+```{r bug identifiers}
+statement <- (datas 
+              %>% filter(granularity=="statement") 
+              %>% rename(time=experiment_time_seconds))
+bugs <- str_c(statement$project_name, statement$bug_number)
+bugs <- factor(bugs)
+statement$bug <- bugs
+```
+
+Here's a basic regression model, where the only unusual aspects
+are that it's multivariate, and log-transforms the mean (since both outcome variables must be nonnegative).
+
+```{r}
+eq.m1 <- brmsformula(
+  mvbind(e_inspect, time) ~ 0 + bug + technique,
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp1.check <- get_prior(eq.m1, data=statement)
+pp1 <- pp1.check
+pp1$prior[pp1.check$class == "b"] <- "normal(4, 1.0)"
+pp1$prior[grep("^(bug)|(technique)", pp1.check$coef)] <- "normal(0, 0.5)"
+pp1$prior[grep("^sigma$", pp1.check$class)] <- "weibull(2, 1)"
+
+m1.priors <- brm(eq.m1,
+                 prior=pp1,
+                 data=statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+
+m1 <- brm(eq.m1, data=statement, prior=pp1)
+
+```
+
+```{r m1 diagnostics}
+(prior.check1 <- pp_check(m1.priors, draw_ids=1:100, resp="time") + scale_x_log10())
+```
+
 
 
 # Dump all constants
