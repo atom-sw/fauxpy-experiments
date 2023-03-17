@@ -21,7 +21,7 @@ class FLGranularity(Enum):
     Function = 1
 
 
-class MetricVal:
+class MetricLiteratureVal:
     def __init__(self,
                  experiment_time: float,
                  e_inspect: float,
@@ -38,6 +38,15 @@ class MetricVal:
 
     def get_exam_score(self) -> float:
         return self._exam_score
+
+
+class MetricOurVal:
+    def __init__(self,
+                 cumulative_distance: float):
+        self._cumulative_distance = cumulative_distance
+
+    def get_cumulative_distance(self) -> float:
+        return self._cumulative_distance
 
 
 class CsvScoreItem:
@@ -58,7 +67,8 @@ class CsvScoreItem:
         self._granularity = granularity
         self._scored_entities = scored_entities
         self._experiment_time_seconds = experiment_time_seconds
-        self._metric_val = None
+        self._metric_literature_val = None
+        self._metric_our_val = None
 
     def _pretty_representation(self):
         csv_files = [x.name for x in self._csv_paths]
@@ -94,11 +104,17 @@ class CsvScoreItem:
     def get_experiment_time_seconds(self) -> float:
         return self._experiment_time_seconds
 
-    def set_metric_val(self, metric_val: MetricVal):
-        self._metric_val = metric_val
+    def set_metric_literature_val(self, metric_literature_val: MetricLiteratureVal):
+        self._metric_literature_val = metric_literature_val
 
-    def get_metric_val(self) -> MetricVal:
-        return self._metric_val
+    def get_metric_literature_val(self) -> MetricLiteratureVal:
+        return self._metric_literature_val
+
+    def set_metric_our_val(self, metric_our_val: MetricOurVal):
+        self._metric_our_val = metric_our_val
+
+    def get_metric_our_val(self) -> MetricOurVal:
+        return self._metric_our_val
 
     def get_granularity(self) -> FLGranularity:
         return self._granularity
@@ -329,5 +345,3 @@ class CsvScoreItemLoadManager:
         time_part = content_parts[1].strip()
         num_value_time = float(time_part)
         return num_value_time
-
-
