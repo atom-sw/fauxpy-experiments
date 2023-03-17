@@ -1,9 +1,11 @@
+from abc import abstractmethod
 from typing import List, Dict, Tuple
 
+import mathematics
 from entity_type import ScoredStatement
 
 
-class Distance:
+class DistanceBase:
     """
     The distance D(L1, L2) between two program locations L1, L2.
     """
@@ -13,6 +15,11 @@ class Distance:
                  buggy_module_sizes: Dict[str, int]):
         self._buggy_line_names = buggy_line_names
         self._buggy_module_sizes = buggy_module_sizes
+
+    @abstractmethod
+    def get_value(self,
+                  program_location: ScoredStatement):
+        pass
 
     def get_buggy_line_names(self):
         return self._buggy_line_names
@@ -56,3 +63,48 @@ class Distance:
         line_number = int(name_parts[1])
 
         return package_path, module_name, line_number
+
+
+class TechniqueBugOverallBase:
+    _N_for_function_M = 10
+
+    def __init__(self,
+                 distance_base: DistanceBase,
+                 program_locations: List[ScoredStatement],
+                 e_inspect: float):
+        self._distance_base = distance_base
+        self._program_locations = program_locations
+        self._e_inspect = e_inspect
+
+    def _get_m_of_technique_and_bug(self) -> int:
+        """
+        M(f, b) is the smallest 1 <= k <= min(n, N) such
+        that D_b(L_k) = 0;
+        if D_b(L_k) != 0 for all 1 <= k <= min(n, N), then
+        M(f, b) = min(n, N).
+        """
+
+        # for min(n, N).
+        min_n_N = min(self._N_for_function_M,
+                      len(self._program_locations))
+
+        # for bug locations in a tie we round the e_inspect.
+        e_inspect_round = int(round(self._e_inspect))
+
+        # for smallest 1 <= k <= min(n, N) such that D_b(L_k) = 0.
+        m_of_technique_and_bug = min(min_n_N,
+                                     e_inspect_round)
+
+        return m_of_technique_and_bug
+
+    def _get_average_distance_tie(self,
+                                  start_index: int,
+                                  end_index: int) -> float:
+        tie_distances = []
+        for index in range(start_index, end_index + 1):
+            current_program_location = self._program_locations[index]
+            current_bug_dist = self._distance_base.get_value(current_program_location)
+            tie_distances.append(current_bug_dist)
+
+        average_tie_distances = mathematics.average(tie_distances)
+        return average_tie_distances
