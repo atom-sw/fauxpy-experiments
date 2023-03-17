@@ -2,10 +2,14 @@ from typing import Dict, List, Tuple
 
 import file_manager
 import mathematics
-import our_metrcis
+import our_metrics
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
-from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, FLGranularity, MetricLiteratureVal, \
-    CsvScoreItem, MetricOurVal
+from csv_score_load_manager import (CsvScoreItemLoadManager,
+                                    FLTechnique,
+                                    FLGranularity,
+                                    MetricLiteratureVal,
+                                    CsvScoreItem,
+                                    MetricOurVal)
 from literature_metrics import EInspect
 
 
@@ -18,7 +22,7 @@ class ResultManager:
         self._statement_csv_score_items = statement_csv_score_items
         assert any([x.get_granularity() == FLGranularity.Statement for x in self._statement_csv_score_items])
         self._function_csv_score_items = function_csv_score_items
-        # assert any([x.get_granularity() == FLGranularity.Function for x in self._function_csv_score_items])
+        assert any([x.get_granularity() == FLGranularity.Function for x in self._function_csv_score_items])
         self._ground_truth_info_dict = ground_truth_info_dict
         self._size_counts_dict = size_counts_dict
 
@@ -43,8 +47,8 @@ class ResultManager:
     def _compute_all_our_metrics_for_statement_csv_score_items(self):
         for item in self._statement_csv_score_items:
             e_inspect = item.get_metric_literature_val().get_e_inspect()
-            cumulative_distance, X = self._compute_our_metrics(item, e_inspect)
-            metric_our_val = MetricOurVal(cumulative_distance)
+            cumulative_distance, sv_comp_overall_score = self._compute_our_metrics(item, e_inspect)
+            metric_our_val = MetricOurVal(cumulative_distance, sv_comp_overall_score)
             item.set_metric_our_val(metric_our_val)
 
     def _save_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
@@ -75,7 +79,7 @@ class ResultManager:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                          csv_score_items)
 
-        overall_results_header = ["technique", "cumulative_distance"]
+        overall_results_header = ["technique", "cumulative_distance", "sv_comp_overall_score"]
         technique_overall_table = [overall_results_header]
         for technique_name, csv_items in technique_csv_items.items():
             technique_detailed_table = self._get_technique_our_detailed_results_table(csv_items)
@@ -169,14 +173,15 @@ class ResultManager:
 
     @staticmethod
     def _get_technique_our_detailed_results_table(csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "cumulative_distance"]
+        result_header = ["project_name", "bug_number", "cumulative_distance", "sv_comp_overall_score"]
         result_rows = [result_header]
         for item in csv_items:
             project_name = item.get_project_name()
             bug_number = item.get_bug_number()
             metric_val = item.get_metric_our_val()
             cumulative_distance = metric_val.get_cumulative_distance()
-            result_row = [project_name, bug_number, cumulative_distance]
+            sv_comp_overall_score = metric_val.get_sv_comp_overall_score()
+            result_row = [project_name, bug_number, cumulative_distance, sv_comp_overall_score]
             result_rows.append(result_row)
 
         return result_rows
@@ -221,14 +226,19 @@ class ResultManager:
     @staticmethod
     def _get_technique_our_overall_results_row(technique_name: str,
                                                csv_items: List[CsvScoreItem]) -> List:
-        # ["technique", "cumulative_distance"]
+        # ["technique", "cumulative_distance", "sv_comp_overall_score"]
 
         cumulative_distance_list = [x.get_metric_our_val().get_cumulative_distance() for x in csv_items]
         average_cumulative_distance = mathematics.average(cumulative_distance_list)
         # round_average_cumulative_distance = round(average_cumulative_distance)
 
+        sv_comp_overall_score_list = [x.get_metric_our_val().get_sv_comp_overall_score() for x in csv_items]
+        average_sv_comp_overall_score = mathematics.average(sv_comp_overall_score_list)
+        # round_average_sv_comp_overall_score = round(average_sv_comp_overall_score)
+
         technique_result = [technique_name,
-                            average_cumulative_distance]
+                            average_cumulative_distance,
+                            average_sv_comp_overall_score]
 
         return technique_result
 
@@ -264,11 +274,16 @@ class ResultManager:
         bug_key = csv_score_item.get_bug_key()
         ground_truth_buggy_line_names, buggy_module_sizes = self._get_ground_truth_buggy_line_names_and_module_size_dict(
             bug_key)
-        cumulative_distance, X = our_metrcis.compute_our_metrics(csv_score_item.get_scored_entities(),
-                                                                 ground_truth_buggy_line_names,
-                                                                 buggy_module_sizes,
-                                                                 e_inspect)
-        return cumulative_distance, X
+        cumulative_distance = our_metrics.get_cumulative_distance(csv_score_item.get_scored_entities(),
+                                                                  ground_truth_buggy_line_names,
+                                                                  buggy_module_sizes,
+                                                                  e_inspect)
+
+        sv_comp_overall_score = our_metrics.get_sv_comp_overall_score(csv_score_item.get_scored_entities(),
+                                                                      ground_truth_buggy_line_names,
+                                                                      buggy_module_sizes,
+                                                                      e_inspect)
+        return cumulative_distance, sv_comp_overall_score
 
 
 def get_result_manager():
