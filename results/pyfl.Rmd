@@ -33,7 +33,7 @@ library(stringr)
 # Powerful table manipulation
 library(dplyr)
 # Disable warning when summarize groups by default
-options(dplyr.summarise.inform = FALSE)
+options(dplyr.summarise.inform=FALSE)
 library(tidyr)
 ## Data reshaping documentation: https://uc-r.github.io/tidyr
 
@@ -453,6 +453,7 @@ p.time <- pairwise.comparison.plot(
 p.time <- p.time + theme(axis.text.x=element_text(angle=90))
 p.time
 ```
+
 Then, exam score.
 
 ```{r exam score, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
