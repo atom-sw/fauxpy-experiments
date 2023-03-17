@@ -3,63 +3,35 @@ from typing import List, Dict, Tuple
 import mathematics
 from entity_type import ScoredStatement
 from literature_metrics import EInspectBase
+from our_distance import Distance
 
 
-class DistanceToBug:
+class DistanceToBug(Distance):
+    """
+    The distance D_b(L) between a program location
+    and a bug b is the minimum distance between
+    L and any of the locations
+    corresponding to b: D_b(L) = min_{L_k in b} D(L, L_k).
+    """
+
     def __init__(self,
                  buggy_line_names: List[str],
                  buggy_module_sizes: Dict[str, int]):
-        self._buggy_line_names = buggy_line_names
-        self._buggy_module_sizes = buggy_module_sizes
+        super().__init__(buggy_line_names,
+                         buggy_module_sizes)
 
     def get_buggy_line_names(self):
         return self._buggy_line_names
 
     def get_d_distance_to_bug(self, program_location: ScoredStatement) -> float:
-        """
-        The distance D_b(L) between a program location
-        and a bug b is the minimum distance between
-        L and any of the locations
-        corresponding to b: D_b(L) = min_{L_k in b} D(L, L_k).
-        """
-
         distance_to_bug_list = []
         for item in self._buggy_line_names:
-            current_distance = self._get_d_distance(item, program_location)
+            current_distance = self._get_line_to_line_distance(item, program_location)
             distance_to_bug_list.append(current_distance)
 
         min_distance_to_bug = min(distance_to_bug_list)
 
         return min_distance_to_bug
-
-    def _get_d_distance(self,
-                        buggy_line_name: str,
-                        program_location: ScoredStatement) -> float:
-        """
-        The distance D(L1, L2) between two program locations L1, L2.
-        """
-
-        (buggy_package,
-         buggy_module,
-         buggy_line_number) = self._get_buggy_line_name_components(buggy_line_name)
-
-        if buggy_package != program_location.get_package():
-            return 10
-
-        if buggy_module != program_location.get_module():
-            return 5
-
-        if buggy_package == "":
-            module_path = buggy_module
-        else:
-            module_path = f"{buggy_package}/{buggy_module}"
-
-        module_size = self._buggy_module_sizes[module_path]
-        other_line_num = program_location.get_line_number()
-
-        distance_value = abs(buggy_line_number - other_line_num) / float(module_size)
-
-        return distance_value
 
     @staticmethod
     def _get_buggy_line_name_components(buggy_line_name: str) -> Tuple[str, str, int]:

@@ -2,7 +2,7 @@ from typing import List, Dict
 
 from cumulative_distance import DistanceToBug, TechniqueBugCumulativeDistance
 from entity_type import ScoredStatement
-from sv_comp_score import SvCompScoreBug, TechniqueBugSvCompOverallScore
+from sv_comp_score import SvCompScoreForBug, TechniqueBugSvCompOverallScore
 
 """
 We use ScoredStatement class as program location.
@@ -24,7 +24,7 @@ def compute_our_metrics(program_locations: List[ScoredStatement],
                                                                            e_inspect)
     cumulative_distance = technique_bug_cumulative_distance_obj.get_cumulative_distance()
 
-    sv_comp_score_bug_obj = SvCompScoreBug(buggy_line_names, buggy_module_sizes)
+    sv_comp_score_bug_obj = SvCompScoreForBug(buggy_line_names, buggy_module_sizes)
     technique_bug_sv_comp_overall_score_obj = TechniqueBugSvCompOverallScore(sv_comp_score_bug_obj,
                                                                              program_locations,
                                                                              e_inspect)

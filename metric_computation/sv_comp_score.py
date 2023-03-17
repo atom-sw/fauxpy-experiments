@@ -1,11 +1,11 @@
 from typing import List, Dict
 
-from cumulative_distance import DistanceToBug
 from entity_type import ScoredStatement
 from literature_metrics import EInspectBase
+from our_distance import Distance
 
 
-class SvCompScoreBug(DistanceToBug):
+class SvCompScoreForBug(Distance):
     N_for_sv_comp_score = 10
 
     def __init__(self,
@@ -37,7 +37,7 @@ class SvCompScoreBug(DistanceToBug):
         The score S(L, L_2) between two program locations L and L_2.
         """
 
-        d_distance = self._get_d_distance(buggy_line_name, program_location)
+        d_distance = self._get_line_to_line_distance(buggy_line_name, program_location)
 
         if d_distance == 0:
             return self.N_for_sv_comp_score
@@ -47,7 +47,7 @@ class SvCompScoreBug(DistanceToBug):
 
 class TechniqueBugSvCompOverallScore:
     def __init__(self,
-                 sv_comp_score_bug_obj: SvCompScoreBug,
+                 sv_comp_score_bug_obj: SvCompScoreForBug,
                  program_locations: List[ScoredStatement],
                  e_inspect: float):
         self._sv_comp_score_bug_obj = sv_comp_score_bug_obj
