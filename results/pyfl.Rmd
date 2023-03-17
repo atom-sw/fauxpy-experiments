@@ -180,7 +180,10 @@ metrics.dir <- "../metric_computation/output/"
 assertthat::assert_that(dir.exists(metrics.dir))
 
 GRANULARITIES <- factor(c("function", "statement"))
-FAMILIES <- list(sbfl=c("DStar", "Ochiai", "Tarantula"), mbfl=c("Metallaxis", "Muse"), ps=c("PS"), st=c("ST"))
+FAMILIES <- list(mbfl=c("Metallaxis", "Muse"), 
+                 ps=c("PS"), 
+                 st=c("ST"),
+                 sbfl=c("DStar", "Ochiai", "Tarantula"))
   
 datas <- data.frame()
 for (granularity in GRANULARITIES) {
@@ -190,7 +193,12 @@ for (granularity in GRANULARITIES) {
     technique <- str_extract(fname, regex(pat, ignore_case=TRUE), group=1)
     family <- names(which(sapply(FAMILIES, function(x) technique %in% x)))
     cur.data <- read.csv(file.path(metrics.dir, fname))
-    datas <- datas %>% bind_rows(cbind(granularity=granularity, family=family, technique=technique, cur.data))
+    datas <- datas %>% bind_rows(cbind(
+      granularity=granularity, 
+      family=family, 
+      technique=technique, 
+      cur.data
+      ))
   }
 }
 
@@ -218,6 +226,7 @@ CATEGORIES <- list(ds=c("spacy", "keras", "pandas"),
                    web=c("sanic", "fastapi", "tornado"),
                    cl=c("httpie", "thefuck", "tqdm", "youtube-dl"))
 
+# assign category to each datapoint according to its project
 categories <- sapply(datas$project_name, 
                      function(project)
                        names(which(sapply(CATEGORIES,
@@ -235,33 +244,41 @@ To make the example concrete, let's pick two groups and compare their $E_{\text{
    - $S$ are the experiments done with any SBFL technique
    - $M$ are the experiments done with any MBFL technique
 
-Since there are three experiments per bug using SBFL, but only two experiments per bug using MBFL,
+Since there are three experiments per bug using SBFL, 
+but only two experiments per bug using MBFL,
 we'll aggregate scores for the same bug by average.
 
 
 ```{r group aggregation}
-data <- (datas 
-         %>% filter(granularity == "statement") 
-         %>% filter(family == c("sbfl", "mbfl")))
-data <- (data 
-         %>% group_by(family, category, project_name, bug_number) 
-         %>% summarize(e_inspect=mean(e_inspect)))
+statement.by.family <- (datas 
+                        %>% filter(granularity == "statement")
+                        # force order of families as in names(FAMILIES)
+                        %>% mutate(family=factor(family, levels=names(FAMILIES))))
+statement.by.family <- (statement.by.family 
+                        %>% group_by(family, category, project_name, bug_number) 
+                        %>% summarize(
+                          e_inspect=mean(e_inspect),
+                          time=mean(experiment_time_seconds),
+                          exam=mean(exam_score)
+                        ))
 
-S <- data %>% filter(family == "sbfl")
-M <- data %>% filter(family == "mbfl")
+# one column per family with its e_inspect score
+statement.by.family.e_inspect <- (statement.by.family 
+                                  # remove other metrics
+                                  %>% select(-time, -exam)
+                                  %>% spread(family, e_inspect))
 
-# Match the scores in each family
-joint.data <- S %>% inner_join(M, 
-                               by=c("category", "project_name", "bug_number"), 
-                               suffix=c(".SBFL", ".MBFL"))
+S <- statement.by.family.e_inspect$sbfl 
+M <- statement.by.family.e_inspect$mbfl
 ```
 
 Let's start with some visualization: a scatterplot with a point for each bug;
 each point has coordinates $x, y$ where $x$ is its score in MBFL and $y$ its score in SBFL.
 
 ```{r scatterplot}
-p <- ggplot(joint.data, 
-            aes(x=e_inspect.MBFL, y=e_inspect.SBFL, color=category)) + geom_point(size=3) + scale_color_met_d(C.PALETTE) + theme_classic()
+p <- ggplot(statement.by.family.e_inspect, 
+            aes(x=mbfl, y=sbfl, color=category)) + geom_point(size=3)
+p <- p + scale_color_met_d(C.PALETTE) + theme_classic()
 
 # x = y reference line
 p <- p + geom_abline(slope=1, intercept=0)
@@ -269,7 +286,8 @@ p <- p + geom_abline(slope=1, intercept=0)
 p
 ```
 
-As you can see, there are a bunch of bugs for which SBFL performs very similarly to MBFL 
+As you can see, 
+there are a bunch of bugs for which SBFL performs very similarly to MBFL 
 (points close to the $x = y$ straight line).
 However, for several other bugs, SBFL is much better (remember that lower is better for this score).
 
@@ -278,7 +296,7 @@ Looking at the colors, which denote the project categories, it seems data scienc
 Analyzing the same data numerically, we can compute the correlation (Kendall's $\tau$) between $S$ and $M$:
 
 ```{r correlation}
-corr <- cor.test(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL, method="kendall")
+corr <- cor.test(S, M, method="kendall")
 corr
 ```
 
@@ -288,13 +306,13 @@ Finally, we may also perform a statistical test (Wilcoxon's paired test)
 and compute a matching effect size (Cliff's delta).
 
 ```{r tests}
-wilcox.test(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL, paired=TRUE)
+wilcox.test(S, M, paired=TRUE)
 
-cliff.delta(joint.data$e_inspect.SBFL, joint.data$e_inspect.MBFL)
+cliff.delta(S, M)
 ```
 
 Cliff's delta, in particular, measures how often the value in one set are larger than the value in the other set.
-Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 35\% of the cases.
+Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 40\% of the cases.
 
 
 These statistics, for what they're worth,
@@ -302,9 +320,7 @@ seem to confirm that there is a noticeable difference in favor of SBFL.
 
 Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
 
-```{r scatterplot matrix}
-FAMILIES <- c("mbfl", "ps", "st", "sbfl")
-
+```{r scatterplot matrix, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
 pairs_text_fn <- function(x, y, digits, corr.method, conf.level)
 {
   alpha <- 1 - conf.level
@@ -386,32 +402,45 @@ pairwise.comparison.plot <- function(data, columns,
   return(pp)
 }
 
-data <- (datas 
-         %>% filter(granularity == "statement") 
-         %>% mutate(family=factor(family, levels=FAMILIES)))
-data.e_inspect <- (data 
-                   %>% group_by(family, category, project_name, bug_number) 
-                   %>% summarize(e_inspect=mean(e_inspect)))
-data.e_inspect <- data.e_inspect %>% spread(family, e_inspect)
 p.e_inspect <- pairwise.comparison.plot(
-  data.e_inspect, 
-  columns=which(names(data.e_inspect) %in% FAMILIES),
+  statement.by.family.e_inspect, 
+  columns=which(names(statement.by.family.e_inspect) %in% names(FAMILIES)),
   color_var="category", palette=C.PALETTE)
 p.e_inspect
 ```
 
 Now, it's easy to compute a similar plot for other metrics.
+First, running time.
 
-```{r pairwise other metrics}
-data.time <- (data 
-              %>% group_by(family, category, project_name, bug_number) 
-              %>% summarize(time=mean(experiment_time_seconds)))
-data.time <- data.time %>% spread(family, time)
-p.time <- pairwise.comparison.plot(data.time, 
-                                   columns=which(names(data.time) %in% FAMILIES),
-                                   color_var="category", palette=C.PALETTE)
+```{r time, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+
+# one column per family with its time
+statement.by.family.time <- (statement.by.family 
+                             # remove other metrics
+                             %>% select(-e_inspect, -exam)
+                             %>% spread(family, time))
+p.time <- pairwise.comparison.plot(
+  statement.by.family.time, 
+  columns=which(names(statement.by.family.time) %in% names(FAMILIES)),
+                color_var="category", palette=C.PALETTE
+  )
 p.time <- p.time + theme(axis.text.x=element_text(angle=90))
 p.time
+```
+Then, exam score.
+
+```{r exam score, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+# one column per family with its time
+statement.by.family.exam <- (statement.by.family 
+                             # remove other metrics
+                             %>% select(-e_inspect, -time)
+                             %>% spread(family, exam))
+p.exam <- pairwise.comparison.plot(
+  statement.by.family.exam, 
+  columns=which(names(statement.by.family.exam) %in% names(FAMILIES)),
+                color_var="category", palette=C.PALETTE
+  )
+p.exam
 ```
 
 
