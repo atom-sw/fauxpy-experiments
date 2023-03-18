@@ -92,8 +92,14 @@ class CsvScoreItem:
     def __repr__(self):
         return self._pretty_representation()
 
+    def set_csv_paths(self, val):
+        self._csv_paths = val
+
     def get_script_id(self) -> int:
         return self._script_id
+
+    def set_script_id(self, val):
+        self._script_id = val
 
     def get_technique(self):
         return self._localization_technique
@@ -109,6 +115,9 @@ class CsvScoreItem:
 
     def get_experiment_time_seconds(self) -> float:
         return self._experiment_time_seconds
+
+    def set_experiment_time_seconds(self, val):
+        self._experiment_time_seconds = val
 
     def set_metric_literature_val(self, metric_literature_val: MetricLiteratureVal):
         self._metric_literature_val = metric_literature_val
@@ -134,6 +143,8 @@ class CsvScoreItem:
     def get_bug_key(self) -> str:
         bug_key = f"{self.get_project_name()}:{self.get_bug_number()}"
         return bug_key
+
+
 
 
 class CsvScoreItemLoadManager:
