@@ -1,6 +1,5 @@
 from typing import Dict, List, Tuple
 
-import file_manager
 import mathematics
 import our_metrics
 from csv_score_load_manager import (FLTechnique,
@@ -13,33 +12,33 @@ from literature_metrics import EInspect
 
 class ResultManager:
     def __init__(self,
-                 statement_csv_score_items: List[CsvScoreItem],
-                 function_csv_score_items: List[CsvScoreItem],
-                 module_csv_score_items: List[CsvScoreItem],
+                 csv_score_items: List[CsvScoreItem],
                  ground_truth_info_dict: Dict,
                  size_counts_dict: Dict):
-        self._statement_csv_score_items = statement_csv_score_items
-        assert any([x.get_granularity() == FLGranularity.Statement for x in self._statement_csv_score_items])
-        self._function_csv_score_items = function_csv_score_items
-        assert any([x.get_granularity() == FLGranularity.Function for x in self._function_csv_score_items])
-        self._module_csv_score_items = module_csv_score_items
-        assert any([x.get_granularity() == FLGranularity.Module for x in self._module_csv_score_items])
+        self.csv_score_items = csv_score_items
+        assert (any([x.get_granularity() == FLGranularity.Statement for x in self.csv_score_items]) or
+                any([x.get_granularity() == FLGranularity.Function for x in self.csv_score_items]) or
+                any([x.get_granularity() == FLGranularity.Module for x in self.csv_score_items]))
         self._ground_truth_info_dict = ground_truth_info_dict
         self._size_counts_dict = size_counts_dict
 
-    def perform(self):
-        self._compute_all_literature_metrics_for(self._statement_csv_score_items)
-        self._save_all_literature_metrics_for(self._statement_csv_score_items)
-        self._compute_all_literature_metrics_for(self._function_csv_score_items)
-        self._save_all_literature_metrics_for(self._function_csv_score_items)
-        self._compute_all_literature_metrics_for(self._module_csv_score_items)
-        self._save_all_literature_metrics_for(self._module_csv_score_items)
+    def compute_literature_metrics(self):
+        self._compute_all_literature_metrics_for(self.csv_score_items)
+        detailed, overall = self._create_all_literature_metrics_for(self.csv_score_items)
+        return detailed, overall
 
+    def compute_our_metrics(self):
         # We compute our metrics only for statement granularity.
+        assert any([x.get_granularity() == FLGranularity.Statement for x in self.csv_score_items])
+
         # Our metrics must be computed after literature
         # metrics because we need e_inspect values for our metrics.
+        assert any([x.get_metric_literature_val() is not None for x in self.csv_score_items])
+
         self._compute_all_our_metrics_for_statement_csv_score_items()
-        self._save_all_our_metrics_for_statement_csv_score_items()
+        detailed, overall = self._create_all_our_metrics_for_statement_csv_score_items()
+
+        return detailed, overall
 
     def _compute_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         for item in csv_score_items:
@@ -48,13 +47,13 @@ class ResultManager:
             item.set_metric_literature_val(metric_literature_val)
 
     def _compute_all_our_metrics_for_statement_csv_score_items(self):
-        for item in self._statement_csv_score_items:
+        for item in self.csv_score_items:
             e_inspect = item.get_metric_literature_val().get_e_inspect()
             cumulative_distance, sv_comp_overall_score = self._compute_our_metrics(item, e_inspect)
             metric_our_val = MetricOurVal(cumulative_distance, sv_comp_overall_score)
             item.set_metric_our_val(metric_our_val)
 
-    def _save_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
+    def _create_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         technique_csv_items = {}
         for item in FLTechnique:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
@@ -63,20 +62,18 @@ class ResultManager:
         overall_results_header = ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10",
                                   "@10%", "exam_score"]
         technique_overall_table = [overall_results_header]
+        technique_detailed_table_dict = {}
         for technique_name, csv_items in technique_csv_items.items():
             technique_detailed_table = self._get_technique_literature_detailed_results_table(csv_items)
-            technique_detailed_file_name = f"literature_detailed_{csv_score_items[0].get_granularity().name}_{technique_name}.csv"
-            file_manager.save_csv_to_output_dir(technique_detailed_table,
-                                                technique_detailed_file_name)
+            technique_detailed_table_dict[technique_name] = technique_detailed_table
 
             technique_overall_row = self._get_technique_literature_overall_results_row(technique_name, csv_items)
             technique_overall_table.append(technique_overall_row)
 
-        technique_statement_overall_file_name = f"literature_overall_{csv_score_items[0].get_granularity().name}.csv"
-        file_manager.save_csv_to_output_dir(technique_overall_table, technique_statement_overall_file_name)
+        return technique_detailed_table_dict, technique_overall_table
 
-    def _save_all_our_metrics_for_statement_csv_score_items(self):
-        csv_score_items = self._statement_csv_score_items
+    def _create_all_our_metrics_for_statement_csv_score_items(self):
+        csv_score_items = self.csv_score_items
         technique_csv_items = {}
         for item in FLTechnique:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
@@ -84,17 +81,15 @@ class ResultManager:
 
         overall_results_header = ["technique", "cumulative_distance", "sv_comp_overall_score"]
         technique_overall_table = [overall_results_header]
+        technique_detailed_table_dict = {}
         for technique_name, csv_items in technique_csv_items.items():
             technique_detailed_table = self._get_technique_our_detailed_results_table(csv_items)
-            technique_detailed_file_name = f"our_detailed_{csv_score_items[0].get_granularity().name}_{technique_name}.csv"
-            file_manager.save_csv_to_output_dir(technique_detailed_table,
-                                                technique_detailed_file_name)
+            technique_detailed_table_dict[technique_name] = technique_detailed_table
 
             technique_overall_row = self._get_technique_our_overall_results_row(technique_name, csv_items)
             technique_overall_table.append(technique_overall_row)
 
-        technique_statement_overall_file_name = f"our_overall_{csv_score_items[0].get_granularity().name}.csv"
-        file_manager.save_csv_to_output_dir(technique_overall_table, technique_statement_overall_file_name)
+        return technique_detailed_table_dict, technique_overall_table
 
     def _compute_e_inspect_for_csv_score_item(self, csv_score_item: CsvScoreItem) -> float:
         bug_key = csv_score_item.get_bug_key()
@@ -307,3 +302,5 @@ class ResultManager:
                                                                       buggy_module_sizes,
                                                                       e_inspect)
         return cumulative_distance, sv_comp_overall_score
+
+
