@@ -1,8 +1,0 @@
-Entity,Score
-fastapi/dependencies/utils.py::request_body_to_args::617::685,3.0
-fastapi/applications.py::__call__::136::142,0.0
-fastapi/dependencies/utils.py::solve_dependencies::433::566,0.0
-fastapi/dependencies/utils.py::request_params_to_args::569::614,0.0
-fastapi/encoders.py::jsonable_encoder::29::156,0.0
-fastapi/exceptions.py::__init__::24::29,0.0
-fastapi/routing.py::app::100::150,0.0

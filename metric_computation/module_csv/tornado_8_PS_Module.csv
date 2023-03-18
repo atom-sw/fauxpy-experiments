@@ -1,7 +1,0 @@
-Entity,Score
-tornado/websocket.py,1.0
-tornado/httputil.py,0.8264462809917354
-tornado/http1connection.py,0.7513148009015777
-tornado/iostream.py,0.5644739300537771
-tornado/simple_httpclient.py,0.5131581182307065
-tornado/httpclient.py,0.4665073802097331

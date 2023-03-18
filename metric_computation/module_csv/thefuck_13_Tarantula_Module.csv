@@ -1,6 +1,0 @@
-Entity,Score
-thefuck/utils.py,1.0
-thefuck/types.py,1.0
-thefuck/shells/generic.py,1.0
-thefuck/rules/git_branch_exists.py,1.0
-thefuck/specific/git.py,0.5633802816901408

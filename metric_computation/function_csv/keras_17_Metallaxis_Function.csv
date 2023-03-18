@@ -1,7 +1,0 @@
-Entity,Score
-keras/backend/tensorflow_backend.py::get_session::156::211,1.0
-keras/backend/tensorflow_backend.py::one_hot::2344::2356,1.0
-keras/backend/tensorflow_backend.py::variable::363::413,1.0
-keras/metrics.py::categorical_accuracy::30::33,1.0
-keras/metrics.py::sparse_categorical_accuracy::36::39,1.0
-keras/backend/tensorflow_backend.py::to_dense::334::357,0.2886751345948129

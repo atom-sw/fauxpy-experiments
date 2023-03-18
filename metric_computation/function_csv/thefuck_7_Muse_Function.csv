@@ -1,7 +1,0 @@
-Entity,Score
-thefuck/shells/generic.py::encode_utf8::91::94,0.0
-thefuck/shells/generic.py::decode_utf8::96::99,0.0
-thefuck/types.py::script_parts::36::46,0.0
-thefuck/utils.py::is_app::161::172,0.0
-thefuck/utils.py::_for_app::177::181,0.0
-thefuck/utils.py::wrapper::28::39,0.0

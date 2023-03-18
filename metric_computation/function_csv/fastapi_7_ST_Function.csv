@@ -1,3 +1,0 @@
-Entity,Score
-fastapi/exception_handlers.py::request_validation_exception_handler::18::23,1.0
-fastapi/applications.py::__call__::136::142,0.5

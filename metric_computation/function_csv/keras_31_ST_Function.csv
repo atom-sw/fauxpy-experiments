@@ -1,4 +1,0 @@
-Entity,Score
-keras/backend/tensorflow_backend.py::ctc_label_dense_to_sparse::3891::3925,1.0
-keras/backend/tensorflow_backend.py::range_less_than::3905::3907,1.0
-keras/backend/tensorflow_backend.py::ctc_batch_cost::3928::3953,0.5

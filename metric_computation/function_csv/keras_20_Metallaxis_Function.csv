@@ -1,4 +1,0 @@
-Entity,Score
-keras/backend/tensorflow_backend.py::_make_callable::2559::2604,0.018508999875628776
-keras/backend/tensorflow_backend.py::_call::2606::2647,0.015058465048420854
-keras/backend/tensorflow_backend.py::function::2685::2705,0.0

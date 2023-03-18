@@ -1,6 +1,0 @@
-Entity,Score
-httpie/sessions.py::update_headers::95::112,1.0
-httpie/sessions.py::get_response::23::74,0.5
-httpie/client.py::get_response::39::58,0.3333333333333333
-httpie/core.py::main::70::202,0.25
-httpie/core.py::_error::84::87,0.25

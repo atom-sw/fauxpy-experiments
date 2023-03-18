@@ -1,7 +1,0 @@
-Entity,Score
-keras/backend/tensorflow_backend.py::407,1.0
-keras/metrics.py::48,1.0
-keras/backend/tensorflow_backend.py::403,0.5773502691896258
-keras/backend/tensorflow_backend.py::390,0.3333333333333333
-keras/backend/tensorflow_backend.py::392,0.2886751345948129
-keras/backend/tensorflow_backend.py::411,0.2886751345948129

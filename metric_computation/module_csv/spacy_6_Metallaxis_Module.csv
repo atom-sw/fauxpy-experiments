@@ -1,6 +1,0 @@
-Entity,Score
-spacy/analysis.py,1.0
-spacy/errors.py,1.0
-spacy/language.py,1.0
-spacy/lemmatizer.py,1.0
-spacy/util.py,1.0

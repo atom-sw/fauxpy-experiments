@@ -1,9 +1,0 @@
-Entity,Score
-httpie/core.py,0.7071067811865475
-httpie/downloads.py,0.7071067811865475
-httpie/input.py,0.7071067811865475
-httpie/sessions.py,0.35355339059327373
-httpie/client.py,0.31622776601683794
-httpie/config.py,0.2886751345948129
-httpie/context.py,0.2886751345948129
-httpie/plugins/manager.py,0.0

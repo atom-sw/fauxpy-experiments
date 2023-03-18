@@ -1,9 +1,0 @@
-Entity,Score
-pandas/core/dtypes/missing.py::476,1.0
-pandas/core/construction.py::479,0.9090909090909091
-pandas/core/ops/__init__.py::782,0.8264462809917354
-pandas/core/ops/__init__.py::727,0.7513148009015777
-pandas/core/dtypes/missing.py::436,0.6830134553650705
-pandas/core/indexes/base.py::4208,0.6209213230591549
-pandas/core/ops/__init__.py::724,0.5644739300537771
-pandas/core/ops/__init__.py::721,0.5131581182307065
