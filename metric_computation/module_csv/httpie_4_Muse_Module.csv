@@ -1,0 +1,14 @@
+Entity,Score
+httpie/input.py,1.0
+httpie/models.py,1.0
+httpie/cli.py,0.0
+httpie/client.py,0.0
+httpie/config.py,0.0
+httpie/context.py,0.0
+httpie/core.py,0.0
+httpie/output/formatters/colors.py,0.0
+httpie/output/formatters/headers.py,0.0
+httpie/output/processing.py,0.0
+httpie/output/streams.py,0.0
+httpie/plugins/base.py,0.0
+httpie/plugins/manager.py,0.0

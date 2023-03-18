@@ -1,0 +1,14 @@
+Entity,Score
+httpie/plugins/manager.py,0.9090909090909091
+httpie/plugins/base.py,0.9090909090909091
+httpie/output/streams.py,0.9090909090909091
+httpie/output/processing.py,0.9090909090909091
+httpie/output/formatters/headers.py,0.9090909090909091
+httpie/output/formatters/colors.py,0.9090909090909091
+httpie/models.py,0.9090909090909091
+httpie/input.py,0.9090909090909091
+httpie/core.py,0.9090909090909091
+httpie/context.py,0.9090909090909091
+httpie/config.py,0.9090909090909091
+httpie/client.py,0.9090909090909091
+httpie/cli.py,0.9090909090909091

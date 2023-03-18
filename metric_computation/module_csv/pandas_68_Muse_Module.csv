@@ -1,0 +1,13 @@
+Entity,Score
+pandas/core/arrays/interval.py,1.0
+pandas/core/dtypes/dtypes.py,0.9593500656206083
+pandas/core/dtypes/common.py,0.9187001312412167
+pandas/core/arrays/base.py,0.0
+pandas/core/base.py,0.0
+pandas/core/common.py,0.0
+pandas/core/dtypes/base.py,0.0
+pandas/core/dtypes/cast.py,0.0
+pandas/core/dtypes/inference.py,0.0
+pandas/core/dtypes/missing.py,0.0
+pandas/core/indexes/base.py,0.0
+pandas/core/indexes/numeric.py,0.0

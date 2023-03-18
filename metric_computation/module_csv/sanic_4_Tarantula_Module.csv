@@ -1,0 +1,15 @@
+Entity,Score
+sanic/response.py,1.0
+sanic/handlers.py,1.0
+sanic/config.py,1.0
+sanic/request.py,0.9815436241610738
+sanic/app.py,0.9815436241610738
+sanic/router.py,0.8692421991084694
+sanic/testing.py,0.6759098786828424
+sanic/server.py,0.6170886075949368
+sanic/helpers.py,0.6135291033036183
+sanic/headers.py,0.5930055752660922
+sanic/exceptions.py,0.47833197056418636
+sanic/cookies.py,0.0
+sanic/blueprints.py,0.0
+sanic/asgi.py,0.0
