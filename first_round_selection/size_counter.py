@@ -47,13 +47,14 @@ def get_module_loc(module_path: Path) -> int:
     return line_counter
 
 
-def get_line_function_counts(benchmark_name: str,
-                             bug_number: int,
-                             target_dir: str,
-                             exclude: List[str]) -> Tuple[int, int]:
+def get_line_function_module_counts(benchmark_name: str,
+                                    bug_number: int,
+                                    target_dir: str,
+                                    exclude: List[str]) -> Tuple[int, int, int]:
     """
     1. Counts the number of non-empty and non-comment lines.
-    2. Only counts line numbers and number of functions in the target directory.
+    2. Only counts line numbers, number of functions, and
+        number of modules in the target directory.
     3. Does not count excluded directories.
     """
 
@@ -71,7 +72,9 @@ def get_line_function_counts(benchmark_name: str,
         counter_line += current_loc
         counter_function += current_function_num
 
-    return counter_line, counter_function
+    counter_module = len(non_excluded_python_file_paths)
+
+    return counter_line, counter_function, counter_module
 
 
 def load_info_files():
@@ -106,12 +109,13 @@ def main():
             # else:
             #     line_count, function_count = cache_obj
 
-            line_count, function_count = get_line_function_counts(benchmark_name, bug_number, target_dir, exclude)
-            print(line_count, function_count)
+            line_count, function_count, module_count = get_line_function_module_counts(benchmark_name, bug_number, target_dir, exclude)
+            print(line_count, function_count, module_count)
 
             current_key = f"{benchmark_name}:{bug_number}"
             line_numbers_dict[current_key] = {"LINE_COUNT": line_count,
-                                              "FUNCTION_COUNT": function_count}
+                                              "FUNCTION_COUNT": function_count,
+                                              "MODULE_COUNT": module_count}
 
     common.save_object_to_json(line_numbers_dict, Path(LINE_COUNT_FILE_NAME))
 
