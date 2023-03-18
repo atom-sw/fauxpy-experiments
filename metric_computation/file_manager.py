@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import List, Any
 
 from csv_score_load_manager import CsvScoreItem
-from entity_type import ScoredStatement, ScoredFunction
+from entity_type import ScoredStatement, ScoredFunction, ScoredModule
 
 
 class PathManager:
@@ -16,6 +16,7 @@ class PathManager:
     _Output_directory_name = "output"
     _Statement_csv_score_directory_name = "statement_csv"
     _Function_csv_score_directory_name = "function_csv"
+    _Module_csv_score_directory_name = "module_csv"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
@@ -40,6 +41,9 @@ class PathManager:
 
     def get_function_csv_score_directory_path(self) -> Path:
         return self._get_csv_score_directory_path(self._Function_csv_score_directory_name)
+
+    def get_module_csv_score_directory_path(self) -> Path:
+        return self._get_csv_score_directory_path(self._Module_csv_score_directory_name)
 
     def get_statement_csv_score_directory_path(self):
         return self._get_csv_score_directory_path(self._Statement_csv_score_directory_name)
@@ -139,22 +143,24 @@ def save_score_items_to_given_directory_path(directory_path: Path,
     report_dir_path = directory_path
 
     csv_header_items = ["Entity", "Score"]
-    for function_csv_item in csv_score_items:
-        current_file_name = f"{function_csv_item.get_project_name()}_" \
-                            f"{function_csv_item.get_bug_number()}_" \
-                            f"{function_csv_item.get_technique().name}_" \
-                            f"{function_csv_item.get_granularity().name}.csv"
+    for csv_item in csv_score_items:
+        current_file_name = f"{csv_item.get_project_name()}_" \
+                            f"{csv_item.get_bug_number()}_" \
+                            f"{csv_item.get_technique().name}_" \
+                            f"{csv_item.get_granularity().name}.csv"
         current_file_path = report_dir_path / current_file_name
 
         with current_file_path.open("w") as file:
             csv_writer = csv.writer(file)
             csv_writer.writerow(csv_header_items)
-            for item in function_csv_item.get_scored_entities():
+            for item in csv_item.get_scored_entities():
                 if isinstance(item, ScoredStatement):
                     entity_str = f"{item.get_file_path()}::{item.get_line_number()}"
                 elif isinstance(item, ScoredFunction):
                     function_range = item.get_function_range()
                     entity_str = f"{item.get_file_path()}::{item.get_function_name()}::{function_range[0]}::{function_range[1]}"
+                elif isinstance(item, ScoredModule):
+                    entity_str = item.get_file_path()
                 else:
                     raise Exception()
 
