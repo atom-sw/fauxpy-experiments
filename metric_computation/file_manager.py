@@ -3,7 +3,7 @@ import json
 import pickle
 import shutil
 from pathlib import Path
-from typing import List, Any
+from typing import List, Any, Dict
 
 from csv_score_load_manager import CsvScoreItem
 from entity_type import ScoredStatement, ScoredFunction, ScoredModule
@@ -17,6 +17,7 @@ class PathManager:
     _Statement_csv_score_directory_name = "statement_csv"
     _Function_csv_score_directory_name = "function_csv"
     _Module_csv_score_directory_name = "module_csv"
+    _Conversion_overhead_file_name = "conversion_overhead.json"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
@@ -38,6 +39,9 @@ class PathManager:
 
     def get_size_counts_file_name(self) -> str:
         return self._Size_counts_file_name
+
+    def get_conversion_overhead_file_path(self):
+        return self.get_output_dir_path() / self._Conversion_overhead_file_name
 
     def get_function_csv_score_directory_path(self) -> Path:
         return self._get_csv_score_directory_path(self._Function_csv_score_directory_name)
@@ -76,11 +80,17 @@ class PathManager:
         return report_dir_path
 
 
-def load_json_to_dictionary(file_path: str):
-    with open(file_path) as file:
+def load_json_to_dictionary(file_name: str):
+    with open(file_name) as file:
         data_dict = json.load(file)
 
     return data_dict
+
+
+def save_dictionary_to_json(obj: Dict,
+                            file_path: Path):
+    string_object = json.dumps(obj, indent=5)
+    save_string_to_file(string_object, file_path)
 
 
 def load_csv_content_file(csv_path: Path) -> List[List[str]]:
@@ -126,6 +136,12 @@ def load_file_content(file_path: Path):
         content = file.read()
 
     return content
+
+
+def save_string_to_file(content: str,
+                        file_path: Path):
+    with file_path.open("w") as file:
+        file.write(content)
 
 
 def save_csv_to_output_dir(table_list: List[List],
