@@ -74,3 +74,20 @@ class ScoredFunction(ScoredEntity):
 
     def get_entity_name(self) -> str:
         return f"{self._file_path}::{self._function_name}::{self._function_range[0]}::{self._function_range[1]}"
+
+
+class ScoredModule(ScoredEntity):
+    def __init__(self, file_path: str, score: float):
+        super().__init__(file_path, score)
+
+    def _pretty_representation(self):
+        return f"{self._file_path} S:{self._score}"
+
+    def __repr__(self):
+        return self._pretty_representation()
+
+    def __str__(self):
+        return self._pretty_representation()
+
+    def get_entity_name(self):
+        return self.get_file_path()
