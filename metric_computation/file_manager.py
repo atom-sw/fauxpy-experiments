@@ -13,11 +13,9 @@ class PathManager:
     _Path_item_file_name = "path_item.json"
     _Ground_truth_file_name = "ground_truth_info.json"
     _Size_counts_file_name = "size_counts.json"
-    _Output_directory_name = "output"
-    _Statement_csv_score_directory_name = "statement_csv"
-    _Function_csv_score_directory_name = "function_csv"
-    _Module_csv_score_directory_name = "module_csv"
-    _Conversion_overhead_file_name = "conversion_overhead.json"
+    _Statement_csv_score_directory_name = "csv_fauxpy_statement"
+    _Function_csv_score_directory_name = "csv_fauxpy_function"
+    _Module_csv_score_directory_name = "csv_fauxpy_module"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
@@ -40,9 +38,6 @@ class PathManager:
     def get_size_counts_file_name(self) -> str:
         return self._Size_counts_file_name
 
-    def get_conversion_overhead_file_path(self):
-        return self.get_output_dir_path() / self._Conversion_overhead_file_name
-
     def get_function_csv_score_directory_path(self) -> Path:
         return self._get_csv_score_directory_path(self._Function_csv_score_directory_name)
 
@@ -51,24 +46,6 @@ class PathManager:
 
     def get_statement_csv_score_directory_path(self):
         return self._get_csv_score_directory_path(self._Statement_csv_score_directory_name)
-
-    def get_output_dir_path(self) -> Path:
-        return self._get_output_directory_path()
-
-    _Output_first_call = False
-
-    @classmethod
-    def _get_output_directory_path(cls) -> Path:
-        output_directory_path = Path(cls._Output_directory_name)
-        if output_directory_path.exists() and not cls._Output_first_call:
-            shutil.rmtree(str(output_directory_path.absolute().resolve()))
-
-        cls._Output_first_call = True
-
-        if not output_directory_path.exists():
-            output_directory_path.mkdir()
-
-        return output_directory_path
 
     @staticmethod
     def _get_csv_score_directory_path(csv_score_directory_name: str) -> Path:
@@ -145,13 +122,24 @@ def save_string_to_file(content: str,
 
 
 def save_csv_to_output_dir(table_list: List[List],
+                           dir_name: str,
                            file_name: str):
-    path_manager = PathManager()
-    output_directory_path = path_manager.get_output_dir_path()
+    output_directory_path = Path(dir_name)
     file_path = output_directory_path / file_name
     with file_path.open("w") as file:
         csv_writer = csv.writer(file)
         csv_writer.writerows(table_list)
+
+
+def clean_make_output_dir(dir_name: str):
+    output_directory_path = Path(dir_name)
+    if output_directory_path.exists():
+        shutil.rmtree(str(output_directory_path.absolute().resolve()))
+
+    if not output_directory_path.exists():
+        output_directory_path.mkdir()
+
+    return output_directory_path
 
 
 def save_score_items_to_given_directory_path(directory_path: Path,
