@@ -1,0 +1,9 @@
+Entity,Score
+tornado/websocket.py::get::149::200,1.0
+tornado/httputil.py::parse_request_start_line::820::837,0.8264462809917354
+tornado/http1connection.py::_read_message::153::263,0.7513148009015777
+tornado/httputil.py::parse_line::177::192,0.6830134553650705
+tornado/httputil.py::parse::194::206,0.6209213230591549
+tornado/iostream.py::_consume::909::926,0.5644739300537771
+tornado/simple_httpclient.py::_on_connect::314::393,0.5131581182307065
+tornado/httpclient.py::headers::478::483,0.4665073802097331

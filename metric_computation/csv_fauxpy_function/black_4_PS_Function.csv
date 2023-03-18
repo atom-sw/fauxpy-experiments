@@ -1,0 +1,7 @@
+Entity,Score
+black.py::_maybe_empty_lines::1488::1525,1.0
+black.py::append_comment::1375::1409,0.9090909090909091
+black.py::normalize_prefix::2693::2708,0.8264462809917354
+blib2to3/pytree.py::__init__::340::357,0.6830134553650705
+blib2to3/pgen2/tokenize.py::generate_tokens::337::566,0.6209213230591549
+blib2to3/pgen2/driver.py::parse_tokens::44::101,0.5131581182307065

@@ -1,0 +1,12 @@
+Entity,Score
+cookiecutter/utils.py::work_in::57::69,0.3225806451612903
+cookiecutter/utils.py::make_executable::72::79,0.0
+cookiecutter/hooks.py::run_script_with_context::75::94,0.0
+cookiecutter/hooks.py::run_script::52::72,0.0
+cookiecutter/hooks.py::find_hooks::31::49,0.0
+cookiecutter/hooks.py::run_hook::97::109,0.0
+cookiecutter/generate.py::generate_context::75::115,0.0
+cookiecutter/generate.py::apply_overwrites_to_context::53::72,0.0
+cookiecutter/generate.py::ensure_dir_is_templated::215::222,0.0
+cookiecutter/generate.py::generate_file::118::180,0.0
+cookiecutter/find.py::find_template::17::42,0.0

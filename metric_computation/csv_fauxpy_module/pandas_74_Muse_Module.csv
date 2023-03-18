@@ -1,0 +1,9 @@
+Entity,Score
+pandas/core/arrays/datetimelike.py,0.0
+pandas/core/arrays/timedeltas.py,0.0
+pandas/core/common.py,0.0
+pandas/core/dtypes/common.py,0.0
+pandas/core/indexes/base.py,0.0
+pandas/core/indexes/timedeltas.py,0.0
+pandas/tseries/frequencies.py,0.0
+pandas/tseries/offsets.py,0.0

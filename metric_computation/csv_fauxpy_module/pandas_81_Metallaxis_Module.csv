@@ -1,0 +1,8 @@
+Entity,Score
+pandas/core/construction.py,0.052414241836095915
+pandas/core/arrays/masked.py,0.03544406025041679
+pandas/core/dtypes/dtypes.py,0.026919095102908276
+pandas/core/dtypes/base.py,0.026537244621713762
+pandas/core/arrays/integer.py,0.0206901472150592
+pandas/core/dtypes/common.py,0.0
+pandas/core/dtypes/missing.py,0.0

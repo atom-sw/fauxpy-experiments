@@ -1,0 +1,4 @@
+Entity,Score
+httpie/models.py::headers::94::118,1.0
+httpie/input.py::parse_items::562::619,0.9090909090909091
+httpie/input.py::tokenize::439::458,0.8264462809917354

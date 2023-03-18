@@ -1,0 +1,8 @@
+Entity,Score
+pandas/core/arrays/integer.py,0.0
+pandas/core/arrays/masked.py,0.0
+pandas/core/construction.py,0.0
+pandas/core/dtypes/base.py,0.0
+pandas/core/dtypes/common.py,0.0
+pandas/core/dtypes/dtypes.py,0.0
+pandas/core/dtypes/missing.py,0.0

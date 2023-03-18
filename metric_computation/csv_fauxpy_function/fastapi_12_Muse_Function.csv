@@ -1,0 +1,8 @@
+Entity,Score
+fastapi/security/utils.py::get_authorization_scheme_param::4::8,0.9145783233210463
+fastapi/security/http.py::__call__::102::119,0.490715035143592
+fastapi/dependencies/utils.py::solve_dependencies::278::339,0.0
+fastapi/dependencies/utils.py::request_params_to_args::342::376,0.0
+fastapi/routing.py::app::88::130,0.0
+fastapi/exception_handlers.py::http_exception_handler::8::15,-0.018569929712816038
+fastapi/dependencies/utils.py::is_coroutine_callable::269::275,-0.08542167667895377

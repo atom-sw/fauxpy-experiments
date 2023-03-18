@@ -1,0 +1,6 @@
+Entity,Score
+thefuck/utils.py,1.0
+thefuck/types.py,1.0
+thefuck/rules/dnf_no_such_command.py,1.0
+thefuck/specific/sudo.py,0.5633802816901409
+thefuck/shells/generic.py,0.0
