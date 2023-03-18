@@ -19,6 +19,7 @@ class FLTechnique(Enum):
 class FLGranularity(Enum):
     Statement = 0
     Function = 1
+    Module = 2
 
 
 class MetricLiteratureVal:
