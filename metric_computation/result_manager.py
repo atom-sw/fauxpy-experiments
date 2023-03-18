@@ -3,9 +3,7 @@ from typing import Dict, List, Tuple
 import file_manager
 import mathematics
 import our_metrics
-from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
-from csv_score_load_manager import (CsvScoreItemLoadManager,
-                                    FLTechnique,
+from csv_score_load_manager import (FLTechnique,
                                     FLGranularity,
                                     MetricLiteratureVal,
                                     CsvScoreItem,
@@ -17,12 +15,15 @@ class ResultManager:
     def __init__(self,
                  statement_csv_score_items: List[CsvScoreItem],
                  function_csv_score_items: List[CsvScoreItem],
+                 module_csv_score_items: List[CsvScoreItem],
                  ground_truth_info_dict: Dict,
                  size_counts_dict: Dict):
         self._statement_csv_score_items = statement_csv_score_items
         assert any([x.get_granularity() == FLGranularity.Statement for x in self._statement_csv_score_items])
         self._function_csv_score_items = function_csv_score_items
         assert any([x.get_granularity() == FLGranularity.Function for x in self._function_csv_score_items])
+        self._module_csv_score_items = module_csv_score_items
+        assert any([x.get_granularity() == FLGranularity.Module for x in self._module_csv_score_items])
         self._ground_truth_info_dict = ground_truth_info_dict
         self._size_counts_dict = size_counts_dict
 
@@ -31,6 +32,8 @@ class ResultManager:
         self._save_all_literature_metrics_for(self._statement_csv_score_items)
         self._compute_all_literature_metrics_for(self._function_csv_score_items)
         self._save_all_literature_metrics_for(self._function_csv_score_items)
+        self._compute_all_literature_metrics_for(self._module_csv_score_items)
+        self._save_all_literature_metrics_for(self._module_csv_score_items)
 
         # We compute our metrics only for statement granularity.
         # Our metrics must be computed after literature
@@ -121,6 +124,14 @@ class ResultManager:
                                             function_count,
                                             buggy_functions_list)
                 e_inspect_value = e_inspect_object.get_e_inspect()
+        elif csv_score_item.get_granularity() == FLGranularity.Module:
+            module_count = self._size_counts_dict[bug_key]["MODULE_COUNT"]
+            buggy_module_list = self._get_ground_truth_buggy_module_names(bug_key)
+            assert len(buggy_module_list) > 0
+            e_inspect_object = EInspect(csv_score_item.get_scored_entities(),
+                                        module_count,
+                                        buggy_module_list)
+            e_inspect_value = e_inspect_object.get_e_inspect()
         else:
             raise Exception()
 
@@ -132,6 +143,8 @@ class ResultManager:
             entity_count_in_project = self._size_counts_dict[bug_key]["LINE_COUNT"]
         elif csv_score_item.get_granularity() == FLGranularity.Function:
             entity_count_in_project = self._size_counts_dict[bug_key]["FUNCTION_COUNT"]
+        elif csv_score_item.get_granularity() == FLGranularity.Module:
+            entity_count_in_project = self._size_counts_dict[bug_key]["MODULE_COUNT"]
         else:
             raise Exception()
 
@@ -269,7 +282,17 @@ class ResultManager:
 
         return buggy_entity_names
 
-    def _compute_our_metrics(self, csv_score_item: CsvScoreItem,
+    def _get_ground_truth_buggy_module_names(self, bug_key: str) -> List[str]:
+        buggy_entity_names = []
+        bug_ground_truth = self._ground_truth_info_dict[bug_key]
+        for module_item in bug_ground_truth:
+            module_name = module_item["FILE_NAME"]
+            buggy_entity_names.append(module_name)
+
+        return buggy_entity_names
+
+    def _compute_our_metrics(self,
+                             csv_score_item: CsvScoreItem,
                              e_inspect: float):
         bug_key = csv_score_item.get_bug_key()
         ground_truth_buggy_line_names, buggy_module_sizes = self._get_ground_truth_buggy_line_names_and_module_size_dict(
@@ -284,37 +307,3 @@ class ResultManager:
                                                                       buggy_module_sizes,
                                                                       e_inspect)
         return cumulative_distance, sv_comp_overall_score
-
-
-def get_result_manager():
-    # result_manager_cache_file_name = "result_manager"
-    # result_manager = file_manager.Cache.load(result_manager_cache_file_name)
-    # if result_manager is not None:
-    #     return result_manager
-
-    path_manager = file_manager.PathManager()
-    csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
-    statement_csv_score_items = csv_score_item_load_manager.load_csv_score_items()
-    file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
-                                                          statement_csv_score_items)
-
-    csv_score_item_function_granularity_manager = CsvScoreItemFunctionGranularityManager(statement_csv_score_items,
-                                                                                         path_manager.get_workspace_path())
-    function_csv_score_items = csv_score_item_function_granularity_manager.get_function_csv_score_items()
-
-    file_manager.save_score_items_to_given_directory_path(path_manager.get_function_csv_score_directory_path(),
-                                                          function_csv_score_items)
-
-    assert len(statement_csv_score_items) == len(function_csv_score_items)
-    # function_csv_score_items = None
-
-    ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
-    size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
-    result_manager = ResultManager(statement_csv_score_items,
-                                   function_csv_score_items,
-                                   ground_truth_info,
-                                   size_counts_info)
-
-    # file_manager.Cache.save(result_manager, result_manager_cache_file_name)
-
-    return result_manager
