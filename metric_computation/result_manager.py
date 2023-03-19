@@ -199,6 +199,9 @@ class ResultManager:
                                                       csv_items: List[CsvScoreItem]) -> List:
         # ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score"]
 
+        if len(csv_items) == 0:
+            return [None, None, None, None, None, None, None, None, None, None, None]
+
         def at_x(top_num: int) -> int:
             top_x_items = list(filter(lambda x: x.get_metric_literature_val().get_e_inspect() <= top_num, csv_items))
             return len(top_x_items)
@@ -235,6 +238,9 @@ class ResultManager:
     def _get_technique_our_overall_results_row(technique_name: str,
                                                csv_items: List[CsvScoreItem]) -> List:
         # ["technique", "cumulative_distance", "sv_comp_overall_score"]
+
+        if len(csv_items) == 0:
+            return [None, None, None]
 
         cumulative_distance_list = [x.get_metric_our_val().get_cumulative_distance() for x in csv_items]
         average_cumulative_distance = mathematics.average(cumulative_distance_list)
@@ -302,5 +308,3 @@ class ResultManager:
                                                                       buggy_module_sizes,
                                                                       e_inspect)
         return cumulative_distance, sv_comp_overall_score
-
-
