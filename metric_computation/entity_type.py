@@ -50,6 +50,9 @@ class ScoredStatement(ScoredEntity):
     def get_entity_name(self) -> str:
         return f"{self._file_path}::{self._line_number}"
 
+    def set_score(self, val: float):
+        self._score = val
+
 
 class ScoredFunction(ScoredEntity):
     def __init__(self, file_path: str, score: float, function_range: Tuple[int, int], function_name: str):
