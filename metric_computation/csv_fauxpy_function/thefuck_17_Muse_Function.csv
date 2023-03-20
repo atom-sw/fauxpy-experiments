@@ -1,0 +1,6 @@
+Entity,Score
+thefuck/shells/bash.py::_parse_alias::20::24,0.0
+thefuck/shells/bash.py::get_aliases::26::33,0.0
+thefuck/shells/generic.py::_expand_aliases::13::19,0.0
+thefuck/utils.py::_cache::211::239,0.0
+thefuck/utils.py::wrapper::30::41,0.0

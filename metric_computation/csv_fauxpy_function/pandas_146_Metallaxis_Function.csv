@@ -1,0 +1,5 @@
+Entity,Score
+pandas/core/dtypes/missing.py::array_equivalent::393::477,1.0
+pandas/core/dtypes/common.py::pandas_dtype::2006::2053,0.0
+pandas/core/dtypes/common.py::is_period_dtype::597::628,0.0
+pandas/core/dtypes/common.py::condition::730::731,0.0

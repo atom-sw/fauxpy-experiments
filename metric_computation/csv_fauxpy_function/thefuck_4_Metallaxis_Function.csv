@@ -1,0 +1,5 @@
+Entity,Score
+thefuck/shells/fish.py::_get_aliases::19::28,0.2581988897471611
+thefuck/utils.py::wrapper::261::267,0.2581988897471611
+thefuck/utils.py::wrapper::28::39,0.2581988897471611
+thefuck/shells/fish.py::_get_overridden_aliases::32::38,0.0

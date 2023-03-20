@@ -1,0 +1,7 @@
+Entity,Score
+fastapi/applications.py::__call__::145::151,1.0
+fastapi/dependencies/utils.py::solve_dependencies::422::555,1.0
+fastapi/routing.py::serialize_response::51::90,1.0
+fastapi/routing.py::app::122::172,0.9428090415820635
+fastapi/dependencies/utils.py::request_params_to_args::558::603,0.43133109281375365
+fastapi/routing.py::run_endpoint_function::93::103,0.32659863237109044

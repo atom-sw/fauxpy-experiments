@@ -1,0 +1,4 @@
+Entity,Score
+fastapi/routing.py::serialize_response::51::90,1.0
+fastapi/routing.py::app::122::172,0.5
+fastapi/applications.py::__call__::145::151,0.3333333333333333

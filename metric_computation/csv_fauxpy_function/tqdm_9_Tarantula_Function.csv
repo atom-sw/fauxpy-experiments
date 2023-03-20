@@ -1,0 +1,15 @@
+Entity,Score
+tqdm/_tqdm.py::format_sizeof::24::48,1.0
+tqdm/_tqdm.py::format_interval::51::69,0.8510638297872339
+tqdm/_tqdm.py::__len__::362::363,0.8510638297872339
+tqdm/_tqdm.py::format_meter::72::170,0.8510638297872339
+tqdm/_tqdm.py::__init__::197::360,0.588235294117647
+tqdm/_utils.py::_supports_unicode::17::20,0.38834951456310673
+tqdm/_tqdm.py::print_status::182::186,0.38834951456310673
+tqdm/_tqdm.py::StatusPrinter::173::187,0.3636363636363636
+tqdm/_utils.py::_environ_cols::23::39,0.0
+tqdm/_utils.py::_is_utf::13::14,0.0
+tqdm/_tqdm.py::trange::605::610,0.0
+tqdm/_tqdm.py::close::577::602,0.0
+tqdm/_tqdm.py::update::480::575,0.0
+tqdm/_tqdm.py::__iter__::365::478,0.0

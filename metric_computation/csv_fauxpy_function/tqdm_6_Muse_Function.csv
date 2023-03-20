@@ -1,0 +1,8 @@
+Entity,Score
+tqdm/_tqdm.py::__len__::852::856,1.0
+tqdm/_tqdm.py::__init__::626::850,0.702712746191007
+tqdm/_monitor.py::__init__::31::46,0.0
+tqdm/_tqdm.py::__new__::397::418,0.0
+tqdm/_tqdm.py::release::97::99,0.0
+tqdm/_tqdm.py::__eq__::883::884,-0.004504352330439288
+tqdm/_tqdm.py::_get_free_pos::420::425,-0.0360348186435143
