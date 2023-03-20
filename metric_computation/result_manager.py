@@ -29,6 +29,7 @@ class ResultManager:
         for csv_score_item in self._csv_score_items:
             all_techniques.add(csv_score_item.get_technique())
         all_techniques_list = list(all_techniques)
+        all_techniques_list.sort(key=lambda x: x.value)
 
         return all_techniques_list
 
