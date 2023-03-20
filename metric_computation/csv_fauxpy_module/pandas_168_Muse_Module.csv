@@ -1,0 +1,13 @@
+Entity,Score
+pandas/core/generic.py,1.9990519836846392
+pandas/core/dtypes/common.py,0.0
+pandas/core/frame.py,0.0
+pandas/core/groupby/groupby.py,0.0
+pandas/core/groupby/grouper.py,0.0
+pandas/core/indexes/base.py,0.0
+pandas/core/indexes/numeric.py,0.0
+pandas/core/internals/blocks.py,0.0
+pandas/core/internals/construction.py,0.0
+pandas/core/internals/managers.py,0.0
+pandas/core/base.py,-0.0018960326307215745
+pandas/core/dtypes/inference.py,-0.0022120380691751703

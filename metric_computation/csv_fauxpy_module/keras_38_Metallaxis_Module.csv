@@ -1,0 +1,10 @@
+Entity,Score
+keras/utils/generic_utils.py,0.125
+keras/layers/recurrent.py,0.11180339887498948
+keras/backend/tensorflow_backend.py,0.07537783614444091
+keras/engine/topology.py,0.07537783614444091
+keras/engine/training.py,0.0668153104781061
+keras/losses.py,0.051031036307982884
+keras/optimizers.py,0.0472455591261534
+keras/legacy/interfaces.py,0.033113308926626096
+keras/initializers.py,0.024397501823713332

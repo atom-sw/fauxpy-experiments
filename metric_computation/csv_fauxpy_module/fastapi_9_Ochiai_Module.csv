@@ -1,0 +1,7 @@
+Entity,Score
+fastapi/utils.py,0.9090909090909091
+fastapi/openapi/utils.py,0.9090909090909091
+fastapi/encoders.py,0.9090909090909091
+fastapi/dependencies/utils.py,0.9090909090909091
+fastapi/dependencies/models.py,0.9090909090909091
+fastapi/applications.py,0.9090909090909091

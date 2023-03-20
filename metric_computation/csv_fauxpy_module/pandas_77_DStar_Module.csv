@@ -1,0 +1,5 @@
+Entity,Score
+pandas/core/ops/array_ops.py,10.0
+pandas/core/dtypes/generic.py,10.0
+pandas/core/dtypes/dtypes.py,10.0
+pandas/core/dtypes/common.py,10.0

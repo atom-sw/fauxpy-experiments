@@ -1,0 +1,12 @@
+Entity,Score
+youtube_dl/YoutubeDL.py,10.0
+youtube_dl/extractor/common.py,0.9090909090909091
+youtube_dl/utils.py,0.47619047619047616
+youtube_dl/cache.py,0.04739336492890995
+youtube_dl/postprocessor/metadatafromtitle.py,0.0
+youtube_dl/postprocessor/common.py,0.0
+youtube_dl/extractor/youtube.py,0.0
+youtube_dl/extractor/theplatform.py,0.0
+youtube_dl/extractor/adobepass.py,0.0
+youtube_dl/extractor/__init__.py,0.0
+youtube_dl/compat.py,0.0

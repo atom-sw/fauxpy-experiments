@@ -1,0 +1,14 @@
+Entity,Score
+spacy/cli/converters/conllu2json.py,0.9090909090909091
+spacy/util.py,0.0
+spacy/lookups.py,0.0
+spacy/lemmatizer.py,0.0
+spacy/language.py,0.0
+spacy/lang/lex_attrs.py,0.0
+spacy/lang/en/lex_attrs.py,0.0
+spacy/lang/en/__init__.py,0.0
+spacy/errors.py,0.0
+spacy/compat.py,0.0
+spacy/cli/pretrain.py,0.0
+spacy/cli/converters/iob2json.py,0.0
+spacy/cli/converters/conll_ner2json.py,0.0
