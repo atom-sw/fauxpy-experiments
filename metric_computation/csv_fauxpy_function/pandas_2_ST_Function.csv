@@ -1,5 +1,0 @@
-Entity,Score
-pandas/core/indexing.py::__getitem__::1998::2008,1.0
-pandas/core/indexing.py::__setitem__::2010::2023,1.0
-pandas/core/indexing.py::__getitem__::2047::2055,0.5
-pandas/core/indexing.py::__setitem__::2057::2066,0.5

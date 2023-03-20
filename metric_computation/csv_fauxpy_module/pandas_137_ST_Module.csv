@@ -1,6 +1,0 @@
-Entity,Score
-pandas/core/arrays/categorical.py,1.0
-pandas/core/internals/blocks.py,0.5
-pandas/core/internals/managers.py,0.25
-pandas/core/generic.py,0.16666666666666666
-pandas/core/reshape/merge.py,0.14285714285714285

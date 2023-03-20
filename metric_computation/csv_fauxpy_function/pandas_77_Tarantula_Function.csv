@@ -1,7 +1,0 @@
-Entity,Score
-pandas/core/ops/array_ops.py::na_logical_op::263::301,1.1
-pandas/core/dtypes/generic.py::_check::10::12,1.1
-pandas/core/dtypes/dtypes.py::find::75::102,1.1
-pandas/core/dtypes/common.py::_get_dtype::1671::1704,1.1
-pandas/core/dtypes/common.py::is_extension_array_dtype::1564::1610,1.1
-pandas/core/dtypes/common.py::is_bool_dtype::1434::1496,1.1

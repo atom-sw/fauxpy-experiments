@@ -1,9 +1,0 @@
-Entity,Score
-keras/backend/tensorflow_backend.py,1.0
-keras/engine/base_layer.py,1.0
-keras/layers/core.py,1.0
-keras/models.py,1.0
-keras/utils/generic_utils.py,1.0
-keras/engine/network.py,0.2886751345948129
-keras/engine/input_layer.py,0.1543033499620919
-keras/legacy/interfaces.py,0.12216944435630522

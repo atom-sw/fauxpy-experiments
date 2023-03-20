@@ -1,4 +1,0 @@
-Entity,Score
-thefuck/rules/dirty_unzip.py::get_new_command::30::31,0.7071067811865475
-thefuck/utils.py::wrapper::24::30,0.7071067811865475
-thefuck/rules/dirty_unzip.py::_zip_file::11::21,0.5
