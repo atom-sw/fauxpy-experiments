@@ -38,7 +38,6 @@ class CsvScoreItemFunctionGranularityManager:
         current_csv_function = copy.copy(csv_statement)
         current_csv_function.set_csv_paths(None)
         current_csv_function.set_script_id(None)
-        current_csv_function.set_experiment_time_seconds(-1)
         current_csv_function.set_granularity(FLGranularity.Function)
         current_csv_function.set_scored_entities(scored_function_list)
 

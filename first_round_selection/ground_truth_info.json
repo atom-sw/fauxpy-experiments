@@ -10,8 +10,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "schedule_formatting::639::707",
-                    "reformat_many::612::636"
+                    "reformat_many::612::636",
+                    "schedule_formatting::639::707"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -74,8 +74,8 @@
                     165
                ],
                "FUNCTIONS": [
-                    "lib2to3_parse::767::791",
-                    "get_grammars::751::764"
+                    "get_grammars::751::764",
+                    "lib2to3_parse::767::791"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -92,12 +92,10 @@
                ],
                "FUNCTIONS": [
                     "parse_stream_raw::98::101",
-                    "__init__::32::37",
-                    "parse_string::112::115"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "parse_string::112::115",
                     "__init__::32::37"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "blib2to3/pgen2/tokenize.py",
@@ -115,9 +113,7 @@
                "FUNCTIONS": [
                     "generate_tokens::337::563"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "generate_tokens::337::563"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "black:7": [
@@ -134,9 +130,7 @@
                "FUNCTIONS": [
                     "normalize_invisible_parens::2713::2762"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "normalize_invisible_parens::2713::2762"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "black:8": [
@@ -334,31 +328,28 @@
                     2711
                ],
                "FUNCTIONS": [
-                    "generate_ignored_nodes::2735::2744",
-                    "append::1312::1330",
-                    "maybe_empty_lines::1373::1386",
-                    "show::761::768",
-                    "visit_default::1516::1555",
-                    "generate_comments::2088::2118",
-                    "visit::1504::1514",
-                    "split_line::2178::2244",
                     "leaf_from_consumed::107::110",
                     "trim_prefix::104::105",
-                    "container_of::1957::1976",
-                    "maybe_remove_trailing_comma::1349::1351",
-                    "append_comment::1345::1347",
+                    "maybe_increment_for_loop_variable::1353::1355",
+                    "split_line::2178::2244",
+                    "generate_ignored_nodes::2735::2744",
+                    "__str__::1332::1343",
+                    "visit_unformatted::1651::1667",
+                    "visit::1504::1514",
+                    "maybe_empty_lines::1373::1386",
+                    "visit_default::1516::1555",
+                    "normalize_fmt_off::2682::2692",
+                    "append::1312::1330",
                     "line::1485::1502",
                     "__init__::100::102",
                     "hide_fmt_off::2695::2732",
-                    "normalize_fmt_off::2682::2692",
-                    "visit_unformatted::1651::1667",
-                    "maybe_increment_for_loop_variable::1353::1355",
-                    "__str__::1332::1343"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "show::761::768",
+                    "maybe_remove_trailing_comma::1349::1351",
+                    "generate_comments::2088::2118",
                     "container_of::1957::1976",
-                    "hide_fmt_off::2695::2732"
-               ]
+                    "append_comment::1345::1347"
+               ],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "black:18": [
@@ -401,9 +392,7 @@
                "FUNCTIONS": [
                     "_maybe_empty_lines::1019::1070"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_maybe_empty_lines::1019::1070"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "black:20": [
@@ -485,23 +474,20 @@
                     1449
                ],
                "FUNCTIONS": [
-                    "append_comment::716::733",
-                    "last_non_delimiter::735::742",
+                    "right_hand_split::1529::1566",
                     "maybe_remove_trailing_comma::625::672",
-                    "split_line::1429::1482",
+                    "last_non_delimiter::735::742",
                     "is_comment::558::561",
                     "delimiter_split::1595::1644",
-                    "append::529::556",
-                    "__str__::744::757",
                     "maybe_adapt_standalone_comment::697::714",
-                    "left_hand_split::1485::1526",
-                    "right_hand_split::1529::1566",
-                    "maybe_adapt_standalone_comment::812::814"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "append_comment::716::733",
+                    "maybe_adapt_standalone_comment::812::814",
+                    "__str__::744::757",
                     "split_line::1429::1482",
-                    "maybe_adapt_standalone_comment::697::714"
-               ]
+                    "append::529::556",
+                    "left_hand_split::1485::1526"
+               ],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "black:23": [
@@ -528,13 +514,11 @@
                     904
                ],
                "FUNCTIONS": [
-                    "assert_equivalent::1504::1562",
                     "lib2to3_parse::238::258",
-                    "whitespace::847::1067"
+                    "whitespace::847::1067",
+                    "assert_equivalent::1504::1562"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "whitespace::847::1067"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "blib2to3/pygram.py",
@@ -582,9 +566,7 @@
                     "run_hook::114::127",
                     "find_hook::39::61"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "find_hook::39::61"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "cookiecutter:3": [
@@ -640,8 +622,8 @@
                     20
                ],
                "FUNCTIONS": [
-                    "run_script::52::72",
                     "run_script_with_context::75::94",
+                    "run_script::52::72",
                     "run_hook::97::109"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -696,31 +678,19 @@
                     685
                ],
                "FUNCTIONS": [
+                    "options::493::541",
                     "put::343::391",
-                    "trace::643::691",
-                    "decorator::232::257",
                     "get::293::341",
                     "patch::593::641",
-                    "api_route::205::259",
-                    "options::493::541",
                     "post::393::441",
-                    "add_api_route::153::203",
                     "head::543::591",
-                    "delete::443::491"
+                    "delete::443::491",
+                    "api_route::205::259",
+                    "decorator::232::257",
+                    "trace::643::691",
+                    "add_api_route::153::203"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "put::343::391",
-                    "trace::643::691",
-                    "decorator::232::257",
-                    "get::293::341",
-                    "patch::593::641",
-                    "api_route::205::259",
-                    "options::493::541",
-                    "post::393::441",
-                    "add_api_route::153::203",
-                    "head::543::591",
-                    "delete::443::491"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "fastapi/encoders.py",
@@ -741,9 +711,7 @@
                "FUNCTIONS": [
                     "jsonable_encoder::30::159"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "jsonable_encoder::30::159"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "fastapi/openapi/utils.py",
@@ -754,8 +722,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "get_openapi_security_definitions::77::89",
-                    "get_openapi::273::313"
+                    "get_openapi::273::313",
+                    "get_openapi_security_definitions::77::89"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -829,44 +797,26 @@
                     990
                ],
                "FUNCTIONS": [
-                    "decorator::468::494",
+                    "post::692::741",
+                    "add_api_route::382::438",
+                    "__init__::237::342",
                     "put::641::690",
-                    "app::140::190",
-                    "api_route::440::496",
+                    "head::845::894",
+                    "patch::896::945",
                     "delete::743::792",
                     "options::794::843",
-                    "patch::896::945",
-                    "trace::947::996",
-                    "__init__::237::342",
-                    "include_router::516::588",
                     "get_request_handler::124::192",
-                    "get::590::639",
-                    "serialize_response::73::108",
-                    "head::845::894",
-                    "add_api_route::382::438",
                     "_prepare_response_content::51::70",
-                    "post::692::741",
-                    "get_route_handler::344::356"
-               ],
-               "EXTENDED_FUNCTIONS": [
-                    "decorator::468::494",
-                    "put::641::690",
-                    "app::140::190",
-                    "api_route::440::496",
-                    "delete::743::792",
-                    "options::794::843",
-                    "patch::896::945",
-                    "trace::947::996",
-                    "__init__::237::342",
                     "include_router::516::588",
-                    "get_request_handler::124::192",
+                    "app::140::190",
+                    "decorator::468::494",
+                    "get_route_handler::344::356",
                     "get::590::639",
+                    "trace::947::996",
                     "serialize_response::73::108",
-                    "head::845::894",
-                    "add_api_route::382::438",
-                    "post::692::741",
-                    "get_route_handler::344::356"
-               ]
+                    "api_route::440::496"
+               ],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "fastapi:2": [
@@ -976,13 +926,10 @@
                     489
                ],
                "FUNCTIONS": [
-                    "add_api_route::328::375",
-                    "include_router::440::506"
+                    "include_router::440::506",
+                    "add_api_route::328::375"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "add_api_route::328::375",
-                    "include_router::440::506"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "fastapi:9": [
@@ -1001,9 +948,7 @@
                "FUNCTIONS": [
                     "get_body_field::549::579"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "get_body_field::549::579"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "fastapi:10": [
@@ -1019,9 +964,7 @@
                "FUNCTIONS": [
                     "serialize_response::37::63"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "serialize_response::37::63"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "fastapi:11": [
@@ -1073,9 +1016,7 @@
                "FUNCTIONS": [
                     "include_router::275::321"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "include_router::275::321"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "fastapi:14": [
@@ -1161,9 +1102,7 @@
                "FUNCTIONS": [
                     "get_response::39::58"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "get_response::39::58"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "httpie/core.py",
@@ -1187,9 +1126,7 @@
                "FUNCTIONS": [
                     "update_headers::95::112"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "update_headers::95::112"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "httpie:4": [
@@ -1225,7 +1162,6 @@
                     "__call__::40::63"
                ],
                "EXTENDED_FUNCTIONS": [
-                    "__call__::40::63",
                     "__init__::37::38"
                ]
           }
@@ -1246,8 +1182,8 @@
                ],
                "FUNCTIONS": [
                     "update_add::1209::1220",
-                    "update_sub::1223::1234",
                     "update::1195::1206",
+                    "update_sub::1223::1234",
                     "print_tensor::2883::2903"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -1280,15 +1216,13 @@
                     253
                ],
                "FUNCTIONS": [
-                    "__call__::245::259",
-                    "__call__::143::145",
-                    "__call__::201::218",
                     "__call__::82::84",
-                    "__call__::110::112"
+                    "__call__::201::218",
+                    "__call__::110::112",
+                    "__call__::245::259",
+                    "__call__::143::145"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__call__::245::259"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:2": [
@@ -1357,8 +1291,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "weighted::392::424",
-                    "weighted_masked_objective::375::425"
+                    "weighted_masked_objective::375::425",
+                    "weighted::392::424"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1389,8 +1323,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "from_config::933::1046",
-                    "process_node::966::988"
+                    "process_node::966::988",
+                    "from_config::933::1046"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1476,9 +1410,7 @@
                     "predict_generator::379::472",
                     "evaluate_generator::266::376"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "fit_generator::21::263"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "keras/engine/training_utils.py",
@@ -1549,15 +1481,12 @@
                     288
                ],
                "FUNCTIONS": [
+                    "__init__::86::92",
+                    "from_config::282::289",
                     "build::211::229",
-                    "get_config::273::280",
-                    "from_config::282::289",
-                    "__init__::86::92"
+                    "get_config::273::280"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "from_config::282::289",
-                    "__init__::86::92"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:17": [
@@ -1589,15 +1518,12 @@
                     2674
                ],
                "FUNCTIONS": [
-                    "__call__::2667::2682",
-                    "_make_callable::2559::2604",
+                    "_call::2606::2647",
                     "__init__::2510::2557",
-                    "_call::2606::2647"
-               ],
-               "EXTENDED_FUNCTIONS": [
                     "__call__::2667::2682",
                     "_make_callable::2559::2604"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:19": [
@@ -1639,21 +1565,16 @@
                     1797
                ],
                "FUNCTIONS": [
+                    "__init__::1182::1224",
                     "__init__::47::57",
                     "call::76::104",
-                    "__init__::1182::1224",
+                    "__init__::1757::1799",
+                    "state_size::59::74",
                     "__init__::795::831",
                     "build::106::121",
-                    "__init__::1757::1799",
-                    "compute_output_shape::409::428",
-                    "state_size::59::74"
+                    "compute_output_shape::409::428"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__init__::47::57",
-                    "__init__::1182::1224",
-                    "__init__::795::831",
-                    "__init__::1757::1799"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:20": [
@@ -1720,14 +1641,12 @@
                     749
                ],
                "FUNCTIONS": [
-                    "get_config::878::882",
-                    "compute_output_shape::851::876",
                     "call::803::849",
-                    "__init__::727::769"
+                    "get_config::878::882",
+                    "__init__::727::769",
+                    "compute_output_shape::851::876"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__init__::727::769"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "keras/utils/conv_utils.py",
@@ -1742,9 +1661,7 @@
                "FUNCTIONS": [
                     "deconv_length::138::176"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "deconv_length::138::176"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:24": [
@@ -1785,8 +1702,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "rnn::2676::2917",
-                    "_step::2850::2876"
+                    "_step::2850::2876",
+                    "rnn::2676::2917"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1847,17 +1764,14 @@
                     931
                ],
                "FUNCTIONS": [
-                    "evaluate_generator::2285::2438",
-                    "compile::549::956",
-                    "fit_generator::1950::2283",
                     "_test_loop::1346::1448",
                     "_fit_loop::1073::1259",
-                    "handle_metrics::867::932"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "evaluate_generator::2285::2438",
+                    "fit_generator::1950::2283",
                     "compile::549::956",
                     "handle_metrics::867::932"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:30": [
@@ -1870,8 +1784,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "evaluate_generator::2281::2430",
-                    "fit_generator::1950::2279"
+                    "fit_generator::1950::2279",
+                    "evaluate_generator::2281::2430"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1909,14 +1823,11 @@
                     969
                ],
                "FUNCTIONS": [
-                    "on_epoch_end::950::981",
-                    "__init__::908::927",
-                    "_reset::929::945"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "_reset::929::945",
                     "on_epoch_end::950::981",
                     "__init__::908::927"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:33": [
@@ -1948,9 +1859,9 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "evaluate_generator::2291::2416",
+                    "fit_generator::1950::2289",
                     "predict_generator::2418::2543",
-                    "fit_generator::1950::2289"
+                    "evaluate_generator::2291::2416"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -1979,14 +1890,11 @@
                     1231
                ],
                "FUNCTIONS": [
-                    "_get_batches_of_transformed_samples::1222::1258",
                     "standardize::574::618",
-                    "_get_batches_of_transformed_samples::949::968"
+                    "_get_batches_of_transformed_samples::949::968",
+                    "_get_batches_of_transformed_samples::1222::1258"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_get_batches_of_transformed_samples::1222::1258",
-                    "_get_batches_of_transformed_samples::949::968"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:36": [
@@ -2108,16 +2016,14 @@
                     616
                ],
                "FUNCTIONS": [
-                    "get::539::556",
                     "start::620::666",
-                    "data_generator_task::629::641",
-                    "get::697::715",
                     "__init__::608::618",
-                    "stop::671::695"
+                    "get::697::715",
+                    "data_generator_task::629::641",
+                    "stop::671::695",
+                    "get::539::556"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__init__::608::618"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:42": [
@@ -2151,13 +2057,11 @@
                     2006
                ],
                "FUNCTIONS": [
-                    "fit_generator::1900::2173",
+                    "predict_generator::2290::2403",
                     "evaluate_generator::2175::2288",
-                    "predict_generator::2290::2403"
-               ],
-               "EXTENDED_FUNCTIONS": [
                     "fit_generator::1900::2173"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "keras/models.py",
@@ -2170,8 +2074,8 @@
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
                     "evaluate_generator::1225::1263",
-                    "predict_generator::1265::1296",
-                    "fit_generator::1117::1223"
+                    "fit_generator::1117::1223",
+                    "predict_generator::1265::1296"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2189,9 +2093,7 @@
                "FUNCTIONS": [
                     "to_categorical::7::30"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "to_categorical::7::30"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:44": [
@@ -2209,9 +2111,7 @@
                     "non_trainable_weights::738::742",
                     "trainable_weights::732::736"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "non_trainable_weights::738::742"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "keras:45": [
@@ -2240,8 +2140,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "is_string_dtype::566::605",
-                    "is_excluded_dtype::598::603"
+                    "is_excluded_dtype::598::603",
+                    "is_string_dtype::566::605"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2262,9 +2162,7 @@
                     "__setitem__::2010::2023",
                     "_convert_key::2030::2039"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__setitem__::2010::2023"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:3": [
@@ -2277,8 +2175,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "to_timestamp::4665::4691",
-                    "to_period::4693::4718"
+                    "to_period::4693::4718",
+                    "to_timestamp::4665::4691"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2425,8 +2323,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "cov::7913::8021",
-                    "corr::7824::7911"
+                    "corr::7824::7911",
+                    "cov::7913::8021"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2463,10 +2361,10 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_isna_ndarraylike_old::232::249",
-                    "_isna_old::148::176",
                     "_isna_ndarraylike::210::229",
-                    "_isna_new::127::145"
+                    "_isna_new::127::145",
+                    "_isna_ndarraylike_old::232::249",
+                    "_isna_old::148::176"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2516,9 +2414,7 @@
                "FUNCTIONS": [
                     "validate_baseindexer_support::329::347"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "validate_baseindexer_support::329::347"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
@@ -2529,8 +2425,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_apply::407::516",
-                    "calc::473::493"
+                    "calc::473::493",
+                    "_apply::407::516"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2584,9 +2480,9 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
+                    "apply_index::1952::1961",
                     "apply_index::1147::1152",
-                    "apply_index::1866::1875",
-                    "apply_index::1952::1961"
+                    "apply_index::1866::1875"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2620,9 +2516,7 @@
                "FUNCTIONS": [
                     "validate_baseindexer_support::328::345"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "validate_baseindexer_support::328::345"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/window/rolling.py",
@@ -2693,8 +2587,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "min::2119::2152",
-                    "max::2154::2187"
+                    "max::2154::2187",
+                    "min::2119::2152"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2749,9 +2643,7 @@
                "FUNCTIONS": [
                     "__setitem__::515::558"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__setitem__::515::558"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:30": [
@@ -2909,11 +2801,11 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_isna_ndarraylike_old::272::297",
-                    "_isna_new::133::161",
                     "na_value_for_dtype::529::574",
+                    "_isna_ndarraylike_old::272::297",
                     "_isna_ndarraylike::226::269",
-                    "_isna_old::164::192"
+                    "_isna_old::164::192",
+                    "_isna_new::133::161"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2932,9 +2824,7 @@
                "FUNCTIONS": [
                     "astype::268::274"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "astype::268::274"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:38": [
@@ -2963,15 +2853,11 @@
                     95
                ],
                "FUNCTIONS": [
-                    "add_special_arithmetic_methods::72::129",
                     "f::94::103",
-                    "_wrap_inplace_method::89::107"
+                    "_wrap_inplace_method::89::107",
+                    "add_special_arithmetic_methods::72::129"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "add_special_arithmetic_methods::72::129",
-                    "f::94::103",
-                    "_wrap_inplace_method::89::107"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:40": [
@@ -3000,10 +2886,7 @@
                     "_get_join_indexers::1250::1299",
                     "_factorize_keys::1825::1895"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_get_join_indexers::1250::1299",
-                    "_factorize_keys::1825::1895"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:41": [
@@ -3030,15 +2913,15 @@
                     2274
                ],
                "FUNCTIONS": [
-                    "should_store::2242::2243",
-                    "should_store::2528::2531",
-                    "should_store::2095::2096",
-                    "set::1639::1641",
-                    "should_store::1636::1637",
-                    "should_store::2484::2485",
                     "should_store::2620::2627",
+                    "should_store::2095::2096",
+                    "should_store::1636::1637",
                     "should_store::2076::2077",
-                    "should_store::2058::2061"
+                    "should_store::2528::2531",
+                    "should_store::2484::2485",
+                    "set::1639::1641",
+                    "should_store::2058::2061",
+                    "should_store::2242::2243"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -3071,13 +2954,11 @@
                     719
                ],
                "FUNCTIONS": [
-                    "_arith_method_FRAME::765::818",
                     "f::779::814",
-                    "_should_reindex_frame_op::713::730"
+                    "_should_reindex_frame_op::713::730",
+                    "_arith_method_FRAME::765::818"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_should_reindex_frame_op::713::730"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:44": [
@@ -3095,12 +2976,10 @@
                     534
                ],
                "FUNCTIONS": [
-                    "_shallow_copy_with_infer::511::535",
-                    "get_indexer_non_unique::4653::4668"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "get_indexer_non_unique::4653::4668",
                     "_shallow_copy_with_infer::511::535"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/indexes/datetimelike.py",
@@ -3172,9 +3051,7 @@
                "FUNCTIONS": [
                     "sanitize_array::389::504"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "sanitize_array::389::504"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:46": [
@@ -3218,9 +3095,7 @@
                "FUNCTIONS": [
                     "_setitem_array::2672::2694"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_setitem_array::2672::2694"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/indexing.py",
@@ -3261,8 +3136,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "str_repeat::726::785",
-                    "rep::777::781"
+                    "rep::777::781",
+                    "str_repeat::726::785"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -3276,8 +3151,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "func::68::140",
-                    "_cat_compare_op::65::144"
+                    "_cat_compare_op::65::144",
+                    "func::68::140"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -3348,9 +3223,7 @@
                "FUNCTIONS": [
                     "_get_value::956::974"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_get_value::956::974"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:54": [
@@ -3366,9 +3239,7 @@
                "FUNCTIONS": [
                     "_from_values_or_dtype::247::339"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_from_values_or_dtype::247::339"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:55": [
@@ -3429,9 +3300,7 @@
                "FUNCTIONS": [
                     "assert_series_equal::1066::1213"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "assert_series_equal::1066::1213"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/arrays/categorical.py",
@@ -3523,9 +3392,7 @@
                "FUNCTIONS": [
                     "setitem::811::923"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "setitem::811::923"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/io/stata.py",
@@ -3539,9 +3406,7 @@
                "FUNCTIONS": [
                     "_do_convert_missing::1658::1694"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_do_convert_missing::1658::1694"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:63": [
@@ -3710,9 +3575,7 @@
                "FUNCTIONS": [
                     "_cython_operation::426::564"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_cython_operation::426::564"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:71": [
@@ -3731,9 +3594,7 @@
                "FUNCTIONS": [
                     "cut::30::267"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "cut::30::267"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:72": [
@@ -3754,9 +3615,7 @@
                "FUNCTIONS": [
                     "setitem::808::909"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "setitem::808::909"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:73": [
@@ -3776,9 +3635,7 @@
                     "_combine_match_index::5371::5381",
                     "_combine_frame::5344::5369"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_combine_match_index::5371::5381"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/ops/missing.py",
@@ -3833,9 +3690,7 @@
                     "get_loc::548::606",
                     "get_value::477::513"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "get_loc::548::606"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:76": [
@@ -3893,8 +3748,8 @@
                     29
                ],
                "FUNCTIONS": [
-                    "is_in_axis::563::572",
-                    "get_grouper::426::638"
+                    "get_grouper::426::638",
+                    "is_in_axis::563::572"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -3908,8 +3763,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "get_loc::672::718",
-                    "get_value::639::666"
+                    "get_value::639::666",
+                    "get_loc::672::718"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -3937,9 +3792,7 @@
                "FUNCTIONS": [
                     "__setitem__::967::1003"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__setitem__::967::1003"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:80": [
@@ -3993,9 +3846,7 @@
                "FUNCTIONS": [
                     "astype::419::457"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "astype::419::457"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:82": [
@@ -4026,12 +3877,10 @@
                     145
                ],
                "FUNCTIONS": [
-                    "_get_combined_index::107::146",
-                    "get_objs_combined_axis::65::90"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "get_objs_combined_axis::65::90",
                     "_get_combined_index::107::146"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/reshape/concat.py",
@@ -4059,9 +3908,7 @@
                "FUNCTIONS": [
                     "_unstack_multiple::312::390"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_unstack_multiple::312::390"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:85": [
@@ -4077,9 +3924,7 @@
                "FUNCTIONS": [
                     "_get_grouper_for_level::1234::1265"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_get_grouper_for_level::1234::1265"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:86": [
@@ -4112,9 +3957,7 @@
                "FUNCTIONS": [
                     "crosstab::453::607"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "crosstab::453::607"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:88": [
@@ -4184,12 +4027,10 @@
                     75
                ],
                "FUNCTIONS": [
-                    "read_pickle::78::161",
-                    "to_pickle::10::75"
+                    "to_pickle::10::75",
+                    "read_pickle::78::161"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "to_pickle::10::75"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:91": [
@@ -4243,9 +4084,7 @@
                     "searchsorted::469::482",
                     "_get_string_slice::694::708"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "searchsorted::469::482"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/resample.py",
@@ -4275,8 +4114,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "take::245::261",
-                    "repeat::486::490"
+                    "repeat::486::490",
+                    "take::245::261"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4293,8 +4132,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "wrapper::74::139",
-                    "_period_array_cmp::67::141"
+                    "_period_array_cmp::67::141",
+                    "wrapper::74::139"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4329,9 +4168,7 @@
                     "_fast_union::268::291",
                     "_union::250::266"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_fast_union::268::291"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:98": [
@@ -4405,9 +4242,7 @@
                "FUNCTIONS": [
                     "astype_nansafe::792::888"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "astype_nansafe::792::888"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:102": [
@@ -4425,9 +4260,7 @@
                "FUNCTIONS": [
                     "init_ndarray::123::202"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "init_ndarray::123::202"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:103": [
@@ -4443,9 +4276,7 @@
                "FUNCTIONS": [
                     "pct_change::803::816"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "pct_change::803::816"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
@@ -4459,9 +4290,7 @@
                "FUNCTIONS": [
                     "pct_change::2344::2368"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "pct_change::2344::2368"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:104": [
@@ -4581,9 +4410,7 @@
                "FUNCTIONS": [
                     "infer_dtype_from_scalar::533::605"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "infer_dtype_from_scalar::533::605"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:109": [
@@ -4599,13 +4426,10 @@
                     2154
                ],
                "FUNCTIONS": [
-                    "min::2111::2136",
-                    "max::2138::2163"
+                    "max::2138::2163",
+                    "min::2111::2136"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "min::2111::2136",
-                    "max::2138::2163"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:110": [
@@ -4675,9 +4499,7 @@
                "FUNCTIONS": [
                     "get_indexer::907::976"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "get_indexer::907::976"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:114": [
@@ -4792,12 +4614,10 @@
                     716
                ],
                "FUNCTIONS": [
-                    "count::695::717",
-                    "nunique::498::560"
-               ],
-               "EXTENDED_FUNCTIONS": [
+                    "nunique::498::560",
                     "count::695::717"
-               ]
+               ],
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/groupby/groupby.py",
@@ -4815,13 +4635,11 @@
                     1741
                ],
                "FUNCTIONS": [
-                    "_reindex_output::2383::2457",
+                    "size::1284::1299",
                     "nth::1633::1802",
-                    "size::1284::1299"
+                    "_reindex_output::2383::2457"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "nth::1633::1802"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:121": [
@@ -4837,9 +4655,7 @@
                "FUNCTIONS": [
                     "_replace_coerce::2790::2828"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_replace_coerce::2790::2828"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "pandas/core/internals/managers.py",
@@ -4863,8 +4679,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "canonicalize::1401::1402",
-                    "equals::1386::1408"
+                    "equals::1386::1408",
+                    "canonicalize::1401::1402"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4993,9 +4809,7 @@
                "FUNCTIONS": [
                     "pct_change::10436::10450"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "pct_change::10436::10450"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:128": [
@@ -5011,9 +4825,7 @@
                "FUNCTIONS": [
                     "read_json::352::610"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "read_json::352::610"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:129": [
@@ -5029,9 +4841,7 @@
                "FUNCTIONS": [
                     "__rsub__::1302::1339"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__rsub__::1302::1339"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:130": [
@@ -5055,8 +4865,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_delegate_property_get::62::94",
-                    "__new__::312::340"
+                    "__new__::312::340",
+                    "_delegate_property_get::62::94"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -5072,8 +4882,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "nanvar::712::778",
-                    "nanstd::678::709"
+                    "nanstd::678::709",
+                    "nanvar::712::778"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -5101,9 +4911,7 @@
                "FUNCTIONS": [
                     "interpolate::7034::7128"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "interpolate::7034::7128"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:134": [
@@ -5161,9 +4969,7 @@
                "FUNCTIONS": [
                     "astype::502::526"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "astype::502::526"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:138": [
@@ -5181,9 +4987,7 @@
                "FUNCTIONS": [
                     "_coerce_to_type::424::445"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_coerce_to_type::424::445"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:139": [
@@ -5245,9 +5049,7 @@
                "FUNCTIONS": [
                     "diff::1890::1968"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "diff::1890::1968"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:143": [
@@ -5290,8 +5092,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "dispatch_to_series::463::515",
-                    "column_op::501::502"
+                    "column_op::501::502",
+                    "dispatch_to_series::463::515"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -5448,9 +5250,7 @@
                "FUNCTIONS": [
                     "_get_cythonized_result::2192::2304"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_get_cythonized_result::2192::2304"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:155": [
@@ -5588,9 +5388,7 @@
                "FUNCTIONS": [
                     "_normalize::585::654"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_normalize::585::654"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:163": [
@@ -5620,9 +5418,7 @@
                "FUNCTIONS": [
                     "_convert_listlike_datetimes::265::475"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_convert_listlike_datetimes::265::475"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:165": [
@@ -5636,8 +5432,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "__sub__::1274::1340",
                     "__rsub__::1342::1371",
+                    "__sub__::1274::1340",
                     "__add__::1208::1268"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -5712,9 +5508,7 @@
                     "_is_scalar_access::1691::1710",
                     "convert_to_index_sliceable::2321::2343"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_is_scalar_access::1691::1710"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "pandas:168": [
@@ -5745,9 +5539,7 @@
                "FUNCTIONS": [
                     "quantile::8143::8230"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "quantile::8143::8230"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "sanic:1": [
@@ -5786,9 +5578,7 @@
                "FUNCTIONS": [
                     "url_for::798::925"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "url_for::798::925"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "sanic:4": [
@@ -5847,9 +5637,7 @@
                "FUNCTIONS": [
                     "load_model_from_path::191::214"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "load_model_from_path::191::214"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "spacy:3": [
@@ -5909,9 +5697,7 @@
                "FUNCTIONS": [
                     "remove_pipe::395::407"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "remove_pipe::395::407"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "thefuck:1": [
@@ -6029,8 +5815,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_get_operations::25::31",
-                    "_parse_operations::17::22"
+                    "_parse_operations::17::22",
+                    "_get_operations::25::31"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6065,9 +5851,7 @@
                "FUNCTIONS": [
                     "get_new_command::9::27"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "get_new_command::9::27"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "thefuck:12": [
@@ -6102,9 +5886,7 @@
                     "match::7::11",
                     "get_new_command::14::23"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "get_new_command::14::23"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "thefuck:14": [
@@ -6137,8 +5919,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "match::6::9",
-                    "get_new_command::12::19"
+                    "get_new_command::12::19",
+                    "match::6::9"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6210,8 +5992,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "get_aliases::26::33",
-                    "app_alias::9::18"
+                    "app_alias::9::18",
+                    "get_aliases::26::33"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -6318,8 +6100,8 @@
                     4
                ],
                "FUNCTIONS": [
-                    "_cache::173::189",
-                    "cache::157::190"
+                    "cache::157::190",
+                    "_cache::173::189"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6555,8 +6337,7 @@
                     "initialize::33::42"
                ],
                "EXTENDED_FUNCTIONS": [
-                    "close::44::51",
-                    "initialize::33::42"
+                    "close::44::51"
                ]
           }
      ],
@@ -6573,9 +6354,7 @@
                "FUNCTIONS": [
                     "accept_connection::616::624"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "accept_connection::616::624"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "tornado:10": [
@@ -6591,9 +6370,7 @@
                "FUNCTIONS": [
                     "finish::959::998"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "finish::959::998"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "tornado/websocket.py",
@@ -6684,9 +6461,7 @@
                "FUNCTIONS": [
                     "disp_trim::356::367"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "disp_trim::356::367"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "tqdm:3": [
@@ -6733,9 +6508,7 @@
                "FUNCTIONS": [
                     "__init__::641::866"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__init__::641::866"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "tqdm:6": [
@@ -6795,8 +6568,8 @@
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
                     "__len__::362::363",
-                    "__init__::197::360",
                     "__iter__::365::478",
+                    "__init__::197::360",
                     "format_sizeof::24::48"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -6868,12 +6641,10 @@
                     2024
                ],
                "FUNCTIONS": [
-                    "parse_dfxp_time_expr::1977::1987",
-                    "dfxp2srt::1994::2033"
+                    "dfxp2srt::1994::2033",
+                    "parse_dfxp_time_expr::1977::1987"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "dfxp2srt::1994::2033"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "youtube-dl:7": [
@@ -6933,9 +6704,7 @@
                "FUNCTIONS": [
                     "cli_bool_option::2734::2739"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "cli_bool_option::2734::2739"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "youtube-dl:18": [
@@ -7026,8 +6795,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "fix_kv::2025::2051",
-                    "js_to_json::2024::2060"
+                    "js_to_json::2024::2060",
+                    "fix_kv::2025::2051"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -7108,9 +6877,7 @@
                "FUNCTIONS": [
                     "parse_duration::1201::1223"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "parse_duration::1201::1223"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "youtube-dl:34": [
@@ -7125,12 +6892,10 @@
                     675
                ],
                "FUNCTIONS": [
-                    "js_to_json::1579::1604",
-                    "__init__::667::683"
+                    "__init__::667::683",
+                    "js_to_json::1579::1604"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "__init__::667::683"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "youtube-dl:35": [
@@ -7147,9 +6912,7 @@
                "FUNCTIONS": [
                     "_extract_from_json_url::85::175"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "_extract_from_json_url::85::175"
-               ]
+               "EXTENDED_FUNCTIONS": []
           },
           {
                "FILE_NAME": "youtube_dl/utils.py",
@@ -7163,9 +6926,7 @@
                "FUNCTIONS": [
                     "unified_strdate::868::912"
                ],
-               "EXTENDED_FUNCTIONS": [
-                    "unified_strdate::868::912"
-               ]
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "youtube-dl:36": [
