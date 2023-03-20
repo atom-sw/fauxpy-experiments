@@ -89,7 +89,7 @@ class AverageFaultLocalization:
                                       None,
                                       self._ochiai_csv.get_project_name(),
                                       self._ochiai_csv.get_bug_number(),
-                                      FLTechnique.Tarantula,
+                                      FLTechnique.Average,
                                       FLGranularity.Statement,
                                       reassigned_score_statement_list,
                                       -1)

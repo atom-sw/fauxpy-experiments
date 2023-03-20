@@ -15,25 +15,35 @@ class ResultManager:
                  csv_score_items: List[CsvScoreItem],
                  ground_truth_info_dict: Dict,
                  size_counts_dict: Dict):
-        self.csv_score_items = csv_score_items
-        assert (any([x.get_granularity() == FLGranularity.Statement for x in self.csv_score_items]) or
-                any([x.get_granularity() == FLGranularity.Function for x in self.csv_score_items]) or
-                any([x.get_granularity() == FLGranularity.Module for x in self.csv_score_items]))
+        self._csv_score_items = csv_score_items
+        assert (any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items]) or
+                any([x.get_granularity() == FLGranularity.Function for x in self._csv_score_items]) or
+                any([x.get_granularity() == FLGranularity.Module for x in self._csv_score_items]))
         self._ground_truth_info_dict = ground_truth_info_dict
         self._size_counts_dict = size_counts_dict
+        self._all_techniques = self._get_all_techniques()
+        pass
+
+    def _get_all_techniques(self):
+        all_techniques = set()
+        for csv_score_item in self._csv_score_items:
+            all_techniques.add(csv_score_item.get_technique())
+        all_techniques_list = list(all_techniques)
+
+        return all_techniques_list
 
     def compute_literature_metrics(self):
-        self._compute_all_literature_metrics_for(self.csv_score_items)
-        detailed, overall = self._create_all_literature_metrics_for(self.csv_score_items)
+        self._compute_all_literature_metrics_for(self._csv_score_items)
+        detailed, overall = self._create_all_literature_metrics_for(self._csv_score_items)
         return detailed, overall
 
     def compute_our_metrics(self):
         # We compute our metrics only for statement granularity.
-        assert any([x.get_granularity() == FLGranularity.Statement for x in self.csv_score_items])
+        assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
 
         # Our metrics must be computed after literature
         # metrics because we need e_inspect values for our metrics.
-        assert any([x.get_metric_literature_val() is not None for x in self.csv_score_items])
+        assert any([x.get_metric_literature_val() is not None for x in self._csv_score_items])
 
         self._compute_all_our_metrics_for_statement_csv_score_items()
         detailed, overall = self._create_all_our_metrics_for_statement_csv_score_items()
@@ -47,7 +57,7 @@ class ResultManager:
             item.set_metric_literature_val(metric_literature_val)
 
     def _compute_all_our_metrics_for_statement_csv_score_items(self):
-        for item in self.csv_score_items:
+        for item in self._csv_score_items:
             e_inspect = item.get_metric_literature_val().get_e_inspect()
             cumulative_distance, sv_comp_overall_score = self._compute_our_metrics(item, e_inspect)
             metric_our_val = MetricOurVal(cumulative_distance, sv_comp_overall_score)
@@ -55,7 +65,7 @@ class ResultManager:
 
     def _create_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         technique_csv_items = {}
-        for item in FLTechnique:
+        for item in self._all_techniques:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                          csv_score_items)
 
@@ -73,9 +83,9 @@ class ResultManager:
         return technique_detailed_table_dict, technique_overall_table
 
     def _create_all_our_metrics_for_statement_csv_score_items(self):
-        csv_score_items = self.csv_score_items
+        csv_score_items = self._csv_score_items
         technique_csv_items = {}
-        for item in FLTechnique:
+        for item in self._all_techniques:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                          csv_score_items)
 

@@ -14,6 +14,7 @@ class FLTechnique(Enum):
     Muse = 4
     PS = 5
     ST = 6
+    Average = 7
 
 
 class FLGranularity(Enum):
@@ -77,7 +78,11 @@ class CsvScoreItem:
         self._metric_our_val = None
 
     def _pretty_representation(self):
-        csv_files = [x.name for x in self._csv_paths]
+        if self._csv_paths is None:
+            csv_files = None
+        else:
+            csv_files = [x.name for x in self._csv_paths]
+
         return (f"{self._script_id} "
                 f"{self._project_name} "
                 f"{self._bug_number} "
