@@ -313,8 +313,12 @@ def get_bug_ground_truth(benchmark_name: str,
         fixed_content = file.fixed_content
         lines, extended_lines = get_file_ground_truth(patch, buggy_content, fixed_content)
 
+        if len(lines) + len(extended_lines) == 0:
+            continue
+
         functions = _get_buggy_functions_for_line_list(buggy_content, lines)
         extended_function = _get_buggy_functions_for_line_list(buggy_content, extended_lines)
+        extended_function_not_repeated = list(filter(lambda x: x not in functions, extended_function))
 
         but_ground_truth.append(
             {
@@ -323,7 +327,7 @@ def get_bug_ground_truth(benchmark_name: str,
                 "LINES": lines,
                 "EXTENDED_LINES": extended_lines,
                 "FUNCTIONS": functions,
-                "EXTENDED_FUNCTIONS": extended_function
+                "EXTENDED_FUNCTIONS": extended_function_not_repeated
             }
         )
     return but_ground_truth
