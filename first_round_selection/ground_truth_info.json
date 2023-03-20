@@ -92,8 +92,8 @@
                ],
                "FUNCTIONS": [
                     "parse_stream_raw::98::101",
-                    "__init__::32::37",
-                    "parse_string::112::115"
+                    "parse_string::112::115",
+                    "__init__::32::37"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -328,26 +328,26 @@
                     2711
                ],
                "FUNCTIONS": [
-                    "generate_comments::2088::2118",
-                    "trim_prefix::104::105",
-                    "normalize_fmt_off::2682::2692",
-                    "split_line::2178::2244",
-                    "container_of::1957::1976",
-                    "visit_unformatted::1651::1667",
                     "leaf_from_consumed::107::110",
-                    "append::1312::1330",
-                    "__init__::100::102",
+                    "trim_prefix::104::105",
+                    "maybe_increment_for_loop_variable::1353::1355",
+                    "split_line::2178::2244",
+                    "generate_ignored_nodes::2735::2744",
+                    "__str__::1332::1343",
+                    "visit_unformatted::1651::1667",
+                    "visit::1504::1514",
                     "maybe_empty_lines::1373::1386",
                     "visit_default::1516::1555",
-                    "append_comment::1345::1347",
-                    "__str__::1332::1343",
-                    "generate_ignored_nodes::2735::2744",
-                    "show::761::768",
-                    "maybe_increment_for_loop_variable::1353::1355",
+                    "normalize_fmt_off::2682::2692",
+                    "append::1312::1330",
+                    "line::1485::1502",
+                    "__init__::100::102",
                     "hide_fmt_off::2695::2732",
+                    "show::761::768",
                     "maybe_remove_trailing_comma::1349::1351",
-                    "visit::1504::1514",
-                    "line::1485::1502"
+                    "generate_comments::2088::2118",
+                    "container_of::1957::1976",
+                    "append_comment::1345::1347"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -372,8 +372,8 @@
                     6
                ],
                "FUNCTIONS": [
-                    "format_stdin_to_stdout::494::521",
                     "format_file_in_place::453::491",
+                    "format_stdin_to_stdout::494::521",
                     "lib2to3_parse::589::614"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -474,18 +474,18 @@
                     1449
                ],
                "FUNCTIONS": [
-                    "maybe_adapt_standalone_comment::812::814",
                     "right_hand_split::1529::1566",
                     "maybe_remove_trailing_comma::625::672",
-                    "delimiter_split::1595::1644",
-                    "append::529::556",
-                    "maybe_adapt_standalone_comment::697::714",
-                    "__str__::744::757",
-                    "left_hand_split::1485::1526",
-                    "is_comment::558::561",
                     "last_non_delimiter::735::742",
+                    "is_comment::558::561",
+                    "delimiter_split::1595::1644",
+                    "maybe_adapt_standalone_comment::697::714",
                     "append_comment::716::733",
-                    "split_line::1429::1482"
+                    "maybe_adapt_standalone_comment::812::814",
+                    "__str__::744::757",
+                    "split_line::1429::1482",
+                    "append::529::556",
+                    "left_hand_split::1485::1526"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -514,8 +514,8 @@
                     904
                ],
                "FUNCTIONS": [
-                    "whitespace::847::1067",
                     "lib2to3_parse::238::258",
+                    "whitespace::847::1067",
                     "assert_equivalent::1504::1562"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -563,8 +563,8 @@
                     55
                ],
                "FUNCTIONS": [
-                    "find_hook::39::61",
-                    "run_hook::114::127"
+                    "run_hook::114::127",
+                    "find_hook::39::61"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -584,6 +584,14 @@
           }
      ],
      "cookiecutter:4": [
+          {
+               "FILE_NAME": "cookiecutter/exceptions.py",
+               "MODULE_SIZE": 83,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
           {
                "FILE_NAME": "cookiecutter/generate.py",
                "MODULE_SIZE": 323,
@@ -670,17 +678,17 @@
                     685
                ],
                "FUNCTIONS": [
-                    "api_route::205::259",
-                    "get::293::341",
                     "options::493::541",
-                    "delete::443::491",
-                    "trace::643::691",
+                    "put::343::391",
+                    "get::293::341",
                     "patch::593::641",
                     "post::393::441",
-                    "put::343::391",
                     "head::543::591",
-                    "add_api_route::153::203",
-                    "decorator::232::257"
+                    "delete::443::491",
+                    "api_route::205::259",
+                    "decorator::232::257",
+                    "trace::643::691",
+                    "add_api_route::153::203"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -789,24 +797,24 @@
                     990
                ],
                "FUNCTIONS": [
-                    "__init__::237::342",
-                    "options::794::843",
-                    "_prepare_response_content::51::70",
-                    "head::845::894",
-                    "include_router::516::588",
-                    "get::590::639",
-                    "add_api_route::382::438",
-                    "put::641::690",
-                    "api_route::440::496",
-                    "serialize_response::73::108",
-                    "decorator::468::494",
-                    "delete::743::792",
-                    "patch::896::945",
-                    "get_request_handler::124::192",
-                    "trace::947::996",
-                    "app::140::190",
                     "post::692::741",
-                    "get_route_handler::344::356"
+                    "add_api_route::382::438",
+                    "__init__::237::342",
+                    "put::641::690",
+                    "head::845::894",
+                    "patch::896::945",
+                    "delete::743::792",
+                    "options::794::843",
+                    "get_request_handler::124::192",
+                    "_prepare_response_content::51::70",
+                    "include_router::516::588",
+                    "app::140::190",
+                    "decorator::468::494",
+                    "get_route_handler::344::356",
+                    "get::590::639",
+                    "trace::947::996",
+                    "serialize_response::73::108",
+                    "api_route::440::496"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -918,8 +926,8 @@
                     489
                ],
                "FUNCTIONS": [
-                    "add_api_route::328::375",
-                    "include_router::440::506"
+                    "include_router::440::506",
+                    "add_api_route::328::375"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1095,6 +1103,14 @@
                     "get_response::39::58"
                ],
                "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "httpie/core.py",
+               "MODULE_SIZE": 211,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
           }
      ],
      "httpie:3": [
@@ -1165,11 +1181,19 @@
                     15
                ],
                "FUNCTIONS": [
-                    "update_sub::1223::1234",
-                    "print_tensor::2883::2903",
+                    "update_add::1209::1220",
                     "update::1195::1206",
-                    "update_add::1209::1220"
+                    "update_sub::1223::1234",
+                    "print_tensor::2883::2903"
                ],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "keras/backend/theano_backend.py",
+               "MODULE_SIZE": 2949,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           },
           {
@@ -1193,15 +1217,24 @@
                ],
                "FUNCTIONS": [
                     "__call__::82::84",
-                    "__call__::110::112",
                     "__call__::201::218",
+                    "__call__::110::112",
                     "__call__::245::259",
                     "__call__::143::145"
                ],
                "EXTENDED_FUNCTIONS": []
           }
      ],
-     "keras:2": [],
+     "keras:2": [
+          {
+               "FILE_NAME": "keras/backend/numpy_backend.py",
+               "MODULE_SIZE": 754,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
      "keras:3": [
           {
                "FILE_NAME": "keras/models.py",
@@ -1258,8 +1291,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "weighted::392::424",
-                    "weighted_masked_objective::375::425"
+                    "weighted_masked_objective::375::425",
+                    "weighted::392::424"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1373,9 +1406,9 @@
                     58
                ],
                "FUNCTIONS": [
-                    "evaluate_generator::266::376",
+                    "fit_generator::21::263",
                     "predict_generator::379::472",
-                    "fit_generator::21::263"
+                    "evaluate_generator::266::376"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -1388,6 +1421,14 @@
                "EXTENDED_LINES": [
                     12
                ],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "MODULE_SIZE": 709,
+               "LINES": [],
+               "EXTENDED_LINES": [],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1440,10 +1481,10 @@
                     288
                ],
                "FUNCTIONS": [
-                    "build::211::229",
-                    "get_config::273::280",
+                    "__init__::86::92",
                     "from_config::282::289",
-                    "__init__::86::92"
+                    "build::211::229",
+                    "get_config::273::280"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1477,10 +1518,10 @@
                     2674
                ],
                "FUNCTIONS": [
-                    "_make_callable::2559::2604",
                     "_call::2606::2647",
+                    "__init__::2510::2557",
                     "__call__::2667::2682",
-                    "__init__::2510::2557"
+                    "_make_callable::2559::2604"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1494,8 +1535,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "rnn::1340::1465",
-                    "_recurrence::1423::1443"
+                    "_recurrence::1423::1443",
+                    "rnn::1340::1465"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -1524,14 +1565,14 @@
                     1797
                ],
                "FUNCTIONS": [
-                    "state_size::59::74",
-                    "compute_output_shape::409::428",
-                    "__init__::795::831",
-                    "__init__::1757::1799",
-                    "build::106::121",
-                    "call::76::104",
                     "__init__::1182::1224",
-                    "__init__::47::57"
+                    "__init__::47::57",
+                    "call::76::104",
+                    "__init__::1757::1799",
+                    "state_size::59::74",
+                    "__init__::795::831",
+                    "build::106::121",
+                    "compute_output_shape::409::428"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1564,8 +1605,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "conv2d_transpose::3588::3635",
-                    "_preprocess_conv2d_input::3436::3456"
+                    "_preprocess_conv2d_input::3436::3456",
+                    "conv2d_transpose::3588::3635"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -1600,10 +1641,10 @@
                     749
                ],
                "FUNCTIONS": [
-                    "compute_output_shape::851::876",
                     "call::803::849",
+                    "get_config::878::882",
                     "__init__::727::769",
-                    "get_config::878::882"
+                    "compute_output_shape::851::876"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -1661,13 +1702,22 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "rnn::2676::2917",
-                    "_step::2850::2876"
+                    "_step::2850::2876",
+                    "rnn::2676::2917"
                ],
                "EXTENDED_FUNCTIONS": []
           }
      ],
-     "keras:27": [],
+     "keras:27": [
+          {
+               "FILE_NAME": "keras/layers/wrappers.py",
+               "MODULE_SIZE": 520,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
      "keras:28": [
           {
                "FILE_NAME": "keras/preprocessing/sequence.py",
@@ -1681,8 +1731,8 @@
                     327
                ],
                "FUNCTIONS": [
-                    "__len__::329::332",
-                    "__getitem__::341::357"
+                    "__getitem__::341::357",
+                    "__len__::329::332"
                ],
                "EXTENDED_FUNCTIONS": [
                     "__init__::308::327"
@@ -1714,12 +1764,12 @@
                     931
                ],
                "FUNCTIONS": [
-                    "handle_metrics::867::932",
                     "_test_loop::1346::1448",
-                    "compile::549::956",
-                    "fit_generator::1950::2283",
                     "_fit_loop::1073::1259",
-                    "evaluate_generator::2285::2438"
+                    "evaluate_generator::2285::2438",
+                    "fit_generator::1950::2283",
+                    "compile::549::956",
+                    "handle_metrics::867::932"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1809,10 +1859,18 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
+                    "fit_generator::1950::2289",
                     "predict_generator::2418::2543",
-                    "evaluate_generator::2291::2416",
-                    "fit_generator::1950::2289"
+                    "evaluate_generator::2291::2416"
                ],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "keras/utils/data_utils.py",
+               "MODULE_SIZE": 787,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
      ],
@@ -1833,8 +1891,8 @@
                ],
                "FUNCTIONS": [
                     "standardize::574::618",
-                    "_get_batches_of_transformed_samples::1222::1258",
-                    "_get_batches_of_transformed_samples::949::968"
+                    "_get_batches_of_transformed_samples::949::968",
+                    "_get_batches_of_transformed_samples::1222::1258"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -1958,12 +2016,12 @@
                     616
                ],
                "FUNCTIONS": [
-                    "get::697::715",
-                    "get::539::556",
-                    "__init__::608::618",
-                    "stop::671::695",
                     "start::620::666",
-                    "data_generator_task::629::641"
+                    "__init__::608::618",
+                    "get::697::715",
+                    "data_generator_task::629::641",
+                    "stop::671::695",
+                    "get::539::556"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2000,8 +2058,8 @@
                ],
                "FUNCTIONS": [
                     "predict_generator::2290::2403",
-                    "fit_generator::1900::2173",
-                    "evaluate_generator::2175::2288"
+                    "evaluate_generator::2175::2288",
+                    "fit_generator::1900::2173"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -2015,9 +2073,9 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "predict_generator::1265::1296",
+                    "evaluate_generator::1225::1263",
                     "fit_generator::1117::1223",
-                    "evaluate_generator::1225::1263"
+                    "predict_generator::1265::1296"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2050,8 +2108,8 @@
                     740
                ],
                "FUNCTIONS": [
-                    "trainable_weights::732::736",
-                    "non_trainable_weights::738::742"
+                    "non_trainable_weights::738::742",
+                    "trainable_weights::732::736"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2146,8 +2204,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "get_grouper::601::816",
-                    "is_in_obj::752::758"
+                    "is_in_obj::752::758",
+                    "get_grouper::601::816"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2265,8 +2323,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "cov::7913::8021",
-                    "corr::7824::7911"
+                    "corr::7824::7911",
+                    "cov::7913::8021"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2303,10 +2361,10 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_isna_old::148::176",
-                    "_isna_new::127::145",
                     "_isna_ndarraylike::210::229",
-                    "_isna_ndarraylike_old::232::249"
+                    "_isna_new::127::145",
+                    "_isna_ndarraylike_old::232::249",
+                    "_isna_old::148::176"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2422,9 +2480,9 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "apply_index::1866::1875",
+                    "apply_index::1952::1961",
                     "apply_index::1147::1152",
-                    "apply_index::1952::1961"
+                    "apply_index::1866::1875"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2470,8 +2528,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "count::1937::1946",
-                    "count::1173::1191"
+                    "count::1173::1191",
+                    "count::1937::1946"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2616,8 +2674,8 @@
                     46
                ],
                "FUNCTIONS": [
-                    "pre_processor::1863::1876",
-                    "quantile::1827::1938"
+                    "quantile::1827::1938",
+                    "pre_processor::1863::1876"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2743,11 +2801,11 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_isna_new::133::161",
-                    "_isna_old::164::192",
                     "na_value_for_dtype::529::574",
+                    "_isna_ndarraylike_old::272::297",
                     "_isna_ndarraylike::226::269",
-                    "_isna_ndarraylike_old::272::297"
+                    "_isna_old::164::192",
+                    "_isna_new::133::161"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2795,9 +2853,9 @@
                     95
                ],
                "FUNCTIONS": [
+                    "f::94::103",
                     "_wrap_inplace_method::89::107",
-                    "add_special_arithmetic_methods::72::129",
-                    "f::94::103"
+                    "add_special_arithmetic_methods::72::129"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2825,8 +2883,8 @@
                     1893
                ],
                "FUNCTIONS": [
-                    "_factorize_keys::1825::1895",
-                    "_get_join_indexers::1250::1299"
+                    "_get_join_indexers::1250::1299",
+                    "_factorize_keys::1825::1895"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2855,15 +2913,15 @@
                     2274
                ],
                "FUNCTIONS": [
-                    "should_store::2095::2096",
-                    "should_store::2058::2061",
-                    "set::1639::1641",
-                    "should_store::2484::2485",
                     "should_store::2620::2627",
+                    "should_store::2095::2096",
                     "should_store::1636::1637",
+                    "should_store::2076::2077",
                     "should_store::2528::2531",
-                    "should_store::2242::2243",
-                    "should_store::2076::2077"
+                    "should_store::2484::2485",
+                    "set::1639::1641",
+                    "should_store::2058::2061",
+                    "should_store::2242::2243"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2896,8 +2954,8 @@
                     719
                ],
                "FUNCTIONS": [
-                    "_should_reindex_frame_op::713::730",
                     "f::779::814",
+                    "_should_reindex_frame_op::713::730",
                     "_arith_method_FRAME::765::818"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -2918,8 +2976,8 @@
                     534
                ],
                "FUNCTIONS": [
-                    "_shallow_copy_with_infer::511::535",
-                    "get_indexer_non_unique::4653::4668"
+                    "get_indexer_non_unique::4653::4668",
+                    "_shallow_copy_with_infer::511::535"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -2998,6 +3056,14 @@
      ],
      "pandas:46": [
           {
+               "FILE_NAME": "pandas/core/indexes/multi.py",
+               "MODULE_SIZE": 3570,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
                "FILE_NAME": "pandas/core/reshape/util.py",
                "MODULE_SIZE": 59,
                "LINES": [
@@ -3070,8 +3136,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "str_repeat::726::785",
-                    "rep::777::781"
+                    "rep::777::781",
+                    "str_repeat::726::785"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -3566,8 +3632,8 @@
                     5376
                ],
                "FUNCTIONS": [
-                    "_combine_frame::5344::5369",
-                    "_combine_match_index::5371::5381"
+                    "_combine_match_index::5371::5381",
+                    "_combine_frame::5344::5369"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -3621,8 +3687,8 @@
                     580
                ],
                "FUNCTIONS": [
-                    "get_value::477::513",
-                    "get_loc::548::606"
+                    "get_loc::548::606",
+                    "get_value::477::513"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -3682,8 +3748,8 @@
                     29
                ],
                "FUNCTIONS": [
-                    "is_in_axis::563::572",
-                    "get_grouper::426::638"
+                    "get_grouper::426::638",
+                    "is_in_axis::563::572"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -3730,6 +3796,14 @@
           }
      ],
      "pandas:80": [
+          {
+               "FILE_NAME": "pandas/core/arrays/masked.py",
+               "MODULE_SIZE": 250,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
           {
                "FILE_NAME": "pandas/core/generic.py",
                "MODULE_SIZE": 11049,
@@ -3953,8 +4027,8 @@
                     75
                ],
                "FUNCTIONS": [
-                    "read_pickle::78::161",
-                    "to_pickle::10::75"
+                    "to_pickle::10::75",
+                    "read_pickle::78::161"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4040,8 +4114,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "take::245::261",
-                    "repeat::486::490"
+                    "repeat::486::490",
+                    "take::245::261"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4058,8 +4132,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "wrapper::74::139",
-                    "_period_array_cmp::67::141"
+                    "_period_array_cmp::67::141",
+                    "wrapper::74::139"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4091,8 +4165,8 @@
                     277
                ],
                "FUNCTIONS": [
-                    "_union::250::266",
-                    "_fast_union::268::291"
+                    "_fast_union::268::291",
+                    "_union::250::266"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4352,8 +4426,8 @@
                     2154
                ],
                "FUNCTIONS": [
-                    "min::2111::2136",
-                    "max::2138::2163"
+                    "max::2138::2163",
+                    "min::2111::2136"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4369,6 +4443,14 @@
                "FUNCTIONS": [
                     "_convert_slice_indexer::2964::3021"
                ],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "pandas/core/indexes/category.py",
+               "MODULE_SIZE": 923,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
      ],
@@ -4554,8 +4636,8 @@
                ],
                "FUNCTIONS": [
                     "size::1284::1299",
-                    "_reindex_output::2383::2457",
-                    "nth::1633::1802"
+                    "nth::1633::1802",
+                    "_reindex_output::2383::2457"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4597,8 +4679,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "canonicalize::1401::1402",
-                    "equals::1386::1408"
+                    "equals::1386::1408",
+                    "canonicalize::1401::1402"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4679,7 +4761,24 @@
                "EXTENDED_FUNCTIONS": []
           }
      ],
-     "pandas:125": [],
+     "pandas:125": [
+          {
+               "FILE_NAME": "pandas/core/arrays/categorical.py",
+               "MODULE_SIZE": 2740,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "pandas/core/internals/blocks.py",
+               "MODULE_SIZE": 3171,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
      "pandas:126": [
           {
                "FILE_NAME": "pandas/core/frame.py",
@@ -4745,7 +4844,16 @@
                "EXTENDED_FUNCTIONS": []
           }
      ],
-     "pandas:130": [],
+     "pandas:130": [
+          {
+               "FILE_NAME": "pandas/core/groupby/ops.py",
+               "MODULE_SIZE": 893,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
      "pandas:131": [
           {
                "FILE_NAME": "pandas/core/indexes/accessors.py",
@@ -4777,6 +4885,14 @@
                     "nanstd::678::709",
                     "nanvar::712::778"
                ],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "pandas/core/series.py",
+               "MODULE_SIZE": 4797,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
      ],
@@ -5162,8 +5278,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_combine_match_columns::591::613",
-                    "_combine_match_index::571::589"
+                    "_combine_match_index::571::589",
+                    "_combine_match_columns::591::613"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -5428,6 +5544,14 @@
      ],
      "sanic:1": [
           {
+               "FILE_NAME": "examples/blueprint_middlware_execution_order.py",
+               "MODULE_SIZE": 0,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
                "FILE_NAME": "sanic/app.py",
                "MODULE_SIZE": 1438,
                "LINES": [
@@ -5494,8 +5618,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "add_codes::5::13",
-                    "__getattribute__::9::11"
+                    "__getattribute__::9::11",
+                    "add_codes::5::13"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -5691,8 +5815,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "_get_operations::25::31",
-                    "_parse_operations::17::22"
+                    "_parse_operations::17::22",
+                    "_get_operations::25::31"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -5817,6 +5941,14 @@
                "EXTENDED_FUNCTIONS": []
           },
           {
+               "FILE_NAME": "thefuck/shells/fish.py",
+               "MODULE_SIZE": 65,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
                "FILE_NAME": "thefuck/shells/zsh.py",
                "MODULE_SIZE": 47,
                "LINES": [
@@ -5860,8 +5992,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "get_aliases::26::33",
-                    "app_alias::9::18"
+                    "app_alias::9::18",
+                    "get_aliases::26::33"
                ],
                "EXTENDED_FUNCTIONS": []
           },
@@ -5919,8 +6051,8 @@
                     3
                ],
                "FUNCTIONS": [
-                    "_zip_file::11::21",
-                    "get_new_command::30::31"
+                    "get_new_command::30::31",
+                    "_zip_file::11::21"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6332,7 +6464,16 @@
                "EXTENDED_FUNCTIONS": []
           }
      ],
-     "tqdm:3": [],
+     "tqdm:3": [
+          {
+               "FILE_NAME": "tqdm/_tqdm.py",
+               "MODULE_SIZE": 1333,
+               "LINES": [],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
      "tqdm:4": [
           {
                "FILE_NAME": "tqdm/_tqdm.py",
@@ -6426,9 +6567,9 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
+                    "__len__::362::363",
                     "__iter__::365::478",
                     "__init__::197::360",
-                    "__len__::362::363",
                     "format_sizeof::24::48"
                ],
                "EXTENDED_FUNCTIONS": []
@@ -6500,8 +6641,8 @@
                     2024
                ],
                "FUNCTIONS": [
-                    "parse_dfxp_time_expr::1977::1987",
-                    "dfxp2srt::1994::2033"
+                    "dfxp2srt::1994::2033",
+                    "parse_dfxp_time_expr::1977::1987"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6654,8 +6795,8 @@
                ],
                "EXTENDED_LINES": [],
                "FUNCTIONS": [
-                    "fix_kv::2025::2051",
-                    "js_to_json::2024::2060"
+                    "js_to_json::2024::2060",
+                    "fix_kv::2025::2051"
                ],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6751,8 +6892,8 @@
                     675
                ],
                "FUNCTIONS": [
-                    "js_to_json::1579::1604",
-                    "__init__::667::683"
+                    "__init__::667::683",
+                    "js_to_json::1579::1604"
                ],
                "EXTENDED_FUNCTIONS": []
           }
