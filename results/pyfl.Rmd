@@ -598,26 +598,36 @@ but this is understandable given that the data is complex, whereas the model is 
 PROBABILITIES <- c(0.5, 0.7, 0.9, 0.95, 0.99)
 which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
 
-post.m1 <- posterior::as_draws_df(m1)
+interval.results <- function(fit, response, group, predictor="technique")
+{
+  # posterior draws
+  post <- posterior::as_draws_df(fit)
+  # get columns of coefficients corresponding to `response` and `predictor`
+  post <- post[, grep(str_c("^b_", response, "_", predictor), colnames(post))]
+  # overall mean of posterior draws
+  grand.mean <- mean(unlist(post))
+  # difference to mean
+  diffs <- apply(post, 2, function(x) x - grand.mean)
+  colnames(diffs) <- TECHNIQUES
+  # reshape
+  diffs <- data.frame(diffs) %>% gather(predictor, response)
+  # add family column
+  diffs$family <- sapply(diffs$predictor, which.family)
+  # compute HPDIs
+  intervals <- (diffs
+                %>% group_by(.data[[group]]) 
+                %>% reframe(response=HPDI(response, prob=rev(PROBABILITIES)), 
+                            prob=names(HPDI(response, prob=rev(PROBABILITIES)))))
+  # reshape back and sort in inclusion interval order
+  intervals <- intervals %>% spread(group, response)
+  # sort in inclusion interval order
+  nrow.2 <- round(nrow(intervals)/2)
+  res <- rbind(intervals[1:nrow.2, ], intervals[nrow(intervals):(nrow.2+1), ])
+  res
+}
 
-post.m1.einspect <- post.m1[, grep("^b_einspectS_technique", colnames(post.m1))]
-mean.m1.einspect <- mean(unlist(post.m1.einspect))
-contrasts.m1.einspect <- apply(post.m1.einspect, 2, function(x) x - mean.m1.einspect)
-colnames(contrasts.m1.einspect) <- TECHNIQUES
-# reshape
-contrasts.m1.einspect <- data.frame(contrasts.m1.einspect) %>% gather(technique, "einspect")
-# add family column
-contrasts.m1.einspect$family <- sapply(contrasts.m1.einspect.2$technique, which.family)
-# compute HPDIs
-intervals.m1 <- (contrasts.m1.einspect 
-                 %>% group_by(family) 
-                 %>% reframe(einspect=HPDI(einspect, prob=rev(PROBABILITIES)), 
-                             prob=names(HPDI(einspect, prob=rev(PROBABILITIES)))))
-# reshape back and sort in inclusion interval order
-intervals.m1 <- intervals.m1 %>% spread(family, einspect)
-# sort in inclusion interval order
-nrow.2 <- round(nrow(intervals.m1)/2)
-res.m1 <- rbind(intervals.m1[1:nrow.2, ], intervals.m1[nrow(intervals.m1):(nrow.2+1), ])
+res.m1.einspect <- interval.results(m1, "einspectS", "family")
+res.m1.time <- interval.results(m1, "timeS", "family")
 ```
 
 
