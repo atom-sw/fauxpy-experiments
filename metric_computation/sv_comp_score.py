@@ -80,7 +80,8 @@ class TechniqueBugSvCompOverallScore(TechniqueBugOverallBase):
                 sv_comp_best_score_list.append(best_score)
 
         if len(sv_comp_best_score_list) == 0:
-            return -10
+            assert isinstance(self._distance_base, SvCompScoreForBug)
+            return self._distance_base.N_for_sv_comp_score * -1
         else:
             sv_comp_overall_score = max(sv_comp_best_score_list)
 
