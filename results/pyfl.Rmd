@@ -221,6 +221,8 @@ datas$family <- factor(datas$family)
 datas$technique <- factor(datas$technique)
 datas$project_name <- factor(datas$project_name)
 
+TECHNIQUES <- unique(datas$technique)
+
 # show some data
 str(datas)
 ```
@@ -514,7 +516,7 @@ are that it's multivariate, and log-transforms the mean (since both outcome vari
 
 ```{r m1 formula}
 eq.m1 <- brmsformula(
-  mvbind(einspectS, timeS) ~ 0 + bug + technique,
+  mvbind(einspectS, timeS) ~ 0 + technique + bug,
   family=brmsfamily("gaussian", link="log")
 ) + set_rescor(TRUE)
 
@@ -557,7 +559,7 @@ m1.priors <- brm(eq.m1,
 Now we fit the actual model.
 
 ```{r m1 fit}
-m1 <- brm(eq.m1, data=statement, prior=pp1)
+m1 <- brm(eq.m1, data=statement, prior=pp1, refresh=0, control=list(adapt_delta=0.95), seed=MY.SEED)
 ```
 
 Next, we check the usual diagnostics:
@@ -589,8 +591,34 @@ print(pp_check(m1, ndraws=100, resp="timeS") + scale_x_log10())
 As you can see, the simulated posteriors are not exactly a great fit, 
 but this is understandable given that the data is complex, whereas the model is quite simple.
 
+
 ## Analyzing $m_1$
 
+```{r m1 difference analysis, warning=FALSE}
+PROBABILITIES <- c(0.5, 0.7, 0.9, 0.95, 0.99)
+which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
+
+post.m1 <- posterior::as_draws_df(m1)
+
+post.m1.einspect <- post.m1[, grep("^b_einspectS_technique", colnames(post.m1))]
+mean.m1.einspect <- mean(unlist(post.m1.einspect))
+contrasts.m1.einspect <- apply(post.m1.einspect, 2, function(x) x - mean.m1.einspect)
+colnames(contrasts.m1.einspect) <- TECHNIQUES
+# reshape
+contrasts.m1.einspect <- data.frame(contrasts.m1.einspect) %>% gather(technique, "einspect")
+# add family column
+contrasts.m1.einspect$family <- sapply(contrasts.m1.einspect.2$technique, which.family)
+# compute HPDIs
+intervals.m1 <- (contrasts.m1.einspect 
+                 %>% group_by(family) 
+                 %>% reframe(einspect=HPDI(einspect, prob=rev(PROBABILITIES)), 
+                             prob=names(HPDI(einspect, prob=rev(PROBABILITIES)))))
+# reshape back and sort in inclusion interval order
+intervals.m1 <- intervals.m1 %>% spread(family, einspect)
+# sort in inclusion interval order
+nrow.2 <- round(nrow(intervals.m1)/2)
+res.m1 <- rbind(intervals.m1[1:nrow.2, ], intervals.m1[nrow(intervals.m1):(nrow.2+1), ])
+```
 
 
 
