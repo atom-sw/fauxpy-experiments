@@ -27,7 +27,6 @@ class CsvScoreItemModuleGranularityManager:
         current_csv_module = copy.copy(csv_statement)
         current_csv_module.set_csv_paths(None)
         current_csv_module.set_script_id(None)
-        current_csv_module.set_experiment_time_seconds(-1)
         current_csv_module.set_granularity(FLGranularity.Module)
         current_csv_module.set_scored_entities(scored_module_list)
 
