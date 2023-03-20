@@ -60,6 +60,10 @@ MY.SEED <- 73544204
 set.seed(MY.SEED)
 # No need to thread safe RNGs
 options(future.rng.onMisuse="ignore")
+# Use available CPUs
+options(mc.cores=parallel::detectCores())
+# Set cmdstanr as backend for brms if you have it
+options(brms.backend="cmdstanr")
 
 
 
@@ -216,6 +220,8 @@ for (granularity in GRANULARITIES) {
 datas$family <- factor(datas$family)
 datas$technique <- factor(datas$technique)
 datas$project_name <- factor(datas$project_name)
+
+TECHNIQUES <- unique(datas$technique)
 
 # show some data
 str(datas)
@@ -489,6 +495,7 @@ where we predict `e_inspect` and `time` from bug and technique.
 
 First, we need a unique identifier for every bug, 
 which combines project and bug number within that project.
+We also standardize the predictors, so that it's much easier to set sensible priors.
 
 ```{r bug identifiers}
 statement <- (datas 
@@ -497,23 +504,45 @@ statement <- (datas
 bugs <- str_c(statement$project_name, statement$bug_number)
 bugs <- factor(bugs)
 statement$bug <- bugs
+
+statement$timeS <- (statement$time - mean(statement$time)) / sd(statement$time)
+statement$einspectS <- (statement$e_inspect - mean(statement$e_inspect)) / sd(statement$e_inspect)
 ```
+
+## Model $m_1$
 
 Here's a basic regression model, where the only unusual aspects
 are that it's multivariate, and log-transforms the mean (since both outcome variables must be nonnegative).
 
-```{r}
+```{r m1 formula}
 eq.m1 <- brmsformula(
-  mvbind(e_inspect, time) ~ 0 + bug + technique,
+  mvbind(einspectS, timeS) ~ 0 + technique + bug,
   family=brmsfamily("gaussian", link="log")
 ) + set_rescor(TRUE)
 
 pp1.check <- get_prior(eq.m1, data=statement)
-pp1 <- pp1.check
-pp1$prior[pp1.check$class == "b"] <- "normal(4, 1.0)"
-pp1$prior[grep("^(bug)|(technique)", pp1.check$coef)] <- "normal(0, 0.5)"
-pp1$prior[grep("^sigma$", pp1.check$class)] <- "weibull(2, 1)"
 
+pp1 <- c(
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 1)", class="sigma", resp=c("einspectS", "timeS"))
+)
+
+# pp1 <- pp1.check
+# pp1 <- prior(normal(6000, 1.0), class=b)
+
+# pp1$prior[pp1.check$class == "b"] <- "normal(6000, 0.5)"
+# pp1$prior[grep("^sigma$", pp1.check$class)] <- "weibull(2, 1)"
+```
+
+
+## Fitting $m_1$
+
+Let's do the usual checks to make sure that everything is fine with the fitting.
+
+Prior checks, confirming that the sampled priors span a wide range of values, 
+amply including the data.
+
+```{r m1 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
 m1.priors <- brm(eq.m1,
                  prior=pp1,
                  data=statement,
@@ -523,13 +552,82 @@ m1.priors <- brm(eq.m1,
                  control=list(adapt_delta=0.95),
                  seed=MY.SEED)
 
-
-m1 <- brm(eq.m1, data=statement, prior=pp1)
-
+(prior1.check.einspect <- pp_check(m1.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(prior1.check.time <- pp_check(m1.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
 ```
 
+Now we fit the actual model.
+
+```{r m1 fit}
+m1 <- brm(eq.m1, data=statement, prior=pp1, refresh=0, control=list(adapt_delta=0.95), seed=MY.SEED)
+```
+
+Next, we check the usual diagnostics:
+
+   - No (or at most a few) divergent transitions
+   - $\widehat{R}$ ratio below $1.01$
+   - Effective sample size (ESS), as a ratio of the total sample size, at least 10%
+
 ```{r m1 diagnostics}
-(prior.check1 <- pp_check(m1.priors, draw_ids=1:100, resp="time") + scale_x_log10())
+
+# Divergent transitions
+np <- nuts_params(m1)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m1), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m1), na.rm = TRUE)
+```
+
+Finally, we check the posteriors, to ensure that we have a decent approximation of the data.
+
+```{r m1 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m1, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m1, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+As you can see, the simulated posteriors are not exactly a great fit, 
+but this is understandable given that the data is complex, whereas the model is quite simple.
+
+
+## Analyzing $m_1$
+
+```{r m1 difference analysis, warning=FALSE}
+PROBABILITIES <- c(0.5, 0.7, 0.9, 0.95, 0.99)
+which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
+
+interval.results <- function(fit, response, group, predictor="technique")
+{
+  # posterior draws
+  post <- posterior::as_draws_df(fit)
+  # get columns of coefficients corresponding to `response` and `predictor`
+  post <- post[, grep(str_c("^b_", response, "_", predictor), colnames(post))]
+  # overall mean of posterior draws
+  grand.mean <- mean(unlist(post))
+  # difference to mean
+  diffs <- apply(post, 2, function(x) x - grand.mean)
+  colnames(diffs) <- TECHNIQUES
+  # reshape
+  diffs <- data.frame(diffs) %>% gather(predictor, response)
+  # add family column
+  diffs$family <- sapply(diffs$predictor, which.family)
+  # compute HPDIs
+  intervals <- (diffs
+                %>% group_by(.data[[group]]) 
+                %>% reframe(response=HPDI(response, prob=rev(PROBABILITIES)), 
+                            prob=names(HPDI(response, prob=rev(PROBABILITIES)))))
+  # reshape back and sort in inclusion interval order
+  intervals <- intervals %>% spread(group, response)
+  # sort in inclusion interval order
+  nrow.2 <- round(nrow(intervals)/2)
+  res <- rbind(intervals[1:nrow.2, ], intervals[nrow(intervals):(nrow.2+1), ])
+  res
+}
+
+res.m1.einspect <- interval.results(m1, "einspectS", "family")
+res.m1.time <- interval.results(m1, "timeS", "family")
 ```
 
 
