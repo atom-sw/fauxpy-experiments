@@ -596,6 +596,14 @@ but this is understandable given that the data is complex, whereas the model is 
 
 ## Analyzing $m_1$
 
+
+```{r m1 summary}
+summary(m1)
+```
+What's noticeable here is some non-negligible residual correlation
+between the two outcomes `einspect` and `time`, which means that there
+is a dependency between these two variables that is not captured by the model.
+
 Let's set up some functions to analyze the posterior samples of `m1` (and similar models).
 
 ```{r m1 difference analysis defs, warning=FALSE}
