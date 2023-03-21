@@ -1,3 +1,4 @@
+import copy
 from typing import Dict, List, Tuple
 
 import mathematics
@@ -14,15 +15,19 @@ class ResultManager:
     def __init__(self,
                  csv_score_items: List[CsvScoreItem],
                  ground_truth_info_dict: Dict,
-                 size_counts_dict: Dict):
+                 size_counts_dict: Dict,
+                 our_metric=False):
         self._csv_score_items = csv_score_items
         assert (any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items]) or
                 any([x.get_granularity() == FLGranularity.Function for x in self._csv_score_items]) or
                 any([x.get_granularity() == FLGranularity.Module for x in self._csv_score_items]))
+        self._our_metric = our_metric
+        assert not self._our_metric or (self._our_metric and
+                                        any([x.get_granularity() == FLGranularity.Statement for x in
+                                             self._csv_score_items]))
         self._ground_truth_info_dict = ground_truth_info_dict
         self._size_counts_dict = size_counts_dict
         self._all_techniques = self._get_all_techniques()
-        pass
 
     def _get_all_techniques(self):
         all_techniques = set()
@@ -33,12 +38,20 @@ class ResultManager:
 
         return all_techniques_list
 
-    def compute_literature_metrics(self):
+    def get_metric_results(self):
         self._compute_all_literature_metrics_for(self._csv_score_items)
-        detailed, overall = self._create_all_literature_metrics_for(self._csv_score_items)
-        return detailed, overall
+        literature_detailed, literature_overall = self._create_all_literature_metrics_for(self._csv_score_items)
+        if not self._our_metric:
+            return literature_detailed, literature_overall
+        else:
+            our_detailed, our_overall = self._get_our_metric_results()
+            all_detailed, all_overall = self._combine_literature_with_our_metrics(literature_detailed,
+                                                                                  literature_overall,
+                                                                                  our_detailed,
+                                                                                  our_overall)
+            return all_detailed, all_overall
 
-    def compute_our_metrics(self):
+    def _get_our_metric_results(self):
         # We compute our metrics only for statement granularity.
         assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
 
@@ -319,3 +332,37 @@ class ResultManager:
                                                                       buggy_module_sizes,
                                                                       e_inspect)
         return cumulative_distance, sv_comp_overall_score
+
+    @staticmethod
+    def _combine_literature_with_our_metrics(literature_detailed,
+                                             literature_overall,
+                                             our_detailed,
+                                             our_overall) -> Tuple[Dict, List]:
+        assert len(literature_detailed) == len(our_detailed)
+        assert len(literature_overall) == len(our_overall)
+
+        all_detailed = {}
+        for lit_d_technique, lit_d_table in literature_detailed.items():
+            our_d_table = our_detailed[lit_d_technique]
+            assert len(lit_d_table) == len(our_d_table)
+            current_d_table = []
+            for index, lit_d_record in enumerate(lit_d_table):
+                our_d_record = our_d_table[index]
+                assert lit_d_record[0] == our_d_record[0]
+                assert lit_d_record[1] == our_d_record[1]
+                current_d_record = copy.copy(lit_d_record) + copy.copy(our_d_record[2:])
+                current_d_table.append(current_d_record)
+            all_detailed[lit_d_technique] = current_d_table
+
+        assert len(literature_detailed) == len(all_detailed)
+
+        all_overall = []
+        for index, lit_o_record in enumerate(literature_overall):
+            our_o_record = our_overall[index]
+            assert lit_o_record[0] == our_o_record[0]
+            current_o_record = copy.copy(lit_o_record) + copy.copy(our_o_record[1:])
+            all_overall.append(current_o_record)
+
+        assert len(literature_overall) == len(all_overall)
+
+        return all_detailed, all_overall
