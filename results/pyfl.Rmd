@@ -219,6 +219,8 @@ for (granularity in GRANULARITIES) {
 # convert to factors relevant columns
 datas$family <- factor(datas$family)
 datas$technique <- factor(datas$technique)
+# rename to avoid - character
+datas$project_name[datas$project_name == "youtube-dl"] <- "youtubedl"
 datas$project_name <- factor(datas$project_name)
 
 TECHNIQUES <- unique(datas$technique)
@@ -232,7 +234,7 @@ We have a total of `r length(unique(datas$project_name))` projects, which we can
    - Data science (`ds`): `spacy`, `keras`, `pandas`
    - Developer tools (`dev`): `cookiecutter`, `black`
    - Web tools (`web`): `sanic`, `fastapi`, `tornado`
-   - Command line tools (`cl`): `httpie`, `thefuck`, `tqdm`, `youtube-dl`
+   - Command line tools (`cl`): `httpie`, `thefuck`, `tqdm`, `youtubedl`
    
 Let's add this categorization to the data.
 
@@ -240,7 +242,7 @@ Let's add this categorization to the data.
 CATEGORIES <- list(ds=c("spacy", "keras", "pandas"),
                    dev=c("cookiecutter", "black"),
                    web=c("sanic", "fastapi", "tornado"),
-                   cl=c("httpie", "thefuck", "tqdm", "youtube-dl"))
+                   cl=c("httpie", "thefuck", "tqdm", "youtubedl"))
 
 # assign category to each datapoint according to its project
 categories <- sapply(datas$project_name, 
@@ -594,11 +596,23 @@ but this is understandable given that the data is complex, whereas the model is 
 
 ## Analyzing $m_1$
 
-```{r m1 difference analysis, warning=FALSE}
+Let's set up some functions to analyze the posterior samples of `m1` (and similar models).
+
+```{r m1 difference analysis defs, warning=FALSE}
 PROBABILITIES <- c(0.5, 0.7, 0.9, 0.95, 0.99)
+
+#' Given a technique, which family it belongs to
 which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
 
-interval.results <- function(fit, response, group, predictor="technique")
+#' Given a bug unique identifier, which category of programs it belongs to
+which.projcategory <- function(t) 
+  names(CATEGORIES)[sapply(CATEGORIES, 
+                           function(x) any(str_detect(t, x)))]
+
+PROJECTS <- unique(datas$project_name)
+BUGS <- unique(statement$bug)
+
+interval.results <- function(fit, response, which.group, predictor)
 {
   # posterior draws
   post <- posterior::as_draws_df(fit)
@@ -608,14 +622,17 @@ interval.results <- function(fit, response, group, predictor="technique")
   grand.mean <- mean(unlist(post))
   # difference to mean
   diffs <- apply(post, 2, function(x) x - grand.mean)
-  colnames(diffs) <- TECHNIQUES
+  # keep only the predictor's names
+  colnames(diffs) <- str_extract(colnames(diffs), 
+                                 str_c("^b_", response, "_", predictor, "(.*)$"),
+                                 group=1)
   # reshape
   diffs <- data.frame(diffs) %>% gather(predictor, response)
-  # add family column
-  diffs$family <- sapply(diffs$predictor, which.family)
+  # add group column
+  diffs$group <- sapply(diffs$predictor, which.group)
   # compute HPDIs
   intervals <- (diffs
-                %>% group_by(.data[[group]]) 
+                %>% group_by(group) 
                 %>% reframe(response=HPDI(response, prob=rev(PROBABILITIES)), 
                             prob=names(HPDI(response, prob=rev(PROBABILITIES)))))
   # reshape back and sort in inclusion interval order
@@ -625,11 +642,33 @@ interval.results <- function(fit, response, group, predictor="technique")
   res <- rbind(intervals[1:nrow.2, ], intervals[nrow(intervals):(nrow.2+1), ])
   res
 }
-
-res.m1.einspect <- interval.results(m1, "einspectS", "family")
-res.m1.time <- interval.results(m1, "timeS", "family")
 ```
 
+Let's use these functions to first analyze the effects per *family*
+of FL techniques.
+
+```{r m1 per family, warning=FALSE}
+(res.m1.einspect.family <- interval.results(m1, "einspectS", 
+                                            which.family, "technique"))
+(res.m1.time.family <- interval.results(m1, "timeS", 
+                                        which.family, "technique"))
+```
+It's clear that for both outcomes, `e_inspect` and `time`,
+there are strong differences (with high probability) 
+in the contribution over the mean from different techniques.
+
+In contrast, grouping the effects by category of project does not
+yeld any consistent difference, as all intervals overlap zero 
+(and are often nearly centered around it). 
+There is a slight tendency for projects in categories `cl` and `web` to lead
+to shorter running times, but it's a very weak tendency.
+
+```{r m1 per category, warning=FALSE}
+(res.m1.einspect.category <- interval.results(m1, "einspectS", 
+                                              which.projcategory, "bug"))
+(res.m1.time.category <- interval.results(m1, "timeS", 
+                                          which.projcategory, "bug"))
+```
 
 
 # Dump all constants
