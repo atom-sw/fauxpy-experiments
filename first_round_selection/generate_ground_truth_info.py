@@ -7,9 +7,11 @@ from typing import Tuple, List, Dict
 import common
 import ast_manager
 from ast_manager import AddModeManager, ExecutableLine
+from predicate_finder import PredicateFinder
 
 CORRECT = {}
 GROUND_TRUTH_INFO_FILE_NAME: str = "ground_truth_info.json"
+PREDICATE_BUG_INFO_FILE_NAME: str = "predicate_bug_info.json"
 
 
 class ConsumeMode(Enum):
@@ -296,15 +298,25 @@ def _get_buggy_functions_for_line_list(module_content: str, lines: List[int]) ->
     for item in current_functions:
         buggy_functions.add(item)
 
-    return list(buggy_functions)
+    buggy_functions_list = list(buggy_functions)
+    buggy_functions_list.sort()
+    return buggy_functions_list
+
+
+def _is_predicate_bug(buggy_content: str,
+                      code_lines: List[int]) -> bool:
+    predicate_finder = PredicateFinder(buggy_content, code_lines)
+    is_predicate_in_lines = predicate_finder.is_predicate_in_lines()
+    return is_predicate_in_lines
 
 
 def get_bug_ground_truth(benchmark_name: str,
-                         bug_number: int):
+                         bug_number: int) -> Tuple[List[Dict], bool]:
     python_none_test_files = common.get_diff_commit(benchmark_name, bug_number)
 
     but_ground_truth = []
 
+    is_predicate_bug = False
     for file in python_none_test_files:
         filename = file.filename
         patch = file.patch
@@ -312,6 +324,11 @@ def get_bug_ground_truth(benchmark_name: str,
         buggy_content_size = get_content_line_numbers(buggy_content)
         fixed_content = file.fixed_content
         lines, extended_lines = get_file_ground_truth(patch, buggy_content, fixed_content)
+
+        if not is_predicate_bug:
+            is_predicate_bug_in_lines = _is_predicate_bug(buggy_content, lines)
+            is_predicate_bug_in_extended_lines = _is_predicate_bug(buggy_content, lines)
+            is_predicate_bug = is_predicate_bug_in_lines or is_predicate_bug_in_extended_lines
 
         functions = _get_buggy_functions_for_line_list(buggy_content, lines)
         extended_function = _get_buggy_functions_for_line_list(buggy_content, extended_lines)
@@ -327,7 +344,7 @@ def get_bug_ground_truth(benchmark_name: str,
                 "EXTENDED_FUNCTIONS": extended_function_not_repeated
             }
         )
-    return but_ground_truth
+    return but_ground_truth, is_predicate_bug
 
 
 def count_all_line_nums(bug_patch_info):
@@ -355,6 +372,7 @@ def main():
 
     ground_truth_info_dict = {}
     empty_ground_truth_info_dict = {}
+    predicate_bug_info_dict = {}
 
     for benchmark_name, benchmark_items in CORRECT.items():
         for bug_number in benchmark_items["ACCEPTED"]:
@@ -363,7 +381,7 @@ def main():
             #     continue
 
             print(benchmark_name, bug_number)
-            bug_patch_info = get_bug_ground_truth(benchmark_name, bug_number)
+            bug_patch_info, is_predicate_bug = get_bug_ground_truth(benchmark_name, bug_number)
             all_line_nums = count_all_line_nums(bug_patch_info)
             all_functions = count_all_functions(bug_patch_info)
             if all_functions == 0:
@@ -373,9 +391,11 @@ def main():
                     empty_ground_truth_info_dict[benchmark_name] = []
                 empty_ground_truth_info_dict[benchmark_name].append(bug_number)
             ground_truth_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
+            predicate_bug_info_dict[f"{benchmark_name}:{bug_number}"] = is_predicate_bug
 
     common.save_object_to_json(ground_truth_info_dict, Path(GROUND_TRUTH_INFO_FILE_NAME))
     common.save_object_to_json(empty_ground_truth_info_dict, Path(common.EMPTY_GROUND_TRUTH_FILE_NAME))
+    common.save_object_to_json(predicate_bug_info_dict, Path(PREDICATE_BUG_INFO_FILE_NAME))
 
 
 if __name__ == '__main__':
