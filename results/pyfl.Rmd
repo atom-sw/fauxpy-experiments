@@ -529,11 +529,17 @@ pp1 <- c(
   set_prior("weibull(2, 1)", class="sigma", resp=c("einspectS", "timeS"))
 )
 
-# pp1 <- pp1.check
-# pp1 <- prior(normal(6000, 1.0), class=b)
+eq.m1g <- brmsformula(
+  mvbind(einspectS, timeS) ~ 0 + family + category,
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
 
-# pp1$prior[pp1.check$class == "b"] <- "normal(6000, 0.5)"
-# pp1$prior[grep("^sigma$", pp1.check$class)] <- "weibull(2, 1)"
+pp1g.check <- get_prior(eq.m1g, data=statement)
+
+pp1g <- c(
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 1)", class="sigma", resp=c("einspectS", "timeS"))
+)
 ```
 
 
@@ -556,12 +562,26 @@ m1.priors <- brm(eq.m1,
 
 (prior1.check.einspect <- pp_check(m1.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
 (prior1.check.time <- pp_check(m1.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+
+m1g.priors <- brm(eq.m1g,
+                  prior=pp1g,
+                  data=statement,
+                  chains=1, iter=1000,
+                  sample_prior="only",
+                  refresh=0, 
+                  control=list(adapt_delta=0.95),
+                  seed=MY.SEED)
+
+(prior1g.check.einspect <- pp_check(m1g.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(prior1g.check.time <- pp_check(m1g.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
 ```
 
 Now we fit the actual model.
 
 ```{r m1 fit}
 m1 <- brm(eq.m1, data=statement, prior=pp1, refresh=0, control=list(adapt_delta=0.95), seed=MY.SEED)
+
+m1g <- brm(eq.m1g, data=statement, prior=pp1g, refresh=0, control=list(adapt_delta=0.95), seed=MY.SEED)
 ```
 
 Next, we check the usual diagnostics:
@@ -580,7 +600,17 @@ print(sum(subset(np, Parameter == "divergent__")$Value))
 print(max(brms::rhat(m1), na.rm = TRUE))
 
 # ESS
-min(neff_ratio(m1), na.rm = TRUE)
+min(neff_ratio(m1g), na.rm = TRUE)
+
+# Divergent transitions
+np <- nuts_params(m1g)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m1g), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m1g), na.rm = TRUE)
 ```
 
 Finally, we check the posteriors, to ensure that we have a decent approximation of the data.
@@ -588,10 +618,16 @@ Finally, we check the posteriors, to ensure that we have a decent approximation 
 ```{r m1 posterior checks, warning=FALSE, message=FALSE}
 print(pp_check(m1, ndraws=100, resp="einspectS") + scale_x_log10())
 print(pp_check(m1, ndraws=100, resp="timeS") + scale_x_log10())
+
+print(pp_check(m1g, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m1g, ndraws=100, resp="timeS") + scale_x_log10())
 ```
 
 As you can see, the simulated posteriors are not exactly a great fit, 
 but this is understandable given that the data is complex, whereas the model is quite simple.
+
+The posterior check is a tad better in the "grouped" models though,
+which makes sense since grouping makes for coarser dependencies to model.
 
 
 ## Analyzing $m_1$
@@ -599,10 +635,14 @@ but this is understandable given that the data is complex, whereas the model is 
 
 ```{r m1 summary}
 summary(m1)
+summary(m1g)
 ```
 What's noticeable here is some non-negligible residual correlation
 between the two outcomes `einspect` and `time`, which means that there
 is a dependency between these two variables that is not captured by the model.
+
+This residual correlation is much smaller in the "grouped" model, 
+but still noticeable.
 
 Let's set up some functions to analyze the posterior samples of `m1` (and similar models).
 
@@ -660,6 +700,11 @@ of FL techniques.
                                             which.family, "technique"))
 (res.m1.time.family <- interval.results(m1, "timeS", 
                                         which.family, "technique"))
+
+(res.m1g.einspect.family <- interval.results(m1g, "einspectS", 
+                                             identity, "family"))
+(res.m1g.time.family <- interval.results(m1g, "timeS", 
+                                         identity, "family"))
 ```
 It's clear that for both outcomes, `e_inspect` and `time`,
 there are strong differences (with high probability) 
@@ -676,6 +721,233 @@ to shorter running times, but it's a very weak tendency.
                                               which.projcategory, "bug"))
 (res.m1.time.category <- interval.results(m1, "timeS", 
                                           which.projcategory, "bug"))
+
+(res.m1g.einspect.category <- interval.results(m1g, "einspectS", 
+                                              identity, "category"))
+(res.m1g.time.category <- interval.results(m1g, "timeS", 
+                                           identity, "category"))
+```
+
+## Model $m_2$
+
+Let's make the model more sophisticated, with varying effects,
+and modeling these effects as [possibly correlated](https://cran.r-project.org/web/packages/brms/vignettes/brms_multivariate.html) 
+(which makes sense,
+since we have two model parts)
+
+```{r m2 formula}
+eq.m2 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 1 + (1|p|technique) + (1|q|bug),
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp2.check <- get_prior(eq.m2, data=statement)
+
+pp2 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="technique", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="bug", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+)
+
+eq.m2g <- brmsformula(
+  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category),
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp2g.check <- get_prior(eq.m2g, data=statement)
+
+pp2g <- c(
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+)
+```
+
+
+## Fitting $m_2$
+
+Let's fit $m_2$ and check the fit.
+
+Prior checks:
+
+```{r m2 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m2.priors <- brm(eq.m2,
+                 prior=pp2,
+                 data=statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m2.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m2.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+
+m2g.priors <- brm(eq.m2g,
+                  prior=pp2g,
+                  data=statement,
+                  chains=1, iter=1000,
+                  sample_prior="only",
+                  refresh=0, 
+                  control=list(adapt_delta=0.95),
+                  seed=MY.SEED)
+
+(pp_check(m2g.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m2g.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+```
+
+We fit model $m_2$.
+
+```{r m2 fit}
+m2 <- brm(eq.m2, data=statement, prior=pp2, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+
+m2g <- brm(eq.m2g, data=statement, prior=pp2g, 
+           refresh=0,
+           control=list(adapt_delta=0.95), 
+           seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m2 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m2)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m2), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m2), na.rm = TRUE)
+
+# Divergent transitions
+np <- nuts_params(m2g)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m2g), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m2g), na.rm = TRUE)
+```
+
+Posterior checks:
+
+```{r m2 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m2, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m2, ndraws=100, resp="timeS") + scale_x_log10())
+
+print(pp_check(m2g, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m2g, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+We don't notice a massive improvement compared to $m_1$.
+Let's compare the two models using LOO.
+
+```{r model comparison, warning=FALSE}
+m1 <- add_criterion(m1, criterion = "loo")
+m2 <- add_criterion(m2, criterion = "loo")
+
+(lc.m1m2 <- loo(m1, m2, moment_match = TRUE))
+
+m1g <- add_criterion(m1g, criterion = "loo")
+m2g <- add_criterion(m2g, criterion = "loo")
+
+(lc.m1gm2g <- loo(m1g, m2g, moment_match = TRUE))
+```
+
+$m_1$'s score is around 4.6 standard deviations worse than $m_2$'s,
+which is a clear difference in favor of $m_2$ in terms of predictive
+accuracy.
+
+The difference is less conspicuous for the "grouped" models, but it's
+still 2.3 standard deviations, which is certainly not negligible.
+
+## Analyzing $m_2$
+
+
+```{r m2 summary}
+summary(m2)
+summary(m2g)
+```
+Both with `technique` and `bug`, the two outcomes `einspect` and `time`
+are positively correlated (a stronger effect with `technique`). 
+The residual correlation is smaller compared to `m_1`, which justifies using
+a varying effect model and is consistent with the LOO comparison.
+
+Let's now perform an effects analysis 
+on the fitted coefficients of `m2`.
+First we introduce a summary function.
+
+```{r m2 difference analysis defs, warning=FALSE}
+interval.results.ranef <- function(fit, response, predictor, probs)
+{
+  # probability intervals and their labels
+  ps.low <- rev(1-probs)/2
+  ps.high <- rev(1-ps.low)
+  ps <- rev(c(ps.high, ps.low))
+  cnams <- c(paste("|", probs, sep=""), paste(rev(probs), "|", sep=""))
+  # random effects
+  post <- ranef(fit, probs=ps)
+  # keep only predictor/response data
+  post <- post[[predictor]]
+  post <- post[, , grep(str_c("^", response), dimnames(post)[[3]])]
+  res <- as.data.frame(post)
+  res <- res[, grep("^Q", colnames(res))]
+  colnames(res) <- cnams
+  res <- t(res)
+  est <- ranef(fit, probs=ps)[[predictor]][, "Estimate", 1]
+  list(ints=res, est=est)
+}
+```
+
+Then we use the functions to analyze the effects
+of the FL techniques.
+
+```{r m2 per family, warning=FALSE}
+(res.m2.einspect.technique <- interval.results.ranef(
+  m2, "einspectS",  "technique", PROBABILITIES
+ ))
+(res.m2.time.technique <- interval.results.ranef(
+  m2, "timeS",  "technique", PROBABILITIES
+ ))
+
+(res.m2g.einspect.family <- interval.results.ranef(
+  m2g, "einspectS",  "family", PROBABILITIES
+  ))
+(res.m2g.time.family <- interval.results.ranef(
+  m2g, "timeS",  "family", PROBABILITIES
+  ))
+```
+The results are in line with those obtained with the simpler model,
+but they are now less clear-cut.
+
+Let's see what happens for the bug/category of projects.
+
+```{r m2 per category, warning=FALSE}
+(res.m2.einspect.bug <- interval.results.ranef(
+  m2, "einspectS", "bug", PROBABILITIES)
+ )
+(res.m2.time.bug <- interval.results.ranef(
+  m2, "timeS", "bug", PROBABILITIES)
+  )
+
+(res.m2g.einspect.category <- interval.results.ranef(
+  m2g, "einspectS", "category", PROBABILITIES)
+ )
+(res.m2g.time.category <- interval.results.ranef(
+  m2g, "timeS", "category", PROBABILITIES)
+  )
 ```
 
 
