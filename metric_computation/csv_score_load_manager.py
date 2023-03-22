@@ -150,8 +150,6 @@ class CsvScoreItem:
         return bug_key
 
 
-
-
 class CsvScoreItemLoadManager:
     def __init__(self, results_path: Path):
         self._results_path = results_path
@@ -271,26 +269,31 @@ class CsvScoreItemLoadManager:
                 csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
                 scored_entity_items = cls.csv_content_to_scored_sbfl_mbfl_statement_items(csv_file_content)
             elif family == "ps":
-                # TODO: Fix this.
-                csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
-                scored_entity_items = cls.csv_content_to_scored_ps_statement_items(csv_file_content)
+                scored_entity_items = cls._get_ps_scored_entity_items_from_csv_files(csv_paths)
             elif family == "st":
                 csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
                 scored_entity_items = cls.csv_content_to_scored_st_statement_items(csv_file_content)
             else:
                 raise Exception("This should never happen.")
-        # elif granularity == FLGranularity.Function:
-        #     if family == "ps":
-        #         # TODO: Fix this.
-        #         csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
-        #         scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
-        #     else:
-        #         csv_file_content = file_manager.load_csv_content_file(csv_paths[0])
-        #         scored_entity_items = cls.csv_content_to_scored_function_items(csv_file_content)
-        # else:
-        #     raise Exception("This should never happen.")
+        else:
+            raise Exception("This should never happen.")
 
         scored_entity_items.sort(key=lambda x: x.get_score(), reverse=True)
+        return scored_entity_items
+
+    @classmethod
+    def _get_ps_scored_entity_items_from_csv_files(cls, csv_paths):
+        scored_entity_items_dict = {}
+        for csv_path in csv_paths:
+            current_csv_file_content = file_manager.load_csv_content_file(csv_path)
+            current_scored_entity_items = cls.csv_content_to_scored_ps_statement_items(current_csv_file_content)
+            for item in current_scored_entity_items:
+                if item.get_entity_name() in scored_entity_items_dict.keys():
+                    previous_score, _ = scored_entity_items_dict[item.get_entity_name()]
+                    scored_entity_items_dict[item.get_entity_name()] = max(item.get_score(), previous_score), item
+                else:
+                    scored_entity_items_dict[item.get_entity_name()] = item.get_score(), item
+        scored_entity_items = [x[1] for x in scored_entity_items_dict.values()]
         return scored_entity_items
 
     @classmethod
