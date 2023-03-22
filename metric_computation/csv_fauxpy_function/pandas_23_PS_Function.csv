@@ -1,2 +1,3 @@
 Entity,Score
 pandas/tseries/offsets.py::generate_range::2706::2783,1.0
+pandas/core/indexes/datetimelike.py::intersection::652::731,1.0

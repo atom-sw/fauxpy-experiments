@@ -1,2 +1,3 @@
 Entity,Score
 pandas/tseries/offsets.py,1.0
+pandas/core/indexes/datetimelike.py,1.0
