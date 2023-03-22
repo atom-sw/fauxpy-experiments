@@ -1,7 +1,8 @@
 from pathlib import Path
+from typing import List
 
 import file_manager
-from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique
+from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, CsvScoreItem
 
 
 def main():
@@ -27,6 +28,20 @@ def main():
                                          Path(path_manager.get_crashing_selected_bug_info_file_name()))
     file_manager.save_dictionary_to_json(predicate_selected_bug_info,
                                          Path(path_manager.get_predicate_selected_bug_info_file_name()))
+
+
+def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
+                                 path_manager: file_manager.PathManager):
+    crashing_info = (file_manager.
+                     load_json_to_dictionary(path_manager.
+                                             get_crashing_selected_bug_info_file_name()))
+    predicate_info = (file_manager.
+                      load_json_to_dictionary(path_manager.
+                                              get_predicate_selected_bug_info_file_name()))
+
+    for csv_score_item in csv_score_items:
+        csv_score_item.set_is_predicate(predicate_info[csv_score_item.get_bug_key()])
+        csv_score_item.set_is_crashing(crashing_info[csv_score_item.get_bug_key()])
 
 
 if __name__ == '__main__':
