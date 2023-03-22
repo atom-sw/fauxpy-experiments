@@ -17,7 +17,6 @@ class HierarchicalFaultLocalization:
         assert (statement_csv_score_item.get_bug_key() ==
                 function_csv_score_item.get_bug_key() ==
                 module_csv_score_item.get_bug_key())
-        pass
 
     def get_mfs_hfl_statement_csv_score_item(self) -> CsvScoreItem:
         mfs_scored_statement_list = self._get_mfs_scored_statement_list()
@@ -117,5 +116,7 @@ class HierarchicalFaultLocalization:
                                              FLGranularity.Statement,
                                              reassigned_new_scored_statement_list,
                                              -1)
+        current_csv_statement.set_is_crashing(self._statement_csv_score_item.get_is_crashing())
+        current_csv_statement.set_is_predicate(self._statement_csv_score_item.get_is_predicate())
 
         return current_csv_statement
