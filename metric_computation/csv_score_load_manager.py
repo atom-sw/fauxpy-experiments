@@ -345,24 +345,6 @@ class CsvScoreItemLoadManager:
 
         return scored_statement_items
 
-    # @classmethod
-    # def csv_content_to_scored_function_items(cls,
-    #                                          csv_file_content: List[List[str]]):
-    #     scored_function_items = []
-    #     for row in csv_file_content:
-    #         col1_parts = row[0].split("::")
-    #         file_path_parts = col1_parts[0].split("/")
-    #         relative_file_path = "/".join(file_path_parts[6:])
-    #         function_name = col1_parts[1]
-    #         line_start = int(col1_parts[2])
-    #         line_end = int(col1_parts[3])
-    #         function_range = (line_start, line_end)
-    #         score = float(row[1])
-    #         scored_function_item = ScoredFunction(relative_file_path, score, function_range, function_name)
-    #         scored_function_items.append(scored_function_item)
-    #
-    #     return scored_function_items
-
     @classmethod
     def _extract_experiment_time_seconds_from_file_path(cls, experiment_time_seconds_path):
         file_content = file_manager.load_file_content(experiment_time_seconds_path)
