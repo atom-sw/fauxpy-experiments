@@ -5,6 +5,7 @@ from csv_score_item_module_granularity_manager import CsvScoreItemModuleGranular
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique
 from hierarchical_fault_localization import HierarchicalFaultLocalization
 from result_manager import ResultManager
+from selected_bugs_types import assign_type_to_selected_bugs
 
 
 def get_fauxpy_statement_csv_score_items(path_manager: file_manager.PathManager):
@@ -139,43 +140,37 @@ def calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info
 def calc_mfs_hfl_statement_and_save(mfs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info):
     mfs_hfl_statement_result_manager = ResultManager(mfs_hfl_statement_csv_score_items,
                                                      ground_truth_info,
-                                                     size_counts_info)
+                                                     size_counts_info,
+                                                     True)
     literature_detailed_tables, literature_overall_table = mfs_hfl_statement_result_manager.get_metric_results()
     dir_name = "output_mfs_hfl_statement"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(literature_detailed_tables, "literature", dir_name)
-    save_overall(literature_overall_table, "literature", dir_name)
-    our_detailed_tables, our_overall_table = mfs_hfl_statement_result_manager._get_our_metric_results()
-    save_detailed(our_detailed_tables, "our", dir_name)
-    save_overall(our_overall_table, "our", dir_name)
+    save_detailed(literature_detailed_tables, "all", dir_name)
+    save_overall(literature_overall_table, "all", dir_name)
 
 
 def calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info):
     fs_hfl_statement_result_manager = ResultManager(fs_hfl_statement_csv_score_items,
                                                     ground_truth_info,
-                                                    size_counts_info)
+                                                    size_counts_info,
+                                                    True)
     literature_detailed_tables, literature_overall_table = fs_hfl_statement_result_manager.get_metric_results()
     dir_name = "output_fs_hfl_statement"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(literature_detailed_tables, "literature", dir_name)
-    save_overall(literature_overall_table, "literature", dir_name)
-    our_detailed_tables, our_overall_table = fs_hfl_statement_result_manager._get_our_metric_results()
-    save_detailed(our_detailed_tables, "our", dir_name)
-    save_overall(our_overall_table, "our", dir_name)
+    save_detailed(literature_detailed_tables, "all", dir_name)
+    save_overall(literature_overall_table, "all", dir_name)
 
 
 def calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info):
     average_fl_statement_result_manager = ResultManager(average_fl_statement_csv_score_items,
                                                         ground_truth_info,
-                                                        size_counts_info)
+                                                        size_counts_info,
+                                                        True)
     literature_detailed_tables, literature_overall_table = average_fl_statement_result_manager.get_metric_results()
     dir_name = "output_average_fl_statement"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(literature_detailed_tables, "literature", dir_name)
-    save_overall(literature_overall_table, "literature", dir_name)
-    our_detailed_tables, our_overall_table = average_fl_statement_result_manager._get_our_metric_results()
-    save_detailed(our_detailed_tables, "our", dir_name)
-    save_overall(our_overall_table, "our", dir_name)
+    save_detailed(literature_detailed_tables, "all", dir_name)
+    save_overall(literature_overall_table, "all", dir_name)
 
 
 def main():
@@ -183,24 +178,22 @@ def main():
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
     size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
 
-    fauxpy_statement_csv_score_items = file_manager.Cache.load("fauxpy_statement_csv_score_items")
-    if fauxpy_statement_csv_score_items is None:
-        fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
-        file_manager.Cache.save(fauxpy_statement_csv_score_items, "fauxpy_statement_csv_score_items")
+    fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+    assign_type_to_selected_bugs(fauxpy_statement_csv_score_items, path_manager)
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
-    # if fauxpy_function_csv_score_items is None:
-    #     fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
-    #                                                                             fauxpy_statement_csv_score_items)
-    #     file_manager.Cache.save(fauxpy_function_csv_score_items, "fauxpy_function_csv_score_items")
+    fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
+    if fauxpy_function_csv_score_items is None:
+        fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
+                                                                                fauxpy_statement_csv_score_items)
+        file_manager.Cache.save(fauxpy_function_csv_score_items, "fauxpy_function_csv_score_items")
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_function_csv_score_directory_path(),
     #                                                       fauxpy_function_csv_score_items)
-    # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
+    calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
 
     # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
