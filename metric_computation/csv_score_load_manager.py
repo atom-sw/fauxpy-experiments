@@ -76,6 +76,8 @@ class CsvScoreItem:
         self._experiment_time_seconds = experiment_time_seconds
         self._metric_literature_val = None
         self._metric_our_val = None
+        self._is_predicate = None
+        self._is_crashing = None
 
     def _pretty_representation(self):
         if self._csv_paths is None:
@@ -89,6 +91,8 @@ class CsvScoreItem:
                 f"{self._localization_technique.name} "
                 f"{self._granularity.name} "
                 f"SEC:{self._experiment_time_seconds} "
+                f"Crashing: {self._is_crashing} "
+                f"Predicate: {self._is_predicate} "
                 f"{csv_files}")
 
     def __str__(self):
@@ -148,6 +152,18 @@ class CsvScoreItem:
     def get_bug_key(self) -> str:
         bug_key = f"{self.get_project_name()}:{self.get_bug_number()}"
         return bug_key
+
+    def get_is_predicate(self):
+        return self._is_predicate
+
+    def set_is_predicate(self, value: bool):
+        self._is_predicate = value
+
+    def get_is_crashing(self):
+        return self._is_crashing
+
+    def set_is_crashing(self, value: bool):
+        self._is_crashing = value
 
 
 class CsvScoreItemLoadManager:
