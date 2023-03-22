@@ -14,6 +14,8 @@ class PathManager:
     _Ground_truth_file_name = "ground_truth_info.json"
     _Size_counts_file_name = "size_counts.json"
     _Predicate_bug_info_file_name = "predicate_bug_info.json"
+    _Predicate_selected_bug_info_file_name = "predicate_selected_bug_info.json"
+    _Crashing_selected_bug_info_file_name = "crashing_selected_bug_info.json"
     _Statement_csv_score_directory_name = "csv_fauxpy_statement"
     _Function_csv_score_directory_name = "csv_fauxpy_function"
     _Module_csv_score_directory_name = "csv_fauxpy_module"
@@ -39,8 +41,14 @@ class PathManager:
     def get_size_counts_file_name(self) -> str:
         return self._Size_counts_file_name
 
-    def get_predicate_bug_info_file_name(self):
+    def get_predicate_bug_info_file_name(self) -> str:
         return self._Predicate_bug_info_file_name
+
+    def get_predicate_selected_bug_info_file_name(self) -> str:
+        return self._Predicate_selected_bug_info_file_name
+
+    def get_crashing_selected_bug_info_file_name(self) -> str:
+        return self._Crashing_selected_bug_info_file_name
 
     def get_function_csv_score_directory_path(self) -> Path:
         return self._get_csv_score_directory_path(self._Function_csv_score_directory_name)
