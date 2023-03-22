@@ -93,6 +93,8 @@ class AverageFaultLocalization:
                                       FLGranularity.Statement,
                                       reassigned_score_statement_list,
                                       -1)
+        csv_score_item.set_is_crashing(self._ochiai_csv.get_is_crashing())
+        csv_score_item.set_is_predicate(self._ochiai_csv.get_is_predicate())
 
         return csv_score_item
 
