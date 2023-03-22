@@ -28,6 +28,7 @@ class ResultManager:
         self._ground_truth_info_dict = ground_truth_info_dict
         self._size_counts_dict = size_counts_dict
         self._all_techniques = self._get_all_techniques()
+        assert (any([x.get_is_crashing() is not None and x.get_is_predicate() is not None for x in self._csv_score_items]))
 
     def _get_all_techniques(self):
         all_techniques = set()
@@ -186,19 +187,23 @@ class ResultManager:
         technique_csv_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
         return technique_csv_items
 
-    @staticmethod
-    def _get_technique_literature_detailed_results_table(csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "experiment_time_seconds", "e_inspect", "exam_score"]
+    @classmethod
+    def _get_technique_literature_detailed_results_table(cls, csv_items: List[CsvScoreItem]):
+        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate", "experiment_time_seconds", "e_inspect", "exam_score"]
         result_rows = [result_header]
         for item in csv_items:
             project_name = item.get_project_name()
             bug_number = item.get_bug_number()
+            granularity_name = item.get_granularity().name
+            technique_name = item.get_technique().name
+            crashing = cls._bool_to_int(item.get_is_crashing())
+            predicate = cls._bool_to_int(item.get_is_predicate())
             metric_val: MetricLiteratureVal = item.get_metric_literature_val()
             experiment_time_seconds = metric_val.get_experiment_time()
             assert experiment_time_seconds == item.get_experiment_time_seconds()
             e_inspect = metric_val.get_e_inspect()
             exam_score = metric_val.get_exam_score()
-            result_row = [project_name, bug_number, experiment_time_seconds, e_inspect, exam_score]
+            result_row = [project_name, bug_number, granularity_name, technique_name, crashing, predicate, experiment_time_seconds, e_inspect, exam_score]
             result_rows.append(result_row)
 
         return result_rows
@@ -366,3 +371,10 @@ class ResultManager:
         assert len(literature_overall) == len(all_overall)
 
         return all_detailed, all_overall
+
+    @staticmethod
+    def _bool_to_int(value: bool) -> int:
+        if value:
+            return 1
+        else:
+            return 0
