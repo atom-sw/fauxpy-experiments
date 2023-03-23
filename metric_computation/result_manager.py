@@ -51,7 +51,8 @@ class ResultManager:
                                                                               literature_overall,
                                                                               our_detailed,
                                                                               our_overall)
-        return all_detailed, all_overall
+        all_detailed_for_all_techniques = self._combine_all_detailed_of_techniques_in_one_list(all_detailed)
+        return all_detailed_for_all_techniques, all_overall
 
     def _get_our_metric_results(self):
         # We compute our metrics only for statement granularity.
@@ -428,3 +429,16 @@ class ResultManager:
             return 1
         else:
             return 0
+
+    @staticmethod
+    def _combine_all_detailed_of_techniques_in_one_list(all_detailed: Dict):
+        combined_all_details = []
+        detailed_header = list(all_detailed.values())[0][0]
+        combined_all_details.append(detailed_header)
+        for technique, technique_detailed_table in all_detailed.items():
+            assert any([x[3] == technique for x in technique_detailed_table[1:]])
+            combined_all_details += technique_detailed_table[1:]
+
+        return combined_all_details
+
+
