@@ -1,3 +1,5 @@
+from typing import List
+
 import file_manager
 from average_fault_localization import AverageFaultLocalization
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
@@ -95,15 +97,15 @@ def get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items):
 #                                             dir_name,
 #                                             technique_detailed_file_name)
 
-def save_detailed(detailed_table, metric_type, dir_name):
-    technique_detailed_file_name = f"{metric_type}_detailed.csv"
+def save_detailed(detailed_table: List, tool_name: str, granularity: str, dir_name: str):
+    technique_detailed_file_name = f"{tool_name}_{granularity}_detailed.csv"
     file_manager.save_csv_to_output_dir(detailed_table,
                                         dir_name,
                                         technique_detailed_file_name)
 
 
-def save_overall(overall_table, metric_type, dir_name):
-    technique_overall_file_name = f"{metric_type}_overall.csv"
+def save_overall(overall_table: List, tool_name: str, granularity: str, dir_name: str):
+    technique_overall_file_name = f"{tool_name}_{granularity}_overall.csv"
     file_manager.save_csv_to_output_dir(overall_table,
                                         dir_name,
                                         technique_overall_file_name)
@@ -117,8 +119,8 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     all_detailed_tables, all_overall_table = fauxpy_statement_result_manager.get_metric_results()
     dir_name = "output_fauxpy_statement"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(all_detailed_tables, "all", dir_name)
-    save_overall(all_overall_table, "all", dir_name)
+    save_detailed(all_detailed_tables, "fauxpy", "statement", dir_name)
+    save_overall(all_overall_table, "fauxpy", "statement", dir_name)
 
 
 def calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info):
