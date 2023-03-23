@@ -165,8 +165,8 @@ def calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_trut
     literature_detailed_tables, literature_overall_table = fs_hfl_statement_result_manager.get_metric_results()
     dir_name = "output_fs_hfl_statement"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(literature_detailed_tables, "all", dir_name)
-    save_overall(literature_overall_table, "all", dir_name)
+    save_detailed(literature_detailed_tables, "fs_hfl", "statement", dir_name)
+    save_overall(literature_overall_table, "fs_hfl", "statement", dir_name)
 
 
 def calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info):
@@ -208,15 +208,15 @@ def main():
     #                                                       fauxpy_module_csv_score_items)
     # calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
 
-    mfs_hfl_statement_csv_score_items = get_mfs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
-                                                                              fauxpy_function_csv_score_items,
-                                                                              fauxpy_module_csv_score_items)
-    calc_mfs_hfl_statement_and_save(mfs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    # mfs_hfl_statement_csv_score_items = get_mfs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
+    #                                                                           fauxpy_function_csv_score_items,
+    #                                                                           fauxpy_module_csv_score_items)
+    # calc_mfs_hfl_statement_and_save(mfs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fs_hfl_statement_csv_score_items = get_fs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
-    #                                                                         fauxpy_function_csv_score_items,
-    #                                                                         fauxpy_module_csv_score_items)
-    # calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    fs_hfl_statement_csv_score_items = get_fs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
+                                                                            fauxpy_function_csv_score_items,
+                                                                            fauxpy_module_csv_score_items)
+    calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
     # average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
     # calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
