@@ -43,14 +43,15 @@ class ResultManager:
         self._compute_all_literature_metrics_for(self._csv_score_items)
         literature_detailed, literature_overall = self._create_all_literature_metrics_for(self._csv_score_items)
         if not self._our_metric:
-            return literature_detailed, literature_overall
+            our_detailed, our_overall = self._get_empty_our_metric_results()
         else:
             our_detailed, our_overall = self._get_our_metric_results()
-            all_detailed, all_overall = self._combine_literature_with_our_metrics(literature_detailed,
-                                                                                  literature_overall,
-                                                                                  our_detailed,
-                                                                                  our_overall)
-            return all_detailed, all_overall
+
+        all_detailed, all_overall = self._combine_literature_with_our_metrics(literature_detailed,
+                                                                              literature_overall,
+                                                                              our_detailed,
+                                                                              our_overall)
+        return all_detailed, all_overall
 
     def _get_our_metric_results(self):
         # We compute our metrics only for statement granularity.
@@ -64,6 +65,53 @@ class ResultManager:
         detailed, overall = self._create_all_our_metrics_for_statement_csv_score_items()
 
         return detailed, overall
+
+    def _get_empty_our_metric_results(self):
+        def get_empty_technique_our_detailed_results_table(csv_item_list: List[CsvScoreItem]):
+            result_header = ["project_name", "bug_number", "cumulative_distance", "sv_comp_overall_score"]
+            result_rows = [result_header]
+            for csv_item in csv_item_list:
+                project_name = csv_item.get_project_name()
+                bug_number = csv_item.get_bug_number()
+                cumulative_distance = "Not applicable"
+                sv_comp_overall_score = "Not applicable"
+                result_row = [project_name, bug_number, cumulative_distance, sv_comp_overall_score]
+                result_rows.append(result_row)
+            return result_rows
+
+        def get_empty_technique_our_overall_results_row(tech: str,
+                                                        csv_item_list: List[CsvScoreItem]) -> List:
+            # ["technique", "cumulative_distance", "sv_comp_overall_score"]
+
+            if len(csv_items) == 0:
+                return [None, None, None]
+
+            average_cumulative_distance = "Not applicable"
+            average_sv_comp_overall_score = "Not applicable"
+
+            technique_result = [tech,
+                                average_cumulative_distance,
+                                average_sv_comp_overall_score]
+
+            return technique_result
+
+        csv_score_items = self._csv_score_items
+        technique_csv_items = {}
+        for item in self._all_techniques:
+            technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
+                                                                         csv_score_items)
+
+        overall_results_header = ["technique", "cumulative_distance", "sv_comp_overall_score"]
+        technique_overall_table = [overall_results_header]
+        technique_detailed_table_dict = {}
+        for technique_name, csv_items in technique_csv_items.items():
+            technique_detailed_table = get_empty_technique_our_detailed_results_table(csv_items)
+            technique_detailed_table_dict[technique_name] = technique_detailed_table
+
+            technique_overall_row = get_empty_technique_our_overall_results_row(technique_name, csv_items)
+            technique_overall_table.append(technique_overall_row)
+
+        return technique_detailed_table_dict, technique_overall_table
 
     def _compute_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         for item in csv_score_items:
@@ -189,7 +237,8 @@ class ResultManager:
 
     @classmethod
     def _get_technique_literature_detailed_results_table(cls, csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate", "experiment_time_seconds", "e_inspect", "exam_score"]
+        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate",
+                         "experiment_time_seconds", "e_inspect", "exam_score"]
         result_rows = [result_header]
         for item in csv_items:
             project_name = item.get_project_name()
@@ -203,7 +252,8 @@ class ResultManager:
             assert experiment_time_seconds == item.get_experiment_time_seconds()
             e_inspect = metric_val.get_e_inspect()
             exam_score = metric_val.get_exam_score()
-            result_row = [project_name, bug_number, granularity_name, technique_name, crashing, predicate, experiment_time_seconds, e_inspect, exam_score]
+            result_row = [project_name, bug_number, granularity_name, technique_name, crashing, predicate,
+                          experiment_time_seconds, e_inspect, exam_score]
             result_rows.append(result_row)
 
         return result_rows
