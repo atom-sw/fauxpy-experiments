@@ -54,13 +54,25 @@ class ResultManager:
         all_detailed_for_all_techniques = self._combine_all_detailed_of_techniques_in_one_list(all_detailed)
         return all_detailed_for_all_techniques, all_overall
 
-    def _get_our_metric_results(self):
-        # We compute our metrics only for statement granularity.
-        assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
+    def get_score_based_quantile_function(self) -> List[List]:
+        self._check_if_our_metric_applicable()
 
-        # Our metrics must be computed after literature
-        # metrics because we need e_inspect values for our metrics.
-        assert any([x.get_metric_literature_val() is not None for x in self._csv_score_items])
+        # Score-based quantile function must be computed
+        # after our other two metrics are computed.
+        assert any([x.get_metric_our_val() is not None for x in self._csv_score_items])
+
+        all_quantiles_table = []
+        all_quantiles_header = ["time", "technique", "sum_of_all_positive_scores"]
+        all_quantiles_table.append(all_quantiles_header)
+        for technique in self._all_techniques:
+            technique_csv_score_items = self._get_all_csv_items_for(technique, self._csv_score_items)
+            technique_quantile_records = our_metrics.score_based_quantile_function_for_technique(technique_csv_score_items)
+            all_quantiles_table += [x.get_record() for x in technique_quantile_records]
+
+        return all_quantiles_table
+
+    def _get_our_metric_results(self):
+        self._check_if_our_metric_applicable()
 
         self._compute_all_our_metrics_for_statement_csv_score_items()
         detailed, overall = self._create_all_our_metrics_for_statement_csv_score_items()
@@ -441,4 +453,10 @@ class ResultManager:
 
         return combined_all_details
 
+    def _check_if_our_metric_applicable(self):
+        # We compute our metrics only for statement granularity.
+        assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
 
+        # Our metrics must be computed after literature
+        # metrics because we need e_inspect values for our metrics.
+        assert any([x.get_metric_literature_val() is not None for x in self._csv_score_items])
