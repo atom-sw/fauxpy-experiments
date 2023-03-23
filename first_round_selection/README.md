@@ -118,6 +118,10 @@ This script also generates the file [empty_ground_truth_info.json](empty_ground_
 contains those bugs in BugsInPy for which the computed ground truth is empty. This file is used at 
 step 6 to exclude such cases from the experiments.
 
+Another file generated at this phase is [predicate_bug_info.json](predicate_bug_info.json)
+that contains information about which bugs are predicate bugs.
+We use this file also at the metric computation phase.
+
 
 ## Step 5: Counting loc, number of functions, and number of modules
 
