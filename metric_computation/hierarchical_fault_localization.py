@@ -115,7 +115,7 @@ class HierarchicalFaultLocalization:
                                              localization_technique,
                                              FLGranularity.Statement,
                                              reassigned_new_scored_statement_list,
-                                             -1)
+                                             self._statement_csv_score_item.get_experiment_time_seconds())
         current_csv_statement.set_is_crashing(self._statement_csv_score_item.get_is_crashing())
         current_csv_statement.set_is_predicate(self._statement_csv_score_item.get_is_predicate())
 
