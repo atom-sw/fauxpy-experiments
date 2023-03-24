@@ -1,0 +1,10 @@
+{
+    "BENCHMARK_NAME": "luigi",
+    "BUG_NUMBER_START": 1,
+    "BUG_NUMBER_END": 33,
+    "PYTHON_V": 3.8,
+    "TARGET_DIR": ".",
+    "TEST_SUITE": ["test"],
+    "EXCLUDE": ["env", "tests"],
+    "VIRTUAL_ENV": "/home/moe/bugsinpyenv38"
+}

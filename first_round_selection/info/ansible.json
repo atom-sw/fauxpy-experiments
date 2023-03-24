@@ -1,0 +1,10 @@
+{
+    "BENCHMARK_NAME": "ansible",
+    "BUG_NUMBER_START": 1,
+    "BUG_NUMBER_END": 18,
+    "PYTHON_V": 3.6,
+    "TARGET_DIR": ".",
+    "TEST_SUITE": ["test"],
+    "EXCLUDE": ["env", "test"],
+    "VIRTUAL_ENV": "/home/moe/bugsinpyenv36"
+}
