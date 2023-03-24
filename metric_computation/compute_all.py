@@ -111,16 +111,27 @@ def save_overall(overall_table: List, tool_name: str, granularity: str, dir_name
                                         technique_overall_file_name)
 
 
+def save_quantile(overall_table: List, tool_name: str, granularity: str, dir_name: str):
+    quantile_file_name = f"{tool_name}_{granularity}_quantile.csv"
+    file_manager.save_csv_to_output_dir(overall_table,
+                                        dir_name,
+                                        quantile_file_name)
+
+
 def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info):
     fauxpy_statement_result_manager = ResultManager(fauxpy_statement_csv_score_items,
                                                     ground_truth_info,
                                                     size_counts_info,
                                                     True)
     all_detailed_tables, all_overall_table = fauxpy_statement_result_manager.get_metric_results()
+
+    all_quantiles = fauxpy_statement_result_manager.get_score_based_quantile_function()
+
     dir_name = "output_fauxpy_statement"
     file_manager.clean_make_output_dir(dir_name)
     save_detailed(all_detailed_tables, "fauxpy", "statement", dir_name)
     save_overall(all_overall_table, "fauxpy", "statement", dir_name)
+    save_quantile(all_quantiles, "fauxpy", "statement", dir_name)
 
 
 def calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info):
@@ -191,7 +202,7 @@ def main():
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
     # fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
     # if fauxpy_function_csv_score_items is None:
@@ -218,8 +229,8 @@ def main():
     #                                                                         fauxpy_module_csv_score_items)
     # calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
-    calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    # average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
+    # calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
 
 if __name__ == '__main__':

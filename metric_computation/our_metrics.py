@@ -1,7 +1,10 @@
-from typing import List, Dict
+import math
+from typing import List, Dict, Tuple
 
+from csv_score_load_manager import CsvScoreItem, FLTechnique
 from cumulative_distance import DistanceToBug, TechniqueBugCumulativeDistance
 from entity_type import ScoredStatement
+from score_based_quantile import SumAllPositiveScores, SumAllNegativeScores
 from sv_comp_score import SvCompScoreForBug, TechniqueBugSvCompOverallScore
 
 """
@@ -38,3 +41,46 @@ def get_sv_comp_overall_score(program_locations: List[ScoredStatement],
     sv_comp_overall_score = technique_bug_sv_comp_overall_score_obj.get_sv_comp_overall_score()
 
     return sv_comp_overall_score
+
+
+class QuantileRecord:
+    """
+    Columns t, f, S(f, t)
+    """
+    def __init__(self, time_sec: int,
+                 technique: FLTechnique,
+                 sum_all_positive_scores: float):
+        self._time_sec = time_sec
+        self._technique = technique
+        self._sum_all_positive_scores = sum_all_positive_scores
+
+    def _pretty_representation(self):
+        return f"{self._time_sec}, {self._technique.name}, {self._sum_all_positive_scores}"
+
+    def __str__(self):
+        return self._pretty_representation()
+
+    def __repr__(self):
+        return self._pretty_representation()
+
+    def get_record(self) -> Tuple[float, str, float]:
+        return self._time_sec, self._technique.name, self._sum_all_positive_scores
+
+
+def score_based_quantile_function_for_technique(technique_csv_score_items: List[CsvScoreItem]) -> List[QuantileRecord]:
+    first_csv_technique = technique_csv_score_items[0].get_technique()
+    assert any([x.get_technique() == first_csv_technique for x in technique_csv_score_items])
+
+    max_time_parameter = max([x.get_experiment_time_seconds() for x in technique_csv_score_items])
+
+    sum_all_positive_scores_obj = SumAllPositiveScores(technique_csv_score_items)
+    # sum_all_negative_scores_obj = SumAllNegativeScores(technique_csv_score_items)
+    # sum_all_negative_scores = sum_all_negative_scores_obj.get_value()
+
+    record_list = []
+    for t_parameter in range(1, math.floor(max_time_parameter) + 1):
+        sum_all_positive_scores_t = sum_all_positive_scores_obj.get_value(t_parameter)
+        current_quantile_record = QuantileRecord(t_parameter, first_csv_technique, sum_all_positive_scores_t)
+        record_list.append(current_quantile_record)
+
+    return record_list

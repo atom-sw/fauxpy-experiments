@@ -40,6 +40,8 @@ class CsvScoreItemFunctionGranularityManager:
         current_csv_function.set_script_id(None)
         current_csv_function.set_granularity(FLGranularity.Function)
         current_csv_function.set_scored_entities(scored_function_list)
+        current_csv_function.set_metric_literature_val(None)
+        current_csv_function.set_metric_our_val(None)
 
         return current_csv_function
 
