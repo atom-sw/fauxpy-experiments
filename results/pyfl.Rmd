@@ -29,6 +29,8 @@ library(assertthat)
 
 # Regex and string manipulation
 library(stringr)
+# Convenient text input output
+library(readr)
 
 # Powerful table manipulation
 library(dplyr)
@@ -78,11 +80,11 @@ C.COLORS <- met.brewer(C.PALETTE, n=4)
 
 ```{r include=FALSE}
 
-family <- "/pyfl/"
+KEY.FAMILY <- "pyfl"
 stored.values <- list()
 stored.values.str <- list()
 
-PAPER.DIR <- file.path("data")
+PAPER.DIR <- file.path("paper")
 PAPER.FNAME <- "data.tex"
 
 STORED.NUMS <- list()
@@ -99,7 +101,7 @@ sanitize_ <- function(name)
 # Store `value` under `key` as numeric value.
 # If `as.string` store it as string value instead.
 # Use `family/group` as a hierarchical prefixes.
-store_ <- function(key, value, group="", family=paste0("pyfl", DATASAMPLE), as.string=FALSE)
+store_ <- function(key, value, group="", family=KEY.FAMILY, as.string=FALSE)
 {
   maybe.group <- if (group == "") "" else paste0(group, "/")
   key <- sanitize_(paste0("/", family, "/", maybe.group, key))
@@ -194,10 +196,14 @@ metrics.dir <- "../metric_computation/"
 assertthat::assert_that(dir.exists(metrics.dir))
 
 GRANULARITIES <- factor(c("function", "statement", "module"))
-FAMILIES <- list(mbfl=c("Metallaxis", "Muse"), 
-                 ps=c("PS"), 
-                 st=c("ST"),
-                 sbfl=c("DStar", "Ochiai", "Tarantula"))
+FAMILIES <- list(MBFL=c("Metallaxis", "Muse"), 
+                 PS=c("PS"), 
+                 ST=c("ST"),
+                 SBFL=c("DStar", "Ochiai", "Tarantula"))
+CATEGORIES <- list(DS=c("spacy", "keras", "pandas"),
+                   DEV=c("cookiecutter", "black"),
+                   WEB=c("sanic", "fastapi", "tornado"),
+                   CL=c("httpie", "thefuck", "tqdm", "youtubedl"))
   
 datas <- data.frame()
 for (granularity in GRANULARITIES) {
@@ -208,42 +214,64 @@ for (granularity in GRANULARITIES) {
   datas <- datas %>% bind_rows(cur.data)
 }
 
-# convert to factors relevant columns
-datas$family <- factor(datas$family)
-datas$technique <- factor(datas$technique)
+# rename columns
+names(datas)[names(datas) == "project_name"] <- "project"
+names(datas)[names(datas) == "e_inspect"] <- "einspect"
+names(datas)[names(datas) == "experiment_time_seconds"] <- "time"
+names(datas)[names(datas) == "exam_score"] <- "exam"
+names(datas)[names(datas) == "cumulative_distance"] <- "cdist"
+names(datas)[names(datas) == "sv_comp_overall_score"] <- "svcomp"
+
 # rename to avoid - character
-datas$project_name[datas$project_name == "youtube-dl"] <- "youtubedl"
-datas$project_name <- factor(datas$project_name)
+datas$project[datas$project == "youtube-dl"] <- "youtubedl"
+# convert to factors
+datas$project <- factor(datas$project)
+datas$granularity <- factor(datas$granularity)
+levels(datas$granularity) <- GRANULARITIES
+datas$technique <- factor(datas$technique)
 
 TECHNIQUES <- unique(datas$technique)
+PROJECTS <- unique(datas$project)
+
+#' Given a technique, which family it belongs to
+which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
+
+# Derive each technique's family
+datas$family <- sapply(datas$technique, which.family)
+datas$family <- factor(datas$family)
+# Force order of families as in names(FAMILIES)
+datas <- (datas %>% mutate(family=factor(family, levels=names(FAMILIES))))
+
+#' Given a project, which category it belongs to
+which.category <- function(p) names(CATEGORIES)[sapply(CATEGORIES, 
+                                                       function(x) p %in% x)]
+
+# Derive each project's category
+datas$category <- sapply(datas$project, which.category)
+datas$category <- factor(datas$category)
+
+# Assign unique identifier to every bug
+bugs <- str_c(datas$project, datas$bug_number)
+bugs <- factor(bugs)
+datas$bugid <- bugs
+BUGS <- unique(datas$bug)
+
+#' Given a bug unique identifier, which category of programs it belongs to
+which.projcategory <- function(t) 
+  names(CATEGORIES)[sapply(CATEGORIES, 
+                           function(x) any(str_detect(t, x)))]
 
 # show some data
 str(datas)
 ```
 
-We have a total of `r length(unique(datas$project_name))` projects, which we can classify by category:
+We have a total of `r length(unique(datas$project))` projects, which we can classify by category:
 
    - Data science (`ds`): `spacy`, `keras`, `pandas`
    - Developer tools (`dev`): `cookiecutter`, `black`
    - Web tools (`web`): `sanic`, `fastapi`, `tornado`
    - Command line tools (`cl`): `httpie`, `thefuck`, `tqdm`, `youtubedl`
    
-Let's add this categorization to the data.
-
-```{r categories}
-CATEGORIES <- list(ds=c("spacy", "keras", "pandas"),
-                   dev=c("cookiecutter", "black"),
-                   web=c("sanic", "fastapi", "tornado"),
-                   cl=c("httpie", "thefuck", "tqdm", "youtubedl"))
-
-# assign category to each datapoint according to its project
-categories <- sapply(datas$project_name, 
-                     function(project)
-                       names(which(sapply(CATEGORIES,
-                                          function(categories) 
-                                            project %in% categories))))
-datas$category <- categories
-```
 
 # Pairwise comparisons
 
@@ -260,35 +288,32 @@ we'll aggregate scores for the same bug by average.
 
 
 ```{r group aggregation}
-statement.by.family <- (datas 
-                        %>% filter(granularity == "statement")
-                        # force order of families as in names(FAMILIES)
-                        %>% mutate(family=factor(family, levels=names(FAMILIES))))
-statement.by.family <- (statement.by.family 
-                        %>% group_by(family, category, project_name, bug_number) 
-                        %>% summarize(
-                          e_inspect=mean(e_inspect),
-                          time=mean(experiment_time_seconds),
-                          exam=mean(exam_score)
-                        ))
+statement.by.family.einspect <- (
+  datas 
+  %>% filter(granularity == "statement")
+  %>% group_by(family, category, project, bug_number)
+  %>% summarize(einspect=mean(einspect))
+  %>% spread(family, einspect)
+)
 
-# one column per family with its e_inspect score
-statement.by.family.e_inspect <- (statement.by.family 
-                                  # remove other metrics
-                                  %>% select(-time, -exam)
-                                  %>% spread(family, e_inspect))
+statement.einspect.upper <- max(unlist(
+  statement.by.family.einspect[, 4:ncol(statement.by.family.einspect)])
+  )
 
-S <- statement.by.family.e_inspect$sbfl 
-M <- statement.by.family.e_inspect$mbfl
+S <- statement.by.family.einspect$SBFL
+M <- statement.by.family.einspect$MBFL
 ```
 
 Let's start with some visualization: a scatterplot with a point for each bug;
 each point has coordinates $x, y$ where $x$ is its score in MBFL and $y$ its score in SBFL.
 
 ```{r scatterplot}
-p <- ggplot(statement.by.family.e_inspect, 
-            aes(x=mbfl, y=sbfl, color=category)) + geom_point(size=3)
-p <- p + scale_color_met_d(C.PALETTE) + theme_classic()
+p <- ggplot(statement.by.family.einspect, 
+            aes(x=MBFL, y=SBFL, color=category)) + geom_point(size=3)
+p <- (p + scale_color_met_d(C.PALETTE) 
+      + scale_x_continuous(limits=c(0, statement.einspect.upper))
+      + scale_y_continuous(limits=c(0, statement.einspect.upper)))
+p <- p + theme_classic()
 
 # x = y reference line
 p <- p + geom_abline(slope=1, intercept=0)
@@ -297,20 +322,19 @@ p
 ```
 
 As you can see, 
-there are a bunch of bugs for which SBFL performs very similarly to MBFL 
+there are a bulk of bugs for which SBFL performs very similarly to MBFL 
 (points close to the $x = y$ straight line).
 However, for several other bugs, SBFL is much better (remember that lower is better for this score).
 
-Looking at the colors, which denote the project categories, it seems data science (and possibly web frameworks) are overrepresented among the "harder" bugs on which SBFL behaves consistenly better than MBFL.
+Looking at the colors, we notice that several bugs in the CL (and possibly DS) category are overrepresented among the "harder" bugs on which SBFL behaves much better than MBFL.
 
 Analyzing the same data numerically, we can compute the correlation (Kendall's $\tau$) between $S$ and $M$:
 
 ```{r correlation}
-corr <- cor.test(S, M, method="kendall")
-corr
+(corr <- cor.test(S, M, method="kendall"))
 ```
 
-A correlation of `r corr$estimate` is not insignificant, but it is not strong either.
+A correlation of `r corr$estimate` is definitely insignificant, but is not very strong either.
 
 Finally, we may also perform a statistical test (Wilcoxon's paired test)
 and compute a matching effect size (Cliff's delta).
@@ -321,8 +345,8 @@ wilcox.test(S, M, paired=TRUE)
 cliff.delta(S, M)
 ```
 
-Cliff's delta, in particular, measures how often the value in one set are larger than the value in the other set.
-Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 40\% of the cases.
+Cliff's delta, in particular, roughly measures how often the value in one set are larger than the value in the other set.
+Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 19\% of the cases.
 
 
 These statistics, for what they're worth,
@@ -341,11 +365,14 @@ Now, let's generalize this to a scatterplot matrix to show the relations between
 #' @param digits   The number of decimal digits of the statistics.
 #' @param corr.method   The correlation method to be used (see `cor.test`).
 #' @param conf.level   The confidence level used for the significance tests.
+#' @param info  If not NULL (the default), a list with components `granularity`, 
+#'   `metric`, `g1`, `g2`, used to store key constants of the various stats.
 #'
 #' @return  Returns a vector of strings with correlation, p-value of 
 #'          a Wilcoxon paired test, and Cliff's delta.
 #'
-pairs_text_fn <- function(x, y, digits, corr.method, conf.level)
+pairs_text_fn <- function(x, y, digits, corr.method, conf.level,
+                          info=NULL)
 {
   alpha <- 1 - conf.level
   # correlation
@@ -378,7 +405,15 @@ pairs_text_fn <- function(x, y, digits, corr.method, conf.level)
                     "large"=3)
   delta_txt <- str_c(delta_txt, strrep("*", n_stars))
   # add \n at the end of each statistic
-  sapply(c(cor_txt, sig_txt, delta_txt), function(s) str_c(s, "\n"))
+  res <- sapply(c(cor_txt, sig_txt, delta_txt), function(s) str_c(s, "\n"))
+  if (!is.null(info)) {
+    grp <- str_c(info$granularity, "/", info$metric, "/", info$g1,":", info$g2)
+    store_("corrTau", cor_est, grp)
+    store_("WilcoxonP", sig_est, grp)
+    store_("CliffD", delta_est, grp)
+    return(grp)
+  }
+  res
 }
 
 #' Helper function wrapping `pairs_text_fn` in a call to 
@@ -399,13 +434,27 @@ pairs.stats <- function (data, mapping, ...,
                                                           conf.level))
 }
 
+statement.einspect.limits <- c(0, statement.einspect.upper)
+
 #' Helper function to add a line x = y to a ggpairs plot.
 points_abline <- function(data, mapping)
 {
   pp <- ggplot(data=data, mapping=mapping) + geom_point()
+  pp <- (pp 
+         + scale_x_continuous(limits=statement.einspect.limits) 
+         + scale_y_continuous(limits=statement.einspect.limits))
   pp <- pp + geom_abline(intercept=0, slope=1)
   pp
 }
+
+#' Helper function to set the scale to a ggpairs bar plot.
+bar_scale <- function(data, mapping)
+{
+  pp <- ggally_barDiag(data, mapping, bins=15)
+  # pp <- pp + scale_x_continuous(limits=statement.einspect.limits)
+  pp
+}
+
 
 #' Pairwise comparison plot with scatterplots on lower, bar charts on diagonal, 
 #' and statistics on upper.
@@ -423,12 +472,17 @@ pairwise.comparison.plot <- function(data, columns,
                 legend=1,
                 lower=list(mapping=aes(color=.data[[color_var]]),
                            continuous=wrap(points_abline)),
-                diag=list(continuous=wrap("barDiag", bins=15),
+                diag=list(continuous=wrap(bar_scale),
                           mapping=aes(color=.data[[color_var]])),
                 upper=list(continuous=wrap(pairs.stats)))
   if (!is.null(palette))
     pp <- pp + scale_color_met_d(palette) + scale_fill_met_d(palette)
-  pp <- pp + theme_light()
+  pp <- pp + theme_light() + theme(
+    legend.title=element_blank(),
+    legend.position="bottom",
+    legend.direction="horizontal"
+    # aspect.ratio=3/6
+  )
   # change theme selectively for upper cells
   # this only works if no other theme is set in the rest of the plot
   # pp <- add_to_ggmatrix(pp, 
@@ -438,11 +492,33 @@ pairwise.comparison.plot <- function(data, columns,
   return(pp)
 }
 
-p.e_inspect <- pairwise.comparison.plot(
-  statement.by.family.e_inspect, 
-  columns=which(names(statement.by.family.e_inspect) %in% names(FAMILIES)),
+p.einspect <- pairwise.comparison.plot(
+  statement.by.family.einspect, 
+  columns=which(names(statement.by.family.einspect) %in% names(FAMILIES)),
   color_var="category", palette=C.PALETTE)
-p.e_inspect
+p.einspect
+
+f.p.einspect <- file.path(PAPER.DIR, "statement-family-einspect.pdf") 
+ggsave(f.p.einspect, 
+       plot=p.einspect, 
+       device="pdf")
+knitr::plot_crop(f.p.einspect, quiet=FALSE)
+
+all.pairs <- statement.by.family.einspect[, 
+                                          (colnames(statement.by.family.einspect) 
+                                           %in% names(FAMILIES))]
+# generate all pairs
+all.pairs <- combn(all.pairs, 2, simplify=FALSE)
+
+# also save statistics as constants
+x_ <- lapply(all.pairs, 
+             function(p) 
+               pairs_text_fn(unlist(p[1]), unlist(p[2]), 2, "kendall", 0.95,
+                             info=list(
+                               granularity="statement", 
+                               metric="einspect", 
+                               g1=colnames(p)[1], 
+                               g2=colnames(p)[2])))
 ```
 
 Now, it's easy to compute a similar plot for other metrics.
@@ -495,7 +571,7 @@ We also standardize the predictors, so that it's much easier to set sensible pri
 statement <- (datas 
               %>% filter(granularity=="statement") 
               %>% rename(time=experiment_time_seconds))
-bugs <- str_c(statement$project_name, statement$bug_number)
+bugs <- str_c(statement$project, statement$bug_number)
 bugs <- factor(bugs)
 statement$bug <- bugs
 
@@ -640,17 +716,6 @@ Let's set up some functions to analyze the posterior samples of `m1` (and simila
 
 ```{r m1 difference analysis defs, warning=FALSE}
 PROBABILITIES <- c(0.5, 0.7, 0.9, 0.95, 0.99)
-
-#' Given a technique, which family it belongs to
-which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
-
-#' Given a bug unique identifier, which category of programs it belongs to
-which.projcategory <- function(t) 
-  names(CATEGORIES)[sapply(CATEGORIES, 
-                           function(x) any(str_detect(t, x)))]
-
-PROJECTS <- unique(datas$project_name)
-BUGS <- unique(statement$bug)
 
 interval.results <- function(fit, response, which.group, predictor)
 {
@@ -1068,5 +1133,5 @@ Let's see what happens for the bug/category of projects.
 # Dump all constants
 
 ```{r epilogue}
-# dump.all_()
+dump.all_()
 ```
