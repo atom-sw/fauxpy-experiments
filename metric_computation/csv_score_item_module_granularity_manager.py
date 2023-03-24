@@ -29,6 +29,8 @@ class CsvScoreItemModuleGranularityManager:
         current_csv_module.set_script_id(None)
         current_csv_module.set_granularity(FLGranularity.Module)
         current_csv_module.set_scored_entities(scored_module_list)
+        current_csv_module.set_metric_literature_val(None)
+        current_csv_module.set_metric_our_val(None)
 
         return current_csv_module
 
