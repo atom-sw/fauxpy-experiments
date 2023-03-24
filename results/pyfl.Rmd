@@ -229,6 +229,8 @@ datas$project <- factor(datas$project)
 datas$granularity <- factor(datas$granularity)
 levels(datas$granularity) <- GRANULARITIES
 datas$technique <- factor(datas$technique)
+# add time in minutes
+datas$minutes <- datas$time / 60
 
 TECHNIQUES <- unique(datas$technique)
 PROJECTS <- unique(datas$project)
@@ -354,7 +356,9 @@ seem to confirm that there is a noticeable difference in favor of SBFL.
 
 Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
 
-```{r scatterplot matrix, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+First, we define a bunch of helper functions.
+
+```{r scatterplot matrix funs, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
 #' Compute statistics comparing data `x` and `y`.
 #'
 #' The function returns a vector of strings, each expressing a statistics and
@@ -405,7 +409,7 @@ pairs_text_fn <- function(x, y, digits, corr.method, conf.level,
                     "large"=3)
   delta_txt <- str_c(delta_txt, strrep("*", n_stars))
   # add \n at the end of each statistic
-  res <- sapply(c(cor_txt, sig_txt, delta_txt), function(s) str_c(s, "\n"))
+  res <- c(sapply(c(cor_txt, sig_txt), function(s) str_c(s, "\n")), delta_txt)
   if (!is.null(info)) {
     grp <- str_c(info$granularity, "/", info$metric, "/", info$g1,":", info$g2)
     store_("corrTau", cor_est, grp)
@@ -434,15 +438,16 @@ pairs.stats <- function (data, mapping, ...,
                                                           conf.level))
 }
 
-statement.einspect.limits <- c(0, statement.einspect.upper)
-
 #' Helper function to add a line x = y to a ggpairs plot.
-points_abline <- function(data, mapping)
+points_abline <- function(data, mapping, ...)
 {
   pp <- ggplot(data=data, mapping=mapping) + geom_point()
-  pp <- (pp 
-         + scale_x_continuous(limits=statement.einspect.limits) 
-         + scale_y_continuous(limits=statement.einspect.limits))
+  if (hasArg("lower_limits")) {
+    extra.params <- list(...)
+    pp <- (pp 
+           + scale_x_continuous(limits=extra.params$lower_limits) 
+           + scale_y_continuous(limits=extra.params$lower_limits))
+  }
   pp <- pp + geom_abline(intercept=0, slope=1)
   pp
 }
@@ -466,12 +471,12 @@ bar_scale <- function(data, mapping)
 #'
 #' @return  Returns a ggplot2 plot object. 
 pairwise.comparison.plot <- function(data, columns, 
-                                     color_var="category", palette=NULL)
+                                     color_var="category", palette=NULL, ...)
 {
   pp <- ggpairs(data, columns, 
                 legend=1,
                 lower=list(mapping=aes(color=.data[[color_var]]),
-                           continuous=wrap(points_abline)),
+                           continuous=wrap(points_abline, ...)),
                 diag=list(continuous=wrap(bar_scale),
                           mapping=aes(color=.data[[color_var]])),
                 upper=list(continuous=wrap(pairs.stats)))
@@ -491,18 +496,26 @@ pairwise.comparison.plot <- function(data, columns,
   #                       location="upper")
   return(pp)
 }
+```
+
+Then, we use them to generate plots for $E$.
+
+
+```{r scatterplot einspect, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+statement.einspect.limits <- c(0, statement.einspect.upper)
 
 p.einspect <- pairwise.comparison.plot(
   statement.by.family.einspect, 
   columns=which(names(statement.by.family.einspect) %in% names(FAMILIES)),
-  color_var="category", palette=C.PALETTE)
+  color_var="category", palette=C.PALETTE,
+  lower_limits=statement.einspect.limits)
 p.einspect
 
 f.p.einspect <- file.path(PAPER.DIR, "statement-family-einspect.pdf") 
 ggsave(f.p.einspect, 
        plot=p.einspect, 
        device="pdf")
-knitr::plot_crop(f.p.einspect, quiet=FALSE)
+knitr::plot_crop(f.p.einspect, quiet=TRUE)
 
 all.pairs <- statement.by.family.einspect[, 
                                           (colnames(statement.by.family.einspect) 
@@ -522,7 +535,54 @@ x_ <- lapply(all.pairs,
 ```
 
 Now, it's easy to compute a similar plot for other metrics.
-First, running time.
+For example, running time (in minutes):
+
+```{r scatterplot time, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+
+statement.by.family.time <- (
+  datas 
+  %>% filter(granularity == "statement")
+  %>% group_by(family, category, project, bug_number)
+  %>% summarize(minutes=mean(minutes))
+  %>% spread(family, minutes)
+)
+
+statement.time.upper <- max(unlist(
+  statement.by.family.time[, 4:ncol(statement.by.family.time)])
+  )
+
+statement.time.limits <- c(0, statement.time.upper)
+
+p.time <- pairwise.comparison.plot(
+  statement.by.family.time, 
+  columns=which(names(statement.by.family.time) %in% names(FAMILIES)),
+  color_var="category", palette=C.PALETTE,
+  lower_limits=statement.time.limits)
+# p.time <- p.time + theme(axis.text.x=element_text(angle=90))
+p.time
+
+f.p.time <- file.path(PAPER.DIR, "statement-family-time.pdf") 
+ggsave(f.p.time, 
+       plot=p.time, 
+       device="pdf")
+knitr::plot_crop(f.p.time, quiet=TRUE)
+
+all.pairs <- statement.by.family.time[, 
+                                      (colnames(statement.by.family.time) 
+                                       %in% names(FAMILIES))]
+# generate all pairs
+all.pairs <- combn(all.pairs, 2, simplify=FALSE)
+
+# also save statistics as constants
+x_ <- lapply(all.pairs, 
+             function(p) 
+               pairs_text_fn(unlist(p[1]), unlist(p[2]), 2, "kendall", 0.95,
+                             info=list(
+                               granularity="statement", 
+                               metric="time", 
+                               g1=colnames(p)[1], 
+                               g2=colnames(p)[2])))
+```
 
 ```{r time, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
 
