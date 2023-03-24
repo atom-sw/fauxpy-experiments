@@ -190,10 +190,10 @@ dump.all_ <- function(filename=PAPER.FNAME, out_dir=PAPER.DIR, append=TRUE, rese
 Let's start with reading the computed metrics for all projects.
 
 ```{r data input, include=TRUE}
-metrics.dir <- "../metric_computation/output/"
+metrics.dir <- "../metric_computation/"
 assertthat::assert_that(dir.exists(metrics.dir))
 
-GRANULARITIES <- factor(c("function", "statement"))
+GRANULARITIES <- factor(c("function", "statement", "module"))
 FAMILIES <- list(mbfl=c("Metallaxis", "Muse"), 
                  ps=c("PS"), 
                  st=c("ST"),
@@ -201,19 +201,11 @@ FAMILIES <- list(mbfl=c("Metallaxis", "Muse"),
   
 datas <- data.frame()
 for (granularity in GRANULARITIES) {
-  pat <- str_c("^detailed_", granularity, "_(.*)[.]csv$")
-  infiles <- list.files(path=metrics.dir, pattern=pat, ignore.case=TRUE)
-  for (fname in infiles) {
-    technique <- str_extract(fname, regex(pat, ignore_case=TRUE), group=1)
-    family <- names(which(sapply(FAMILIES, function(x) technique %in% x)))
-    cur.data <- read.csv(file.path(metrics.dir, fname))
-    datas <- datas %>% bind_rows(cbind(
-      granularity=granularity, 
-      family=family, 
-      technique=technique, 
-      cur.data
-      ))
-  }
+  csvpath <- file.path(metrics.dir, 
+                       str_c("output_fauxpy_", granularity),
+                       str_c("fauxpy_", granularity, "_detailed.csv"))
+  cur.data <- read.csv(csvpath)
+  datas <- datas %>% bind_rows(cur.data)
 }
 
 # convert to factors relevant columns
@@ -902,6 +894,8 @@ interval.results.ranef <- function(fit, response, predictor, probs)
   # keep only predictor/response data
   post <- post[[predictor]]
   post <- post[, , grep(str_c("^", response), dimnames(post)[[3]])]
+  if (dims(post) > 2 && !("matrix" %in% class(post)))
+    post <- post[, , 1]
   res <- as.data.frame(post)
   res <- res[, grep("^Q", colnames(res))]
   colnames(res) <- cnams
