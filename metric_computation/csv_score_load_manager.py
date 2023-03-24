@@ -128,13 +128,13 @@ class CsvScoreItem:
     def set_experiment_time_seconds(self, val):
         self._experiment_time_seconds = val
 
-    def set_metric_literature_val(self, metric_literature_val: MetricLiteratureVal):
+    def set_metric_literature_val(self, metric_literature_val: Optional[MetricLiteratureVal]):
         self._metric_literature_val = metric_literature_val
 
     def get_metric_literature_val(self) -> MetricLiteratureVal:
         return self._metric_literature_val
 
-    def set_metric_our_val(self, metric_our_val: MetricOurVal):
+    def set_metric_our_val(self, metric_our_val: Optional[MetricOurVal]):
         self._metric_our_val = metric_our_val
 
     def get_metric_our_val(self) -> MetricOurVal:
