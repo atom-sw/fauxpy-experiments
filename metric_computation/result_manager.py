@@ -86,8 +86,8 @@ class ResultManager:
             for csv_item in csv_item_list:
                 project_name = csv_item.get_project_name()
                 bug_number = csv_item.get_bug_number()
-                cumulative_distance = "Not applicable"
-                sv_comp_overall_score = "Not applicable"
+                cumulative_distance = None
+                sv_comp_overall_score = None
                 result_row = [project_name, bug_number, cumulative_distance, sv_comp_overall_score]
                 result_rows.append(result_row)
             return result_rows
@@ -99,8 +99,8 @@ class ResultManager:
             if len(csv_items) == 0:
                 return [None, None, None]
 
-            average_cumulative_distance = "Not applicable"
-            average_sv_comp_overall_score = "Not applicable"
+            average_cumulative_distance = None
+            average_sv_comp_overall_score = None
 
             technique_result = [tech,
                                 average_cumulative_distance,
