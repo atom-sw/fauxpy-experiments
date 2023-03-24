@@ -1,13 +1,13 @@
-Project,About,Link
-cookiecutter,Developer tool,https://github.com/cookiecutter/cookiecutter
-spaCy,Natural Language Processing library,https://github.com/explosion/spaCy
-sanic,Web server and web framework,https://github.com/sanic-org/sanic
-httpie,Command-line HTTP client,https://github.com/httpie/httpie
-keras,Deep learning API,https://github.com/keras-team/keras
-thefuck,Console command tool,https://github.com/nvbn/thefuck
-pandas,Data analysis toolkit,https://github.com/pandas-dev/pandas
-black,Code Formatter,https://github.com/psf/black
-fastapi,Web framework for building APIs,https://github.com/tiangolo/fastapi
-tornado,Web Server,https://github.com/tornadoweb/tornado
-tqdm,Progress Bar for Python and CLI,https://github.com/tqdm/tqdm
-youtube-dl,Video downloader,https://github.com/ytdl-org/youtube-dl
+Project,About,Class,Link
+cookiecutter,Developer tool,Developer tool,https://github.com/cookiecutter/cookiecutter
+spaCy,Natural Language Processing library,Data science,https://github.com/explosion/spaCy
+sanic,Web server and web framework,Web server and framework,https://github.com/sanic-org/sanic
+httpie,Command-line HTTP client,Command line tool,https://github.com/httpie/httpie
+keras,Deep learning API,Data science,https://github.com/keras-team/keras
+thefuck,Console command tool,Command line tool,https://github.com/nvbn/thefuck
+pandas,Data analysis toolkit,Data science,https://github.com/pandas-dev/pandas
+black,Code Formatter,Developer tool,https://github.com/psf/black
+fastapi,Web framework for building APIs,Web server and framework,https://github.com/tiangolo/fastapi
+tornado,Web Server,Web server and framework,https://github.com/tornadoweb/tornado
+tqdm,Progress Bar for Python and CLI,Command line tool,https://github.com/tqdm/tqdm
+youtube-dl,Video downloader,Command line tool,https://github.com/ytdl-org/youtube-dl
