@@ -88,10 +88,22 @@ def load_info_files():
     return info
 
 
+def load_info_files_2():
+    info = {}
+    json_files = list(Path(common.SUBJECT_INFO_DIRECTORY_NAME_2).rglob("*.json"))
+    json_files.sort()
+    for item in json_files:
+        benchmark_info = common.load_json_to_dictionary(str(item.absolute().resolve()))
+        info[benchmark_info["BENCHMARK_NAME"]] = benchmark_info
+
+    return info
+
+
 def main():
-    # cache_manager = common.CacheManager(CACHE_DIR_NAME)
     correct_test_bugs_dict = common.load_correct_test_bugs()
+    correct_test_bugs_dict_2 = common.load_correct_test_bugs_2()
     info_files_dict = load_info_files()
+    info_files_dict_2 = load_info_files_2()
 
     line_numbers_dict = {}
 
@@ -101,15 +113,23 @@ def main():
             target_dir = info_files_dict[benchmark_name]["TARGET_DIR"]
             exclude = info_files_dict[benchmark_name]["EXCLUDE"]
 
-            # cache_file_name_current = f"{benchmark_name}_{bug_number}"
-            # cache_obj = cache_manager.load(cache_file_name_current)
-            # if cache_obj is None:
-            #     line_count, function_count = get_line_function_counts(benchmark_name, bug_number, target_dir, exclude)
-            #     cache_manager.save((line_count, function_count), cache_file_name_current)
-            # else:
-            #     line_count, function_count = cache_obj
+            line_count, function_count, module_count = get_line_function_module_counts(benchmark_name, bug_number,
+                                                                                       target_dir, exclude)
+            print(line_count, function_count, module_count)
 
-            line_count, function_count, module_count = get_line_function_module_counts(benchmark_name, bug_number, target_dir, exclude)
+            current_key = f"{benchmark_name}:{bug_number}"
+            line_numbers_dict[current_key] = {"LINE_COUNT": line_count,
+                                              "FUNCTION_COUNT": function_count,
+                                              "MODULE_COUNT": module_count}
+
+    for benchmark_name, benchmark_items in correct_test_bugs_dict_2.items():
+        for bug_number in benchmark_items["ACCEPTED"]:
+            print(benchmark_name, bug_number)
+            target_dir = info_files_dict_2[benchmark_name]["TARGET_DIR"]
+            exclude = info_files_dict_2[benchmark_name]["EXCLUDE"]
+
+            line_count, function_count, module_count = get_line_function_module_counts(benchmark_name, bug_number,
+                                                                                       target_dir, exclude)
             print(line_count, function_count, module_count)
 
             current_key = f"{benchmark_name}:{bug_number}"

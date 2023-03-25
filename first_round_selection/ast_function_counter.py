@@ -26,7 +26,11 @@ class FunctionCounterVisitor(ast.NodeVisitor):
 
 def count_function_num(module_path: Path) -> int:
     with module_path.open("r") as file:
-        tree = ast.parse(file.read())
+        try:
+            tree = ast.parse(file.read())
+        except SyntaxError:
+            print("Not counting functions in this module duo to syntax error:", module_path)
+            return 0
 
     function_counter_visitor = FunctionCounterVisitor()
     function_counter_visitor.visit(tree)
