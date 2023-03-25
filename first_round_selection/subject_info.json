@@ -2249,5 +2249,1172 @@
           "TARGET_FAILING_TESTS": [
                "test/test_utils.py::TestUtil::test_url_basename"
           ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 1,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/galaxy/test_collection.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/galaxy/test_collection.py::test_verify_collections_no_version"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 2,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/utils/test_version.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/utils/test_version.py::test_alpha",
+               "test/units/utils/test_version.py::test_numeric"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 3,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/module_utils/test_distribution_version.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/module_utils/test_distribution_version.py::test_distribution_version"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 4,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/playbook/test_collectionsearch.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/playbook/test_collectionsearch.py::test_collection_static_warning"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 5,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/module_utils/common/validation/test_check_required_arguments.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/module_utils/common/validation/test_check_required_arguments.py::test_check_required_arguments_missing_multiple"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 6,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/galaxy/test_collection_install.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/galaxy/test_collection_install.py::test_build_requirement_from_path_with_manifest",
+               "test/units/galaxy/test_collection_install.py::test_build_requirement_from_path_no_version",
+               "test/units/galaxy/test_collection_install.py::test_add_collection_requirement_to_unknown_installed_version"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 7,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/modules/network/eos/test_eos_vlans.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/modules/network/eos/test_eos_vlans.py::TestEosVlansModule::test_eos_vlan_replaced"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 8,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/plugins/shell/test_powershell.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/plugins/shell/test_powershell.py::test_join_path_unc"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 9,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/modules/packaging/os/test_redhat_subscription.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/modules/packaging/os/test_redhat_subscription.py::test_redhat_subscribtion"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 10,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/modules/system/test_pamd.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/modules/system/test_pamd.py::PamdServiceTestCase::test_remove_first_rule",
+               "test/units/modules/system/test_pamd.py::PamdServiceTestCase::test_remove_last_rule"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 11,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/modules/network/ios/test_ios_banner.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/modules/network/ios/test_ios_banner.py::TestIosBannerModule::test_ios_banner_nochange",
+               "test/units/modules/network/ios/test_ios_banner.py::TestIosBannerIos12Module::test_ios_banner_nochange"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 12,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/plugins/lookup/test_env.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/plugins/lookup/test_env.py"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 13,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/cli/test_galaxy.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/cli/test_galaxy.py::test_collection_install_with_url"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 14,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/galaxy/test_api.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/galaxy/test_api.py::test_get_role_versions_pagination"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 15,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/modules/network/eos/test_eos_eapi.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/modules/network/eos/test_eos_eapi.py::TestEosEapiModule::test_eos_eapi_vrf"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 16,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info_missing_arch"
+          ]
+     },
+     {
+          "PYTHON_V": 3.6,
+          "BENCHMARK_NAME": "ansible",
+          "BUG_NUMBER": 17,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/units/module_utils/facts/test_facts.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/units/module_utils/facts/test_facts.py::TestFactsLinuxHardwareGetMountFacts::test_get_mount_facts"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 1,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/server_test.py",
+               "test/db_task_history_test.py",
+               "test/task_history_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/server_test.py::MetricsHandlerTest::test_get"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 3,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/choice_parameter_test.py",
+               "test/contrib/streaming_test.py",
+               "test/date_interval_test.py",
+               "test/date_parameter_test.py",
+               "test/dict_parameter_test.py",
+               "test/numerical_parameter_test.py",
+               "test/parameter_test.py",
+               "test/task_bulk_complete_test.py",
+               "test/worker_multiprocess_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/parameter_test.py::TestSerializeTupleParameter::testSerialize"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 4,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/contrib/redshift_test.py",
+               "test/redshift_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/contrib/redshift_test.py::TestS3CopyToTable::test_s3_copy_with_nonetype_columns"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 5,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/decorator_test.py",
+               "test/util_previous_test.py",
+               "test/util_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/util_test.py::BasicsTest::test_inherits_has_effect_MRO",
+               "test/util_test.py::BasicsTest::test_requires_has_effect_MRO"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 6,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/choice_parameter_test.py",
+               "test/contrib/streaming_test.py",
+               "test/date_interval_test.py",
+               "test/date_parameter_test.py",
+               "test/dict_parameter_test.py",
+               "test/numerical_parameter_test.py",
+               "test/parameter_test.py",
+               "test/task_bulk_complete_test.py",
+               "test/worker_multiprocess_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/parameter_test.py::TestParametersHashability::test_list_dict",
+               "test/parameter_test.py::TestParametersHashability::test_tuple_dict"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 7,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/db_task_history_test.py",
+               "test/execution_summary_test.py",
+               "test/notifications_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_api_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_status_message_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_keep_alive_test.py",
+               "test/worker_scheduler_com_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/scheduler_api_test.py::SchedulerApiTest::test_status_wont_override"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 8,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/contrib/redshift_test.py",
+               "test/redshift_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/contrib/redshift_test.py::TestS3CopyToSchemaTable::test_s3_copy_to_table"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 9,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/execution_summary_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/execution_summary_test.py::ExecutionSummaryTest::test_status_with_task_retry"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 10,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/scheduler_test.py",
+               "test/db_task_history_test.py",
+               "test/execution_summary_test.py",
+               "test/notifications_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_api_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_status_message_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_keep_alive_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/scheduler_test.py::SchedulerWorkerTest::test_get_pending_tasks_with_many_done_tasks"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 11,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/db_task_history_test.py",
+               "test/execution_summary_test.py",
+               "test/notifications_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_api_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_status_message_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_keep_alive_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/scheduler_api_test.py::SchedulerApiTest::test_batch_ignore_items_not_ready"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 12,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/hdfs_client_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/hdfs_client_test.py::HdfsClientTest::test_get_autoconfig_client_cached"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 13,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/cmdline_test.py",
+               "test/contrib/hdfs_test.py",
+               "test/contrib/hive_test.py",
+               "test/contrib/opener_test.py",
+               "test/contrib/test_ssh.py",
+               "test/file_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/task_test.py",
+               "test/test_ssh.py",
+               "test/worker_external_task_test.py",
+               "test/wrap_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/file_test.py::FileSystemTest::test_move_to_new_dir"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 14,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/db_task_history_test.py",
+               "test/execution_summary_test.py",
+               "test/notifications_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_status_message_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/central_planner_test.py::CentralPlannerTest::test_no_crash_on_only_disable_hard_timeout"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 15,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/db_task_history_test.py",
+               "test/execution_summary_test.py",
+               "test/notifications_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/central_planner_test.py::CentralPlannerTest::test_assistants_dont_nurture_finished_statuses"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 16,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/db_task_history_test.py",
+               "test/execution_summary_test.py",
+               "test/notifications_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/central_planner_test.py::CentralPlannerTest::test_re_enable_failed_task_assistant"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 18,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/db_task_history_test.py",
+               "test/email_test.py",
+               "test/execution_summary_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/central_planner_test.py::CentralPlannerTest::test_no_automatic_re_enable_after_auto_then_manual_disable"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 19,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/db_task_history_test.py",
+               "test/email_test.py",
+               "test/execution_summary_test.py",
+               "test/retcodes_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/central_planner_test.py::CentralPlannerTest::test_automatic_re_enable_with_one_failure_allowed"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 22,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/scheduler_test.py",
+               "test/central_planner_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/scheduler_test.py::SchedulerTest::test_worker_prune_after_init"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 23,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/cmdline_test.py",
+               "test/date_hour_test.py",
+               "test/date_interval_test.py",
+               "test/date_minute_test.py",
+               "test/dynamic_import_test.py",
+               "test/event_callbacks_test.py",
+               "test/import_test.py",
+               "test/interface_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/worker_external_task_test.py::WorkerExternalTaskTest::test_external_dependency_completes_later"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 26,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/contrib/hadoop_jar_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/contrib/hadoop_jar_test.py::HadoopJarJobTaskTest::test_missing_jar"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 27,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/date_interval_test.py",
+               "test/parameter_test.py",
+               "test/worker_multiprocess_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/parameter_test.py::TestParamWithDefaultFromConfig::testCommandLineWithDefault",
+               "test/parameter_test.py::TestParamWithDefaultFromConfig::testCommandLineNoDefault"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 28,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/contrib/hive_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/contrib/hive_test.py::HiveCommandClientTest::test_table_exists",
+               "test/contrib/hive_test.py::HiveCommandClientTest::test_apacheclient_table_exists"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 29,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/decorator_test.py",
+               "test/task_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/task_test.py::TaskTest::test_external_tasks_loadable"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 30,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/test_event_callbacks.py",
+               "test/fib_test.py",
+               "test/instance_test.py",
+               "test/instance_wrap_test.py",
+               "test/interface_test.py",
+               "test/recursion_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_multiprocess_test.py",
+               "test/worker_parallel_scheduling_test.py",
+               "test/worker_test.py",
+               "test/wrap_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/test_event_callbacks.py::TestEventCallbacks::test_failure",
+               "test/test_event_callbacks.py::TestEventCallbacks::test_processing_time_handler_failure"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 31,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/central_planner_test.py",
+               "test/rpc_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/server_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/worker_external_task_test.py",
+               "test/worker_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/central_planner_test.py::CentralPlannerTest::test_assistant_get_work_external_task"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 32,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/instance_test.py",
+               "test/decorator_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/instance_test.py::InstanceTest::test_unhashable_type"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "luigi",
+          "BUG_NUMBER": 33,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "test/_postgres_test.py",
+               "test/clone_test.py",
+               "test/contrib/sqla_test.py",
+               "test/date_hour_test.py",
+               "test/date_interval_test.py",
+               "test/date_minute_test.py",
+               "test/db_task_history_test.py",
+               "test/decorator_test.py",
+               "test/dynamic_import_test.py",
+               "test/factorial_test.py",
+               "test/fib_test.py",
+               "test/hadoop_test.py",
+               "test/instance_test.py",
+               "test/instance_wrap_test.py",
+               "test/interface_test.py",
+               "test/namespace_test.py",
+               "test/parameter_test.py",
+               "test/postgres_test.py",
+               "test/priority_test.py",
+               "test/range_test.py",
+               "test/recursion_test.py",
+               "test/redshift_test.py",
+               "test/scheduler_visualisation_test.py",
+               "test/spark_test.py",
+               "test/subtask_test.py",
+               "test/task_history_test.py",
+               "test/task_test.py",
+               "test/test_event_callbacks.py",
+               "test/util_previous_test.py",
+               "test/worker_parallel_scheduling_test.py",
+               "test/wrap_test.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "test"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "test/parameter_test.py::ParameterTest::test_local_insignificant_param",
+               "test/parameter_test.py::TestRemoveGlobalParameters::test_global_significant_param",
+               "test/parameter_test.py::TestRemoveGlobalParameters::test_mixed_params",
+               "test/parameter_test.py::TestRemoveGlobalParameters::test_mixed_params_inheritence"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 3,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_downloadermiddleware.py",
+               "tests/test_downloadermiddleware_redirect.py",
+               "tests/test_spider.py",
+               "tests/test_spidermiddleware.py",
+               "tests/test_spidermiddleware_referer.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_302_relative"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 5,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_http_response.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_http_response.py::BaseResponseTest::test_follow_None_url"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 7,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_http_request.py",
+               "tests/test_utils_reqser.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_http_request.py::FormRequestTest::test_spaces_in_action"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 10,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_downloadermiddleware.py",
+               "tests/test_downloadermiddleware_redirect.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location",
+               "tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_utf8_location"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 13,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_item.py",
+               "tests/test_pipeline_files.py",
+               "tests/test_pipeline_images.py",
+               "tests/test_pipeline_media.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_pipeline_images.py::ImagesPipelineTestCaseCustomSettings"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 16,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_utils_url.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_utils_url.py::CanonicalizeUrlTest::test_canonicalize_url_unicode_query_string",
+               "tests/test_utils_url.py::CanonicalizeUrlTest::test_normalize_percent_encoding_in_paths",
+               "tests/test_utils_url.py::CanonicalizeUrlTest::test_normalize_percent_encoding_in_query_arguments",
+               "tests/test_utils_url.py::CanonicalizeUrlTest::test_canonicalize_idns",
+               "tests/test_utils_url.py::CanonicalizeUrlTest::test_canonicalize_urlparsed",
+               "tests/test_utils_url.py::CanonicalizeUrlTest::test_canonicalize_parse_url"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 24,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_downloader_handlers.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_downloader_handlers.py::HttpProxyTestCase::test_download_with_proxy_https_timeout"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 34,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_contracts.py",
+               "tests/test_engine.py",
+               "tests/test_exporters.py",
+               "tests/test_feedexport.py",
+               "tests/test_item.py",
+               "tests/test_loader.py",
+               "tests/test_logformatter.py",
+               "tests/test_pipeline_files.py",
+               "tests/test_squeues.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_item.py::ItemTest::test_metaclass_with_fields_attribute",
+               "tests/test_item.py::ItemTest::test_metaclass_multiple_inheritance_simple",
+               "tests/test_item.py::ItemTest::test_metaclass_multiple_inheritance_diamond"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 35,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_closespider.py",
+               "tests/test_contrib_feedexport.py",
+               "tests/test_crawl.py",
+               "tests/test_crawler.py",
+               "tests/test_downloader_handlers.py",
+               "tests/test_downloadermiddleware.py",
+               "tests/test_downloadermiddleware_ajaxcrawlable.py",
+               "tests/test_downloadermiddleware_defaultheaders.py",
+               "tests/test_downloadermiddleware_downloadtimeout.py",
+               "tests/test_downloadermiddleware_httpcache.py",
+               "tests/test_downloadermiddleware_redirect.py",
+               "tests/test_downloadermiddleware_retry.py",
+               "tests/test_downloadermiddleware_stats.py",
+               "tests/test_downloadermiddleware_useragent.py",
+               "tests/test_engine.py",
+               "tests/test_log.py",
+               "tests/test_middleware.py",
+               "tests/test_proxy_connect.py",
+               "tests/test_spider.py",
+               "tests/test_spidermiddleware_depth.py",
+               "tests/test_spidermiddleware_httperror.py",
+               "tests/test_spidermiddleware_offsite.py",
+               "tests/test_stats.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_crawler.py::CrawlerRunnerTestCase::test_spidermanager_deprecation"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 36,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_utils_misc/__init__.py",
+               "tests/test_crawl.py",
+               "tests/test_crawler.py",
+               "tests/test_downloader_handlers.py",
+               "tests/test_utils_misc/test_return_with_argument_inside_generator.py",
+               "tests/test_webclient.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_utils_misc/__init__.py::UtilsMiscTestCase::test_create_instance"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 37,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_http_request.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_http_request.py::RequestTest::test_url_no_scheme"
+          ]
+     },
+     {
+          "PYTHON_V": 3.8,
+          "BENCHMARK_NAME": "scrapy",
+          "BUG_NUMBER": 39,
+          "TARGET_DIR": ".",
+          "TEST_SUITE": [
+               "tests/test_spider.py"
+          ],
+          "EXCLUDE": [
+               "env",
+               "tests"
+          ],
+          "TARGET_FAILING_TESTS": [
+               "tests/test_spider.py::DeprecationTest::test_make_requests_from_url_deprecated"
+          ]
      }
 ]
