@@ -1,3 +1,5 @@
+import sys
+
 import common
 
 INPUTS = {}
@@ -34,10 +36,18 @@ def compile_check():
             print(f"NOT COMPILED - {benchmark_name}_{current_bug_number}")
 
 
+def get_command_line_info_file():
+    if len(sys.argv) != 2:
+        print("Pass the benchmark info file (e.g., info/keras.json).")
+        exit(1)
+
+    return sys.argv[1]
+
+
 def main():
     global INPUTS
 
-    project_info_file_path = common.get_command_line_info_file()
+    project_info_file_path = get_command_line_info_file()
 
     INPUTS = common.load_json_to_dictionary(project_info_file_path)
 
