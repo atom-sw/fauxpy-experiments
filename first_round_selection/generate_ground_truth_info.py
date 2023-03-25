@@ -1,5 +1,6 @@
 import ast
 import re
+import sys
 from enum import Enum
 from pathlib import Path
 from typing import Tuple, List, Dict
@@ -10,6 +11,7 @@ from ast_manager import AddModeManager, ExecutableLine
 from predicate_finder import PredicateFinder
 
 CORRECT = {}
+CORRECT_2 = {}
 GROUND_TRUTH_INFO_FILE_NAME: str = "ground_truth_info.json"
 PREDICATE_BUG_INFO_FILE_NAME: str = "predicate_bug_info.json"
 
@@ -367,11 +369,14 @@ def count_all_functions(bug_patch_info):
 
 def main():
     global CORRECT
+    global CORRECT_2
 
     CORRECT = common.load_correct_test_bugs()
+    CORRECT_2 = common.load_correct_test_bugs_2()
 
     ground_truth_info_dict = {}
     empty_ground_truth_info_dict = {}
+    empty_ground_truth_info_dict_2 = {}
     predicate_bug_info_dict = {}
 
     for benchmark_name, benchmark_items in CORRECT.items():
@@ -393,8 +398,28 @@ def main():
             ground_truth_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
             predicate_bug_info_dict[f"{benchmark_name}:{bug_number}"] = is_predicate_bug
 
+    for benchmark_name, benchmark_items in CORRECT_2.items():
+        for bug_number in benchmark_items["ACCEPTED"]:
+
+            # if benchmark_name != "keras" or bug_number != 2:
+            #     continue
+
+            print(benchmark_name, bug_number)
+            bug_patch_info, is_predicate_bug = get_bug_ground_truth(benchmark_name, bug_number)
+            all_line_nums = count_all_line_nums(bug_patch_info)
+            all_functions = count_all_functions(bug_patch_info)
+            if all_functions == 0:
+                print("EMPTY_FUNC")
+            if all_line_nums <= 0:
+                if benchmark_name not in empty_ground_truth_info_dict_2.keys():
+                    empty_ground_truth_info_dict_2[benchmark_name] = []
+                empty_ground_truth_info_dict_2[benchmark_name].append(bug_number)
+            ground_truth_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
+            predicate_bug_info_dict[f"{benchmark_name}:{bug_number}"] = is_predicate_bug
+
     common.save_object_to_json(ground_truth_info_dict, Path(GROUND_TRUTH_INFO_FILE_NAME))
     common.save_object_to_json(empty_ground_truth_info_dict, Path(common.EMPTY_GROUND_TRUTH_FILE_NAME))
+    common.save_object_to_json(empty_ground_truth_info_dict_2, Path(common.EMPTY_GROUND_TRUTH_FILE_NAME_2))
     common.save_object_to_json(predicate_bug_info_dict, Path(PREDICATE_BUG_INFO_FILE_NAME))
 
 
