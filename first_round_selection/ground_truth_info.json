@@ -6969,5 +6969,1024 @@
                ],
                "EXTENDED_FUNCTIONS": []
           }
+     ],
+     "ansible:1": [
+          {
+               "FILE_NAME": "lib/ansible/galaxy/collection.py",
+               "MODULE_SIZE": 1203,
+               "LINES": [
+                    671
+               ],
+               "EXTENDED_LINES": [
+                    670
+               ],
+               "FUNCTIONS": [
+                    "verify_collections::650::697"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:2": [
+          {
+               "FILE_NAME": "lib/ansible/utils/version.py",
+               "MODULE_SIZE": 272,
+               "LINES": [
+                    75,
+                    76,
+                    82,
+                    118,
+                    119,
+                    125
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "__ge__::124::125",
+                    "__ge__::81::82",
+                    "__gt__::118::119",
+                    "__gt__::75::76"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:3": [
+          {
+               "FILE_NAME": "lib/ansible/module_utils/facts/system/distribution.py",
+               "MODULE_SIZE": 661,
+               "LINES": [
+                    323
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "parse_distribution_file_Debian::301::357"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:4": [
+          {
+               "FILE_NAME": "lib/ansible/playbook/collectionsearch.py",
+               "MODULE_SIZE": 44,
+               "LINES": [
+                    35,
+                    44
+               ],
+               "EXTENDED_LINES": [
+                    9,
+                    42
+               ],
+               "FUNCTIONS": [
+                    "_load_collections::37::44"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:5": [
+          {
+               "FILE_NAME": "lib/ansible/module_utils/common/validation.py",
+               "MODULE_SIZE": 547,
+               "LINES": [
+                    192
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "check_required_arguments::169::195"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:6": [
+          {
+               "FILE_NAME": "lib/ansible/galaxy/collection.py",
+               "MODULE_SIZE": 948,
+               "LINES": [
+                    224,
+                    225,
+                    226,
+                    227,
+                    289,
+                    880
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "_get_collection_info::838::883",
+                    "_meets_requirements::199::235",
+                    "from_path::270::305"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:7": [
+          {
+               "FILE_NAME": "lib/ansible/module_utils/network/eos/config/vlans/vlans.py",
+               "MODULE_SIZE": 223,
+               "LINES": [
+                    211,
+                    217,
+                    218
+               ],
+               "EXTENDED_LINES": [
+                    209
+               ],
+               "FUNCTIONS": [
+                    "generate_commands::206::223"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:8": [
+          {
+               "FILE_NAME": "lib/ansible/plugins/shell/powershell.py",
+               "MODULE_SIZE": 311,
+               "LINES": [
+                    26,
+                    96,
+                    97,
+                    98,
+                    99,
+                    100,
+                    101,
+                    102,
+                    103
+               ],
+               "EXTENDED_LINES": [
+                    24
+               ],
+               "FUNCTIONS": [
+                    "join_path::95::103"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:9": [
+          {
+               "FILE_NAME": "lib/ansible/modules/packaging/os/redhat_subscription.py",
+               "MODULE_SIZE": 928,
+               "LINES": [
+                    518,
+                    842,
+                    843
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "main::765::924",
+                    "subscribe_by_pool_ids::508::522"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:10": [
+          {
+               "FILE_NAME": "lib/ansible/modules/system/pamd.py",
+               "MODULE_SIZE": 877,
+               "LINES": [
+                    354,
+                    481
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "__init__::353::360",
+                    "remove::473::488"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:11": [
+          {
+               "FILE_NAME": "lib/ansible/modules/network/ios/ios_banner.py",
+               "MODULE_SIZE": 186,
+               "LINES": [
+                    92,
+                    93,
+                    95,
+                    110,
+                    118,
+                    119,
+                    120,
+                    121,
+                    122,
+                    123,
+                    124,
+                    125,
+                    126,
+                    129,
+                    138,
+                    139
+               ],
+               "EXTENDED_LINES": [
+                    128
+               ],
+               "FUNCTIONS": [
+                    "map_config_to_obj::117::133",
+                    "map_obj_to_commands::98::114",
+                    "map_params_to_obj::136::145"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:12": [
+          {
+               "FILE_NAME": "lib/ansible/plugins/lookup/env.py",
+               "MODULE_SIZE": 44,
+               "LINES": [
+                    30,
+                    42
+               ],
+               "EXTENDED_LINES": [
+                    32
+               ],
+               "FUNCTIONS": [
+                    "run::37::44"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:13": [
+          {
+               "FILE_NAME": "lib/ansible/cli/galaxy.py",
+               "MODULE_SIZE": 1181,
+               "LINES": [
+                    32,
+                    808
+               ],
+               "EXTENDED_LINES": [
+                    31,
+                    37
+               ],
+               "FUNCTIONS": [
+                    "execute_install::780::928"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "lib/ansible/galaxy/collection.py",
+               "MODULE_SIZE": 925,
+               "LINES": [
+                    830,
+                    832
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "_get_collection_info::819::860"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:14": [
+          {
+               "FILE_NAME": "lib/ansible/galaxy/api.py",
+               "MODULE_SIZE": 562,
+               "LINES": [
+                    24,
+                    292,
+                    293,
+                    298,
+                    299
+               ],
+               "EXTENDED_LINES": [
+                    22,
+                    291
+               ],
+               "FUNCTIONS": [
+                    "fetch_role_related::278::300"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:15": [
+          {
+               "FILE_NAME": "lib/ansible/modules/network/eos/eos_eapi.py",
+               "MODULE_SIZE": 430,
+               "LINES": [
+                    267
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "map_obj_to_commands::219::282"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:16": [
+          {
+               "FILE_NAME": "lib/ansible/module_utils/facts/hardware/linux.py",
+               "MODULE_SIZE": 805,
+               "LINES": [
+                    246
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get_cpu_facts::158::277"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "ansible:17": [
+          {
+               "FILE_NAME": "lib/ansible/module_utils/facts/hardware/linux.py",
+               "MODULE_SIZE": 792,
+               "LINES": [
+                    489
+               ],
+               "EXTENDED_LINES": [
+                    80,
+                    487
+               ],
+               "FUNCTIONS": [
+                    "get_mount_facts::474::538"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:1": [
+          {
+               "FILE_NAME": "luigi/server.py",
+               "MODULE_SIZE": 369,
+               "LINES": [
+                    282,
+                    284
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get::281::285"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:3": [
+          {
+               "FILE_NAME": "luigi/parameter.py",
+               "MODULE_SIZE": 1252,
+               "LINES": [
+                    1117,
+                    1118
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "parse::1095::1118"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:4": [
+          {
+               "FILE_NAME": "luigi/contrib/redshift.py",
+               "MODULE_SIZE": 732,
+               "LINES": [
+                    356
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "copy::348::370"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:5": [
+          {
+               "FILE_NAME": "luigi/util.py",
+               "MODULE_SIZE": 435,
+               "LINES": [
+                    282,
+                    283,
+                    285,
+                    286,
+                    288,
+                    304,
+                    305,
+                    307,
+                    308,
+                    310
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "__call__::276::288",
+                    "__call__::300::310",
+                    "clone_parent::285::286",
+                    "requires::307::308"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:6": [
+          {
+               "FILE_NAME": "luigi/parameter.py",
+               "MODULE_SIZE": 1143,
+               "LINES": [
+                    824,
+                    862,
+                    866,
+                    867,
+                    868,
+                    869,
+                    891,
+                    940,
+                    950,
+                    953,
+                    1002,
+                    1006,
+                    1014
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "_recursively_freeze::818::826",
+                    "default::866::869",
+                    "parse::933::940",
+                    "parse::982::1004",
+                    "serialize::1006::1014",
+                    "serialize::890::891",
+                    "serialize::942::950"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:7": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1499,
+               "LINES": [
+                    826
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "add_task::761::883"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:8": [
+          {
+               "FILE_NAME": "luigi/contrib/redshift.py",
+               "MODULE_SIZE": 704,
+               "LINES": [
+                    335,
+                    339
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "does_table_exist::327::346"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:9": [
+          {
+               "FILE_NAME": "luigi/execution_summary.py",
+               "MODULE_SIZE": 419,
+               "LINES": [
+                    46,
+                    49,
+                    51,
+                    90,
+                    264,
+                    380,
+                    381,
+                    382,
+                    383,
+                    384
+               ],
+               "EXTENDED_LINES": [
+                    263
+               ],
+               "FUNCTIONS": [
+                    "_depth_first_search::77::105",
+                    "_partition_tasks::35::58",
+                    "_summary_format::339::400"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:10": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1290,
+               "LINES": [
+                    305
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get_pending_tasks::295::305"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:11": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1287,
+               "LINES": [
+                    897
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get_work::818::971"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:12": [
+          {
+               "FILE_NAME": "luigi/contrib/hdfs/clients.py",
+               "MODULE_SIZE": 60,
+               "LINES": [
+                    24,
+                    29,
+                    34,
+                    38,
+                    39,
+                    40,
+                    41,
+                    42,
+                    43,
+                    44,
+                    45,
+                    46,
+                    47,
+                    48,
+                    56
+               ],
+               "EXTENDED_LINES": [
+                    31
+               ],
+               "FUNCTIONS": [
+                    "get_autoconfig_client::34::48"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:13": [
+          {
+               "FILE_NAME": "luigi/file.py",
+               "MODULE_SIZE": 164,
+               "LINES": [
+                    91
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "move::86::92"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:14": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1128,
+               "LINES": [
+                    93,
+                    95,
+                    202,
+                    203,
+                    213,
+                    214,
+                    215,
+                    386
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "can_disable::213::215",
+                    "has_excessive_failures::201::211",
+                    "set_status::371::407"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:15": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1114,
+               "LINES": [
+                    485,
+                    486
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get_necessary_tasks::482::489"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:16": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1051,
+               "LINES": [
+                    570
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "prune::550::575"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:18": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1026,
+               "LINES": [
+                    405
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "set_status::393::427"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:19": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 1026,
+               "LINES": [
+                    408
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "set_status::393::427"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:22": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 983,
+               "LINES": [
+                    227
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "__init__::227::233"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:23": [
+          {
+               "FILE_NAME": "luigi/interface.py",
+               "MODULE_SIZE": 452,
+               "LINES": [
+                    112
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "create_local_scheduler::111::112"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          },
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 999,
+               "LINES": [
+                    230,
+                    713
+               ],
+               "EXTENDED_LINES": [
+                    102
+               ],
+               "FUNCTIONS": [
+                    "__init__::227::233",
+                    "get_work::699::793"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:26": [
+          {
+               "FILE_NAME": "luigi/contrib/hadoop_jar.py",
+               "MODULE_SIZE": 151,
+               "LINES": [
+                    86
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "run_job::70::109"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:27": [
+          {
+               "FILE_NAME": "luigi/parameter.py",
+               "MODULE_SIZE": 563,
+               "LINES": [
+                    282,
+                    292,
+                    293,
+                    336,
+                    337,
+                    359,
+                    367
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "add_to_cmdline_parser::324::352",
+                    "parse_from_args::354::359",
+                    "parse_from_input::282::304",
+                    "set_global_from_args::361::369"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:28": [
+          {
+               "FILE_NAME": "luigi/contrib/hive.py",
+               "MODULE_SIZE": 453,
+               "LINES": [
+                    141
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "table_exists::137::149"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:29": [
+          {
+               "FILE_NAME": "luigi/task_register.py",
+               "MODULE_SIZE": 202,
+               "LINES": [
+                    138,
+                    139
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "__get_reg::128::152"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:30": [
+          {
+               "FILE_NAME": "luigi/worker.py",
+               "MODULE_SIZE": 769,
+               "LINES": [
+                    188,
+                    189,
+                    190,
+                    191,
+                    192,
+                    193,
+                    194,
+                    195,
+                    196,
+                    197,
+                    198,
+                    199,
+                    200,
+                    201,
+                    202,
+                    203,
+                    204,
+                    205,
+                    206
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "run::168::219"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:31": [
+          {
+               "FILE_NAME": "luigi/scheduler.py",
+               "MODULE_SIZE": 909,
+               "LINES": [
+                    656
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get_work::624::708"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:32": [
+          {
+               "FILE_NAME": "luigi/task_register.py",
+               "MODULE_SIZE": 192,
+               "LINES": [],
+               "EXTENDED_LINES": [
+                    27
+               ],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "luigi:33": [
+          {
+               "FILE_NAME": "luigi/task.py",
+               "MODULE_SIZE": 718,
+               "LINES": [
+                    334
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "get_param_values::313::363"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:3": [
+          {
+               "FILE_NAME": "scrapy/downloadermiddlewares/redirect.py",
+               "MODULE_SIZE": 106,
+               "LINES": [
+                    2,
+                    73
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "process_response::62::82"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:5": [
+          {
+               "FILE_NAME": "scrapy/http/response/__init__.py",
+               "MODULE_SIZE": 133,
+               "LINES": [
+                    123
+               ],
+               "EXTENDED_LINES": [
+                    122
+               ],
+               "FUNCTIONS": [
+                    "follow::107::133"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:7": [
+          {
+               "FILE_NAME": "scrapy/http/request/form.py",
+               "MODULE_SIZE": 203,
+               "LINES": [
+                    8,
+                    11,
+                    54
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "_get_form_url::52::55"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:10": [
+          {
+               "FILE_NAME": "scrapy/downloadermiddlewares/redirect.py",
+               "MODULE_SIZE": 101,
+               "LINES": [
+                    4,
+                    6,
+                    69
+               ],
+               "EXTENDED_LINES": [
+                    2
+               ],
+               "FUNCTIONS": [
+                    "process_response::57::78"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:13": [
+          {
+               "FILE_NAME": "scrapy/pipelines/images.py",
+               "MODULE_SIZE": 219,
+               "LINES": [
+                    45
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:16": [
+          {
+               "FILE_NAME": "scrapy/utils/url.py",
+               "MODULE_SIZE": 145,
+               "LINES": [
+                    10,
+                    12,
+                    18,
+                    58,
+                    59,
+                    60,
+                    67,
+                    68,
+                    75,
+                    84
+               ],
+               "EXTENDED_LINES": [
+                    9,
+                    41,
+                    61
+               ],
+               "FUNCTIONS": [
+                    "_unquotepath::72::75",
+                    "canonicalize_url::40::69",
+                    "parse_url::78::84"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:24": [
+          {
+               "FILE_NAME": "scrapy/core/downloader/handlers/http11.py",
+               "MODULE_SIZE": 328,
+               "LINES": [
+                    81,
+                    95,
+                    96,
+                    98,
+                    99
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "requestTunnel::93::104"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:34": [
+          {
+               "FILE_NAME": "scrapy/item.py",
+               "MODULE_SIZE": 98,
+               "LINES": [
+                    30
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "__new__::26::41"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:35": [
+          {
+               "FILE_NAME": "scrapy/crawler.py",
+               "MODULE_SIZE": 199,
+               "LINES": [
+                    195,
+                    196
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "_get_spider_loader::187::199"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:36": [
+          {
+               "FILE_NAME": "scrapy/utils/misc.py",
+               "MODULE_SIZE": 209,
+               "LINES": [
+                    146,
+                    148,
+                    150
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "create_instance::128::150"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:37": [
+          {
+               "FILE_NAME": "scrapy/http/request/__init__.py",
+               "MODULE_SIZE": 137,
+               "LINES": [
+                    69
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "_set_url::62::70"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
+     ],
+     "scrapy:39": [
+          {
+               "FILE_NAME": "scrapy/spiders/__init__.py",
+               "MODULE_SIZE": 127,
+               "LINES": [
+                    69,
+                    71,
+                    72,
+                    73
+               ],
+               "EXTENDED_LINES": [],
+               "FUNCTIONS": [
+                    "start_requests::68::79"
+               ],
+               "EXTENDED_FUNCTIONS": []
+          }
      ]
 }
