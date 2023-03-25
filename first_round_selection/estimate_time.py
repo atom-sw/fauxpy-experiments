@@ -157,7 +157,20 @@ def select_bugs_randomly(selected_bugs_info: Dict):
     return selected_bugs_info
 
 
-def select_all_info_2_bugs(selected_bugs_info: Dict, correct_test_bugs_info_2: Dict):
+def select_all_info_2_bugs(selected_bugs_info: Dict,
+                           correct_test_bugs_info_2: Dict,
+                           manually_removed_bugs_info: Dict):
+    # Remove manually removed bugs
+    # from correct info_2 bugs.
+    for m_r_key, m_r_value in manually_removed_bugs_info.items():
+        if m_r_key in correct_test_bugs_info_2.keys():
+            for m_r_bug in m_r_value:
+                if m_r_bug in correct_test_bugs_info_2[m_r_key]["ACCEPTED"]:
+                    correct_test_bugs_info_2[m_r_key]["ACCEPTED"].remove(m_r_bug)
+                    correct_test_bugs_info_2[m_r_key]["NUM_ACCEPTED"] -= 1
+
+    # # Add all remaining correct info_2 bugs
+    # # to selected bugs list.
     for key, value in correct_test_bugs_info_2.items():
         if value["NUM_ACCEPTED"] > 0:
             selected_bugs_info[key] = value["ACCEPTED"]
@@ -191,7 +204,7 @@ def main():
     # For simplicity, we select all of them, because most probably many of
     # them have problems and will be removed.
     correct_test_bugs_info_2 = common.load_correct_test_bugs_2()
-    select_all_info_2_bugs(selected_bugs_info, correct_test_bugs_info_2)
+    select_all_info_2_bugs(selected_bugs_info, correct_test_bugs_info_2, manually_removed_bugs_info)
 
     # needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     # print("Final needed time: ", needed_time)
