@@ -113,7 +113,14 @@ def get_experiment_timeout(subject_info, family):
     timeout_info = read_csv_as_dict_list(TIMEOUT_FILE)
     benchmark_name = subject_info["BENCHMARK_NAME"]
 
-    benchmark_timeout_info = list(filter(lambda x: x["BENCHMARK_NAME"] == benchmark_name, timeout_info))[0]
+    benchmark_timeout_info_list = list(filter(lambda x: x["BENCHMARK_NAME"] == benchmark_name, timeout_info))
+    if len(benchmark_timeout_info_list) == 1:
+        benchmark_timeout_info = benchmark_timeout_info_list[0]
+    elif len(benchmark_timeout_info_list) == 0:
+        benchmark_timeout_info = {'BENCHMARK_NAME': benchmark_name, 'sbfl': '48', 'mbfl': '48', 'ps': '48', 'st': '48'}
+    else:
+        raise Exception()
+
     experiment_timeout = benchmark_timeout_info[family]
 
     return experiment_timeout
