@@ -20,13 +20,15 @@ def load_info():
 
     TIME_SELECTED = common.load_json_to_dictionary(common.TIME_SELECTED_BUGS_FILE_NAME)
     del TIME_SELECTED["NUM_BUGS"]
-    del TIME_SELECTED["TIME_ESTIMATION_HOURS"]
-    del TIME_SELECTED["TIME_ESTIMATION_DAYS"]
-    del TIME_SELECTED["TIME_ESTIMATION_WEEKS"]
+    # del TIME_SELECTED["TIME_ESTIMATION_HOURS"]
+    # del TIME_SELECTED["TIME_ESTIMATION_DAYS"]
+    # del TIME_SELECTED["TIME_ESTIMATION_WEEKS"]
 
     json_files = list(Path(common.SUBJECT_INFO_DIRECTORY_NAME).rglob("*.json"))
-    json_files.sort()
-    for item in json_files:
+    json_files_2 = list(Path(common.SUBJECT_INFO_DIRECTORY_NAME_2).rglob("*.json"))
+    json_files_1_and_2 = json_files + json_files_2
+    json_files_1_and_2.sort()
+    for item in json_files_1_and_2:
         benchmark_info = common.load_json_to_dictionary(str(item.absolute().resolve()))
         INFO[benchmark_info["BENCHMARK_NAME"]] = benchmark_info
 
@@ -37,6 +39,9 @@ def unittest_to_pytest(item):
         return f"{elements[0]}/{elements[1]}.py::{elements[2]}::{elements[3]}"
     elif len(elements) == 5:
         return f"{elements[0]}/{elements[1]}/{elements[2]}.py::{elements[3]}::{elements[4]}"
+    elif len(elements) == 3:
+        print("3 element test..")
+        return f"{elements[0]}/{elements[1]}.py::{elements[2]}"
     else:
         raise Exception("Problem!")
 
@@ -312,7 +317,7 @@ def get_subject_info_for_bug(benchmark_name: str,
     target_failing_tests = get_target_failing_tests(benchmark_name, bug_num)
     # get_target_dir(benchmark_name, bug_num)
 
-    if benchmark_name in ["spacy", "pandas"]:
+    if benchmark_name in ["spacy", "pandas", "ansible"]:
         tm1 = datetime.datetime.now()
         test_suite = get_test_suite(benchmark_name, bug_num, target_failing_tests)
         tm2 = datetime.datetime.now()
