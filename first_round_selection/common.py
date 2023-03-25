@@ -1,7 +1,7 @@
 import json
 import os
+import pickle
 import re
-import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -9,8 +9,6 @@ from typing import Any, Dict, Tuple, List
 
 from github import Github
 from github import UnknownObjectException, GithubException
-
-import pickle
 
 VERSION_PREFIX = "bug"
 BUGGY_DIR_NAME = "buggy"
@@ -27,15 +25,21 @@ RUN_TEST_FILE_NAME = "bugsinpy_run_test.sh"
 
 WORKSPACE_FILE_NAME = "workspace.json"
 
-CORRECT_TEST_OUTPUT_DIRECTORY_NAME = "correct"
-
 TIME_SELECTED_BUGS_FILE_NAME = "time_selected_bugs.json"
 
 SUBJECT_INFO_DIRECTORY_NAME = "info"
 
+SUBJECT_INFO_DIRECTORY_NAME_2 = "info_2"
+
 CACHE_DIR_NAME = "cache"
 
 EMPTY_GROUND_TRUTH_FILE_NAME = "empty_ground_truth_info.json"
+
+EMPTY_GROUND_TRUTH_FILE_NAME_2 = "empty_ground_truth_info_2.json"
+
+CORRECT_TEST_OUTPUT_DIRECTORY_NAME = "correct"
+
+CORRECT_TEST_OUTPUT_DIRECTORY_NAME_2 = "correct_2"
 
 
 def read_file_content(path) -> str:
@@ -89,14 +93,6 @@ def get_fixed_project_path(benchmark_name: str,
             benchmark_name)
 
 
-def get_command_line_info_file():
-    if len(sys.argv) != 2:
-        print("Pass the benchmark info file (e.g., info/keras.json).")
-        exit(1)
-
-    return Path(sys.argv[1])
-
-
 def save_string_to_file(content: str,
                         file_path: Path):
     with file_path.open("w") as file:
@@ -126,6 +122,20 @@ def load_correct_test_bugs():
     correct_test_bugs: Dict = {}
 
     selected_dir_path = Path(CORRECT_TEST_OUTPUT_DIRECTORY_NAME)
+    json_files = list(selected_dir_path.rglob("*.json"))
+    json_files.sort()
+    for file_path in json_files:
+        selected_benchmark = load_json_to_dictionary(str(file_path.absolute().resolve()))
+        selected_benchmark_name = selected_benchmark["BENCHMARK_NAME"]
+        correct_test_bugs[selected_benchmark_name] = selected_benchmark
+
+    return correct_test_bugs
+
+
+def load_correct_test_bugs_2():
+    correct_test_bugs: Dict = {}
+
+    selected_dir_path = Path(CORRECT_TEST_OUTPUT_DIRECTORY_NAME_2)
     json_files = list(selected_dir_path.rglob("*.json"))
     json_files.sort()
     for file_path in json_files:
