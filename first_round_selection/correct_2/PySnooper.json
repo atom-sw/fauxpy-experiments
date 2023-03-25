@@ -1,0 +1,11 @@
+{
+     "BENCHMARK_NAME": "PySnooper",
+     "NUM_ACCEPTED": 0,
+     "ACCEPTED": [],
+     "NUM_REJECTED": 3,
+     "REJECTED": [
+          1,
+          2,
+          3
+     ]
+}
