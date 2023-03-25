@@ -157,6 +157,12 @@ def select_bugs_randomly(selected_bugs_info: Dict):
     return selected_bugs_info
 
 
+def select_all_info_2_bugs(selected_bugs_info: Dict, correct_test_bugs_info_2: Dict):
+    for key, value in correct_test_bugs_info_2.items():
+        if value["NUM_ACCEPTED"] > 0:
+            selected_bugs_info[key] = value["ACCEPTED"]
+
+
 def main():
     global CORRECT_TEST_BUGS_INFO
 
@@ -179,14 +185,22 @@ def main():
 
     select_bugs_randomly(selected_bugs_info)
 
-    needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
-    print("Final needed time: ", needed_time)
-    print("Available time: ", MAX_HR)
+    # To keep the randomly selected bugs as they are,
+    # we add this step (which was added later) at the end of the
+    # random selection process.
+    # For simplicity, we select all of them, because most probably many of
+    # them have problems and will be removed.
+    correct_test_bugs_info_2 = common.load_correct_test_bugs_2()
+    select_all_info_2_bugs(selected_bugs_info, correct_test_bugs_info_2)
 
+    # needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
+    # print("Final needed time: ", needed_time)
+    # print("Available time: ", MAX_HR)
+    #
     selected_bugs_info["NUM_BUGS"] = get_num_bugs(selected_bugs_info)
-    selected_bugs_info["TIME_ESTIMATION_HOURS"] = needed_time
-    selected_bugs_info["TIME_ESTIMATION_DAYS"] = needed_time / 24
-    selected_bugs_info["TIME_ESTIMATION_WEEKS"] = needed_time / (24 * 7)
+    # selected_bugs_info["TIME_ESTIMATION_HOURS"] = needed_time
+    # selected_bugs_info["TIME_ESTIMATION_DAYS"] = needed_time / 24
+    # selected_bugs_info["TIME_ESTIMATION_WEEKS"] = needed_time / (24 * 7)
     common.save_object_to_json(selected_bugs_info, Path(common.TIME_SELECTED_BUGS_FILE_NAME))
 
 
