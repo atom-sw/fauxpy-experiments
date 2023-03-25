@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 import common
@@ -113,10 +114,18 @@ def is_included(bug_number: int):
             f_passed > b_passed)
 
 
+def get_command_line_info_file():
+    if len(sys.argv) != 3:
+        print("Pass the benchmark info file and output directory name (e.g., info/keras.json correct).")
+        exit(1)
+
+    return sys.argv[1], sys.argv[2]
+
+
 def main():
     global INPUTS
 
-    project_info_file_path = common.get_command_line_info_file()
+    project_info_file_path, json_output_directory_name = get_command_line_info_file()
 
     INPUTS = common.load_json_to_dictionary(project_info_file_path)
 
@@ -134,8 +143,7 @@ def main():
             print("Rejected")
             rejected_bugs.append(current_bug_number)
 
-    file_path_result = common.get_output_dir(
-        common.CORRECT_TEST_OUTPUT_DIRECTORY_NAME) / f"{INPUTS['BENCHMARK_NAME']}.json"
+    file_path_result = common.get_output_dir(json_output_directory_name) / f"{INPUTS['BENCHMARK_NAME']}.json"
 
     common.save_object_to_json({
         "BENCHMARK_NAME": benchmark_name,
