@@ -222,6 +222,13 @@ then
         wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
     fi
 fi
+
+if [ "$BENCHMARK_NAME" == "luigi" ]
+then
+    echo "------- Running luigi specific commands"
+    # FauxPy is not compatible with pytest-sugar.
+    pip uninstall -y pytest-sugar
+fi
 #------------------------------------------------------------
 
 echo "------- Installing FauxPy"
