@@ -6,18 +6,30 @@ set -e
 
 # Inputs for the current buggy program
 #--------------------------------------------
-PYTHON_V="3.7"
-BENCHMARK_NAME="thefuck"
-BUG_NUMBER="3"
-TARGET_DIR="thefuck"
+
+PYTHON_V="3.8"
+BENCHMARK_NAME="luigi"
+BUG_NUMBER="13"
+TARGET_DIR="."
 TEST_SUITE=(
-"tests/shells/test_fish.py"
+"test/cmdline_test.py"
+"test/contrib/hdfs_test.py"
+"test/contrib/hive_test.py"
+"test/contrib/opener_test.py"
+"test/contrib/test_ssh.py"
+"test/file_test.py"
+"test/scheduler_visualisation_test.py"
+"test/task_test.py"
+"test/test_ssh.py"
+"test/worker_external_task_test.py"
+"test/wrap_test.py"
 )
 EXCLUDE=(
-
+"env"
+"test"
 )
 TARGET_FAILING_TESTS=(
-"tests/shells/test_fish.py::TestFish::test_info"
+"test/file_test.py::FileSystemTest::test_move_to_new_dir"
 )
 FAMILY="sbfl"
 GRANULARITY="statement"
@@ -210,6 +222,13 @@ then
         rm -f "tests/conftest.py"
         wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
     fi
+fi
+
+if [ "$BENCHMARK_NAME" == "luigi" ]
+then
+    echo "------- Running luigi specific commands"
+    # FauxPy is not compatible with pytest-sugar.
+    pip uninstall -y pytest-sugar
 fi
 
 # if [ "$BENCHMARK_NAME" == "fastapi" ]
