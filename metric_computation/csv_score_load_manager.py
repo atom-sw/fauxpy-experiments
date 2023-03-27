@@ -78,6 +78,7 @@ class CsvScoreItem:
         self._metric_our_val = None
         self._is_predicate = None
         self._is_crashing = None
+        self._is_mutable_bug = None
 
     def _pretty_representation(self):
         if self._csv_paths is None:
@@ -153,17 +154,23 @@ class CsvScoreItem:
         bug_key = f"{self.get_project_name()}:{self.get_bug_number()}"
         return bug_key
 
-    def get_is_predicate(self):
+    def get_is_predicate(self) -> bool:
         return self._is_predicate
 
     def set_is_predicate(self, value: bool):
         self._is_predicate = value
 
-    def get_is_crashing(self):
+    def get_is_crashing(self) -> bool:
         return self._is_crashing
 
     def set_is_crashing(self, value: bool):
         self._is_crashing = value
+
+    def get_is_mutable_bug(self) -> bool:
+        return self._is_mutable_bug
+
+    def set_is_mutable_bug(self, value: bool):
+        self._is_mutable_bug = value
 
 
 class CsvScoreItemLoadManager:
