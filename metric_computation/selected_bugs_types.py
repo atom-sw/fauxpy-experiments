@@ -3,6 +3,7 @@ from typing import List
 
 import file_manager
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, CsvScoreItem
+from mutable_bug import MutableBugsAnalysis
 
 
 def main():
@@ -39,9 +40,14 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
                       load_json_to_dictionary(path_manager.
                                               get_predicate_selected_bug_info_file_name()))
 
+    ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
+    mutation_analysis = MutableBugsAnalysis(path_manager.get_results_path(), ground_truth_info)
+    mutable_bug_key_list = mutation_analysis.get_mutable_bug_keys()
+
     for csv_score_item in csv_score_items:
         csv_score_item.set_is_predicate(predicate_info[csv_score_item.get_bug_key()])
         csv_score_item.set_is_crashing(crashing_info[csv_score_item.get_bug_key()])
+        csv_score_item.set_is_mutable_bug(csv_score_item.get_bug_key() in mutable_bug_key_list)
 
 
 if __name__ == '__main__':
