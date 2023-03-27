@@ -43,11 +43,14 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
     ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
     mutation_analysis = MutableBugsAnalysis(path_manager.get_results_path(), ground_truth_info)
     mutable_bug_key_list = mutation_analysis.get_mutable_bug_keys()
+    percentage_dict = mutation_analysis.get_percentage_of_mutants_on_ground_truth()
 
     for csv_score_item in csv_score_items:
         csv_score_item.set_is_predicate(predicate_info[csv_score_item.get_bug_key()])
         csv_score_item.set_is_crashing(crashing_info[csv_score_item.get_bug_key()])
         csv_score_item.set_is_mutable_bug(csv_score_item.get_bug_key() in mutable_bug_key_list)
+        if csv_score_item.get_technique() in [FLTechnique.Muse, FLTechnique.Metallaxis]:
+            csv_score_item.set_percentage_of_mutants_on_ground_truth(percentage_dict[csv_score_item.get_bug_key()])
 
 
 if __name__ == '__main__':
