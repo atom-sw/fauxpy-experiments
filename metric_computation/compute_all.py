@@ -14,6 +14,8 @@ def get_fauxpy_statement_csv_score_items(path_manager: file_manager.PathManager)
     csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
     statement_csv_score_items = csv_score_item_load_manager.load_csv_score_items()
 
+    assign_type_to_selected_bugs(statement_csv_score_items, path_manager)
+
     return statement_csv_score_items
 
 
@@ -89,13 +91,6 @@ def get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items):
 
     return average_fl_statement_csv_score_item_list
 
-
-# def save_detailed(detailed_tables, metric_type, dir_name):
-#     for technique_name, results_table in detailed_tables.items():
-#         technique_detailed_file_name = f"{metric_type}_detailed_{technique_name}.csv"
-#         file_manager.save_csv_to_output_dir(results_table,
-#                                             dir_name,
-#                                             technique_detailed_file_name)
 
 def save_detailed(detailed_table: List, tool_name: str, granularity: str, dir_name: str):
     technique_detailed_file_name = f"{tool_name}_{granularity}_detailed.csv"
@@ -198,7 +193,6 @@ def main():
     size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
 
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
-    assign_type_to_selected_bugs(fauxpy_statement_csv_score_items, path_manager)
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
