@@ -55,6 +55,8 @@ library(effsize)
 library(posterior)
 library(brms)
 library(rethinking)
+# Calculating estimated marginal means for mixed effects models
+library(emmeans)
 
 
 ## For determinism
@@ -914,24 +916,17 @@ Let's see what happens for the bug/category of projects.
 ```{r m3 formula}
 eq.m3 <- brmsformula(
   mvbind(einspectS, timeS) ~ 
-    1 + (1|p|family) + (1|q|category) + (0+family|category),
+    0 + family + category + (0 + family|r|category),
   family=brmsfamily("gaussian", link="log")
 ) + set_rescor(TRUE)
 
-pp3.check <- get_prior(eq.m3, data=statement)
+pp3.check <- get_prior(eq.m3, data=by.statement)
 
 pp3 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  # set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-  #           group="family", resp=c("einspectS", "timeS")),
-  # set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-  #           group="category", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
   set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS")),
-  set_prior("lkj(2)", class="cor"),
-  set_prior("exponential(5.0)", class="sd", group="category", 
-            resp=c("einspectS", "timeS")),
-  set_prior("exponential(5.0)", class="sd", group="family", 
-            resp=c("einspectS", "timeS"))
+  set_prior("lkj(1)", class="cor"),
+  set_prior("weibull(2, 0.3)", class="sd", resp=c("einspectS", "timeS"))
 )
 ```
 
@@ -945,7 +940,7 @@ Prior checks:
 ```{r m3 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
 m3.priors <- brm(eq.m3,
                  prior=pp3,
-                 data=statement,
+                 data=by.statement,
                  chains=1, iter=1000,
                  sample_prior="only",
                  refresh=0, 
@@ -959,9 +954,9 @@ m3.priors <- brm(eq.m3,
 We fit model $m_3$.
 
 ```{r m3 fit}
-m3 <- brm(eq.m3, data=statement, prior=pp3, 
+m3 <- brm(eq.m3, data=by.statement, prior=pp3, 
           refresh=0,
-          control=list(adapt_delta=0.95), iter=1e4, 
+          control=list(adapt_delta=0.95), iter=4000, warmup=1500, 
           seed=MY.SEED)
 ```
 
@@ -978,11 +973,9 @@ print(max(brms::rhat(m3), na.rm = TRUE))
 # ESS
 min(neff_ratio(m3), na.rm = TRUE)
 ```
-The ESS is a bit low, but we can fix it by doing a few more iterations.
-
 Posterior checks:
 
-```{r m2 posterior checks, warning=FALSE, message=FALSE}
+```{r m3 posterior checks, warning=FALSE, message=FALSE}
 print(pp_check(m3, ndraws=100, resp="einspectS") + scale_x_log10())
 print(pp_check(m3, ndraws=100, resp="timeS") + scale_x_log10())
 ```
@@ -994,11 +987,12 @@ Model comparison:
 ```{r model comparison, warning=FALSE}
 m3 <- add_criterion(m3, criterion = "loo")
 
-(lc.m1gm2gm3 <- loo(m1g, m2g, m3, moment_match = TRUE))
+(lc.m1m2m3 <- loo(m1, m2, m3, moment_match = TRUE))
 ```
 
-$m_3$'s score is around 1.6 standard deviations worse than $m_{2g}$'s,
-which is not a lot, but indicates a modest improvement.
+$m_2$'s score is only one standard deviation worse than $m_2$'s.
+This is modest improvement, and hence it may not be worth to 
+go with the much more complex model $m_3$.
 
 
 ## Analyzing $m_3$
@@ -1008,16 +1002,15 @@ which is not a lot, but indicates a modest improvement.
 summary(m3)
 ```
 
-Let's now perform an effects analysis 
-on the fitted coefficients of `m3`.
+Instead of considering the fixed and varying effects of
+$m_3$, we can estimate the marginal means for each family of FL techniques.
 
 ```{r m3 per family, warning=FALSE}
-(res.m3.einspect.family <- interval.results.ranef(
-  m3, "einspectS",  "family", PROBABILITIES
- ))
-(res.m3.time.technique <- interval.results.ranef(
-  m3, "timeS",  "family", PROBABILITIES
- ))
+ems <- lapply(PROBABILITIES, 
+              function(p) as.data.frame(emmeans(m3, "family", level=p)))
+ests <- ems[[1]][, 1:2]
+ints <- lapply(ems, function(df) df[, 3:ncol(df)])
+# merge dataframes in list (unlist?) and add suitable column labels in right order
 ```
 Let's see what happens for the bug/category of projects.
 
