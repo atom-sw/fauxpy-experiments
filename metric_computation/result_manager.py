@@ -250,7 +250,7 @@ class ResultManager:
 
     @classmethod
     def _get_technique_literature_detailed_results_table(cls, csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate", "mutable_bug",
+        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate", "mutable_bug", "percentage_of_mutants_on_ground_truth",
                          "experiment_time_seconds", "e_inspect", "exam_score"]
         result_rows = [result_header]
         for item in csv_items:
@@ -261,12 +261,15 @@ class ResultManager:
             crashing = cls._bool_to_int(item.get_is_crashing())
             predicate = cls._bool_to_int(item.get_is_predicate())
             mutable_bug = cls._bool_to_int(item.get_is_mutable_bug())
+            percentage_of_mutants_on_ground_truth = item.get_percentage_of_mutants_on_ground_truth()
             metric_val: MetricLiteratureVal = item.get_metric_literature_val()
             experiment_time_seconds = metric_val.get_experiment_time()
             assert experiment_time_seconds == item.get_experiment_time_seconds()
             e_inspect = metric_val.get_e_inspect()
             exam_score = metric_val.get_exam_score()
-            result_row = [project_name, bug_number, granularity_name, technique_name, crashing, predicate, mutable_bug,
+            result_row = [project_name, bug_number, granularity_name, technique_name,
+                          crashing, predicate, mutable_bug,
+                          percentage_of_mutants_on_ground_truth,
                           experiment_time_seconds, e_inspect, exam_score]
             result_rows.append(result_row)
 
