@@ -79,6 +79,7 @@ class CsvScoreItem:
         self._is_predicate = None
         self._is_crashing = None
         self._is_mutable_bug = None
+        self._percentage_of_mutants_on_ground_truth = None
 
     def _pretty_representation(self):
         if self._csv_paths is None:
@@ -171,6 +172,13 @@ class CsvScoreItem:
 
     def set_is_mutable_bug(self, value: bool):
         self._is_mutable_bug = value
+
+    def get_percentage_of_mutants_on_ground_truth(self) -> float:
+        return self._percentage_of_mutants_on_ground_truth
+
+    def set_percentage_of_mutants_on_ground_truth(self, value: float):
+        assert self._localization_technique in [FLTechnique.Muse, FLTechnique.Metallaxis]
+        self._percentage_of_mutants_on_ground_truth = value
 
 
 class CsvScoreItemLoadManager:
