@@ -1,5 +1,8 @@
-import io, json, sys, os
 import argparse
+import io
+import json
+import os
+import sys
 
 
 class CombineFL:
