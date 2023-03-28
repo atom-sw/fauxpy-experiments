@@ -1,0 +1,18 @@
+{
+  "math1": {
+    "org.apache.commons.math3.exception.util.LocalizedFormats:95": {
+      "new_method1": 0.2, 
+      "new_method2": 0.5
+    }, 
+    "org.apache.commoms.math3.fraction.BigFraction:90": {
+      "new_method1": 0.6, 
+      "new_method2": 0.1
+    }
+  }, 
+  "time8": {
+    "org.joda.time.tz.ZoneInfoProvider:201": {
+      "new_method1": 0.1, 
+      "new_method2": 0.3
+    }
+  }
+}
