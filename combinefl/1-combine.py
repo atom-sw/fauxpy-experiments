@@ -1,5 +1,6 @@
-import io,json,sys,os
+import io, json, sys, os
 import argparse
+
 
 class CombineFL:
     def __init__(self):
@@ -20,16 +21,16 @@ class CombineFL:
         self.projects = [
             ('Math', 106),
             ('Closure', 133),
-            ('Time',27),
-            ('Chart',26),
-            ('Lang',65)
+            ('Time', 27),
+            ('Chart', 26),
+            ('Lang', 65)
         ]
         self.data_dir = 'data'
         self.output_svm_file = 'l2r_format.dat'
         self.new_techniques = set()
 
     def unique_name(self, project, number):
-        return project.lower()+str(number)
+        return project.lower() + str(number)
 
     def convert_to_svm_format(self, keys):
         if not os.path.exists(self.data_dir):
@@ -40,9 +41,9 @@ class CombineFL:
             pass
         qid = 1
         for proj, numbers in self.projects:
-            for i in range(1, numbers+1):
-                lines = self.gen_svm_format(proj,i,qid,keys)
-                print '\r', 'handling..',proj, i, 'qid:',qid,'        ',
+            for i in range(1, numbers + 1):
+                lines = self.gen_svm_format(proj, i, qid, keys)
+                print '\r', 'handling..', proj, i, 'qid:', qid, '        ',
                 sys.stdout.flush()
                 qid += 1
                 with io.open(out_path, 'a') as f:
@@ -59,14 +60,14 @@ class CombineFL:
             # is_fault
             faultystr = str(fault_data[statement]['faulty'])
             # qid
-            qidstr = 'qid:'+str(qid)
+            qidstr = 'qid:' + str(qid)
             # features
             features = []
             for i, key in enumerate(keys, start=1):
                 if key in fault_data[statement]:
-                    feature = str(i)+':'+str(fault_data[statement][key])
+                    feature = str(i) + ':' + str(fault_data[statement][key])
                 else:
-                    feature = str(i)+':0.0'
+                    feature = str(i) + ':0.0'
                 features.append(feature)
             line = faultystr + ' ' + qidstr
             for feature in features:
@@ -80,7 +81,7 @@ class CombineFL:
             add_in_data = json.load(f)
         for fault_name in add_in_data:
             if fault_name not in self.data:
-                print 'Error.',fault_name, 'is not a valid fault in dataset. Valid example: closure5'
+                print 'Error.', fault_name, 'is not a valid fault in dataset. Valid example: closure5'
                 return
             new_fault_data = add_in_data[fault_name]
             origin_fault_data = self.data[fault_name]
@@ -95,6 +96,7 @@ class CombineFL:
                     origin_fault_data[statement][key] = new_fault_data[statement][key]
                     self.new_techniques.add(key)
 
+
 def main():
     parser = argparse.ArgumentParser(description='Combine and Generate SVMRank file.')
     parser.add_argument('-f', '--add_in_file', help="Add-in data file.")
@@ -106,6 +108,7 @@ def main():
     else:
         combine = CombineFL()
         combine.convert_to_svm_format(combine.techniques)
+
 
 if __name__ == '__main__':
     main()

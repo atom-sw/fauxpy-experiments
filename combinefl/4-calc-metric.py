@@ -4,21 +4,25 @@ import os
 import sys
 
 pred_f = 'svmrank-pred.dat'
+
+
 def nCr(n, r):
-    r = min(r, n-r)
+    r = min(r, n - r)
     if r == 0:
         return 1
-    numer = reduce(op.mul, xrange(n, n-r, -1))
-    demon = reduce(op.mul, xrange(1, r+1))
+    numer = reduce(op.mul, xrange(n, n - r, -1))
+    demon = reduce(op.mul, xrange(1, r + 1))
     return numer // demon
+
 
 def E_inspect(st, en, nf):
     expected = float(st)
     n = en - st + 1
-    for k in xrange(1, n-nf+1):
-        term = float(nCr(n-k-1, nf-1) * k) / nCr(n, nf)
+    for k in xrange(1, n - nf + 1):
+        term = float(nCr(n - k - 1, nf - 1) * k) / nCr(n, nf)
         expected += term
     return expected
+
 
 # List = [
 #   {
@@ -37,22 +41,23 @@ def get_E_inspect(lst):
     if pos == -1:
         return -1
     start = 0
-    end = len(sorted_lst) -1
-    for i in range(pos-1, -1, -1):
+    end = len(sorted_lst) - 1
+    for i in range(pos - 1, -1, -1):
         f = sorted_lst[i]
         if f['score'] != pos_score:
-            start = i+1
+            start = i + 1
             break
-    for i in range(pos+1, len(sorted_lst)):
+    for i in range(pos + 1, len(sorted_lst)):
         f = sorted_lst[i]
         if f['score'] != pos_score:
-            end = i-1
+            end = i - 1
             break
     count = 0
-    for i in range(start, end+1):
+    for i in range(start, end + 1):
         if sorted_lst[i]['is_fault'] == 1:
             count += 1
-    return E_inspect(start+1, end+1, count)
+    return E_inspect(start + 1, end + 1, count)
+
 
 def read_info_ranksvm(num):
     # data -> bug(qid) -> pos(line) -> score / is_fault
@@ -77,6 +82,7 @@ def read_info_ranksvm(num):
         data[qid].append(item)
     return data
 
+
 def qid_to_lines():
     data = {}
     with io.open('data/qid-lines.csv') as f:
@@ -87,6 +93,7 @@ def qid_to_lines():
             data[qid] = lines
     return data
 
+
 def main():
     if len(sys.argv) > 1:
         n = int(sys.argv[1])
@@ -96,7 +103,7 @@ def main():
     EXAM_list = []
     qid2line = qid_to_lines()
     for i in range(n):
-        print '\r','Handle', i+1, '/', n,
+        print '\r', 'Handle', i + 1, '/', n,
         sys.stdout.flush()
         data = read_info_ranksvm(i)
         for key in data.keys():
@@ -116,6 +123,7 @@ def main():
     print '\nTop 1/3/5/10:', top
     EXAM_list = [e for e in EXAM_list if e > 0]
     print 'EXAM: ', sum(EXAM_list) / len(EXAM_list)
+
 
 if __name__ == '__main__':
     main()
