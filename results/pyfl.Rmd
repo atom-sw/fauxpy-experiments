@@ -57,6 +57,7 @@ library(brms)
 library(rethinking)
 # Calculating estimated marginal means for mixed effects models
 library(emmeans)
+library(marginaleffects)
 
 
 ## For determinism
@@ -223,9 +224,18 @@ names(datas)[names(datas) == "experiment_time_seconds"] <- "time"
 names(datas)[names(datas) == "exam_score"] <- "exam"
 names(datas)[names(datas) == "cumulative_distance"] <- "cdist"
 names(datas)[names(datas) == "sv_comp_overall_score"] <- "svcomp"
+names(datas)[names(datas) == "mutable_bug"] <- "mutable"
+names(datas)[names(datas) 
+             == "percentage_of_mutants_on_ground_truth"] <- "mutability"
 
 # rename to avoid - character
 datas$project[datas$project == "youtube-dl"] <- "youtubedl"
+
+# use booleans where appropriate
+datas$crashing <- as.logical(datas$crashing)
+datas$predicate <- as.logical(datas$predicate)
+datas$mutable <- as.logical(datas$mutable)
+
 # convert to factors
 datas$project <- factor(datas$project)
 datas$granularity <- factor(datas$granularity)
@@ -1006,22 +1016,184 @@ Instead of considering the fixed and varying effects of
 $m_3$, we can estimate the marginal means for each family of FL techniques.
 
 ```{r m3 per family, warning=FALSE}
+cnams.lows <- paste("|", PROBABILITIES, sep="")
+cnams.highs <- paste(PROBABILITIES, "|", sep="")
+cnams <- c(cnams.lows, cnams.highs)[order(
+  c(seq_along(cnams.lows), seq_along(cnams.highs)
+    ))]
+
+# Very similar results with: 
+# marginaleffects::avg_predictions(m3, by="family", conf_level=p)
 ems <- lapply(PROBABILITIES, 
               function(p) as.data.frame(emmeans(m3, "family", level=p)))
 ests <- ems[[1]][, 1:2]
 ints <- lapply(ems, function(df) df[, 3:ncol(df)])
-# merge dataframes in list (unlist?) and add suitable column labels in right order
+# merge dataframes in list
+ints <- do.call("cbind", ints)
+colnames(ints) <- cnams
+# resort columns according to prob order
+idxs <- c(seq(1, length(cnams), by=2), rev(1 + seq(1, length(cnams), by=2)))
+ints <- ints[, idxs]
+# add names of families
+rownames(ints) <- ests$family
+# transpose
+ints <- t(ints)
+# get vector of estimates
+est <- ests$emmean
+names(est) <- ests$family
+res.m3.einspect.family <- list(ints=ints, est=est)
 ```
-Let's see what happens for the bug/category of projects.
 
-```{r m3 per category, warning=FALSE}
-(res.m3.einspect.category <- interval.results.ranef(
-  m3, "einspectS", "category", PROBABILITIES)
- )
-(res.m3.time.bug <- interval.results.ranef(
-  m3, "timeS", "category", PROBABILITIES)
-  )
+
+## Model $m_4$
+
+Let's now add predictors to $m_2$, so as to study 
+any effect of the kinds of bugs:
+
+   - `predicate` is a Boolean value that identifies predicate-related bugs
+   - `crashing` is a Boolean value that identifies crashing bugs
+   - `mutability` is a nonnegative score that denotes the percentage of
+     mutants that mutate a line in a bug's ground truth
+   - `mutable` is a Boolean that identifies the bugs with a 
+     positive mutability score
+     
+Since `mutability`/`mutable` are likely affecting `category`
+and `einspect`, it makes sense to add the predictor,
+so as to close the possible backdoor path $\textrm{category} \leftarrow \textrm{mutable} \rightarrow \textrm{einspect}$.
+     
+```{r m4 formula}
+eq.m4 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 0 + Intercept + (1|p|family) + (1|q|category) 
+  + predicate*family + crashing*family + mutable*family,
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp4.check <- get_prior(eq.m4, data=by.statement)
+
+pp4 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+)
 ```
+
+
+## Fitting $m_4$
+
+Prior checks:
+
+```{r m4 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m4.priors <- brm(eq.m4,
+                 prior=pp4,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m4.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m4.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+```
+
+We fit model $m_4$.
+
+```{r m2 fit}
+m4 <- brm(eq.m4, data=by.statement, prior=pp4, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m4 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m4)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m4), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m4), na.rm = TRUE)
+```
+
+Posterior checks:
+
+```{r m4 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m4, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m4, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+Let's compare the models using LOO.
+
+```{r model comparison, warning=FALSE}
+m4 <- add_criterion(m4, criterion = "loo")
+
+(lc.m1m2m3m4 <- loo(m1, m2, m3, m4, moment_match = TRUE))
+```
+
+Nearly 2 standard deviations of improvement is not bad.
+
+
+## Analyzing $m_4$
+
+
+```{r m4 summary}
+summary(m4)
+```
+Let's now perform an effects analysis 
+on the fitted coefficients of `m4`.
+
+Specifically, we look at the (fixed) effects
+of the families associated with certain categories of bugs.
+We focus on `einspect` only, since the kind of bugs is not 
+meaningfully associated with the running time.
+
+```{r m4 analysis, warning=FALSE}
+interval.results.interacts <- function(fit, response, predictor, probs, bool=TRUE)
+{
+  ps.low <- rev(1-probs)/2
+  ps.high <- rev(1-ps.low)
+  ps <- rev(c(ps.high, ps.low))
+  cnams <- c(paste("|", probs, sep=""), paste(rev(probs), "|", sep=""))
+  post <- fixef(fit, probs=ps)
+  pat <- str_c("^", response, "_.*", predictor, if (bool) "TRUE" else "")
+  post <- post[grep(pat, rownames(post)), ]
+  ints <- post[, 3:ncol(post)]
+  ests <- post[, 1]
+  labs <- str_c(predictor, " ", names(FAMILIES))
+  names(ests) <- labs
+  colnames(ints) <- cnams
+  rownames(ints) <- labs
+  ints <- t(ints)
+  res <- list(ints=ints, est=ests)
+  res
+}
+
+(res.m4.crashing <- interval.results.interacts(m4, "einspectS", 
+                                              "crashing", PROBABILITIES))
+(res.m4.predicate <- interval.results.interacts(m4, "einspectS", 
+                                              "predicate", PROBABILITIES))
+(res.m4.mutable <- interval.results.interacts(m4, "einspectS", 
+                                              "mutable", PROBABILITIES))
+```
+So, crashing bugs are indeed easier for ST.
+In contrast, predicate-related bugs do not seem to be simpler
+for PS, although they are a bit harder for ST.
+
+For the mutability bugs, we probably have to include 
+in the model a clearer dependency on the `mutability`
+rather than just the boolean indicator `mutable`.
+
+# Use mutability: reparameterize
+# Use marginaleffects package for m3
 
 # Dump all constants
 
