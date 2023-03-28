@@ -95,6 +95,9 @@ class AverageFaultLocalization:
                                       -1)
         csv_score_item.set_is_crashing(self._ochiai_csv.get_is_crashing())
         csv_score_item.set_is_predicate(self._ochiai_csv.get_is_predicate())
+        csv_score_item.set_is_mutable_bug(self._ochiai_csv.get_is_mutable_bug())
+        csv_score_item.set_percentage_of_mutants_on_ground_truth(
+            self._ochiai_csv.get_percentage_of_mutants_on_ground_truth())
 
         return csv_score_item
 

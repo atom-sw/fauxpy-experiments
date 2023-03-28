@@ -118,5 +118,8 @@ class HierarchicalFaultLocalization:
                                              self._statement_csv_score_item.get_experiment_time_seconds())
         current_csv_statement.set_is_crashing(self._statement_csv_score_item.get_is_crashing())
         current_csv_statement.set_is_predicate(self._statement_csv_score_item.get_is_predicate())
+        current_csv_statement.set_is_mutable_bug(self._statement_csv_score_item.get_is_mutable_bug())
+        current_csv_statement.set_percentage_of_mutants_on_ground_truth(
+            self._statement_csv_score_item.get_percentage_of_mutants_on_ground_truth())
 
         return current_csv_statement
