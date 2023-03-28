@@ -49,8 +49,7 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
         csv_score_item.set_is_predicate(predicate_info[csv_score_item.get_bug_key()])
         csv_score_item.set_is_crashing(crashing_info[csv_score_item.get_bug_key()])
         csv_score_item.set_is_mutable_bug(csv_score_item.get_bug_key() in mutable_bug_key_list)
-        if csv_score_item.get_technique() in [FLTechnique.Muse, FLTechnique.Metallaxis]:
-            csv_score_item.set_percentage_of_mutants_on_ground_truth(percentage_dict[csv_score_item.get_bug_key()])
+        csv_score_item.set_percentage_of_mutants_on_ground_truth(percentage_dict[csv_score_item.get_bug_key()])
 
 
 if __name__ == '__main__':

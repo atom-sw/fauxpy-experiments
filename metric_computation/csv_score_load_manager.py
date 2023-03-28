@@ -177,7 +177,6 @@ class CsvScoreItem:
         return self._percentage_of_mutants_on_ground_truth
 
     def set_percentage_of_mutants_on_ground_truth(self, value: float):
-        assert self._localization_technique in [FLTechnique.Muse, FLTechnique.Metallaxis]
         self._percentage_of_mutants_on_ground_truth = value
 
 
