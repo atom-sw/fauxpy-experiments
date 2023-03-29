@@ -194,37 +194,37 @@ def main():
 
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
-    # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
-    #                                                       fauxpy_statement_csv_score_items)
+    file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
+                                                          fauxpy_statement_csv_score_items)
     calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
-    # if fauxpy_function_csv_score_items is None:
-    #     fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
-    #                                                                             fauxpy_statement_csv_score_items)
-    #     file_manager.Cache.save(fauxpy_function_csv_score_items, "fauxpy_function_csv_score_items")
+    fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
+    if fauxpy_function_csv_score_items is None:
+        fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
+                                                                                fauxpy_statement_csv_score_items)
+        file_manager.Cache.save(fauxpy_function_csv_score_items, "fauxpy_function_csv_score_items")
 
-    # file_manager.save_score_items_to_given_directory_path(path_manager.get_function_csv_score_directory_path(),
-    #                                                       fauxpy_function_csv_score_items)
-    # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
+    file_manager.save_score_items_to_given_directory_path(path_manager.get_function_csv_score_directory_path(),
+                                                          fauxpy_function_csv_score_items)
+    calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
-    # file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
-    #                                                       fauxpy_module_csv_score_items)
-    # calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
+    fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
+    file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
+                                                          fauxpy_module_csv_score_items)
+    calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
 
-    # mfs_hfl_statement_csv_score_items = get_mfs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
-    #                                                                           fauxpy_function_csv_score_items,
-    #                                                                           fauxpy_module_csv_score_items)
-    # calc_mfs_hfl_statement_and_save(mfs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    mfs_hfl_statement_csv_score_items = get_mfs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
+                                                                              fauxpy_function_csv_score_items,
+                                                                              fauxpy_module_csv_score_items)
+    calc_mfs_hfl_statement_and_save(mfs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fs_hfl_statement_csv_score_items = get_fs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
-    #                                                                         fauxpy_function_csv_score_items,
-    #                                                                         fauxpy_module_csv_score_items)
-    # calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    fs_hfl_statement_csv_score_items = get_fs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
+                                                                            fauxpy_function_csv_score_items,
+                                                                            fauxpy_module_csv_score_items)
+    calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    # average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
-    # calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
+    calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
 
 if __name__ == '__main__':
