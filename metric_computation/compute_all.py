@@ -2,6 +2,7 @@ from typing import List
 
 import file_manager
 from average_fault_localization import AverageFaultLocalization
+from combine_fl_manager import CombineFlManager
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
 from csv_score_item_module_granularity_manager import CsvScoreItemModuleGranularityManager
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique
@@ -227,5 +228,21 @@ def main():
     calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
 
+def generate_combine_fl_data_input():
+    path_manager = file_manager.PathManager()
+    ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
+    size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
+    fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+
+    combine_fl_manager = CombineFlManager(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    combine_fl_manager.get_release_json_dict()
+    combine_fl_manager.get_qid_lines_csv_table()
+    techniques_str = combine_fl_manager.get_techniques_sorted_as_string()
+    projects_str = combine_fl_manager.get_projects_sorted_as_string()
+
+    pass
+
+
 if __name__ == '__main__':
-    main()
+    generate_combine_fl_data_input()
+    # main()
