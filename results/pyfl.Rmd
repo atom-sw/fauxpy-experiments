@@ -1262,26 +1262,40 @@ The most straightforward way out of this ditch
 is to simply log-transform `mutability` (after adding 1 to all percentages
 so that all logs are defined).
 
+Furthermore, we ditch the multivariate model, since now we're
+simply interested in estimating `einspect`.
+
 
 ```{r m6 formula}
 by.statement$logmutability <- log(1 + by.statement$mutability)
 
 eq.m6 <- brmsformula(
-  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category) 
-  + predicate*family + crashing*family + logmutability*family,
+  einspectS ~ 1 + (1|p|family) + (1|q|category) + 
+    predicate*family + crashing*family + logmutability*family,
   family=brmsfamily("gaussian", link="log")
-) + set_rescor(TRUE)
+)
+
+eq.m7 <- brmsformula(
+  einspectS ~ 1 + (1|q|category) + (predicate + crashing + logmutability|p|family),
+  family=brmsfamily("gaussian", link="log")
+)
 
 pp6.check <- get_prior(eq.m6, data=by.statement)
+pp7.check <- get_prior(eq.m7, data=by.statement)
 
 pp6 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
-  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="family", resp=c("einspectS", "timeS")),
-  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="category", resp=c("einspectS", "timeS")),
-  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
+  set_prior("weibull(2, 0.3)", class="sd", group="family"),
+  set_prior("weibull(2, 0.3)", class="sd", group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
+)
+
+pp7 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("weibull(2, 0.3)", class="sd", group="family"),
+  set_prior("weibull(2, 0.3)", class="sd", group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
 )
 ```
 
@@ -1309,7 +1323,19 @@ m6.priors <- brm(eq.m6,
                  seed=MY.SEED)
 
 (pp_check(m6.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
-(pp_check(m6.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+```
+
+```{r m7 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m7.priors <- brm(eq.m7,
+                 prior=pp7,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m7.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
 ```
 
 We fit model $m_6$.
@@ -1319,11 +1345,15 @@ m6 <- brm(eq.m6, data=by.statement, prior=pp6,
           refresh=0,
           control=list(adapt_delta=0.95), 
           seed=MY.SEED)
+m7 <- brm(eq.m7, data=by.statement, prior=pp7, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
 ```
 
 Diagnostics:
 
-```{r m6 diagnostics}
+```{r m6 m7 diagnostics}
 
 # Divergent transitions
 np <- nuts_params(m6)
@@ -1334,13 +1364,26 @@ print(max(brms::rhat(m6), na.rm = TRUE))
 
 # ESS
 min(neff_ratio(m6), na.rm = TRUE)
+
+# Divergent transitions
+np <- nuts_params(m7)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m7), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m7), na.rm = TRUE)
 ```
 
 Posterior checks:
 
 ```{r m6 posterior checks, warning=FALSE, message=FALSE}
 print(pp_check(m6, ndraws=100, resp="einspectS") + scale_x_log10())
-print(pp_check(m6, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+```{r m7 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m7, ndraws=100, resp="einspectS") + scale_x_log10())
 ```
 
 Everything is A-OK now. In fact, the posterior checks
@@ -1350,11 +1393,17 @@ Let's compare the models using LOO.
 
 ```{r all model comparison, warning=FALSE}
 m6 <- add_criterion(m6, criterion = "loo")
+m7 <- add_criterion(m7, criterion = "loo")
 
-(lc.m1m2m3m4m6 <- loo(m1, m2, m3, m4, m6, moment_match = TRUE))
+(lc.m1m2m3m4m6m7 <- loo(m1, m2, m3, m4, m6, m7, moment_match = TRUE))
 ```
 
-Nearly 2 standard deviations of improvement is not bad.
+$m_6$ and $m_7$ are basically indistinguishable
+in terms of predictive capabilities.
+However, they both mop the floor with all other models (14 standard deviations of difference!). Note, however, that this is largely a result of
+making them monovariate instead of multivariate;
+if we kept them multi-variate, they would have predictive
+capabilities close to $m_4$.
 
 
 ## Analyzing $m_6$
