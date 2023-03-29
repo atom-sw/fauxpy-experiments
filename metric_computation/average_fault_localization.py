@@ -56,13 +56,7 @@ class AverageFaultLocalization:
 
         min_value, max_value = self._technique_min_max[technique]
 
-        if min_value == max_value:
-            if score_value == 0:
-                return 0
-            else:
-                return 1
-
-        normalized_score = (score_value - min_value) / (max_value - min_value)
+        normalized_score = mathematics.get_normalized_value(min_value, max_value, score_value)
         return normalized_score
 
     def get_average_fl_statement_csv_score_item(self) -> CsvScoreItem:
