@@ -1063,7 +1063,7 @@ so as to close the possible backdoor path $\textrm{category} \leftarrow \textrm{
      
 ```{r m4 formula}
 eq.m4 <- brmsformula(
-  mvbind(einspectS, timeS) ~ 0 + Intercept + (1|p|family) + (1|q|category) 
+  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category) 
   + predicate*family + crashing*family + mutable*family,
   family=brmsfamily("gaussian", link="log")
 ) + set_rescor(TRUE)
@@ -1192,8 +1192,174 @@ For the mutability bugs, we probably have to include
 in the model a clearer dependency on the `mutability`
 rather than just the boolean indicator `mutable`.
 
-# Use mutability: reparameterize
-# Use marginaleffects package for m3
+
+## Model $m_5$
+
+A simple way would be to introduce an interaction `mutability`$\times$`family`.
+
+```{r m4 formula}
+eq.m5 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category) 
+  + predicate*family + crashing*family + mutability*family,
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp5.check <- get_prior(eq.m5, data=by.statement)
+
+pp5 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+)
+```
+
+We could get passable prior checks, but let's cut to the chase
+and fit model $m_5$.
+
+```{r m5 fit}
+m5 <- brm(eq.m5, data=by.statement, prior=pp5, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+The first thing that we notice is that one of the chains
+went awry and spinned for much longer than all the other chains.
+In addition, we got a number of scary warnings.
+This points to some region of the posterior that could not be sampled
+effectively.
+
+Let's see the diagnostics:
+
+```{r m5 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m5)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m5), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m5), na.rm = TRUE)
+```
+
+A disaster. Let's also plot the trace plots for the offending chain.
+
+```{r m5 trace plot, message=FALSE}
+traceplot(m5$fit)
+```
+Some chains are straight lines, and hence do not mix at all with chain #3!
+
+
+## Model $m_6$
+
+The most straightforward way out of this ditch
+is to simply log-transform `mutability` (after adding 1 to all percentages
+so that all logs are defined).
+
+
+```{r m6 formula}
+by.statement$logmutability <- log(1 + by.statement$mutability)
+
+eq.m6 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category) 
+  + predicate*family + crashing*family + logmutability*family,
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp6.check <- get_prior(eq.m6, data=by.statement)
+
+pp6 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+)
+```
+
+Alternative ways would include:
+
+   - Introducing a multi-level term, with `einspect ~ log(x)*family`,
+     and `log(x) = log(y) + a`, where $x/y = \textrm{mutability}$.
+     This is based on rewriting $\log(a/b) = \alpha$ 
+     into $\log(a) = \alpha + \log(b)$.
+     
+   - The approach followed in [this paper](https://arxiv.org/abs/2007.09394).
+
+## Fitting $m_6$
+
+Prior checks:
+
+```{r m6 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m6.priors <- brm(eq.m6,
+                 prior=pp6,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m6.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m6.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+```
+
+We fit model $m_6$.
+
+```{r m6 fit}
+m6 <- brm(eq.m6, data=by.statement, prior=pp6, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m6 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m6)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m6), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m6), na.rm = TRUE)
+```
+
+Posterior checks:
+
+```{r m6 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m6, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m6, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+Everything is A-OK now. In fact, the posterior checks
+look the best ones so far.
+
+Let's compare the models using LOO.
+
+```{r all model comparison, warning=FALSE}
+m6 <- add_criterion(m6, criterion = "loo")
+
+(lc.m1m2m3m4m6 <- loo(m1, m2, m3, m4, m6, moment_match = TRUE))
+```
+
+Nearly 2 standard deviations of improvement is not bad.
+
+
+## Analyzing $m_6$
+
+
 
 # Dump all constants
 
