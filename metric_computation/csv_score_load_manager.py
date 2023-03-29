@@ -115,7 +115,7 @@ class CsvScoreItem:
     def get_technique(self):
         return self._localization_technique
 
-    def get_scored_entities(self):
+    def get_scored_entities(self) -> List[ScoredEntity]:
         return self._scored_entities
 
     def get_project_name(self) -> str:
@@ -361,7 +361,7 @@ class CsvScoreItemLoadManager:
     @classmethod
     def csv_content_to_scored_st_statement_items(cls,
                                                  csv_file_content: List[List[str]]) -> List[ScoredStatement]:
-        scored_statement_items = []
+        scored_statement_item_dict = {}
         for row in csv_file_content:
             col1_parts = row[0].split("::")
             file_path_parts = col1_parts[0].split("/")
@@ -371,9 +371,15 @@ class CsvScoreItemLoadManager:
             score = float(row[1])
             for line_number in range(line_start, line_end + 1):
                 scored_statement_item = ScoredStatement(relative_file_path, score, line_number)
-                scored_statement_items.append(scored_statement_item)
+                if scored_statement_item.get_entity_name() not in scored_statement_item_dict.keys():
+                    scored_statement_item_dict[scored_statement_item.get_entity_name()] = scored_statement_item
+                else:
+                    assert (scored_statement_item_dict[scored_statement_item.get_entity_name()].get_score()
+                            > scored_statement_item.get_score())
 
-        return scored_statement_items
+        scored_statement_item_list = list(scored_statement_item_dict.values())
+
+        return scored_statement_item_list
 
     @classmethod
     def _extract_experiment_time_seconds_from_file_path(cls, experiment_time_seconds_path):
