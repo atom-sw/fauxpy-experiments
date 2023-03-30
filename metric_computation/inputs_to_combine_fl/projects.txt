@@ -1,0 +1,14 @@
+[
+('black', 13),
+('cookiecutter', 4),
+('fastapi', 13),
+('httpie', 4),
+('keras', 18),
+('pandas', 18),
+('sanic', 3),
+('spacy', 6),
+('thefuck', 16),
+('tornado', 4),
+('tqdm', 6),
+('youtube-dl', 16)
+]
