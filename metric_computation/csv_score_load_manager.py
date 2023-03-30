@@ -155,6 +155,12 @@ class CsvScoreItem:
         bug_key = f"{self.get_project_name()}:{self.get_bug_number()}"
         return bug_key
 
+    def get_bug_technique_key(self) -> str:
+        bug_technique_key = (f"{self.get_project_name()}:"
+                             f"{self.get_bug_number()}:"
+                             f"{self._localization_technique.name}")
+        return bug_technique_key
+
     def get_is_predicate(self) -> bool:
         return self._is_predicate
 
