@@ -1,4 +1,5 @@
-from typing import List
+from pathlib import Path
+from typing import List, Dict
 
 import file_manager
 from average_fault_localization import AverageFaultLocalization
@@ -9,6 +10,18 @@ from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique
 from hierarchical_fault_localization import HierarchicalFaultLocalization
 from result_manager import ResultManager
 from selected_bugs_types import assign_type_to_selected_bugs
+
+
+def are_all_different_in_list(item_list) -> bool:
+    if len(item_list) == 0:
+        return False
+
+    for index_1 in range(0, len(item_list)):
+        for index_2 in range(index_1 + 1, len(item_list)):
+            if item_list[index_1] == item_list[index_2]:
+                return False
+
+    return True
 
 
 def get_fauxpy_statement_csv_score_items(path_manager: file_manager.PathManager):
@@ -235,14 +248,58 @@ def generate_combine_fl_data_input():
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
     combine_fl_manager = CombineFlManager(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
-    combine_fl_manager.get_release_json_dict()
-    combine_fl_manager.get_qid_lines_csv_table()
+    release_json_dict_list = combine_fl_manager.get_release_json_dict_list()
+    qid_lines_csv_table = combine_fl_manager.get_qid_lines_csv_table()
     techniques_str = combine_fl_manager.get_techniques_sorted_as_string()
     projects_str = combine_fl_manager.get_projects_sorted_as_string()
 
-    pass
+    directory_name = "inputs_to_combine_fl"
+    output_dir_path = file_manager.clean_make_output_dir(directory_name)
+
+    for index, release_json_dict_item in enumerate(release_json_dict_list):
+        file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"release_{index}.json")
+    file_manager.save_csv_to_output_dir(qid_lines_csv_table, directory_name, "qid-lines.csv")
+    file_manager.save_string_to_file(techniques_str, output_dir_path / "techniques.txt")
+    file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
+
+
+def something_there():
+    def split_dictionary(input_dict: Dict[str, Dict[str, Dict[str, float]]],
+                         chunk_size: int) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
+        """
+        https://gist.github.com/nz-angel/31890d2c6cb1c9105e677cacc83a1ffd
+        """
+
+        res = []
+        new_dict = {}
+        for k, v in input_dict.items():
+            if len(new_dict) < chunk_size:
+                new_dict[k] = v
+            else:
+                res.append(new_dict)
+                new_dict = {k: v}
+        res.append(new_dict)
+        return res
+
+    def get_release_json_dict_list(release_json_dict) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
+        number_of_buggy_projects = len(release_json_dict)
+        number_of_files = 10
+        number_of_bugs_in_each_file = int(number_of_buggy_projects / number_of_files) + 1
+
+        release_json_dict_list = split_dictionary(release_json_dict, number_of_bugs_in_each_file)
+        return release_json_dict_list
+
+    release_json_d = file_manager.load_json_to_dictionary("inputs_to_combine_fl/release.json")
+    release_json_d_list = get_release_json_dict_list(release_json_d)
+
+    directory_name = "inputs_to_combine_flx"
+    output_dir_path = file_manager.clean_make_output_dir(directory_name)
+
+    for index, release_json_dict_item in enumerate(release_json_d_list):
+        file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"release_{index}.json")
 
 
 if __name__ == '__main__':
+    # something_there()
     generate_combine_fl_data_input()
     # main()

@@ -1,3 +1,4 @@
+import copy
 from typing import List, Dict, Tuple
 
 import mathematics
@@ -14,6 +15,17 @@ class MultiScoreStatement:
         self._score_dict = score_dict
         self._is_faulty = is_faulty
 
+    def get_statement_name(self) -> str:
+        return self._statement_name
+
+    def get_scored_dict(self) -> Dict[str, float]:
+        return copy.copy(self._score_dict)
+
+    def get_is_fault_as_int(self) -> int:
+        if self._is_faulty:
+            return 1
+        return 0
+
 
 class ProjectBugItem:
     def __init__(self,
@@ -28,6 +40,31 @@ class ProjectBugItem:
         self._qid = qid
         self._multi_score_statement_list = multi_score_statement_list
 
+    def get_as_dict(self) -> Dict[str, Dict[str, Dict[str, float]]]:
+        key_item = self._get_qid_based_name()
+        value_item = self._get_statements_dict()
+        return {
+            key_item: value_item
+        }
+
+    def get_qid(self) -> int:
+        return self._qid
+
+    def get_line_count(self) -> int:
+        return self._line_count
+
+    def _get_qid_based_name(self) -> str:
+        return f"{self._project_name}{self._qid}"
+
+    def _get_statements_dict(self) -> Dict[str, Dict[str, float]]:
+        statements_dict = {}
+        for multi_score_statement in self._multi_score_statement_list:
+            current_statement_key = multi_score_statement.get_statement_name()
+            current_statement_value = multi_score_statement.get_scored_dict()
+            current_statement_value["faulty"] = multi_score_statement.get_is_fault_as_int()
+            statements_dict[current_statement_key] = current_statement_value
+        return statements_dict
+
 
 class CombineFlManager:
     def __init__(self,
@@ -40,13 +77,59 @@ class CombineFlManager:
         self._bug_keys_sorted = self._get_sorted_bug_keys()
         self._qid = 1
         self._techniques_sorted, self._projects_sorted = self._get_sorted_techniques_and_projects()
+        self._bug_technique_key_min_max_dict = self._get_bug_technique_key_min_max_dict()
         self._project_bug_item_sorted = self._get_sorted_project_bug_items()
+        self._qid_lines_csv_table, self._release_json_dict = self._get_qid_lines_csv_table_and_release_json_dict()
 
-    def get_release_json_dict(self):
-        pass
+    def _get_qid_lines_csv_table_and_release_json_dict(self) -> Tuple[
+        List[List[int]], Dict[str, Dict[str, Dict[str, float]]]]:
+        qid_lines_table = []
+        release_json_dict = {}
+        for project_bug_item in self._project_bug_item_sorted:
+            new_row = [project_bug_item.get_qid(), project_bug_item.get_line_count()]
+            qid_lines_table.append(new_row)
+            release_json_dict = release_json_dict | project_bug_item.get_as_dict()
+        return qid_lines_table, release_json_dict
 
-    def get_qid_lines_csv_table(self):
-        pass
+    def get_release_json_dict_list(self) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
+        number_of_buggy_projects = len(self._release_json_dict.keys())
+        number_of_files = 10
+        number_of_bugs_in_each_file = int(number_of_buggy_projects / number_of_files) + 1
+
+        release_json_dict_list = self._split_dictionary(self._release_json_dict, number_of_bugs_in_each_file)
+
+        assert len(release_json_dict_list) == number_of_files
+
+        all_keys = []
+        for release_json_d in release_json_dict_list:
+            for item_key in release_json_d.keys():
+                all_keys.append(item_key)
+        assert self._are_all_different_in_list(all_keys)
+
+        assert len(all_keys) == number_of_buggy_projects
+
+        return release_json_dict_list
+
+    @staticmethod
+    def _split_dictionary(input_dict: Dict[str, Dict[str, Dict[str, float]]],
+                          chunk_size: int) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
+        """
+        https://gist.github.com/nz-angel/31890d2c6cb1c9105e677cacc83a1ffd
+        """
+
+        res = []
+        new_dict = {}
+        for k, v in input_dict.items():
+            if len(new_dict) < chunk_size:
+                new_dict[k] = v
+            else:
+                res.append(new_dict)
+                new_dict = {k: v}
+        res.append(new_dict)
+        return res
+
+    def get_qid_lines_csv_table(self) -> List[List[int]]:
+        return self._qid_lines_csv_table
 
     def get_techniques_sorted_as_string(self) -> str:
         techniques_sorted_as_string = self._get_list_as_string(self._techniques_sorted)
@@ -204,8 +287,8 @@ class CombineFlManager:
 
         return scored_dict
 
-    @staticmethod
-    def _get_normalized_score_for_statement_name(csv_score_item: CsvScoreItem,
+    def _get_normalized_score_for_statement_name(self,
+                                                 csv_score_item: CsvScoreItem,
                                                  statement_name: str) -> float:
         scored_statement_list_for_statement_name = [x for x in csv_score_item.get_scored_entities()
                                                     if x.get_entity_name() == statement_name]
@@ -216,9 +299,7 @@ class CombineFlManager:
 
         current_score = scored_statement_list_for_statement_name[0].get_score()
 
-        all_scores_in_csv_score_item = [x.get_score() for x in csv_score_item.get_scored_entities()]
-        min_score = min(all_scores_in_csv_score_item)
-        max_score = max(all_scores_in_csv_score_item)
+        min_score, max_score = self._bug_technique_key_min_max_dict[csv_score_item.get_bug_technique_key()]
 
         current_score_normalized = mathematics.get_normalized_value(min_score, max_score, current_score)
         return current_score_normalized
@@ -226,7 +307,7 @@ class CombineFlManager:
     def _is_statement_faulty(self,
                              statement_name: str,
                              project_name: str,
-                             bug_number: int):
+                             bug_number: int) -> bool:
         statement_name_parts = statement_name.split("::")
         statement_module_name = statement_name_parts[0]
         statement_line_number = int(statement_name_parts[1])
@@ -239,3 +320,23 @@ class CombineFlManager:
                 return True
 
         return False
+
+    def _get_bug_technique_key_min_max_dict(self) -> Dict[str, Tuple[float, float]]:
+        bug_technique_key_min_max_dict = {}
+        for bug_key in self._bug_keys_sorted:
+            bug_key_csv_score_item_list = [x for x in self._csv_score_items if x.get_bug_key() == bug_key]
+            assert len(bug_key_csv_score_item_list) == 7
+            assert self._are_all_same_in_list([x.get_project_name() for x in bug_key_csv_score_item_list])
+            assert self._are_all_same_in_list([x.get_bug_number() for x in bug_key_csv_score_item_list])
+            assert bug_key_csv_score_item_list[0].get_granularity() == FLGranularity.Statement
+            assert self._are_all_same_in_list([x.get_granularity() for x in bug_key_csv_score_item_list])
+            assert self._are_all_different_in_list([x.get_technique() for x in bug_key_csv_score_item_list])
+            for bug_key_csv in bug_key_csv_score_item_list:
+                current_bug_technique_key = bug_key_csv.get_bug_technique_key()
+                current_all_scores_in_csv = [x.get_score() for x in bug_key_csv.get_scored_entities()]
+                if len(current_all_scores_in_csv) > 0:
+                    min_score = min(current_all_scores_in_csv)
+                    max_score = max(current_all_scores_in_csv)
+                    bug_technique_key_min_max_dict[current_bug_technique_key] = (min_score, max_score)
+
+        return bug_technique_key_min_max_dict
