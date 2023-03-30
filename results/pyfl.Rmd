@@ -142,16 +142,12 @@ store.table_ <- function(df, tabname, replace.probs=FALSE, row.ids=NULL, col.ids
     else
       col.ids <- colnames(df)
   }
-  print(row.ids)
-  print(col.ids)
   if (replace.probs && !any(duplicated(row.ids))) {
     mo <- (row.ids %>% str_match("^[|]([0-9]+[.]?[0-9]*)$"))[, 2]
     row.ids <- ifelse(is.na(mo), row.ids, paste0("lower ", 100*as.numeric(mo)))
     mo <- (row.ids %>% str_match("^([0-9]+[.]?[0-9]*)[|]$"))[, 2]
     row.ids <- ifelse(is.na(mo), row.ids, paste0("upper ", 100*as.numeric(mo)))
   }
-  print(row.ids)
-  print(col.ids)
   for (row in 1:length(row.ids)) {
     for (col in 1:length(col.ids)) {
       if (length(col.ids) == 1 && vectorize)
@@ -1495,10 +1491,21 @@ store.results_ <- function(res)
 
 store.results_(res.m1.einspect.family)
 store.results_(res.m1.einspect.category)
+store.results_(res.m1.time.family)
+store.results_(res.m1.time.category)
 
 store.results_(res.m2.einspect.family)
 store.results_(res.m2.einspect.category)
+store.results_(res.m2.time.family)
+store.results_(res.m2.time.category)
 
+store.results_(res.m3.einspect.family)
+
+store.results_(res.m4.einspect.crashing)
+store.results_(res.m4.einspect.predicate)
+store.results_(res.m4.einspect.mutable)
+
+store.results_(res.m6.einspect.logmutability)
 ```
 
 ```{r epilogue}
