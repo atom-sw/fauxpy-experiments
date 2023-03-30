@@ -1,9 +1,9 @@
 [
-DStar,
-Metallaxis,
-Muse,
-Ochiai,
-PS,
-ST,
-Tarantula
+'DStar',
+'Metallaxis',
+'Muse',
+'Ochiai',
+'PS',
+'ST',
+'Tarantula'
 ]
