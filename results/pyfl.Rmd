@@ -348,7 +348,7 @@ Analyzing the same data numerically, we can compute the correlation (Kendall's $
 (corr <- cor.test(S, M, method="kendall"))
 ```
 
-A correlation of `r corr$estimate` is definitely insignificant, but is not very strong either.
+A correlation of `r corr$estimate` is not very strong, but clearly defined.
 
 Finally, we may also perform a statistical test (Wilcoxon's paired test)
 and compute a matching effect size (Cliff's delta).
@@ -736,7 +736,10 @@ interval.results <- function(fit, response, which.group, predictor)
   # sort in inclusion interval order
   nrow.2 <- round(nrow(intervals)/2)
   res <- rbind(intervals[1:nrow.2, ], intervals[nrow(intervals):(nrow.2+1), ])
-  res
+  rnms <- res$prob
+  res <- as.data.frame(res[, 2:ncol(res)])
+  rownames(res) <- rnms
+  list(ints=res, est=NULL)
 }
 ```
 
@@ -873,7 +876,8 @@ on the fitted coefficients of `m2`.
 First we introduce a summary function.
 
 ```{r m2 difference analysis defs, warning=FALSE}
-interval.results.ranef <- function(fit, response, predictor, probs)
+interval.results.ranef <- function(fit, response, predictor, probs, 
+                                   multivariate=TRUE)
 {
   # probability intervals and their labels
   ps.low <- rev(1-probs)/2
@@ -882,16 +886,23 @@ interval.results.ranef <- function(fit, response, predictor, probs)
   cnams <- c(paste("|", probs, sep=""), paste(rev(probs), "|", sep=""))
   # random effects
   post <- ranef(fit, probs=ps)
-  # keep only predictor/response data
-  post <- post[[predictor]]
-  post <- post[, , grep(str_c("^", response), dimnames(post)[[3]])]
+  if (multivariate) {
+    # keep only predictor/response data
+    post <- post[[predictor]]
+    est <- post[, "Estimate", 1]
+    post <- post[, , grep(str_c("^", response), dimnames(post)[[3]])]
+  } else {
+    post <- post[[predictor[1]]]
+    post <- post[, , grep(str_c("^", predictor[2]), dimnames(post)[[3]])]
+    est <- post[, grep("Estimate", colnames(post))]
+  }
   if (dims(post) > 2 && !("matrix" %in% class(post)))
     post <- post[, , 1]
   res <- as.data.frame(post)
   res <- res[, grep("^Q", colnames(res))]
   colnames(res) <- cnams
   res <- t(res)
-  est <- ranef(fit, probs=ps)[[predictor]][, "Estimate", 1]
+  
   list(ints=res, est=est)
 }
 ```
@@ -900,10 +911,10 @@ Then we use the functions to analyze the effects
 of the FL techniques.
 
 ```{r m2 per family, warning=FALSE}
-(res.m2.einspect.technique <- interval.results.ranef(
+(res.m2.einspect.family <- interval.results.ranef(
   m2, "einspectS",  "family", PROBABILITIES
  ))
-(res.m2.time.technique <- interval.results.ranef(
+(res.m2.time.family <- interval.results.ranef(
   m2, "timeS",  "family", PROBABILITIES
  ))
 ```
@@ -913,10 +924,10 @@ whereas the relation between running time and family `ps` weakens.
 Let's see what happens for the bug/category of projects.
 
 ```{r m2 per category, warning=FALSE}
-(res.m2.einspect.bug <- interval.results.ranef(
+(res.m2.einspect.category <- interval.results.ranef(
   m2, "einspectS", "category", PROBABILITIES)
  )
-(res.m2.time.bug <- interval.results.ranef(
+(res.m2.time.category <- interval.results.ranef(
   m2, "timeS", "category", PROBABILITIES)
   )
 ```
@@ -966,7 +977,7 @@ We fit model $m_3$.
 ```{r m3 fit}
 m3 <- brm(eq.m3, data=by.statement, prior=pp3, 
           refresh=0,
-          control=list(adapt_delta=0.95), iter=4000, warmup=1500, 
+          control=list(adapt_delta=0.95),
           seed=MY.SEED)
 ```
 
@@ -1157,14 +1168,18 @@ We focus on `einspect` only, since the kind of bugs is not
 meaningfully associated with the running time.
 
 ```{r m4 analysis, warning=FALSE}
-interval.results.interacts <- function(fit, response, predictor, probs, bool=TRUE)
+interval.results.interacts <- function(fit, response, predictor, probs, 
+                                       bool=TRUE, multivariate=TRUE)
 {
   ps.low <- rev(1-probs)/2
   ps.high <- rev(1-ps.low)
   ps <- rev(c(ps.high, ps.low))
   cnams <- c(paste("|", probs, sep=""), paste(rev(probs), "|", sep=""))
   post <- fixef(fit, probs=ps)
-  pat <- str_c("^", response, "_.*", predictor, if (bool) "TRUE" else "")
+  if (multivariate)
+    pat <- str_c("^", response, "_.*", predictor, if (bool) "TRUE" else "")
+  else
+    pat <- str_c("^.*", predictor, if (bool) "TRUE" else "")
   post <- post[grep(pat, rownames(post)), ]
   ints <- post[, 3:ncol(post)]
   ests <- post[, 1]
@@ -1177,12 +1192,13 @@ interval.results.interacts <- function(fit, response, predictor, probs, bool=TRU
   res
 }
 
-(res.m4.crashing <- interval.results.interacts(m4, "einspectS", 
-                                              "crashing", PROBABILITIES))
-(res.m4.predicate <- interval.results.interacts(m4, "einspectS", 
-                                              "predicate", PROBABILITIES))
-(res.m4.mutable <- interval.results.interacts(m4, "einspectS", 
-                                              "mutable", PROBABILITIES))
+(res.m4.einspect.crashing <- interval.results.interacts(m4, "einspectS", 
+                                                        "crashing", PROBABILITIES))
+(res.m4.einspect.predicate <- interval.results.interacts(m4, "einspectS", 
+                                                         "predicate",
+                                                         PROBABILITIES))
+(res.m4.einspect.mutable <- interval.results.interacts(m4, "einspectS", 
+                                                       "mutable", PROBABILITIES))
 ```
 So, crashing bugs are indeed easier for ST.
 In contrast, predicate-related bugs do not seem to be simpler
@@ -1248,25 +1264,37 @@ print(max(brms::rhat(m5), na.rm = TRUE))
 min(neff_ratio(m5), na.rm = TRUE)
 ```
 
-A disaster. Let's also plot the trace plots for the offending chain.
+A disaster. Let's also plot the trace plots.
 
 ```{r m5 trace plot, message=FALSE}
 traceplot(m5$fit)
 ```
 Some chains are straight lines, and hence do not mix at all with chain #3!
 
+We can also have a look at the distribution of `mutability`,
+to realize how skewed it is.
 
-## Model $m_6$
+```{r mutability plot}
+(p.mutability <- (ggplot(by.statement, aes(x=mutability))
+                  + geom_histogram(binwidth=1, fill="orange2")))
+```
+
+## Models $m_6$ and $m_7$
 
 The most straightforward way out of this ditch
 is to simply log-transform `mutability` (after adding 1 to all percentages
 so that all logs are defined).
 
 Furthermore, we ditch the multivariate model, since now we're
-simply interested in estimating `einspect`.
+simply interested in estimating `einspect`. 
+
+We also include another model $m_7$, which uses varying effects 
+with grouping to model the interactions. Note that this kind of model
+would have the same fitting issues as $m_5$ if we hadn't log-transformed
+`mutability`.
 
 
-```{r m6 formula}
+```{r m6 m7 formula}
 by.statement$logmutability <- log(1 + by.statement$mutability)
 
 eq.m6 <- brmsformula(
@@ -1293,13 +1321,14 @@ pp6 <- c(
 
 pp7 <- c(
   set_prior("normal(0, 1.0)", class="Intercept"),
-  set_prior("weibull(2, 0.3)", class="sd", group="family"),
-  set_prior("weibull(2, 0.3)", class="sd", group="category"),
+  set_prior("lkj(1)", class="cor"),
+  set_prior("weibull(2, 0.3)", class="sd"),
+  # set_prior("weibull(2, 0.3)", class="sd", group="category"),
   set_prior("gamma(0.01, 0.01)", class="sigma")
 )
 ```
 
-Alternative ways would include:
+Alternative ways to make the models fittable include:
 
    - Introducing a multi-level term, with `einspect ~ log(x)*family`,
      and `log(x) = log(y) + a`, where $x/y = \textrm{mutability}$.
@@ -1308,7 +1337,7 @@ Alternative ways would include:
      
    - The approach followed in [this paper](https://arxiv.org/abs/2007.09394).
 
-## Fitting $m_6$
+## Fitting $m_6$ and $m_7$
 
 Prior checks:
 
@@ -1338,16 +1367,16 @@ m7.priors <- brm(eq.m7,
 (pp_check(m7.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
 ```
 
-We fit model $m_6$.
+We fit models $m_6$ and $m_7$.
 
-```{r m6 fit}
+```{r m6 m7 fit}
 m6 <- brm(eq.m6, data=by.statement, prior=pp6, 
           refresh=0,
           control=list(adapt_delta=0.95), 
           seed=MY.SEED)
 m7 <- brm(eq.m7, data=by.statement, prior=pp7, 
           refresh=0,
-          control=list(adapt_delta=0.95), 
+          control=list(adapt_delta=0.98), 
           seed=MY.SEED)
 ```
 
@@ -1400,18 +1429,94 @@ m7 <- add_criterion(m7, criterion = "loo")
 
 $m_6$ and $m_7$ are basically indistinguishable
 in terms of predictive capabilities.
-However, they both mop the floor with all other models (14 standard deviations of difference!). Note, however, that this is largely a result of
+And, they both mop the floor with all other models (14 standard deviations of difference!). Note, however, that this is a result of
 making them monovariate instead of multivariate;
 if we kept them multi-variate, they would have predictive
 capabilities close to $m_4$.
 
 
-## Analyzing $m_6$
+## Analyzing $m_6$ and $m_7$
 
+```{r m6 summary}
+summary(m6)
+```
 
+```{r m7 summary}
+summary(m7)
+```
+Let's now analyze $m_6$ first, whose mutability-related effects
+are fixed effects.
+
+```{r m6 analysis}
+MORE.PROBS <- c(0.5, 0.7, 0.8, 0.88, 0.9, 0.95, 0.99)
+(res.m6.einspect.logmutability <- interval.results.interacts(
+  m6, "einspectS", "logmutability",
+  MORE.PROBS,
+  bool=FALSE, multivariate=FALSE
+  ))
+```
+There is a tendency for MBFL to do better on mutable bugs, 
+but it is not a strong tendency, and it can only be detected with 88%
+confidence (which is still pretty clear).
+Incidentally, PS and ST tend to perform *worse* on the same kinds of bugs,
+whereas SBFL is agnostic.
+
+Let's now switch to $m_7$ first, whose mutability-related effects
+are varying effects.
+
+```{r m7 analysis}
+(res.m7.einspect.logmutability <- interval.results.ranef(m7, "einspectS", 
+                                                         c("family",
+                                                           "logmutability"),
+                                                         MORE.PROBS,
+                                                         multivariate=FALSE))
+```
+The results are kind of similar for MBFL, but now SBFL
+also exhibits a similar tendency.
+Altogether, we may prefer the simpler model $m_6$,
+where the advantage of MBFL for mutable bugs
+is not big but clearly discernible.
 
 # Dump all constants
 
+```{r storage}
+store.results_ <- function(res)
+{
+  res_str <- str_split(deparse(substitute(res)), "[.]")[[1]]
+  m <- res_str[2]
+  outcome <- res_str[3]
+  predictor <- res_str[4]
+  ints <- res[["ints"]]
+  est <- res[["est"]]
+  cns <- colnames(ints)
+  rws <- rownames(ints)
+  percs <- round(100*as.numeric(str_extract(rws, "([0-9]+[.][0-9]+)")))
+  tabname <- str_c(m, outcome, predictor, sep="/")
+  store.table_(ints, tabname, replace.probs=TRUE)
+  if (!is.null(est))
+    store.table_(as.data.frame(est), tabname, replace.probs=TRUE, vectorize=TRUE)
+}
+
+store.results_(res.m1.einspect.family)
+store.results_(res.m1.einspect.category)
+store.results_(res.m1.time.family)
+store.results_(res.m1.time.category)
+
+store.results_(res.m2.einspect.family)
+store.results_(res.m2.einspect.category)
+store.results_(res.m2.time.family)
+store.results_(res.m2.time.category)
+
+store.results_(res.m3.einspect.family)
+
+store.results_(res.m4.einspect.crashing)
+store.results_(res.m4.einspect.predicate)
+store.results_(res.m4.einspect.mutable)
+
+store.results_(res.m6.einspect.logmutability)
+```
+
 ```{r epilogue}
-dump.all_()
+
+dump.all_(append=FALSE)
 ```

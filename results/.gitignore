@@ -1,1 +1,4 @@
 .Rhistory
+.RData
+pyfl_cache/
+pyfl_files/
