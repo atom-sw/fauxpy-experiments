@@ -33,15 +33,17 @@ class ProjectBugItem:
                  bug_number: int,
                  line_count: int,
                  qid: int,
+                 project_counter: int,
                  multi_score_statement_list: List[MultiScoreStatement]):
         self._project_name = project_name
         self._bug_number = bug_number
         self._line_count = line_count
         self._qid = qid
+        self._project_counter = project_counter
         self._multi_score_statement_list = multi_score_statement_list
 
     def get_as_dict(self) -> Dict[str, Dict[str, Dict[str, float]]]:
-        key_item = self._get_qid_based_name()
+        key_item = self._get_project_counter_based_name()
         value_item = self._get_statements_dict()
         return {
             key_item: value_item
@@ -53,8 +55,11 @@ class ProjectBugItem:
     def get_line_count(self) -> int:
         return self._line_count
 
-    def _get_qid_based_name(self) -> str:
-        return f"{self._project_name}{self._qid}"
+    def get_project_name(self) -> str:
+        return self._project_name
+
+    def _get_project_counter_based_name(self) -> str:
+        return f"{self._project_name}{self._project_counter}"
 
     def _get_statements_dict(self) -> Dict[str, Dict[str, float]]:
         statements_dict = {}
@@ -169,10 +174,18 @@ class CombineFlManager:
 
     def _get_sorted_project_bug_items(self) -> List[ProjectBugItem]:
         project_bug_item_list = []
+        previous_project_name = self._bug_keys_sorted[0].split(":")[0]
+        project_counter = 0
         for bug_key in self._bug_keys_sorted:
             current_bug_key_csv_score_item_list = [x for x in self._csv_score_items if x.get_bug_key() == bug_key]
             assert len(current_bug_key_csv_score_item_list) == len(self._techniques_sorted)
-            current_project_bug_item = self._get_project_bug_item(current_bug_key_csv_score_item_list)
+            current_project_name = current_bug_key_csv_score_item_list[0].get_project_name()
+            if previous_project_name == current_project_name:
+                project_counter += 1
+            else:
+                project_counter = 1
+            previous_project_name = current_project_name
+            current_project_bug_item = self._get_project_bug_item(current_bug_key_csv_score_item_list, project_counter)
             project_bug_item_list.append(current_project_bug_item)
 
         return project_bug_item_list
@@ -190,7 +203,9 @@ class CombineFlManager:
     def _get_bug_key(project_name: str, bug_number: int) -> str:
         return f"{project_name}:{bug_number}"
 
-    def _get_project_bug_item(self, bug_key_csv_score_item_list: List[CsvScoreItem]) -> ProjectBugItem:
+    def _get_project_bug_item(self,
+                              bug_key_csv_score_item_list: List[CsvScoreItem],
+                              project_counter: int) -> ProjectBugItem:
         assert self._are_all_same_in_list([x.get_project_name() for x in bug_key_csv_score_item_list])
         assert self._are_all_same_in_list([x.get_bug_number() for x in bug_key_csv_score_item_list])
         assert bug_key_csv_score_item_list[0].get_granularity() == FLGranularity.Statement
@@ -204,7 +219,12 @@ class CombineFlManager:
         self._qid += 1
         multi_score_statement_list = self._get_multi_score_statement_list(bug_key_csv_score_item_list)
 
-        project_bug_it = ProjectBugItem(project_name, bug_number, line_count, qid, multi_score_statement_list)
+        project_bug_it = ProjectBugItem(project_name,
+                                        bug_number,
+                                        line_count,
+                                        qid,
+                                        project_counter,
+                                        multi_score_statement_list)
         return project_bug_it
 
     @staticmethod
