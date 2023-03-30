@@ -81,8 +81,7 @@ class CombineFlManager:
         self._project_bug_item_sorted = self._get_sorted_project_bug_items()
         self._qid_lines_csv_table, self._release_json_dict = self._get_qid_lines_csv_table_and_release_json_dict()
 
-    def _get_qid_lines_csv_table_and_release_json_dict(self) -> Tuple[
-        List[List[int]], Dict[str, Dict[str, Dict[str, float]]]]:
+    def _get_qid_lines_csv_table_and_release_json_dict(self) -> Tuple[List[List[int]], Dict[str, Dict[str, Dict[str, float]]]]:
         qid_lines_table = []
         release_json_dict = {}
         for project_bug_item in self._project_bug_item_sorted:
@@ -132,7 +131,8 @@ class CombineFlManager:
         return self._qid_lines_csv_table
 
     def get_techniques_sorted_as_string(self) -> str:
-        techniques_sorted_as_string = self._get_list_as_string(self._techniques_sorted)
+        techniques_sorted_quoted = [f"\'{x}\'" for x in self._techniques_sorted]
+        techniques_sorted_as_string = self._get_list_as_string(techniques_sorted_quoted)
         return techniques_sorted_as_string
 
     def get_projects_sorted_as_string(self) -> str:
