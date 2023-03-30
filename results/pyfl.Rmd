@@ -348,7 +348,7 @@ Analyzing the same data numerically, we can compute the correlation (Kendall's $
 (corr <- cor.test(S, M, method="kendall"))
 ```
 
-A correlation of `r corr$estimate` is definitely insignificant, but is not very strong either.
+A correlation of `r corr$estimate` is not very strong, but clearly defined.
 
 Finally, we may also perform a statistical test (Wilcoxon's paired test)
 and compute a matching effect size (Cliff's delta).
@@ -1264,13 +1264,20 @@ print(max(brms::rhat(m5), na.rm = TRUE))
 min(neff_ratio(m5), na.rm = TRUE)
 ```
 
-A disaster. Let's also plot the trace plots for the offending chain.
+A disaster. Let's also plot the trace plots.
 
 ```{r m5 trace plot, message=FALSE}
 traceplot(m5$fit)
 ```
 Some chains are straight lines, and hence do not mix at all with chain #3!
 
+We can also have a look at the distribution of `mutability`,
+to realize how skewed it is.
+
+```{r mutability plot}
+(p.mutability <- (ggplot(by.statement, aes(x=mutability))
+                  + geom_histogram(binwidth=1, fill="orange2")))
+```
 
 ## Models $m_6$ and $m_7$
 
