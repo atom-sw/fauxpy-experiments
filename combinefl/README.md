@@ -21,10 +21,10 @@ So, there is no need to download it or install it.
 In order to run `CombineFL` on BugsInPy, we replaced the
 Defects4j's `release.json`
 file with BugsInPy's `release_x.json` files (since the file
-was to big, we split it into 10 files so that we could push
+was too big, we split it into 10 files so that we could push
 it to the repo), and Defects4j's `qid-lines.csv` 
 with BugsInPy's `qid-lines.csv`. We generated these files at the
-metric computation phase. We also change the rechniques names and
+metric computation phase. We also changed the technique names and
 subject information in [1-combine.py](1-combine.py) to support BugsInPy.
 
 ## Running CombineFL on BugsInPy
@@ -43,8 +43,8 @@ python 4-calc-metric.py
 
 ## Results
 
-
-
-
+The results of running `CombineFL` on BugsInPy is 
+in the [results_for_BusInPy.txt](results_for_BusInPy.txt) file, which
+is the standard output of script [4-calc-metric.py](4-calc-metric.py).
 
 
