@@ -1454,6 +1454,20 @@ MORE.PROBS <- c(0.5, 0.7, 0.8, 0.88, 0.9, 0.95, 0.99)
   MORE.PROBS,
   bool=FALSE, multivariate=FALSE
   ))
+
+# We can use m6's estimates for all these interactions,
+# since they are very close to m4's
+res.m6.einspect.crashing <- interval.results.interacts(
+  m6, "einspectS", "crashing",
+  MORE.PROBS,
+  bool=TRUE, multivariate=FALSE
+  )
+
+res.m6.einspect.predicate <- interval.results.interacts(
+  m6, "einspectS", "predicate",
+  MORE.PROBS,
+  bool=TRUE, multivariate=FALSE
+  )
 ```
 There is a tendency for MBFL to do better on mutable bugs, 
 but it is not a strong tendency, and it can only be detected with 88%
@@ -1514,9 +1528,10 @@ store.results_(res.m4.einspect.predicate)
 store.results_(res.m4.einspect.mutable)
 
 store.results_(res.m6.einspect.logmutability)
+store.results_(res.m6.einspect.crashing)
+store.results_(res.m6.einspect.predicate)
 ```
 
 ```{r epilogue}
-
 dump.all_(append=FALSE)
 ```
