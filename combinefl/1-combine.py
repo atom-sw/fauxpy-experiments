@@ -4,47 +4,19 @@ import json
 import os
 import sys
 
-
-def load_json_release_files_to_dict():
-    num_files = 10
-    json_release_dict = {}
-    for index_item in range(0, num_files):
-        current_file = os.path.join("data", "release_" + str(index_item) + ".json")
-        with io.open(current_file) as f:
-            current_release_dict = json.load(f)
-            json_release_dict.update(current_release_dict)
-    return json_release_dict
+from experiment_input import (load_json_release_files_to_dict,
+                              load_techniques_to_set,
+                              load_projects_to_list, ExperimentType)
 
 
 class CombineFL:
-    def __init__(self):
+    def __init__(self, experiment_type):
         # self.raw_data_file = 'data/release.json'
         # with io.open(self.raw_data_file) as f:
         #     self.data = json.load(f)
-        self.data = load_json_release_files_to_dict()
-        self.techniques = set([
-            'DStar',
-            'Metallaxis',
-            'Muse',
-            'Ochiai',
-            'PS',
-            'ST',
-            'Tarantula'
-        ])
-        self.projects = [
-            ('black', 13),
-            ('cookiecutter', 4),
-            ('fastapi', 13),
-            ('httpie', 4),
-            ('keras', 18),
-            ('pandas', 18),
-            ('sanic', 3),
-            ('spacy', 6),
-            ('thefuck', 16),
-            ('tornado', 4),
-            ('tqdm', 6),
-            ('youtube-dl', 16)
-        ]
+        self.data = load_json_release_files_to_dict(experiment_type)
+        self.techniques = load_techniques_to_set(experiment_type)
+        self.projects = load_projects_to_list(experiment_type)
         self.data_dir = 'data'
         self.output_svm_file = 'l2r_format.dat'
         self.new_techniques = set()
@@ -120,14 +92,30 @@ class CombineFL:
 def main():
     parser = argparse.ArgumentParser(description='Combine and Generate SVMRank file.')
     parser.add_argument('-f', '--add_in_file', help="Add-in data file.")
+    parser.add_argument('-e', '--experiment_type', help="pa/ps/ja/js")
     args = parser.parse_args()
-    if args.add_in_file:
-        combine = CombineFL()
-        combine.add_in(args.add_in_file)
-        combine.convert_to_svm_format(combine.techniques.union(combine.new_techniques))
+
+    if args.experiment_type == "pa":
+        experiment_type = ExperimentType.PythonAll
+    elif args.experiment_type == "ps":
+        experiment_type = ExperimentType.PythonSimilar
+    elif args.experiment_type == "ja":
+        experiment_type = ExperimentType.JavaAll
+    elif args.experiment_type == "js":
+        experiment_type = ExperimentType.JavaSimilar
     else:
-        combine = CombineFL()
-        combine.convert_to_svm_format(combine.techniques)
+        raise Exception("Experiment type not supported.")
+
+    combine = CombineFL(experiment_type)
+    combine.convert_to_svm_format(combine.techniques)
+
+    # if args.add_in_file:
+    #     combine = CombineFL()
+    #     combine.add_in(args.add_in_file)
+    #     combine.convert_to_svm_format(combine.techniques.union(combine.new_techniques))
+    # else:
+    #     combine = CombineFL()
+    #     combine.convert_to_svm_format(combine.techniques)
 
 
 if __name__ == '__main__':
