@@ -1,5 +1,4 @@
-from pathlib import Path
-from typing import List, Dict
+from typing import List
 
 import file_manager
 from average_fault_localization import AverageFaultLocalization
@@ -257,49 +256,12 @@ def generate_combine_fl_data_input():
     output_dir_path = file_manager.clean_make_output_dir(directory_name)
 
     for index, release_json_dict_item in enumerate(release_json_dict_list):
-        file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"release_{index}.json")
+        file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"python_release_{index}.json")
     file_manager.save_csv_to_output_dir(qid_lines_csv_table, directory_name, "qid-lines.csv")
     file_manager.save_string_to_file(techniques_str, output_dir_path / "techniques.txt")
     file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
 
 
-def something_there():
-    def split_dictionary(input_dict: Dict[str, Dict[str, Dict[str, float]]],
-                         chunk_size: int) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
-        """
-        https://gist.github.com/nz-angel/31890d2c6cb1c9105e677cacc83a1ffd
-        """
-
-        res = []
-        new_dict = {}
-        for k, v in input_dict.items():
-            if len(new_dict) < chunk_size:
-                new_dict[k] = v
-            else:
-                res.append(new_dict)
-                new_dict = {k: v}
-        res.append(new_dict)
-        return res
-
-    def get_release_json_dict_list(release_json_dict) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
-        number_of_buggy_projects = len(release_json_dict)
-        number_of_files = 10
-        number_of_bugs_in_each_file = int(number_of_buggy_projects / number_of_files) + 1
-
-        release_json_dict_list = split_dictionary(release_json_dict, number_of_bugs_in_each_file)
-        return release_json_dict_list
-
-    release_json_d = file_manager.load_json_to_dictionary("inputs_to_combine_fl/release.json")
-    release_json_d_list = get_release_json_dict_list(release_json_d)
-
-    directory_name = "inputs_to_combine_flx"
-    output_dir_path = file_manager.clean_make_output_dir(directory_name)
-
-    for index, release_json_dict_item in enumerate(release_json_d_list):
-        file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"release_{index}.json")
-
-
 if __name__ == '__main__':
-    # something_there()
     generate_combine_fl_data_input()
     # main()
