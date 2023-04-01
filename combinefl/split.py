@@ -3,7 +3,7 @@ import os
 import random
 import sys
 
-all_data_file = os.path.join('data','l2r_format.dat')
+all_data_file = os.path.join('data', 'l2r_format.dat')
 
 if len(sys.argv) > 1:
     outdir = sys.argv[1]
