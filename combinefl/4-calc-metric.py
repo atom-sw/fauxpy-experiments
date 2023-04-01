@@ -3,6 +3,8 @@ import io
 import os
 import sys
 
+from experiment_input import load_qid_lines_csv_file_name
+
 pred_f = 'svmrank-pred.dat'
 
 
@@ -85,7 +87,9 @@ def read_info_ranksvm(num):
 
 def qid_to_lines():
     data = {}
-    with io.open('data/qid-lines.csv') as f:
+    qid_lines_csv_file_name = load_qid_lines_csv_file_name()
+    qid_lines_csv_path = os.path.join("data", qid_lines_csv_file_name)
+    with io.open(qid_lines_csv_path) as f:
         raw = f.readlines()
         for line in raw:
             qid = int(line.split(',')[0])
