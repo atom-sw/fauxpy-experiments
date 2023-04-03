@@ -1,4 +1,4 @@
-project_name,bug_number,granularity,technique,crashing,predicate,mutable_bug,percentage_of_mutants_on_ground_truth,experiment_time_seconds,e_inspect,"is_bug_localized,exam_score",cumulative_distance,sv_comp_overall_score
+project_name,bug_number,granularity,technique,crashing,predicate,mutable_bug,percentage_of_mutants_on_ground_truth,experiment_time_seconds,e_inspect,is_bug_localized,exam_score,cumulative_distance,sv_comp_overall_score
 black,1,Statement,Tarantula,0,0,0,0.0,132.3571379184723,8.5,1,9.150509737218891e-05,5.288190087829359,-2.3474592220828105
 black,3,Statement,Tarantula,0,0,0,0.0,104.21208119392395,46853.5,0,0.5130469537032981,25.65426800190748,-2.0340963280877444
 black,4,Statement,Tarantula,0,0,0,0.0,68.4707555770874,239.0,1,0.0026406505502276044,8.38022724821114,-2.1523677681492934
