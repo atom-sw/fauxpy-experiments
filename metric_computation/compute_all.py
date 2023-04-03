@@ -257,7 +257,7 @@ def generate_combine_fl_data_input():
 
     for index, release_json_dict_item in enumerate(release_json_dict_list):
         file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"python_release_{index}.json")
-    file_manager.save_csv_to_output_dir(qid_lines_csv_table, directory_name, "qid-lines.csv")
+    file_manager.save_csv_to_output_dir(qid_lines_csv_table, directory_name, "python_qid-lines.csv")
     file_manager.save_string_to_file(techniques_str, output_dir_path / "techniques.txt")
     file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
 
