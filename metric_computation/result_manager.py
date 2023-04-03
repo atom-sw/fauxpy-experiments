@@ -129,7 +129,8 @@ class ResultManager:
     def _compute_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         for item in csv_score_items:
             e_inspect, is_bug_localized, exam_score = self._compute_literature_metrics_for_csv_item(item)
-            metric_literature_val = MetricLiteratureVal(item.get_experiment_time_seconds(), e_inspect, is_bug_localized, exam_score)
+            metric_literature_val = MetricLiteratureVal(item.get_experiment_time_seconds(), e_inspect, is_bug_localized,
+                                                        exam_score)
             item.set_metric_literature_val(metric_literature_val)
 
     def _compute_all_our_metrics_for_statement_csv_score_items(self):
@@ -146,7 +147,7 @@ class ResultManager:
                                                                          csv_score_items)
 
         overall_results_header = ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10",
-                                  "@10%", "exam_score"]
+                                  "@10%", "exam_score", "java_exam_score"]
         technique_overall_table = [overall_results_header]
         technique_detailed_table_dict = {}
         for technique_name, csv_items in technique_csv_items.items():
@@ -254,8 +255,9 @@ class ResultManager:
 
     @classmethod
     def _get_technique_literature_detailed_results_table(cls, csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate", "mutable_bug", "percentage_of_mutants_on_ground_truth",
-                         "experiment_time_seconds", "e_inspect", "is_bug_localized," "exam_score"]
+        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate",
+                         "mutable_bug", "percentage_of_mutants_on_ground_truth",
+                         "experiment_time_seconds", "e_inspect", "is_bug_localized", "exam_score"]
         result_rows = [result_header]
         for item in csv_items:
             project_name = item.get_project_name()
@@ -298,10 +300,10 @@ class ResultManager:
     @staticmethod
     def _get_technique_literature_overall_results_row(technique_name: str,
                                                       csv_items: List[CsvScoreItem]) -> List:
-        # ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score"]
+        # ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score", "java_exam_score"]
 
         if len(csv_items) == 0:
-            return [None, None, None, None, None, None, None, None, None, None, None]
+            return [None, None, None, None, None, None, None, None, None, None, None, None]
 
         def at_x(top_num: int) -> int:
             top_x_items = list(filter(lambda x: x.get_metric_literature_val().get_e_inspect() <= top_num, csv_items))
@@ -314,12 +316,17 @@ class ResultManager:
 
         experiment_time_seconds_list = [x.get_metric_literature_val().get_experiment_time() for x in csv_items]
         exam_score_list = [x.get_metric_literature_val().get_exam_score() for x in csv_items]
+        java_exam_score_list = [x.get_metric_literature_val().get_exam_score() for x in csv_items
+                                if x.get_metric_literature_val().is_bug_localized()]
 
         average_experiment_time = mathematics.average(experiment_time_seconds_list)
         round_average_experiment_time = round(average_experiment_time)
 
         average_exam_score = mathematics.average(exam_score_list)
-        round_average_exam_score = round(average_exam_score, 3)
+        round_average_exam_score = round(average_exam_score, 4)
+
+        average_java_exam_score = mathematics.average(java_exam_score_list)
+        round_average_java_exam_score = round(average_java_exam_score, 4)
 
         technique_result = [technique_name,
                             round_average_experiment_time,
@@ -331,7 +338,8 @@ class ResultManager:
                             at_x_percentage(5),
                             at_x(10),
                             at_x_percentage(10),
-                            round_average_exam_score]
+                            round_average_exam_score,
+                            round_average_java_exam_score]
 
         return technique_result
 
