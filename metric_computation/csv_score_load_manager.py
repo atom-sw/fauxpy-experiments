@@ -27,9 +27,11 @@ class MetricLiteratureVal:
     def __init__(self,
                  experiment_time: float,
                  e_inspect: float,
+                 is_bug_localized: bool,
                  exam_score: float):
         self._experiment_time = experiment_time
         self._e_inspect = e_inspect
+        self._is_bug_localized = is_bug_localized
         self._exam_score = exam_score
 
     def get_experiment_time(self) -> float:
@@ -40,6 +42,9 @@ class MetricLiteratureVal:
 
     def get_exam_score(self) -> float:
         return self._exam_score
+
+    def is_bug_localized(self) -> bool:
+        return self._is_bug_localized
 
 
 class MetricOurVal:
