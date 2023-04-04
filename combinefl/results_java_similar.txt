@@ -1,0 +1,4 @@
+Handle 1 / 10 Handle 2 / 10 Handle 3 / 10 Handle 4 / 10 Handle 5 / 10 Handle 6 / 10 Handle 7 / 10 Handle 8 / 10 Handle 9 / 10 Handle 10 / 10 
+Top 1/3/5/10: [69, 119, 149, 184]
+Top %1/%3/%5/%10: [19, 33, 42, 52]
+EXAM:  0.018620908435

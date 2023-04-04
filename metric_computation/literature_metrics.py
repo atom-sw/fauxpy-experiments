@@ -80,6 +80,10 @@ class EInspect(EInspectBase):
                  buggy_entity_names: List[str]):
         super().__init__(scored_entities, buggy_entity_names)
         self._entity_count_in_project = entity_count_in_project
+        self._is_bug_localized = False
+
+    def is_bug_localized(self) -> bool:
+        return self._is_bug_localized
 
     def get_e_inspect(self) -> float:
         bug_location_index = -1
@@ -92,6 +96,7 @@ class EInspect(EInspectBase):
 
         # Fault localization technique found the bug.
         if bug_location_index != -1:
+            self._is_bug_localized = True
             bug_location_score = self._scored_entities[bug_location_index].get_score()
             start_index, end_index = self.get_tied_range(bug_location_score)
 
@@ -115,6 +120,7 @@ class EInspect(EInspectBase):
 
         # Fault localization technique did not find the bug.
         else:
+            self._is_bug_localized = False
             first_tie_item_rank = len(self._scored_entities) + 1
             tie_size = self._entity_count_in_project - len(self._scored_entities)
             e_inspect = self.e_inspect(first_tie_item_rank, tie_size, len(self._buggy_entity_names))

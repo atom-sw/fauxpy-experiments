@@ -3,6 +3,8 @@ import io
 import os
 import sys
 
+from experiment_input import load_qid_lines_csv_file_name
+
 pred_f = 'svmrank-pred.dat'
 
 
@@ -85,7 +87,9 @@ def read_info_ranksvm(num):
 
 def qid_to_lines():
     data = {}
-    with io.open('data/qid-lines.csv') as f:
+    qid_lines_csv_file_name = load_qid_lines_csv_file_name()
+    qid_lines_csv_path = os.path.join("data", qid_lines_csv_file_name)
+    with io.open(qid_lines_csv_path) as f:
         raw = f.readlines()
         for line in raw:
             qid = int(line.split(',')[0])
@@ -120,7 +124,12 @@ def main():
     top.append(len(filter(lambda item: item < 3.01 and item > 0, E_pos_list)))
     top.append(len(filter(lambda item: item < 5.01 and item > 0, E_pos_list)))
     top.append(len(filter(lambda item: item < 10.01 and item > 0, E_pos_list)))
+
+    number_of_bugs = len(qid2line)
+    top_percent = [int(round(float(x * 100) / number_of_bugs)) for x in top]
+
     print '\nTop 1/3/5/10:', top
+    print 'Top %1/%3/%5/%10:', top_percent
     EXAM_list = [e for e in EXAM_list if e > 0]
     print 'EXAM: ', sum(EXAM_list) / len(EXAM_list)
 
