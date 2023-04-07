@@ -95,7 +95,7 @@ def consume(patch_part_lines: List[str],
             patch_part_starting_fixed_line: int,
             buggy_content: str,
             fixed_content: str,
-            fixed_buggy_map: Dict[int, int]) -> Tuple[List[int], List[int]]:
+            fixed_buggy_map: Dict[int, int]) -> Tuple[List[int], List[int], bool]:
     """
     This function implements a state machine that consumes diffs
     to figure out which lines need to be included in
@@ -126,6 +126,8 @@ def consume(patch_part_lines: List[str],
 
     code_line_added_in_remove_counter = 0
     code_line_seen_in_add_counter = 0
+
+    is_bug_of_omission = False
 
     for index, line in enumerate(patch_part_lines):
         if line.startswith("-"):
@@ -164,6 +166,9 @@ def consume(patch_part_lines: List[str],
                                                          abs_diff_fixed_end_add_line_num,
                                                          fixed_buggy_map)
                 abs_buggy_before_add_line_num, abs_buggy_after_add_line_num = add_mode_manager_object.get_add_mode_ground_truth()
+
+                is_bug_of_omission = abs_buggy_before_add_line_num != -1 or abs_buggy_after_add_line_num != -1
+
                 if (abs_buggy_after_add_line_num != -1 and
                         abs_buggy_after_add_line_num not in code_lines):
                     code_lines.append(abs_buggy_after_add_line_num)
@@ -179,7 +184,7 @@ def consume(patch_part_lines: List[str],
             code_line_added_in_remove_counter = 0
             code_line_seen_in_add_counter = 0
 
-    return code_lines, code_extended_lines
+    return code_lines, code_extended_lines, is_bug_of_omission
 
 
 def fixed_to_buggy_map(patch_parts, fixed_content_line_numbers):
@@ -235,7 +240,7 @@ def map_check(fixed_buggy_map: Dict[int, int],
 
 def get_file_ground_truth(patch: str,
                           buggy_content: str,
-                          fixed_content: str) -> Tuple[List[int], List[int]]:
+                          fixed_content: str) -> Tuple[List[int], List[int], float]:
     code_lines = []
     code_extended_lines = []
 
@@ -244,6 +249,7 @@ def get_file_ground_truth(patch: str,
 
     map_check(fixed_buggy_map, buggy_content, fixed_content)
 
+    is_file_bug_of_omission = False
     for patch_part in patch_parts:
         meta_info_line = patch_part[0]
         (starting_buggy_line,
@@ -251,8 +257,13 @@ def get_file_ground_truth(patch: str,
          starting_fixed_line,
          number_fixed_line) = get_patch_part_meta_info(meta_info_line)
         lines = patch_part[1:]
-        current_code_lines, current_code_extended_lines = consume(lines, starting_buggy_line, starting_fixed_line,
-                                                                  buggy_content, fixed_content, fixed_buggy_map)
+        (current_code_lines,
+         current_code_extended_lines,
+         is_bug_of_omission) = consume(lines, starting_buggy_line,
+                                       starting_fixed_line,
+                                       buggy_content, fixed_content,
+                                       fixed_buggy_map)
+        is_file_bug_of_omission = is_file_bug_of_omission or is_bug_of_omission
 
         code_lines += list(filter(lambda x: x not in code_lines, current_code_lines))
         code_extended_lines += list(
@@ -265,7 +276,7 @@ def get_file_ground_truth(patch: str,
         code_lines.sort()
         code_extended_lines.sort()
 
-    return code_lines, code_extended_lines
+    return code_lines, code_extended_lines, is_file_bug_of_omission
 
 
 def get_content_line_numbers(buggy_content: str):
@@ -313,19 +324,22 @@ def _is_predicate_bug(buggy_content: str,
 
 
 def get_bug_ground_truth(benchmark_name: str,
-                         bug_number: int) -> Tuple[List[Dict], bool]:
+                         bug_number: int) -> Tuple[List[Dict], bool, bool]:
     python_none_test_files = common.get_diff_commit(benchmark_name, bug_number)
 
     but_ground_truth = []
 
     is_predicate_bug = False
+    is_project_bug_of_omission = False
     for file in python_none_test_files:
         filename = file.filename
         patch = file.patch
         buggy_content = file.buggy_content
         buggy_content_size = get_content_line_numbers(buggy_content)
         fixed_content = file.fixed_content
-        lines, extended_lines = get_file_ground_truth(patch, buggy_content, fixed_content)
+        lines, extended_lines, is_file_bug_of_omission = get_file_ground_truth(patch, buggy_content, fixed_content)
+
+        is_project_bug_of_omission = is_project_bug_of_omission or is_file_bug_of_omission
 
         if not is_predicate_bug:
             is_predicate_bug_in_lines = _is_predicate_bug(buggy_content, lines)
@@ -346,7 +360,8 @@ def get_bug_ground_truth(benchmark_name: str,
                 "EXTENDED_FUNCTIONS": extended_function_not_repeated
             }
         )
-    return but_ground_truth, is_predicate_bug
+
+    return but_ground_truth, is_predicate_bug, is_project_bug_of_omission
 
 
 def count_all_line_nums(bug_patch_info):
@@ -379,14 +394,19 @@ def main():
     empty_ground_truth_info_dict_2 = {}
     predicate_bug_info_dict = {}
 
+    num_bugs_of_omission = 0
+    num_all_bugs = 0
     for benchmark_name, benchmark_items in CORRECT.items():
         for bug_number in benchmark_items["ACCEPTED"]:
+            num_all_bugs += 1
 
             # if benchmark_name != "keras" or bug_number != 2:
             #     continue
 
             print(benchmark_name, bug_number)
-            bug_patch_info, is_predicate_bug = get_bug_ground_truth(benchmark_name, bug_number)
+            bug_patch_info, is_predicate_bug, is_project_bug_of_omission = get_bug_ground_truth(benchmark_name, bug_number)
+            if is_project_bug_of_omission:
+                num_bugs_of_omission += 1
             all_line_nums = count_all_line_nums(bug_patch_info)
             all_functions = count_all_functions(bug_patch_info)
             if all_functions == 0:
@@ -400,12 +420,15 @@ def main():
 
     for benchmark_name, benchmark_items in CORRECT_2.items():
         for bug_number in benchmark_items["ACCEPTED"]:
+            num_all_bugs += 1
 
             # if benchmark_name != "keras" or bug_number != 2:
             #     continue
 
             print(benchmark_name, bug_number)
-            bug_patch_info, is_predicate_bug = get_bug_ground_truth(benchmark_name, bug_number)
+            bug_patch_info, is_predicate_bug, is_project_bug_of_omission = get_bug_ground_truth(benchmark_name, bug_number)
+            if is_project_bug_of_omission:
+                num_bugs_of_omission += 1
             all_line_nums = count_all_line_nums(bug_patch_info)
             all_functions = count_all_functions(bug_patch_info)
             if all_functions == 0:
@@ -416,6 +439,8 @@ def main():
                 empty_ground_truth_info_dict_2[benchmark_name].append(bug_number)
             ground_truth_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
             predicate_bug_info_dict[f"{benchmark_name}:{bug_number}"] = is_predicate_bug
+
+    print(f"Bugs of omission: ", (num_bugs_of_omission / num_all_bugs) * 100)
 
     common.save_object_to_json(ground_truth_info_dict, Path(GROUND_TRUTH_INFO_FILE_NAME))
     common.save_object_to_json(empty_ground_truth_info_dict, Path(common.EMPTY_GROUND_TRUTH_FILE_NAME))
