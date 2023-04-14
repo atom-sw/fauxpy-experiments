@@ -238,7 +238,7 @@ def main():
     # Delete redundant result from before.
     pass
 
-    # Step: 4.2:
+    # Step: 4.4:
     # - For fixable ones, skip for now.
     # - For those happening because of bugs in tool, take note.
     # - For unfixable ones:
