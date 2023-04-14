@@ -8,26 +8,18 @@ from score_reassignment import assign_new_scores_to_list_statement
 
 class AverageFaultLocalization:
     def __init__(self,
-                 ochiai_csv: CsvScoreItem,
-                 metallaxis_csv: CsvScoreItem,
-                 muse_csv: CsvScoreItem,
-                 ps_csv: CsvScoreItem,
-                 st_csv: CsvScoreItem):
-        self._ochiai_csv = ochiai_csv
-        self._metallaxis_csv = metallaxis_csv
-        self._muse_csv = muse_csv
-        self._ps_csv = ps_csv
-        self._st_csv = st_csv
-        assert (ochiai_csv.get_bug_key() ==
-                metallaxis_csv.get_bug_key() ==
-                muse_csv.get_bug_key() ==
-                ps_csv.get_bug_key() ==
-                st_csv.get_bug_key())
-        self._all_csv_score_items = [self._ochiai_csv,
-                                     self._metallaxis_csv,
-                                     self._muse_csv,
-                                     self._ps_csv,
-                                     self._st_csv]
+                 all_csv_score_items: List[CsvScoreItem],
+                 include_all_technique_scores: bool):
+        for item in all_csv_score_items:
+            assert item.get_bug_key() == all_csv_score_items[0].get_bug_key()
+        self._all_csv_score_items = all_csv_score_items
+        self._include_all_technique_scores = include_all_technique_scores
+        self._is_mutable = all_csv_score_items[0].get_is_mutable_bug()
+        self._is_predicate = all_csv_score_items[0].get_is_predicate()
+        self._is_crashing = all_csv_score_items[0].get_is_crashing()
+        self._bug_number = all_csv_score_items[0].get_bug_number()
+        self._project_name = all_csv_score_items[0].get_project_name()
+        self._percentage_of_mutants_on_ground_truth = all_csv_score_items[0].get_percentage_of_mutants_on_ground_truth()
         self._technique_min_max = self._get_technique_min_max()
 
     def _get_technique_min_max(self) -> Dict[FLTechnique, Tuple[float, float]]:
@@ -69,7 +61,7 @@ class AverageFaultLocalization:
                 current_technique_score = self._get_statement_score_for_technique(statement_name, csv_score_item)
                 current_normalized_score = self._get_normalized_scored_for_technique(current_technique_score,
                                                                                      csv_score_item.get_technique())
-                current_statement_normalized_scores.append(current_normalized_score)
+                current_statement_normalized_scores.append((csv_score_item.get_technique(), current_normalized_score))
             average_score = self._get_average_score(current_statement_normalized_scores)
             statement_name_parts = statement_name.split("::")
             file_name = statement_name_parts[0]
@@ -77,21 +69,22 @@ class AverageFaultLocalization:
             current_scored_statement = ScoredStatement(file_name, average_score, line_number)
             scored_statement_list.append(current_scored_statement)
 
-        reassigned_score_statement_list = assign_new_scores_to_list_statement(scored_statement_list)
+        # reassigned_score_statement_list = assign_new_scores_to_list_statement(scored_statement_list)
 
+        scored_statement_list.sort(key=lambda x: x.get_score(), reverse=True)
         csv_score_item = CsvScoreItem(None,
                                       None,
-                                      self._ochiai_csv.get_project_name(),
-                                      self._ochiai_csv.get_bug_number(),
+                                      self._project_name,
+                                      self._bug_number,
                                       FLTechnique.Average,
                                       FLGranularity.Statement,
-                                      reassigned_score_statement_list,
+                                      scored_statement_list,
                                       -1)
-        csv_score_item.set_is_crashing(self._ochiai_csv.get_is_crashing())
-        csv_score_item.set_is_predicate(self._ochiai_csv.get_is_predicate())
-        csv_score_item.set_is_mutable_bug(self._ochiai_csv.get_is_mutable_bug())
+        csv_score_item.set_is_crashing(self._is_crashing)
+        csv_score_item.set_is_predicate(self._is_predicate)
+        csv_score_item.set_is_mutable_bug(self._is_mutable)
         csv_score_item.set_percentage_of_mutants_on_ground_truth(
-            self._ochiai_csv.get_percentage_of_mutants_on_ground_truth())
+            self._percentage_of_mutants_on_ground_truth)
 
         return csv_score_item
 
@@ -113,8 +106,33 @@ class AverageFaultLocalization:
         return None
 
     @staticmethod
-    def _get_average_score(scores: List[Optional[float]]) -> float:
-        non_none_score_list = list(filter(lambda x: x is not None, scores))
-        assert len(non_none_score_list) > 0
-        average_score = mathematics.average(non_none_score_list)
+    def _get_average_score(technique_score_list: List[Tuple[FLTechnique, Optional[float]]]) -> float:
+        ochiai_w = 1
+        dstar_w = 1
+        # metallaxis_w = 1
+        # ps_w = 1.5
+        st_w = 2
+
+        w_sum = 0
+        for item in technique_score_list:
+            technique_score = item[1]
+            if technique_score is None:
+                technique_score = 0
+            if item[0] == FLTechnique.Ochiai:
+                w_sum += ochiai_w * technique_score
+            elif item[0] == FLTechnique.DStar:
+                w_sum += dstar_w * technique_score
+            # elif item[0] == FLTechnique.Metallaxis:
+            #     w_sum += metallaxis_w * technique_score
+            # elif item[0] == FLTechnique.Muse:
+            #     w_sum += muse_w * technique_score
+            # elif item[0] == FLTechnique.PS:
+            #     w_sum += ps_w * technique_score
+            elif item[0] == FLTechnique.ST:
+                w_sum += st_w * technique_score
+            else:
+                raise Exception("This one should not happen")
+
+        average_score = w_sum / len(technique_score_list)
+
         return average_score
