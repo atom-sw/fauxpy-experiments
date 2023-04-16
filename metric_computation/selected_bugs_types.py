@@ -16,6 +16,7 @@ def main():
     crashing_selected_bug_info = {}
     st_statement_csv_score_items = list(filter(lambda x: x.get_technique() == FLTechnique.ST,
                                                statement_csv_score_items))
+    st_statement_csv_score_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
     for statement_item in st_statement_csv_score_items:
         bug_key = statement_item.get_bug_key()
         if len(statement_item.get_scored_entities()) != 0:
