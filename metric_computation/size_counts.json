@@ -1623,5 +1623,285 @@
           "LINE_COUNT": 17072,
           "FUNCTION_COUNT": 651,
           "MODULE_COUNT": 186
+     },
+     "ansible:1": {
+          "LINE_COUNT": 173547,
+          "FUNCTION_COUNT": 7825,
+          "MODULE_COUNT": 1055
+     },
+     "ansible:2": {
+          "LINE_COUNT": 173125,
+          "FUNCTION_COUNT": 7814,
+          "MODULE_COUNT": 1076
+     },
+     "ansible:3": {
+          "LINE_COUNT": 172752,
+          "FUNCTION_COUNT": 7801,
+          "MODULE_COUNT": 1072
+     },
+     "ansible:4": {
+          "LINE_COUNT": 172525,
+          "FUNCTION_COUNT": 7801,
+          "MODULE_COUNT": 1072
+     },
+     "ansible:5": {
+          "LINE_COUNT": 171944,
+          "FUNCTION_COUNT": 7795,
+          "MODULE_COUNT": 1069
+     },
+     "ansible:6": {
+          "LINE_COUNT": 2823185,
+          "FUNCTION_COUNT": 86388,
+          "MODULE_COUNT": 11113
+     },
+     "ansible:7": {
+          "LINE_COUNT": 2822082,
+          "FUNCTION_COUNT": 86374,
+          "MODULE_COUNT": 11111
+     },
+     "ansible:8": {
+          "LINE_COUNT": 2821345,
+          "FUNCTION_COUNT": 86322,
+          "MODULE_COUNT": 11187
+     },
+     "ansible:9": {
+          "LINE_COUNT": 2819364,
+          "FUNCTION_COUNT": 86295,
+          "MODULE_COUNT": 11176
+     },
+     "ansible:10": {
+          "LINE_COUNT": 2818587,
+          "FUNCTION_COUNT": 86276,
+          "MODULE_COUNT": 11172
+     },
+     "ansible:11": {
+          "LINE_COUNT": 2797191,
+          "FUNCTION_COUNT": 85714,
+          "MODULE_COUNT": 11157
+     },
+     "ansible:12": {
+          "LINE_COUNT": 2797155,
+          "FUNCTION_COUNT": 85714,
+          "MODULE_COUNT": 11157
+     },
+     "ansible:13": {
+          "LINE_COUNT": 2783386,
+          "FUNCTION_COUNT": 85361,
+          "MODULE_COUNT": 11101
+     },
+     "ansible:14": {
+          "LINE_COUNT": 2761343,
+          "FUNCTION_COUNT": 84774,
+          "MODULE_COUNT": 11033
+     },
+     "ansible:15": {
+          "LINE_COUNT": 2739235,
+          "FUNCTION_COUNT": 84202,
+          "MODULE_COUNT": 10993
+     },
+     "ansible:16": {
+          "LINE_COUNT": 2285452,
+          "FUNCTION_COUNT": 72530,
+          "MODULE_COUNT": 8930
+     },
+     "ansible:17": {
+          "LINE_COUNT": 2283898,
+          "FUNCTION_COUNT": 72490,
+          "MODULE_COUNT": 8916
+     },
+     "luigi:1": {
+          "LINE_COUNT": 22323,
+          "FUNCTION_COUNT": 1994,
+          "MODULE_COUNT": 119
+     },
+     "luigi:3": {
+          "LINE_COUNT": 21415,
+          "FUNCTION_COUNT": 1920,
+          "MODULE_COUNT": 115
+     },
+     "luigi:4": {
+          "LINE_COUNT": 19515,
+          "FUNCTION_COUNT": 1739,
+          "MODULE_COUNT": 104
+     },
+     "luigi:5": {
+          "LINE_COUNT": 19351,
+          "FUNCTION_COUNT": 1727,
+          "MODULE_COUNT": 103
+     },
+     "luigi:6": {
+          "LINE_COUNT": 19069,
+          "FUNCTION_COUNT": 1702,
+          "MODULE_COUNT": 102
+     },
+     "luigi:7": {
+          "LINE_COUNT": 18980,
+          "FUNCTION_COUNT": 1695,
+          "MODULE_COUNT": 104
+     },
+     "luigi:8": {
+          "LINE_COUNT": 18905,
+          "FUNCTION_COUNT": 1687,
+          "MODULE_COUNT": 104
+     },
+     "luigi:9": {
+          "LINE_COUNT": 18325,
+          "FUNCTION_COUNT": 1635,
+          "MODULE_COUNT": 104
+     },
+     "luigi:10": {
+          "LINE_COUNT": 17550,
+          "FUNCTION_COUNT": 1569,
+          "MODULE_COUNT": 101
+     },
+     "luigi:11": {
+          "LINE_COUNT": 17547,
+          "FUNCTION_COUNT": 1569,
+          "MODULE_COUNT": 101
+     },
+     "luigi:12": {
+          "LINE_COUNT": 17046,
+          "FUNCTION_COUNT": 1534,
+          "MODULE_COUNT": 104
+     },
+     "luigi:13": {
+          "LINE_COUNT": 16714,
+          "FUNCTION_COUNT": 1525,
+          "MODULE_COUNT": 102
+     },
+     "luigi:14": {
+          "LINE_COUNT": 16707,
+          "FUNCTION_COUNT": 1526,
+          "MODULE_COUNT": 102
+     },
+     "luigi:15": {
+          "LINE_COUNT": 16158,
+          "FUNCTION_COUNT": 1495,
+          "MODULE_COUNT": 101
+     },
+     "luigi:16": {
+          "LINE_COUNT": 15295,
+          "FUNCTION_COUNT": 1413,
+          "MODULE_COUNT": 99
+     },
+     "luigi:18": {
+          "LINE_COUNT": 14354,
+          "FUNCTION_COUNT": 1326,
+          "MODULE_COUNT": 97
+     },
+     "luigi:19": {
+          "LINE_COUNT": 14354,
+          "FUNCTION_COUNT": 1326,
+          "MODULE_COUNT": 97
+     },
+     "luigi:22": {
+          "LINE_COUNT": 13069,
+          "FUNCTION_COUNT": 1233,
+          "MODULE_COUNT": 89
+     },
+     "luigi:23": {
+          "LINE_COUNT": 13087,
+          "FUNCTION_COUNT": 1234,
+          "MODULE_COUNT": 89
+     },
+     "luigi:26": {
+          "LINE_COUNT": 12218,
+          "FUNCTION_COUNT": 1149,
+          "MODULE_COUNT": 86
+     },
+     "luigi:27": {
+          "LINE_COUNT": 12193,
+          "FUNCTION_COUNT": 1148,
+          "MODULE_COUNT": 86
+     },
+     "luigi:28": {
+          "LINE_COUNT": 11866,
+          "FUNCTION_COUNT": 1131,
+          "MODULE_COUNT": 74
+     },
+     "luigi:29": {
+          "LINE_COUNT": 11912,
+          "FUNCTION_COUNT": 1133,
+          "MODULE_COUNT": 74
+     },
+     "luigi:30": {
+          "LINE_COUNT": 11843,
+          "FUNCTION_COUNT": 1127,
+          "MODULE_COUNT": 74
+     },
+     "luigi:31": {
+          "LINE_COUNT": 11828,
+          "FUNCTION_COUNT": 1124,
+          "MODULE_COUNT": 74
+     },
+     "luigi:32": {
+          "LINE_COUNT": 11826,
+          "FUNCTION_COUNT": 1124,
+          "MODULE_COUNT": 74
+     },
+     "luigi:33": {
+          "LINE_COUNT": 11173,
+          "FUNCTION_COUNT": 1036,
+          "MODULE_COUNT": 67
+     },
+     "scrapy:3": {
+          "LINE_COUNT": 13674,
+          "FUNCTION_COUNT": 1399,
+          "MODULE_COUNT": 179
+     },
+     "scrapy:5": {
+          "LINE_COUNT": 13406,
+          "FUNCTION_COUNT": 1359,
+          "MODULE_COUNT": 248
+     },
+     "scrapy:7": {
+          "LINE_COUNT": 12557,
+          "FUNCTION_COUNT": 1303,
+          "MODULE_COUNT": 245
+     },
+     "scrapy:10": {
+          "LINE_COUNT": 17492,
+          "FUNCTION_COUNT": 1695,
+          "MODULE_COUNT": 250
+     },
+     "scrapy:13": {
+          "LINE_COUNT": 17553,
+          "FUNCTION_COUNT": 1698,
+          "MODULE_COUNT": 250
+     },
+     "scrapy:16": {
+          "LINE_COUNT": 17346,
+          "FUNCTION_COUNT": 1694,
+          "MODULE_COUNT": 250
+     },
+     "scrapy:24": {
+          "LINE_COUNT": 16973,
+          "FUNCTION_COUNT": 1671,
+          "MODULE_COUNT": 248
+     },
+     "scrapy:34": {
+          "LINE_COUNT": 16970,
+          "FUNCTION_COUNT": 1664,
+          "MODULE_COUNT": 255
+     },
+     "scrapy:35": {
+          "LINE_COUNT": 16413,
+          "FUNCTION_COUNT": 1668,
+          "MODULE_COUNT": 198
+     },
+     "scrapy:36": {
+          "LINE_COUNT": 14097,
+          "FUNCTION_COUNT": 1421,
+          "MODULE_COUNT": 179
+     },
+     "scrapy:37": {
+          "LINE_COUNT": 13668,
+          "FUNCTION_COUNT": 1399,
+          "MODULE_COUNT": 179
+     },
+     "scrapy:39": {
+          "LINE_COUNT": 12567,
+          "FUNCTION_COUNT": 1303,
+          "MODULE_COUNT": 245
      }
 }
