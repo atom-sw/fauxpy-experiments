@@ -19,12 +19,13 @@ class PathManager:
     _Statement_csv_score_directory_name = "csv_fauxpy_statement"
     _Function_csv_score_directory_name = "csv_fauxpy_function"
     _Module_csv_score_directory_name = "csv_fauxpy_module"
+    _Latex_table_directory_name = "latex_table_info"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
 
     def _load_path_items(self):
-        path_item_object = load_json_to_dictionary(self._Path_item_file_name)
+        path_item_object = load_json_to_object(self._Path_item_file_name)
         results_path = Path(path_item_object["RESULTS_PATH"])
         workspace_path = Path(path_item_object["WORKSPACE_PATH"])
         return results_path, workspace_path
@@ -59,6 +60,9 @@ class PathManager:
     def get_statement_csv_score_directory_path(self):
         return self._get_csv_score_directory_path(self._Statement_csv_score_directory_name)
 
+    def get_latex_table_dir_name(self):
+        return self._Latex_table_directory_name
+
     @staticmethod
     def _get_csv_score_directory_path(csv_score_directory_name: str) -> Path:
         report_dir_path = Path(csv_score_directory_name)
@@ -69,15 +73,15 @@ class PathManager:
         return report_dir_path
 
 
-def load_json_to_dictionary(file_name: str):
+def load_json_to_object(file_name: str):
     with open(file_name) as file:
         data_dict = json.load(file)
 
     return data_dict
 
 
-def save_dictionary_to_json(obj: Dict,
-                            file_path: Path):
+def save_object_to_json(obj: Any,
+                        file_path: Path):
     string_object = json.dumps(obj, indent=5)
     save_string_to_file(string_object, file_path)
 
@@ -152,6 +156,14 @@ def clean_make_output_dir(dir_name: str):
         output_directory_path.mkdir()
 
     return output_directory_path
+
+
+def make_if_not_dir(dir_name: str):
+    dir_path = Path(dir_name)
+    if not dir_path.exists():
+        dir_path.mkdir()
+
+    return dir_path
 
 
 def save_score_items_to_given_directory_path(directory_path: Path,
