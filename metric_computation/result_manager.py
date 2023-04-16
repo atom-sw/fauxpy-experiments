@@ -52,6 +52,9 @@ class ResultManager:
                                                                               our_detailed,
                                                                               our_overall)
         all_detailed_for_all_techniques = self._combine_all_detailed_of_techniques_in_one_list(all_detailed)
+
+        self._add_family_average_to_all_overall(all_overall)
+
         return all_detailed_for_all_techniques, all_overall
 
     def get_score_based_quantile_function(self) -> List[List]:
@@ -311,7 +314,7 @@ class ResultManager:
 
         def at_x_percentage(top_num: int) -> float:
             percentage = (float(at_x(top_num)) / len(csv_items)) * 100
-            round_percentage = round(percentage)
+            round_percentage = round(percentage, 2)
             return round_percentage
 
         experiment_time_seconds_list = [x.get_metric_literature_val().get_experiment_time() for x in csv_items]
@@ -477,3 +480,36 @@ class ResultManager:
         # Our metrics must be computed after literature
         # metrics because we need e_inspect values for our metrics.
         assert any([x.get_metric_literature_val() is not None for x in self._csv_score_items])
+
+    @staticmethod
+    def _add_family_average_to_all_overall(all_overall):
+        tarantula_overall = [x for x in all_overall if x[0] == FLTechnique.Tarantula.name]
+        ochiai_overall = [x for x in all_overall if x[0] == FLTechnique.Ochiai.name]
+        dstar_overall = [x for x in all_overall if x[0] == FLTechnique.DStar.name]
+
+        metallaxis_overall = [x for x in all_overall if x[0] == FLTechnique.Metallaxis.name]
+        muse_overall = [x for x in all_overall if x[0] == FLTechnique.Muse.name]
+
+        assert len(tarantula_overall) == len(ochiai_overall) == len(dstar_overall)
+        assert len(tarantula_overall) <= 1
+        if len(tarantula_overall) == len(ochiai_overall) == len(dstar_overall) == 1:
+            sbfl_overall_row = ["SBFL"]
+            for index in range(1, len(tarantula_overall[0])):
+                current_avg = mathematics.average([tarantula_overall[0][index],
+                                                   ochiai_overall[0][index],
+                                                   dstar_overall[0][index]])
+                sbfl_overall_row.append(current_avg)
+            all_overall.append(sbfl_overall_row)
+
+        assert len(metallaxis_overall) == len(muse_overall)
+        assert len(metallaxis_overall) <= 1
+        if len(metallaxis_overall) == len(muse_overall) == 1:
+            mbfl_overall_row = ["MBFL"]
+            for index in range(1, len(metallaxis_overall[0])):
+                current_avg = mathematics.average([metallaxis_overall[0][index],
+                                                   muse_overall[0][index]])
+                mbfl_overall_row.append(current_avg)
+            all_overall.append(mbfl_overall_row)
+
+
+
