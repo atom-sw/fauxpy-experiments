@@ -94,10 +94,11 @@ def get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items):
         filter(lambda x: x.get_technique() == FLTechnique.Ochiai, fauxpy_statement_csv_score_items))
     for ochiai_csv in all_ochiai_csv_list:
         print(ochiai_csv.get_bug_key())
+        tarantula_csv = get_csv_technique(FLTechnique.Tarantula, ochiai_csv.get_bug_key())
         dstar_csv = get_csv_technique(FLTechnique.DStar, ochiai_csv.get_bug_key())
-        # metallaxis_csv = get_csv_technique(FLTechnique.Metallaxis, ochiai_csv.get_bug_key())
-        # muse_csv = get_csv_technique(FLTechnique.Muse, ochiai_csv.get_bug_key())
-        # ps_csv = get_csv_technique(FLTechnique.PS, ochiai_csv.get_bug_key())
+        metallaxis_csv = get_csv_technique(FLTechnique.Metallaxis, ochiai_csv.get_bug_key())
+        muse_csv = get_csv_technique(FLTechnique.Muse, ochiai_csv.get_bug_key())
+        ps_csv = get_csv_technique(FLTechnique.PS, ochiai_csv.get_bug_key())
         st_csv = get_csv_technique(FLTechnique.ST, ochiai_csv.get_bug_key())
         techniques_csv_list = [
             ochiai_csv,
@@ -128,6 +129,14 @@ def save_overall(overall_table: List, tool_name: str, granularity: str, dir_name
                                         technique_overall_file_name)
 
 
+def save_latex_info(overall_table: List, tool_name: str, granularity: str):
+    path_manager = file_manager.PathManager()
+    latex_dir_path = file_manager.make_if_not_dir(path_manager.get_latex_table_dir_name())
+    technique_overall_file_name = f"{tool_name}_{granularity}_overall.json"
+    file_path = latex_dir_path / technique_overall_file_name
+    file_manager.save_object_to_json(overall_table, file_path)
+
+
 def save_quantile(overall_table: List, tool_name: str, granularity: str, dir_name: str):
     quantile_file_name = f"{tool_name}_{granularity}_quantile.csv"
     file_manager.save_csv_to_output_dir(overall_table,
@@ -149,6 +158,8 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     save_detailed(all_detailed_tables, "fauxpy", "statement", dir_name)
     save_overall(all_overall_table, "fauxpy", "statement", dir_name)
     save_quantile(all_quantiles, "fauxpy", "statement", dir_name)
+
+    save_latex_info(all_overall_table, "fauxpy", "statement")
 
 
 def calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info):
@@ -211,17 +222,14 @@ def calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, gro
 
 def main():
     path_manager = file_manager.PathManager()
-    ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
-    size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
+    ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
+    size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
 
-    fauxpy_statement_csv_score_items = file_manager.Cache.load("fauxpy_statement_csv_score_items")
-    if fauxpy_statement_csv_score_items is None:
-        fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
-        file_manager.Cache.save(fauxpy_statement_csv_score_items, "fauxpy_statement_csv_score_items")
+    fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
     # fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
     # if fauxpy_function_csv_score_items is None:
@@ -248,14 +256,14 @@ def main():
     #                                                                         fauxpy_module_csv_score_items)
     # calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
     #
-    average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
-    calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
+    # average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
+    # calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
 
 
 def generate_combine_fl_data_input():
     path_manager = file_manager.PathManager()
-    ground_truth_info = file_manager.load_json_to_dictionary(path_manager.get_ground_truth_file_name())
-    size_counts_info = file_manager.load_json_to_dictionary(path_manager.get_size_counts_file_name())
+    ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
+    size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
     combine_fl_manager = CombineFlManager(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
@@ -268,7 +276,7 @@ def generate_combine_fl_data_input():
     output_dir_path = file_manager.clean_make_output_dir(directory_name)
 
     for index, release_json_dict_item in enumerate(release_json_dict_list):
-        file_manager.save_dictionary_to_json(release_json_dict_item, output_dir_path / f"python_release_{index}.json")
+        file_manager.save_object_to_json(release_json_dict_item, output_dir_path / f"python_release_{index}.json")
     file_manager.save_csv_to_output_dir(qid_lines_csv_table, directory_name, "python_qid-lines.csv")
     file_manager.save_string_to_file(techniques_str, output_dir_path / "techniques.txt")
     file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
