@@ -6,6 +6,13 @@ import file_manager
 from entity_type import ScoredEntity, ScoredStatement
 
 
+class ProjectType(Enum):
+    Dev = 0
+    DS = 1
+    Web = 2
+    CLI = 3
+
+
 class FLTechnique(Enum):
     Tarantula = 0
     Ochiai = 1
@@ -85,6 +92,7 @@ class CsvScoreItem:
         self._is_crashing = None
         self._is_mutable_bug = None
         self._percentage_of_mutants_on_ground_truth = None
+        self._project_type = None
 
     def _pretty_representation(self):
         if self._csv_paths is None:
@@ -189,6 +197,12 @@ class CsvScoreItem:
 
     def set_percentage_of_mutants_on_ground_truth(self, value: float):
         self._percentage_of_mutants_on_ground_truth = value
+
+    def get_project_type(self) -> ProjectType:
+        return self._project_type
+
+    def set_project_type(self, value: ProjectType):
+        self._project_type = value
 
 
 class CsvScoreItemLoadManager:
