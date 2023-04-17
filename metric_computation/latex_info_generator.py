@@ -133,6 +133,8 @@ class LatexInfo:
             value = row[index]
             if col_name == "experiment_time_seconds":
                 metric_dict[Constants.Time] = round(value)
+            elif col_name == "e_inspect":
+                metric_dict[Constants.Einspect] = round(value)
             elif col_name == "@1%":
                 metric_dict[Constants.At1] = round(value)
             elif col_name == "@3%":
