@@ -69,7 +69,8 @@ class ResultManager:
         all_quantiles_table.append(all_quantiles_header)
         for technique in self._all_techniques:
             technique_csv_score_items = self._get_all_csv_items_for(technique, self._csv_score_items)
-            technique_quantile_records = our_metrics.score_based_quantile_function_for_technique(technique_csv_score_items)
+            technique_quantile_records = our_metrics.score_based_quantile_function_for_technique(
+                technique_csv_score_items)
             all_quantiles_table += [x.get_record() for x in technique_quantile_records]
 
         return all_quantiles_table
@@ -499,9 +500,16 @@ class ResultManager:
         if len(tarantula_overall) == len(ochiai_overall) == len(dstar_overall) == 1:
             sbfl_overall_row = ["SBFL"]
             for index in range(1, len(tarantula_overall[0])):
-                current_avg = mathematics.average([tarantula_overall[0][index],
-                                                   ochiai_overall[0][index],
-                                                   dstar_overall[0][index]])
+                current_tarantula = tarantula_overall[0][index]
+                current_ochiai = ochiai_overall[0][index]
+                current_dstar = dstar_overall[0][index]
+                if current_tarantula is None:
+                    assert current_tarantula == current_ochiai == current_dstar
+                    current_avg = None
+                else:
+                    current_avg = mathematics.average([current_tarantula,
+                                                       current_ochiai,
+                                                       current_dstar])
                 sbfl_overall_row.append(current_avg)
             all_overall.append(sbfl_overall_row)
 
@@ -510,10 +518,13 @@ class ResultManager:
         if len(metallaxis_overall) == len(muse_overall) == 1:
             mbfl_overall_row = ["MBFL"]
             for index in range(1, len(metallaxis_overall[0])):
-                current_avg = mathematics.average([metallaxis_overall[0][index],
-                                                   muse_overall[0][index]])
+                current_metallaxis = metallaxis_overall[0][index]
+                current_muse = muse_overall[0][index]
+                if current_metallaxis is None:
+                    assert current_metallaxis == current_muse
+                    current_avg = None
+                else:
+                    current_avg = mathematics.average([current_metallaxis,
+                                                       current_muse])
                 mbfl_overall_row.append(current_avg)
             all_overall.append(mbfl_overall_row)
-
-
-
