@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import List
 
 import file_manager
@@ -7,6 +8,7 @@ from csv_score_function_granularity_manager import CsvScoreItemFunctionGranulari
 from csv_score_item_module_granularity_manager import CsvScoreItemModuleGranularityManager
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, ProjectType
 from hierarchical_fault_localization import HierarchicalFaultLocalization
+from latex_info_generator import LatexInfo
 from result_manager import ResultManager
 from selected_bugs_types import assign_type_to_selected_bugs
 
@@ -242,7 +244,7 @@ def calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, gro
     save_overall(literature_overall_table, "average_fl", "statement", dir_name)
 
 
-def main():
+def generate_metrics():
     path_manager = file_manager.PathManager()
     ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
     size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
@@ -251,7 +253,7 @@ def main():
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
     # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
     #                                                                         fauxpy_statement_csv_score_items)
@@ -260,10 +262,10 @@ def main():
     #                                                       fauxpy_function_csv_score_items)
     # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
 
-    fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
+    # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
     #                                                       fauxpy_module_csv_score_items)
-    calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
+    # calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
 
     # mfs_hfl_statement_csv_score_items = get_mfs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
     #                                                                           fauxpy_function_csv_score_items,
@@ -301,6 +303,14 @@ def generate_combine_fl_data_input():
     file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
 
 
+def generate_latex_data_information():
+    path_manager = file_manager.PathManager()
+    latex_table_dir_name = path_manager.get_latex_table_dir_name()
+    latex_info = LatexInfo(Path(latex_table_dir_name))
+    latex_info.generate_data_latex_file()
+
+
 if __name__ == '__main__':
     # generate_combine_fl_data_input()
-    main()
+    # generate_metrics()
+    generate_latex_data_information()
