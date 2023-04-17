@@ -315,7 +315,8 @@ class ResultManager:
 
         def at_x_percentage(top_num: int) -> float:
             percentage = (float(at_x(top_num)) / len(csv_items)) * 100
-            round_percentage = round(percentage, 2)
+            # round_percentage = round(percentage, 2)
+            round_percentage = percentage
             return round_percentage
 
         experiment_time_seconds_list = [x.get_metric_literature_val().get_experiment_time() for x in csv_items]
@@ -325,20 +326,24 @@ class ResultManager:
                                 if x.get_metric_literature_val().is_bug_localized()]
 
         average_experiment_time = mathematics.average(experiment_time_seconds_list)
-        round_average_experiment_time = round(average_experiment_time)
+        # round_average_experiment_time = round(average_experiment_time)
+        round_average_experiment_time = average_experiment_time
 
         average_e_inspect = mathematics.average(e_inspect_list)
-        round_average_e_inspect = round(average_e_inspect)
+        # round_average_e_inspect = round(average_e_inspect)
+        round_average_e_inspect = average_e_inspect
 
         average_exam_score = mathematics.average(exam_score_list)
-        round_average_exam_score = round(average_exam_score, 4)
+        # round_average_exam_score = round(average_exam_score, 4)
+        round_average_exam_score = average_exam_score
 
         if len(java_exam_score_list) == 0:
             average_java_exam_score = None
             round_average_java_exam_score = None
         else:
             average_java_exam_score = mathematics.average(java_exam_score_list)
-            round_average_java_exam_score = round(average_java_exam_score, 4)
+            # round_average_java_exam_score = round(average_java_exam_score, 4)
+            round_average_java_exam_score = average_java_exam_score
 
         technique_result = [technique_name,
                             round_average_experiment_time,
