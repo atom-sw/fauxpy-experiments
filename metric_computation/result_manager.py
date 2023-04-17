@@ -150,7 +150,7 @@ class ResultManager:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                          csv_score_items)
 
-        overall_results_header = ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10",
+        overall_results_header = ["technique", "experiment_time_seconds", "e_inspect", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10",
                                   "@10%", "exam_score", "java_exam_score"]
         technique_overall_table = [overall_results_header]
         technique_detailed_table_dict = {}
@@ -304,7 +304,7 @@ class ResultManager:
     @staticmethod
     def _get_technique_literature_overall_results_row(technique_name: str,
                                                       csv_items: List[CsvScoreItem]) -> List:
-        # ["technique", "experiment_time_seconds", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score", "java_exam_score"]
+        # ["technique", "experiment_time_seconds", "e_inspect", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score", "java_exam_score"]
 
         if len(csv_items) == 0:
             return [None, None, None, None, None, None, None, None, None, None, None, None]
@@ -319,12 +319,16 @@ class ResultManager:
             return round_percentage
 
         experiment_time_seconds_list = [x.get_metric_literature_val().get_experiment_time() for x in csv_items]
+        e_inspect_list = [x.get_metric_literature_val().get_e_inspect() for x in csv_items]
         exam_score_list = [x.get_metric_literature_val().get_exam_score() for x in csv_items]
         java_exam_score_list = [x.get_metric_literature_val().get_exam_score() for x in csv_items
                                 if x.get_metric_literature_val().is_bug_localized()]
 
         average_experiment_time = mathematics.average(experiment_time_seconds_list)
         round_average_experiment_time = round(average_experiment_time)
+
+        average_e_inspect = mathematics.average(e_inspect_list)
+        round_average_e_inspect = round(average_e_inspect)
 
         average_exam_score = mathematics.average(exam_score_list)
         round_average_exam_score = round(average_exam_score, 4)
@@ -338,6 +342,7 @@ class ResultManager:
 
         technique_result = [technique_name,
                             round_average_experiment_time,
+                            round_average_e_inspect,
                             at_x(1),
                             at_x_percentage(1),
                             at_x(3),
