@@ -184,11 +184,13 @@ def calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_
     fauxpy_result_manager = ResultManager(fauxpy_function_csv_score_items,
                                           ground_truth_info,
                                           size_counts_info)
-    literature_detailed_tables, literature_overall_table = fauxpy_result_manager.get_metric_results()
+    all_detailed_tables, all_overall_table = fauxpy_result_manager.get_metric_results()
     dir_name = "output_fauxpy_function"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(literature_detailed_tables, "fauxpy", "function", dir_name)
-    save_overall(literature_overall_table, "fauxpy", "function", dir_name)
+    save_detailed(all_detailed_tables, "fauxpy", "function", "all", dir_name)
+    save_overall(all_overall_table, "fauxpy", "function", "all", dir_name)
+
+    save_latex_info(all_overall_table, "fauxpy", "function", "all")
 
 
 def calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info):
@@ -247,17 +249,14 @@ def main():
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fauxpy_function_csv_score_items = file_manager.Cache.load("fauxpy_function_csv_score_items")
-    # if fauxpy_function_csv_score_items is None:
-    #     fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
-    #                                                                             fauxpy_statement_csv_score_items)
-    #     file_manager.Cache.save(fauxpy_function_csv_score_items, "fauxpy_function_csv_score_items")
-    #
+    fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
+                                                                            fauxpy_statement_csv_score_items)
+
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_function_csv_score_directory_path(),
     #                                                       fauxpy_function_csv_score_items)
-    # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
+    calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
     #
     # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
