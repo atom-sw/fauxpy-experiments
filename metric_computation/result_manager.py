@@ -211,7 +211,7 @@ class ResultManager:
                                             function_count,
                                             buggy_functions_list)
                 e_inspect_value = e_inspect_object.get_e_inspect()
-                is_bug_localized = e_inspect_value.is_bug_localized()
+                is_bug_localized = e_inspect_object.is_bug_localized()
         elif csv_score_item.get_granularity() == FLGranularity.Module:
             module_count = self._size_counts_dict[bug_key]["MODULE_COUNT"]
             buggy_module_list = self._get_ground_truth_buggy_module_names(bug_key)
@@ -220,7 +220,7 @@ class ResultManager:
                                         module_count,
                                         buggy_module_list)
             e_inspect_value = e_inspect_object.get_e_inspect()
-            is_bug_localized = e_inspect_value.is_bug_localized()
+            is_bug_localized = e_inspect_object.is_bug_localized()
         else:
             raise Exception()
 
