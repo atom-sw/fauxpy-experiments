@@ -5,7 +5,7 @@ from average_fault_localization import AverageFaultLocalization
 from combine_fl_manager import CombineFlManager
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
 from csv_score_item_module_granularity_manager import CsvScoreItemModuleGranularityManager
-from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique
+from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, ProjectType
 from hierarchical_fault_localization import HierarchicalFaultLocalization
 from result_manager import ResultManager
 from selected_bugs_types import assign_type_to_selected_bugs
@@ -115,51 +115,69 @@ def get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items):
     return average_fl_statement_csv_score_item_list
 
 
-def save_detailed(detailed_table: List, tool_name: str, granularity: str, dir_name: str):
-    technique_detailed_file_name = f"{tool_name}_{granularity}_detailed.csv"
+def save_detailed(detailed_table: List, tool_name: str, granularity: str, bug_type: str, dir_name: str):
+    technique_detailed_file_name = f"{tool_name}_{granularity}_{bug_type}_detailed.csv"
     file_manager.save_csv_to_output_dir(detailed_table,
                                         dir_name,
                                         technique_detailed_file_name)
 
 
-def save_overall(overall_table: List, tool_name: str, granularity: str, dir_name: str):
-    technique_overall_file_name = f"{tool_name}_{granularity}_overall.csv"
+def save_overall(overall_table: List, tool_name: str, granularity: str, bug_type: str, dir_name: str):
+    technique_overall_file_name = f"{tool_name}_{granularity}_{bug_type}_overall.csv"
     file_manager.save_csv_to_output_dir(overall_table,
                                         dir_name,
                                         technique_overall_file_name)
 
 
-def save_latex_info(overall_table: List, tool_name: str, granularity: str):
+def save_latex_info(overall_table: List, tool_name: str, granularity: str, bug_type: str):
     path_manager = file_manager.PathManager()
     latex_dir_path = file_manager.make_if_not_dir(path_manager.get_latex_table_dir_name())
-    technique_overall_file_name = f"{tool_name}_{granularity}_overall.json"
+    technique_overall_file_name = f"{tool_name}_{granularity}_{bug_type}_overall.json"
     file_path = latex_dir_path / technique_overall_file_name
     file_manager.save_object_to_json(overall_table, file_path)
 
 
-def save_quantile(overall_table: List, tool_name: str, granularity: str, dir_name: str):
-    quantile_file_name = f"{tool_name}_{granularity}_quantile.csv"
+def save_quantile(overall_table: List, tool_name: str, granularity: str, bug_type: str, dir_name: str):
+    quantile_file_name = f"{tool_name}_{granularity}_{bug_type}_quantile.csv"
     file_manager.save_csv_to_output_dir(overall_table,
                                         dir_name,
                                         quantile_file_name)
 
 
 def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info):
-    fauxpy_statement_result_manager = ResultManager(fauxpy_statement_csv_score_items,
-                                                    ground_truth_info,
-                                                    size_counts_info,
-                                                    True)
-    all_detailed_tables, all_overall_table = fauxpy_statement_result_manager.get_metric_results()
-
-    all_quantiles = fauxpy_statement_result_manager.get_score_based_quantile_function()
+    def compute_metrics(csv_items, bug_type):
+        fauxpy_statement_result_manager = ResultManager(csv_items,
+                                                        ground_truth_info,
+                                                        size_counts_info,
+                                                        True)
+        all_detailed_tables, all_overall_table = fauxpy_statement_result_manager.get_metric_results()
+        all_quantiles = fauxpy_statement_result_manager.get_score_based_quantile_function()
+        save_detailed(all_detailed_tables, "fauxpy", "statement", bug_type, dir_name)
+        save_overall(all_overall_table, "fauxpy", "statement", bug_type, dir_name)
+        save_quantile(all_quantiles, "fauxpy", "statement", bug_type, dir_name)
+        save_latex_info(all_overall_table, "fauxpy", "statement", bug_type)
 
     dir_name = "output_fauxpy_statement"
     file_manager.clean_make_output_dir(dir_name)
-    save_detailed(all_detailed_tables, "fauxpy", "statement", dir_name)
-    save_overall(all_overall_table, "fauxpy", "statement", dir_name)
-    save_quantile(all_quantiles, "fauxpy", "statement", dir_name)
 
-    save_latex_info(all_overall_table, "fauxpy", "statement")
+    predicate_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_predicate()]
+    crashing_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_crashing()]
+    mutable_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_mutable_bug()]
+
+    dev_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.Dev]
+    ds_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.DS]
+    web_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.Web]
+    cli_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.CLI]
+
+    compute_metrics(fauxpy_statement_csv_score_items, "all")
+    compute_metrics(predicate_csv_items, "predicate")
+    compute_metrics(crashing_csv_items, "crashing")
+    compute_metrics(mutable_csv_items, "mutable")
+
+    compute_metrics(dev_csv_items, "dev")
+    compute_metrics(ds_csv_items, "ds")
+    compute_metrics(web_csv_items, "web")
+    compute_metrics(cli_csv_items, "cli")
 
 
 def calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info):
