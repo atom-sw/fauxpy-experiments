@@ -328,8 +328,12 @@ class ResultManager:
         average_exam_score = mathematics.average(exam_score_list)
         round_average_exam_score = round(average_exam_score, 4)
 
-        average_java_exam_score = mathematics.average(java_exam_score_list)
-        round_average_java_exam_score = round(average_java_exam_score, 4)
+        if len(java_exam_score_list) == 0:
+            average_java_exam_score = None
+            round_average_java_exam_score = None
+        else:
+            average_java_exam_score = mathematics.average(java_exam_score_list)
+            round_average_java_exam_score = round(average_java_exam_score, 4)
 
         technique_result = [technique_name,
                             round_average_experiment_time,
