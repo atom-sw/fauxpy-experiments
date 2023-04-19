@@ -1,0 +1,3 @@
+Entity,Score
+luigi/contrib/hadoop_jar.py,1.0
+luigi/contrib/hadoop.py,0.5

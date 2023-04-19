@@ -1,0 +1,9 @@
+Entity,Score
+luigi/contrib/hadoop_jar.py,1.1
+luigi/task_register.py,0.584375
+luigi/task.py,0.584375
+luigi/six.py,0.584375
+luigi/parameter.py,0.584375
+luigi/contrib/hadoop.py,0.584375
+luigi/configuration.py,0.584375
+luigi/contrib/hdfs/config.py,0.1

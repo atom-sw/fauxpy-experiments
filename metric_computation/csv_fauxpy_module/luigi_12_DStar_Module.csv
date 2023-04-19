@@ -1,0 +1,10 @@
+Entity,Score
+luigi/task_register.py,10.0
+luigi/task.py,10.0
+luigi/parameter.py,10.0
+luigi/configuration.py,10.0
+luigi/six.py,0.9090909090909091
+luigi/contrib/hdfs/hadoopcli_clients.py,0.9090909090909091
+luigi/contrib/hdfs/config.py,0.9090909090909091
+luigi/contrib/hdfs/clients.py,0.9090909090909091
+luigi/cmdline_parser.py,0.9090909090909091

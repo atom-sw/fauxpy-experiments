@@ -1,0 +1,16 @@
+Entity,Score
+luigi/contrib/hive.py,0.9523809523809523
+luigi/worker.py,0.0
+luigi/task_register.py,0.0
+luigi/task_history.py,0.0
+luigi/task.py,0.0
+luigi/target.py,0.0
+luigi/six.py,0.0
+luigi/scheduler.py,0.0
+luigi/parameter.py,0.0
+luigi/interface.py,0.0
+luigi/hive.py,0.0
+luigi/hadoop.py,0.0
+luigi/format.py,0.0
+luigi/file.py,0.0
+luigi/configuration.py,0.0

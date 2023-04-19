@@ -1,0 +1,6 @@
+Entity,Score
+luigi/scheduler.py,0.0629940788348712
+luigi/task.py,0.05976143046671968
+luigi/configuration.py,0.0545544725589981
+luigi/parameter.py,0.0545544725589981
+luigi/task_register.py,0.05439282932204212
