@@ -1,0 +1,11 @@
+Entity,Score
+luigi/util.py::__call__::276::288,0.4472135954999579
+luigi/task_register.py::_get_reg::127::150,0.42640143271122083
+luigi/util.py::__call__::300::310,0.31622776601683794
+luigi/task.py::get_task_namespace::306::317,0.0
+luigi/task.py::get_task_family::330::343,0.0
+luigi/task.py::get_params::345::361,0.0
+luigi/task_register.py::task_family::117::125,0.0
+luigi/task_register.py::_set_reg::152::156,0.0
+luigi/task_register.py::_get_namespace::225::231,0.0
+luigi/task_register.py::_module_parents::233::243,0.0

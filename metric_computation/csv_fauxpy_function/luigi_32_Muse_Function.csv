@@ -1,0 +1,7 @@
+Entity,Score
+luigi/task_register.py::__call__::68::97,1.0
+luigi/task.py::list_to_tuple::224::229,0.44674661249285025
+luigi/parameter.py::__init__::104::159,0.0
+luigi/task_register.py::task_family::113::124,-0.011834086112699947
+luigi/task.py::get_param_values::181::231,-0.023668172225399894
+luigi/task.py::get_params::163::179,-0.16567720557779925

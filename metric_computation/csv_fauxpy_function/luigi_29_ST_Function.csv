@@ -1,0 +1,3 @@
+Entity,Score
+luigi/task_register.py::get_task_cls::168::179,1.0
+luigi/task_register.py::load_task::195::202,0.5
