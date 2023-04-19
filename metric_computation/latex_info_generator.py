@@ -142,9 +142,9 @@ class LatexInfo:
             elif col_name == "@5%":
                 metric_dict[Constants.At5] = round(value)
             elif col_name == "@10%":
-                metric_dict[Constants.At10] = value
+                metric_dict[Constants.At10] = round(value)
             elif col_name == "exam_score":
-                metric_dict[Constants.Exam] = round(value, 4)
+                metric_dict[Constants.Exam] = value
             elif col_name == "cumulative_distance":
                 if value is not None:
                     metric_dict[Constants.Distance] = round(value)
