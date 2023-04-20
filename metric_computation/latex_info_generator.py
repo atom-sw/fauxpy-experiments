@@ -41,18 +41,27 @@ class Constants:
 
 
 class LatexInfo:
-    def __init__(self, latex_info_dir_path: Path):
+    Data_file_name = "data.tex"
+    Java_file_name = "java_statement_all_overall.json"
+
+    def __init__(self,
+                 latex_info_dir_path: Path,
+                 java_paper_info_dir_path: Path):
         self._latex_info_dir_path = latex_info_dir_path
+        self._java_paper_info_dir_path = java_paper_info_dir_path
 
     def generate_data_latex_file(self):
-        all_key_val_dict = {}
+        python_key_val_dict = {}
         all_tables_dict = self._load_all_tables()
         for key, value in all_tables_dict.items():
             key_val_dict = self._get_file_key_val_dict(key, value)
-            all_key_val_dict = all_key_val_dict | key_val_dict
+            python_key_val_dict = python_key_val_dict | key_val_dict
 
+        java_info_file_path = self._java_paper_info_dir_path / self.Java_file_name
+        java_key_val_dict = load_json_to_object(str(java_info_file_path.absolute().resolve()))
+        all_key_val_dict = python_key_val_dict | java_key_val_dict
         all_key_val_str = self._get_all_key_val_as_str(all_key_val_dict)
-        save_string_to_file(all_key_val_str, self._latex_info_dir_path / "data.tex")
+        save_string_to_file(all_key_val_str, self._latex_info_dir_path / self.Data_file_name)
 
     def _load_all_tables(self) -> Dict[str, List[List]]:
         json_file_path_list = list(self._latex_info_dir_path.rglob("*.json"))

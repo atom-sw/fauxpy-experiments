@@ -1,0 +1,37 @@
+{
+  "/flpy/stmt/sbfl/ochiai/all/@1/java": 10,
+  "/flpy/stmt/sbfl/ochiai/all/@3/java": 10,
+  "/flpy/stmt/sbfl/ochiai/all/@5/java": 10,
+  "/flpy/stmt/sbfl/ochiai/all/@10/java": 10,
+  "/flpy/stmt/sbfl/ochiai/all/exam/java": 10,
+  
+  "/flpy/stmt/sbfl/dstar/all/@1/java": 10,
+  "/flpy/stmt/sbfl/dstar/all/@3/java": 10,
+  "/flpy/stmt/sbfl/dstar/all/@5/java": 10,
+  "/flpy/stmt/sbfl/dstar/all/@10/java": 10,
+  "/flpy/stmt/sbfl/dstar/all/exam/java": 10,
+
+  "/flpy/stmt/mbfl/metallaxis/all/@1/java": 10,
+  "/flpy/stmt/mbfl/metallaxis/all/@3/java": 10,
+  "/flpy/stmt/mbfl/metallaxis/all/@5/java": 10,
+  "/flpy/stmt/mbfl/metallaxis/all/@10/java": 10,
+  "/flpy/stmt/mbfl/metallaxis/all/exam/java": 10,
+
+  "/flpy/stmt/mbfl/muse/all/@1/java": 10,
+  "/flpy/stmt/mbfl/muse/all/@3/java": 10,
+  "/flpy/stmt/mbfl/muse/all/@5/java": 10,
+  "/flpy/stmt/mbfl/muse/all/@10/java": 10,
+  "/flpy/stmt/mbfl/muse/all/exam/java": 10,
+
+  "/flpy/stmt/ps/favg/all/@1/java": 10,
+  "/flpy/stmt/ps/favg/all/@3/java": 10,
+  "/flpy/stmt/ps/favg/all/@5/java": 10,
+  "/flpy/stmt/ps/favg/all/@10/java": 10,
+  "/flpy/stmt/ps/favg/all/exam/java": 10,
+
+  "/flpy/stmt/st/favg/all/@1/java": 10,
+  "/flpy/stmt/st/favg/all/@3/java": 10,
+  "/flpy/stmt/st/favg/all/@5/java": 10,
+  "/flpy/stmt/st/favg/all/@10/java": 10,
+  "/flpy/stmt/st/favg/all/exam/java": 10
+}
