@@ -20,6 +20,7 @@ class PathManager:
     _Function_csv_score_directory_name = "csv_fauxpy_function"
     _Module_csv_score_directory_name = "csv_fauxpy_module"
     _Latex_table_directory_name = "latex_table_info"
+    _Java_paper_info_dir_path = "input_from_java_paper"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
@@ -60,8 +61,11 @@ class PathManager:
     def get_statement_csv_score_directory_path(self):
         return self._get_csv_score_directory_path(self._Statement_csv_score_directory_name)
 
-    def get_latex_table_dir_name(self):
+    def get_latex_table_dir_name(self) -> str:
         return self._Latex_table_directory_name
+
+    def get_java_paper_info_dir_path(self) -> str:
+        return self._Java_paper_info_dir_path
 
     @staticmethod
     def _get_csv_score_directory_path(csv_score_directory_name: str) -> Path:
