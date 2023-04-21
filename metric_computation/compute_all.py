@@ -312,6 +312,11 @@ def generate_latex_data_information():
     latex_info.generate_data_latex_file()
 
 
+def print_list(list_items):
+    for item in list_items:
+        print(item)
+
+
 def get_bug_statistics():
     def print_details(bug_type_list, name_of_type):
         percentage = (len(bug_type_list) / num_all_bugs) * 100
@@ -334,6 +339,20 @@ def get_bug_statistics():
     web_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.Web]
     cli_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.CLI]
 
+    empty_output_ps_bugs = [x for x in statement_csv_score_items
+                            if (x.get_technique() == FLTechnique.PS and
+                                len(x.get_scored_entities()) == 0)]
+
+    empty_output_ps_predicate_bugs = [x for x in statement_csv_score_items
+                                      if (x.get_technique() == FLTechnique.PS and
+                                          len(x.get_scored_entities()) == 0 and
+                                          x.get_is_predicate())]
+    empty_output_ps_predicate_bugs.sort(key=lambda x: x.get_bug_key())
+
+    predicate_mutable_bugs = [x for x in technique_bugs if x.get_is_predicate() and x.get_is_mutable_bug()]
+
+    print("Num all bugs", int(num_all_bugs))
+
     print_details(crashing_bugs, "crashing")
     print_details(predicate_bugs, "predicate")
     print_details(mutable_bugs, "mutable")
@@ -342,6 +361,12 @@ def get_bug_statistics():
     print_details(ds_bugs, "ds")
     print_details(web_bugs, "web")
     print_details(cli_bugs, "cli")
+
+    print_details(empty_output_ps_bugs, "Empty output PS bugs")
+
+    print_details(empty_output_ps_predicate_bugs, "Empty output PS predicate bugs")
+
+    # print_list(empty_output_ps_predicate_bugs)
 
 
 if __name__ == '__main__':
