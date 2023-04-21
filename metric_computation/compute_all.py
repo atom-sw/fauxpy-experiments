@@ -257,7 +257,7 @@ def generate_metrics():
 
     # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
     #                                                                         fauxpy_statement_csv_score_items)
-
+    #
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_function_csv_score_directory_path(),
     #                                                       fauxpy_function_csv_score_items)
     # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
@@ -306,11 +306,46 @@ def generate_combine_fl_data_input():
 def generate_latex_data_information():
     path_manager = file_manager.PathManager()
     latex_table_dir_name = path_manager.get_latex_table_dir_name()
-    latex_info = LatexInfo(Path(latex_table_dir_name))
+    java_paper_info_dir_path = path_manager.get_java_paper_info_dir_path()
+    latex_info = LatexInfo(Path(latex_table_dir_name),
+                           Path(java_paper_info_dir_path))
     latex_info.generate_data_latex_file()
+
+
+def get_bug_statistics():
+    def print_details(bug_type_list, name_of_type):
+        percentage = (len(bug_type_list) / num_all_bugs) * 100
+        print(f"{name_of_type}: {len(bug_type_list)}, {round(percentage)}%")
+
+    path_manager = file_manager.PathManager()
+    statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+
+    num_all_bugs = len(statement_csv_score_items) / 7
+    technique_bugs = [x for x in statement_csv_score_items if x.get_technique() == FLTechnique.Ochiai]
+
+    assert num_all_bugs == len(technique_bugs)
+
+    crashing_bugs = [x for x in technique_bugs if x.get_is_crashing()]
+    predicate_bugs = [x for x in technique_bugs if x.get_is_predicate()]
+    mutable_bugs = [x for x in technique_bugs if x.get_is_mutable_bug()]
+
+    dev_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.Dev]
+    ds_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.DS]
+    web_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.Web]
+    cli_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.CLI]
+
+    print_details(crashing_bugs, "crashing")
+    print_details(predicate_bugs, "predicate")
+    print_details(mutable_bugs, "mutable")
+
+    print_details(dev_bugs, "dev")
+    print_details(ds_bugs, "ds")
+    print_details(web_bugs, "web")
+    print_details(cli_bugs, "cli")
 
 
 if __name__ == '__main__':
     # generate_combine_fl_data_input()
     # generate_metrics()
-    generate_latex_data_information()
+    # generate_latex_data_information()
+    get_bug_statistics()
