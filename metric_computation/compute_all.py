@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import List
 
 import file_manager
+import mathematics
 from average_fault_localization import AverageFaultLocalization
 from combine_fl_manager import CombineFlManager
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
@@ -349,7 +350,7 @@ def get_bug_statistics():
                                           x.get_is_predicate())]
     empty_output_ps_predicate_bugs.sort(key=lambda x: x.get_bug_key())
 
-    predicate_mutable_bugs = [x for x in technique_bugs if x.get_is_predicate() and x.get_is_mutable_bug()]
+    ps_csv_items = [x for x in statement_csv_score_items if x.get_technique() == FLTechnique.PS]
 
     print("Num all bugs", int(num_all_bugs))
 
@@ -366,7 +367,14 @@ def get_bug_statistics():
 
     print_details(empty_output_ps_predicate_bugs, "Empty output PS predicate bugs")
 
-    # print_list(empty_output_ps_predicate_bugs)
+    predicate_instances = [x.get_number_of_predicate_instances() for x in ps_csv_items]
+    number_of_failing_tests = [x.get_number_of_failing_tests() for x in ps_csv_items]
+
+    print(mathematics.average(predicate_instances))
+    print(max(predicate_instances))
+
+    print(mathematics.average(number_of_failing_tests))
+    print(max(number_of_failing_tests))
 
 
 if __name__ == '__main__':
@@ -374,3 +382,4 @@ if __name__ == '__main__':
     # generate_metrics()
     # generate_latex_data_information()
     get_bug_statistics()
+
