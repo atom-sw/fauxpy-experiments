@@ -4,6 +4,7 @@ from typing import List
 import file_manager
 from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, CsvScoreItem, ProjectType
 from mutable_bug import MutableBugsAnalysis
+from predicate_analysis import PredicateAnalysis
 
 
 def main():
@@ -51,6 +52,9 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
     mutable_bug_key_list = mutation_analysis.get_mutable_bug_keys()
     percentage_dict = mutation_analysis.get_percentage_of_mutants_on_ground_truth()
 
+    predicate_analysis = PredicateAnalysis(path_manager.get_results_path())
+    number_of_predicate_instances_dict = predicate_analysis.get_number_of_predicate_instances_dict()
+
     for csv_score_item in csv_score_items:
         csv_score_item.set_is_predicate(predicate_info[csv_score_item.get_bug_key()])
         csv_score_item.set_is_crashing(crashing_info[csv_score_item.get_bug_key()])
@@ -68,6 +72,13 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
         else:
             print(csv_score_item.get_project_name())
             raise Exception()
+
+        if csv_score_item.get_technique() == FLTechnique.PS:
+            (current_number_of_predicate_instances,
+             current_number_of_failing_tests) = number_of_predicate_instances_dict[csv_score_item.get_bug_key()]
+            assert current_number_of_predicate_instances >= current_number_of_failing_tests
+            csv_score_item.set_number_of_predicate_instances(current_number_of_predicate_instances)
+            csv_score_item.set_number_of_failing_tests(current_number_of_failing_tests)
 
 
 if __name__ == '__main__':

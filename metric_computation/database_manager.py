@@ -72,3 +72,27 @@ class MbflDatabaseManager:
             rows = cur.fetchall()
 
         return rows
+
+
+class PsDatabaseManager:
+    Candidate_predicate_table_name = "PredicateSequence"
+
+    def __init__(self, db_path: Path):
+        self._db_path = db_path
+
+    def get_number_of_predicate_instances(self) -> Tuple[int, int]:
+        with sqlite3.connect(self._db_path) as con:
+            cur = con.cursor()
+            cur.execute(f"SELECT TestName, "
+                        f"IndexedPredicateSequence "
+                        f"FROM {self.Candidate_predicate_table_name}")
+            rows = cur.fetchall()
+
+        number_of_failing_tests = len(rows)
+        num_predicate_instance = 0
+        for indexed_predicate_sequence in rows:
+            current_sequence = indexed_predicate_sequence[1]
+            predicates_in_seq = current_sequence.split(",")
+            num_predicate_instance += len(predicates_in_seq)
+
+        return num_predicate_instance, number_of_failing_tests

@@ -93,6 +93,8 @@ class CsvScoreItem:
         self._is_mutable_bug = None
         self._percentage_of_mutants_on_ground_truth = None
         self._project_type = None
+        self._number_of_predicate_instances = None
+        self._number_of_failing_tests = None
 
     def _pretty_representation(self):
         if self._csv_paths is None:
@@ -203,6 +205,22 @@ class CsvScoreItem:
 
     def set_project_type(self, value: ProjectType):
         self._project_type = value
+
+    def get_number_of_predicate_instances(self) -> int:
+        assert self._localization_technique == FLTechnique.PS
+        return self._number_of_predicate_instances
+
+    def set_number_of_predicate_instances(self, value: int):
+        assert self._localization_technique == FLTechnique.PS
+        self._number_of_predicate_instances = value
+
+    def get_number_of_failing_tests(self) -> int:
+        assert self._localization_technique == FLTechnique.PS
+        return self._number_of_failing_tests
+
+    def set_number_of_failing_tests(self, value: int):
+        assert self._localization_technique == FLTechnique.PS
+        self._number_of_failing_tests = value
 
 
 class CsvScoreItemLoadManager:
