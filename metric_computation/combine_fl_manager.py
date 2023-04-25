@@ -214,7 +214,7 @@ class CombineFlManager:
 
         project_name = bug_key_csv_score_item_list[0].get_project_name()
         bug_number = bug_key_csv_score_item_list[0].get_bug_number()
-        line_count = self._size_counts_info[bug_key_csv_score_item_list[0].get_bug_key()]["LINE_COUNT"]
+        line_count = self._size_counts_info[bug_key_csv_score_item_list[0].get_bug_key()]
         qid = self._qid
         self._qid += 1
         multi_score_statement_list = self._get_multi_score_statement_list(bug_key_csv_score_item_list)
@@ -335,8 +335,7 @@ class CombineFlManager:
         current_bug_ground_truth_info = self._ground_truth_info[bug_key]
         for module_info_item in current_bug_ground_truth_info:
             if (statement_module_name == module_info_item["FILE_NAME"]
-                    and statement_line_number in
-                    (module_info_item["LINES"] + module_info_item["EXTENDED_LINES"])):
+                    and statement_line_number in module_info_item["ITEMS"]):
                 return True
 
         return False

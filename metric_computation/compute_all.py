@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List
+from typing import List, Dict, Tuple
 
 import file_manager
 import mathematics
@@ -7,7 +7,7 @@ from average_fault_localization import AverageFaultLocalization
 from combine_fl_manager import CombineFlManager
 from csv_score_function_granularity_manager import CsvScoreItemFunctionGranularityManager
 from csv_score_item_module_granularity_manager import CsvScoreItemModuleGranularityManager
-from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, ProjectType
+from csv_score_load_manager import CsvScoreItemLoadManager, FLTechnique, ProjectType, CsvScoreItem, FLGranularity
 from hierarchical_fault_localization import HierarchicalFaultLocalization
 from latex_info_generator import LatexInfo
 from result_manager import ResultManager
@@ -283,25 +283,63 @@ def generate_metrics():
 
 
 def generate_combine_fl_data_input():
+    def get_ground_truth_and_size_count(ground_truth: Dict, size_count: Dict, granularity: FLGranularity) -> Tuple[Dict, Dict]:
+        new_ground_truth_dictionary = {}
+        for bug_key, module_item_list in ground_truth.items():
+            new_module_item_list = []
+            for module_item in module_item_list:
+                new_module_item = {}
+                if granularity == FLGranularity.Statement:
+                    new_module_item["FILE_NAME"] = module_item["FILE_NAME"]
+                    new_module_item["ITEMS"] = module_item["LINES"] + module_item["EXTENDED_LINES"]
+                elif granularity == FLGranularity.Function:
+                    new_module_item["ITEMS"] = module_item["FUNCTIONS"] + module_item["EXTENDED_FUNCTIONS"]
+                new_module_item_list.append(new_module_item)
+            new_ground_truth_dictionary[bug_key] = new_module_item_list
+
+        new_size_count = {}
+        for bug_key, value in size_count.items():
+            if granularity == FLGranularity.Statement:
+                new_size_count[bug_key] = value["LINE_COUNT"]
+            elif granularity == FLGranularity.Function:
+                new_size_count[bug_key] = value["FUNCTION_COUNT"]
+
+        return new_ground_truth_dictionary, new_size_count
+
+    def generate_data_input_for_granularity(csv_score_items: List[CsvScoreItem], ground_truth, size_counts, dir_name):
+        assert any([x.get_granularity() == csv_score_items[0].get_granularity() for x in csv_score_items])
+        granularity_name = str(csv_score_items[0].get_granularity().name).lower()
+
+        combine_fl_manager = CombineFlManager(csv_score_items, ground_truth, size_counts)
+        release_json_dict_list = combine_fl_manager.get_statement_release_json_dict_list()
+        qid_lines_csv_table = combine_fl_manager.get_statement_qid_lines_csv_table()
+        fl_tech_str = combine_fl_manager.get_techniques_sorted_as_string()
+        proj_string = combine_fl_manager.get_projects_sorted_as_string()
+
+        for index, release_json_dict_item in enumerate(release_json_dict_list):
+            file_manager.save_object_to_json(release_json_dict_item,
+                                             Path(dir_name) / f"python_{granularity_name}_release_{index}.json")
+
+        file_manager.save_csv_to_output_dir(qid_lines_csv_table, dir_name,
+                                            f"python_{granularity_name}_qid-lines.csv")
+        file_manager.save_string_to_file(fl_tech_str, Path(dir_name) / "techniques.txt")
+        file_manager.save_string_to_file(proj_string, Path(dir_name) / "projects.txt")
+
     path_manager = file_manager.PathManager()
     ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
     size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
-    combine_fl_manager = CombineFlManager(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
-    statement_release_json_dict_list = combine_fl_manager.get_statement_release_json_dict_list()
-    statement_qid_lines_csv_table = combine_fl_manager.get_statement_qid_lines_csv_table()
-    techniques_str = combine_fl_manager.get_techniques_sorted_as_string()
-    projects_str = combine_fl_manager.get_projects_sorted_as_string()
+    # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager, fauxpy_statement_csv_score_items)
 
     directory_name = "inputs_to_combine_fl"
-    output_dir_path = file_manager.clean_make_output_dir(directory_name)
+    file_manager.clean_make_output_dir(directory_name)
 
-    for index, release_json_dict_item in enumerate(statement_release_json_dict_list):
-        file_manager.save_object_to_json(release_json_dict_item, output_dir_path / f"python_statement_release_{index}.json")
-    file_manager.save_csv_to_output_dir(statement_qid_lines_csv_table, directory_name, "python_statement_qid-lines.csv")
-    file_manager.save_string_to_file(techniques_str, output_dir_path / "techniques.txt")
-    file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
+    ground_truth_items, size_counts_items = get_ground_truth_and_size_count(ground_truth_info, size_counts_info, FLGranularity.Statement)
+    generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
+                                        ground_truth_items,
+                                        size_counts_items,
+                                        directory_name)
 
 
 def generate_latex_data_information():
@@ -382,4 +420,3 @@ if __name__ == '__main__':
     # generate_metrics()
     # generate_latex_data_information()
     # get_bug_statistics()
-
