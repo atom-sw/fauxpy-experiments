@@ -3,35 +3,35 @@
   "/flpy/stmt/sbfl/ochiai/all/@3/java": 23,
   "/flpy/stmt/sbfl/ochiai/all/@5/java": 31,
   "/flpy/stmt/sbfl/ochiai/all/@10/java": 44,
-  "/flpy/stmt/sbfl/ochiai/all/exam/java": 0.033,
+  "/flpy/stmt/sbfl/ochiai/all/javaexam/java": 0.033,
   
   "/flpy/stmt/sbfl/dstar/all/@1/java": 5,
   "/flpy/stmt/sbfl/dstar/all/@3/java": 24,
   "/flpy/stmt/sbfl/dstar/all/@5/java": 31,
   "/flpy/stmt/sbfl/dstar/all/@10/java": 43,
-  "/flpy/stmt/sbfl/dstar/all/exam/java": 0.033,
+  "/flpy/stmt/sbfl/dstar/all/javaexam/java": 0.033,
 
   "/flpy/stmt/mbfl/metallaxis/all/@1/java": 6,
   "/flpy/stmt/mbfl/metallaxis/all/@3/java": 22,
   "/flpy/stmt/mbfl/metallaxis/all/@5/java": 29,
   "/flpy/stmt/mbfl/metallaxis/all/@10/java": 36,
-  "/flpy/stmt/mbfl/metallaxis/all/exam/java": 0.118,
+  "/flpy/stmt/mbfl/metallaxis/all/javaexam/java": 0.118,
 
   "/flpy/stmt/mbfl/muse/all/@1/java": 7,
   "/flpy/stmt/mbfl/muse/all/@3/java": 12,
   "/flpy/stmt/mbfl/muse/all/@5/java": 16,
   "/flpy/stmt/mbfl/muse/all/@10/java": 19,
-  "/flpy/stmt/mbfl/muse/all/exam/java": 0.304,
+  "/flpy/stmt/mbfl/muse/all/javaexam/java": 0.304,
 
   "/flpy/stmt/ps/favg/all/@1/java": 1,
   "/flpy/stmt/ps/favg/all/@3/java": 4,
   "/flpy/stmt/ps/favg/all/@5/java": 6,
   "/flpy/stmt/ps/favg/all/@10/java": 6,
-  "/flpy/stmt/ps/favg/all/exam/java": 0.331,
+  "/flpy/stmt/ps/favg/all/javaexam/java": 0.331,
 
   "/flpy/stmt/st/favg/all/@1/java": 6,
   "/flpy/stmt/st/favg/all/@3/java": 9,
   "/flpy/stmt/st/favg/all/@5/java": 11,
   "/flpy/stmt/st/favg/all/@10/java": 11,
-  "/flpy/stmt/st/favg/all/exam/java": 0.311
+  "/flpy/stmt/st/favg/all/javaexam/java": 0.311
 }
