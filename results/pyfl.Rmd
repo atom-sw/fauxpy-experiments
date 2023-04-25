@@ -204,7 +204,7 @@ FAMILIES <- list(MBFL=c("Metallaxis", "Muse"),
                  ST=c("ST"),
                  SBFL=c("DStar", "Ochiai", "Tarantula"))
 CATEGORIES <- list(DS=c("spacy", "keras", "pandas"),
-                   DEV=c("cookiecutter", "black"),
+                   DEV=c("cookiecutter", "black", "luigi"),
                    WEB=c("sanic", "fastapi", "tornado"),
                    CL=c("httpie", "thefuck", "tqdm", "youtubedl"))
   
@@ -212,7 +212,7 @@ datas <- data.frame()
 for (granularity in GRANULARITIES) {
   csvpath <- file.path(metrics.dir, 
                        str_c("output_fauxpy_", granularity),
-                       str_c("fauxpy_", granularity, "_detailed.csv"))
+                       str_c("fauxpy_", granularity, "_all_detailed.csv"))
   cur.data <- read.csv(csvpath)
   datas <- datas %>% bind_rows(cur.data)
 }
@@ -282,7 +282,7 @@ str(datas)
 We have a total of `r length(unique(datas$project))` projects, which we can classify by category:
 
    - Data science (`ds`): `spacy`, `keras`, `pandas`
-   - Developer tools (`dev`): `cookiecutter`, `black`
+   - Developer tools (`dev`): `cookiecutter`, `black`, `luigi`
    - Web tools (`web`): `sanic`, `fastapi`, `tornado`
    - Command line tools (`cl`): `httpie`, `thefuck`, `tqdm`, `youtubedl`
    
