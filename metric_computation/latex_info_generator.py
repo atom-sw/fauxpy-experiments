@@ -39,6 +39,10 @@ class Constants:
     Java_exam = "javaexam"
     Time = "time"
     Distance = "distance"
+    Combine_fl = "comb"
+    Average_fl = "avfl"
+    All_families = "alfa"
+    Sbfl_st = "sbst"
 
 
 class LatexInfo:
