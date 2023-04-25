@@ -289,17 +289,17 @@ def generate_combine_fl_data_input():
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
     combine_fl_manager = CombineFlManager(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
-    release_json_dict_list = combine_fl_manager.get_release_json_dict_list()
-    qid_lines_csv_table = combine_fl_manager.get_qid_lines_csv_table()
+    statement_release_json_dict_list = combine_fl_manager.get_statement_release_json_dict_list()
+    statement_qid_lines_csv_table = combine_fl_manager.get_statement_qid_lines_csv_table()
     techniques_str = combine_fl_manager.get_techniques_sorted_as_string()
     projects_str = combine_fl_manager.get_projects_sorted_as_string()
 
     directory_name = "inputs_to_combine_fl"
     output_dir_path = file_manager.clean_make_output_dir(directory_name)
 
-    for index, release_json_dict_item in enumerate(release_json_dict_list):
-        file_manager.save_object_to_json(release_json_dict_item, output_dir_path / f"python_release_{index}.json")
-    file_manager.save_csv_to_output_dir(qid_lines_csv_table, directory_name, "python_qid-lines.csv")
+    for index, release_json_dict_item in enumerate(statement_release_json_dict_list):
+        file_manager.save_object_to_json(release_json_dict_item, output_dir_path / f"python_statement_release_{index}.json")
+    file_manager.save_csv_to_output_dir(statement_qid_lines_csv_table, directory_name, "python_statement_qid-lines.csv")
     file_manager.save_string_to_file(techniques_str, output_dir_path / "techniques.txt")
     file_manager.save_string_to_file(projects_str, output_dir_path / "projects.txt")
 
@@ -378,8 +378,8 @@ def get_bug_statistics():
 
 
 if __name__ == '__main__':
-    # generate_combine_fl_data_input()
+    generate_combine_fl_data_input()
     # generate_metrics()
     # generate_latex_data_information()
-    get_bug_statistics()
+    # get_bug_statistics()
 

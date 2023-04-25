@@ -95,7 +95,7 @@ class CombineFlManager:
             release_json_dict = release_json_dict | project_bug_item.get_as_dict()
         return qid_lines_table, release_json_dict
 
-    def get_release_json_dict_list(self) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
+    def get_statement_release_json_dict_list(self) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
         number_of_buggy_projects = len(self._release_json_dict.keys())
         number_of_files = 10
         number_of_bugs_in_each_file = int(number_of_buggy_projects / number_of_files) + 1
@@ -132,7 +132,7 @@ class CombineFlManager:
         res.append(new_dict)
         return res
 
-    def get_qid_lines_csv_table(self) -> List[List[int]]:
+    def get_statement_qid_lines_csv_table(self) -> List[List[int]]:
         return self._qid_lines_csv_table
 
     def get_techniques_sorted_as_string(self) -> str:
@@ -167,8 +167,8 @@ class CombineFlManager:
         assert len(techniques_list) == 7
 
         projects_list = [(x[0], x[1]) for x in projects_dict.items()]
-        assert len(projects_list) == 12
-        assert sum([x[1] for x in projects_list]) == 121
+        assert len(projects_list) == 13
+        assert sum([x[1] for x in projects_list]) == 134
 
         return techniques_list, projects_list
 
@@ -265,7 +265,7 @@ class CombineFlManager:
         bug_key_values_list.sort(key=lambda x: (x[0], x[1]))
 
         bug_key_list = [self._get_bug_key(x[0], x[1]) for x in bug_key_values_list]
-        assert len(bug_key_list) == 121
+        assert len(bug_key_list) == 134
 
         return bug_key_list
 
