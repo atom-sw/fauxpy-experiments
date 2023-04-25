@@ -3,6 +3,7 @@ import io
 import os
 import sys
 
+import common
 from experiment_input import load_qid_lines_csv_file_name
 
 pred_f = 'svmrank-pred.dat'
@@ -131,7 +132,12 @@ def main():
     print '\nTop 1/3/5/10:', top
     print 'Top %1/%3/%5/%10:', top_percent
     EXAM_list = [e for e in EXAM_list if e > 0]
-    print 'EXAM: ', sum(EXAM_list) / len(EXAM_list)
+    avg_exam = sum(EXAM_list) / len(EXAM_list)
+    print 'EXAM: ', avg_exam
+
+    file_name = "results.json"
+    results_dictionary = common.results_to_dictionary_object(top, top_percent, avg_exam)
+    common.save_object_to_json(results_dictionary, file_name)
 
 
 if __name__ == '__main__':
