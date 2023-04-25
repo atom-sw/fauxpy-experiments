@@ -3,7 +3,10 @@ import json
 import os
 from enum import Enum
 
+import common
+
 Data_dir_name = "data"
+Experiment_file_name = "exp_info.json"
 
 
 class ExperimentType(Enum):
@@ -23,10 +26,14 @@ def load_json_release_files_to_dict(experiment_type):
     else:
         raise Exception()
 
-    language_file_name = "language.txt"
-    language_file_path = os.path.join(Data_dir_name, language_file_name)
-    with open(language_file_path, "w") as file_handle:
-        file_handle.write(language_name)
+    granularity_name = "statement"
+
+    experiment_file_path = os.path.join(Data_dir_name, Experiment_file_name)
+    experiment_info = {
+        "language": language_name,
+        "granularity": granularity_name
+    }
+    common.save_object_to_json(experiment_info, experiment_file_path)
 
     num_files = 10
     json_release_dict = {}
@@ -92,6 +99,7 @@ def load_projects_to_list(experiment_type):
             ('fastapi', 13),
             ('httpie', 4),
             ('keras', 18),
+            # ('luigi', 13),
             ('pandas', 18),
             ('sanic', 3),
             ('spacy', 6),
@@ -115,10 +123,10 @@ def load_projects_to_list(experiment_type):
 
 
 def load_qid_lines_csv_file_name():
-    language_file_name = "language.txt"
-    language_file_path = os.path.join(Data_dir_name, language_file_name)
-    with open(language_file_path, "r") as file_handle:
-        language_name = file_handle.read()
+    experiment_file_path = os.path.join(Data_dir_name, Experiment_file_name)
+    experiment_info_dict = common.load_json_file_to_object(experiment_file_path)
+    language_name = experiment_info_dict["language"]
+    granularity_name = experiment_info_dict["granularity"]
 
     if language_name == "python":
         qid_lines_csv_file_name = "python_qid-lines.csv"

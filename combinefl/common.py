@@ -28,3 +28,15 @@ def save_object_to_json(obj, file_name):
 def save_string_to_file(content_str, file_name):
     with open(file_name, "w") as file_han:
         file_han.write(content_str)
+
+
+def load_file_to_string(file_name):
+    with open(file_name, "r") as file_han:
+        content = file_han.read()
+    return content
+
+
+def load_json_file_to_object(file_path):
+    content = load_file_to_string(file_path)
+    object_file = json.loads(content)
+    return object_file
