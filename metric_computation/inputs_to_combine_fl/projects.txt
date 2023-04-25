@@ -4,6 +4,7 @@
 ('fastapi', 13),
 ('httpie', 4),
 ('keras', 18),
+('luigi', 13),
 ('pandas', 18),
 ('sanic', 3),
 ('spacy', 6),
