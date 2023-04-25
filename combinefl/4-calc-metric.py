@@ -4,6 +4,7 @@ import os
 import sys
 
 import common
+import experiment_input
 from experiment_input import load_qid_lines_csv_file_name
 
 pred_f = 'svmrank-pred.dat'
@@ -135,7 +136,7 @@ def main():
     avg_exam = sum(EXAM_list) / len(EXAM_list)
     print 'EXAM: ', avg_exam
 
-    file_name = "results.json"
+    file_name = experiment_input.get_results_file_name()
     results_dictionary = common.results_to_dictionary_object(top, top_percent, avg_exam)
     common.save_object_to_json(results_dictionary, file_name)
 

@@ -1,5 +1,4 @@
 import json
-import collections
 
 
 def results_to_dictionary_object(top_n, top_n_percent, avg_exam):
@@ -40,3 +39,5 @@ def load_json_file_to_object(file_path):
     content = load_file_to_string(file_path)
     object_file = json.loads(content)
     return object_file
+
+

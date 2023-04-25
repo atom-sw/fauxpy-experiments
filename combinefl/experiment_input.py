@@ -5,33 +5,71 @@ from enum import Enum
 
 import common
 
+Language_python = "python"
+Language_java = "java"
+Granularity_statement = "statement"
+Granularity_function = "function"
+Granularity_module = "module"
+Combination_alfa = "alfa"
+Combination_sbst = "sbst"
+
 Data_dir_name = "data"
 Experiment_file_name = "exp_info.json"
 
 
 class ExperimentType(Enum):
-    PythonAll = 0
-    PythonSimilar = 1
-    JavaAll = 2
-    JavaSimilar = 3
+    PythonAlfaStatement = 0
+    PythonAlfaFunction = 1
+    PythonAlfaModule = 2
+    PythonSbstStatement = 3
+    PythonSbstFunction = 4
+    PythonSbstModule = 5
+    JavaAlfaStatement = 6
+    JavaSbstStatement = 7
 
 
 def load_json_release_files_to_dict(experiment_type):
-    if experiment_type in [ExperimentType.PythonAll, ExperimentType.PythonSimilar]:
-        name_prefix = "python_release_"
-        language_name = "python"
-    elif experiment_type in [ExperimentType.JavaAll, ExperimentType.JavaSimilar]:
+    if experiment_type in [ExperimentType.PythonAlfaStatement,
+                           ExperimentType.PythonSbstStatement]:
+        name_prefix = "python_statement_release_"
+        language_name = Language_python
+        granularity_name = Granularity_statement
+    elif experiment_type in [ExperimentType.PythonAlfaFunction,
+                             ExperimentType.PythonSbstFunction]:
+        name_prefix = "python_function_release_"
+        language_name = Language_python
+        granularity_name = Granularity_function
+    elif experiment_type in [ExperimentType.PythonAlfaModule,
+                             ExperimentType.PythonSbstModule]:
+        name_prefix = "python_module_release_"
+        language_name = Language_python
+        granularity_name = Granularity_module
+    elif experiment_type in [ExperimentType.JavaAlfaStatement,
+                             ExperimentType.JavaSbstStatement]:
         name_prefix = "java_release_"
-        language_name = "java"
+        language_name = Language_java
+        granularity_name = Granularity_statement
     else:
         raise Exception()
 
-    granularity_name = "statement"
+    if experiment_type in [ExperimentType.PythonAlfaStatement,
+                           ExperimentType.PythonAlfaFunction,
+                           ExperimentType.PythonAlfaModule,
+                           ExperimentType.JavaAlfaStatement]:
+        combination_name = Combination_alfa
+    elif experiment_type in [ExperimentType.PythonSbstStatement,
+                             ExperimentType.PythonSbstFunction,
+                             ExperimentType.PythonSbstModule,
+                             ExperimentType.JavaSbstStatement]:
+        combination_name = Combination_sbst
+    else:
+        raise Exception()
 
     experiment_file_path = os.path.join(Data_dir_name, Experiment_file_name)
     experiment_info = {
         "language": language_name,
-        "granularity": granularity_name
+        "granularity": granularity_name,
+        "combination": combination_name
     }
     common.save_object_to_json(experiment_info, experiment_file_path)
 
@@ -46,17 +84,9 @@ def load_json_release_files_to_dict(experiment_type):
 
 
 def load_techniques_to_set(experiment_type):
-    if experiment_type == ExperimentType.PythonAll:
-        techniques = {
-            'DStar',
-            'Metallaxis',
-            'Muse',
-            'Ochiai',
-            'PS',
-            'ST',
-            'Tarantula'
-        }
-    elif experiment_type == ExperimentType.PythonSimilar:
+    if experiment_type in [ExperimentType.PythonAlfaStatement,
+                           ExperimentType.PythonAlfaFunction,
+                           ExperimentType.PythonAlfaModule]:
         techniques = {
             'DStar',
             'Metallaxis',
@@ -65,41 +95,50 @@ def load_techniques_to_set(experiment_type):
             'PS',
             'ST'
         }
-    elif experiment_type == ExperimentType.JavaAll:
+    elif experiment_type in [ExperimentType.PythonSbstStatement,
+                             ExperimentType.PythonSbstFunction,
+                             ExperimentType.PythonSbstModule]:
+        techniques = {
+            'DStar',
+            'Ochiai',
+            'ST'
+        }
+    elif experiment_type == ExperimentType.JavaAlfaStatement:
         techniques = {
             'ochiai',
             'dstar',
             'metallaxis',
             'muse',
-            'slicing',
-            'slicing_count',
-            'slicing_intersection',
             'stacktrace',
             'predicateswitching'
         }
-    elif experiment_type == ExperimentType.JavaSimilar:
+    elif experiment_type == ExperimentType.JavaSbstStatement:
         techniques = {
             'ochiai',
             'dstar',
-            'metallaxis',
-            'muse',
             'stacktrace',
-            'predicateswitching'
         }
     else:
         raise Exception()
+
     return techniques
 
 
 def load_projects_to_list(experiment_type):
-    if experiment_type in [ExperimentType.PythonAll, ExperimentType.PythonSimilar]:
+    if experiment_type in [ExperimentType.PythonAlfaStatement,
+                           ExperimentType.PythonAlfaFunction,
+                           ExperimentType.PythonAlfaModule,
+                           ExperimentType.PythonSbstStatement,
+                           ExperimentType.PythonSbstFunction,
+                           ExperimentType.PythonSbstModule
+                           ]:
         projects = [
             ('black', 13),
             ('cookiecutter', 4),
             ('fastapi', 13),
             ('httpie', 4),
             ('keras', 18),
-            # ('luigi', 13),
+            ('luigi', 13),
             ('pandas', 18),
             ('sanic', 3),
             ('spacy', 6),
@@ -108,7 +147,8 @@ def load_projects_to_list(experiment_type):
             ('tqdm', 6),
             ('youtube-dl', 16)
         ]
-    elif experiment_type in [ExperimentType.JavaAll, ExperimentType.JavaSimilar]:
+    elif experiment_type in [ExperimentType.JavaAlfaStatement,
+                             ExperimentType.JavaSbstStatement]:
         projects = [
             ('Math', 106),
             ('Closure', 133),
@@ -128,11 +168,35 @@ def load_qid_lines_csv_file_name():
     language_name = experiment_info_dict["language"]
     granularity_name = experiment_info_dict["granularity"]
 
-    if language_name == "python":
-        qid_lines_csv_file_name = "python_qid-lines.csv"
-    elif language_name == "java":
+    if language_name == Language_python:
+        if granularity_name == Granularity_statement:
+            qid_lines_csv_file_name = "python_statement_qid-lines.csv"
+        elif granularity_name == Granularity_function:
+            qid_lines_csv_file_name = "python_function_qid-lines.csv"
+        elif granularity_name == Granularity_module:
+            qid_lines_csv_file_name = "python_module_qid-lines.csv"
+        else:
+            raise Exception()
+    elif language_name == Language_java:
         qid_lines_csv_file_name = "java_qid-lines.csv"
     else:
         raise Exception()
 
     return qid_lines_csv_file_name
+
+
+def get_results_file_name():
+    experiment_file_path = os.path.join(Data_dir_name, Experiment_file_name)
+    experiment_info_dict = common.load_json_file_to_object(experiment_file_path)
+    language_name = experiment_info_dict["language"]
+    granularity_name = experiment_info_dict["granularity"]
+    combination_name = experiment_info_dict["combination"]
+    file_name = ("results_" +
+                 language_name +
+                 "_" +
+                 granularity_name +
+                 "_" +
+                 combination_name +
+                 ".json")
+
+    return file_name

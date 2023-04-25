@@ -91,18 +91,34 @@ class CombineFL:
 
 def main():
     parser = argparse.ArgumentParser(description='Combine and Generate SVMRank file.')
-    parser.add_argument('-f', '--add_in_file', help="Add-in data file.")
-    parser.add_argument('-e', '--experiment_type', help="pa/ps/ja/js")
+    # parser.add_argument('-f', '--add_in_file', help="Add-in data file.")
+    parser.add_argument('-e', '--experiment_type',
+                        help="py_alfa_stmt/"
+                             "py_alfa_func/"
+                             "py_alfa_mod/"
+                             "py_sbst_stmt/"
+                             "py_sbst_func/"
+                             "py_sbst_mod/"
+                             "j_alfa_stmt/"
+                             "j_sbst_stmt")
     args = parser.parse_args()
 
-    if args.experiment_type == "pa":
-        experiment_type = ExperimentType.PythonAll
-    elif args.experiment_type == "ps":
-        experiment_type = ExperimentType.PythonSimilar
-    elif args.experiment_type == "ja":
-        experiment_type = ExperimentType.JavaAll
-    elif args.experiment_type == "js":
-        experiment_type = ExperimentType.JavaSimilar
+    if args.experiment_type == "py_alfa_stmt":
+        experiment_type = ExperimentType.PythonAlfaStatement
+    elif args.experiment_type == "py_alfa_func":
+        experiment_type = ExperimentType.PythonAlfaFunction
+    elif args.experiment_type == "py_alfa_mod":
+        experiment_type = ExperimentType.PythonAlfaModule
+    elif args.experiment_type == "py_sbst_stmt":
+        experiment_type = ExperimentType.PythonSbstStatement
+    elif args.experiment_type == "py_sbst_func":
+        experiment_type = ExperimentType.PythonSbstFunction
+    elif args.experiment_type == "py_sbst_mod":
+        experiment_type = ExperimentType.PythonSbstModule
+    elif args.experiment_type == "j_alfa_stmt":
+        experiment_type = ExperimentType.JavaAlfaStatement
+    elif args.experiment_type == "j_sbst_stmt":
+        experiment_type = ExperimentType.JavaSbstStatement
     else:
         raise Exception("Experiment type not supported.")
 
