@@ -1,0 +1,1290 @@
+{
+     "thefuck7": {
+          "thefuck/specific/git.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0.26668392078516867,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/rules/git_branch_exists.py": {
+               "DStar": 0.02974186307519641,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 0.61492676817028,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "thefuck/utils.py": {
+               "DStar": 0.02974186307519641,
+               "Metallaxis": 0.14437890545023704,
+               "Muse": 0,
+               "Ochiai": 0.61492676817028,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/types.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.14437890545023704,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/shells/generic.py": {
+               "DStar": 0.02974186307519641,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.61492676817028,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          }
+     },
+     "thefuck8": {
+          "thefuck/rules/git_branch_list.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/specific/git.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/shells/fish.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "thefuck/types.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/shells/generic.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/conf.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "thefuck9": {
+          "thefuck/specific/git.py": {
+               "DStar": 0.0009000900090008996,
+               "Metallaxis": 0.4082482904638631,
+               "Muse": 0.01829156758734225,
+               "Ochiai": 0.027116306617953223,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.05029013539651825,
+               "faulty": 0
+          },
+          "thefuck/rules/git_add.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "thefuck/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0.3651483716701107,
+               "Muse": 0.07926345954514971,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/types.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.3651483716701107,
+               "Muse": 0.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/shells/generic.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0.0,
+               "Muse": 0.030485945978903736,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "thefuck10": {
+          "thefuck/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/shells/bash.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "thefuck/shells/generic.py": {
+               "DStar": 0.3010752688172043,
+               "Metallaxis": 0.74535599249993,
+               "Muse": 0,
+               "Ochiai": 0.7431481619066873,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8864468864468865,
+               "faulty": 0
+          },
+          "thefuck/conf.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "thefuck11": {
+          "thefuck/rules/git_push.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/rules/git_push_force.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "thefuck/shells.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/specific/git.py": {
+               "DStar": 0.005847953216374269,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.3951074636853807,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5323868677905945,
+               "faulty": 0
+          },
+          "thefuck/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/types.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          }
+     },
+     "thefuck12": {
+          "thefuck/shells.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/types.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/rules/dirty_unzip.py": {
+               "DStar": 0.031746031746031744,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.42007243705035635,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4938271604938273,
+               "faulty": 1
+          }
+     },
+     "thefuck13": {
+          "thefuck/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/rules/mkdir_p.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          }
+     },
+     "thefuck14": {
+          "thefuck/rules/vagrant_up.py": {
+               "DStar": 0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0,
+               "faulty": 1
+          }
+     },
+     "thefuck15": {
+          "thefuck/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/rules/fix_file.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          }
+     },
+     "thefuck16": {
+          "thefuck/shells.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "thefuck/types.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "thefuck/utils.py": {
+               "DStar": 0.2328042328042328,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.7664734656210225,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9492635024549919,
+               "faulty": 0
+          }
+     },
+     "tornado1": {
+          "tornado/httputil.py": {
+               "DStar": 0.03225806451612903,
+               "Metallaxis": 0.8660254037844385,
+               "Muse": 0,
+               "Ochiai": 0.5238095238095238,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9316770186335404,
+               "faulty": 0
+          },
+          "tornado/httpclient.py": {
+               "DStar": 0.002849002849002849,
+               "Metallaxis": 0.26726124191242434,
+               "Muse": 0,
+               "Ochiai": 0.18032786885245905,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5389221556886228,
+               "faulty": 0
+          },
+          "tornado/web.py": {
+               "DStar": 0.03225806451612903,
+               "Metallaxis": 0.8660254037844385,
+               "Muse": 0,
+               "Ochiai": 0.5238095238095238,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9316770186335404,
+               "faulty": 0
+          },
+          "tornado/httpserver.py": {
+               "DStar": 0.002320185614849188,
+               "Metallaxis": 0.26111648393354675,
+               "Muse": 0,
+               "Ochiai": 0.16336836869247284,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4875406283856988,
+               "faulty": 0
+          },
+          "tornado/concurrent.py": {
+               "DStar": 0.047619047619047616,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 0.6004200295403896,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9533898305084746,
+               "faulty": 0
+          },
+          "tornado/netutil.py": {
+               "DStar": 0.002320185614849188,
+               "Metallaxis": 0.26111648393354675,
+               "Muse": 0,
+               "Ochiai": 0.16336836869247284,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4875406283856988,
+               "faulty": 0
+          },
+          "tornado/iostream.py": {
+               "DStar": 0.03225806451612903,
+               "Metallaxis": 0.8660254037844385,
+               "Muse": 0,
+               "Ochiai": 0.5238095238095238,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9316770186335404,
+               "faulty": 0
+          },
+          "tornado/ioloop.py": {
+               "DStar": 0.002849002849002849,
+               "Metallaxis": 0.30151134457776363,
+               "Muse": 0,
+               "Ochiai": 0.18032786885245905,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5389221556886228,
+               "faulty": 0
+          },
+          "tornado/process.py": {
+               "DStar": 0.0022675736961451248,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.1615697783007181,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4817987152034261,
+               "faulty": 0
+          },
+          "tornado/util.py": {
+               "DStar": 0.003215434083601286,
+               "Metallaxis": 0.2581988897471611,
+               "Muse": 0,
+               "Ochiai": 0.1910765762563807,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5689001264222503,
+               "faulty": 0
+          },
+          "tornado/gen.py": {
+               "DStar": 0.047619047619047616,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 0.6004200295403896,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9533898305084746,
+               "faulty": 0
+          },
+          "tornado/simple_httpclient.py": {
+               "DStar": 0.0076335877862595426,
+               "Metallaxis": 0.2886751345948128,
+               "Muse": 0,
+               "Ochiai": 0.2863347480665715,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7588532883642496,
+               "faulty": 0
+          },
+          "tornado/tcpserver.py": {
+               "DStar": 0.002320185614849188,
+               "Metallaxis": 0.26111648393354675,
+               "Muse": 0,
+               "Ochiai": 0.16336836869247284,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4875406283856988,
+               "faulty": 0
+          },
+          "tornado/websocket.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "tornado/locks.py": {
+               "DStar": 0.002932551319648094,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.18284331984594393,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5461165048543689,
+               "faulty": 0
+          },
+          "tornado/locale.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/escape.py": {
+               "DStar": 0.0024937655860349127,
+               "Metallaxis": 0.2705008904002297,
+               "Muse": 0,
+               "Ochiai": 0.169149467215812,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5056179775280899,
+               "faulty": 0
+          },
+          "tornado/tcpclient.py": {
+               "DStar": 0.0076335877862595426,
+               "Metallaxis": 0.26726124191242434,
+               "Muse": 0,
+               "Ochiai": 0.2863347480665715,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7588532883642496,
+               "faulty": 0
+          },
+          "tornado/template.py": {
+               "DStar": 0.003215434083601286,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.1910765762563807,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5689001264222503,
+               "faulty": 0
+          },
+          "tornado/http1connection.py": {
+               "DStar": 0.002849002849002849,
+               "Metallaxis": 0.2886751345948128,
+               "Muse": 0,
+               "Ochiai": 0.18032786885245905,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5389221556886228,
+               "faulty": 0
+          },
+          "tornado/queues.py": {
+               "DStar": 0.01234567901234568,
+               "Metallaxis": 0.30151134457776363,
+               "Muse": 0,
+               "Ochiai": 0.3548387096774194,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8364312267657993,
+               "faulty": 0
+          },
+          "tornado/routing.py": {
+               "DStar": 0.004975124378109453,
+               "Metallaxis": 0.3061862178478972,
+               "Muse": 0,
+               "Ochiai": 0.23491344756795737,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.6716417910447762,
+               "faulty": 0
+          }
+     },
+     "tornado2": {
+          "tornado/httputil.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/httpclient.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/web.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/httpserver.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/concurrent.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/netutil.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/iostream.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/ioloop.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "tornado/process.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/util.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/simple_httpclient.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/gen.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/tcpserver.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/stack_context.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/locks.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/locale.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/escape.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/tcpclient.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/template.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/http1connection.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/queues.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/routing.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "tornado3": {
+          "tornado/httputil.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/httpclient.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/web.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/httpserver.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/concurrent.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/netutil.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/iostream.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/ioloop.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "tornado/process.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/util.py": {
+               "DStar": 0.28865979381443296,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.5267112932868141,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9667818852891207,
+               "faulty": 0
+          },
+          "tornado/simple_httpclient.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/gen.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/tcpserver.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/stack_context.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/locks.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/locale.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/escape.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/tcpclient.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/template.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/http1connection.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/queues.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/routing.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "tornado4": {
+          "tornado/httputil.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.18257418583505536,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0.6746839364404064,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "tornado/httpclient.py": {
+               "DStar": 0.047619047619047616,
+               "Metallaxis": 0.5773502691896258,
+               "Muse": 0.9989446771341165,
+               "Ochiai": 0.6004200295403896,
+               "PS": 0.0,
+               "ST": 0,
+               "Tarantula": 0.9392265193370165,
+               "faulty": 0
+          },
+          "tornado/web.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "tornado/httpserver.py": {
+               "DStar": 0.003115264797507788,
+               "Metallaxis": 0.17407765595569785,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.18820912128499037,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.49132947976878616,
+               "faulty": 0
+          },
+          "tornado/concurrent.py": {
+               "DStar": 0.03225806451612903,
+               "Metallaxis": 0.5773502691896258,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.5238095238095238,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9115281501340482,
+               "faulty": 0
+          },
+          "tornado/netutil.py": {
+               "DStar": 0.003115264797507788,
+               "Metallaxis": 0.17407765595569785,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.18820912128499037,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.49132947976878616,
+               "faulty": 0
+          },
+          "tornado/iostream.py": {
+               "DStar": 0.024390243902439025,
+               "Metallaxis": 0.5,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.4708767084668875,
+               "PS": 0.18363243690710812,
+               "ST": 0,
+               "Tarantula": 0.8854166666666667,
+               "faulty": 0
+          },
+          "tornado/ioloop.py": {
+               "DStar": 0.003115264797507788,
+               "Metallaxis": 0.17149858514250882,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.18820912128499037,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.49132947976878616,
+               "faulty": 0
+          },
+          "tornado/process.py": {
+               "DStar": 0.0030211480362537764,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.18546769886230746,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.48364153627311524,
+               "faulty": 0
+          },
+          "tornado/util.py": {
+               "DStar": 0.0030211480362537764,
+               "Metallaxis": 0.17149858514250882,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.18546769886230746,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.48364153627311524,
+               "faulty": 0
+          },
+          "tornado/gen.py": {
+               "DStar": 0.014084507042253521,
+               "Metallaxis": 0.5,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.3756282649838309,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8153477218225419,
+               "faulty": 0
+          },
+          "tornado/simple_httpclient.py": {
+               "DStar": 0.047619047619047616,
+               "Metallaxis": 0.5773502691896258,
+               "Muse": 1.0,
+               "Ochiai": 0.6004200295403896,
+               "PS": 0.08744401757481342,
+               "ST": 0,
+               "Tarantula": 0.9392265193370165,
+               "faulty": 0
+          },
+          "tornado/tcpserver.py": {
+               "DStar": 0.003115264797507788,
+               "Metallaxis": 0.17407765595569785,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.18820912128499037,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.49132947976878616,
+               "faulty": 0
+          },
+          "tornado/stack_context.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.17407765595569785,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "tornado/websocket.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 1.0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "tornado/locale.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tornado/escape.py": {
+               "DStar": 0.003115264797507788,
+               "Metallaxis": 0.17407765595569785,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.18820912128499037,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.49132947976878616,
+               "faulty": 0
+          },
+          "tornado/tcpclient.py": {
+               "DStar": 0.03225806451612903,
+               "Metallaxis": 0.5,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.5238095238095238,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9115281501340482,
+               "faulty": 0
+          },
+          "tornado/template.py": {
+               "DStar": 0.00398406374501992,
+               "Metallaxis": 0.0,
+               "Muse": 0.016885165854135707,
+               "Ochiai": 0.21157835571189165,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5528455284552845,
+               "faulty": 0
+          },
+          "tornado/http1connection.py": {
+               "DStar": 0.01639344262295082,
+               "Metallaxis": 0.5773502691896258,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.40061894737783255,
+               "PS": 0.5338544716959936,
+               "ST": 0,
+               "Tarantula": 0.8374384236453203,
+               "faulty": 0
+          },
+          "tornado/routing.py": {
+               "DStar": 0.00398406374501992,
+               "Metallaxis": 0.19611613513818404,
+               "Muse": 0.017412827287077447,
+               "Ochiai": 0.21157835571189165,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5528455284552845,
+               "faulty": 0
+          }
+     }
+}
