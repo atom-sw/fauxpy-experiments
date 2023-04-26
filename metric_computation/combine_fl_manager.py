@@ -337,7 +337,7 @@ class CombineFlManager:
         elif self._granularity == FLGranularity.Function:
             entity_item = "::".join(entity_name_parts[1:])
         elif self._granularity == FLGranularity.Module:
-            raise Exception("Not supported for now.....")
+            entity_item = entity_name_parts[0]
         else:
             raise Exception()
 
