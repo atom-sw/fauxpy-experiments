@@ -293,6 +293,7 @@ def generate_combine_fl_data_input():
                     new_module_item["FILE_NAME"] = module_item["FILE_NAME"]
                     new_module_item["ITEMS"] = module_item["LINES"] + module_item["EXTENDED_LINES"]
                 elif granularity == FLGranularity.Function:
+                    new_module_item["FILE_NAME"] = module_item["FILE_NAME"]
                     new_module_item["ITEMS"] = module_item["FUNCTIONS"] + module_item["EXTENDED_FUNCTIONS"]
                 new_module_item_list.append(new_module_item)
             new_ground_truth_dictionary[bug_key] = new_module_item_list
@@ -311,8 +312,8 @@ def generate_combine_fl_data_input():
         granularity_name = str(csv_score_items[0].get_granularity().name).lower()
 
         combine_fl_manager = CombineFlManager(csv_score_items, ground_truth, size_counts)
-        release_json_dict_list = combine_fl_manager.get_statement_release_json_dict_list()
-        qid_lines_csv_table = combine_fl_manager.get_statement_qid_lines_csv_table()
+        release_json_dict_list = combine_fl_manager.get_release_json_dict_list()
+        qid_lines_csv_table = combine_fl_manager.get_qid_lines_csv_table()
         fl_tech_str = combine_fl_manager.get_techniques_sorted_as_string()
         proj_string = combine_fl_manager.get_projects_sorted_as_string()
 
@@ -330,15 +331,27 @@ def generate_combine_fl_data_input():
     size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
-    # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager, fauxpy_statement_csv_score_items)
+    fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
+                                                                            fauxpy_statement_csv_score_items)
 
     directory_name = "inputs_to_combine_fl"
-    file_manager.clean_make_output_dir(directory_name)
+    # file_manager.clean_make_output_dir(directory_name)
 
-    ground_truth_items, size_counts_items = get_ground_truth_and_size_count(ground_truth_info, size_counts_info, FLGranularity.Statement)
-    generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
-                                        ground_truth_items,
-                                        size_counts_items,
+    # ground_truth_items_statement, size_counts_items_statement = get_ground_truth_and_size_count(ground_truth_info,
+    #                                                                                             size_counts_info,
+    #                                                                                             FLGranularity.Statement)
+
+    ground_truth_items_function, size_counts_items_function = get_ground_truth_and_size_count(ground_truth_info,
+                                                                                              size_counts_info,
+                                                                                              FLGranularity.Function)
+    # generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
+    #                                     ground_truth_items_statement,
+    #                                     size_counts_items_statement,
+    #                                     directory_name)
+
+    generate_data_input_for_granularity(fauxpy_function_csv_score_items,
+                                        ground_truth_items_function,
+                                        size_counts_items_function,
                                         directory_name)
 
 

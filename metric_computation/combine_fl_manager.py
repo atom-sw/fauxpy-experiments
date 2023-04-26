@@ -73,12 +73,14 @@ class ProjectBugItem:
 
 class CombineFlManager:
     def __init__(self,
-                 fauxpy_statement_csv_score_items: List[CsvScoreItem],
+                 csv_score_items: List[CsvScoreItem],
                  ground_truth_info: Dict,
                  size_counts_info: Dict):
-        self._csv_score_items = fauxpy_statement_csv_score_items
+        assert any([x.get_granularity() == csv_score_items[0].get_granularity() for x in csv_score_items])
+        self._csv_score_items = csv_score_items
         self._ground_truth_info = ground_truth_info
         self._size_counts_info = size_counts_info
+        self._granularity = csv_score_items[0].get_granularity()
         self._bug_keys_sorted = self._get_sorted_bug_keys()
         self._qid = 1
         self._techniques_sorted, self._projects_sorted = self._get_sorted_techniques_and_projects()
@@ -95,7 +97,7 @@ class CombineFlManager:
             release_json_dict = release_json_dict | project_bug_item.get_as_dict()
         return qid_lines_table, release_json_dict
 
-    def get_statement_release_json_dict_list(self) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
+    def get_release_json_dict_list(self) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
         number_of_buggy_projects = len(self._release_json_dict.keys())
         number_of_files = 10
         number_of_bugs_in_each_file = int(number_of_buggy_projects / number_of_files) + 1
@@ -132,7 +134,7 @@ class CombineFlManager:
         res.append(new_dict)
         return res
 
-    def get_statement_qid_lines_csv_table(self) -> List[List[int]]:
+    def get_qid_lines_csv_table(self) -> List[List[int]]:
         return self._qid_lines_csv_table
 
     def get_techniques_sorted_as_string(self) -> str:
@@ -208,7 +210,7 @@ class CombineFlManager:
                               project_counter: int) -> ProjectBugItem:
         assert self._are_all_same_in_list([x.get_project_name() for x in bug_key_csv_score_item_list])
         assert self._are_all_same_in_list([x.get_bug_number() for x in bug_key_csv_score_item_list])
-        assert bug_key_csv_score_item_list[0].get_granularity() == FLGranularity.Statement
+        assert bug_key_csv_score_item_list[0].get_granularity() == self._granularity
         assert self._are_all_same_in_list([x.get_granularity() for x in bug_key_csv_score_item_list])
         assert self._are_all_different_in_list([x.get_technique() for x in bug_key_csv_score_item_list])
 
@@ -274,8 +276,8 @@ class CombineFlManager:
         all_statement_names_in_all_techniques = set()
         for csv_score_item in bug_key_csv_score_item_list:
             scored_statements = csv_score_item.get_scored_entities()
-            if len(scored_statements) > 0:
-                assert any([isinstance(x, ScoredStatement) for x in scored_statements])
+            # if len(scored_statements) > 0:
+                # assert any([isinstance(x, ScoredStatement) for x in scored_statements])
             for item in scored_statements:
                 all_statement_names_in_all_techniques.add(item.get_entity_name())
 
@@ -325,17 +327,25 @@ class CombineFlManager:
         return current_score_normalized
 
     def _is_statement_faulty(self,
-                             statement_name: str,
+                             entity_name: str,
                              project_name: str,
                              bug_number: int) -> bool:
-        statement_name_parts = statement_name.split("::")
-        statement_module_name = statement_name_parts[0]
-        statement_line_number = int(statement_name_parts[1])
+        entity_name_parts = entity_name.split("::")
+        entity_module_name = entity_name_parts[0]
+        if self._granularity == FLGranularity.Statement:
+            entity_item = int(entity_name_parts[1])
+        elif self._granularity == FLGranularity.Function:
+            entity_item = "::".join(entity_name_parts[1:])
+        elif self._granularity == FLGranularity.Module:
+            raise Exception("Not supported for now.....")
+        else:
+            raise Exception()
+
         bug_key = self._get_bug_key(project_name, bug_number)
         current_bug_ground_truth_info = self._ground_truth_info[bug_key]
         for module_info_item in current_bug_ground_truth_info:
-            if (statement_module_name == module_info_item["FILE_NAME"]
-                    and statement_line_number in module_info_item["ITEMS"]):
+            if (entity_module_name == module_info_item["FILE_NAME"]
+                    and entity_item in module_info_item["ITEMS"]):
                 return True
 
         return False
@@ -347,7 +357,7 @@ class CombineFlManager:
             assert len(bug_key_csv_score_item_list) == 7
             assert self._are_all_same_in_list([x.get_project_name() for x in bug_key_csv_score_item_list])
             assert self._are_all_same_in_list([x.get_bug_number() for x in bug_key_csv_score_item_list])
-            assert bug_key_csv_score_item_list[0].get_granularity() == FLGranularity.Statement
+            assert bug_key_csv_score_item_list[0].get_granularity() == self._granularity
             assert self._are_all_same_in_list([x.get_granularity() for x in bug_key_csv_score_item_list])
             assert self._are_all_different_in_list([x.get_technique() for x in bug_key_csv_score_item_list])
             for bug_key_csv in bug_key_csv_score_item_list:
