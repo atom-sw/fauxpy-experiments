@@ -202,11 +202,20 @@ def get_results_file_name():
     return file_name
 
 
-def load_ground_truth_num_items():
+def get_experiment_file_info():
     experiment_file_path = os.path.join(Data_dir_name, Experiment_file_name)
     experiment_info_dict = common.load_json_file_to_object(experiment_file_path)
     language_name = experiment_info_dict["language"]
     granularity_name = experiment_info_dict["granularity"]
+    combination_name = experiment_info_dict["combination"]
+
+    return language_name, granularity_name, combination_name
+
+
+def load_ground_truth_num_items():
+    (language_name,
+     granularity_name,
+     combination_name) = get_experiment_file_info()
 
     assert language_name == Language_python
 

@@ -5,7 +5,10 @@ import sys
 
 import common
 import experiment_input
-from experiment_input import load_qid_lines_csv_file_name, load_ground_truth_num_items
+from experiment_input import (load_qid_lines_csv_file_name,
+                              load_ground_truth_num_items,
+                              get_experiment_file_info,
+                              Language_python)
 
 pred_f = 'svmrank-pred.dat'
 
@@ -71,7 +74,10 @@ def get_python_e_inspect(lst, lines, ground_truth_num_items):
     first_tie_item_rank = len(lst) + 1
     tie_size = lines - len(lst)
     end = first_tie_item_rank + tie_size - 1
-    e_inspect = E_inspect(first_tie_item_rank, end, ground_truth_num_items)
+    assert tie_size >= 2
+    e_inspect = lines
+    if ground_truth_num_items != 0:
+        e_inspect = E_inspect(first_tie_item_rank, end, ground_truth_num_items)
 
     return e_inspect
 
@@ -123,7 +129,12 @@ def main():
     EXAM_list = []
     python_exam_list = []
     qid2line = qid_to_lines()
-    ground_truth_num_items = load_ground_truth_num_items()
+    (language_name,
+     granularity_name,
+     combination_name) = get_experiment_file_info()
+    ground_truth_num_items = None
+    if language_name == Language_python:
+        ground_truth_num_items = load_ground_truth_num_items()
     for i in range(n):
         print '\r', 'Handle', i + 1, '/', n,
         sys.stdout.flush()
@@ -134,7 +145,9 @@ def main():
             lines = qid2line[qid]
             E_inspect = get_E_inspect(data[key])
             E_pos_list.append(E_inspect)
-            python_e_inspect = get_python_e_inspect(data[key], lines, ground_truth_num_items[str(qid)])
+            python_e_inspect = -1
+            if language_name == Language_python:
+                python_e_inspect = get_python_e_inspect(data[key], lines, ground_truth_num_items[str(qid)])
             python_e_pos_list.append(python_e_inspect)
             # calc EXAM
 
