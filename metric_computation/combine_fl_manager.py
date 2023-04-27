@@ -32,12 +32,14 @@ class ProjectBugItem:
                  project_name: str,
                  bug_number: int,
                  line_count: int,
+                 ground_truth_count: int,
                  qid: int,
                  project_counter: int,
                  multi_score_statement_list: List[MultiScoreStatement]):
         self._project_name = project_name
         self._bug_number = bug_number
         self._line_count = line_count
+        self._ground_truth_count = ground_truth_count
         self._qid = qid
         self._project_counter = project_counter
         self._multi_score_statement_list = multi_score_statement_list
@@ -54,6 +56,9 @@ class ProjectBugItem:
 
     def get_line_count(self) -> int:
         return self._line_count
+
+    def get_ground_truth_count(self):
+        return self._ground_truth_count
 
     def get_project_name(self) -> str:
         return self._project_name
@@ -86,16 +91,21 @@ class CombineFlManager:
         self._techniques_sorted, self._projects_sorted = self._get_sorted_techniques_and_projects()
         self._bug_technique_key_min_max_dict = self._get_bug_technique_key_min_max_dict()
         self._project_bug_item_sorted = self._get_sorted_project_bug_items()
-        self._qid_lines_csv_table, self._release_json_dict = self._get_qid_lines_csv_table_and_release_json_dict()
+        (self._qid_lines_csv_table,
+         self._release_json_dict,
+         self._qid_ground_truth_number_of_items) = self._get_qid_lines_csv_table_and_release_json_dict_and_ground_truth_num()
 
-    def _get_qid_lines_csv_table_and_release_json_dict(self) -> Tuple[List[List[int]], Dict[str, Dict[str, Dict[str, float]]]]:
+    def _get_qid_lines_csv_table_and_release_json_dict_and_ground_truth_num(self) -> Tuple[
+        List[List[int]], Dict[str, Dict[str, Dict[str, float]]], Dict[int, int]]:
         qid_lines_table = []
         release_json_dict = {}
+        ground_truth_count = {}
         for project_bug_item in self._project_bug_item_sorted:
             new_row = [project_bug_item.get_qid(), project_bug_item.get_line_count()]
             qid_lines_table.append(new_row)
             release_json_dict = release_json_dict | project_bug_item.get_as_dict()
-        return qid_lines_table, release_json_dict
+            ground_truth_count[project_bug_item.get_qid()] = project_bug_item.get_ground_truth_count()
+        return qid_lines_table, release_json_dict, ground_truth_count
 
     def get_release_json_dict_list(self) -> List[Dict[str, Dict[str, Dict[str, float]]]]:
         number_of_buggy_projects = len(self._release_json_dict.keys())
@@ -136,6 +146,9 @@ class CombineFlManager:
 
     def get_qid_lines_csv_table(self) -> List[List[int]]:
         return self._qid_lines_csv_table
+
+    def get_qid_ground_truth_number_of_items_json_dict(self) -> Dict[int, int]:
+        return self._qid_ground_truth_number_of_items
 
     def get_techniques_sorted_as_string(self) -> str:
         techniques_sorted_quoted = [f"\'{x}\'" for x in self._techniques_sorted]
@@ -216,7 +229,9 @@ class CombineFlManager:
 
         project_name = bug_key_csv_score_item_list[0].get_project_name()
         bug_number = bug_key_csv_score_item_list[0].get_bug_number()
+        bug_key = bug_key_csv_score_item_list[0].get_bug_key()
         line_count = self._size_counts_info[bug_key_csv_score_item_list[0].get_bug_key()]
+        ground_truth_count = self._get_number_of_ground_truth_items(bug_key)
         qid = self._qid
         self._qid += 1
         multi_score_statement_list = self._get_multi_score_statement_list(bug_key_csv_score_item_list)
@@ -224,6 +239,7 @@ class CombineFlManager:
         project_bug_it = ProjectBugItem(project_name,
                                         bug_number,
                                         line_count,
+                                        ground_truth_count,
                                         qid,
                                         project_counter,
                                         multi_score_statement_list)
@@ -277,7 +293,7 @@ class CombineFlManager:
         for csv_score_item in bug_key_csv_score_item_list:
             scored_statements = csv_score_item.get_scored_entities()
             # if len(scored_statements) > 0:
-                # assert any([isinstance(x, ScoredStatement) for x in scored_statements])
+            # assert any([isinstance(x, ScoredStatement) for x in scored_statements])
             for item in scored_statements:
                 all_statement_names_in_all_techniques.add(item.get_entity_name())
 
@@ -369,3 +385,11 @@ class CombineFlManager:
                     bug_technique_key_min_max_dict[current_bug_technique_key] = (min_score, max_score)
 
         return bug_technique_key_min_max_dict
+
+    def _get_number_of_ground_truth_items(self, bug_key) -> int:
+        num_ground_truth_item = 0
+        for module_item in self._ground_truth_info[bug_key]:
+            current_module_count_item = len(module_item["ITEMS"])
+            num_ground_truth_item += current_module_count_item
+
+        return num_ground_truth_item

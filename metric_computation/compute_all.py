@@ -322,6 +322,7 @@ def generate_combine_fl_data_input():
         qid_lines_csv_table = combine_fl_manager.get_qid_lines_csv_table()
         fl_tech_str = combine_fl_manager.get_techniques_sorted_as_string()
         proj_string = combine_fl_manager.get_projects_sorted_as_string()
+        qid_ground_truth_num_items = combine_fl_manager.get_qid_ground_truth_number_of_items_json_dict()
 
         for index, release_json_dict_item in enumerate(release_json_dict_list):
             file_manager.save_object_to_json(release_json_dict_item,
@@ -329,6 +330,8 @@ def generate_combine_fl_data_input():
 
         file_manager.save_csv_to_output_dir(qid_lines_csv_table, dir_name,
                                             f"python_{granularity_name}_qid-lines.csv")
+        file_manager.save_object_to_json(qid_ground_truth_num_items,
+                                         Path(dir_name) / f"python_{granularity_name}_qid_ground_truth_number_of_items.json")
         file_manager.save_string_to_file(fl_tech_str, Path(dir_name) / "techniques.txt")
         file_manager.save_string_to_file(proj_string, Path(dir_name) / "projects.txt")
 
