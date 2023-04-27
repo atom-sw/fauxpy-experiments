@@ -200,3 +200,26 @@ def get_results_file_name():
                  ".json")
 
     return file_name
+
+
+def load_ground_truth_num_items():
+    experiment_file_path = os.path.join(Data_dir_name, Experiment_file_name)
+    experiment_info_dict = common.load_json_file_to_object(experiment_file_path)
+    language_name = experiment_info_dict["language"]
+    granularity_name = experiment_info_dict["granularity"]
+
+    assert language_name == Language_python
+
+    if granularity_name == Granularity_statement:
+        ground_truth_dict_file_name = "python_statement_qid_ground_truth_number_of_items.json"
+    elif granularity_name == Granularity_function:
+        ground_truth_dict_file_name = "python_function_qid_ground_truth_number_of_items.json"
+    elif granularity_name == Granularity_module:
+        ground_truth_dict_file_name = "python_module_qid_ground_truth_number_of_items.json"
+    else:
+        raise Exception()
+
+    ground_truth_dict_file_path = os.path.join(Data_dir_name, ground_truth_dict_file_name)
+    ground_truth_dict_content = common.load_json_file_to_object(ground_truth_dict_file_path)
+
+    return ground_truth_dict_content

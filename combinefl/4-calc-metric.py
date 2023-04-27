@@ -5,7 +5,7 @@ import sys
 
 import common
 import experiment_input
-from experiment_input import load_qid_lines_csv_file_name
+from experiment_input import load_qid_lines_csv_file_name, load_ground_truth_num_items
 
 pred_f = 'svmrank-pred.dat'
 
@@ -63,6 +63,19 @@ def get_E_inspect(lst):
     return E_inspect(start + 1, end + 1, count)
 
 
+def get_python_e_inspect(lst, lines, ground_truth_num_items):
+    e_inspect = get_E_inspect(lst)
+    if e_inspect != -1:
+        return e_inspect
+
+    first_tie_item_rank = len(lst) + 1
+    tie_size = lines - len(lst)
+    end = first_tie_item_rank + tie_size - 1
+    e_inspect = E_inspect(first_tie_item_rank, end, ground_truth_num_items)
+
+    return e_inspect
+
+
 def read_info_ranksvm(num):
     # data -> bug(qid) -> pos(line) -> score / is_fault
     data = {}
@@ -106,21 +119,29 @@ def main():
     else:
         n = 10
     E_pos_list = []
+    python_e_pos_list = []
     EXAM_list = []
+    python_exam_list = []
     qid2line = qid_to_lines()
+    ground_truth_num_items = load_ground_truth_num_items()
     for i in range(n):
         print '\r', 'Handle', i + 1, '/', n,
         sys.stdout.flush()
         data = read_info_ranksvm(i)
         for key in data.keys():
             # key: u'qid:117'
-            E_inspect = get_E_inspect(data[key])
-            E_pos_list.append(E_inspect)
-            # calc EXAM
             qid = int(key.split(':')[1])
             lines = qid2line[qid]
+            E_inspect = get_E_inspect(data[key])
+            E_pos_list.append(E_inspect)
+            python_e_inspect = get_python_e_inspect(data[key], lines, ground_truth_num_items[str(qid)])
+            python_e_pos_list.append(python_e_inspect)
+            # calc EXAM
+
             EXAM = E_inspect / float(lines)
+            python_exam = python_e_inspect / float(lines)
             EXAM_list.append(EXAM)
+            python_exam_list.append(python_exam)
     top = []
     top.append(len(filter(lambda item: item < 1.01 and item > 0, E_pos_list)))
     top.append(len(filter(lambda item: item < 3.01 and item > 0, E_pos_list)))
@@ -134,10 +155,17 @@ def main():
     print 'Top %1/%3/%5/%10:', top_percent
     EXAM_list = [e for e in EXAM_list if e > 0]
     avg_exam = sum(EXAM_list) / len(EXAM_list)
+    avg_python_exam = sum(python_exam_list) / len(python_exam_list)
+    avg_python_e_inspect = sum(python_e_pos_list) / len(python_e_pos_list)
     print 'EXAM: ', avg_exam
+    print "PYTHON_EXAM: ", avg_python_exam
 
     file_name = experiment_input.get_results_file_name()
-    results_dictionary = common.results_to_dictionary_object(top, top_percent, avg_exam)
+    results_dictionary = common.results_to_dictionary_object(top,
+                                                             top_percent,
+                                                             avg_exam,
+                                                             avg_python_exam,
+                                                             avg_python_e_inspect)
     common.save_object_to_json(results_dictionary, file_name)
 
 

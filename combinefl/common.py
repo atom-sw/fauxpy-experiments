@@ -1,7 +1,7 @@
 import json
 
 
-def results_to_dictionary_object(top_n, top_n_percent, avg_exam):
+def results_to_dictionary_object(top_n, top_n_percent, avg_exam, avg_python_exam, avg_python_e_inspect):
     results_dict = {
         "@1": top_n[0],
         "@3": top_n[1],
@@ -13,7 +13,9 @@ def results_to_dictionary_object(top_n, top_n_percent, avg_exam):
         "@5%": top_n_percent[2],
         "@10%": top_n_percent[3],
 
-        "java_exam": avg_exam
+        "java_exam": avg_exam,
+        "python_exam": avg_python_exam,
+        "python_e_inspect": avg_python_e_inspect
     }
 
     return results_dict
