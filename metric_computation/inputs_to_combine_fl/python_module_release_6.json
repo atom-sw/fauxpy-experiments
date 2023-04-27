@@ -1,94 +1,14 @@
 {
      "sanic2": {
-          "sanic/cookies.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/response.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/websocket.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/router.py": {
+          "sanic/app.py": {
                "DStar": 1.0,
-               "Metallaxis": 0.0,
+               "Metallaxis": 1.0,
                "Muse": 0,
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "sanic/blueprints.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/testing.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/config.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/errorpages.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/asgi.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
+               "faulty": 1
           },
           "sanic/request.py": {
                "DStar": 0.0,
@@ -100,37 +20,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "sanic/headers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/server.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/compat.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/helpers.py": {
+          "sanic/response.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -150,16 +40,6 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "sanic/worker.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "sanic/views.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -170,17 +50,137 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "sanic/app.py": {
+          "sanic/handlers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/cookies.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/server.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/errorpages.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/blueprints.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/router.py": {
                "DStar": 1.0,
-               "Metallaxis": 1.0,
+               "Metallaxis": 0.0,
                "Muse": 0,
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
-               "faulty": 1
+               "faulty": 0
           },
-          "sanic/handlers.py": {
+          "sanic/asgi.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/headers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/websocket.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/config.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/helpers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/compat.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/testing.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/worker.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -192,24 +192,24 @@
           }
      },
      "sanic3": {
-          "sanic/cookies.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "sanic/response.py": {
-               "DStar": 1.0,
+          "sanic/server.py": {
+               "DStar": 0.0015128593040847204,
                "Metallaxis": 0.2711630722733202,
                "Muse": 0,
-               "Ochiai": 1.0,
+               "Ochiai": 0.13276441333123892,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 1.0,
+               "Tarantula": 0.6170886075949368,
+               "faulty": 0
+          },
+          "sanic/exceptions.py": {
+               "DStar": 0.0008613264427217917,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.10076347729747127,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.47833197056418636,
                "faulty": 0
           },
           "sanic/helpers.py": {
@@ -220,6 +220,56 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.6135291033036183,
+               "faulty": 0
+          },
+          "sanic/handlers.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "sanic/cookies.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/app.py": {
+               "DStar": 0.047619047619047616,
+               "Metallaxis": 0.28867513459481287,
+               "Muse": 0,
+               "Ochiai": 0.6004200295403896,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9815436241610738,
+               "faulty": 0
+          },
+          "sanic/blueprints.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "sanic/router.py": {
+               "DStar": 0.006211180124223602,
+               "Metallaxis": 0.5423261445466404,
+               "Muse": 0,
+               "Ochiai": 0.2604718180211552,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8692421991084694,
                "faulty": 0
           },
           "sanic/asgi.py": {
@@ -242,36 +292,6 @@
                "Tarantula": 0.5930055752660922,
                "faulty": 0
           },
-          "sanic/router.py": {
-               "DStar": 0.006211180124223602,
-               "Metallaxis": 0.5423261445466404,
-               "Muse": 0,
-               "Ochiai": 0.2604718180211552,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8692421991084694,
-               "faulty": 0
-          },
-          "sanic/exceptions.py": {
-               "DStar": 0.0008613264427217917,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.10076347729747127,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.47833197056418636,
-               "faulty": 0
-          },
-          "sanic/blueprints.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "sanic/testing.py": {
                "DStar": 0.0019569471624266144,
                "Metallaxis": 0.2839809171235324,
@@ -280,26 +300,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.6759098786828424,
-               "faulty": 0
-          },
-          "sanic/request.py": {
-               "DStar": 0.047619047619047616,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.6004200295403896,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9815436241610738,
-               "faulty": 1
-          },
-          "sanic/server.py": {
-               "DStar": 0.0015128593040847204,
-               "Metallaxis": 0.2711630722733202,
-               "Muse": 0,
-               "Ochiai": 0.13276441333123892,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.6170886075949368,
                "faulty": 0
           },
           "sanic/config.py": {
@@ -312,19 +312,19 @@
                "Tarantula": 1.0,
                "faulty": 0
           },
-          "sanic/app.py": {
+          "sanic/request.py": {
                "DStar": 0.047619047619047616,
-               "Metallaxis": 0.28867513459481287,
+               "Metallaxis": 0.0,
                "Muse": 0,
                "Ochiai": 0.6004200295403896,
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.9815436241610738,
-               "faulty": 0
+               "faulty": 1
           },
-          "sanic/handlers.py": {
+          "sanic/response.py": {
                "DStar": 1.0,
-               "Metallaxis": 1.0,
+               "Metallaxis": 0.2711630722733202,
                "Muse": 0,
                "Ochiai": 1.0,
                "PS": 0,
@@ -334,7 +334,17 @@
           }
      },
      "spacy1": {
-          "spacy/displacy/render.py": {
+          "spacy/errors.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "spacy/lang/lex_attrs.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -354,46 +364,6 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/errors.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "spacy/util.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lemmatizer.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lookups.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "spacy/language.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -404,27 +374,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/lex_attrs.py": {
+          "spacy/displacy/render.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -444,7 +394,57 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "spacy/lang/fa/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/util.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lookups.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fa/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "spacy/lang/en/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lemmatizer.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -466,1467 +466,7 @@
           }
      },
      "spacy2": {
-          "spacy/lang/pl/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/kn/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ga/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/norm_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hr/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nl/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/it/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/morph_rules.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nl/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tt/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/yo/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pl/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hu/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ro/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/kn/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hi/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/cs/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sk/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/af/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ar/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lemmatizer.py": {
-               "DStar": 0.019963702359346643,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.19967700241785752,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8152410575427682,
-               "faulty": 0
-          },
-          "spacy/lang/te/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tr/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ur/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lex_attrs.py": {
-               "DStar": 0.0196078431372549,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.1979406973034055,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8124612523248606,
-               "faulty": 0
-          },
-          "spacy/lang/el/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bg/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/displacy/render.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ta/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bn/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sl/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/norm_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ca/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/language.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pl/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/_ml.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nl/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tr/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sr/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nl/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/_tokenizer_exceptions_list.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/lemmatizer.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/si/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hu/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/lex_attrs.py": {
-               "DStar": 0.054726368159203974,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.3233719348102019,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9261484098939929,
-               "faulty": 0
-          },
-          "spacy/lang/nl/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/it/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tt/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/he/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tt/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/he/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fi/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/de/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sl/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ta/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sv/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/te/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/norm_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/te/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ur/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/is/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pl/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/examples.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/yo/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tl/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ar/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/__init__.py": {
-               "DStar": 0.013079667063020215,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.16247720790560397,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.741652518392756,
-               "faulty": 0
-          },
-          "spacy/lang/lv/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ro/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ur/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sk/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/syntax_iterators.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/is/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/displacy/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/it/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/ml/_legacy_tok2vec.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bn/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sq/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/pipeline/entityruler.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/examples.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/xx/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/compat.py": {
-               "DStar": 0.18032786885245905,
-               "Metallaxis": 0.3779644730092272,
-               "Muse": 0,
-               "Ochiai": 0.5514751304210431,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9794469357249627,
-               "faulty": 0
-          },
-          "spacy/lang/sv/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tt/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sr/norm_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/morph_rules.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/af/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/it/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ar/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ro/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/it/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bg/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sk/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tr/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bn/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/examples.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ta/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ca/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fi/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/morph_rules.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ro/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hi/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/si/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fi/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pl/_tokenizer_exceptions_list.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ur/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sr/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hi/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ar/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sv/syntax_iterators.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bn/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pl/__init__.py": {
+          "spacy/lang/ga/tokenizer_exceptions.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1946,347 +486,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/id/norm_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ca/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tl/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lookups.py": {
-               "DStar": 0.21568627450980396,
-               "Metallaxis": 0.4082482904638631,
-               "Muse": 0,
-               "Ochiai": 0.5939280856725816,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9834896810506567,
-               "faulty": 0
-          },
-          "spacy/lang/hu/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/util.py": {
-               "DStar": 0.5238095238095238,
-               "Metallaxis": 0.5773502691896258,
-               "Muse": 0,
-               "Ochiai": 0.8265128653186478,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9958206686930092,
-               "faulty": 1
-          },
-          "spacy/lang/tt/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sk/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ro/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lt/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hu/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sv/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fa/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/et/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/el/syntax_iterators.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lv/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sr/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ga/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ca/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/syntax_iterators.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/id/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sq/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ga/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/tag_map.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/si/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sr/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tl/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/lemmatizer.py": {
+          "spacy/lang/sq/stop_words.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2306,207 +506,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/fa/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/cs/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bn/punctuation.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/errors.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pl/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sv/morph_rules.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/es/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nb/syntax_iterators.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ur/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ar/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/yo/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/sv/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/et/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/tl/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/da/stop_words.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/ca/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/pt/tokenizer_exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/nl/lemmatizer.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/bn/examples.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/tokens/underscore.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/hr/__init__.py": {
+          "spacy/lang/id/tokenizer_exceptions.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2526,6 +526,796 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "spacy/lang/nb/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hr/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bg/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sk/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/examples.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/te/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ar/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/norm_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/displacy/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/is/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tt/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hu/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lemmatizer.py": {
+               "DStar": 0.019963702359346643,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.19967700241785752,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8152410575427682,
+               "faulty": 0
+          },
+          "spacy/lang/af/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/displacy/render.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/es/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tl/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fa/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ar/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sq/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/pipeline/entityruler.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fa/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bn/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/si/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/morph_rules.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/morph_rules.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/cs/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/es/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sr/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/yo/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tl/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ca/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ar/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/examples.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ta/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nl/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ro/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ga/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sl/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/lemmatizer.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/et/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ro/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/norm_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/is/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lex_attrs.py": {
+               "DStar": 0.0196078431372549,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.1979406973034055,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8124612523248606,
+               "faulty": 0
+          },
+          "spacy/lang/ur/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/morph_rules.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/it/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/si/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nb/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nl/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fa/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/yo/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/cs/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sk/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nl/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/syntax_iterators.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tt/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hi/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fa/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sr/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ca/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sr/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tr/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/it/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hi/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nb/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/xx/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nb/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "spacy/lang/pl/examples.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -2536,7 +1326,357 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/hu/examples.py": {
+          "spacy/lang/es/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/tokens/underscore.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ar/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/af/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/es/syntax_iterators.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/norm_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nl/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ga/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tr/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/syntax_iterators.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bg/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/it/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hu/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ar/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/lex_attrs.py": {
+               "DStar": 0.054726368159203974,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.3233719348102019,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9261484098939929,
+               "faulty": 0
+          },
+          "spacy/lang/lv/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ca/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hi/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/si/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/syntax_iterators.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bn/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lv/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/it/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sr/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ur/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/yo/stop_words.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2556,14 +1696,74 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/__init__.py": {
-               "DStar": 0.5238095238095238,
-               "Metallaxis": 0.0,
+          "spacy/lang/hu/examples.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.8265128653186478,
+               "Ochiai": 0.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.9958206686930092,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bn/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ur/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sl/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nb/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
                "faulty": 0
           },
           "spacy/lang/nl/tag_map.py": {
@@ -2575,10 +1775,578 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          }
-     },
-     "spacy3": {
+          },
+          "spacy/lang/fa/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/examples.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/__init__.py": {
+               "DStar": 0.013079667063020215,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.16247720790560397,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.741652518392756,
+               "faulty": 0
+          },
+          "spacy/lang/sk/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/te/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/da/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "spacy/util.py": {
+               "DStar": 0.5238095238095238,
+               "Metallaxis": 0.5773502691896258,
+               "Muse": 0,
+               "Ochiai": 0.8265128653186478,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9958206686930092,
+               "faulty": 1
+          },
+          "spacy/lang/nb/syntax_iterators.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/it/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nl/lemmatizer.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/kn/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/he/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bn/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/de/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ca/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tl/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fa/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/compat.py": {
+               "DStar": 0.18032786885245905,
+               "Metallaxis": 0.3779644730092272,
+               "Muse": 0,
+               "Ochiai": 0.5514751304210431,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9794469357249627,
+               "faulty": 0
+          },
+          "spacy/lang/bn/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sr/norm_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ur/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tt/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sk/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tl/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/lemmatizer.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hu/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ro/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tr/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lookups.py": {
+               "DStar": 0.21568627450980396,
+               "Metallaxis": 0.4082482904638631,
+               "Muse": 0,
+               "Ochiai": 0.5939280856725816,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9834896810506567,
+               "faulty": 0
+          },
+          "spacy/lang/ta/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/_tokenizer_exceptions_list.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hu/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ur/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nl/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fi/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/norm_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/lt/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fi/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tt/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/es/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ro/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ca/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/te/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/nb/morph_rules.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ta/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/_ml.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2598,27 +2366,219 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lemmatizer.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
+          "spacy/__init__.py": {
+               "DStar": 0.5238095238095238,
+               "Metallaxis": 0.0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.8265128653186478,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lookups.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.9958206686930092,
                "faulty": 0
           },
           "spacy/language.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/kn/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/es/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pt/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/es/tokenizer_exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/punctuation.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/bn/examples.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/hr/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/pl/_tokenizer_exceptions_list.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/et/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fi/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/tt/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/ml/_legacy_tok2vec.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/ro/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/he/stop_words.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/el/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/id/tag_map.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "spacy3": {
+          "spacy/errors.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2638,7 +2598,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/en/__init__.py": {
+          "spacy/language.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2648,7 +2608,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/en/lex_attrs.py": {
+          "spacy/lang/en/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2668,7 +2628,47 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
+          "spacy/lookups.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/util.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "spacy/compat.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lemmatizer.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2680,7 +2680,7 @@
           }
      },
      "spacy4": {
-          "spacy/util.py": {
+          "spacy/errors.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2690,7 +2690,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/errors.py": {
+          "spacy/lang/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/language.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2710,37 +2720,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lemmatizer.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lookups.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/language.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/lex_attrs.py": {
+          "spacy/lang/en/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2760,7 +2740,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/en/__init__.py": {
+          "spacy/cli/pretrain.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lookups.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2771,16 +2761,6 @@
                "faulty": 0
           },
           "spacy/lang/en/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/cli/pretrain.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2800,7 +2780,27 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
+          "spacy/util.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "spacy/compat.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lemmatizer.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2812,7 +2812,7 @@
           }
      },
      "spacy5": {
-          "spacy/__init__.py": {
+          "spacy/lang/lex_attrs.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2822,17 +2822,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/util.py": {
-               "DStar": 0.019607843137254905,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.43145888431744506,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9695290858725761,
-               "faulty": 0
-          },
-          "spacy/lang/it/__init__.py": {
+          "spacy/lang/fr/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2842,17 +2832,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/sv/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/lex_attrs.py": {
+          "spacy/lang/en/syntax_iterators.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2872,136 +2852,6 @@
                "Tarantula": 0.9937535491198183,
                "faulty": 0
           },
-          "spacy/pipeline/functions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/analysis.py": {
-               "DStar": 0.0035587188612099642,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.2005409205880633,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8503401360544217,
-               "faulty": 0
-          },
-          "spacy/lang/fr/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/syntax_iterators.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/errors.py": {
-               "DStar": 0.001490312965722802,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.13179632852417789,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7036590269400884,
-               "faulty": 0
-          },
-          "spacy/lemmatizer.py": {
-               "DStar": 0.0020366598778004076,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.1533941706951795,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.764525993883792,
-               "faulty": 0
-          },
-          "spacy/lang/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/displacy/render.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/compat.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/tokens/underscore.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/displacy/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "spacy/lookups.py": {
                "DStar": 0.0020366598778004076,
                "Metallaxis": 0,
@@ -3010,78 +2860,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.764525993883792,
-               "faulty": 0
-          },
-          "spacy/language.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 1.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "spacy/ml/_legacy_tok2vec.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/_ml.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/pipeline/entityruler.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/xx/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "spacy6": {
-          "spacy/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/util.py": {
-               "DStar": 0.07801418439716312,
-               "Metallaxis": 0,
-               "Muse": 0.0,
-               "Ochiai": 0.3811275886214205,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9244984160506864,
                "faulty": 0
           },
           "spacy/lang/it/__init__.py": {
@@ -3104,17 +2882,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/en/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/scorer.py": {
+          "spacy/displacy/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3134,37 +2902,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "spacy/lemmatizer.py": {
+               "DStar": 0.0020366598778004076,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.1533941706951795,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.764525993883792,
+               "faulty": 0
+          },
           "spacy/analysis.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 1.0,
-               "Ochiai": 1.0,
-               "PS": 0.6344410876132931,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "spacy/ml/tok2vec.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
+               "DStar": 0.0035587188612099642,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.2005409205880633,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.8503401360544217,
                "faulty": 0
           },
-          "spacy/lang/fr/lex_attrs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/en/syntax_iterators.py": {
+          "spacy/_ml.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3175,16 +2933,16 @@
                "faulty": 0
           },
           "spacy/errors.py": {
-               "DStar": 0.2682926829268293,
+               "DStar": 0.001490312965722802,
                "Metallaxis": 0,
-               "Muse": 0.0,
-               "Ochiai": 0.6481889983328756,
-               "PS": 1.0,
+               "Muse": 0,
+               "Ochiai": 0.13179632852417789,
+               "PS": 0,
                "ST": 0,
-               "Tarantula": 0.9815022421524665,
+               "Tarantula": 0.7036590269400884,
                "faulty": 0
           },
-          "spacy/ml/common.py": {
+          "spacy/lang/xx/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3194,17 +2952,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lemmatizer.py": {
-               "DStar": 0.022869022869022867,
+          "spacy/__init__.py": {
+               "DStar": 0.0,
                "Metallaxis": 0,
-               "Muse": 0.0,
-               "Ochiai": 0.21326951582719653,
+               "Muse": 0,
+               "Ochiai": 0.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.7720458553791888,
+               "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/lex_attrs.py": {
+          "spacy/language.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "spacy/displacy/render.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3224,27 +2992,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/displacy/render.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/compat.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "spacy/lang/fr/__init__.py": {
+          "spacy/lang/fr/lex_attrs.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3264,7 +3012,89 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/displacy/__init__.py": {
+          "spacy/pipeline/entityruler.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/util.py": {
+               "DStar": 0.019607843137254905,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.43145888431744506,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9695290858725761,
+               "faulty": 0
+          },
+          "spacy/ml/_legacy_tok2vec.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/compat.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "spacy6": {
+          "spacy/lang/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/syntax_iterators.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/scorer.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3284,6 +3114,106 @@
                "Tarantula": 0.7720458553791888,
                "faulty": 0
           },
+          "spacy/lang/it/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/sv/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/displacy/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/pipeline/functions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lemmatizer.py": {
+               "DStar": 0.022869022869022867,
+               "Metallaxis": 0,
+               "Muse": 0.0,
+               "Ochiai": 0.21326951582719653,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7720458553791888,
+               "faulty": 0
+          },
+          "spacy/analysis.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0.6344410876132931,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "spacy/_ml.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/errors.py": {
+               "DStar": 0.2682926829268293,
+               "Metallaxis": 0,
+               "Muse": 0.0,
+               "Ochiai": 0.6481889983328756,
+               "PS": 1.0,
+               "ST": 0,
+               "Tarantula": 0.9815022421524665,
+               "faulty": 0
+          },
+          "spacy/lang/xx/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "spacy/language.py": {
                "DStar": 0.2682926829268293,
                "Metallaxis": 0,
@@ -3294,7 +3224,37 @@
                "Tarantula": 0.9815022421524665,
                "faulty": 1
           },
-          "spacy/_ml.py": {
+          "spacy/displacy/render.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/fr/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/tokens/underscore.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3314,7 +3274,47 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "spacy/lang/xx/__init__.py": {
+          "spacy/util.py": {
+               "DStar": 0.07801418439716312,
+               "Metallaxis": 0,
+               "Muse": 0.0,
+               "Ochiai": 0.3811275886214205,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9244984160506864,
+               "faulty": 0
+          },
+          "spacy/ml/tok2vec.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/ml/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/lang/en/lex_attrs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "spacy/compat.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3326,6 +3326,16 @@
           }
      },
      "thefuck1": {
+          "thefuck/types.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "thefuck/utils.py": {
                "DStar": 1.0,
                "Metallaxis": 0,
@@ -3336,7 +3346,7 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "thefuck/types.py": {
+          "thefuck/conf.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -3354,16 +3364,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "thefuck/conf.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
                "faulty": 0
           }
      },
@@ -3462,16 +3462,6 @@
                "Tarantula": 0.04558404558404552,
                "faulty": 0
           },
-          "thefuck/rules/git_branch_exists.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 1.0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
           "thefuck/utils.py": {
                "DStar": 1.0,
                "Metallaxis": 0.15505102572168222,
@@ -3482,6 +3472,16 @@
                "Tarantula": 1.0,
                "faulty": 0
           },
+          "thefuck/shells/generic.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0.15505102572168222,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "thefuck/types.py": {
                "DStar": 0.0,
                "Metallaxis": 0.0,
@@ -3492,27 +3492,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "thefuck/shells/generic.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0.15505102572168222,
+          "thefuck/rules/git_branch_exists.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 1.0,
                "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
+               "ST": 1.0,
+               "Tarantula": 1.0,
+               "faulty": 1
           }
      },
      "thefuck5": {
-          "thefuck/rules/php_s.py": {
+          "thefuck/utils.py": {
                "DStar": 0.015873015873015872,
-               "Metallaxis": 0,
+               "Metallaxis": 1.0,
                "Muse": 0,
                "Ochiai": 0.1608820620348183,
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.23148148148148132,
-               "faulty": 1
+               "faulty": 0
           },
           "thefuck/types.py": {
                "DStar": 1.0,
@@ -3524,6 +3524,16 @@
                "Tarantula": 1.0,
                "faulty": 0
           },
+          "thefuck/rules/php_s.py": {
+               "DStar": 0.015873015873015872,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.1608820620348183,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.23148148148148132,
+               "faulty": 1
+          },
           "thefuck/shells/generic.py": {
                "DStar": 0.0,
                "Metallaxis": 0.0,
@@ -3533,19 +3543,29 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          },
-          "thefuck/utils.py": {
-               "DStar": 0.015873015873015872,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 0.1608820620348183,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.23148148148148132,
-               "faulty": 0
           }
      },
      "thefuck6": {
+          "thefuck/utils.py": {
+               "DStar": 0.0404040404040404,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 0.8106197220509574,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "thefuck/shells/generic.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "thefuck/specific/sudo.py": {
                "DStar": 0.014336917562724014,
                "Metallaxis": 0.0,
@@ -3554,6 +3574,16 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.5633802816901409,
+               "faulty": 0
+          },
+          "thefuck/types.py": {
+               "DStar": 0.0404040404040404,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.8106197220509574,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
                "faulty": 0
           },
           "thefuck/rules/dnf_no_such_command.py": {
@@ -3565,36 +3595,6 @@
                "ST": 0,
                "Tarantula": 1.0,
                "faulty": 1
-          },
-          "thefuck/utils.py": {
-               "DStar": 0.0404040404040404,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 0.8106197220509574,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "thefuck/types.py": {
-               "DStar": 0.0404040404040404,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.8106197220509574,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "thefuck/shells/generic.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
           }
      }
 }
