@@ -380,8 +380,10 @@ def generate_latex_data_information():
     path_manager = file_manager.PathManager()
     latex_table_dir_name = path_manager.get_latex_table_dir_name()
     java_paper_info_dir_path = path_manager.get_java_paper_info_dir_path()
+    combine_fl_results_dir_path = path_manager.get_combine_fl_results_dir_path()
     latex_info = LatexInfo(Path(latex_table_dir_name),
-                           Path(java_paper_info_dir_path))
+                           Path(java_paper_info_dir_path),
+                           Path(combine_fl_results_dir_path))
     latex_info.generate_data_latex_file()
 
 
@@ -450,7 +452,7 @@ def get_bug_statistics():
 
 
 if __name__ == '__main__':
-    generate_combine_fl_data_input()
+    # generate_combine_fl_data_input()
     # generate_metrics()
-    # generate_latex_data_information()
+    generate_latex_data_information()
     # get_bug_statistics()
