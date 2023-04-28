@@ -238,9 +238,18 @@ class LatexInfo:
 
             json_dict = load_json_to_object(str(file_path.absolute().resolve()))
 
+            if granularity == "statement":
+                const_granularity_string = Constants.Statement
+            elif granularity == "function":
+                const_granularity_string = Constants.Function
+            elif granularity == "module":
+                const_granularity_string = Constants.Module
+            else:
+                raise Exception()
+
             for j_key, j_value in json_dict.items():
                 if j_key == "@1%":
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
@@ -248,7 +257,7 @@ class LatexInfo:
                                                                language)
                     combine_fl_key_val_dict[latex_key] = j_value
                 elif j_key == "@3%":
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
@@ -256,7 +265,7 @@ class LatexInfo:
                                                                language)
                     combine_fl_key_val_dict[latex_key] = j_value
                 elif j_key == "@5%":
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
@@ -264,7 +273,7 @@ class LatexInfo:
                                                                language)
                     combine_fl_key_val_dict[latex_key] = j_value
                 elif j_key == "@10%":
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
@@ -274,7 +283,7 @@ class LatexInfo:
                 elif j_key == "python_e_inspect":
                     if language == Constants.Java:
                         continue
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
@@ -284,7 +293,7 @@ class LatexInfo:
                 elif j_key == "python_exam":
                     if language == Constants.Java:
                         continue
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
@@ -292,7 +301,7 @@ class LatexInfo:
                                                                language)
                     combine_fl_key_val_dict[latex_key] = j_value
                 elif j_key == "java_exam":
-                    latex_key = self._get_latex_key_for_metric(granularity,
+                    latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                                Constants.Combine_fl,
                                                                technique,
                                                                Constants.All,
