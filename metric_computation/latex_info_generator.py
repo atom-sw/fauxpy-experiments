@@ -70,7 +70,7 @@ class LatexInfo:
         java_key_val_dict = load_json_to_object(str(java_info_file_path.absolute().resolve()))
         all_key_val_dict = python_key_val_dict | java_key_val_dict
 
-        combine_fl_key_val_dict = self._get_combine_fl_key_val_dict()
+        combine_fl_key_val_dict = self._get_combine_fl_key_val_dict(all_key_val_dict)
         all_key_val_dict = all_key_val_dict | combine_fl_key_val_dict
 
         all_key_val_str = self._get_all_key_val_as_str(all_key_val_dict)
@@ -226,7 +226,7 @@ class LatexInfo:
 
         return "\n".join(str_item_list)
 
-    def _get_combine_fl_key_val_dict(self) -> Dict[str, float]:
+    def _get_combine_fl_key_val_dict(self, all_key_val_dict: Dict[str, float]) -> Dict[str, float]:
         file_path_list = list(self._combine_fl_results_dir_path.rglob("*.json"))
 
         combine_fl_key_val_dict = {}
@@ -246,6 +246,16 @@ class LatexInfo:
                 const_granularity_string = Constants.Module
             else:
                 raise Exception()
+
+            if language == Constants.Python and const_granularity_string == Constants.Statement:
+                time_cost = self._get_time_for_combine_fl_statement(all_key_val_dict, language, const_granularity_string, technique)
+                latex_key = self._get_latex_key_for_metric(const_granularity_string,
+                                                           Constants.Combine_fl,
+                                                           technique,
+                                                           Constants.All,
+                                                           Constants.Time,
+                                                           language)
+                combine_fl_key_val_dict[latex_key] = time_cost
 
             for j_key, j_value in json_dict.items():
                 if j_key == "@1%":
@@ -310,3 +320,53 @@ class LatexInfo:
                     combine_fl_key_val_dict[latex_key] = j_value
 
         return combine_fl_key_val_dict
+
+    def _get_time_for_combine_fl_statement(self,
+                                           all_key_val_dict: Dict[str, float],
+                                           language: str,
+                                           granularity: str,
+                                           combine_fl_technique: str) -> float:
+        assert language == Constants.Python
+        assert granularity == Constants.Statement
+        assert combine_fl_technique == Constants.All_families or combine_fl_technique == Constants.Sbfl_st
+
+        latex_key = self._get_latex_key_for_metric(granularity,
+                                                   Constants.SBFL,
+                                                   Constants.Ochiai,
+                                                   Constants.All,
+                                                   Constants.Time,
+                                                   language)
+        time_sbfl = all_key_val_dict[latex_key]
+
+        latex_key = self._get_latex_key_for_metric(granularity,
+                                                   Constants.MBFL,
+                                                   Constants.Metallaxis,
+                                                   Constants.All,
+                                                   Constants.Time,
+                                                   language)
+        time_mbfl = all_key_val_dict[latex_key]
+
+        latex_key = self._get_latex_key_for_metric(granularity,
+                                                   Constants.PS,
+                                                   Constants.FAVG,
+                                                   Constants.All,
+                                                   Constants.Time,
+                                                   language)
+        time_ps = all_key_val_dict[latex_key]
+
+        latex_key = self._get_latex_key_for_metric(granularity,
+                                                   Constants.ST,
+                                                   Constants.FAVG,
+                                                   Constants.All,
+                                                   Constants.Time,
+                                                   language)
+        time_st = all_key_val_dict[latex_key]
+
+        if combine_fl_technique == Constants.All_families:
+            time_cost = time_sbfl + time_mbfl + time_ps + time_st
+        elif combine_fl_technique == Constants.Sbfl_st:
+            time_cost = time_sbfl + time_st
+        else:
+            raise Exception()
+
+        return time_cost
