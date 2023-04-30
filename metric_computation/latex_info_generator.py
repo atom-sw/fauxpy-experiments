@@ -303,7 +303,7 @@ class LatexInfo:
                                                                Constants.All,
                                                                Constants.Einspect,
                                                                language)
-                    combine_fl_key_val_dict[latex_key] = round(j_value)
+                    combine_fl_key_val_dict[latex_key] = j_value
                 elif j_key == "python_exam":
                     if language == Constants.Java:
                         continue
@@ -337,11 +337,14 @@ class LatexInfo:
         for key_avg, value_avg in combine_fl_key_val_avg_dict.items():
             # Compute average
             value = value_avg / 2
-            if "@" in key_avg or "einspect" in key_avg:
-                value = round(value)
             combine_fl_key_val_avg_dict[key_avg] = value
 
         combine_fl_key_val_dict = combine_fl_key_val_dict | combine_fl_key_val_avg_dict
+
+        for key_all, value_all in combine_fl_key_val_dict.items():
+            # Round some information
+            if "@" in key_all or "einspect" in key_all:
+                combine_fl_key_val_dict[key_all] = round(value_all)
 
         return combine_fl_key_val_dict
 
