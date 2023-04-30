@@ -229,6 +229,8 @@ class LatexInfo:
     def _get_combine_fl_key_val_dict(self, all_key_val_dict: Dict[str, float]) -> Dict[str, float]:
         file_path_list = list(self._combine_fl_results_dir_path.rglob("*.json"))
 
+        combine_fl_key_val_avg_dict = {}
+
         combine_fl_key_val_dict = {}
         for file_path in file_path_list:
             file_path_parts = file_path.name.split(".")[0].split("_")
@@ -248,7 +250,8 @@ class LatexInfo:
                 raise Exception()
 
             if language == Constants.Python and const_granularity_string == Constants.Statement:
-                time_cost = self._get_time_for_combine_fl_statement(all_key_val_dict, language, const_granularity_string, technique)
+                time_cost = self._get_time_for_combine_fl_statement(all_key_val_dict, language,
+                                                                    const_granularity_string, technique)
                 latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                            Constants.Combine_fl,
                                                            technique,
@@ -257,6 +260,7 @@ class LatexInfo:
                                                            language)
                 combine_fl_key_val_dict[latex_key] = time_cost
 
+            latex_key = None
             for j_key, j_value in json_dict.items():
                 if j_key == "@1%":
                     latex_key = self._get_latex_key_for_metric(const_granularity_string,
@@ -319,6 +323,26 @@ class LatexInfo:
                                                                language)
                     combine_fl_key_val_dict[latex_key] = j_value
 
+                if latex_key is not None:
+                    # Collect family average info
+                    key_segments = latex_key.split("/")
+                    latex_key = None
+                    assert len(key_segments) == 7 or len(key_segments) == 8
+
+                    avg_latex_key = f"/{'/'.join(key_segments[1:4])}/{Constants.FAVG}/{'/'.join(key_segments[5:])}"
+                    if avg_latex_key not in combine_fl_key_val_avg_dict:
+                        combine_fl_key_val_avg_dict[avg_latex_key] = 0
+                    combine_fl_key_val_avg_dict[avg_latex_key] += j_value
+
+        for key_avg, value_avg in combine_fl_key_val_avg_dict.items():
+            # Compute average
+            value = value_avg / 2
+            if "@" in key_avg or "einspect" in key_avg:
+                value = round(value)
+            combine_fl_key_val_avg_dict[key_avg] = value
+
+        combine_fl_key_val_dict = combine_fl_key_val_dict | combine_fl_key_val_avg_dict
+
         return combine_fl_key_val_dict
 
     def _get_time_for_combine_fl_statement(self,
@@ -370,3 +394,6 @@ class LatexInfo:
             raise Exception()
 
         return time_cost
+
+    def _get_combine_fl_key_val_dict_family_average(self, combine_fl_key_val_dict: Dict[str, float]):
+        pass
