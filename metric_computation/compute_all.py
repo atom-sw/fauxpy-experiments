@@ -13,6 +13,9 @@ from latex_info_generator import LatexInfo
 from result_manager import ResultManager
 from selected_bugs_types import assign_type_to_selected_bugs
 
+Alfa = "alfa"
+Sbst = "sbst"
+
 
 def are_all_different_in_list(item_list) -> bool:
     if len(item_list) == 0:
@@ -83,39 +86,43 @@ def get_fs_hfl_statement_csv_score_items(fauxpy_statement_csv_score_items,
     return fs_hfl_statement_csv_score_items
 
 
-def get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items):
+def get_avg_csv_score_items(fauxpy_csv_score_items, tech_name: str):
     def get_csv_technique(technique: FLTechnique, bug_key: str):
         technique_csv = list(filter(lambda x:
                                     (x.get_technique() == technique and
                                      x.get_bug_key() == bug_key),
-                                    fauxpy_statement_csv_score_items))[0]
+                                    fauxpy_csv_score_items))[0]
         return technique_csv
 
-    average_fl_statement_csv_score_item_list = []
+    average_fl_csv_score_item_list = []
 
     all_ochiai_csv_list = list(
-        filter(lambda x: x.get_technique() == FLTechnique.Ochiai, fauxpy_statement_csv_score_items))
+        filter(lambda x: x.get_technique() == FLTechnique.Ochiai, fauxpy_csv_score_items))
     for ochiai_csv in all_ochiai_csv_list:
         print(ochiai_csv.get_bug_key())
-        tarantula_csv = get_csv_technique(FLTechnique.Tarantula, ochiai_csv.get_bug_key())
         dstar_csv = get_csv_technique(FLTechnique.DStar, ochiai_csv.get_bug_key())
-        metallaxis_csv = get_csv_technique(FLTechnique.Metallaxis, ochiai_csv.get_bug_key())
-        muse_csv = get_csv_technique(FLTechnique.Muse, ochiai_csv.get_bug_key())
-        ps_csv = get_csv_technique(FLTechnique.PS, ochiai_csv.get_bug_key())
         st_csv = get_csv_technique(FLTechnique.ST, ochiai_csv.get_bug_key())
         techniques_csv_list = [
             ochiai_csv,
             dstar_csv,
-            # metallaxis_csv,
-            # muse_csv,
-            # ps_csv,
             st_csv
         ]
-        average_fl = AverageFaultLocalization(techniques_csv_list, False)
-        average_fl_statement_csv_score_item = average_fl.get_average_fl_statement_csv_score_item()
-        average_fl_statement_csv_score_item_list.append(average_fl_statement_csv_score_item)
 
-    return average_fl_statement_csv_score_item_list
+        if tech_name == Alfa:
+            metallaxis_csv = get_csv_technique(FLTechnique.Metallaxis, ochiai_csv.get_bug_key())
+            muse_csv = get_csv_technique(FLTechnique.Muse, ochiai_csv.get_bug_key())
+            ps_csv = get_csv_technique(FLTechnique.PS, ochiai_csv.get_bug_key())
+            techniques_csv_list += [
+                metallaxis_csv,
+                muse_csv,
+                ps_csv,
+            ]
+
+        average_fl = AverageFaultLocalization(techniques_csv_list)
+        average_fl_csv_score_item = average_fl.get_average_fl_csv_score_item()
+        average_fl_csv_score_item_list.append(average_fl_csv_score_item)
+
+    return average_fl_csv_score_item_list
 
 
 def save_detailed(detailed_table: List, tool_name: str, granularity: str, bug_type: str, dir_name: str):
@@ -233,16 +240,19 @@ def calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_trut
     save_overall(literature_overall_table, "fs_hfl", "statement", dir_name)
 
 
-def calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info):
-    average_fl_statement_result_manager = ResultManager(average_fl_statement_csv_score_items,
-                                                        ground_truth_info,
-                                                        size_counts_info,
-                                                        True)
-    literature_detailed_tables, literature_overall_table = average_fl_statement_result_manager.get_metric_results()
-    dir_name = "output_average_fl_statement"
-    file_manager.clean_make_output_dir(dir_name)
-    save_detailed(literature_detailed_tables, "average_fl", "statement", dir_name)
-    save_overall(literature_overall_table, "average_fl", "statement", dir_name)
+def calc_avg_and_save(avg_csv_score_items, ground_truth_info, size_counts_info, tech_name: str):
+    granularity_name = avg_csv_score_items[0].get_granularity().name.lower()
+    our_metric = granularity_name == FLGranularity.Statement
+    avg_result_manager = ResultManager(avg_csv_score_items,
+                                       ground_truth_info,
+                                       size_counts_info,
+                                       our_metric)
+    all_detailed_tables, all_overall_table = avg_result_manager.get_metric_results()
+    dir_name = f"output_avg_{tech_name}_{granularity_name}"
+    file_manager.make_if_not_dir(dir_name)
+    save_detailed(all_detailed_tables, f"avg_{tech_name}", granularity_name, "all", dir_name)
+    save_overall(all_overall_table, f"avg_{tech_name}", granularity_name, "all", dir_name)
+    save_latex_info(all_overall_table, f"avg_{tech_name}", granularity_name, "all")
 
 
 def generate_metrics():
@@ -254,7 +264,7 @@ def generate_metrics():
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
     # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
     #                                                                         fauxpy_statement_csv_score_items)
@@ -263,7 +273,7 @@ def generate_metrics():
     #                                                       fauxpy_function_csv_score_items)
     # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
 
-    # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
+    fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
     #                                                       fauxpy_module_csv_score_items)
     # calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
@@ -277,9 +287,24 @@ def generate_metrics():
     #                                                                         fauxpy_function_csv_score_items,
     #                                                                         fauxpy_module_csv_score_items)
     # calc_fs_hfl_statement_and_save(fs_hfl_statement_csv_score_items, ground_truth_info, size_counts_info)
-    #
-    # average_fl_statement_csv_score_items = get_average_fl_statement_csv_score_items(fauxpy_statement_csv_score_items)
-    # calc_average_fl_statement_and_save(average_fl_statement_csv_score_items, ground_truth_info, size_counts_info)
+
+    # avg_alfa_statement_csv_score_items = get_avg_csv_score_items(fauxpy_statement_csv_score_items, Alfa)
+    # calc_avg_and_save(avg_alfa_statement_csv_score_items, ground_truth_info, size_counts_info, Alfa)
+
+    # avg_sbst_statement_csv_score_items = get_avg_csv_score_items(fauxpy_statement_csv_score_items, Sbst)
+    # calc_avg_and_save(avg_sbst_statement_csv_score_items, ground_truth_info, size_counts_info, Sbst)
+
+    # avg_alfa_function_csv_score_items = get_avg_csv_score_items(fauxpy_function_csv_score_items, Alfa)
+    # calc_avg_and_save(avg_alfa_function_csv_score_items, ground_truth_info, size_counts_info, Alfa)
+
+    # avg_sbst_function_csv_score_items = get_avg_csv_score_items(fauxpy_function_csv_score_items, Sbst)
+    # calc_avg_and_save(avg_sbst_function_csv_score_items, ground_truth_info, size_counts_info, Sbst)
+
+    # avg_alfa_module_csv_score_items = get_avg_csv_score_items(fauxpy_module_csv_score_items, Alfa)
+    # calc_avg_and_save(avg_alfa_module_csv_score_items, ground_truth_info, size_counts_info, Alfa)
+
+    avg_sbst_module_csv_score_items = get_avg_csv_score_items(fauxpy_module_csv_score_items, Sbst)
+    calc_avg_and_save(avg_sbst_module_csv_score_items, ground_truth_info, size_counts_info, Sbst)
 
 
 def generate_combine_fl_data_input():
@@ -331,7 +356,8 @@ def generate_combine_fl_data_input():
         file_manager.save_csv_to_output_dir(qid_lines_csv_table, dir_name,
                                             f"python_{granularity_name}_qid-lines.csv")
         file_manager.save_object_to_json(qid_ground_truth_num_items,
-                                         Path(dir_name) / f"python_{granularity_name}_qid_ground_truth_number_of_items.json")
+                                         Path(
+                                             dir_name) / f"python_{granularity_name}_qid_ground_truth_number_of_items.json")
         file_manager.save_string_to_file(fl_tech_str, Path(dir_name) / "techniques.txt")
         file_manager.save_string_to_file(proj_string, Path(dir_name) / "projects.txt")
 
@@ -453,6 +479,6 @@ def get_bug_statistics():
 
 if __name__ == '__main__':
     # generate_combine_fl_data_input()
-    # generate_metrics()
-    generate_latex_data_information()
+    generate_metrics()
+    # generate_latex_data_information()
     # get_bug_statistics()
