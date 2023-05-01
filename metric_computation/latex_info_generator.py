@@ -191,10 +191,16 @@ class LatexInfo:
             return Constants.PS, Constants.FAVG
         elif string_name == FLTechnique.ST.name:
             return Constants.ST, Constants.FAVG
+        elif string_name == FLTechnique.AvgAlfa.name:
+            return Constants.Average_fl, Constants.All_families
+        elif string_name == FLTechnique.AvgSbst.name:
+            return Constants.Average_fl, Constants.Sbfl_st
         elif string_name == "SBFL":
             return Constants.SBFL, Constants.FAVG
         elif string_name == "MBFL":
             return Constants.MBFL, Constants.FAVG
+        elif string_name == "AVG":
+            return Constants.Average_fl, Constants.FAVG
         else:
             raise Exception()
 
@@ -250,8 +256,10 @@ class LatexInfo:
                 raise Exception()
 
             if language == Constants.Python and const_granularity_string == Constants.Statement:
-                time_cost = self._get_time_for_combine_fl_statement(all_key_val_dict, language,
-                                                                    const_granularity_string, technique)
+                time_cost = self._get_time_for_combine_fl_and_avg_statement(all_key_val_dict,
+                                                                            language,
+                                                                            const_granularity_string,
+                                                                            technique)
                 latex_key = self._get_latex_key_for_metric(const_granularity_string,
                                                            Constants.Combine_fl,
                                                            technique,
@@ -348,11 +356,11 @@ class LatexInfo:
 
         return combine_fl_key_val_dict
 
-    def _get_time_for_combine_fl_statement(self,
-                                           all_key_val_dict: Dict[str, float],
-                                           language: str,
-                                           granularity: str,
-                                           combine_fl_technique: str) -> float:
+    def _get_time_for_combine_fl_and_avg_statement(self,
+                                                   all_key_val_dict: Dict[str, float],
+                                                   language: str,
+                                                   granularity: str,
+                                                   combine_fl_technique: str) -> float:
         assert language == Constants.Python
         assert granularity == Constants.Statement
         assert combine_fl_technique == Constants.All_families or combine_fl_technique == Constants.Sbfl_st
