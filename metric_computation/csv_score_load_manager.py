@@ -21,6 +21,8 @@ class FLTechnique(Enum):
     Muse = 4
     PS = 5
     ST = 6
+    AvgAlfa = 7
+    AvgSbst = 8
     Average = 7
 
 
