@@ -505,6 +505,9 @@ class ResultManager:
         metallaxis_overall = [x for x in all_overall if x[0] == FLTechnique.Metallaxis.name]
         muse_overall = [x for x in all_overall if x[0] == FLTechnique.Muse.name]
 
+        alfa_overall = [x for x in all_overall if x[0] == FLTechnique.AvgAlfa.name]
+        sbst_overall = [x for x in all_overall if x[0] == FLTechnique.AvgSbst.name]
+
         assert len(tarantula_overall) == len(ochiai_overall) == len(dstar_overall)
         assert len(tarantula_overall) <= 1
         if len(tarantula_overall) == len(ochiai_overall) == len(dstar_overall) == 1:
@@ -538,3 +541,19 @@ class ResultManager:
                                                        current_muse])
                 mbfl_overall_row.append(current_avg)
             all_overall.append(mbfl_overall_row)
+
+        assert len(alfa_overall) == len(sbst_overall)
+        assert len(alfa_overall) <= 1
+        if len(alfa_overall) == len(sbst_overall) == 1:
+            avg_overall_row = ["AVG"]
+            for index in range(1, len(alfa_overall[0])):
+                current_alfa = alfa_overall[0][index]
+                current_sbst = sbst_overall[0][index]
+                if current_alfa is None:
+                    assert current_alfa == current_sbst
+                    current_avg = None
+                else:
+                    current_avg = mathematics.average([current_alfa,
+                                                       current_sbst])
+                avg_overall_row.append(current_avg)
+            all_overall.append(avg_overall_row)
