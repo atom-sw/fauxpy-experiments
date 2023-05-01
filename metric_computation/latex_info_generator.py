@@ -397,6 +397,3 @@ class LatexInfo:
             raise Exception()
 
         return time_cost
-
-    def _get_combine_fl_key_val_dict_family_average(self, combine_fl_key_val_dict: Dict[str, float]):
-        pass
