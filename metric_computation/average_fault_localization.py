@@ -6,10 +6,12 @@ from entity_type import ScoredStatement, ScoredEntity, ScoredFunction, ScoredMod
 
 
 class AverageFaultLocalization:
-    def __init__(self, all_csv_score_items: List[CsvScoreItem]):
+    def __init__(self, all_csv_score_items: List[CsvScoreItem], avg_technique: FLTechnique):
         for item in all_csv_score_items:
             assert item.get_bug_key() == all_csv_score_items[0].get_bug_key()
             assert item.get_granularity() == all_csv_score_items[0].get_granularity()
+        assert ((len(all_csv_score_items) == 6 and avg_technique == FLTechnique.AvgAlfa) or
+                (len(all_csv_score_items) == 3 and avg_technique == FLTechnique.AvgSbst))
         self._granularity = all_csv_score_items[0].get_granularity()
         self._all_csv_score_items = all_csv_score_items
         self._is_mutable = all_csv_score_items[0].get_is_mutable_bug()
@@ -19,6 +21,7 @@ class AverageFaultLocalization:
         self._project_name = all_csv_score_items[0].get_project_name()
         self._percentage_of_mutants_on_ground_truth = all_csv_score_items[0].get_percentage_of_mutants_on_ground_truth()
         self._technique_min_max = self._get_technique_min_max()
+        self._avg_technique = avg_technique
 
     def _get_technique_min_max(self) -> Dict[FLTechnique, Tuple[float, float]]:
         def get_min_max(scored_entities: List[ScoredEntity]) -> Tuple[Optional[float], Optional[float]]:
@@ -70,7 +73,7 @@ class AverageFaultLocalization:
                                       None,
                                       self._project_name,
                                       self._bug_number,
-                                      FLTechnique.Average,
+                                      self._avg_technique,
                                       self._granularity,
                                       scored_entity_list,
                                       -1)
