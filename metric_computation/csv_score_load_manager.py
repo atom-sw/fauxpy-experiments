@@ -72,8 +72,8 @@ class MetricOurVal:
 
 class CsvScoreItem:
     def __init__(self,
-                 csv_paths: List[Path],
-                 script_id: int,
+                 csv_paths: Optional[List[Path]],
+                 script_id: Optional[int],
                  project_name: str,
                  bug_number: int,
                  localization_technique: FLTechnique,
