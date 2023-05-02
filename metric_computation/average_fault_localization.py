@@ -10,6 +10,7 @@ class AverageFaultLocalization:
         for item in all_csv_score_items:
             assert item.get_bug_key() == all_csv_score_items[0].get_bug_key()
             assert item.get_granularity() == all_csv_score_items[0].get_granularity()
+        assert avg_technique == FLTechnique.AvgAlfa or avg_technique == FLTechnique.AvgSbst
         assert ((len(all_csv_score_items) == 6 and avg_technique == FLTechnique.AvgAlfa) or
                 (len(all_csv_score_items) == 3 and avg_technique == FLTechnique.AvgSbst))
         self._granularity = all_csv_score_items[0].get_granularity()
@@ -102,8 +103,7 @@ class AverageFaultLocalization:
 
         return None
 
-    @staticmethod
-    def _get_average_score(technique_score_list: List[Tuple[FLTechnique, Optional[float]]]) -> float:
+    def _get_average_score(self, technique_score_list: List[Tuple[FLTechnique, Optional[float]]]) -> float:
         ochiai_w = 3
         dstar_w = 3
         metallaxis_w = 2
@@ -131,7 +131,11 @@ class AverageFaultLocalization:
             else:
                 raise Exception("This one should not happen")
 
-        average_score = w_sum / len(technique_score_list)
+        denominator = ochiai_w + dstar_w + st_w
+        if self._avg_technique == FLTechnique.AvgAlfa:
+            denominator += metallaxis_w + muse_w + ps_w
+
+        average_score = w_sum / denominator
 
         return average_score
 
