@@ -206,6 +206,14 @@ def main():
     correct_test_bugs_info_2 = common.load_correct_test_bugs_2()
     select_all_info_2_bugs(selected_bugs_info, correct_test_bugs_info_2, manually_removed_bugs_info)
 
+    # To keep the randomly selected bugs as they are,
+    # we add this step (which was added later) at the end of the
+    # random selection process.
+    # Here, we also select the ground truth empty subjects.
+    for empty_key, empty_value in empty_ground_truth_bugs_info.items():
+        selected_bugs_info[empty_key] += empty_value
+        selected_bugs_info[empty_key].sort()
+
     # needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     # print("Final needed time: ", needed_time)
     # print("Available time: ", MAX_HR)
