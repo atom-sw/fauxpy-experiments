@@ -69,14 +69,21 @@ class EInspect(EInspectBase):
     and their scores resulting from running a fault
     localization technique (e.g., Tarantula) on a buggy version.
 
-    This class os based on paper "An Empirical Study of Fault Localization Families
+    This class is based on paper "An Empirical Study of Fault Localization Families
     and Their Combinations". This ranking methods
     seems to be more reasonable that
     other methods (i.e., best case, worst case, and
      average case). So, we used this one.
+    The current implementation, we call E_Inspect+, is an
+    extended version of the one implemented in the paper.
+    When, fault localization technique do not find the bug,
+    E_Inspect is -1 while E_Inspect+ regards missing entities
+    as a huge tie and computed the E_Inspect for it (the last else).
     """
 
-    def __init__(self, scored_entities: List[ScoredEntity], entity_count_in_project: int,
+    def __init__(self,
+                 scored_entities: List[ScoredEntity],
+                 entity_count_in_project: int,
                  buggy_entity_names: List[str]):
         super().__init__(scored_entities, buggy_entity_names)
         self._entity_count_in_project = entity_count_in_project
