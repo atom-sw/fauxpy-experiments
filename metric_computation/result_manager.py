@@ -96,15 +96,14 @@ class ResultManager:
                 result_rows.append(result_row)
             return result_rows
 
-        def get_empty_technique_our_overall_results_row(tech: str,
-                                                        csv_item_list: List[CsvScoreItem]) -> List:
-            # ["technique", "cumulative_distance", "sv_comp_overall_score"]
-
-            if len(csv_items) == 0:
-                return [None, None, None]
+        def get_empty_technique_our_overall_results_row(tech: str) -> List:
 
             average_cumulative_distance = None
             average_sv_comp_overall_score = None
+
+            # ["technique",
+            #  "cumulative_distance",
+            #  "sv_comp_overall_score"]
 
             technique_result = [tech,
                                 average_cumulative_distance,
@@ -125,7 +124,7 @@ class ResultManager:
             technique_detailed_table = get_empty_technique_our_detailed_results_table(csv_items)
             technique_detailed_table_dict[technique_name] = technique_detailed_table
 
-            technique_overall_row = get_empty_technique_our_overall_results_row(technique_name, csv_items)
+            technique_overall_row = get_empty_technique_our_overall_results_row(technique_name)
             technique_overall_table.append(technique_overall_row)
 
         return technique_detailed_table_dict, technique_overall_table
@@ -133,7 +132,9 @@ class ResultManager:
     def _compute_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
         for item in csv_score_items:
             e_inspect, is_bug_localized, exam_score = self._compute_literature_metrics_for_csv_item(item)
-            metric_literature_val = MetricLiteratureVal(item.get_experiment_time_seconds(), e_inspect, is_bug_localized,
+            metric_literature_val = MetricLiteratureVal(item.get_experiment_time_seconds(),
+                                                        e_inspect,
+                                                        is_bug_localized,
                                                         exam_score)
             item.set_metric_literature_val(metric_literature_val)
 
@@ -150,8 +151,14 @@ class ResultManager:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                          csv_score_items)
 
-        overall_results_header = ["technique", "experiment_time_seconds", "e_inspect", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10",
-                                  "@10%", "exam_score", "java_exam_score"]
+        overall_results_header = [
+            "technique", "experiment_time_seconds", "e_inspect",
+            "@1", "@1%", "@3",
+            "@3%", "@5", "@5%",
+            "@10", "@10%", "exam_score",
+            "java_exam_score"
+        ]
+
         technique_overall_table = [overall_results_header]
         technique_detailed_table_dict = {}
         for technique_name, csv_items in technique_csv_items.items():
@@ -171,6 +178,7 @@ class ResultManager:
                                                                          csv_score_items)
 
         overall_results_header = ["technique", "cumulative_distance", "sv_comp_overall_score"]
+
         technique_overall_table = [overall_results_header]
         technique_detailed_table_dict = {}
         for technique_name, csv_items in technique_csv_items.items():
@@ -227,7 +235,9 @@ class ResultManager:
 
         return e_inspect_value, is_bug_localized
 
-    def _compute_exam_score_for_csv_score_item(self, csv_score_item: CsvScoreItem, e_inspect: float) -> float:
+    def _compute_exam_score_for_csv_score_item(self,
+                                               csv_score_item: CsvScoreItem,
+                                               e_inspect: float) -> float:
         bug_key = csv_score_item.get_bug_key()
         if csv_score_item.get_granularity() == FLGranularity.Statement:
             entity_count_in_project = self._size_counts_dict[bug_key]["LINE_COUNT"]
@@ -258,10 +268,12 @@ class ResultManager:
         return technique_csv_items
 
     @classmethod
-    def _get_technique_literature_detailed_results_table(cls, csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "granularity", "technique", "crashing", "predicate",
-                         "mutable_bug", "percentage_of_mutants_on_ground_truth",
-                         "experiment_time_seconds", "e_inspect", "is_bug_localized", "exam_score"]
+    def _get_technique_literature_detailed_results_table(cls, csv_items: List[CsvScoreItem]) -> List[List]:
+        result_header = ["project_name", "bug_number", "granularity",
+                         "technique", "crashing", "predicate",
+                         "mutable_bug", "percentage_of_mutants_on_ground_truth", "experiment_time_seconds",
+                         "e_inspect", "is_bug_localized", "exam_score"]
+
         result_rows = [result_header]
         for item in csv_items:
             project_name = item.get_project_name()
@@ -278,10 +290,10 @@ class ResultManager:
             e_inspect = metric_val.get_e_inspect()
             is_bug_localized = cls._bool_to_int(metric_val.is_bug_localized())
             exam_score = metric_val.get_exam_score()
-            result_row = [project_name, bug_number, granularity_name, technique_name,
-                          crashing, predicate, mutable_bug,
-                          percentage_of_mutants_on_ground_truth,
-                          experiment_time_seconds, e_inspect, is_bug_localized, exam_score]
+            result_row = [project_name, bug_number, granularity_name,
+                          technique_name, crashing, predicate,
+                          mutable_bug, percentage_of_mutants_on_ground_truth, experiment_time_seconds,
+                          e_inspect, is_bug_localized, exam_score]
             result_rows.append(result_row)
 
         return result_rows
@@ -304,13 +316,11 @@ class ResultManager:
     @staticmethod
     def _get_technique_literature_overall_results_row(technique_name: str,
                                                       csv_items: List[CsvScoreItem]) -> List:
-        # ["technique", "experiment_time_seconds", "e_inspect", "@1", "@1%", "@3", "@3%", "@5", "@5%", "@10", "@10%", "exam_score", "java_exam_score"]
 
-        if len(csv_items) == 0:
-            return [None, None, None, None, None, None, None, None, None, None, None, None]
+        assert len(csv_items) != 0
 
         def at_x(top_num: int) -> int:
-            top_x_items = list(filter(lambda x: x.get_metric_literature_val().get_e_inspect() <= top_num, csv_items))
+            top_x_items = [x for x in csv_items if x.get_metric_literature_val().get_e_inspect() <= top_num]
             return len(top_x_items)
 
         def at_x_percentage(top_num: int) -> float:
@@ -345,18 +355,16 @@ class ResultManager:
             # round_average_java_exam_score = round(average_java_exam_score, 4)
             round_average_java_exam_score = average_java_exam_score
 
-        technique_result = [technique_name,
-                            round_average_experiment_time,
-                            round_average_e_inspect,
-                            at_x(1),
-                            at_x_percentage(1),
-                            at_x(3),
-                            at_x_percentage(3),
-                            at_x(5),
-                            at_x_percentage(5),
-                            at_x(10),
-                            at_x_percentage(10),
-                            round_average_exam_score,
+        # ["technique", "experiment_time_seconds", "e_inspect",
+        #  "@1", "@1%", "@3",
+        #  "@3%", "@5", "@5%",
+        #  "@10", "@10%", "exam_score",
+        #  "java_exam_score"]
+
+        technique_result = [technique_name, round_average_experiment_time, round_average_e_inspect,
+                            at_x(1), at_x_percentage(1), at_x(3),
+                            at_x_percentage(3), at_x(5), at_x_percentage(5),
+                            at_x(10), at_x_percentage(10), round_average_exam_score,
                             round_average_java_exam_score]
 
         return technique_result
@@ -366,8 +374,7 @@ class ResultManager:
                                                csv_items: List[CsvScoreItem]) -> List:
         # ["technique", "cumulative_distance", "sv_comp_overall_score"]
 
-        if len(csv_items) == 0:
-            return [None, None, None]
+        assert len(csv_items) != 0
 
         cumulative_distance_list = [x.get_metric_our_val().get_cumulative_distance() for x in csv_items]
         average_cumulative_distance = mathematics.average(cumulative_distance_list)
@@ -383,7 +390,8 @@ class ResultManager:
 
         return technique_result
 
-    def _get_ground_truth_buggy_line_names_and_module_size_dict(self, bug_key: str) -> Tuple[List[str], Dict[str, int]]:
+    def _get_ground_truth_buggy_line_names_and_module_size_dict(self,
+                                                                bug_key: str) -> Tuple[List[str], Dict[str, int]]:
         buggy_entity_names = []
         buggy_module_sizes = {}
         bug_ground_truth = self._ground_truth_info_dict[bug_key]
@@ -489,6 +497,8 @@ class ResultManager:
         return combined_all_details
 
     def _check_if_our_metric_applicable(self):
+        assert self._our_metric
+
         # We compute our metrics only for statement granularity.
         assert any([x.get_granularity() == FLGranularity.Statement for x in self._csv_score_items])
 
