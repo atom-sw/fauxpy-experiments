@@ -1,6 +1,6 @@
 {
      "tqdm1": {
-          "tqdm/auto/__init__.py": {
+          "tqdm/autonotebook/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -10,14 +10,14 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "tqdm/_monitor.py": {
-               "DStar": 0.02743142144638404,
+          "tqdm/_utils.py": {
+               "DStar": 0.026128266033254157,
                "Metallaxis": 0.0,
                "Muse": 0,
-               "Ochiai": 0.2328440157512416,
+               "Ochiai": 0.2274468711721004,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.5794117647058823,
+               "Tarantula": 0.5835641735918744,
                "faulty": 0
           },
           "tqdm/_tqdm.py": {
@@ -30,17 +30,17 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "tqdm/_utils.py": {
-               "DStar": 0.02743142144638404,
-               "Metallaxis": 0.0,
+          "tqdm/_monitor.py": {
+               "DStar": 0.025522041763341066,
+               "Metallaxis": 0.14285714285714285,
                "Muse": 0,
-               "Ochiai": 0.2328440157512416,
+               "Ochiai": 0.2248859995790096,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.5794117647058823,
+               "Tarantula": 0.5776965265082267,
                "faulty": 0
           },
-          "tqdm/autonotebook/__init__.py": {
+          "tqdm/auto/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -62,59 +62,37 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "tqdm/_monitor.py": {
-               "DStar": 0.08587257617728532,
+          "tqdm/_utils.py": {
+               "DStar": 0.02743142144638404,
                "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.3396539960428836,
+               "Muse": 0,
+               "Ochiai": 0.2328440157512416,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.6037117903930131,
+               "Tarantula": 0.5794117647058823,
                "faulty": 0
           },
           "tqdm/_tqdm.py": {
                "DStar": 1.0,
                "Metallaxis": 1.0,
-               "Muse": 1.0,
+               "Muse": 0,
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "tqdm/_utils.py": {
-               "DStar": 0.08355795148247978,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.3352268861867558,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5965480043149947,
-               "faulty": 0
-          }
-     },
-     "tqdm3": {
           "tqdm/_monitor.py": {
-               "DStar": 0.002770083102493075,
+               "DStar": 0.02743142144638404,
                "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.17791399792722473,
+               "Muse": 0,
+               "Ochiai": 0.2328440157512416,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.5580357142857143,
+               "Tarantula": 0.5794117647058823,
                "faulty": 0
           },
-          "tqdm/_tqdm.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 1.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "tqdm/_utils.py": {
+          "tqdm/auto/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -125,7 +103,81 @@
                "faulty": 0
           }
      },
+     "tqdm3": {
+          "tqdm/autonotebook/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tqdm/_utils.py": {
+               "DStar": 0.08355795148247978,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.3352268861867558,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5965480043149947,
+               "faulty": 0
+          },
+          "tqdm/_tqdm.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "tqdm/_monitor.py": {
+               "DStar": 0.08587257617728532,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.3396539960428836,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.6037117903930131,
+               "faulty": 0
+          }
+     },
      "tqdm4": {
+          "tqdm/_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "tqdm/_tqdm.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "tqdm/_monitor.py": {
+               "DStar": 0.002770083102493075,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.17791399792722473,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5580357142857143,
+               "faulty": 0
+          }
+     },
+     "tqdm5": {
           "tqdm/_main.py": {
                "DStar": 0,
                "Metallaxis": 0,
@@ -137,17 +189,7 @@
                "faulty": 1
           }
      },
-     "tqdm5": {
-          "tqdm/_tqdm.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
+     "tqdm6": {
           "tqdm/_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -157,19 +199,19 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          }
-     },
-     "tqdm6": {
+          },
           "tqdm/_tqdm.py": {
                "DStar": 1.0,
-               "Metallaxis": 1.0,
+               "Metallaxis": 0,
                "Muse": 0,
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
                "faulty": 1
-          },
+          }
+     },
+     "tqdm7": {
           "tqdm/_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0.0,
@@ -179,80 +221,20 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
+          },
+          "tqdm/_tqdm.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
           }
      },
      "youtube-dl1": {
-          "youtube_dl/downloader/http.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/aes.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/downloader/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/compat.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/downloader/f4m.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/YoutubeDL.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/common.py": {
+          "youtube_dl/postprocessor/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -272,7 +254,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/youtube.py": {
+          "youtube_dl/downloader/http.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -282,7 +264,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
+          "youtube_dl/downloader/f4m.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/cache.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -302,7 +304,57 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "youtube_dl/cache.py": {
+          "youtube_dl/downloader/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/YoutubeDL.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/youtube.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/compat.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/aes.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -314,217 +366,7 @@
           }
      },
      "youtube-dl2": {
-          "youtube_dl/extractor/daum.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/twitch.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/YoutubeDL.py": {
-               "DStar": 0.0033222591362126242,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0.19408005160093658,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5975609756097561,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/tvanouvelles.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/hitbox.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/vlive.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/upskill.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/cache.py": {
-               "DStar": 0.0033222591362126242,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.19408005160093658,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5975609756097561,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/microsoftvirtualacademy.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/discoverygo.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/tunein.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "youtube_dl/extractor/anvato.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/washingtonpost.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/globo.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/packtpub.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/videomore.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/arte.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/bandcamp.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/cbc.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/bilibili.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/espn.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/beampro.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -544,7 +386,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/downloader/f4m.py": {
+          "youtube_dl/cache.py": {
+               "DStar": 0.0033222591362126242,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.19408005160093658,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5975609756097561,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/nrk.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -554,27 +406,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/r7.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/tvplay.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/bbc.py": {
+          "youtube_dl/extractor/rutube.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -594,37 +426,37 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "youtube_dl/extractor/twitch.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/daum.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/hitbox.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "youtube_dl/extractor/acast.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/compat.py": {
-               "DStar": 0.09090909090909091,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.7264497078444243,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9780439121756487,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/rutube.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -644,15 +476,55 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/common.py": {
+          "youtube_dl/downloader/f4m.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/bbc.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/utils.py": {
                "DStar": 1.0,
                "Metallaxis": 1.0,
-               "Muse": 1.0,
+               "Muse": 0.0,
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
-               "faulty": 1
+               "faulty": 0
+          },
+          "youtube_dl/YoutubeDL.py": {
+               "DStar": 0.0033222591362126242,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0.19408005160093658,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5975609756097561,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/globo.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
           },
           "youtube_dl/extractor/youtube.py": {
                "DStar": 0.0,
@@ -664,7 +536,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/tagesschau.py": {
+          "youtube_dl/extractor/tunein.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -674,7 +546,77 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/nrk.py": {
+          "youtube_dl/extractor/packtpub.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/espn.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/videomore.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/bilibili.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/r7.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/postprocessor/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/vlive.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/beampro.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -694,7 +636,67 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
+          "youtube_dl/extractor/tagesschau.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/bandcamp.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/washingtonpost.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/tvanouvelles.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/microsoftvirtualacademy.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/cbc.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/upskill.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -714,19 +716,47 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/utils.py": {
+          "youtube_dl/extractor/common.py": {
                "DStar": 1.0,
                "Metallaxis": 1.0,
-               "Muse": 0.0,
+               "Muse": 1.0,
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "youtube_dl/extractor/tvplay.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
                "faulty": 0
-          }
-     },
-     "youtube-dl3": {
-          "youtube_dl/aes.py": {
+          },
+          "youtube_dl/extractor/discoverygo.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/compat.py": {
+               "DStar": 0.09090909090909091,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.7264497078444243,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9780439121756487,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/arte.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -745,6 +775,48 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
+          }
+     },
+     "youtube-dl3": {
+          "youtube_dl/postprocessor/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/cache.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
           },
           "youtube_dl/YoutubeDL.py": {
                "DStar": 0.0,
@@ -766,7 +838,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/common.py": {
+          "youtube_dl/aes.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -776,27 +848,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "youtube_dl/cache.py": {
+          "youtube_dl/extractor/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -808,7 +860,7 @@
           }
      },
      "youtube-dl4": {
-          "youtube_dl/aes.py": {
+          "youtube_dl/postprocessor/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -818,7 +870,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/__init__.py": {
+          "youtube_dl/cache.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -827,6 +879,26 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
+          },
+          "youtube_dl/extractor/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
           },
           "youtube_dl/YoutubeDL.py": {
                "DStar": 0.0,
@@ -848,7 +920,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/common.py": {
+          "youtube_dl/aes.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -858,27 +930,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "youtube_dl/cache.py": {
+          "youtube_dl/extractor/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -890,6 +942,26 @@
           }
      },
      "youtube-dl5": {
+          "youtube_dl/postprocessor/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/update.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "youtube_dl/downloader/http.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -900,7 +972,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/aes.py": {
+          "youtube_dl/downloader/f4m.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -909,6 +981,36 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
+          },
+          "youtube_dl/cache.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/extractor/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "youtube_dl/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
           },
           "youtube_dl/downloader/common.py": {
                "DStar": 0.0,
@@ -920,57 +1022,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/compat.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/downloader/f4m.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "youtube_dl/YoutubeDL.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/update.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -990,7 +1042,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
+          "youtube_dl/compat.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1000,17 +1052,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/utils.py": {
-               "DStar": 1.0,
+          "youtube_dl/aes.py": {
+               "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 1.0,
+               "Ochiai": 0.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
+               "Tarantula": 0.0,
+               "faulty": 0
           },
-          "youtube_dl/cache.py": {
+          "youtube_dl/extractor/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1022,7 +1074,7 @@
           }
      },
      "youtube-dl6": {
-          "youtube_dl/aes.py": {
+          "youtube_dl/postprocessor/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1032,17 +1084,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/compat.py": {
+          "youtube_dl/update.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1062,7 +1104,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/YoutubeDL.py": {
+          "youtube_dl/cache.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1082,7 +1124,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/update.py": {
+          "youtube_dl/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "youtube_dl/YoutubeDL.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1102,7 +1154,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
+          "youtube_dl/compat.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1112,28 +1164,6 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "youtube_dl/cache.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "youtube-dl7": {
           "youtube_dl/aes.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -1153,28 +1183,10 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          },
-          "youtube_dl/compat.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/YoutubeDL.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/common.py": {
+          }
+     },
+     "youtube-dl7": {
+          "youtube_dl/postprocessor/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1194,7 +1206,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/youtube.py": {
+          "youtube_dl/cache.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1204,7 +1216,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/postprocessor/common.py": {
+          "youtube_dl/extractor/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1224,19 +1236,7 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "youtube_dl/cache.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "youtube-dl8": {
-          "youtube_dl/postprocessor/metadatafromtitle.py": {
+          "youtube_dl/YoutubeDL.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1246,17 +1246,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/adobepass.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/__init__.py": {
+          "youtube_dl/extractor/youtube.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1276,27 +1266,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/YoutubeDL.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "youtube_dl/extractor/common.py": {
-               "DStar": 0.09090909090909091,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 0.7264497078444243,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9657320872274143,
-               "faulty": 0
-          },
-          "youtube_dl/extractor/youtube.py": {
+          "youtube_dl/aes.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1306,7 +1276,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "youtube_dl/extractor/theplatform.py": {
+          "youtube_dl/extractor/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1314,36 +1284,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/postprocessor/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "youtube_dl/utils.py": {
-               "DStar": 0.047619047619047616,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.6004200295403896,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9337349397590361,
-               "faulty": 0
-          },
-          "youtube_dl/cache.py": {
-               "DStar": 0.004739336492890995,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.22962516306529207,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5730129390018485,
                "faulty": 0
           }
      }
