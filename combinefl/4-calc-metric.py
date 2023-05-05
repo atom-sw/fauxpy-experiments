@@ -162,7 +162,7 @@ def main():
     top.append(len(filter(lambda item: item < 10.01 and item > 0, E_pos_list)))
 
     number_of_bugs = len(qid2line)
-    top_percent = [int(round(float(x * 100) / number_of_bugs)) for x in top]
+    top_percent = [float(x * 100) / number_of_bugs for x in top]
 
     print '\nTop 1/3/5/10:', top
     print 'Top %1/%3/%5/%10:', top_percent
