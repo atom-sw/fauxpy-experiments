@@ -386,6 +386,10 @@ def main():
     global CORRECT
     global CORRECT_2
 
+    only_subj = False
+    only_project_name = "keras"
+    only_bug_num = 2
+
     CORRECT = common.load_correct_test_bugs()
     CORRECT_2 = common.load_correct_test_bugs_2()
 
@@ -400,8 +404,8 @@ def main():
         for bug_number in benchmark_items["ACCEPTED"]:
             num_all_bugs += 1
 
-            # if benchmark_name != "keras" or bug_number != 2:
-            #     continue
+            if only_subj and (benchmark_name != only_project_name or bug_number != only_bug_num):
+                continue
 
             print(benchmark_name, bug_number)
             bug_patch_info, is_predicate_bug, is_project_bug_of_omission = get_bug_ground_truth(benchmark_name, bug_number)
@@ -422,8 +426,8 @@ def main():
         for bug_number in benchmark_items["ACCEPTED"]:
             num_all_bugs += 1
 
-            # if benchmark_name != "keras" or bug_number != 2:
-            #     continue
+            if only_subj and (benchmark_name != only_project_name or bug_number != only_bug_num):
+                continue
 
             print(benchmark_name, bug_number)
             bug_patch_info, is_predicate_bug, is_project_bug_of_omission = get_bug_ground_truth(benchmark_name, bug_number)
