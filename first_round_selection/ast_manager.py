@@ -1,7 +1,7 @@
 import ast
-from _ast import FunctionDef, AsyncFunctionDef, ClassDef, Expr
+from _ast import FunctionDef, AsyncFunctionDef, ClassDef, Expr, AST
 from enum import Enum
-from typing import Tuple, List, Any, Dict
+from typing import Tuple, List, Any, Dict, Optional
 
 
 class ScopeType(Enum):
@@ -26,6 +26,26 @@ class ScopeItem:
 
     def get_type(self):
         return self.node_type
+
+    def get_range_len(self):
+        return self.node_range[1] - self.node_range[0]
+
+    def contains(self, other) -> bool:
+        return (self.get_range_len() > other.get_range_len() and
+                self.node_range[0] <= other.get_range()[0] and
+                self.node_range[1] >= other.get_range()[1])
+
+    def get_lines(self) -> List[int]:
+        return list(range(self.node_range[0], self.node_range[1] + 1))
+
+    def __eq__(self, other):
+        return (self.node_range[0] == other.get_range()[0] and
+                self.node_range[1] == other.get_range()[1] and
+                self.node_type == other.get_type() and
+                self.node_ast == other.get_ast())
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 class AddModeManager:
@@ -57,12 +77,28 @@ class AddModeManager:
                                                                       self.__fixed_end_add_line_num)
 
         # Getting the scope of start add line in the fixed version.
-        before_start_add_line_fixed_scope = list(
-            filter(lambda x: x < self.__fixed_start_add_line_num, start_add_line_fixed_scope))
+        before_start_add_line_fixed_scope = [x for x in start_add_line_fixed_scope
+                                             if x < self.__fixed_start_add_line_num]
 
         # Getting the scope of end add line in the fixed version.
-        after_end_add_line_fixed_scope = list(
-            filter(lambda x: x > self.__fixed_end_add_line_num, end_add_line_fixed_scope))
+        after_end_add_line_fixed_scope = [x for x in end_add_line_fixed_scope
+                                          if x > self.__fixed_end_add_line_num]
+
+        # If the added code is a whole scope (e.g., whole function)
+        if (self.is_same_list(start_add_line_fixed_scope, end_add_line_fixed_scope) and
+                len(before_start_add_line_fixed_scope) == 0 and
+                len(after_end_add_line_fixed_scope) == 0):
+            scope_lines = start_add_line_fixed_scope
+            whole_scope_parent = WholeScopeParent(self.__fixed_content_ast, self.__fixed_content_lines, scope_lines)
+            parent_scope_lines = whole_scope_parent.get_parent_scope_lines()
+
+            # Getting the scope of start add line in the fixed version.
+            before_start_add_line_fixed_scope = [x for x in parent_scope_lines
+                                                 if x < self.__fixed_start_add_line_num]
+
+            # Getting the scope of end add line in the fixed version.
+            after_end_add_line_fixed_scope = [x for x in parent_scope_lines
+                                              if x > self.__fixed_end_add_line_num]
 
         if len(before_start_add_line_fixed_scope) != 0:
             # Finding a line before the starting added line
@@ -87,9 +123,8 @@ class AddModeManager:
                     buggy_one_line_before_start_add_line_num)
 
                 # Getting the scope before start add line in the buggy version.
-                before_start_add_line_buggy_scope = list(
-                    filter(lambda x: x <= buggy_one_line_before_start_add_line_num,
-                           none_empty_one_line_before_start_add_line_buggy_scope))
+                before_start_add_line_buggy_scope = [x for x in none_empty_one_line_before_start_add_line_buggy_scope if
+                                                     x <= buggy_one_line_before_start_add_line_num]
 
                 # Find a localizable line before start add line in the buggy version.
                 tmp = before_start_add_line_buggy_scope.copy()
@@ -146,13 +181,14 @@ class AddModeManager:
 
         return high_level_none_decl_line_numbers
 
-    @staticmethod
-    def get_sorted_scope_line_numbers(file_ast_tree: ast.AST, file_lines: List[str], line_number: int) -> List[int]:
+    @classmethod
+    def get_sorted_scope_line_numbers(cls, file_ast_tree: ast.AST, file_lines: List[str], line_number: int) -> List[
+        int]:
         scope_finder_visitor = ScopeFinderVisitor(line_number)
         scope_finder_visitor.visit(file_ast_tree)
         scopes = scope_finder_visitor.get_scopes()
         if len(scopes) != 0:
-            min_scope = AddModeManager.min_scope(scopes)
+            min_scope = cls.min_scope(scopes)
             if min_scope.node_type == ScopeType.Function:
                 function_scope_lines = list(range(min_scope.node_range[0], min_scope.node_range[1] + 1))
                 scope_line_numbers = function_scope_lines
@@ -164,24 +200,48 @@ class AddModeManager:
             else:
                 raise Exception("This must not happen.")
         else:
-            high_level_class_scope_lines = AddModeManager.get_high_level_none_decl_lines(file_ast_tree,
-                                                                                         1,
-                                                                                         len(file_lines))
-            scope_line_numbers = high_level_class_scope_lines
+            global_scope_lines = AddModeManager.get_high_level_none_decl_lines(file_ast_tree,
+                                                                               1,
+                                                                               len(file_lines))
+            scope_line_numbers = global_scope_lines
 
             scope_line_numbers.sort()
 
         return scope_line_numbers
 
     @staticmethod
+    def arg_max(items):
+        return items.index(max(items))
+
+    @staticmethod
     def arg_min(items):
         return items.index(min(items))
 
+    @classmethod
+    def min_scope(cls, scopes: List[ScopeItem]) -> ScopeItem:
+        for item_x in scopes:
+            for item_y in scopes:
+                assert item_x == item_y or item_x.get_range_len() != item_y.get_range_len()
+                if item_x.get_range_len() > item_y.get_range_len():
+                    assert item_x.contains(item_y)
+
+        scope_len_list = [x.get_range()[1] - x.get_range()[0] for x in scopes]
+
+        scope_len_min_index = cls.arg_min(scope_len_list)
+        min_scope = scopes[scope_len_min_index]
+
+        return min_scope
+
     @staticmethod
-    def min_scope(scopes: List[ScopeItem]) -> ScopeItem:
-        scope_len_list = list(map(lambda x: x.get_range()[1] - x.get_range()[0], scopes))
-        scope_len_min_index = AddModeManager.arg_min(scope_len_list)
-        return scopes[scope_len_min_index]
+    def is_same_list(list_a: List, list_b: List) -> bool:
+        if len(list_a) != len(list_b):
+            return False
+
+        for item_a in list_a:
+            if item_a not in list_b:
+                return False
+
+        return True
 
 
 def get_function_class_ast_node_start_end_lines(node):
@@ -349,22 +409,28 @@ class FunctionVisitor(ast.NodeVisitor):
     def __init__(self,
                  lines: List[int]):
         self._lines = lines
-        self._functions = []
+        self._function_names = []
+        self._function_nodes = []
 
     def visit_FunctionDef(self, node: FunctionDef) -> Any:
         if self._is_in_lines(node):
             function_name = self._get_function_name(node)
-            self._functions.append(function_name)
+            self._function_names.append(function_name)
+            self._function_nodes.append(node)
         self.generic_visit(node)
 
     def visit_AsyncFunctionDef(self, node: AsyncFunctionDef) -> Any:
         if self._is_in_lines(node):
             function_name = self._get_function_name(node)
-            self._functions.append(function_name)
+            self._function_names.append(function_name)
+            self._function_nodes.append(node)
         self.generic_visit(node)
 
-    def get_functions(self) -> List[str]:
-        return self._functions
+    def get_function_names(self) -> List[str]:
+        return self._function_names
+
+    def get_function_nodes(self) -> List:
+        return self._function_nodes
 
     def _is_in_lines(self, node) -> bool:
         start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
@@ -384,5 +450,122 @@ def get_functions_for_lines(module_content: str,
     tree = ast.parse(module_content)
     function_visitor = FunctionVisitor(lines)
     function_visitor.visit(tree)
-    functions = function_visitor.get_functions()
+    functions = function_visitor.get_function_names()
     return functions
+
+
+class WholeScopeParent:
+    def __init__(self,
+                 content_ast: ast.AST,
+                 content_lines: List[str],
+                 scope_lines: List[int]):
+        self._content_ast = content_ast
+        self._content_lines = content_lines
+        self._scope_lines = scope_lines
+
+    def get_parent_scope_lines(self) -> List[int]:
+        min_scope = self._get_min_scope()
+        parent_scope_lines = self._get_parent_scope_lines(min_scope)
+        return parent_scope_lines
+
+    def _get_min_scope(self) -> ScopeItem:
+        scope_list = []
+        for line_item in self._scope_lines:
+            scope_finder_visitor = ScopeFinderVisitor(line_item)
+            scope_finder_visitor.visit(self._content_ast)
+            scopes = scope_finder_visitor.get_scopes()
+            for scope in scopes:
+                if scope not in scope_list:
+                    scope_list.append(scope)
+
+        min_scope = min(scope_list, key=lambda x: x.get_range_len())
+
+        for scope_item in scope_list:
+            assert scope_item == min_scope or scope_item.contains(min_scope)
+
+        return min_scope
+
+    def _get_parent_scope_lines(self, scope: ScopeItem) -> List[int]:
+        scope_lines = scope.get_lines()
+        parent_visitor = ParentVisitor(scope_lines, scope.get_ast())
+        parent_visitor.visit(self._content_ast)
+        min_parent_ast = parent_visitor.get_min_parent_ast()
+
+        if min_parent_ast is None:
+            line_numbers = list(range(1, len(self._content_lines) + 1))
+            high_level_none_decl_visitor = HighLevelNoneDeclVisitor(self._content_ast, line_numbers)
+            high_level_none_decl_visitor.visit(self._content_ast)
+            parent_scope_lines = high_level_none_decl_visitor.get_line_numbers()
+        else:
+            parent_scope_lines = self._get_node_lines(min_parent_ast)
+
+        return parent_scope_lines
+
+    @staticmethod
+    def _get_node_lines(node) -> List[int]:
+        start_line_num = node.lineno
+        end_line_num = node.end_lineno
+
+        if (isinstance(node, ast.FunctionDef) or
+                isinstance(node, ast.AsyncFunctionDef) or
+                isinstance(node, ast.ClassDef)):
+            start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+
+        node_lines = list(range(start_line_num, end_line_num + 1))
+
+        return node_lines
+
+
+class ParentVisitor(ast.NodeVisitor):
+    def __init__(self,
+                 scope_lines: List[int],
+                 scope_ast: ast.AST):
+        self._lines = scope_lines
+        self._scope_ast = scope_ast
+        self._parent_nodes = []
+
+    def visit(self, node: AST) -> Any:
+        if self._contains_all_lines(node):
+            self._parent_nodes.append(node)
+        self.generic_visit(node)
+
+    def _contains_all_lines(self, node) -> bool:
+        if not hasattr(node, "lineno") or not hasattr(node, "end_lineno"):
+            return False
+
+        if node == self._scope_ast:
+            return False
+
+        start_line_num = node.lineno
+        end_line_num = node.end_lineno
+
+        if (isinstance(node, ast.FunctionDef) or
+                isinstance(node, ast.AsyncFunctionDef) or
+                isinstance(node, ast.ClassDef)):
+            start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+
+        for line in self._lines:
+            if not (start_line_num <= line <= end_line_num):
+                return False
+        return True
+
+    def get_min_parent_ast(self) -> Optional[ast.AST]:
+        if len(self._parent_nodes) == 0:
+            return None
+        else:
+            min_parent = min(self._parent_nodes, key=lambda x: self._node_size(x))
+            return min_parent
+
+    @staticmethod
+    def _node_size(node) -> int:
+        start_line_num = node.lineno
+        end_line_num = node.end_lineno
+
+        if (isinstance(node, ast.FunctionDef) or
+                isinstance(node, ast.AsyncFunctionDef) or
+                isinstance(node, ast.ClassDef)):
+            start_line_num, end_line_num = get_function_class_ast_node_start_end_lines(node)
+
+        node_size = end_line_num - start_line_num + 1
+
+        return node_size
