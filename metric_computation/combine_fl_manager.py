@@ -183,7 +183,7 @@ class CombineFlManager:
 
         projects_list = [(x[0], x[1]) for x in projects_dict.items()]
         assert len(projects_list) == 13
-        assert sum([x[1] for x in projects_list]) == 134
+        assert sum([x[1] for x in projects_list]) == 135
 
         return techniques_list, projects_list
 
@@ -283,7 +283,7 @@ class CombineFlManager:
         bug_key_values_list.sort(key=lambda x: (x[0], x[1]))
 
         bug_key_list = [self._get_bug_key(x[0], x[1]) for x in bug_key_values_list]
-        assert len(bug_key_list) == 134
+        assert len(bug_key_list) == 135
 
         return bug_key_list
 
