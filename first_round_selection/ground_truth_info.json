@@ -102,12 +102,14 @@
                "MODULE_SIZE": 568,
                "LINES": [
                     34,
+                    229,
                     337,
                     360,
                     509
                ],
                "EXTENDED_LINES": [
                     33,
+                    138,
                     357
                ],
                "FUNCTIONS": [
@@ -170,9 +172,12 @@
                "MODULE_SIZE": 3669,
                "LINES": [
                     2115,
-                    2116
+                    2116,
+                    3668
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    2003
+               ],
                "FUNCTIONS": [
                     "split_line::2097::2163"
                ],
@@ -365,11 +370,13 @@
                     506,
                     517,
                     521,
+                    582,
                     593,
                     594
                ],
                "EXTENDED_LINES": [
-                    6
+                    6,
+                    74
                ],
                "FUNCTIONS": [
                     "format_file_in_place::453::491",
@@ -461,6 +468,7 @@
                     1560,
                     1561,
                     1602,
+                    1618,
                     1619,
                     1620,
                     1621,
@@ -470,8 +478,10 @@
                ],
                "EXTENDED_LINES": [
                     34,
+                    527,
                     709,
-                    1449
+                    1449,
+                    1617
                ],
                "FUNCTIONS": [
                     "__str__::744::757",
@@ -846,7 +856,9 @@
                     68,
                     69
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    48
+               ],
                "FUNCTIONS": [
                     "serialize_response::51::90"
                ],
@@ -1081,7 +1093,8 @@
                     143
                ],
                "EXTENDED_LINES": [
-                    9
+                    9,
+                    33
                ],
                "FUNCTIONS": [
                     "get_unique_filename::138::144"
@@ -1229,8 +1242,12 @@
           {
                "FILE_NAME": "keras/backend/numpy_backend.py",
                "MODULE_SIZE": 754,
-               "LINES": [],
-               "EXTENDED_LINES": [],
+               "LINES": [
+                    592
+               ],
+               "EXTENDED_LINES": [
+                    236
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
@@ -2792,6 +2809,7 @@
                     284,
                     285,
                     287,
+                    383,
                     559,
                     560,
                     561,
@@ -2799,7 +2817,9 @@
                     563,
                     564
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    195
+               ],
                "FUNCTIONS": [
                     "_isna_ndarraylike::226::269",
                     "_isna_ndarraylike_old::272::297",
@@ -2910,7 +2930,8 @@
                ],
                "EXTENDED_LINES": [
                     13,
-                    2274
+                    2274,
+                    2857
                ],
                "FUNCTIONS": [
                     "set::1639::1641",
@@ -2987,10 +3008,14 @@
                "LINES": [
                     11,
                     18,
-                    35
+                    35,
+                    220,
+                    431
                ],
                "EXTENDED_LINES": [
-                    17
+                    17,
+                    98,
+                    222
                ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
@@ -3002,7 +3027,9 @@
                     10,
                     13
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    211
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           },
@@ -3019,7 +3046,8 @@
                     462
                ],
                "EXTENDED_LINES": [
-                    24
+                    24,
+                    153
                ],
                "FUNCTIONS": [
                     "get_indexer_non_unique::453::465"
@@ -3032,7 +3060,9 @@
                "LINES": [
                     4
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    126
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
@@ -3105,7 +3135,8 @@
                     584
                ],
                "EXTENDED_LINES": [
-                    10
+                    10,
+                    569
                ],
                "FUNCTIONS": [
                     "_get_setitem_indexer::580::612"
@@ -3165,7 +3196,8 @@
                     33
                ],
                "EXTENDED_LINES": [
-                    31
+                    31,
+                    176
                ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
@@ -3526,10 +3558,12 @@
                "FILE_NAME": "pandas/core/arrays/interval.py",
                "MODULE_SIZE": 1333,
                "LINES": [
-                    30
+                    30,
+                    962
                ],
                "EXTENDED_LINES": [
-                    29
+                    29,
+                    414
                ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
@@ -3799,8 +3833,12 @@
           {
                "FILE_NAME": "pandas/core/arrays/masked.py",
                "MODULE_SIZE": 250,
-               "LINES": [],
-               "EXTENDED_LINES": [],
+               "LINES": [
+                    137
+               ],
+               "EXTENDED_LINES": [
+                    30
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           },
@@ -4110,9 +4148,12 @@
                     260,
                     261,
                     489,
-                    490
+                    490,
+                    832
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    628
+               ],
                "FUNCTIONS": [
                     "repeat::486::490",
                     "take::245::261"
@@ -4449,7 +4490,9 @@
                "FILE_NAME": "pandas/core/indexes/category.py",
                "MODULE_SIZE": 923,
                "LINES": [],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    754
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
@@ -4708,7 +4751,8 @@
                ],
                "EXTENDED_LINES": [
                     17,
-                    28
+                    28,
+                    45
                ],
                "FUNCTIONS": [
                     "__new__::47::81"
@@ -4766,7 +4810,9 @@
                "FILE_NAME": "pandas/core/arrays/categorical.py",
                "MODULE_SIZE": 2740,
                "LINES": [],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    1940
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           },
@@ -4774,7 +4820,9 @@
                "FILE_NAME": "pandas/core/internals/blocks.py",
                "MODULE_SIZE": 3171,
                "LINES": [],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    2836
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
@@ -6119,7 +6167,9 @@
                     68,
                     69
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    11
+               ],
                "FUNCTIONS": [
                     "_get_first_two_unique::49::60",
                     "_remove_duplicates::62::69"
@@ -6258,7 +6308,9 @@
                     561,
                     562
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    819
+               ],
                "FUNCTIONS": [
                     "set_nodelay::547::562"
                ],
@@ -6469,7 +6521,9 @@
                "FILE_NAME": "tqdm/_tqdm.py",
                "MODULE_SIZE": 1333,
                "LINES": [],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    140
+               ],
                "FUNCTIONS": [],
                "EXTENDED_FUNCTIONS": []
           }
@@ -7386,7 +7440,9 @@
                     1006,
                     1014
                ],
-               "EXTENDED_LINES": [],
+               "EXTENDED_LINES": [
+                    305
+               ],
                "FUNCTIONS": [
                     "_recursively_freeze::818::826",
                     "default::866::869",
@@ -7884,6 +7940,7 @@
                ],
                "EXTENDED_LINES": [
                     9,
+                    17,
                     41,
                     61
                ],
