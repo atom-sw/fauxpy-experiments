@@ -85,9 +85,11 @@ class AddModeManager:
                                           if x > self.__fixed_end_add_line_num]
 
         # If the added code is a whole scope (e.g., whole function)
-        if (self.is_same_list(start_add_line_fixed_scope, end_add_line_fixed_scope) and
+        if (
+                # self.is_same_list(start_add_line_fixed_scope, end_add_line_fixed_scope) and
                 len(before_start_add_line_fixed_scope) == 0 and
-                len(after_end_add_line_fixed_scope) == 0):
+                len(after_end_add_line_fixed_scope) == 0
+        ):
             scope_lines = start_add_line_fixed_scope
             whole_scope_parent = WholeScopeParent(self.__fixed_content_ast, self.__fixed_content_lines, scope_lines)
             parent_scope_lines = whole_scope_parent.get_parent_scope_lines()
@@ -497,7 +499,10 @@ class WholeScopeParent:
             high_level_none_decl_visitor.visit(self._content_ast)
             parent_scope_lines = high_level_none_decl_visitor.get_line_numbers()
         else:
-            parent_scope_lines = self._get_node_lines(min_parent_ast)
+            line_numbers = self._get_node_lines(min_parent_ast)
+            high_level_none_decl_visitor = HighLevelNoneDeclVisitor(min_parent_ast, line_numbers)
+            high_level_none_decl_visitor.visit(self._content_ast)
+            parent_scope_lines = high_level_none_decl_visitor.get_line_numbers()
 
         return parent_scope_lines
 
