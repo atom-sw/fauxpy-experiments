@@ -144,7 +144,7 @@ def load_projects_to_list(experiment_type):
             ('spacy', 6),
             ('thefuck', 16),
             ('tornado', 4),
-            ('tqdm', 6),
+            ('tqdm', 7),
             ('youtube-dl', 16)
         ]
     elif experiment_type in [ExperimentType.JavaAlfaStatement,
