@@ -206,13 +206,13 @@ def main():
     correct_test_bugs_info_2 = common.load_correct_test_bugs_2()
     select_all_info_2_bugs(selected_bugs_info, correct_test_bugs_info_2, manually_removed_bugs_info)
 
-    # To keep the randomly selected bugs as they are,
-    # we add this step (which was added later) at the end of the
-    # random selection process.
-    # Here, we also select the ground truth empty subjects.
-    for empty_key, empty_value in empty_ground_truth_bugs_info.items():
-        selected_bugs_info[empty_key] += empty_value
-        selected_bugs_info[empty_key].sort()
+    # # To keep the randomly selected bugs as they are,
+    # # we add this step (which was added later) at the end of the
+    # # random selection process.
+    # # Here, we also select the ground truth empty subjects.
+    # for empty_key, empty_value in empty_ground_truth_bugs_info.items():
+    #     selected_bugs_info[empty_key] += empty_value
+    #     selected_bugs_info[empty_key].sort()
 
     # needed_time = (get_needed_time(selected_bugs_info)) / float(NUM_NODES)
     # print("Final needed time: ", needed_time)
@@ -225,5 +225,16 @@ def main():
     common.save_object_to_json(selected_bugs_info, Path(common.TIME_SELECTED_BUGS_FILE_NAME))
 
 
+def print_final_list():
+    final_buggy_projects = common.load_json_to_dictionary(common.TIME_SELECTED_BUGS_FILE_NAME)
+
+    for b_key, b_value in final_buggy_projects.items():
+        if b_key == "NUM_BUGS":
+            continue
+        for item in b_value:
+            print(b_key, item)
+
+
 if __name__ == '__main__':
-    main()
+    # main()
+    print_final_list()
