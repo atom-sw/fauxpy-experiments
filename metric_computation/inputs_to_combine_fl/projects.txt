@@ -10,6 +10,6 @@
 ('spacy', 6),
 ('thefuck', 16),
 ('tornado', 4),
-('tqdm', 6),
+('tqdm', 7),
 ('youtube-dl', 16)
 ]

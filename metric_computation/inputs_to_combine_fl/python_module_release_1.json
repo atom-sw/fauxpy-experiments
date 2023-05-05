@@ -1,15 +1,5 @@
 {
      "cookiecutter2": {
-          "cookiecutter/utils.py": {
-               "DStar": 0.2682926829268293,
-               "Metallaxis": 0.37348013786160905,
-               "Muse": 0,
-               "Ochiai": 0.7153246506650566,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7781690140845071,
-               "faulty": 0
-          },
           "cookiecutter/find.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -49,10 +39,20 @@
                "ST": 0,
                "Tarantula": 0.7781690140845071,
                "faulty": 0
+          },
+          "cookiecutter/utils.py": {
+               "DStar": 0.2682926829268293,
+               "Metallaxis": 0.37348013786160905,
+               "Muse": 0,
+               "Ochiai": 0.7153246506650566,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7781690140845071,
+               "faulty": 0
           }
      },
      "cookiecutter3": {
-          "cookiecutter/log.py": {
+          "cookiecutter/repository.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -62,17 +62,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "cookiecutter/prompt.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "cookiecutter/cli.py": {
+          "cookiecutter/exceptions.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -92,6 +82,16 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "cookiecutter/log.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "cookiecutter/environment.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -102,17 +102,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "cookiecutter/repository.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "cookiecutter/exceptions.py": {
+          "cookiecutter/extensions.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -142,7 +132,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "cookiecutter/extensions.py": {
+          "cookiecutter/prompt.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "cookiecutter/cli.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -154,16 +154,6 @@
           }
      },
      "cookiecutter4": {
-          "cookiecutter/hooks.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 1
-          },
           "cookiecutter/find.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -172,6 +162,16 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "cookiecutter/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
                "faulty": 0
           },
           "cookiecutter/generate.py": {
@@ -184,19 +184,7 @@
                "Tarantula": 0.0,
                "faulty": 1
           },
-          "cookiecutter/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          }
-     },
-     "fastapi1": {
-          "fastapi/applications.py": {
+          "cookiecutter/hooks.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -205,18 +193,10 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 1
-          },
-          "fastapi/exceptions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/exception_handlers.py": {
+          }
+     },
+     "fastapi1": {
+          "fastapi/security/api_key.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -236,7 +216,7 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "fastapi/security/http.py": {
+          "fastapi/routing.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -244,17 +224,7 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/security/utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
+               "faulty": 1
           },
           "fastapi/params.py": {
                "DStar": 0.0,
@@ -266,37 +236,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "fastapi/security/api_key.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/param_functions.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/openapi/docs.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/routing.py": {
+          "fastapi/openapi/utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -326,7 +266,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "fastapi/concurrency.py": {
+          "fastapi/security/oauth2.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -346,7 +286,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "fastapi/security/oauth2.py": {
+          "fastapi/security/utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -356,7 +296,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "fastapi/openapi/utils.py": {
+          "fastapi/security/http.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -364,28 +304,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 1
-          },
-          "fastapi/utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "fastapi2": {
-          "fastapi/applications.py": {
-               "DStar": 0.023051591657519212,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.18903368789805206,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.49562081401339514,
                "faulty": 0
           },
           "fastapi/exceptions.py": {
@@ -408,6 +326,58 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "fastapi/concurrency.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/applications.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 1
+          },
+          "fastapi/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/param_functions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/openapi/docs.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "fastapi2": {
           "fastapi/encoders.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -438,16 +408,6 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "fastapi/dependencies/utils.py": {
                "DStar": 1.0,
                "Metallaxis": 1.0,
@@ -466,28 +426,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "fastapi3": {
-          "fastapi/applications.py": {
-               "DStar": 0.001109877913429523,
-               "Metallaxis": 0,
-               "Muse": 0.0,
-               "Ochiai": 0.2882562277580071,
-               "PS": 0,
-               "ST": 0.0,
-               "Tarantula": 0.505091649694501,
                "faulty": 0
           },
           "fastapi/exceptions.py": {
@@ -510,6 +448,38 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "fastapi/applications.py": {
+               "DStar": 0.023051591657519212,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.18903368789805206,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.49562081401339514,
+               "faulty": 0
+          },
+          "fastapi/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "fastapi3": {
           "fastapi/encoders.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -530,26 +500,6 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "fastapi/routing.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 1.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 1.0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "fastapi/dependencies/utils.py": {
                "DStar": 0.0012484394506866417,
                "Metallaxis": 0,
@@ -559,6 +509,16 @@
                "ST": 0,
                "Tarantula": 0.5344827586206896,
                "faulty": 0
+          },
+          "fastapi/routing.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 1.0,
+               "Tarantula": 1.0,
+               "faulty": 1
           },
           "fastapi/openapi/utils.py": {
                "DStar": 0.0,
@@ -570,7 +530,47 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "fastapi/exceptions.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/exception_handlers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/applications.py": {
+               "DStar": 0.001109877913429523,
+               "Metallaxis": 0,
+               "Muse": 0.0,
+               "Ochiai": 0.2882562277580071,
+               "PS": 0,
+               "ST": 0.0,
+               "Tarantula": 0.505091649694501,
+               "faulty": 0
+          },
           "fastapi/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -582,6 +582,46 @@
           }
      },
      "fastapi4": {
+          "fastapi/encoders.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "fastapi/openapi/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "fastapi/dependencies/utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "fastapi/routing.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "fastapi/applications.py": {
                "DStar": 1.0,
                "Metallaxis": 0,
@@ -592,7 +632,7 @@
                "Tarantula": 1.0,
                "faulty": 0
           },
-          "fastapi/encoders.py": {
+          "fastapi/utils.py": {
                "DStar": 1.0,
                "Metallaxis": 0,
                "Muse": 0.0,
@@ -611,59 +651,9 @@
                "ST": 0,
                "Tarantula": 1.0,
                "faulty": 0
-          },
-          "fastapi/routing.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/dependencies/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 1.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "fastapi/openapi/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "fastapi/utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
           }
      },
      "fastapi5": {
-          "fastapi/applications.py": {
-               "DStar": 0.09090909090909091,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.7264497078444243,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.47619047619047616,
-               "faulty": 0
-          },
           "fastapi/encoders.py": {
                "DStar": 0.09090909090909091,
                "Metallaxis": 0.7071067811865475,
@@ -684,16 +674,6 @@
                "Tarantula": 1.0,
                "faulty": 0
           },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "fastapi/dependencies/utils.py": {
                "DStar": 1.0,
                "Metallaxis": 1.0,
@@ -714,6 +694,16 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "fastapi/applications.py": {
+               "DStar": 0.09090909090909091,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.7264497078444243,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.47619047619047616,
+               "faulty": 0
+          },
           "fastapi/utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -723,39 +713,19 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 1
+          },
+          "fastapi/dependencies/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
           }
      },
      "fastapi6": {
-          "fastapi/applications.py": {
-               "DStar": 0,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0,
-               "faulty": 0
-          },
-          "fastapi/exceptions.py": {
-               "DStar": 0,
-               "Metallaxis": 1.0,
-               "Muse": 0.0,
-               "Ochiai": 0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0,
-               "faulty": 0
-          },
-          "fastapi/exception_handlers.py": {
-               "DStar": 0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0,
-               "faulty": 0
-          },
           "fastapi/encoders.py": {
                "DStar": 0,
                "Metallaxis": 1.0,
@@ -786,6 +756,36 @@
                "Tarantula": 0,
                "faulty": 1
           },
+          "fastapi/exceptions.py": {
+               "DStar": 0,
+               "Metallaxis": 1.0,
+               "Muse": 0.0,
+               "Ochiai": 0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0,
+               "faulty": 0
+          },
+          "fastapi/exception_handlers.py": {
+               "DStar": 0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0,
+               "faulty": 0
+          },
+          "fastapi/applications.py": {
+               "DStar": 0,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0,
+               "faulty": 0
+          },
           "fastapi/utils.py": {
                "DStar": 0,
                "Metallaxis": 0,
@@ -798,26 +798,6 @@
           }
      },
      "fastapi7": {
-          "fastapi/applications.py": {
-               "DStar": 0.3548387096774194,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 0.7210540773205215,
-               "PS": 0,
-               "ST": 0.0,
-               "Tarantula": 0.6507936507936508,
-               "faulty": 0
-          },
-          "fastapi/exceptions.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0.3070072036911769,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
           "fastapi/encoders.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -828,16 +808,6 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "fastapi/utils.py": {
-               "DStar": 0.3548387096774194,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.7210540773205215,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.6507936507936508,
-               "faulty": 0
-          },
           "fastapi/routing.py": {
                "DStar": 1.0,
                "Metallaxis": 0.0,
@@ -846,16 +816,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
                "faulty": 0
           },
           "fastapi/dependencies/utils.py": {
@@ -887,19 +847,49 @@
                "ST": 1.0,
                "Tarantula": 1.0,
                "faulty": 1
+          },
+          "fastapi/exceptions.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.3070072036911769,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "fastapi/applications.py": {
+               "DStar": 0.3548387096774194,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 0.7210540773205215,
+               "PS": 0,
+               "ST": 0.0,
+               "Tarantula": 0.6507936507936508,
+               "faulty": 0
+          },
+          "fastapi/utils.py": {
+               "DStar": 0.3548387096774194,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.7210540773205215,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.6507936507936508,
+               "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
           }
      },
      "fastapi8": {
-          "fastapi/applications.py": {
-               "DStar": 0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0,
-               "faulty": 0
-          },
           "fastapi/encoders.py": {
                "DStar": 0,
                "Metallaxis": 1.0,
@@ -910,9 +900,9 @@
                "Tarantula": 0,
                "faulty": 0
           },
-          "fastapi/dependencies/models.py": {
+          "fastapi/openapi/utils.py": {
                "DStar": 0,
-               "Metallaxis": 0,
+               "Metallaxis": 1.0,
                "Muse": 0,
                "Ochiai": 0,
                "PS": 0,
@@ -930,7 +920,7 @@
                "Tarantula": 0,
                "faulty": 1
           },
-          "fastapi/openapi/utils.py": {
+          "fastapi/applications.py": {
                "DStar": 0,
                "Metallaxis": 1.0,
                "Muse": 0,
@@ -949,29 +939,19 @@
                "ST": 0,
                "Tarantula": 0,
                "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
+               "DStar": 0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0,
+               "faulty": 0
           }
      },
      "fastapi9": {
-          "fastapi/applications.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/exception_handlers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "fastapi/encoders.py": {
                "DStar": 0.047619047619047616,
                "Metallaxis": 0.31547710244294935,
@@ -1002,16 +982,6 @@
                "Tarantula": 1.0,
                "faulty": 1
           },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "fastapi/dependencies/utils.py": {
                "DStar": 0.0036900369003690036,
                "Metallaxis": 0.0,
@@ -1032,7 +1002,37 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "fastapi/exception_handlers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/applications.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "fastapi/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1044,16 +1044,6 @@
           }
      },
      "fastapi10": {
-          "fastapi/applications.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0.0,
-               "Tarantula": 0,
-               "faulty": 0
-          },
           "fastapi/routing.py": {
                "DStar": 1.0,
                "Metallaxis": 0,
@@ -1061,16 +1051,6 @@
                "Ochiai": 1.0,
                "PS": 0,
                "ST": 1.0,
-               "Tarantula": 0,
-               "faulty": 0
-          },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
                "Tarantula": 0,
                "faulty": 0
           },
@@ -1094,7 +1074,27 @@
                "Tarantula": 0,
                "faulty": 0
           },
+          "fastapi/applications.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0.0,
+               "Tarantula": 0,
+               "faulty": 0
+          },
           "fastapi/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0,
+               "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1106,57 +1106,7 @@
           }
      },
      "fastapi11": {
-          "fastapi/applications.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/exceptions.py": {
-               "DStar": 0.07801418439716312,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.3811275886214205,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.6918103448275862,
-               "faulty": 0
-          },
           "fastapi/encoders.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "fastapi/security/http.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0.5457706888488673,
-               "Ochiai": 1.0,
-               "PS": 1.0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "fastapi/security/utils.py": {
-               "DStar": 0.07284768211920531,
-               "Metallaxis": 0.2886751345948129,
-               "Muse": 1.0,
-               "Ochiai": 0.36932038106660864,
-               "PS": 0.0,
-               "ST": 0,
-               "Tarantula": 0.6757894736842105,
-               "faulty": 0
-          },
-          "fastapi/utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1174,16 +1124,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.5701598579040853,
-               "faulty": 0
-          },
-          "fastapi/dependencies/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
                "faulty": 0
           },
           "fastapi/dependencies/utils.py": {
@@ -1214,6 +1154,66 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.8537234042553192,
+               "faulty": 0
+          },
+          "fastapi/security/http.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0.5457706888488673,
+               "Ochiai": 1.0,
+               "PS": 1.0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "fastapi/security/utils.py": {
+               "DStar": 0.07284768211920531,
+               "Metallaxis": 0.2886751345948129,
+               "Muse": 1.0,
+               "Ochiai": 0.36932038106660864,
+               "PS": 0.0,
+               "ST": 0,
+               "Tarantula": 0.6757894736842105,
+               "faulty": 0
+          },
+          "fastapi/exceptions.py": {
+               "DStar": 0.07801418439716312,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.3811275886214205,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.6918103448275862,
+               "faulty": 0
+          },
+          "fastapi/applications.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "fastapi/dependencies/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
                "faulty": 0
           }
      }

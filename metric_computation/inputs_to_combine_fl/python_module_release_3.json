@@ -1,15 +1,5 @@
 {
      "keras9": {
-          "keras/engine/training_arrays.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "keras/engine/input_layer.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -20,7 +10,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/core.py": {
+          "keras/regularizers.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -30,7 +20,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/initializers.py": {
+          "keras/engine/training_arrays.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/wrappers.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -50,7 +50,37 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/embeddings.py": {
+          "keras/engine/network.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/base_layer.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/test_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/activations.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -70,7 +100,77 @@
                "Tarantula": 0.8855160450997398,
                "faulty": 0
           },
+          "keras/layers/embeddings.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/initializers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "keras/engine/training.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/constraints.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/core.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "keras/backend/common.py": {
+               "DStar": 0.0010515247108307045,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.1111340230049587,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4941916747337851,
+               "faulty": 0
+          },
+          "keras/layers/merge.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -99,149 +199,9 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/engine/base_layer.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "keras/layers/merge.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/constraints.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/regularizers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/activations.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/common.py": {
-               "DStar": 0.0010515247108307045,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.1111340230049587,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.4941916747337851,
-               "faulty": 0
-          },
-          "keras/engine/network.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/wrappers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
           }
      },
      "keras10": {
-          "keras/losses.py": {
-               "DStar": 0.019607843137254905,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.1652304701372969,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7064899294198657,
-               "faulty": 0
-          },
-          "keras/engine/training_arrays.py": {
-               "DStar": 0.021512838306731438,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.17295916004871936,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7257294429708222,
-               "faulty": 0
-          },
-          "keras/layers/noise.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/conv_utils.py": {
-               "DStar": 0.7560975609756099,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.8989464434367852,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9973268529769136,
-               "faulty": 1
-          },
           "keras/engine/input_layer.py": {
                "DStar": 0.026473099914602904,
                "Metallaxis": 0,
@@ -250,56 +210,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.7659574468085105,
-               "faulty": 0
-          },
-          "keras/layers/convolutional_recurrent.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/normalization.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/__init__.py": {
-               "DStar": 0.02419984387197502,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.1832809911804105,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7490417959481658,
-               "faulty": 0
-          },
-          "keras/layers/convolutional.py": {
-               "DStar": 0.607843137254902,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.8236942336969406,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9946679592825982,
-               "faulty": 1
-          },
-          "keras/layers/core.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
                "faulty": 0
           },
           "keras/callbacks.py": {
@@ -312,14 +222,44 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/initializers.py": {
-               "DStar": 0.09090909090909091,
+          "keras/utils/layer_utils.py": {
+               "DStar": 0.020248203788373612,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.349064519705893,
+               "Ochiai": 0.16787008673667642,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.9232845894263216,
+               "Tarantula": 0.7132429614181438,
+               "faulty": 0
+          },
+          "keras/regularizers.py": {
+               "DStar": 0.024390243902439025,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.18398927922390812,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7505486466715434,
+               "faulty": 0
+          },
+          "keras/engine/training_arrays.py": {
+               "DStar": 0.021512838306731438,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.17295916004871936,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7257294429708222,
+               "faulty": 0
+          },
+          "keras/layers/wrappers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
                "faulty": 0
           },
           "keras/engine/training_utils.py": {
@@ -330,46 +270,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.6807099021396583,
-               "faulty": 0
-          },
-          "keras/engine/training_generator.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/embeddings.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.02518277822908205,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.18690709189358895,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7566371681415929,
-               "faulty": 0
-          },
-          "keras/engine/training.py": {
-               "DStar": 0.023646071700991613,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.1812043572653968,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7445573294629898,
                "faulty": 0
           },
           "keras/utils/np_utils.py": {
@@ -392,17 +292,7 @@
                "Tarantula": 0.7836547641779643,
                "faulty": 0
           },
-          "keras/legacy/interfaces.py": {
-               "DStar": 0.306930693069307,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.6146416796857451,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9815833532647691,
-               "faulty": 0
-          },
-          "keras/metrics.py": {
+          "keras/legacy/layers.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -412,24 +302,44 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/backend/__init__.py": {
-               "DStar": 0.008705419825891604,
+          "keras/engine/network.py": {
+               "DStar": 0.033297529538131046,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.11055864763201066,
+               "Ochiai": 0.21438722631289056,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.5138349818454989,
+               "Tarantula": 0.8056537102473498,
                "faulty": 0
           },
-          "keras/utils/test_utils.py": {
-               "DStar": 1.0,
+          "keras/layers/advanced_activations.py": {
+               "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 1.0,
+               "Ochiai": 0.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 1.0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/data_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/recurrent.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
                "faulty": 0
           },
           "keras/engine/base_layer.py": {
@@ -452,17 +362,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 0.34065934065934067,
+          "keras/layers/__init__.py": {
+               "DStar": 0.02419984387197502,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.6437220306660256,
+               "Ochiai": 0.1832809911804105,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.9841726618705035,
-               "faulty": 1
+               "Tarantula": 0.7490417959481658,
+               "faulty": 0
           },
-          "keras/layers/merge.py": {
+          "keras/utils/test_utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "keras/layers/noise.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -470,36 +390,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/constraints.py": {
-               "DStar": 0.024390243902439025,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.18398927922390812,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7505486466715434,
-               "faulty": 0
-          },
-          "keras/legacy/layers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/regularizers.py": {
-               "DStar": 0.024390243902439025,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.18398927922390812,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7505486466715434,
                "faulty": 0
           },
           "keras/activations.py": {
@@ -522,7 +412,17 @@
                "Tarantula": 0.7659574468085105,
                "faulty": 0
           },
-          "keras/layers/recurrent.py": {
+          "keras/utils/generic_utils.py": {
+               "DStar": 0.02518277822908205,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.18690709189358895,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7566371681415929,
+               "faulty": 0
+          },
+          "keras/layers/embeddings.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -532,7 +432,47 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/utils/data_utils.py": {
+          "keras/initializers.py": {
+               "DStar": 0.09090909090909091,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.349064519705893,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9232845894263216,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.023646071700991613,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.1812043572653968,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7445573294629898,
+               "faulty": 0
+          },
+          "keras/constraints.py": {
+               "DStar": 0.024390243902439025,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.18398927922390812,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7505486466715434,
+               "faulty": 0
+          },
+          "keras/utils/conv_utils.py": {
+               "DStar": 0.7560975609756099,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.8989464434367852,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9973268529769136,
+               "faulty": 1
+          },
+          "keras/layers/core.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -542,24 +482,34 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/utils/layer_utils.py": {
-               "DStar": 0.020248203788373612,
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 0.34065934065934067,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.16787008673667642,
+               "Ochiai": 0.6437220306660256,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.7132429614181438,
+               "Tarantula": 0.9841726618705035,
+               "faulty": 1
+          },
+          "keras/layers/pooling.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/engine/network.py": {
-               "DStar": 0.033297529538131046,
+          "keras/losses.py": {
+               "DStar": 0.019607843137254905,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.21438722631289056,
+               "Ochiai": 0.1652304701372969,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.8056537102473498,
+               "Tarantula": 0.7064899294198657,
                "faulty": 0
           },
           "keras/backend/common.py": {
@@ -572,7 +522,17 @@
                "Tarantula": 0.6857142857142857,
                "faulty": 0
           },
-          "keras/layers/pooling.py": {
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.306930693069307,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.6146416796857451,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9815833532647691,
+               "faulty": 0
+          },
+          "keras/engine/training_generator.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -582,7 +542,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/advanced_activations.py": {
+          "keras/layers/merge.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -592,7 +552,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/wrappers.py": {
+          "keras/layers/normalization.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -600,20 +560,50 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/convolutional_recurrent.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/metrics.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/convolutional.py": {
+               "DStar": 0.607843137254902,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.8236942336969406,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9946679592825982,
+               "faulty": 1
+          },
+          "keras/backend/__init__.py": {
+               "DStar": 0.008705419825891604,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.11055864763201066,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5138349818454989,
                "faulty": 0
           }
      },
      "keras11": {
-          "keras/engine/training_arrays.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "keras/engine/input_layer.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -624,17 +614,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/engine/training_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/interfaces.py": {
+          "keras/utils/generic_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -654,7 +634,77 @@
                "Tarantula": 0.4997226844148641,
                "faulty": 0
           },
+          "keras/utils/test_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/training_arrays.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/training_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/merge.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "keras/engine/network.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/legacy/interfaces.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -674,36 +724,6 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/backend/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "keras/backend/tensorflow_backend.py": {
                "DStar": 1.0,
                "Metallaxis": 0,
@@ -713,40 +733,10 @@
                "ST": 0,
                "Tarantula": 1.0,
                "faulty": 1
-          },
-          "keras/engine/training.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/merge.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
           }
      },
      "keras12": {
-          "keras/engine/topology.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/interfaces.py": {
+          "keras/utils/generic_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -766,47 +756,17 @@
                "Tarantula": 0.9875141884222475,
                "faulty": 0
           },
-          "keras/backend/__init__.py": {
-               "DStar": 0.0020366598778004076,
+          "keras/engine/topology.py": {
+               "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.1533941706951795,
+               "Ochiai": 0.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.6174591909155429,
+               "Tarantula": 0.0,
                "faulty": 0
           },
           "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "keras/engine/training.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -825,10 +785,8 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          }
-     },
-     "keras13": {
-          "keras/engine/topology.py": {
+          },
+          "keras/engine/training.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -848,46 +806,28 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/backend/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
           "keras/backend/__init__.py": {
-               "DStar": 0.0,
+               "DStar": 0.0020366598778004076,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.1533941706951795,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.6174591909155429,
                "faulty": 0
           },
-          "keras/layers/merge.py": {
-               "DStar": 0.0,
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 1.0,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
+               "Tarantula": 1.0,
+               "faulty": 1
+          }
+     },
+     "keras13": {
           "keras/utils/generic_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -898,7 +838,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/backend/tensorflow_backend.py": {
+          "keras/backend/common.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -908,7 +848,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/engine/training.py": {
+          "keras/engine/topology.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/test_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -927,80 +877,8 @@
                "ST": 0,
                "Tarantula": 1.0,
                "faulty": 1
-          }
-     },
-     "keras14": {
-          "keras/engine/topology.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
           },
-          "keras/legacy/interfaces.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/preprocessing/image.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "keras/backend/common.py": {
-               "DStar": 0.010989010989010988,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.33718773034887056,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.6896551724137931,
-               "faulty": 0
-          },
-          "keras/backend/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/tensorflow_backend.py": {
+          "keras/layers/merge.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1020,7 +898,129 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "keras14": {
+          "keras/utils/generic_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/common.py": {
+               "DStar": 0.010989010989010988,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.33718773034887056,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.6896551724137931,
+               "faulty": 0
+          },
+          "keras/preprocessing/image.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "keras/engine/topology.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/test_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "keras/layers/merge.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1032,77 +1032,7 @@
           }
      },
      "keras15": {
-          "keras/losses.py": {
-               "DStar": 0.04030710172744722,
-               "Metallaxis": 0.2647402894270018,
-               "Muse": 0,
-               "Ochiai": 0.2482416705244321,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7281265447355412,
-               "faulty": 0
-          },
-          "keras/layers/noise.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/conv_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/convolutional_recurrent.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/normalization.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/__init__.py": {
-               "DStar": 0.08366533864541834,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.35238390676915116,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8534183082271145,
-               "faulty": 0
-          },
           "keras/layers/convolutional.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/core.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1122,17 +1052,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/initializers.py": {
-               "DStar": 0.18918918918918923,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.5140287807136686,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.9370229007633587,
-               "faulty": 0
-          },
-          "keras/layers/embeddings.py": {
+          "keras/utils/layer_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1140,86 +1060,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "keras/engine/training.py": {
-               "DStar": 0.07473309608540925,
-               "Metallaxis": 0.421637726928646,
-               "Muse": 0,
-               "Ochiai": 0.33400105046724315,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8374076179647526,
-               "faulty": 0
-          },
-          "keras/utils/np_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/interfaces.py": {
-               "DStar": 0.03743315508021391,
-               "Metallaxis": 0.08663609016587219,
-               "Muse": 0,
-               "Ochiai": 0.23948894882246374,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7126269956458635,
-               "faulty": 0
-          },
-          "keras/metrics.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/__init__.py": {
-               "DStar": 0.014573213046495491,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.15089046135413856,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.48533772652388796,
-               "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.014778325123152712,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.15193325526792945,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.4888815134417524,
                "faulty": 0
           },
           "keras/engine/topology.py": {
@@ -1232,17 +1072,7 @@
                "Tarantula": 0.9370229007633587,
                "faulty": 0
           },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 0.08366533864541834,
-               "Metallaxis": 0.5067501825987887,
-               "Muse": 0,
-               "Ochiai": 0.35238390676915116,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8534183082271145,
-               "faulty": 0
-          },
-          "keras/layers/merge.py": {
+          "keras/regularizers.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1252,7 +1082,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/constraints.py": {
+          "keras/layers/wrappers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/np_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1272,7 +1112,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/regularizers.py": {
+          "keras/layers/advanced_activations.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1282,7 +1122,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/activations.py": {
+          "keras/utils/data_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1302,16 +1142,6 @@
                "Tarantula": 0.9925876010781671,
                "faulty": 1
           },
-          "keras/optimizers.py": {
-               "DStar": 0.07749077490774908,
-               "Metallaxis": 0.22711222600459893,
-               "Muse": 0,
-               "Ochiai": 0.3398033787555452,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.8426773455377573,
-               "faulty": 0
-          },
           "keras/models.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -1322,69 +1152,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/utils/data_utils.py": {
-               "DStar": 0.0,
+          "keras/layers/__init__.py": {
+               "DStar": 0.08366533864541834,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.35238390676915116,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.8534183082271145,
                "faulty": 0
           },
-          "keras/utils/layer_utils.py": {
-               "DStar": 0.0,
+          "keras/utils/test_utils.py": {
+               "DStar": 0.014778325123152712,
                "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.15193325526792945,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.4888815134417524,
                "faulty": 0
           },
-          "keras/backend/common.py": {
-               "DStar": 0.0455531453362256,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.2633901354824672,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.7526826775677055,
-               "faulty": 0
-          },
-          "keras/layers/pooling.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/advanced_activations.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/wrappers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "keras16": {
-          "keras/losses.py": {
+          "keras/legacy/models.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1404,6 +1192,66 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "keras/activations.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/optimizers.py": {
+               "DStar": 0.07749077490774908,
+               "Metallaxis": 0.22711222600459893,
+               "Muse": 0,
+               "Ochiai": 0.3398033787555452,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8426773455377573,
+               "faulty": 0
+          },
+          "keras/utils/generic_utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "keras/layers/embeddings.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/initializers.py": {
+               "DStar": 0.18918918918918923,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.5140287807136686,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.9370229007633587,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.07473309608540925,
+               "Metallaxis": 0.421637726928646,
+               "Muse": 0,
+               "Ochiai": 0.33400105046724315,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8374076179647526,
+               "faulty": 0
+          },
           "keras/utils/conv_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -1414,7 +1262,67 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/convolutional_recurrent.py": {
+          "keras/constraints.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/core.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 0.08366533864541834,
+               "Metallaxis": 0.5067501825987887,
+               "Muse": 0,
+               "Ochiai": 0.35238390676915116,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.8534183082271145,
+               "faulty": 0
+          },
+          "keras/layers/pooling.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/losses.py": {
+               "DStar": 0.04030710172744722,
+               "Metallaxis": 0.2647402894270018,
+               "Muse": 0,
+               "Ochiai": 0.2482416705244321,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7281265447355412,
+               "faulty": 0
+          },
+          "keras/backend/common.py": {
+               "DStar": 0.0455531453362256,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.2633901354824672,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7526826775677055,
+               "faulty": 0
+          },
+          "keras/layers/merge.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1434,107 +1342,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/convolutional.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/core.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/callbacks.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/initializers.py": {
-               "DStar": 0.03553299492385787,
-               "Metallaxis": 0.007213876522149195,
-               "Muse": 0,
-               "Ochiai": 0.23350224126493302,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.6880597014925374,
-               "faulty": 0
-          },
-          "keras/layers/embeddings.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.02411021814006889,
-               "Metallaxis": 0.007880808956913165,
-               "Muse": 0,
-               "Ochiai": 0.19323735515944673,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.596635030198447,
-               "faulty": 0
-          },
-          "keras/engine/training.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/np_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/interfaces.py": {
+          "keras/layers/convolutional_recurrent.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1554,7 +1362,29 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.03743315508021391,
+               "Metallaxis": 0.08663609016587219,
+               "Muse": 0,
+               "Ochiai": 0.23948894882246374,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.7126269956458635,
+               "faulty": 0
+          },
           "keras/backend/__init__.py": {
+               "DStar": 0.014573213046495491,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.15089046135413856,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.48533772652388796,
+               "faulty": 0
+          }
+     },
+     "keras16": {
+          "keras/layers/convolutional.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1564,37 +1394,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.015777610818933134,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.15690959224782117,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.4897308781869688,
-               "faulty": 0
-          },
-          "keras/engine/topology.py": {
-               "DStar": 0.021627188465499488,
-               "Metallaxis": 0.0016785582196728855,
-               "Muse": 0,
-               "Ochiai": 0.1832143342421321,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5696046128500822,
-               "faulty": 0
-          },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 0.022316684378320937,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.18605555710978147,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5774530271398748,
-               "faulty": 0
-          },
-          "keras/layers/merge.py": {
+          "keras/callbacks.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1604,17 +1404,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/constraints.py": {
-               "DStar": 0.023051591657519212,
-               "Metallaxis": 0.005278742520036361,
-               "Muse": 0,
-               "Ochiai": 0.18903368789805206,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5855207451312446,
-               "faulty": 0
-          },
-          "keras/legacy/layers.py": {
+          "keras/utils/layer_utils.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -1634,94 +1424,14 @@
                "Tarantula": 0.5801174496644296,
                "faulty": 0
           },
-          "keras/activations.py": {
-               "DStar": 0.027595269382391593,
-               "Metallaxis": 0.0160543222043314,
+          "keras/engine/topology.py": {
+               "DStar": 0.021627188465499488,
+               "Metallaxis": 0.0016785582196728855,
                "Muse": 0,
-               "Ochiai": 0.20642908834333015,
+               "Ochiai": 0.1832143342421321,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.6294947655894401,
-               "faulty": 0
-          },
-          "keras/layers/recurrent.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "keras/optimizers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/data_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/layer_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/pooling.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/advanced_activations.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.5696046128500822,
                "faulty": 0
           },
           "keras/layers/wrappers.py": {
@@ -1733,302 +1443,8 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          }
-     },
-     "keras17": {
-          "keras/engine/topology.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/data_utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "keras/legacy/interfaces.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/common.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/engine/training.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/merge.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          }
-     },
-     "keras18": {
-          "keras/losses.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/conv_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/convolutional.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/core.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/callbacks.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/initializers.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/embeddings.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/legacy/models.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/generic_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/engine/training.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
           },
           "keras/utils/np_utils.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "keras/legacy/interfaces.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/metrics.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/__init__.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/utils/test_utils.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/engine/topology.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/backend/tensorflow_backend.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/layers/merge.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "keras/constraints.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2048,7 +1464,77 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/regularizers.py": {
+          "keras/layers/advanced_activations.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/data_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/recurrent.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "keras/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/test_utils.py": {
+               "DStar": 0.015777610818933134,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.15690959224782117,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.4897308781869688,
+               "faulty": 0
+          },
+          "keras/legacy/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/noise.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2059,13 +1545,13 @@
                "faulty": 0
           },
           "keras/activations.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
+               "DStar": 0.027595269382391593,
+               "Metallaxis": 0.0160543222043314,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.20642908834333015,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.6294947655894401,
                "faulty": 0
           },
           "keras/optimizers.py": {
@@ -2078,7 +1564,351 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/models.py": {
+          "keras/utils/generic_utils.py": {
+               "DStar": 0.02411021814006889,
+               "Metallaxis": 0.007880808956913165,
+               "Muse": 0,
+               "Ochiai": 0.19323735515944673,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.596635030198447,
+               "faulty": 0
+          },
+          "keras/layers/embeddings.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/initializers.py": {
+               "DStar": 0.03553299492385787,
+               "Metallaxis": 0.007213876522149195,
+               "Muse": 0,
+               "Ochiai": 0.23350224126493302,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.6880597014925374,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/constraints.py": {
+               "DStar": 0.023051591657519212,
+               "Metallaxis": 0.005278742520036361,
+               "Muse": 0,
+               "Ochiai": 0.18903368789805206,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5855207451312446,
+               "faulty": 0
+          },
+          "keras/utils/conv_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/core.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 0.022316684378320937,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.18605555710978147,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5774530271398748,
+               "faulty": 0
+          },
+          "keras/layers/pooling.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/losses.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/merge.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/normalization.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/convolutional_recurrent.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/metrics.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "keras17": {
+          "keras/utils/generic_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/topology.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/test_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/merge.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/data_utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "keras18": {
+          "keras/layers/convolutional.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/callbacks.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/layer_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/regularizers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/topology.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/wrappers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/np_utils.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "keras/legacy/layers.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2108,7 +1938,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/utils/layer_utils.py": {
+          "keras/models.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2118,7 +1948,127 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/backend/common.py": {
+          "keras/layers/__init__.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/test_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/legacy/models.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/activations.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/optimizers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/generic_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/embeddings.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/initializers.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/engine/training.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/utils/conv_utils.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/constraints.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/core.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/tensorflow_backend.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2138,7 +2088,57 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "keras/layers/wrappers.py": {
+          "keras/losses.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/common.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/layers/merge.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/metrics.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/legacy/interfaces.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "keras/backend/__init__.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2150,7 +2150,7 @@
           }
      },
      "luigi1": {
-          "luigi/cmdline_parser.py": {
+          "luigi/scheduler.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2160,37 +2160,27 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/configuration/core.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
+          "luigi/task_register.py": {
+               "DStar": 0.034670292318150914,
+               "Metallaxis": 0.19738550848793066,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.207858182196662,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.5930171964564876,
                "faulty": 0
           },
-          "luigi/task_history.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
+          "luigi/parameter.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 1.0,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
+               "Tarantula": 1.0,
+               "faulty": 1
           },
-          "luigi/execution_summary.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/configuration/cfg_parser.py": {
+          "luigi/tools/range.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2210,7 +2200,47 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/contrib/hadoop.py": {
+          "luigi/six.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/setup_logging.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/configuration/core.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/configuration/cfg_parser.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/rpc.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2230,7 +2260,37 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/setup_logging.py": {
+          "luigi/interface.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/cmdline_parser.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/metrics.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/notifications.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2260,27 +2320,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/task.py": {
-               "DStar": 0.033095392602206355,
-               "Metallaxis": 0.0,
-               "Muse": 0,
-               "Ochiai": 0.2031482182687552,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.581353767560664,
-               "faulty": 0
-          },
-          "luigi/notifications.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/scheduler.py": {
+          "luigi/contrib/hadoop.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2300,99 +2340,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/tools/range.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
+          "luigi/task.py": {
+               "DStar": 0.033095392602206355,
+               "Metallaxis": 0.0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.2031482182687552,
                "PS": 0,
                "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/interface.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/metrics.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/six.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
+               "Tarantula": 0.581353767560664,
                "faulty": 0
           },
           "luigi/configuration/base_parser.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/task_register.py": {
-               "DStar": 0.034670292318150914,
-               "Metallaxis": 0.19738550848793066,
-               "Muse": 0,
-               "Ochiai": 0.207858182196662,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5930171964564876,
-               "faulty": 0
-          },
-          "luigi/rpc.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/parameter.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          }
-     },
-     "luigi2": {
-          "luigi/util.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 1.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 1
-          },
-          "luigi/cmdline_parser.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2421,88 +2379,10 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          },
-          "luigi/format.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/mock.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/interface.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/date_interval.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/task.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0.0,
-               "Muse": 0.0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "luigi/six.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/configuration.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
+          }
+     },
+     "luigi2": {
           "luigi/scheduler.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/worker.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2531,10 +2411,38 @@
                "ST": 0,
                "Tarantula": 0.0,
                "faulty": 0
-          }
-     },
-     "luigi3": {
-          "luigi/cmdline_parser.py": {
+          },
+          "luigi/format.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/task.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0.0,
+               "Muse": 0.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "luigi/configuration.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/worker.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2554,7 +2462,109 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
+          "luigi/util.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 1.0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 1
+          },
+          "luigi/mock.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/interface.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/cmdline_parser.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/six.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/date_interval.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "luigi/execution_summary.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          }
+     },
+     "luigi3": {
+          "luigi/scheduler.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/task_register.py": {
+               "DStar": 1.0,
+               "Metallaxis": 1.0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0.0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "luigi/parameter.py": {
+               "DStar": 0.21568627450980396,
+               "Metallaxis": 0.0,
+               "Muse": 0,
+               "Ochiai": 0.4641583948727836,
+               "PS": 0,
+               "ST": 1.0,
+               "Tarantula": 0.9604705882352941,
+               "faulty": 1
+          },
+          "luigi/tools/range.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2574,7 +2584,17 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/contrib/hadoop.py": {
+          "luigi/six.py": {
+               "DStar": 0.03232916972814107,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.18119920044413035,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.5883539925050446,
+               "faulty": 0
+          },
+          "luigi/rpc.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2585,6 +2605,36 @@
                "faulty": 0
           },
           "luigi/worker.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/interface.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/cmdline_parser.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
+          "luigi/notifications.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2614,27 +2664,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/task.py": {
-               "DStar": 0.05706874189364462,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 0.2390271281396484,
-               "PS": 0,
-               "ST": 0.3333333333333333,
-               "Tarantula": 0.7162660115809791,
-               "faulty": 0
-          },
-          "luigi/notifications.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/scheduler.py": {
+          "luigi/contrib/hadoop.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2654,34 +2684,14 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/tools/range.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
+          "luigi/task.py": {
+               "DStar": 0.05706874189364462,
+               "Metallaxis": 1.0,
                "Muse": 0,
-               "Ochiai": 0.0,
+               "Ochiai": 0.2390271281396484,
                "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/interface.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/six.py": {
-               "DStar": 0.03232916972814107,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.18119920044413035,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.5883539925050446,
+               "ST": 0.3333333333333333,
+               "Tarantula": 0.7162660115809791,
                "faulty": 0
           },
           "luigi/configuration.py": {
@@ -2694,17 +2704,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/task_register.py": {
-               "DStar": 1.0,
-               "Metallaxis": 1.0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0.0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "luigi/rpc.py": {
+          "luigi/task_history.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2714,18 +2714,78 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/parameter.py": {
-               "DStar": 0.21568627450980396,
-               "Metallaxis": 0.0,
+          "luigi/execution_summary.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
                "Muse": 0,
-               "Ochiai": 0.4641583948727836,
+               "Ochiai": 0.0,
                "PS": 0,
-               "ST": 1.0,
-               "Tarantula": 0.9604705882352941,
-               "faulty": 1
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
           }
      },
      "luigi4": {
+          "luigi/contrib/hdfs/clients.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 1
+          },
+          "luigi/task_register.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "luigi/parameter.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "luigi/configuration.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "luigi/task.py": {
+               "DStar": 1.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 1.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 1.0,
+               "faulty": 0
+          },
+          "luigi/contrib/hdfs/hadoopcli_clients.py": {
+               "DStar": 0.0,
+               "Metallaxis": 0,
+               "Muse": 0,
+               "Ochiai": 0.0,
+               "PS": 0,
+               "ST": 0,
+               "Tarantula": 0.0,
+               "faulty": 0
+          },
           "luigi/cmdline_parser.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
@@ -2736,7 +2796,7 @@
                "Tarantula": 0.0,
                "faulty": 0
           },
-          "luigi/contrib/hdfs/hadoopcli_clients.py": {
+          "luigi/six.py": {
                "DStar": 0.0,
                "Metallaxis": 0,
                "Muse": 0,
@@ -2754,66 +2814,6 @@
                "PS": 0,
                "ST": 0,
                "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/task.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "luigi/six.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 0
-          },
-          "luigi/configuration.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "luigi/task_register.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
-               "faulty": 0
-          },
-          "luigi/contrib/hdfs/clients.py": {
-               "DStar": 0.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 0.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 0.0,
-               "faulty": 1
-          },
-          "luigi/parameter.py": {
-               "DStar": 1.0,
-               "Metallaxis": 0,
-               "Muse": 0,
-               "Ochiai": 1.0,
-               "PS": 0,
-               "ST": 0,
-               "Tarantula": 1.0,
                "faulty": 0
           }
      }
