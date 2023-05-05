@@ -111,6 +111,7 @@
      "tornado:5": true,
      "tornado:6": false,
      "tornado:8": false,
+     "tqdm:3": false,
      "tqdm:4": false,
      "tqdm:5": true,
      "tqdm:6": false,
