@@ -91,7 +91,9 @@ class TechniqueBugOverallBase:
         min_n_N = min(self._N_for_function_M,
                       len(self._program_locations))
 
-        # for bug locations in a tie we round the e_inspect.
+        # for bug locations in a tie we round the e_inspect
+        # as parameter m is an integer, which is the upper
+        # bound of a summation formula.
         e_inspect_round = int(round(self._e_inspect))
 
         # for smallest 1 <= k <= min(n, N) such that D_b(L_k) = 0.
