@@ -261,7 +261,7 @@ def generate_metrics():
 
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_statement_csv_score_directory_path(),
     #                                                       fauxpy_statement_csv_score_items)
-    # calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
+    calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info)
 
     # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
     #                                                                         fauxpy_statement_csv_score_items)
@@ -270,7 +270,7 @@ def generate_metrics():
     #                                                       fauxpy_function_csv_score_items)
     # calc_fauxpy_function_and_save(fauxpy_function_csv_score_items, ground_truth_info, size_counts_info)
 
-    fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
+    # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
     # file_manager.save_score_items_to_given_directory_path(path_manager.get_module_csv_score_directory_path(),
     #                                                       fauxpy_module_csv_score_items)
     # calc_fauxpy_module_and_save(fauxpy_module_csv_score_items, ground_truth_info, size_counts_info)
@@ -295,15 +295,15 @@ def generate_metrics():
     # calc_avg_and_save(avg_alfa_function_csv_score_items + avg_sbst_function_csv_score_items,
     #                   ground_truth_info, size_counts_info)
 
-    avg_alfa_module_csv_score_items = get_avg_csv_score_items(fauxpy_module_csv_score_items, FLTechnique.AvgAlfa)
-    avg_sbst_module_csv_score_items = get_avg_csv_score_items(fauxpy_module_csv_score_items, FLTechnique.AvgSbst)
-    calc_avg_and_save(avg_alfa_module_csv_score_items + avg_sbst_module_csv_score_items,
-                      ground_truth_info, size_counts_info)
+    # avg_alfa_module_csv_score_items = get_avg_csv_score_items(fauxpy_module_csv_score_items, FLTechnique.AvgAlfa)
+    # avg_sbst_module_csv_score_items = get_avg_csv_score_items(fauxpy_module_csv_score_items, FLTechnique.AvgSbst)
+    # calc_avg_and_save(avg_alfa_module_csv_score_items + avg_sbst_module_csv_score_items,
+    #                   ground_truth_info, size_counts_info)
 
 
 def generate_combine_fl_data_input():
-    def get_ground_truth_and_size_count(ground_truth: Dict, size_count: Dict, granularity: FLGranularity) -> Tuple[
-        Dict, Dict]:
+    def get_ground_truth_and_size_count(ground_truth: Dict, size_count: Dict,
+                                        granularity: FLGranularity) -> Tuple[Dict, Dict]:
         new_ground_truth_dictionary = {}
         for bug_key, module_item_list in ground_truth.items():
             new_module_item_list = []
@@ -363,37 +363,37 @@ def generate_combine_fl_data_input():
     # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
     #                                                                         fauxpy_statement_csv_score_items)
 
-    fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
+    # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
 
     directory_name = "inputs_to_combine_fl"
     # file_manager.clean_make_output_dir(directory_name)
 
-    # ground_truth_items_statement, size_counts_items_statement = get_ground_truth_and_size_count(ground_truth_info,
-    #                                                                                             size_counts_info,
-    #                                                                                             FLGranularity.Statement)
+    ground_truth_items_statement, size_counts_items_statement = get_ground_truth_and_size_count(ground_truth_info,
+                                                                                                size_counts_info,
+                                                                                                FLGranularity.Statement)
 
     # ground_truth_items_function, size_counts_items_function = get_ground_truth_and_size_count(ground_truth_info,
     #                                                                                           size_counts_info,
     #                                                                                           FLGranularity.Function)
 
-    ground_truth_items_module, size_counts_items_module = get_ground_truth_and_size_count(ground_truth_info,
-                                                                                          size_counts_info,
-                                                                                          FLGranularity.Module)
+    # ground_truth_items_module, size_counts_items_module = get_ground_truth_and_size_count(ground_truth_info,
+    #                                                                                       size_counts_info,
+    #                                                                                       FLGranularity.Module)
 
-    # generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
-    #                                     ground_truth_items_statement,
-    #                                     size_counts_items_statement,
-    #                                     directory_name)
+    generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
+                                        ground_truth_items_statement,
+                                        size_counts_items_statement,
+                                        directory_name)
 
     # generate_data_input_for_granularity(fauxpy_function_csv_score_items,
     #                                     ground_truth_items_function,
     #                                     size_counts_items_function,
     #                                     directory_name)
 
-    generate_data_input_for_granularity(fauxpy_module_csv_score_items,
-                                        ground_truth_items_module,
-                                        size_counts_items_module,
-                                        directory_name)
+    # generate_data_input_for_granularity(fauxpy_module_csv_score_items,
+    #                                     ground_truth_items_module,
+    #                                     size_counts_items_module,
+    #                                     directory_name)
 
 
 def generate_latex_data_information():
@@ -425,54 +425,177 @@ def get_bug_statistics():
 
     assert num_all_bugs == len(technique_bugs)
 
-    crashing_bugs = [x for x in technique_bugs if x.get_is_crashing()]
-    predicate_bugs = [x for x in technique_bugs if x.get_is_predicate()]
-    mutable_bugs = [x for x in technique_bugs if x.get_is_mutable_bug()]
+    no_category = [x for x in technique_bugs if
+                   not x.get_is_crashing() and
+                   not x.get_is_predicate() and
+                   not x.get_is_mutable_bug()]
 
-    dev_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.Dev]
-    ds_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.DS]
-    web_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.Web]
-    cli_bugs = [x for x in technique_bugs if x.get_project_type() == ProjectType.CLI]
+    only_mutable = [x for x in technique_bugs if
+                    not x.get_is_crashing() and
+                    not x.get_is_predicate() and
+                    x.get_is_mutable_bug()]
 
-    empty_output_ps_bugs = [x for x in statement_csv_score_items
-                            if (x.get_technique() == FLTechnique.PS and
-                                len(x.get_scored_entities()) == 0)]
+    only_crashing = [x for x in technique_bugs if
+                     x.get_is_crashing() and
+                     not x.get_is_predicate() and
+                     not x.get_is_mutable_bug()]
 
-    empty_output_ps_predicate_bugs = [x for x in statement_csv_score_items
-                                      if (x.get_technique() == FLTechnique.PS and
-                                          len(x.get_scored_entities()) == 0 and
-                                          x.get_is_predicate())]
-    empty_output_ps_predicate_bugs.sort(key=lambda x: x.get_bug_key())
+    only_predicate = [x for x in technique_bugs if
+                      not x.get_is_crashing() and
+                      x.get_is_predicate() and
+                      not x.get_is_mutable_bug()]
 
-    ps_csv_items = [x for x in statement_csv_score_items if x.get_technique() == FLTechnique.PS]
+    mutable_predicate = [x for x in technique_bugs if
+                         not x.get_is_crashing() and
+                         x.get_is_predicate() and
+                         x.get_is_mutable_bug()]
 
-    print("Num all bugs", int(num_all_bugs))
+    mutable_crashing = [x for x in technique_bugs if
+                        x.get_is_crashing() and
+                        not x.get_is_predicate() and
+                        x.get_is_mutable_bug()]
 
-    print_details(crashing_bugs, "crashing")
-    print_details(predicate_bugs, "predicate")
-    print_details(mutable_bugs, "mutable")
+    crashing_predicate = [x for x in technique_bugs if
+                          x.get_is_crashing() and
+                          x.get_is_predicate() and
+                          not x.get_is_mutable_bug()]
 
-    print_details(dev_bugs, "dev")
-    print_details(ds_bugs, "ds")
-    print_details(web_bugs, "web")
-    print_details(cli_bugs, "cli")
+    mutable_crashing_predicate = [x for x in technique_bugs if
+                                  x.get_is_crashing() and
+                                  x.get_is_predicate() and
+                                  x.get_is_mutable_bug()]
 
-    print_details(empty_output_ps_bugs, "Empty output PS bugs")
+    any_crashing = [x for x in technique_bugs if x.get_is_crashing()]
+    an_predicate = [x for x in technique_bugs if x.get_is_predicate()]
+    any_mutable = [x for x in technique_bugs if x.get_is_mutable_bug()]
 
-    print_details(empty_output_ps_predicate_bugs, "Empty output PS predicate bugs")
+    print("no_category", len(no_category))
+    print("only_mutable", len(only_mutable))
+    print("only_crashing", len(only_crashing))
+    print("only_predicate", len(only_predicate))
+    print("mutable_predicate", len(mutable_predicate))
+    print("mutable_crashing", len(mutable_crashing))
+    print("crashing_predicate", len(crashing_predicate))
+    print("mutable_crashing_predicate", len(mutable_crashing_predicate))
 
-    predicate_instances = [x.get_number_of_predicate_instances() for x in ps_csv_items]
-    number_of_failing_tests = [x.get_number_of_failing_tests() for x in ps_csv_items]
+    print("any_crashing", len(any_crashing))
+    print("an_predicate", len(an_predicate))
+    print("any_mutable", len(any_mutable))
 
-    print(mathematics.average(predicate_instances))
-    print(max(predicate_instances))
 
-    print(mathematics.average(number_of_failing_tests))
-    print(max(number_of_failing_tests))
+def get_project_statistics():
+    path_manager = file_manager.PathManager()
+    statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+
+    num_all_bugs = len(statement_csv_score_items) / 7
+    technique_bugs = [x for x in statement_csv_score_items if x.get_technique() == FLTechnique.Ochiai]
+
+    assert num_all_bugs == len(technique_bugs)
+
+    cli_num = [x for x in technique_bugs if x.get_project_type() == ProjectType.CLI]
+    dev_num = [x for x in technique_bugs if x.get_project_type() == ProjectType.Dev]
+    ds_num = [x for x in technique_bugs if x.get_project_type() == ProjectType.DS]
+    web_num = [x for x in technique_bugs if x.get_project_type() == ProjectType.Web]
+
+    httpie = [x for x in technique_bugs if x.get_project_name() == "httpie"]
+    thefuck = [x for x in technique_bugs if x.get_project_name() == "thefuck"]
+    tqdm = [x for x in technique_bugs if x.get_project_name() == "tqdm"]
+    youtube_dl = [x for x in technique_bugs if x.get_project_name() == "youtube-dl"]
+    black = [x for x in technique_bugs if x.get_project_name() == "black"]
+    cookiecutter = [x for x in technique_bugs if x.get_project_name() == "cookiecutter"]
+    luigi = [x for x in technique_bugs if x.get_project_name() == "luigi"]
+    keras = [x for x in technique_bugs if x.get_project_name() == "keras"]
+    pandas = [x for x in technique_bugs if x.get_project_name() == "pandas"]
+    spacy = [x for x in technique_bugs if x.get_project_name() == "spacy"]
+    fastapi = [x for x in technique_bugs if x.get_project_name() == "fastapi"]
+    sanic = [x for x in technique_bugs if x.get_project_name() == "sanic"]
+    tornado = [x for x in technique_bugs if x.get_project_name() == "tornado"]
+
+    print("cli_num", len(cli_num))
+    print("dev_num", len(dev_num))
+    print("ds_num", len(ds_num))
+    print("web_num", len(web_num))
+
+    print("httpie", len(httpie))
+    print("thefuck", len(thefuck))
+    print("tqdm", len(tqdm))
+    print("youtube_dl", len(youtube_dl))
+    print("black", len(black))
+    print("cookiecutter", len(cookiecutter))
+    print("luigi", len(luigi))
+    print("keras", len(keras))
+    print("pandas", len(pandas))
+    print("spacy", len(spacy))
+    print("fastapi", len(fastapi))
+    print("sanic", len(sanic))
+    print("tornado", len(tornado))
+
+
+def get_ground_truth_statistics():
+    def compute_num_ground_truth(project_name, tech_bug_list) -> int:
+        ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
+        bug_key_list = [x.get_bug_key() for x in tech_bug_list if x.get_bug_key().startswith(project_name)]
+
+        number_ground_items = 0
+        for bug_key, bug_value in ground_truth_info.items():
+            if bug_key in bug_key_list:
+                for file_item in bug_value:
+                    len_lines = len(file_item["LINES"])
+                    len_extended_lines = len(file_item["EXTENDED_LINES"])
+                    number_ground_items += len_lines + len_extended_lines
+
+        return number_ground_items
+
+    path_manager = file_manager.PathManager()
+    statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+
+    num_all_bugs = len(statement_csv_score_items) / 7
+    technique_bugs = [x for x in statement_csv_score_items if x.get_technique() == FLTechnique.Ochiai]
+    assert num_all_bugs == len(technique_bugs)
+
+    httpie = compute_num_ground_truth("httpie", technique_bugs)
+    thefuck = compute_num_ground_truth("thefuck", technique_bugs)
+    tqdm = compute_num_ground_truth("tqdm", technique_bugs)
+    youtube_dl = compute_num_ground_truth("youtube-dl", technique_bugs)
+    black = compute_num_ground_truth("black", technique_bugs)
+    cookiecutter = compute_num_ground_truth("cookiecutter", technique_bugs)
+    luigi = compute_num_ground_truth("luigi", technique_bugs)
+    keras = compute_num_ground_truth("keras", technique_bugs)
+    pandas = compute_num_ground_truth("pandas", technique_bugs)
+    spacy = compute_num_ground_truth("spacy", technique_bugs)
+    fastapi = compute_num_ground_truth("fastapi", technique_bugs)
+    sanic = compute_num_ground_truth("sanic", technique_bugs)
+    tornado = compute_num_ground_truth("tornado", technique_bugs)
+
+    print("httpie", httpie)
+    print("thefuck", thefuck)
+    print("tqdm", tqdm)
+    print("youtube_dl", youtube_dl)
+    print("black", black)
+    print("cookiecutter", cookiecutter)
+    print("luigi", luigi)
+    print("keras", keras)
+    print("pandas", pandas)
+    print("spacy", spacy)
+    print("fastapi", fastapi)
+    print("sanic", sanic)
+    print("tornado", tornado)
+
+    all_len = [httpie, thefuck,
+               tqdm, youtube_dl,
+               black, cookiecutter,
+               luigi, keras,
+               pandas, spacy,
+               fastapi, sanic,
+               tornado]
+
+    print("all_len", sum(all_len))
 
 
 if __name__ == '__main__':
+    # generate_metrics()
     # generate_combine_fl_data_input()
-    generate_metrics()
     # generate_latex_data_information()
     # get_bug_statistics()
+    # get_project_statistics()
+    get_ground_truth_statistics()
