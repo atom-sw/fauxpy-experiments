@@ -4,7 +4,7 @@ from typing import List, Dict, Tuple
 from csv_score_load_manager import CsvScoreItem, FLTechnique
 from cumulative_distance import DistanceToBug, TechniqueBugCumulativeDistance
 from entity_type import ScoredStatement
-from score_based_quantile import SumAllPositiveScores, SumAllNegativeScores
+from score_based_quantile import SumAllPositiveScores
 from sv_comp_score import SvCompScoreForBug, TechniqueBugSvCompOverallScore
 
 """
@@ -47,6 +47,7 @@ class QuantileRecord:
     """
     Columns t, f, S(f, t)
     """
+
     def __init__(self, time_sec: int,
                  technique: FLTechnique,
                  sum_all_positive_scores: float):
