@@ -272,7 +272,8 @@ class ResultManager:
         result_header = ["project_name", "bug_number", "granularity",
                          "technique", "crashing", "predicate",
                          "mutable_bug", "percentage_of_mutants_on_ground_truth", "experiment_time_seconds",
-                         "e_inspect", "is_bug_localized", "exam_score"]
+                         "e_inspect", "is_bug_localized", "exam_score",
+                         "java_exam_score"]
 
         result_rows = [result_header]
         for item in csv_items:
@@ -290,10 +291,16 @@ class ResultManager:
             e_inspect = metric_val.get_e_inspect()
             is_bug_localized = cls._bool_to_int(metric_val.is_bug_localized())
             exam_score = metric_val.get_exam_score()
+
+            java_exam_score = -1
+            if metric_val.is_bug_localized():
+                java_exam_score = exam_score
+
             result_row = [project_name, bug_number, granularity_name,
                           technique_name, crashing, predicate,
                           mutable_bug, percentage_of_mutants_on_ground_truth, experiment_time_seconds,
-                          e_inspect, is_bug_localized, exam_score]
+                          e_inspect, is_bug_localized, exam_score,
+                          java_exam_score]
             result_rows.append(result_row)
 
         return result_rows
