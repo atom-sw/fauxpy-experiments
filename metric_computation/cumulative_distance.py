@@ -50,6 +50,8 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
     of the relevant distances.
     """
 
+    Otherwise_parameter = 10
+
     def __init__(self,
                  distance_to_bug_object: DistanceToBug,
                  program_locations: List[ScoredStatement],
@@ -59,26 +61,19 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
                          e_inspect)
 
     def get_cumulative_distance(self) -> float:
-        # M(f, b) counts from 1, not 0.
-        m_of_technique_and_bug = self._get_m_of_technique_and_bug()
+        if len(self._program_locations) == 0:
+            return self.Otherwise_parameter
+
+        transformed_list = self._get_transformed_rank_distance_list()
+        upper_bound = min(self._N_for_function_M, len(transformed_list))
 
         cumulative_distance = 0
 
-        for index in range(0, m_of_technique_and_bug):
-            current_prog_location = self._program_locations[index]
-            start_index, end_index = self._e_inspect_base.get_tied_range(current_prog_location.get_score())
-            current_e_inspect = index + 1  # counts from 1, not 0.
-            if start_index == end_index:
-                # not in tie
-                # min f ∈F (b) D(ℓk, f )
-                cumulative_distance += current_e_inspect * self._distance_base.get_value(current_prog_location)
-            else:
-                # in tie
-                average_rank_of_tie = self._get_average_rank_of_tie(start_index, end_index)
-                distance_tie_avg = self._get_average_value_of_tie(start_index, end_index)
-                e_inspect_of_tie = min(average_rank_of_tie, self._e_inspect)
-                if e_inspect_of_tie <= min(len(self._program_locations), self._N_for_function_M):
-                    cumulative_distance += e_inspect_of_tie * distance_tie_avg
+        for index in range(upper_bound):
+            current_rec = transformed_list[index]
+            current_rank = current_rec[0]
+            current_distance = current_rec[1]
+            cumulative_distance += current_rank * current_distance
 
         return cumulative_distance
 
@@ -90,3 +85,42 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
         e_inspect_of_tie = start_loc + (end_loc - start_loc) / 2
 
         return e_inspect_of_tie
+
+    def _get_min_distance_of_tie(self, start_index, end_index):
+        tie_distance_values = [self._distance_base.get_value(x)
+                               for x in self._program_locations[start_index:end_index + 1]]
+
+        min_tie_distance = min(tie_distance_values)
+
+        return min_tie_distance
+
+    def _get_transformed_rank_distance_list(self) -> List[Tuple[float, float]]:
+        transformed_list = []
+
+        index = 0
+        while index < len(self._program_locations) and index < self._e_inspect:
+            current_prog_location = self._program_locations[index]
+            start_index, end_index = self._e_inspect_base.get_tied_range(current_prog_location.get_score())
+            if start_index == end_index:
+                # not in tie
+                current_e_inspect = index + 1  # e_inspect counts from 1, not 0.
+                current_distance = self._distance_base.get_value(current_prog_location)
+                current_rec = (current_e_inspect, current_distance)
+                transformed_list.append(current_rec)
+                index += 1
+            else:
+                # in tie
+                average_rank_of_tie = self._get_average_rank_of_tie(start_index, end_index)
+                min_distance_of_tie = self._get_min_distance_of_tie(start_index, end_index)
+                if average_rank_of_tie < self._e_inspect:
+                    # not the last tie
+                    current_rec = (average_rank_of_tie, min_distance_of_tie)
+                    transformed_list.append(current_rec)
+                    index = end_index + 1
+                else:
+                    # the last tie
+                    current_rec = (self._e_inspect, min_distance_of_tie)
+                    transformed_list.append(current_rec)
+                    break
+
+        return transformed_list
