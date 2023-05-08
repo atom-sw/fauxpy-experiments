@@ -51,6 +51,7 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
     """
 
     Otherwise_parameter = 10
+    In_upper_bound = 10
 
     def __init__(self,
                  distance_to_bug_object: DistanceToBug,
@@ -65,14 +66,15 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
             return self.Otherwise_parameter
 
         transformed_list = self._get_transformed_rank_distance_list()
-        upper_bound = min(self._N_for_function_M, len(transformed_list))
 
         cumulative_distance = 0
 
-        for index in range(upper_bound):
+        for index in range(len(transformed_list)):
             current_rec = transformed_list[index]
             current_rank = current_rec[0]
             current_distance = current_rec[1]
+            if current_rank > self.In_upper_bound:
+                break
             cumulative_distance += current_rank * current_distance
 
         return cumulative_distance
