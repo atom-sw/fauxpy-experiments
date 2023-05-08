@@ -171,7 +171,7 @@ class LatexInfo:
                 metric_dict[Constants.Java_exam] = value
             elif col_name == "cumulative_distance":
                 if value is not None:
-                    metric_dict[Constants.Distance] = round(value)
+                    metric_dict[Constants.Distance] = value
 
         return family, technique, metric_dict
 
