@@ -67,14 +67,25 @@ class TechniqueBugCumulativeDistance(TechniqueBugOverallBase):
         for index in range(0, m_of_technique_and_bug):
             current_prog_location = self._program_locations[index]
             start_index, end_index = self._e_inspect_base.get_tied_range(current_prog_location.get_score())
-            k = index + 1  # counts from 1, not 0.
+            e_inspect = index + 1  # counts from 1, not 0.
             if start_index == end_index:
                 # not in tie
-                # k . D_b(L_k)
-                cumulative_distance += k * self._distance_base.get_value(current_prog_location)
+                # min f ∈F (b) D(ℓk, f )
+                cumulative_distance += e_inspect * self._distance_base.get_value(current_prog_location)
             else:
                 # in tie
-                distance_tie_avg = self._get_average_value_of_tie(start_index, end_index)
-                cumulative_distance += k * distance_tie_avg
+                e_inspect_of_tie = self._get_e_inspect_of_tie(start_index, end_index)
+                if e_inspect_of_tie <= m_of_technique_and_bug:
+                    distance_tie_avg = self._get_average_value_of_tie(start_index, end_index)
+                    cumulative_distance += e_inspect_of_tie * distance_tie_avg
 
         return cumulative_distance
+
+    @staticmethod
+    def _get_e_inspect_of_tie(start_index: int, end_index: int) -> float:
+        start_loc = start_index + 1
+        end_loc = end_index + 1
+
+        e_inspect_of_tie = start_loc + (end_loc - start_loc) / 2
+
+        return e_inspect_of_tie
