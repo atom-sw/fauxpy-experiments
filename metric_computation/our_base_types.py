@@ -50,7 +50,7 @@ class DistanceBase:
         module_size = self._buggy_module_sizes[module_path]
         other_line_num = program_location.get_line_number()
 
-        distance_value = abs(buggy_line_number - other_line_num) / float(module_size)
+        distance_value = 1 + (abs(buggy_line_number - other_line_num) / float(module_size))
 
         return distance_value
 
