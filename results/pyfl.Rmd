@@ -1466,6 +1466,61 @@ for `family` and `category`.
  ))
 ```
 
+```{r collect data}
+all.models <- list(m1=m1, m2=m2, m3=m3, m4=m4, m6=m6)
+df.res <- data.frame(model=character(0),
+                     outcome=character(0),
+                     predictor=character(0),
+                     group=character(0),
+                     estimate=numeric(0),
+                     probability=character(0),
+                     lower=numeric(0),
+                     upper=numeric(0))
+vars <- ls(pattern="res[.]")
+for (k in 1:length(all.models)) {
+  m <- names(all.models)[k]
+  vs <- grep(m, vars, value=TRUE)
+  pat <- str_c("res.", m, ".(\\w+).(\\w+)")
+  matches <- str_match_all(vs, pat)
+  components <- sapply(matches, function(x)x[, -1])
+  for (j in 1:ncol(components)) {
+    comps <- components[, j]
+    res <- get(vs[j])
+    ints <- res$ints
+    est <- res$est
+    if (is.null(est) || !all(names(est) == colnames(ints)))
+      next
+    d <- as.data.frame(t(ints))
+    d$group <- rownames(d)
+    d$estimate <- est
+    d$model <- m
+    d$outcome <- comps[1]
+    d$predictor <- comps[2]
+    nc <- 3
+    # resort columns, putting model, outcome, group, and predictor in front
+    d <- d[, c((ncol(d)-nc+1):ncol(d), 
+               (ncol(d)-nc-1):(ncol(d)-nc), 
+               1:(ncol(d)-nc-2))]
+    # reshape by putting probability levels on different rows
+    d <- d %>% gather(probability, value, 6:ncol(d))
+    # now regroup on the same row the lower and upper bounds
+    d <- d %>% separate(probability, c("left", "right"), sep="[|]")
+    d$kind <- ifelse(d$left == "", "lower", "upper")
+    d$probability <- ifelse(d$left == "", d$right, d$left)
+    d <- d %>% select(-left, -right)
+    d <- d %>% spread(kind, value)
+    df.res <- rbind(df.res, d)
+  }
+}
+
+df.plot <- subset(df.res, 
+                  model == "m2" & probability == "0.95" & predictor == "family")
+p <- ggplot(df.plot, aes(x=group, y=estimate, color=outcome))
+p <- p + geom_pointrange(aes(ymin=lower, ymax=upper),
+                       position=position_dodge(width=0.6),
+                       size=1.5, lwd=2, fatten=3.0, shape=15)
+p <- p + geom_hline(yintercept=0, color="black", size=1.0)
+```
 
 
 # Dump all constants
