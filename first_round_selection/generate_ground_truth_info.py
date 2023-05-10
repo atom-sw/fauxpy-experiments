@@ -343,7 +343,7 @@ def get_bug_ground_truth(benchmark_name: str,
 
         if not is_predicate_bug:
             is_predicate_bug_in_lines = _is_predicate_bug(buggy_content, lines)
-            is_predicate_bug_in_extended_lines = _is_predicate_bug(buggy_content, lines)
+            is_predicate_bug_in_extended_lines = _is_predicate_bug(buggy_content, extended_lines)
             is_predicate_bug = is_predicate_bug_in_lines or is_predicate_bug_in_extended_lines
 
         functions = _get_buggy_functions_for_line_list(buggy_content, lines)
