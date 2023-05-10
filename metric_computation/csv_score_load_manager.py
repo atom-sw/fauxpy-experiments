@@ -112,6 +112,7 @@ class CsvScoreItem:
                 f"SEC:{self._experiment_time_seconds} "
                 f"Crashing: {self._is_crashing} "
                 f"Predicate: {self._is_predicate} "
+                f"Mutable: {self._is_mutable_bug} "
                 f"{csv_files}")
 
     def __str__(self):
