@@ -1,5 +1,5 @@
 ---
-title: "Fault localization experiments in Python"
+title: "An Empirical Study of Fault Localization in Python Programs"
 author: "Mohammad Rezaalipour and Carlo A. Furia"
 header-includes:
    - \usepackage[T1]{fontenc}
@@ -279,13 +279,9 @@ which.projcategory <- function(t)
 str(datas)
 ```
 
-We have a total of `r length(unique(datas$project))` projects, which we can classify by category:
+We have data about `r length(unique(datas$bugid))` bugs 
+in `r `length(unique(datas$project))` analyzed projects.
 
-   - Data science (`ds`): `spacy`, `keras`, `pandas`
-   - Developer tools (`dev`): `cookiecutter`, `black`, `luigi`
-   - Web tools (`web`): `sanic`, `fastapi`, `tornado`
-   - Command line tools (`cl`): `httpie`, `thefuck`, `tqdm`, `youtubedl`
-   
 
 # Pairwise comparisons
 
@@ -348,7 +344,7 @@ Analyzing the same data numerically, we can compute the correlation (Kendall's $
 (corr <- cor.test(S, M, method="kendall"))
 ```
 
-A correlation of `r corr$estimate` is not very strong, but clearly defined.
+A correlation of `r corr$estimate` is not super strong, but clearly defined.
 
 Finally, we may also perform a statistical test (Wilcoxon's paired test)
 and compute a matching effect size (Cliff's delta).
@@ -360,7 +356,7 @@ cliff.delta(S, M)
 ```
 
 Cliff's delta, in particular, roughly measures how often the value in one set are larger than the value in the other set.
-Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 19\% of the cases.
+Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 18\% of the cases.
 
 
 These statistics, for what they're worth,
@@ -613,12 +609,12 @@ by.statement$einspectS <- ((by.statement$einspect - mean(by.statement$einspect))
                            / sd(by.statement$einspect))
 ```
 
-## Model $m_1$
+## Model $m_1$: baseline multivariate regression
 
 Here's a basic regression model, where the only unusual aspects
 are that it's multivariate, and log-transforms the mean (since both outcome variables must be nonnegative).
 
-```{r m1 formula}
+```{r m1 formula, echo=TRUE}
 eq.m1 <- brmsformula(
   mvbind(einspectS, timeS) ~ 0 + family + category,
   family=brmsfamily("gaussian", link="log")
@@ -690,7 +686,8 @@ print(pp_check(m1, ndraws=100, resp="timeS") + scale_x_log10())
 ```
 
 As you can see, the simulated posteriors are acceptable given that 
-the data is complex, whereas the model is quite simple.
+the data is complex, whereas the model is quite simplistic 
+(we'll improve it soon).
 
 
 ## Analyzing $m_1$
@@ -699,9 +696,10 @@ the data is complex, whereas the model is quite simple.
 ```{r m1 summary}
 summary(m1)
 ```
-What's noticeable here is some non-negligible residual correlation
-between the two outcomes `einspect` and `time`, which means that there
-is a dependency between these two variables that is not captured by the model.
+What's noticeable here is the residual correlation
+between the two outcomes `einspect` and `time` is quite small (7%), 
+which means that there is not much of a consistent dependency 
+between these two variables.
 
 Let's set up some functions to analyze the posterior samples of `m1` (and similar models).
 
@@ -753,13 +751,12 @@ of FL techniques.
                                         identity, "family"))
 ```
 It's clear that for both outcomes, `e_inspect` and `time`,
-there are strong differences (with high probability) 
+there are clear differences (with high probability) 
 in the contribution over the mean from different families of techniques.
-The only exception is for MBFL and `e_inspect`, where the effect is a wash
-(probably because the two techniques work fairly differently).
 
 Looking at the effects by category of project does not
-yeld as strong differences, but we can see that `ds` projects tend to be associated with worse `e_inspect`, and that `web` projects are assocaited with 
+yeld as strong differences, but we can see that `DS` projects tend to be associated with worse (higher) `e_inspect` and longer running times, 
+and that `WEB` projects are associated with 
 shorter running times.
 
 ```{r m1 per category, warning=FALSE}
@@ -769,14 +766,14 @@ shorter running times.
                                           identity, "category"))
 ```
 
-## Model $m_2$
+## Model $m_2$: multivariate varying effects
 
 Let's make the model more sophisticated, with varying effects,
 and modeling these effects as [possibly correlated](https://cran.r-project.org/web/packages/brms/vignettes/brms_multivariate.html) 
 (which makes sense,
 since we have two model parts)
 
-```{r m2 formula}
+```{r m2 formula, echo=TRUE}
 eq.m2 <- brmsformula(
   mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category),
   family=brmsfamily("gaussian", link="log")
@@ -856,8 +853,8 @@ m2 <- add_criterion(m2, criterion = "loo")
 (lc.m1m2 <- loo(m1, m2, moment_match = TRUE))
 ```
 
-$m_1$'s score is around 2.4 standard deviations worse than $m_2$'s,
-which is a non-negligible (albeit not strong) difference in favor of $m_2$
+$m_1$'s score is more than 2.9 standard deviations worse than $m_2$'s,
+which is a pretty significant difference in favor of $m_2$
 in terms of predictive capabilities.
 
 ## Analyzing $m_2$
@@ -866,14 +863,14 @@ in terms of predictive capabilities.
 ```{r m2 summary}
 summary(m2)
 ```
-By `family`, there is a slight inverse correlation between
+By `category`, there is a slight inverse correlation between
 the two outcomes `einspect` and `time`; this correlation disappears 
-if we look at the `category` terms. 
-The residual correlation is about the same as in `m_1`.
+if we look at the `family` terms. 
+The residual correlation is even a bit lower than in `m_1`.
 
 Let's now perform an effects analysis 
 on the fitted coefficients of `m2`.
-First we introduce a summary function.
+First we introduce a summary function suitable for varying effects models.
 
 ```{r m2 difference analysis defs, warning=FALSE}
 interval.results.ranef <- function(fit, response, predictor, probs, 
@@ -907,7 +904,7 @@ interval.results.ranef <- function(fit, response, predictor, probs,
 }
 ```
 
-Then we use the functions to analyze the effects
+Then we use the summary function to analyze the effects
 of the FL techniques.
 
 ```{r m2 per family, warning=FALSE}
@@ -918,8 +915,8 @@ of the FL techniques.
   m2, "timeS",  "family", PROBABILITIES
  ))
 ```
-The results for `einspect` are clearer than with the simpler model,
-whereas the relation between running time and family `ps` weakens.
+The results are generally consistent with those of model $m_1$,
+although some effects slightly weaken or strengthen.
 
 Let's see what happens for the bug/category of projects.
 
@@ -931,10 +928,18 @@ Let's see what happens for the bug/category of projects.
   m2, "timeS", "category", PROBABILITIES)
   )
 ```
+Here we see some differences, which may partly be due
+to the fact that $m_2$ models the different categories
+more uniformly.
 
-## Model $m_3$
 
-```{r m3 formula}
+## Model $m_3$: interactions
+
+Now, let's try a variant of $m_2$ where we go back to
+fixed intercepts but add an interaction term between `family` of FL techniques
+and `category` of projects.
+
+```{r m3 formula, echo=TRUE}
 eq.m3 <- brmsformula(
   mvbind(einspectS, timeS) ~ 
     0 + family + category + (0 + family|r|category),
@@ -1011,10 +1016,10 @@ m3 <- add_criterion(m3, criterion = "loo")
 (lc.m1m2m3 <- loo(m1, m2, m3, moment_match = TRUE))
 ```
 
-$m_2$'s score is only one standard deviation worse than $m_2$'s.
-This is modest improvement, and hence it may not be worth to 
-go with the much more complex model $m_3$.
-
+$m_2$'s score is less than half standard deviation worse than $m_3$'s.
+This is a negligible improvement, not worth 
+the additional complexity of model $m_3$.
+Thus, we stick with $m_2$ as our selected model.
 
 ## Analyzing $m_3$
 
@@ -1024,7 +1029,8 @@ summary(m3)
 ```
 
 Instead of considering the fixed and varying effects of
-$m_3$, we can estimate the marginal means for each family of FL techniques.
+$m_3$, we can estimate the marginal means for each family of FL techniques
+(results omitted for brevity, since we'll focus on $m_2$ anyway).
 
 ```{r m3 per family, warning=FALSE}
 cnams.lows <- paste("|", PROBABILITIES, sep="")
@@ -1056,7 +1062,7 @@ res.m3.einspect.family <- list(ints=ints, est=est)
 ```
 
 
-## Model $m_4$
+## Model $m_4$: bug-kind-specific interaction effects
 
 Let's now add predictors to $m_2$, so as to study 
 any effect of the kinds of bugs:
@@ -1071,19 +1077,27 @@ any effect of the kinds of bugs:
 Since `mutability`/`mutable` are likely affecting `category`
 and `einspect`, it makes sense to add the predictor,
 so as to close the possible backdoor path $\textrm{category} \leftarrow \textrm{mutable} \rightarrow \textrm{einspect}$.
+
+We are only interested in controlling for bug kind for `einspect`, 
+thus we specify two different formulas for different outcomes.
      
-```{r m4 formula}
-eq.m4 <- brmsformula(
-  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category) 
-  + predicate*family + crashing*family + mutable*family,
-  family=brmsfamily("gaussian", link="log")
-) + set_rescor(TRUE)
+```{r m4 formula, echo=TRUE}
+eq.m4.einspect <- brmsformula(einspectS ~ 1 
+                              + (1|p|family) + (1|q|category) 
+                              + predicate*family 
+                              + crashing*family 
+                              + mutable*family,
+                              family=brmsfamily("gaussian", link="log"))
+eq.m4.time <- brmsformula(timeS ~ 1 + (1|p|family) + (1|q|category),
+                          family=brmsfamily("gaussian", link="log"))
+
+eq.m4 <- eq.m4.einspect + eq.m4.time + set_rescor(TRUE)
 
 pp4.check <- get_prior(eq.m4, data=by.statement)
 
 pp4 <- c(
   set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS")),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
             group="family", resp=c("einspectS", "timeS")),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
@@ -1113,7 +1127,7 @@ m4.priors <- brm(eq.m4,
 
 We fit model $m_4$.
 
-```{r m2 fit}
+```{r m4 fit}
 m4 <- brm(eq.m4, data=by.statement, prior=pp4, 
           refresh=0,
           control=list(adapt_delta=0.95), 
@@ -1150,7 +1164,9 @@ m4 <- add_criterion(m4, criterion = "loo")
 (lc.m1m2m3m4 <- loo(m1, m2, m3, m4, moment_match = TRUE))
 ```
 
-Nearly 2 standard deviations of improvement is not bad.
+Around 2.4 standard deviations of improvement is quite good,
+which implies that the bug-kind effects can capture
+additional patterns in the data.
 
 
 ## Analyzing $m_4$
@@ -1159,13 +1175,13 @@ Nearly 2 standard deviations of improvement is not bad.
 ```{r m4 summary}
 summary(m4)
 ```
+
 Let's now perform an effects analysis 
 on the fitted coefficients of `m4`.
 
 Specifically, we look at the (fixed) effects
-of the families associated with certain categories of bugs.
-We focus on `einspect` only, since the kind of bugs is not 
-meaningfully associated with the running time.
+of the families associated with certain categories of bugs,
+for response `einspect`.
 
 ```{r m4 analysis, warning=FALSE}
 interval.results.interacts <- function(fit, response, predictor, probs, 
@@ -1202,29 +1218,33 @@ interval.results.interacts <- function(fit, response, predictor, probs,
 ```
 So, crashing bugs are indeed easier for ST.
 In contrast, predicate-related bugs do not seem to be simpler
-for PS, although they are a bit harder for ST.
+for PS.
 
-For the mutability bugs, we probably have to include 
-in the model a clearer dependency on the `mutability`
+For the mutability bugs, we don't find any consistent
+association. Thus, let's try to add to the model 
+a finer-grained dependency on `mutability`
 rather than just the boolean indicator `mutable`.
 
 
-## Model $m_5$
+## Model $m_5$: mutability slope (failed attempt)
 
 A simple way would be to introduce an interaction `mutability`$\times$`family`.
 
-```{r m4 formula}
-eq.m5 <- brmsformula(
-  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category) 
-  + predicate*family + crashing*family + mutability*family,
-  family=brmsfamily("gaussian", link="log")
-) + set_rescor(TRUE)
+```{r m5 formula, echo=TRUE}
+eq.m5.einspect <- brmsformula(einspectS ~ 1 
+                              + (1|p|family) + (1|q|category) 
+                              + predicate*family 
+                              + crashing*family 
+                              + mutability*family,
+                              family=brmsfamily("gaussian", link="log"))
+
+eq.m5 <- eq.m5.einspect + eq.m4.time + set_rescor(TRUE)
 
 pp5.check <- get_prior(eq.m5, data=by.statement)
 
 pp5 <- c(
   set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS")),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
             group="family", resp=c("einspectS", "timeS")),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
@@ -1233,7 +1253,8 @@ pp5 <- c(
 )
 ```
 
-We could get passable prior checks, but let's cut to the chase
+We could get passable (not great)
+prior checks, but let's cut to the chase
 and fit model $m_5$.
 
 ```{r m5 fit}
@@ -1243,8 +1264,10 @@ m5 <- brm(eq.m5, data=by.statement, prior=pp5,
           seed=MY.SEED)
 ```
 
-The first thing that we notice is that one of the chains
-went awry and spinned for much longer than all the other chains.
+The first thing that we notice is that two of the four chains
+terminated very quickly (suspiciously fast),
+whereas the other two 
+went awry and spinned for much longer.
 In addition, we got a number of scary warnings.
 This points to some region of the posterior that could not be sampled
 effectively.
@@ -1269,66 +1292,50 @@ A disaster. Let's also plot the trace plots.
 ```{r m5 trace plot, message=FALSE}
 traceplot(m5$fit)
 ```
-Some chains are straight lines, and hence do not mix at all with chain #3!
 
-We can also have a look at the distribution of `mutability`,
-to realize how skewed it is.
+Two chains are straight lines, and hence did not mix at all with the others!
+
+Notice that the distribution of `mutability` is very skewed,
+which explains the difficulties in fitting $m_5$.
 
 ```{r mutability plot}
 (p.mutability <- (ggplot(by.statement, aes(x=mutability))
                   + geom_histogram(binwidth=1, fill="orange2")))
 ```
 
-## Models $m_6$ and $m_7$
+## Models $m_6$: mutability slope (successful attempt)
 
 The most straightforward way out of this ditch
 is to simply log-transform `mutability` (after adding 1 to all percentages
 so that all logs are defined).
 
-Furthermore, we ditch the multivariate model, since now we're
-simply interested in estimating `einspect`. 
-
-We also include another model $m_7$, which uses varying effects 
-with grouping to model the interactions. Note that this kind of model
-would have the same fitting issues as $m_5$ if we hadn't log-transformed
-`mutability`.
-
-
-```{r m6 m7 formula}
+```{r m6 formula, echo=TRUE}
 by.statement$logmutability <- log(1 + by.statement$mutability)
 
-eq.m6 <- brmsformula(
-  einspectS ~ 1 + (1|p|family) + (1|q|category) + 
-    predicate*family + crashing*family + logmutability*family,
-  family=brmsfamily("gaussian", link="log")
-)
+eq.m6.einspect <- brmsformula(einspectS ~ 1 
+                              + (1|p|family) + (1|q|category) 
+                              + predicate*family 
+                              + crashing*family 
+                              + logmutability*family,
+                              family=brmsfamily("gaussian", link="log"))
 
-eq.m7 <- brmsformula(
-  einspectS ~ 1 + (1|q|category) + (predicate + crashing + logmutability|p|family),
-  family=brmsfamily("gaussian", link="log")
-)
+eq.m6 <- eq.m6.einspect + eq.m4.time + set_rescor(TRUE)
 
 pp6.check <- get_prior(eq.m6, data=by.statement)
-pp7.check <- get_prior(eq.m7, data=by.statement)
 
 pp6 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept"),
-  set_prior("normal(0, 1.0)", class="b"),
-  set_prior("weibull(2, 0.3)", class="sd", group="family"),
-  set_prior("weibull(2, 0.3)", class="sd", group="category"),
-  set_prior("gamma(0.01, 0.01)", class="sigma")
-)
-
-pp7 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept"),
-  set_prior("lkj(1)", class="cor"),
-  set_prior("weibull(2, 0.3)", class="sd"),
-  # set_prior("weibull(2, 0.3)", class="sd", group="category"),
-  set_prior("gamma(0.01, 0.01)", class="sigma")
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
 )
 ```
 
-Alternative ways to make the models fittable include:
+Alternative ways to modif $m_5$ so that it can be analyzed 
+(which we mention but don't further explore here):
 
    - Introducing a multi-level term, with `einspect ~ log(x)*family`,
      and `log(x) = log(y) + a`, where $x/y = \textrm{mutability}$.
@@ -1337,7 +1344,7 @@ Alternative ways to make the models fittable include:
      
    - The approach followed in [this paper](https://arxiv.org/abs/2007.09394).
 
-## Fitting $m_6$ and $m_7$
+## Fitting $m_6$
 
 Prior checks:
 
@@ -1352,37 +1359,21 @@ m6.priors <- brm(eq.m6,
                  seed=MY.SEED)
 
 (pp_check(m6.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m6.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
 ```
 
-```{r m7 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
-m7.priors <- brm(eq.m7,
-                 prior=pp7,
-                 data=by.statement,
-                 chains=1, iter=1000,
-                 sample_prior="only",
-                 refresh=0, 
-                 control=list(adapt_delta=0.95),
-                 seed=MY.SEED)
+We fit model $m_6$.
 
-(pp_check(m7.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
-```
-
-We fit models $m_6$ and $m_7$.
-
-```{r m6 m7 fit}
+```{r m6 fit}
 m6 <- brm(eq.m6, data=by.statement, prior=pp6, 
           refresh=0,
           control=list(adapt_delta=0.95), 
-          seed=MY.SEED)
-m7 <- brm(eq.m7, data=by.statement, prior=pp7, 
-          refresh=0,
-          control=list(adapt_delta=0.98), 
           seed=MY.SEED)
 ```
 
 Diagnostics:
 
-```{r m6 m7 diagnostics}
+```{r m6 diagnostics}
 
 # Divergent transitions
 np <- nuts_params(m6)
@@ -1393,62 +1384,41 @@ print(max(brms::rhat(m6), na.rm = TRUE))
 
 # ESS
 min(neff_ratio(m6), na.rm = TRUE)
-
-# Divergent transitions
-np <- nuts_params(m7)
-print(sum(subset(np, Parameter == "divergent__")$Value))
-
-# \hat{R} ratio
-print(max(brms::rhat(m7), na.rm = TRUE))
-
-# ESS
-min(neff_ratio(m7), na.rm = TRUE)
 ```
 
 Posterior checks:
 
 ```{r m6 posterior checks, warning=FALSE, message=FALSE}
 print(pp_check(m6, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m6, ndraws=100, resp="timeS") + scale_x_log10())
 ```
 
-```{r m7 posterior checks, warning=FALSE, message=FALSE}
-print(pp_check(m7, ndraws=100, resp="einspectS") + scale_x_log10())
-```
-
-Everything is A-OK now. In fact, the posterior checks
-look the best ones so far.
+Everything is A-OK now.
 
 Let's compare the models using LOO.
 
 ```{r all model comparison, warning=FALSE}
 m6 <- add_criterion(m6, criterion = "loo")
-m7 <- add_criterion(m7, criterion = "loo")
 
-(lc.m1m2m3m4m6m7 <- loo(m1, m2, m3, m4, m6, m7, moment_match = TRUE))
+(lc.m1m2m3m4m6 <- loo(m1, m2, m3, m4, m6, moment_match = TRUE))
 ```
 
-$m_6$ and $m_7$ are basically indistinguishable
+$m_6$ and $m_4$ are very close 
 in terms of predictive capabilities.
-And, they both mop the floor with all other models (14 standard deviations of difference!). Note, however, that this is a result of
-making them monovariate instead of multivariate;
-if we kept them multi-variate, they would have predictive
-capabilities close to $m_4$.
+And, they both overperform all other models.
+Thus, we'll use $m_6$ for all our analysis.
 
 
-## Analyzing $m_6$ and $m_7$
+## Analyzing $m_6$
 
 ```{r m6 summary}
 summary(m6)
 ```
-
-```{r m7 summary}
-summary(m7)
-```
-Let's now analyze $m_6$ first, whose mutability-related effects
+Let's now analyze $m_7$ first, whose mutability-related effects
 are fixed effects.
 
 ```{r m6 analysis}
-MORE.PROBS <- c(0.5, 0.7, 0.8, 0.88, 0.9, 0.95, 0.99)
+MORE.PROBS <- c(0.5, 0.7, 0.8, 0.87, 0.9, 0.95, 0.99)
 (res.m6.einspect.logmutability <- interval.results.interacts(
   m6, "einspectS", "logmutability",
   MORE.PROBS,
@@ -1469,27 +1439,34 @@ res.m6.einspect.predicate <- interval.results.interacts(
   bool=TRUE, multivariate=FALSE
   )
 ```
-There is a tendency for MBFL to do better on mutable bugs, 
-but it is not a strong tendency, and it can only be detected with 88%
-confidence (which is still pretty clear).
-Incidentally, PS and ST tend to perform *worse* on the same kinds of bugs,
+There is a weak tendency for MBFL to do better on mutable bugs, 
+but it can only be detected with 87%
+confidence (which is still decent).
+Incidentally, PS (and, to a lesser degree, ST) 
+tends to perform *worse* on the same kinds of bugs,
 whereas SBFL is agnostic.
 
-Let's now switch to $m_7$ first, whose mutability-related effects
-are varying effects.
+Finally, let's also collect the varying intercepts
+estimates and intervals for the group-level terms 
+for `family` and `category`.
 
-```{r m7 analysis}
-(res.m7.einspect.logmutability <- interval.results.ranef(m7, "einspectS", 
-                                                         c("family",
-                                                           "logmutability"),
-                                                         MORE.PROBS,
-                                                         multivariate=FALSE))
+```{r m6 per family, warning=FALSE}
+(res.m6.einspect.family <- interval.results.ranef(
+  m6, "einspectS",  "family", PROBABILITIES
+ ))
+(res.m6.time.family <- interval.results.ranef(
+  m6, "timeS",  "family", PROBABILITIES
+ ))
+
+(res.m6.einspect.category <- interval.results.ranef(
+  m6, "einspectS",  "category", PROBABILITIES
+ ))
+(res.m6.time.category <- interval.results.ranef(
+  m6, "timeS",  "category", PROBABILITIES
+ ))
 ```
-The results are kind of similar for MBFL, but now SBFL
-also exhibits a similar tendency.
-Altogether, we may prefer the simpler model $m_6$,
-where the advantage of MBFL for mutable bugs
-is not big but clearly discernible.
+
+
 
 # Dump all constants
 
