@@ -245,6 +245,8 @@ levels(datas$granularity) <- GRANULARITIES
 datas$technique <- factor(datas$technique)
 # add time in minutes
 datas$minutes <- datas$time / 60
+# add log-transformed time
+datas$logtime <- log(datas$time)
 
 TECHNIQUES <- unique(datas$technique)
 PROJECTS <- unique(datas$project)
@@ -598,15 +600,24 @@ x_ <- lapply(all.pairs,
 # Regression models
 
 Let's build a simple multivariate regression model, 
-where we predict `einspect` and `time` from bug and technique.
+where we predict `einspect` and `logtime` from bug and technique.
 
-First, we standardize the predictors, so that it's much easier to set sensible priors.
+Notice that we found it preferable to log-transform `time` (in seconds),
+since this helps with the wide range of variability of running times among techniques.
+In particular, ST runs in a matter of seconds, two order of magnitudes
+faster than the next fastest family SBFL. If we do not
+log-transform `time`, we still get generally sensible results,
+but the advantage of ST over SBFL becomes watered down
+and less clear. Thus, we stick with the log-transformed `time`.
+
+Before proceeding with fitting, 
+we standardize both predictors, so that it's much easier to set sensible priors.
 
 ```{r bug identifiers}
 by.statement <- (datas %>% filter(granularity=="statement"))
 
-by.statement$timeS <- ((by.statement$time - mean(by.statement$time))
-                       / sd(by.statement$time))
+by.statement$timeS <- ((by.statement$logtime - mean(by.statement$logtime))
+                       / sd(by.statement$logtime))
 by.statement$einspectS <- ((by.statement$einspect - mean(by.statement$einspect))
                            / sd(by.statement$einspect))
 ```
@@ -855,8 +866,8 @@ m2 <- add_criterion(m2, criterion = "loo")
 (lc.m1m2 <- loo(m1, m2, moment_match = TRUE))
 ```
 
-$m_1$'s score is more than 2.9 standard deviations worse than $m_2$'s,
-which is a pretty significant difference in favor of $m_2$
+$m_1$'s score is more than 2.4 standard deviations worse than $m_2$'s,
+which is a significant difference in favor of $m_2$
 in terms of predictive capabilities.
 
 ## Analyzing $m_2$
