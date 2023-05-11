@@ -1527,7 +1527,7 @@ pinterval.plot <- function(df, model.name, probability.str, predictor.name,
   p <- ggplot(df.plot, aes(x=group, y=estimate, color=outcome))
   p <- p + geom_pointrange(aes(ymin=lower, ymax=upper),
                            position=position_dodge(width=0.6),
-                           size=1.5, linewidth=2, fatten=3.0, shape=15)
+                           size=1.5, linewidth=3, fatten=3.0, shape=15)
   p <- p + geom_hline(yintercept=0, color="black", size=1.0)
   
   p <- p + ylab(y.lab)
@@ -1537,11 +1537,12 @@ pinterval.plot <- function(df, model.name, probability.str, predictor.name,
   p <- (p + theme_classic() 
         + scale_color_brewer(name=leg.lab, palette=palette, labels=group.labels)
         + scale_fill_brewer(palette=palette))
-  p <- p + theme(axis.text=element_text(size=12, color="black"))
-  p <- p + theme(axis.title.x=element_text(size=12, color="black"),
-                 axis.title.y=element_text(size=12),
-                 legend.title=element_text(size=12, color="black"),
-                 legend.text=element_text(size=12, color="black"))
+  p <- p + theme(axis.text=element_text(size=20, color="black"))
+  p <- p + theme(axis.title.x=element_text(size=20, color="black"),
+                 axis.title.y=element_text(size=20),
+                 legend.title=element_text(size=20, color="black"),
+                 legend.text=element_text(size=20, color="black"),
+                 legend.position="top")
   return(p)
 }
 
@@ -1555,6 +1556,8 @@ p.category <- pinterval.plot(df.res, "m2", "0.95", "category",
                              x.lab="project category",
                              y.lab=expression(alpha["category"]~"/"~beta["category"]),
                              leg.lab="All bugs")
+print(p.family)
+print(p.category)
 
 p.crashing <- pinterval.plot(df.res, "m6", "0.95", "crashing", 
                              palette.outcomes, labs.outcomes, 
@@ -1570,13 +1573,39 @@ p.mutable <- pinterval.plot(df.res, "m6", "0.95", "logmutability",
                             palette.outcomes, labs.outcomes, 
                             x.lab="fault localization family",
                             y.lab=expression("m"["family"]),
-                            leg.lab="Predicate bugs", trim.preds=TRUE)
+                            leg.lab="Mutable bugs", trim.preds=TRUE)
+
+print(p.crashing)
+print(p.predicate)
+print(p.category)
 ```
 
 
-# Dump all constants
+# Dump all data and plots
 
 ```{r storage}
+
+fname <- file.path(PAPER.DIR, "m2-family.pdf")
+ggsave(fname, p.family + theme(aspect.ratio=3/3), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m2-category.pdf")
+ggsave(fname, p.family + theme(aspect.ratio=3/3), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m6-crashing.pdf")
+ggsave(fname, p.crashing + theme(aspect.ratio=3/2), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m6-predicate.pdf")
+ggsave(fname, p.predicate + theme(aspect.ratio=3/2), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m6-mutable.pdf")
+ggsave(fname, p.mutable + theme(aspect.ratio=3/2), device="pdf")
+knitr::plot_crop(fname)
+
+
 store.results_ <- function(res)
 {
   res_str <- str_split(deparse(substitute(res)), "[.]")[[1]]
