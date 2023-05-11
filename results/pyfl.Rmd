@@ -1593,7 +1593,7 @@ ggsave(fname, p.family + theme(aspect.ratio=3/3), device="pdf")
 knitr::plot_crop(fname)
 
 fname <- file.path(PAPER.DIR, "m2-category.pdf")
-ggsave(fname, p.family + theme(aspect.ratio=3/3), device="pdf")
+ggsave(fname, p.category + theme(aspect.ratio=3/3), device="pdf")
 knitr::plot_crop(fname)
 
 fname <- file.path(PAPER.DIR, "m6-crashing.pdf")
