@@ -186,7 +186,7 @@ dump.constants_ <- function(filename, out_dir="", strings=FALSE, append=FALSE, r
 dump.all_ <- function(filename=PAPER.FNAME, out_dir=PAPER.DIR, append=TRUE, reset=TRUE)
 {
   dump.constants_(filename, out_dir=out_dir, strings=FALSE, append=append)
-  dump.constants_(filename, out_dir=out_dir, strings=TRUE, append=append)
+  dump.constants_(filename, out_dir=out_dir, strings=TRUE, append=TRUE)
 }
 ```
 
@@ -1407,7 +1407,10 @@ summary(m6)
 ```
 
 ```{r m6 analysis}
-MORE.PROBS <- c(0.5, 0.7, 0.8, 0.87, 0.9, 0.95, 0.99)
+extra.prob <- 0.87
+store_("significant", extra.prob, group="m6/mutability/mbfl")
+
+MORE.PROBS <- c(0.5, 0.7, 0.8, extra.prob, 0.9, 0.95, 0.99)
 (res.m6.einspect.logmutability <- interval.results.interacts(
   m6, "einspectS", "logmutability",
   MORE.PROBS,
@@ -1430,7 +1433,7 @@ res.m6.einspect.predicate <- interval.results.interacts(
 ```
 
 There is a weak tendency for MBFL to do better on mutable bugs, 
-but it can only be detected with 87%
+but it can only be detected with `r round(100*extra.prob)`%
 confidence (which is still decent).
 Incidentally, PS (and, to a lesser degree, ST) 
 tends to perform *worse* on the same kinds of bugs,
@@ -1623,21 +1626,10 @@ store.results_ <- function(res)
     store.table_(as.data.frame(est), tabname, replace.probs=TRUE, vectorize=TRUE)
 }
 
-store.results_(res.m1.einspect.family)
-store.results_(res.m1.einspect.category)
-store.results_(res.m1.time.family)
-store.results_(res.m1.time.category)
-
 store.results_(res.m2.einspect.family)
 store.results_(res.m2.einspect.category)
 store.results_(res.m2.time.family)
 store.results_(res.m2.time.category)
-
-store.results_(res.m3.einspect.family)
-
-store.results_(res.m4.einspect.crashing)
-store.results_(res.m4.einspect.predicate)
-store.results_(res.m4.einspect.mutable)
 
 store.results_(res.m6.einspect.logmutability)
 store.results_(res.m6.einspect.crashing)
