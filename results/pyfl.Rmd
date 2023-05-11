@@ -41,6 +41,8 @@ library(tidyr)
 
 # Fancy, easy plots
 library(ggplot2)
+# Fancy plot text
+library(ggtext)
 # More complicated plots
 library(GGally)
 ## ggpairs extensive documentation: https://ggobi.github.io/ggally/articles/ggpairs.html
@@ -1426,6 +1428,7 @@ res.m6.einspect.predicate <- interval.results.interacts(
   bool=TRUE, multivariate=FALSE
   )
 ```
+
 There is a weak tendency for MBFL to do better on mutable bugs, 
 but it can only be detected with 87%
 confidence (which is still decent).
@@ -1506,14 +1509,68 @@ Let's prepare and print some plots of the overall results
 for model $m_6$.
 
 ```{r exported plots}
-df.plot <- subset(df.res, 
-                  model == "m2" & probability == "0.95" & predictor == "family")
-p <- ggplot(df.plot, aes(x=group, y=estimate, color=outcome))
-p <- p + geom_pointrange(aes(ymin=lower, ymax=upper),
-                       position=position_dodge(width=0.6),
-                       size=1.5, linewidth=2, fatten=3.0, shape=15)
-p <- p + geom_hline(yintercept=0, color="black", size=1.0)
-p
+palette.outcomes <- "Set1"
+labs.outcomes <- c(expression("E"["inspect"]), "Time")
+
+pinterval.plot <- function(df, model.name, probability.str, predictor.name,
+                           palette, group.labels, 
+                           x.lab=NULL, y.lab="", leg.lab="", trim.preds=FALSE)
+{
+  df.plot <- subset(df, 
+                    model == model.name 
+                    & probability == probability.str 
+                    & predictor == predictor.name)
+  if (trim.preds)
+    df.plot[, "group"] <- str_remove(
+      df.plot[, "group"], fixed(str_c(predictor.name, " "))
+    )
+  p <- ggplot(df.plot, aes(x=group, y=estimate, color=outcome))
+  p <- p + geom_pointrange(aes(ymin=lower, ymax=upper),
+                           position=position_dodge(width=0.6),
+                           size=1.5, linewidth=2, fatten=3.0, shape=15)
+  p <- p + geom_hline(yintercept=0, color="black", size=1.0)
+  
+  p <- p + ylab(y.lab)
+  if (is.null(x.lab))
+    x.lab = predictor
+  p <- p + xlab(x.lab)
+  p <- (p + theme_classic() 
+        + scale_color_brewer(name=leg.lab, palette=palette, labels=group.labels)
+        + scale_fill_brewer(palette=palette))
+  p <- p + theme(axis.text=element_text(size=12, color="black"))
+  p <- p + theme(axis.title.x=element_text(size=12, color="black"),
+                 axis.title.y=element_text(size=12),
+                 legend.title=element_text(size=12, color="black"),
+                 legend.text=element_text(size=12, color="black"))
+  return(p)
+}
+
+p.family <- pinterval.plot(df.res, "m2", "0.95", "family", 
+                           palette.outcomes, labs.outcomes, 
+                           x.lab="fault localization family",
+                           y.lab=expression(alpha["family"]~"/"~beta["family"]),
+                           leg.lab="All bugs")
+p.category <- pinterval.plot(df.res, "m2", "0.95", "category", 
+                             palette.outcomes, labs.outcomes, 
+                             x.lab="project category",
+                             y.lab=expression(alpha["category"]~"/"~beta["category"]),
+                             leg.lab="All bugs")
+
+p.crashing <- pinterval.plot(df.res, "m6", "0.95", "crashing", 
+                             palette.outcomes, labs.outcomes, 
+                             x.lab="fault localization family",
+                             y.lab=expression("c"["family"]),
+                             leg.lab="Crashing bugs", trim.preds=TRUE)
+p.predicate <- pinterval.plot(df.res, "m6", "0.95", "predicate", 
+                              palette.outcomes, labs.outcomes, 
+                              x.lab="fault localization family",
+                              y.lab=expression("p"["family"]),
+                              leg.lab="Predicate bugs", trim.preds=TRUE)
+p.mutable <- pinterval.plot(df.res, "m6", "0.95", "logmutability", 
+                            palette.outcomes, labs.outcomes, 
+                            x.lab="fault localization family",
+                            y.lab=expression("m"["family"]),
+                            leg.lab="Predicate bugs", trim.preds=TRUE)
 ```
 
 
