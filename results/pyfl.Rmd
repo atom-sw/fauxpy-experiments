@@ -42,7 +42,7 @@ library(tidyr)
 # Fancy, easy plots
 library(ggplot2)
 # Fancy plot text
-library(ggtext)
+# library(ggtext)
 # More complicated plots
 library(GGally)
 ## ggpairs extensive documentation: https://ggobi.github.io/ggally/articles/ggpairs.html
@@ -848,7 +848,7 @@ print(pp_check(m2, ndraws=100, resp="timeS") + scale_x_log10())
 We don't notice a clear improvement compared to $m_1$.
 Let's compare the two models using LOO.
 
-```{r model comparison, warning=FALSE}
+```{r model comparison m1 m2, warning=FALSE}
 m1 <- add_criterion(m1, criterion = "loo")
 m2 <- add_criterion(m2, criterion = "loo")
 
@@ -1012,7 +1012,7 @@ In line with what seen before, possibly a bit better.
 
 Model comparison:
 
-```{r model comparison, warning=FALSE}
+```{r model comparison m1 m2 m3, warning=FALSE}
 m3 <- add_criterion(m3, criterion = "loo")
 
 (lc.m1m2m3 <- loo(m1, m2, m3, moment_match = TRUE))
@@ -1026,7 +1026,7 @@ Thus, we stick with $m_2$ as our selected model.
 ## Analyzing $m_3$
 
 
-```{r m2 summary}
+```{r m3 summary}
 summary(m3)
 ```
 
