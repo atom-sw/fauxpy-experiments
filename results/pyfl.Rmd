@@ -886,11 +886,11 @@ interval.results.ranef <- function(fit, response, predictor, probs,
   if (multivariate) {
     # keep only predictor/response data
     post <- post[[predictor]]
-    est <- post[, "Estimate", 1]
+    est <- post[, "Estimate", grep(response, dimnames(post)[[3]])]
     post <- post[, , grep(str_c("^", response), dimnames(post)[[3]])]
   } else {
-    post <- post[[predictor[1]]]
-    post <- post[, , grep(str_c("^", predictor[2]), dimnames(post)[[3]])]
+    post <- post[[predictor]]
+    post <- post[, , grep("Intercept", dimnames(post)[[3]])]
     est <- post[, grep("Estimate", colnames(post))]
   }
   if (dims(post) > 2 && !("matrix" %in% class(post)))
@@ -1079,7 +1079,7 @@ and `einspect`, it makes sense to add the predictor,
 so as to close the possible backdoor path $\textrm{category} \leftarrow \textrm{mutable} \rightarrow \textrm{einspect}$.
 
 We are only interested in controlling for bug kind for `einspect`, 
-thus we specify two different formulas for different outcomes.
+thus switch to an univariate model where `einspect` is the only outcome variable.
      
 ```{r m4 formula, echo=TRUE}
 eq.m4.einspect <- brmsformula(einspectS ~ 1 
@@ -1088,21 +1088,19 @@ eq.m4.einspect <- brmsformula(einspectS ~ 1
                               + crashing*family 
                               + mutable*family,
                               family=brmsfamily("gaussian", link="log"))
-eq.m4.time <- brmsformula(timeS ~ 1 + (1|p|family) + (1|q|category),
-                          family=brmsfamily("gaussian", link="log"))
 
-eq.m4 <- eq.m4.einspect + eq.m4.time + set_rescor(TRUE)
+eq.m4 <- eq.m4.einspect
 
 pp4.check <- get_prior(eq.m4, data=by.statement)
 
 pp4 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS")),
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="family", resp=c("einspectS", "timeS")),
+            group="family"),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="category", resp=c("einspectS", "timeS")),
-  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+            group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
 )
 ```
 
@@ -1121,8 +1119,7 @@ m4.priors <- brm(eq.m4,
                  control=list(adapt_delta=0.95),
                  seed=MY.SEED)
 
-(pp_check(m4.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
-(pp_check(m4.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+(pp_check(m4.priors, draw_ids=1:100) + scale_x_log10())
 ```
 
 We fit model $m_4$.
@@ -1152,21 +1149,12 @@ min(neff_ratio(m4), na.rm = TRUE)
 Posterior checks:
 
 ```{r m4 posterior checks, warning=FALSE, message=FALSE}
-print(pp_check(m4, ndraws=100, resp="einspectS") + scale_x_log10())
-print(pp_check(m4, ndraws=100, resp="timeS") + scale_x_log10())
+print(pp_check(m4, ndraws=100) + scale_x_log10())
 ```
 
-Let's compare the models using LOO.
-
-```{r model comparison, warning=FALSE}
-m4 <- add_criterion(m4, criterion = "loo")
-
-(lc.m1m2m3m4 <- loo(m1, m2, m3, m4, moment_match = TRUE))
-```
-
-Around 2.4 standard deviations of improvement is quite good,
-which implies that the bug-kind effects can capture
-additional patterns in the data.
+Since $m_4$ uses less data than the previous models
+(it doesn't consider outcome `time`), we cannot it compare it to
+the other models using LOO (or any information criterion, for that matter).
 
 
 ## Analyzing $m_4$
@@ -1209,12 +1197,15 @@ interval.results.interacts <- function(fit, response, predictor, probs,
 }
 
 (res.m4.einspect.crashing <- interval.results.interacts(m4, "einspectS", 
-                                                        "crashing", PROBABILITIES))
+                                                        "crashing", PROBABILITIES,
+                                                        multivariate=FALSE))
 (res.m4.einspect.predicate <- interval.results.interacts(m4, "einspectS", 
                                                          "predicate",
-                                                         PROBABILITIES))
+                                                         PROBABILITIES,
+                                                         multivariate=FALSE))
 (res.m4.einspect.mutable <- interval.results.interacts(m4, "einspectS", 
-                                                       "mutable", PROBABILITIES))
+                                                       "mutable", PROBABILITIES,
+                                                       multivariate=FALSE))
 ```
 So, crashing bugs are indeed easier for ST.
 In contrast, predicate-related bugs do not seem to be simpler
@@ -1238,18 +1229,18 @@ eq.m5.einspect <- brmsformula(einspectS ~ 1
                               + mutability*family,
                               family=brmsfamily("gaussian", link="log"))
 
-eq.m5 <- eq.m5.einspect + eq.m4.time + set_rescor(TRUE)
+eq.m5 <- eq.m5.einspect
 
 pp5.check <- get_prior(eq.m5, data=by.statement)
 
 pp5 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS")),
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="family", resp=c("einspectS", "timeS")),
+            group="family"),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="category", resp=c("einspectS", "timeS")),
-  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+            group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
 )
 ```
 
@@ -1319,18 +1310,18 @@ eq.m6.einspect <- brmsformula(einspectS ~ 1
                               + logmutability*family,
                               family=brmsfamily("gaussian", link="log"))
 
-eq.m6 <- eq.m6.einspect + eq.m4.time + set_rescor(TRUE)
+eq.m6 <- eq.m6.einspect
 
 pp6.check <- get_prior(eq.m6, data=by.statement)
 
 pp6 <- c(
-  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
-  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS")),
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="family", resp=c("einspectS", "timeS")),
+            group="family"),
   set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
-            group="category", resp=c("einspectS", "timeS")),
-  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+            group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
 )
 ```
 
@@ -1358,8 +1349,7 @@ m6.priors <- brm(eq.m6,
                  control=list(adapt_delta=0.95),
                  seed=MY.SEED)
 
-(pp_check(m6.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
-(pp_check(m6.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+(pp_check(m6.priors, draw_ids=1:100) + scale_x_log10())
 ```
 
 We fit model $m_6$.
@@ -1395,18 +1385,17 @@ print(pp_check(m6, ndraws=100, resp="timeS") + scale_x_log10())
 
 Everything is A-OK now.
 
-Let's compare the models using LOO.
+Let's compare the models $m_4$ and $m_6$ using LOO.
 
 ```{r all model comparison, warning=FALSE}
+m4 <- add_criterion(m4, criterion = "loo")
 m6 <- add_criterion(m6, criterion = "loo")
 
-(lc.m1m2m3m4m6 <- loo(m1, m2, m3, m4, m6, moment_match = TRUE))
+(lc.m4m6 <- loo(m4, m6, moment_match = TRUE))
 ```
 
 $m_6$ and $m_4$ are very close 
 in terms of predictive capabilities.
-And, they both overperform all other models.
-Thus, we'll use $m_6$ for all our analysis.
 
 
 ## Analyzing $m_6$
@@ -1414,8 +1403,6 @@ Thus, we'll use $m_6$ for all our analysis.
 ```{r m6 summary}
 summary(m6)
 ```
-Let's now analyze $m_7$ first, whose mutability-related effects
-are fixed effects.
 
 ```{r m6 analysis}
 MORE.PROBS <- c(0.5, 0.7, 0.8, 0.87, 0.9, 0.95, 0.99)
@@ -1448,25 +1435,24 @@ whereas SBFL is agnostic.
 
 Finally, let's also collect the varying intercepts
 estimates and intervals for the group-level terms 
-for `family` and `category`.
+for `family` and `category`. In $m_6$ these now correspond
+to the effects on bugs that are in none of the special categories
+(crashing, predicate, mutable); since this is a relatively set,
+we don't expect any very strong tendency (simply because the data is limited).
 
 ```{r m6 per family, warning=FALSE}
 (res.m6.einspect.family <- interval.results.ranef(
-  m6, "einspectS",  "family", PROBABILITIES
- ))
-(res.m6.time.family <- interval.results.ranef(
-  m6, "timeS",  "family", PROBABILITIES
+  m6, "einspectS",  "family", PROBABILITIES,
+  multivariate=FALSE
  ))
 
 (res.m6.einspect.category <- interval.results.ranef(
-  m6, "einspectS",  "category", PROBABILITIES
- ))
-(res.m6.time.category <- interval.results.ranef(
-  m6, "timeS",  "category", PROBABILITIES
+  m6, "einspectS",  "category", PROBABILITIES,
+  multivariate=FALSE
  ))
 ```
 
-```{r collect data}
+```{r merge all data}
 all.models <- list(m1=m1, m2=m2, m3=m3, m4=m4, m6=m6)
 df.res <- data.frame(model=character(0),
                      outcome=character(0),
@@ -1512,14 +1498,22 @@ for (k in 1:length(all.models)) {
     df.res <- rbind(df.res, d)
   }
 }
+```
 
+# Summary plots
+
+Let's prepare and print some plots of the overall results
+for model $m_6$.
+
+```{r exported plots}
 df.plot <- subset(df.res, 
                   model == "m2" & probability == "0.95" & predictor == "family")
 p <- ggplot(df.plot, aes(x=group, y=estimate, color=outcome))
 p <- p + geom_pointrange(aes(ymin=lower, ymax=upper),
                        position=position_dodge(width=0.6),
-                       size=1.5, lwd=2, fatten=3.0, shape=15)
+                       size=1.5, linewidth=2, fatten=3.0, shape=15)
 p <- p + geom_hline(yintercept=0, color="black", size=1.0)
+p
 ```
 
 
