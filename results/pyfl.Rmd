@@ -226,7 +226,7 @@ names(datas)[names(datas) == "experiment_time_seconds"] <- "time"
 names(datas)[names(datas) == "exam_score"] <- "exam"
 names(datas)[names(datas) == "cumulative_distance"] <- "cdist"
 names(datas)[names(datas) == "sv_comp_overall_score"] <- "svcomp"
-names(datas)[names(datas) == "mutable_bug"] <- "mutable"
+names(datas)[names(datas) == "mutable_bug"] <- "ismutable"
 names(datas)[names(datas) 
              == "percentage_of_mutants_on_ground_truth"] <- "mutability"
 
@@ -236,7 +236,7 @@ datas$project[datas$project == "youtube-dl"] <- "youtubedl"
 # use booleans where appropriate
 datas$crashing <- as.logical(datas$crashing)
 datas$predicate <- as.logical(datas$predicate)
-datas$mutable <- as.logical(datas$mutable)
+datas$ismutable <- as.logical(datas$ismutable)
 
 # convert to factors
 datas$project <- factor(datas$project)
@@ -1088,7 +1088,7 @@ eq.m4.einspect <- brmsformula(einspectS ~ 1
                               + (1|p|family) + (1|q|category) 
                               + predicate*family 
                               + crashing*family 
-                              + mutable*family,
+                              + ismutable*family,
                               family=brmsfamily("gaussian", link="log"))
 
 eq.m4 <- eq.m4.einspect
@@ -1206,7 +1206,7 @@ interval.results.interacts <- function(fit, response, predictor, probs,
                                                          PROBABILITIES,
                                                          multivariate=FALSE))
 (res.m4.einspect.mutable <- interval.results.interacts(m4, "einspectS", 
-                                                       "mutable", PROBABILITIES,
+                                                       "ismutable", PROBABILITIES,
                                                        multivariate=FALSE))
 ```
 So, crashing bugs are indeed easier for ST.
