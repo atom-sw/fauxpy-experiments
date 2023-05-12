@@ -156,7 +156,7 @@ class ResultManager:
             "@1", "@1%", "@3",
             "@3%", "@5", "@5%",
             "@10", "@10%", "exam_score",
-            "java_exam_score"
+            "java_exam_score", "output_length"
         ]
 
         technique_overall_table = [overall_results_header]
@@ -273,7 +273,7 @@ class ResultManager:
                          "technique", "crashing", "predicate",
                          "mutable_bug", "percentage_of_mutants_on_ground_truth", "experiment_time_seconds",
                          "e_inspect", "is_bug_localized", "exam_score",
-                         "java_exam_score"]
+                         "java_exam_score", "output_length"]
 
         result_rows = [result_header]
         for item in csv_items:
@@ -296,11 +296,13 @@ class ResultManager:
             if metric_val.is_bug_localized():
                 java_exam_score = exam_score
 
+            output_length = len(item.get_scored_entities())
+
             result_row = [project_name, bug_number, granularity_name,
                           technique_name, crashing, predicate,
                           mutable_bug, percentage_of_mutants_on_ground_truth, experiment_time_seconds,
                           e_inspect, is_bug_localized, exam_score,
-                          java_exam_score]
+                          java_exam_score, output_length]
             result_rows.append(result_row)
 
         return result_rows
@@ -341,6 +343,7 @@ class ResultManager:
         exam_score_list = [x.get_metric_literature_val().get_exam_score() for x in csv_items]
         java_exam_score_list = [x.get_metric_literature_val().get_exam_score() for x in csv_items
                                 if x.get_metric_literature_val().is_bug_localized()]
+        output_length_list = [len(x.get_scored_entities()) for x in csv_items]
 
         average_experiment_time = mathematics.average(experiment_time_seconds_list)
         # round_average_experiment_time = round(average_experiment_time)
@@ -354,6 +357,8 @@ class ResultManager:
         # round_average_exam_score = round(average_exam_score, 4)
         round_average_exam_score = average_exam_score
 
+        average_output_length = mathematics.average(output_length_list)
+
         if len(java_exam_score_list) == 0:
             average_java_exam_score = None
             round_average_java_exam_score = None
@@ -366,13 +371,13 @@ class ResultManager:
         #  "@1", "@1%", "@3",
         #  "@3%", "@5", "@5%",
         #  "@10", "@10%", "exam_score",
-        #  "java_exam_score"]
+        #  "java_exam_score", "output_length"]
 
         technique_result = [technique_name, round_average_experiment_time, round_average_e_inspect,
                             at_x(1), at_x_percentage(1), at_x(3),
                             at_x_percentage(3), at_x(5), at_x_percentage(5),
                             at_x(10), at_x_percentage(10), round_average_exam_score,
-                            round_average_java_exam_score]
+                            round_average_java_exam_score, average_output_length]
 
         return technique_result
 
