@@ -2,3 +2,9 @@
 .RData
 pyfl_cache/
 pyfl_files/
+
+# Ignore exported data, which will be copied over to paper directory
+paper/
+
+# Saved R environment with all data, only kept locally
+fitdata.RData
