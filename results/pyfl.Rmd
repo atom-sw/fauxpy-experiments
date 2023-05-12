@@ -749,7 +749,7 @@ print(pp_check(m1, ndraws=100, resp="einspectS") + scale_x_log10())
 print(pp_check(m1, ndraws=100, resp="timeS") + scale_x_log10())
 ```
 
-As you can see, the simulated posteriors are acceptable given that 
+As you can see, the simulated posteriors are decent given that 
 the data is complex, whereas the model is quite simplistic 
 (we'll improve it soon).
 
@@ -761,7 +761,7 @@ the data is complex, whereas the model is quite simplistic
 summary(m1)
 ```
 What's noticeable here is the residual correlation
-between the two outcomes `einspect` and `time` is quite small (7%), 
+between the two outcomes `einspect` and `time` is smallish (10%), 
 which means that there is not much of a consistent dependency 
 between these two variables.
 
@@ -819,9 +819,7 @@ there are clear differences (with high probability)
 in the contribution over the mean from different families of techniques.
 
 Looking at the effects by category of project does not
-yeld as strong differences, but we can see that `DS` projects tend to be associated with worse (higher) `e_inspect` and longer running times, 
-and that `WEB` projects are associated with 
-shorter running times.
+yeld as strong differences, but we can see that `DS` projects tend to be associated with worse (higher) `e_inspect`.
 
 ```{r m1 per category, warning=FALSE}
 (res.m1.einspect.category <- interval.results(m1, "einspectS", 
@@ -907,7 +905,7 @@ print(pp_check(m2, ndraws=100, resp="einspectS") + scale_x_log10())
 print(pp_check(m2, ndraws=100, resp="timeS") + scale_x_log10())
 ```
 
-We don't notice a clear improvement compared to $m_1$.
+We can perhaps glean a small improvement compared to $m_1$.
 Let's compare the two models using LOO.
 
 ```{r model comparison m1 m2, warning=FALSE}
@@ -917,7 +915,7 @@ m2 <- add_criterion(m2, criterion = "loo")
 (lc.m1m2 <- loo(m1, m2, moment_match = TRUE))
 ```
 
-$m_1$'s score is more than 2.4 standard deviations worse than $m_2$'s,
+$m_1$'s score is more than 2.6 standard deviations worse than $m_2$'s,
 which is a significant difference in favor of $m_2$
 in terms of predictive capabilities.
 
@@ -930,7 +928,7 @@ summary(m2)
 By `category`, there is a slight inverse correlation between
 the two outcomes `einspect` and `time`; this correlation disappears 
 if we look at the `family` terms. 
-The residual correlation is even a bit lower than in `m_1`.
+The residual correlation is the same as in `m_1`.
 
 Let's now perform an effects analysis 
 on the fitted coefficients of `m2`.
@@ -994,7 +992,9 @@ Let's see what happens for the bug/category of projects.
 ```
 Here we see some differences, which may partly be due
 to the fact that $m_2$ models the different categories
-more uniformly.
+more uniformly. Furthermore, some changes may simply mean
+that the per-category effects are small, and hence likely to fluctuate
+with inconsequential changes to the model.
 
 
 ## Model $m_3$: interactions
@@ -1080,9 +1080,10 @@ m3 <- add_criterion(m3, criterion = "loo")
 (lc.m1m2m3 <- loo(m1, m2, m3, moment_match = TRUE))
 ```
 
-$m_2$'s score is less than half standard deviation worse than $m_3$'s.
-This is a negligible improvement, not worth 
-the additional complexity of model $m_3$.
+$m_2$'s score is 0.76 standard deviations worse than $m_3$'s.
+This is not a significant improvement, not worth 
+the additional complexity of model $m_3$ (which also results in it being
+harder to interpret).
 Thus, we stick with $m_2$ as our selected model.
 
 ## Analyzing $m_3$
@@ -1093,7 +1094,7 @@ summary(m3)
 ```
 
 Instead of considering the fixed and varying effects of
-$m_3$, we can estimate the marginal means for each family of FL techniques
+$m_3$, we may estimate the marginal means for each family of FL techniques
 (results omitted for brevity, since we'll focus on $m_2$ anyway).
 
 ```{r m3 per family, warning=FALSE}
