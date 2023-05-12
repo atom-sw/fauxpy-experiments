@@ -130,7 +130,8 @@ store_ <- function(key, value, group="", family=KEY.FAMILY, as.string=FALSE)
 #
 # If `vectorize` is TRUE and `df` consists of a single column, use keys 
 # of the form `row.ids` (i.e., a single index instead of a pair of indexes).
-store.table_ <- function(df, tabname, replace.probs=FALSE, row.ids=NULL, col.ids=NULL, vectorize=TRUE)
+store.table_ <- function(df, tabname, 
+                         replace.probs=FALSE, row.ids=NULL, col.ids=NULL, vectorize=TRUE)
 {
   if (is.null(row.ids)) {
     if (any(duplicated(rownames(df))))
@@ -1480,6 +1481,11 @@ MORE.PROBS <- c(0.5, 0.7, 0.8, extra.prob, 0.9, 0.95, 0.99)
   bool=FALSE, multivariate=FALSE
   ))
 
+# Check that the extra probability makes the interval completely below zero
+assertthat::assert_that(all(res.m6.einspect.logmutability$ints[
+  c(str_c("|", extra.prob), str_c(extra.prob, "|")), 
+  "logmutability MBFL"] < 0))
+
 # We can use m6's estimates for all these interactions,
 # since they are very close to m4's
 res.m6.einspect.crashing <- interval.results.interacts(
@@ -1646,6 +1652,98 @@ print(p.predicate)
 print(p.category)
 ```
 
+In order to more clearly read the plots, let's also
+save the various interval endpoints in absolute units,
+that is, convert them to the outcome scale,
+both in standardized units and in absolute units.
+
+```{r destandardize coefficients}
+destandardize <- function(row, mult.sd=TRUE, add.mean=FALSE)
+{
+  est <- as.numeric(row[["estimate"]])
+  outcome <- row[["outcome"]]
+  if (outcome == "einspect") {
+    res <- exp(est)
+    if (mult.sd)
+      res <- res * sd(by.statement$einspect)
+    if (add.mean)
+      res <- res + mean(by.statement$einspect)
+  } else {
+    assert_that(outcome == "time")
+    res <- exp(est)
+    if (mult.sd)
+      res <- res * sd(by.statement$logtime)
+    if (add.mean)
+      res <- res + mean(by.statement$logtime)
+    res <- exp(res)
+  }
+  return(res)
+}
+
+df.res$centered.estimate <- apply(df.res, 1, destandardize, mult.sd=TRUE, add.mean=FALSE)
+df.res$outcome.estimate <- apply(df.res, 1, destandardize, mult.sd=TRUE, add.mean=TRUE)
+
+# check that the estimate is the same within every group
+df.estimates <- (df.res 
+                 %>% group_by(model, outcome, predictor, group) 
+                 %>% summarize(
+                   centered.estimate=first(centered.estimate),
+                   outcome.estimate=first(outcome.estimate),
+                   estimate=first(estimate),
+                   check=all(estimate == first(estimate))))
+assert_that(all(df.estimates$check))
+
+# Get unique predictors
+unique_predictors <- unique(df.estimates$predictor)
+
+df.pairs <- cbind(df.estimates[0, "predictor"], group1=character(0), group2=character(0))
+
+for (pr in unique_predictors) {
+  unique_groups <- unlist(unique(df.estimates[df.estimates$predictor == pr, "group"]))
+  # Create all possible pairs of unique groups
+  group_pairs <- expand.grid(group1=unique_groups, group2=unique_groups)
+  group_pairs$predictor <- pr
+  df.pairs <- rbind(df.pairs, group_pairs)
+}
+
+# remove duplicates
+df.preds <- (df.estimates 
+             %>% select(-estimate, -centered.estimate, -outcome.estimate, -check, -group) 
+             %>% distinct())
+# add all pairs
+df.preds <- df.preds %>% left_join(df.pairs, by="predictor", multiple="all")
+
+get_estimate_row <- function(group_name, row) {
+  r <- df.estimates %>% filter(
+    model == row[["model"]],
+    outcome == row[["outcome"]],
+    predictor == row[["predictor"]],
+    group == group_name
+  )
+  are_equal(nrow(r), 1)
+  r
+}
+
+dest.deltas <- function(row)
+{
+  g1 <- row[["group1"]]
+  g2 <- row[["group2"]]
+  r1 <- get_estimate_row(g1, row)
+  r2 <- get_estimate_row(g2, row)
+  logdelta <- r1$estimate - r2$estimate
+  delta <- r1$outcome.estimate - r2$outcome.estimate
+  data.frame(coef.delta=logdelta, outcome.delta=delta)
+}
+
+df.deltas <- apply(df.preds, 1, dest.deltas)
+are_equal(length(df.deltas), nrow(df.preds))
+
+df.deltas <- bind_rows(
+  lapply(seq_along(df.deltas), function(i) cbind(df.preds[i, ], df.deltas[[i]]))
+         )
+are_equal(nrow(df.deltas), nrow(df.preds))
+```
+
 
 # Dump all data and plots
 
@@ -1697,6 +1795,12 @@ store.results_(res.m2.time.category)
 store.results_(res.m6.einspect.logmutability)
 store.results_(res.m6.einspect.crashing)
 store.results_(res.m6.einspect.predicate)
+
+row_id <- function(row) str_c(row[1:(length(row)-2)], collapse="/")
+row_names <- apply(df.deltas, 1, row_id)
+sdf.deltas <- as.data.frame(df.deltas[(ncol(df.deltas)-2+1):ncol(df.deltas)])
+rownames(sdf.deltas) <- row_names
+store.table_(sdf.deltas, "deltas")
 ```
 
 ```{r epilogue}
