@@ -311,7 +311,8 @@ statement.by.family.einspect <- (
 )
 
 statement.einspect.upper <- max(unlist(
-  statement.by.family.einspect[, 4:ncol(statement.by.family.einspect)])
+  statement.by.family.einspect[,
+                               length(names(FAMILIES)):ncol(statement.by.family.einspect)])
   )
 
 S <- statement.by.family.einspect$SBFL
@@ -560,7 +561,7 @@ statement.by.family.time <- (
 )
 
 statement.time.upper <- max(unlist(
-  statement.by.family.time[, 4:ncol(statement.by.family.time)])
+  statement.by.family.time[, length(names(FAMILIES)):ncol(statement.by.family.time)])
   )
 
 statement.time.limits <- c(0, statement.time.upper)
@@ -596,6 +597,56 @@ x_ <- lapply(all.pairs,
                                g2=colnames(p)[2])))
 ```
 
+And also for technique in the SBFL and MBFL families
+(those where there is more than one technique of the same family).
+
+```{r scatterplot intra-family, echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
+for (FAM in c("SBFL", "MBFL")) {
+  intrafamily.einspect <- (
+    datas 
+    %>% filter(granularity == "statement", family == FAM)
+    # grouping and summary actually not needed
+    %>% group_by(technique, category, project, bug_number)
+    %>% summarize(einspect=mean(einspect))
+    %>% spread(technique, einspect)
+  )
+  
+  intrafamily.upper <- max(unlist(
+    intrafamily.einspect[, length(FAMILIES[[FAM]]):ncol(intrafamily.einspect)]
+  ))
+  
+  intrafamily.limits <- c(0, intrafamily.upper)
+  
+  p.intrafamily <- pairwise.comparison.plot(
+    intrafamily.einspect, 
+    columns=which(names(intrafamily.einspect) %in% FAMILIES[[FAM]]),
+    color_var="category", palette=C.PALETTE,
+    lower_limits=intrafamily.limits)
+  print(p.intrafamily)
+  
+  f.p.intrafamily <- file.path(PAPER.DIR, str_c("statement-", FAM, "-einspect.pdf")) 
+  ggsave(f.p.intrafamily, 
+         plot=p.intrafamily, 
+         device="pdf")
+  knitr::plot_crop(f.p.intrafamily, quiet=TRUE)
+  
+  all.pairs <- intrafamily.einspect[, 
+                                    (colnames(intrafamily.einspect) 
+                                     %in% FAMILIES[[FAM]])]
+  # generate all pairs
+  all.pairs <- combn(all.pairs, 2, simplify=FALSE)
+  
+  # also save statistics as constants
+  x_ <- lapply(all.pairs, 
+               function(p) 
+                 pairs_text_fn(unlist(p[1]), unlist(p[2]), 2, "kendall", 0.95,
+                               info=list(
+                                 granularity=str_c("statement-intra-", FAM), 
+                                 metric="einspect", 
+                                 g1=colnames(p)[1], 
+                                 g2=colnames(p)[2])))
+}
+```
 
 # Regression models
 
