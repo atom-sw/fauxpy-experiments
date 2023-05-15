@@ -36,6 +36,7 @@ class Constants:
     At5 = "@5"
     At10 = "@10"
     Exam = "exam"
+    Output_length = "outputlength"
     Java_exam = "javaexam"
     Time = "time"
     Distance = "distance"
@@ -169,6 +170,8 @@ class LatexInfo:
                 metric_dict[Constants.Exam] = value
             elif col_name == "java_exam_score":
                 metric_dict[Constants.Java_exam] = value
+            elif col_name == "output_length":
+                metric_dict[Constants.Output_length] = value
             elif col_name == "cumulative_distance":
                 if value is not None:
                     metric_dict[Constants.Distance] = value
