@@ -1,6 +1,8 @@
 import copy
 from typing import List
 
+from tqdm import tqdm
+
 from csv_score_load_manager import CsvScoreItem, FLGranularity
 from entity_type import ScoredStatement, ScoredModule
 
@@ -12,7 +14,7 @@ class CsvScoreItemModuleGranularityManager:
 
     def get_module_csv_score_items(self):
         csv_module_list = []
-        for csv_statement in self._statement_csv_score_items:
+        for csv_statement in tqdm(self._statement_csv_score_items):
             current_csv_module = self._csv_statement_to_module(csv_statement)
             csv_module_list.append(current_csv_module)
 
