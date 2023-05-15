@@ -1,6 +1,8 @@
 import copy
 from typing import Dict, List, Tuple
 
+from tqdm import tqdm
+
 import mathematics
 import our_metrics
 from csv_score_load_manager import (FLTechnique,
@@ -130,7 +132,7 @@ class ResultManager:
         return technique_detailed_table_dict, technique_overall_table
 
     def _compute_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
-        for item in csv_score_items:
+        for item in tqdm(csv_score_items):
             e_inspect, is_bug_localized, exam_score = self._compute_literature_metrics_for_csv_item(item)
             metric_literature_val = MetricLiteratureVal(item.get_experiment_time_seconds(),
                                                         e_inspect,
@@ -139,10 +141,10 @@ class ResultManager:
             item.set_metric_literature_val(metric_literature_val)
 
     def _compute_all_our_metrics_for_statement_csv_score_items(self):
-        for item in self._csv_score_items:
+        for item in tqdm(self._csv_score_items):
             e_inspect = item.get_metric_literature_val().get_e_inspect()
-            cumulative_distance, sv_comp_overall_score = self._compute_our_metrics(item, e_inspect)
-            metric_our_val = MetricOurVal(cumulative_distance, sv_comp_overall_score)
+            cumulative_distance, sv_comp_overall_score, cumulative_distance2 = self._compute_our_metrics(item, e_inspect)
+            metric_our_val = MetricOurVal(cumulative_distance, sv_comp_overall_score, cumulative_distance2)
             item.set_metric_our_val(metric_our_val)
 
     def _create_all_literature_metrics_for(self, csv_score_items: List[CsvScoreItem]):
@@ -177,7 +179,7 @@ class ResultManager:
             technique_csv_items[item.name] = self._get_all_csv_items_for(FLTechnique(item.value),
                                                                          csv_score_items)
 
-        overall_results_header = ["technique", "cumulative_distance", "sv_comp_overall_score"]
+        overall_results_header = ["technique", "cumulative_distance", "cumulative_distance2", "sv_comp_overall_score"]
 
         technique_overall_table = [overall_results_header]
         technique_detailed_table_dict = {}
@@ -309,15 +311,16 @@ class ResultManager:
 
     @staticmethod
     def _get_technique_our_detailed_results_table(csv_items: List[CsvScoreItem]):
-        result_header = ["project_name", "bug_number", "cumulative_distance", "sv_comp_overall_score"]
+        result_header = ["project_name", "bug_number", "cumulative_distance", "cumulative_distance2", "sv_comp_overall_score"]
         result_rows = [result_header]
         for item in csv_items:
             project_name = item.get_project_name()
             bug_number = item.get_bug_number()
             metric_val = item.get_metric_our_val()
             cumulative_distance = metric_val.get_cumulative_distance()
+            cumulative_distance2 = metric_val.get_cumulative_distance2()
             sv_comp_overall_score = metric_val.get_sv_comp_overall_score()
-            result_row = [project_name, bug_number, cumulative_distance, sv_comp_overall_score]
+            result_row = [project_name, bug_number, cumulative_distance, cumulative_distance2, sv_comp_overall_score]
             result_rows.append(result_row)
 
         return result_rows
@@ -392,12 +395,16 @@ class ResultManager:
         average_cumulative_distance = mathematics.average(cumulative_distance_list)
         # round_average_cumulative_distance = round(average_cumulative_distance)
 
+        cumulative_distance2_list = [x.get_metric_our_val().get_cumulative_distance2() for x in csv_items]
+        average_cumulative_distance2 = mathematics.average(cumulative_distance2_list)
+
         sv_comp_overall_score_list = [x.get_metric_our_val().get_sv_comp_overall_score() for x in csv_items]
         average_sv_comp_overall_score = mathematics.average(sv_comp_overall_score_list)
         # round_average_sv_comp_overall_score = round(average_sv_comp_overall_score)
 
         technique_result = [technique_name,
                             average_cumulative_distance,
+                            average_cumulative_distance2,
                             average_sv_comp_overall_score]
 
         return technique_result
@@ -450,11 +457,16 @@ class ResultManager:
                                                                   buggy_module_sizes,
                                                                   e_inspect)
 
+        cumulative_distance2 = our_metrics.get_cumulative_distance(csv_score_item.get_scored_entities(),
+                                                                   ground_truth_buggy_line_names,
+                                                                   buggy_module_sizes,
+                                                                   e_inspect)
+
         sv_comp_overall_score = our_metrics.get_sv_comp_overall_score(csv_score_item.get_scored_entities(),
                                                                       ground_truth_buggy_line_names,
                                                                       buggy_module_sizes,
                                                                       e_inspect)
-        return cumulative_distance, sv_comp_overall_score
+        return cumulative_distance, sv_comp_overall_score, cumulative_distance2
 
     @staticmethod
     def _combine_literature_with_our_metrics(literature_detailed,

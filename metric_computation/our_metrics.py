@@ -2,7 +2,7 @@ import math
 from typing import List, Dict, Tuple
 
 from csv_score_load_manager import CsvScoreItem, FLTechnique
-from cumulative_distance import DistanceToBug, TechniqueBugCumulativeDistance
+from cumulative_distance import DistanceToBug, TechniqueBugCumulativeDistance, TechniqueBugCumulativeDistance2
 from entity_type import ScoredStatement
 from score_based_quantile import SumAllPositiveScores
 from sv_comp_score import SvCompScoreForBug, TechniqueBugSvCompOverallScore
@@ -28,6 +28,19 @@ def get_cumulative_distance(program_locations: List[ScoredStatement],
     cumulative_distance = technique_bug_cumulative_distance_obj.get_cumulative_distance()
 
     return cumulative_distance
+
+
+def get_cumulative_distance2(program_locations: List[ScoredStatement],
+                             buggy_line_names: List[str],
+                             buggy_module_sizes: Dict[str, int],
+                             e_inspect: float):
+    distance_to_bug_obj2 = DistanceToBug(buggy_line_names, buggy_module_sizes)
+    technique_bug_cumulative_distance_obj2 = TechniqueBugCumulativeDistance2(distance_to_bug_obj2,
+                                                                             program_locations,
+                                                                             e_inspect)
+    cumulative_distance2 = technique_bug_cumulative_distance_obj2.get_cumulative_distance()
+
+    return cumulative_distance2
 
 
 def get_sv_comp_overall_score(program_locations: List[ScoredStatement],
