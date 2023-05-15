@@ -2,6 +2,8 @@ from enum import Enum
 from pathlib import Path
 from typing import List, Optional
 
+from tqdm import tqdm
+
 import file_manager
 from entity_type import ScoredEntity, ScoredStatement
 
@@ -291,7 +293,7 @@ class CsvScoreItemLoadManager:
 
     def load_csv_score_items(self) -> List[CsvScoreItem]:
         csv_score_items = []
-        for item in self._results_path.iterdir():
+        for item in tqdm(self._results_path.iterdir()):
             if item.name not in ["Timeouts", "Garbage"]:
                 family_csv_score_items = self._get_family_csv_score_items(item)
                 csv_score_items += family_csv_score_items
