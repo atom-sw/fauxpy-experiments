@@ -21,7 +21,8 @@ class PathManager:
     _Module_csv_score_directory_name = "csv_fauxpy_module"
     _Latex_table_directory_name = "latex_table_info"
     _Java_paper_info_dir_path = "java_paper_input_for_latex"
-    _Combine_fl_results_dir_path = "inputs_from_combine_fl"
+    _Combine_fl_results_dir_name = "inputs_from_combine_fl"
+    _Combine_fl_inputs_dir_name = "inputs_to_combine_fl"
 
     def __init__(self):
         self._results_path, self._workspace_path = self._load_path_items()
@@ -68,8 +69,11 @@ class PathManager:
     def get_java_paper_info_dir_path(self) -> str:
         return self._Java_paper_info_dir_path
 
-    def get_combine_fl_results_dir_path(self) -> str:
-        return self._Combine_fl_results_dir_path
+    def get_combine_fl_results_dir_name(self) -> str:
+        return self._Combine_fl_results_dir_name
+
+    def get_combine_fl_inputs_dir_name(self):
+        return self._Combine_fl_inputs_dir_name
 
     @staticmethod
     def _get_csv_score_directory_path(csv_score_directory_name: str) -> Path:
@@ -79,6 +83,8 @@ class PathManager:
         report_dir_path.mkdir()
 
         return report_dir_path
+
+
 
 
 def load_json_to_object(file_name: str):

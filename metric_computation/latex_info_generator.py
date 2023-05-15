@@ -3,6 +3,8 @@
 from pathlib import Path
 from typing import Dict, List, Union, Tuple
 
+import file_manager
+import mathematics
 from csv_score_load_manager import FLTechnique
 from file_manager import load_json_to_object, save_string_to_file
 
@@ -55,10 +57,12 @@ class LatexInfo:
     def __init__(self,
                  latex_info_dir_path: Path,
                  java_paper_info_dir_path: Path,
-                 combine_fl_results_dir_path: Path):
+                 combine_fl_results_dir_path: Path,
+                 combine_fl_inputs_dir_path: Path):
         self._latex_info_dir_path = latex_info_dir_path
         self._java_paper_info_dir_path = java_paper_info_dir_path
         self._combine_fl_results_dir_path = combine_fl_results_dir_path
+        self._combine_fl_inputs_dir_path = combine_fl_inputs_dir_path
 
     def generate_data_latex_file(self):
         python_key_val_dict = {}
@@ -71,8 +75,11 @@ class LatexInfo:
         java_key_val_dict = load_json_to_object(str(java_info_file_path.absolute().resolve()))
         all_key_val_dict = python_key_val_dict | java_key_val_dict
 
-        combine_fl_key_val_dict = self._get_combine_fl_key_val_dict(all_key_val_dict)
-        all_key_val_dict = all_key_val_dict | combine_fl_key_val_dict
+        combine_fl_results_key_val_dict = self._get_combine_fl_results_key_val_dict(all_key_val_dict)
+        all_key_val_dict = all_key_val_dict | combine_fl_results_key_val_dict
+
+        combine_fl_output_length_key_val_dict = self._get_combine_fl_output_length_key_val_dict()
+        all_key_val_dict = all_key_val_dict | combine_fl_output_length_key_val_dict
 
         all_key_val_str = self._get_all_key_val_as_str(all_key_val_dict)
         save_string_to_file(all_key_val_str, self._latex_info_dir_path / self.Data_file_name)
@@ -235,7 +242,7 @@ class LatexInfo:
 
         return "\n".join(str_item_list)
 
-    def _get_combine_fl_key_val_dict(self, all_key_val_dict: Dict[str, float]) -> Dict[str, float]:
+    def _get_combine_fl_results_key_val_dict(self, all_key_val_dict: Dict[str, float]) -> Dict[str, float]:
         file_path_list = list(self._combine_fl_results_dir_path.rglob("*.json"))
 
         combine_fl_key_val_avg_dict = {}
@@ -408,3 +415,35 @@ class LatexInfo:
             raise Exception()
 
         return time_cost
+
+    def _get_combine_fl_output_length_key_val_dict(self) -> Dict[str, float]:
+        combine_fl_output_length_key_val_dict = {}
+
+        output_length_file_names = [(Constants.Statement, "python_statement_output_length.json"),
+                                    (Constants.Function, "python_function_output_length.json"),
+                                    (Constants.Module, "python_module_output_length.json")]
+
+        for file_name_item in output_length_file_names:
+            granularity_name, file_name_str = file_name_item
+            current_granularity_file_path = self._combine_fl_inputs_dir_path / file_name_str
+            current_output_length_dict = file_manager.load_json_to_object(str(current_granularity_file_path.absolute().resolve()))
+            current_output_length_list = [x for x in current_output_length_dict.values()]
+            current_output_length_average = mathematics.average(current_output_length_list)
+
+            latex_key_alfa = self._get_latex_key_for_metric(granularity_name,
+                                                            Constants.Combine_fl,
+                                                            Constants.All_families,
+                                                            Constants.All,
+                                                            Constants.Output_length,
+                                                            Constants.Python)
+            latex_key_sbst = self._get_latex_key_for_metric(granularity_name,
+                                                            Constants.Combine_fl,
+                                                            Constants.Sbfl_st,
+                                                            Constants.All,
+                                                            Constants.Output_length,
+                                                            Constants.Python)
+            combine_fl_output_length_key_val_dict[latex_key_alfa] = current_output_length_average
+            combine_fl_output_length_key_val_dict[latex_key_sbst] = current_output_length_average
+
+        return combine_fl_output_length_key_val_dict
+
