@@ -2,6 +2,8 @@ import copy
 from pathlib import Path
 from typing import List
 
+from tqdm import tqdm
+
 from csv_score_load_manager import CsvScoreItem, FLGranularity
 from entity_type import ScoredStatement, ScoredFunction
 from function_manager import FunctionManager, StatementFunctionMap
@@ -17,7 +19,7 @@ class CsvScoreItemFunctionGranularityManager:
 
     def get_function_csv_score_items(self) -> List[CsvScoreItem]:
         csv_function_list = []
-        for csv_statement in self._statement_csv_score_items:
+        for csv_statement in tqdm(self._statement_csv_score_items):
             current_csv_func = self._csv_statement_to_function(csv_statement)
             csv_function_list.append(current_csv_func)
 
