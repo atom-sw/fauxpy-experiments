@@ -426,7 +426,8 @@ class LatexInfo:
         for file_name_item in output_length_file_names:
             granularity_name, file_name_str = file_name_item
             current_granularity_file_path = self._combine_fl_inputs_dir_path / file_name_str
-            current_output_length_dict = file_manager.load_json_to_object(str(current_granularity_file_path.absolute().resolve()))
+            current_output_length_dict = file_manager.load_json_to_object(
+                str(current_granularity_file_path.absolute().resolve()))
             current_output_length_list = [x for x in current_output_length_dict.values()]
             current_output_length_average = mathematics.average(current_output_length_list)
 
@@ -442,8 +443,15 @@ class LatexInfo:
                                                             Constants.All,
                                                             Constants.Output_length,
                                                             Constants.Python)
+            latex_key_average = self._get_latex_key_for_metric(granularity_name,
+                                                               Constants.Combine_fl,
+                                                               Constants.FAVG,
+                                                               Constants.All,
+                                                               Constants.Output_length,
+                                                               Constants.Python)
             combine_fl_output_length_key_val_dict[latex_key_alfa] = current_output_length_average
             combine_fl_output_length_key_val_dict[latex_key_sbst] = current_output_length_average
+            combine_fl_output_length_key_val_dict[latex_key_average] = (
+                                                                                   current_output_length_average + current_output_length_average) / 2
 
         return combine_fl_output_length_key_val_dict
-
