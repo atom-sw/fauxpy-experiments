@@ -1,6 +1,8 @@
 from pathlib import Path
 from typing import List, Dict, Tuple
 
+from tqdm import tqdm
+
 import file_manager
 import mathematics
 from average_fault_localization import AverageFaultLocalization
@@ -95,7 +97,7 @@ def get_avg_csv_score_items(fauxpy_csv_score_items, tech_name: FLTechnique):
 
     all_ochiai_csv_list = list(
         filter(lambda x: x.get_technique() == FLTechnique.Ochiai, fauxpy_csv_score_items))
-    for ochiai_csv in all_ochiai_csv_list:
+    for ochiai_csv in tqdm(all_ochiai_csv_list):
         print(ochiai_csv.get_bug_key())
         dstar_csv = get_csv_technique(FLTechnique.DStar, ochiai_csv.get_bug_key())
         st_csv = get_csv_technique(FLTechnique.ST, ochiai_csv.get_bug_key())
@@ -342,6 +344,7 @@ def generate_combine_fl_data_input():
         fl_tech_str = combine_fl_manager.get_techniques_sorted_as_string()
         proj_string = combine_fl_manager.get_projects_sorted_as_string()
         qid_ground_truth_num_items = combine_fl_manager.get_qid_ground_truth_number_of_items_json_dict()
+        output_length = combine_fl_manager.get_output_length()
 
         for index, release_json_dict_item in enumerate(release_json_dict_list):
             file_manager.save_object_to_json(release_json_dict_item,
@@ -354,56 +357,59 @@ def generate_combine_fl_data_input():
                                              dir_name) / f"python_{granularity_name}_qid_ground_truth_number_of_items.json")
         file_manager.save_string_to_file(fl_tech_str, Path(dir_name) / "techniques.txt")
         file_manager.save_string_to_file(proj_string, Path(dir_name) / "projects.txt")
+        file_manager.save_object_to_json(output_length,
+                                         Path(dir_name) / f"python_{granularity_name}_output_length.json")
 
     path_manager = file_manager.PathManager()
     ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
     size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
+
+    directory_name = path_manager.get_combine_fl_inputs_dir_name()
+    file_manager.make_if_not_dir(directory_name)
+
     fauxpy_statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
 
+    # Statement level granularity
+    # ground_truth_items_statement, size_counts_items_statement = get_ground_truth_and_size_count(ground_truth_info,
+    #                                                                                             size_counts_info,
+    #                                                                                             FLGranularity.Statement)
+    # generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
+    #                                     ground_truth_items_statement,
+    #                                     size_counts_items_statement,
+    #                                     directory_name)
+
+    # Function level granularity
     # fauxpy_function_csv_score_items = convert_statement_csv_to_function_csv(path_manager,
     #                                                                         fauxpy_statement_csv_score_items)
-
-    # fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
-
-    directory_name = "inputs_to_combine_fl"
-    # file_manager.clean_make_output_dir(directory_name)
-
-    ground_truth_items_statement, size_counts_items_statement = get_ground_truth_and_size_count(ground_truth_info,
-                                                                                                size_counts_info,
-                                                                                                FLGranularity.Statement)
-
     # ground_truth_items_function, size_counts_items_function = get_ground_truth_and_size_count(ground_truth_info,
     #                                                                                           size_counts_info,
     #                                                                                           FLGranularity.Function)
-
-    # ground_truth_items_module, size_counts_items_module = get_ground_truth_and_size_count(ground_truth_info,
-    #                                                                                       size_counts_info,
-    #                                                                                       FLGranularity.Module)
-
-    generate_data_input_for_granularity(fauxpy_statement_csv_score_items,
-                                        ground_truth_items_statement,
-                                        size_counts_items_statement,
-                                        directory_name)
-
     # generate_data_input_for_granularity(fauxpy_function_csv_score_items,
     #                                     ground_truth_items_function,
     #                                     size_counts_items_function,
     #                                     directory_name)
 
-    # generate_data_input_for_granularity(fauxpy_module_csv_score_items,
-    #                                     ground_truth_items_module,
-    #                                     size_counts_items_module,
-    #                                     directory_name)
+    # Module level granularity
+    fauxpy_module_csv_score_items = convert_statement_csv_to_module_csv(fauxpy_statement_csv_score_items)
+    ground_truth_items_module, size_counts_items_module = get_ground_truth_and_size_count(ground_truth_info,
+                                                                                          size_counts_info,
+                                                                                          FLGranularity.Module)
+    generate_data_input_for_granularity(fauxpy_module_csv_score_items,
+                                        ground_truth_items_module,
+                                        size_counts_items_module,
+                                        directory_name)
 
 
 def generate_latex_data_information():
     path_manager = file_manager.PathManager()
     latex_table_dir_name = path_manager.get_latex_table_dir_name()
     java_paper_info_dir_path = path_manager.get_java_paper_info_dir_path()
-    combine_fl_results_dir_path = path_manager.get_combine_fl_results_dir_path()
+    combine_fl_results_dir_name = path_manager.get_combine_fl_results_dir_name()
+    combine_fl_input_dir_name = path_manager.get_combine_fl_inputs_dir_name()
     latex_info = LatexInfo(Path(latex_table_dir_name),
                            Path(java_paper_info_dir_path),
-                           Path(combine_fl_results_dir_path))
+                           Path(combine_fl_results_dir_name),
+                           Path(combine_fl_input_dir_name))
     latex_info.generate_data_latex_file()
 
 
@@ -481,6 +487,8 @@ def get_bug_statistics():
     print("any_crashing", len(any_crashing))
     print("an_predicate", len(an_predicate))
     print("any_mutable", len(any_mutable))
+
+    print_list(only_predicate)
 
 
 def get_project_statistics():
@@ -595,7 +603,7 @@ def get_ground_truth_statistics():
 if __name__ == '__main__':
     # generate_metrics()
     # generate_combine_fl_data_input()
-    # generate_latex_data_information()
+    generate_latex_data_information()
     # get_bug_statistics()
     # get_project_statistics()
-    get_ground_truth_statistics()
+    # get_ground_truth_statistics()
