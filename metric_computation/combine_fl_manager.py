@@ -1,9 +1,10 @@
 import copy
 from typing import List, Dict, Tuple
 
+from tqdm import tqdm
+
 import mathematics
 from csv_score_load_manager import CsvScoreItem, FLGranularity
-from entity_type import ScoredStatement
 
 
 class MultiScoreStatement:
@@ -62,6 +63,12 @@ class ProjectBugItem:
 
     def get_project_name(self) -> str:
         return self._project_name
+
+    def get_bug_key(self) -> str:
+        return f"{self._project_name}:{self._bug_number}"
+
+    def get_output_length(self):
+        return len(self._multi_score_statement_list)
 
     def _get_project_counter_based_name(self) -> str:
         return f"{self._project_name}{self._project_counter}"
@@ -191,7 +198,7 @@ class CombineFlManager:
         project_bug_item_list = []
         previous_project_name = self._bug_keys_sorted[0].split(":")[0]
         project_counter = 0
-        for bug_key in self._bug_keys_sorted:
+        for bug_key in tqdm(self._bug_keys_sorted):
             current_bug_key_csv_score_item_list = [x for x in self._csv_score_items if x.get_bug_key() == bug_key]
             assert len(current_bug_key_csv_score_item_list) == len(self._techniques_sorted)
             current_project_name = current_bug_key_csv_score_item_list[0].get_project_name()
@@ -393,3 +400,11 @@ class CombineFlManager:
             num_ground_truth_item += current_module_count_item
 
         return num_ground_truth_item
+
+    def get_output_length(self) -> Dict[str, int]:
+        output_length_dict = {}
+
+        for item in self._project_bug_item_sorted:
+            output_length_dict[item.get_bug_key()] = item.get_output_length()
+
+        return output_length_dict
