@@ -457,7 +457,7 @@ class ResultManager:
                                                                   buggy_module_sizes,
                                                                   e_inspect)
 
-        cumulative_distance2 = our_metrics.get_cumulative_distance(csv_score_item.get_scored_entities(),
+        cumulative_distance2 = our_metrics.get_cumulative_distance2(csv_score_item.get_scored_entities(),
                                                                    ground_truth_buggy_line_names,
                                                                    buggy_module_sizes,
                                                                    e_inspect)
