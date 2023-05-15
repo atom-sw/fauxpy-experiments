@@ -85,7 +85,7 @@ C.COLORS <- met.brewer(C.PALETTE, n=4)
 
 ```{r include=FALSE}
 
-KEY.FAMILY <- "pyfl"
+KEY.FAMILY <- "flpy"
 stored.values <- list()
 stored.values.str <- list()
 
