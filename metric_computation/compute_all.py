@@ -154,6 +154,18 @@ def save_quantile(overall_table: List, tool_name: str, granularity: str, bug_typ
 
 
 def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info):
+    def get_non_empty_critical_predicate_csv_items():
+        non_empty_ps_csv_items = [x for x in fauxpy_statement_csv_score_items
+                                  if x.get_technique() == FLTechnique.PS and
+                                  len(x.get_scored_entities()) != 0]
+        non_empty_ps_csv_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
+        non_empty_ps_bug_key_list = [x.get_bug_key() for x in non_empty_ps_csv_items]
+
+        non_empty_critical_predicate_csv_items_list = [x for x in fauxpy_statement_csv_score_items
+                                                       if x.get_bug_key() in non_empty_ps_bug_key_list]
+
+        return non_empty_critical_predicate_csv_items_list
+
     def compute_metrics(csv_items, bug_type):
         fauxpy_statement_result_manager = ResultManager(csv_items,
                                                         ground_truth_info,
@@ -172,6 +184,7 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     predicate_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_predicate()]
     crashing_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_crashing()]
     mutable_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_mutable_bug()]
+    non_empty_critical_predicate_csv_items = get_non_empty_critical_predicate_csv_items()
 
     dev_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.Dev]
     ds_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.DS]
@@ -182,6 +195,7 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     compute_metrics(predicate_csv_items, "predicate")
     compute_metrics(crashing_csv_items, "crashing")
     compute_metrics(mutable_csv_items, "mutable")
+    compute_metrics(non_empty_critical_predicate_csv_items, "non_empty_critical_predicate")
 
     compute_metrics(dev_csv_items, "dev")
     compute_metrics(ds_csv_items, "ds")
@@ -601,9 +615,9 @@ def get_ground_truth_statistics():
 
 
 if __name__ == '__main__':
-    # generate_metrics()
+    generate_metrics()
     # generate_combine_fl_data_input()
-    generate_latex_data_information()
+    # generate_latex_data_information()
     # get_bug_statistics()
     # get_project_statistics()
     # get_ground_truth_statistics()
