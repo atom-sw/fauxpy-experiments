@@ -615,9 +615,9 @@ def get_ground_truth_statistics():
 
 
 if __name__ == '__main__':
-    generate_metrics()
+    # generate_metrics()
     # generate_combine_fl_data_input()
-    # generate_latex_data_information()
+    generate_latex_data_information()
     # get_bug_statistics()
     # get_project_statistics()
     # get_ground_truth_statistics()

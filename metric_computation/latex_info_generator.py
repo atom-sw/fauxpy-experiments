@@ -48,6 +48,8 @@ class Constants:
     Sbfl_st = "sbst"
     Python = "python"
     Java = "java"
+    Alfa_fl = "alfafl"
+    Sbst_fl = "sbstfl"
 
 
 class LatexInfo:
@@ -80,6 +82,9 @@ class LatexInfo:
 
         combine_fl_output_length_key_val_dict = self._get_combine_fl_output_length_key_val_dict()
         all_key_val_dict = all_key_val_dict | combine_fl_output_length_key_val_dict
+
+        alfafl_and_sbstfl_average_key_val_dict = self._get_alfafl_and_sbstfl_average_key_val_dict(all_key_val_dict)
+        all_key_val_dict = all_key_val_dict | alfafl_and_sbstfl_average_key_val_dict
 
         all_key_val_str = self._get_all_key_val_as_str(all_key_val_dict)
         save_string_to_file(all_key_val_str, self._latex_info_dir_path / self.Data_file_name)
@@ -452,6 +457,57 @@ class LatexInfo:
             combine_fl_output_length_key_val_dict[latex_key_alfa] = current_output_length_average
             combine_fl_output_length_key_val_dict[latex_key_sbst] = current_output_length_average
             combine_fl_output_length_key_val_dict[latex_key_average] = (
-                                                                                   current_output_length_average + current_output_length_average) / 2
+                                                                               current_output_length_average + current_output_length_average) / 2
 
         return combine_fl_output_length_key_val_dict
+
+    def _get_alfafl_and_sbstfl_average_key_val_dict(self, all_key_val_dict):
+        average_key_val_dict = {}
+
+        granularity_name_list = [Constants.Statement, Constants.Function, Constants.Module]
+        technique_name_list = [Constants.All_families, Constants.Sbfl_st]
+        metric_name_list = [Constants.Einspect,
+                            Constants.At1,
+                            Constants.At3,
+                            Constants.At5,
+                            Constants.At10,
+                            Constants.Java_exam,
+                            Constants.Output_length]
+
+        for granularity_name in granularity_name_list:
+            for technique_name in technique_name_list:
+                for metric_name in metric_name_list:
+                    latex_key_combine_fl = self._get_latex_key_for_metric(granularity_name,
+                                                                          Constants.Combine_fl,
+                                                                          technique_name,
+                                                                          Constants.All,
+                                                                          metric_name,
+                                                                          Constants.Python)
+                    latex_key_average_fl = self._get_latex_key_for_metric(granularity_name,
+                                                                          Constants.Average_fl,
+                                                                          technique_name,
+                                                                          Constants.All,
+                                                                          metric_name,
+                                                                          Constants.Python)
+                    if technique_name == Constants.All_families:
+                        latex_key_average = self._get_latex_key_for_metric(granularity_name,
+                                                                           Constants.Alfa_fl,
+                                                                           Constants.FAVG,
+                                                                           Constants.All,
+                                                                           metric_name,
+                                                                           Constants.Python)
+                    elif technique_name == Constants.Sbfl_st:
+                        latex_key_average = self._get_latex_key_for_metric(granularity_name,
+                                                                           Constants.Sbst_fl,
+                                                                           Constants.FAVG,
+                                                                           Constants.All,
+                                                                           metric_name,
+                                                                           Constants.Python)
+                    else:
+                        raise Exception()
+
+                    combine_fl_value = all_key_val_dict[latex_key_combine_fl]
+                    average_fl_value = all_key_val_dict[latex_key_average_fl]
+                    average_key_val_dict[latex_key_average] = (combine_fl_value + average_fl_value) / 2
+
+        return average_key_val_dict
