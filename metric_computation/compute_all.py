@@ -28,6 +28,19 @@ def are_all_different_in_list(item_list) -> bool:
     return True
 
 
+def get_non_empty_critical_predicate_csv_items(fauxpy_statement_csv_score_items):
+    non_empty_ps_csv_items = [x for x in fauxpy_statement_csv_score_items
+                              if x.get_technique() == FLTechnique.PS and
+                              len(x.get_scored_entities()) != 0]
+    non_empty_ps_csv_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
+    non_empty_ps_bug_key_list = [x.get_bug_key() for x in non_empty_ps_csv_items]
+
+    non_empty_critical_predicate_csv_items_list = [x for x in fauxpy_statement_csv_score_items
+                                                   if x.get_bug_key() in non_empty_ps_bug_key_list]
+
+    return non_empty_critical_predicate_csv_items_list
+
+
 def get_fauxpy_statement_csv_score_items(path_manager: file_manager.PathManager):
     csv_score_item_load_manager = CsvScoreItemLoadManager(path_manager.get_results_path())
     statement_csv_score_items = csv_score_item_load_manager.load_csv_score_items()
@@ -154,18 +167,6 @@ def save_quantile(overall_table: List, tool_name: str, granularity: str, bug_typ
 
 
 def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_truth_info, size_counts_info):
-    def get_non_empty_critical_predicate_csv_items():
-        non_empty_ps_csv_items = [x for x in fauxpy_statement_csv_score_items
-                                  if x.get_technique() == FLTechnique.PS and
-                                  len(x.get_scored_entities()) != 0]
-        non_empty_ps_csv_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
-        non_empty_ps_bug_key_list = [x.get_bug_key() for x in non_empty_ps_csv_items]
-
-        non_empty_critical_predicate_csv_items_list = [x for x in fauxpy_statement_csv_score_items
-                                                       if x.get_bug_key() in non_empty_ps_bug_key_list]
-
-        return non_empty_critical_predicate_csv_items_list
-
     def compute_metrics(csv_items, bug_type):
         fauxpy_statement_result_manager = ResultManager(csv_items,
                                                         ground_truth_info,
@@ -184,7 +185,8 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     predicate_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_predicate()]
     crashing_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_crashing()]
     mutable_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_mutable_bug()]
-    non_empty_critical_predicate_csv_items = get_non_empty_critical_predicate_csv_items()
+    non_empty_critical_predicate_csv_items = get_non_empty_critical_predicate_csv_items(
+        fauxpy_statement_csv_score_items)
 
     dev_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.Dev]
     ds_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.DS]
@@ -614,10 +616,41 @@ def get_ground_truth_statistics():
     print("all_len", sum(all_len))
 
 
+def get_within_text_statistics():
+    path_manager = file_manager.PathManager()
+    statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+
+    metallaxis_csv_items = [x for x in statement_csv_score_items
+                            if x.get_technique() == FLTechnique.Metallaxis]
+
+    metallaxis_csv_items.sort(key=lambda x: (x.get_project_name(), x.get_bug_number()))
+
+    number_of_mutants_list = [x.get_number_of_mutants() for x in metallaxis_csv_items]
+
+    average_number_of_mutants = mathematics.average(number_of_mutants_list)
+    print("average_number_of_mutants", average_number_of_mutants)
+
+    max_number_of_mutants = max(number_of_mutants_list)
+    print("max_number_of_mutants", max_number_of_mutants)
+
+    bug_key_of_maximum_number_of_mutants = [x.get_bug_key() for x in metallaxis_csv_items
+                                            if x.get_number_of_mutants() == max_number_of_mutants]
+    print("bug_key_of_maximum_number_of_mutants", bug_key_of_maximum_number_of_mutants)
+
+    non_empty_critical_predicate_csv_items = get_non_empty_critical_predicate_csv_items(
+        statement_csv_score_items)
+
+    crashing_critical_predicate = [x for x in non_empty_critical_predicate_csv_items
+                                   if x.get_technique() == FLTechnique.Metallaxis and
+                                   x.get_is_crashing()]
+    print("number of crashing_critical_predicate", len(crashing_critical_predicate))
+
+
 if __name__ == '__main__':
     # generate_metrics()
     # generate_combine_fl_data_input()
-    generate_latex_data_information()
+    # generate_latex_data_information()
     # get_bug_statistics()
     # get_project_statistics()
     # get_ground_truth_statistics()
+    get_within_text_statistics()
