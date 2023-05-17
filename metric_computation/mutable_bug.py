@@ -9,11 +9,13 @@ class MbflExperimentInfo:
                  project_name: str,
                  bug_number: int,
                  is_mutable_bug: bool,
-                 percentage_of_mutants_on_ground_truth: float):
+                 percentage_of_mutants_on_ground_truth: float,
+                 number_of_mutants: int):
         self._project_name = project_name
         self._bug_number = bug_number
         self._is_mutable_bug = is_mutable_bug
         self._percentage_of_mutants_on_ground_truth = percentage_of_mutants_on_ground_truth
+        self._number_of_mutants = number_of_mutants
 
     def _pretty_representation(self):
         return (f"{self._project_name} "
@@ -40,6 +42,9 @@ class MbflExperimentInfo:
     def get_bug_key(self) -> str:
         return _get_bug_key(self.get_project_name(), self.get_bug_number())
 
+    def get_number_of_mutants(self):
+        return self._number_of_mutants
+
 
 def _get_bug_key(project_name: str, bug_number: int) -> str:
     return f"{project_name}:{bug_number}"
@@ -58,9 +63,17 @@ class MutableBugsAnalysis:
     def get_percentage_of_mutants_on_ground_truth(self) -> Dict[str, float]:
         percentage_dict = {}
         for mbfl_experiment_info in self._mbfl_experiment_info_list:
-            percentage_dict[mbfl_experiment_info.get_bug_key()] = mbfl_experiment_info.get_percentage_of_mutants_on_ground_truth()
+            percentage_dict[
+                mbfl_experiment_info.get_bug_key()] = mbfl_experiment_info.get_percentage_of_mutants_on_ground_truth()
 
         return percentage_dict
+
+    def get_number_of_mutants(self) -> Dict[str, int]:
+        number_of_mutants_dict = {}
+        for mbfl_experiment_info in self._mbfl_experiment_info_list:
+            number_of_mutants_dict[mbfl_experiment_info.get_bug_key()] = mbfl_experiment_info.get_number_of_mutants()
+
+        return number_of_mutants_dict
 
     def _load_mbfl_experiment_info_list(self) -> List[MbflExperimentInfo]:
         mbfl_dirs = [x for x in self._results_path.iterdir() if "mbfl" in x.name]
@@ -89,10 +102,13 @@ class MutableBugsAnalysis:
 
         is_mutable_bug = num_ground_truth_info_mutated_correctly > 0
 
+        number_of_mutants = self._get_number_of_mutants(mbfl_dir)
+
         mbfl_experiment_info = MbflExperimentInfo(project_name,
                                                   bug_number,
                                                   is_mutable_bug,
-                                                  percentage_of_mutants_on_ground_truth)
+                                                  percentage_of_mutants_on_ground_truth,
+                                                  number_of_mutants)
 
         return mbfl_experiment_info
 
@@ -139,6 +155,14 @@ class MutableBugsAnalysis:
 
         return percentage
 
+    def _get_number_of_mutants(self, mbfl_dir: Path) -> int:
+        db_path = self._get_db_path(mbfl_dir)
+        mbfl_db_manager = MbflDatabaseManager(db_path)
+
+        number_of_mutants = mbfl_db_manager.get_number_of_mutants()
+
+        return number_of_mutants
+
     def _get_ground_truth_line_list(self,
                                     project_name: str,
                                     bug_number: int):
@@ -165,5 +189,3 @@ class MutableBugsAnalysis:
         assert len(dirs_in_mbfl_dir) == 1
         db_path = dirs_in_mbfl_dir[0] / "fauxpy.db"
         return db_path
-
-

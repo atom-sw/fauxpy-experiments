@@ -59,6 +59,12 @@ class MbflDatabaseManager:
 
         return correct_mutant_info_dict
 
+    def get_number_of_mutants(self) -> int:
+        mutant_info_table = self._get_mutant_info_table()
+        number_of_mutants = len(mutant_info_table)
+
+        return number_of_mutants
+
     def _get_mutant_info_table(self) -> List[Tuple]:
         with sqlite3.connect(self._db_path) as con:
             cur = con.cursor()
@@ -72,6 +78,8 @@ class MbflDatabaseManager:
             rows = cur.fetchall()
 
         return rows
+
+
 
 
 class PsDatabaseManager:

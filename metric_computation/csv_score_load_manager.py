@@ -104,6 +104,7 @@ class CsvScoreItem:
         self._project_type = None
         self._number_of_predicate_instances = None
         self._number_of_failing_tests = None
+        self._number_of_mutants = None
 
     def _pretty_representation(self):
         if self._csv_paths is None:
@@ -231,6 +232,14 @@ class CsvScoreItem:
     def set_number_of_failing_tests(self, value: int):
         assert self._localization_technique == FLTechnique.PS
         self._number_of_failing_tests = value
+
+    def get_number_of_mutants(self) -> int:
+        assert self._localization_technique in [FLTechnique.Metallaxis, FLTechnique.Muse]
+        return self._number_of_mutants
+
+    def set_number_of_mutants(self, value: int):
+        assert self._localization_technique in [FLTechnique.Metallaxis, FLTechnique.Muse]
+        self._number_of_mutants = value
 
 
 class CsvScoreItemLoadManager:

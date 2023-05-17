@@ -48,9 +48,11 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
                                           get_predicate_selected_bug_info_file_name()))
 
     ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
+
     mutation_analysis = MutableBugsAnalysis(path_manager.get_results_path(), ground_truth_info)
     mutable_bug_key_list = mutation_analysis.get_mutable_bug_keys()
     percentage_dict = mutation_analysis.get_percentage_of_mutants_on_ground_truth()
+    number_of_mutants_dict = mutation_analysis.get_number_of_mutants()
 
     predicate_analysis = PredicateAnalysis(path_manager.get_results_path())
     number_of_predicate_instances_dict = predicate_analysis.get_number_of_predicate_instances_dict()
@@ -79,6 +81,9 @@ def assign_type_to_selected_bugs(csv_score_items: List[CsvScoreItem],
             assert current_number_of_predicate_instances >= current_number_of_failing_tests
             csv_score_item.set_number_of_predicate_instances(current_number_of_predicate_instances)
             csv_score_item.set_number_of_failing_tests(current_number_of_failing_tests)
+
+        if csv_score_item.get_technique() in [FLTechnique.Metallaxis, FLTechnique.Muse]:
+            csv_score_item.set_number_of_mutants(number_of_mutants_dict[csv_score_item.get_bug_key()])
 
 
 if __name__ == '__main__':
