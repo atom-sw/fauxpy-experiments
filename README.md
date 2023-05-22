@@ -1,7 +1,32 @@
 # FauxPy experiments on BugsInPy
 
-This repository contains all the materials needed to experiment FauxPy on BugsInPy.
-We may also add the experimental results to this repository later.
+This repository is the first part of the replication package 
+for our paper "An Empirical Study of Fault Localization in Python Programs".
+This repository contains all the materials needed to replicate all the experiments
+and produced all the results provided in the paper.
+
+# Structure
+
+The structure of the repository is as follows.
+
+1. [pytest-FauxPy](/pytest-FauxPy): the snapshot of our tool FauxPy
+that we used in our experiments.
+2. [first_round_selection](/first_round_selection): the scripts we used to mainly 
+select correct subjects from BugsInPy (Section 4.1 in the paper) along with the scripts 
+to generate the ground truth information (Section 4.2 in the paper).
+3. [bash_script_generator](/bash_script_generator): the scripts to generate the
+bash scripts for our experiments along with the bash scripts themselves.
+4. [second_round_selection](/second_round_selection): the scripts to automatically
+check the experimental results collect by running the bash
+scripts generated at `bash_script_generator`.
+5. [combinefl](/combinefl): the version of [combinefl](https://combinefl.github.io/)
+that we modified and extended to be able to run it on BugsInPy subjects.
+6. [metric_computation](/metric_computation): the scripts to generated the metric values
+reported in different tables and figures within the paper.
+7. [results](results): ???
+
+Every one of the directories mentioned above has its own detailed readme file
+explaining how each process can be replicated.
 
 ## Requirements
 BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8), since there are different projects in this framework each working with one of these 3 versions. It is better if all these 3 Python interpreters are virtual environments.
