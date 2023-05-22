@@ -5,7 +5,7 @@ for our paper "An Empirical Study of Fault Localization in Python Programs".
 This repository contains all the materials needed to replicate all the experiments
 and produced all the results provided in the paper.
 
-# Structure
+## Structure
 
 The structure of the repository is as follows.
 
@@ -29,16 +29,33 @@ Every one of the directories mentioned above has its own detailed readme file
 explaining how each process can be replicated.
 
 ## Requirements
-BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8), since there are different projects in this framework each working with one of these 3 versions. It is better if all these 3 Python interpreters are virtual environments.
+BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8), since there are different projects
+in this framework each working with one of these 3 versions.
+It is better if all these 3 Python interpreters are virtual environments.
 
-The reason is that BugsInPy does not work with Python commands such as `python3`, `python3.6` or things like that. It only works with the command `python` because the shell script of BugsInPy that compiles a project (which means creating a virtual environment for that project and installing all of its dependecies) [call the venv creation command](https://github.com/soarsmu/BugsInPy/blob/master/framework/bin/bugsinpy-compile#L56) using the command `python`.
+The reason is that BugsInPy does not work with Python commands such as
+`python3`, or `python3.6`. It only works with the command `python` because
+the shell script of BugsInPy that
+compiles a project (which means creating a virtual environment for that
+project and installing all of its dependencies)
+[calls the venv creation command](https://github.com/soarsmu/BugsInPy/blob/master/framework/bin/bugsinpy-compile#L56) 
+using the command `python`.
 
-So, in order to use BugsInPy correctly, one must either change one's OS's `python` command to point to the correct version for the project being compiled, or install 3 virtual envronments for these 3 python vrsions and activate the currect one for the project being compiled. We prefer the second solution which is explained below.
+So, in order to use BugsInPy correctly, one must either change
+one's OS's `python` command to point to the correct version for the 
+project being compiled, or install 3 virtual environments for these 3 python
+versions and activate the current one for the project being compiled.
+We prefer the second solution which is explained below.
 
 ## Running the experiments
 
-1. To replicate the experiments, all you need is the bash scripts we generated that are available in the directory [bash_script_generator/scripts](bash_script_generator/scripts), and the version of [FauxPy](pytest-FauxPy) existing in this repository. So, first clone this repositry, and then copy the `scripts` directory somewhere on your machine (e.g., `~/fauxpy_exp`). Afterwards, copy `FauxPy` to the `~/fauxpy_exp/scripts` directory on your machine.
-
+1. To replicate the experiments, all you need is the bash scripts we generated 
+that are available in 
+the directory [bash_script_generator/scripts](bash_script_generator/scripts), and
+the version of [FauxPy](pytest-FauxPy) existing in this repository.
+So, first clone this repository, and then copy the `scripts` directory
+somewhere on your machine (e.g., `~/fauxpy_exp`). Afterwards, copy `FauxPy` to 
+the `~/fauxpy_exp/scripts` directory on your machine.
 
 ```
 git clone git@github.com:mohrez86/fauxpy_experiments.git
@@ -47,7 +64,6 @@ cp -rf fauxpy_experiments/bash_script_generator/scripts ~/fauxpy_exp
 cp -rf fauxpy_experiments/pytest-FauxPy ~/fauxpy_exp/scripts
 cd ~/fauxpy_exp
 ```
-
 
 2. Install Python 3.6, 3.7, and 3.8 on the machine.
 
@@ -63,7 +79,7 @@ conda create --name fauxpy-3.7 python=3.7
 conda create --name fauxpy-3.8 python=3.8
 ```
 
-3. Install Python dev package for Python 3.6, 3.7, and 3.8 (I am not sure if it is necessary, but installing them does not hurt):
+3. Install Python dev package for Python 3.6, 3.7, and 3.8:
 
 ```
 # Using APT
@@ -102,19 +118,28 @@ chmod +x *.sh
 ```
 
 6. Make a copy of your `.bashrc` file on your home directory, and name it `_bashrc`.
-Compileing some of the programs in BugsInPy affect your `.bashrc` file. So, our scripts require a backup version of `.bashrc` to fix these side effects.
+Compiling some of the programs in BugsInPy affect your `.bashrc` file. So, our scripts
+require a backup version of `.bashrc` to fix these side effects.
 
 ```
 cp ~/.bashrc ~/_bashrc
 ```
 
-7. Run all of the scripts one by one to produce the results. For instance, the following command runs SBFL with statement granularity on bug 2 of cookiecutter:
+7. Run all of the scripts one by one to produce the results. For instance, the following
+command runs SBFL at the statement-level granularity on cookiecutter bug #2:
 
 ```
 ./20020_1h_32g_cookiecutter_2_sbfl_statement.sh
 ```
 
-When a script ends running, a directory by the name of the project for which the script is produced is made in the `~/fauxpy_exp/scripts` directory. This newly made directory contains the results. For instance, for the command above, this directory is `~/fauxpy_exp/scripts/cookiecutter`, which has the result of running SBFL with statement granularity on bug 2 of cookiecutter.
+When the is finished, a directory is made inside 
+
+When a script finishes, a directory by the name of the project for which the 
+script is produced is made in the `~/fauxpy_exp/scripts` directory.
+This newly made directory contains the results.
+For instance, for the command above, this directory is
+`~/fauxpy_exp/scripts/cookiecutter`, which has the result of running
+SBFL with statement granularity cookiecutter #2.
 
 ## Generating the bash scripts
 
