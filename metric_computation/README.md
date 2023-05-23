@@ -121,9 +121,9 @@ To generate the data, run the following command:
 python replicate.py 7
 ```
 
-Afterwards, go to directory [combinefl](/combinefl), follow
+Afterwards, go to directory [CombineFL](/combinefl), follow
 the instructions, and copy the
-results from `combinefl` to directory [inputs_from_combine_fl](inputs_from_combine_fl).
+results from `CombineFL` to directory [inputs_from_combine_fl](inputs_from_combine_fl).
 
 ### 2.4 Generating data.tex key-value file for latex
 
