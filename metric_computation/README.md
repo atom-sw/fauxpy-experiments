@@ -125,3 +125,14 @@ Afterwards, go to directory [combinefl](/combinefl), follow
 the instructions, and copy the
 results from `combinefl` to directory [inputs_from_combine_fl](inputs_from_combine_fl).
 
+### 2.4 Generating data.tex key-value file for latex
+
+Finally, run the following command to use all the results
+generated so far to generate 
+the [latex_table_info/data.tex](latex_table_info/data.tex) file.
+This file contains all the results presented 
+in the different tables within the paper.
+
+```
+python replicate.py 8
+```
