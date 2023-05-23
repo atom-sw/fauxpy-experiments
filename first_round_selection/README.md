@@ -43,16 +43,6 @@ But, if you want to replicate the process, you can follow the
 instructions below.
 Keep in mind that going through the whole process can take up to 10 days and nights.
 
-## Introduction
-
-At the beginning, we tired to do this selection process manually.
-But, after a while, we realized it is so time-consuming that doing it manually is 
-almost impossible. So, we automated this first round selection 
-process, which is explained in this document.
-This whole process have several steps, each of which requires running a specific
-Python or Bash script, resulting in the generation of some files that are used
-by the next step.
-
 ## Step 1: Opening benchmarks
 
 At this step, we clone and compile all the buggy and fixed versions in BugsInPy. 
@@ -67,7 +57,7 @@ versions, and saves the results.
 This script must be executed for every single one of the Json files
 in the `info` and `info_2` directories, which takes around a 
 week (7 * 24 hours) to finish, depending on
-your machine.
+your machine and internet connection.
 
 Before running any of the following steps, open 
 the [workspace.json](workspace.json) file and set
@@ -98,14 +88,17 @@ pip install PyGithub
 ./check_compile_all_2.sh
 ```
 
-After running these commands, we realized tornado 16 cannot be compiled duo to 
-a [bug](https://github.com/soarsmu/BugsInPy/tree/master/projects/tornado/bugs/16) 
-in the BugsInPy framework (missing `requirements.txt` file for bug 16). Thus, we
+After running these commands, we 
+realized [tornado 16](https://github.com/soarsmu/BugsInPy/tree/master/projects/tornado/bugs/16)
+cannot be compiled duo to 
+a bug in the BugsInPy framework 
+(missing `requirements.txt` file for bug 16).
+Thus, we
 removed tornado 16 from our experiments by setting `BUG_NUMBER_END` in
 [info/tornado.json](info/tornado.json) to 15 instead of 16. The standard output
 of this step
 can be found in the [compile_log](compile_log) and [compile_log_2](compile_log_2)
-directory.
+directories.
 
 ## Step 3: Checking target failing tests
 
@@ -124,8 +117,15 @@ some cases, the target failing tests pass or fail on both versions, or
 produce an error on fixed 
 versions. Such bugs must be removed from our experiments, which is
 done at this step. To perform
-this check, run the following commands:
+this check, run the following commands.
 
+Before running `./check_target_tests_all_2.sh`, 
+fix the `bugsinpy_run_test.sh` file in the
+buggy and fixed versions
+of matplotlib 8
+by putting the two tests in two different lines and removing
+the semicolon between them or `./check_target_tests_all_2.sh` crashes
+for matplotlib due to an assertion failure.
 
 ```
 ./check_target_tests_all.sh
@@ -141,14 +141,6 @@ the criteria mentioned above. The standard output of this step
 can be found in 
 the [target_tests_log](target_tests_log) 
 and [target_tests_log_2](target_tests_log_2) directories.
-
-Before running `./check_target_tests_all_2.sh`, 
-fix the `bugsinpy_run_test.sh` file in buggy and fixed versions
-of matplotlib 8
-by putting the two tests in two different lines and removing
-the semicolon between them or `./check_target_tests_all_2.sh` crashes
-for matplotlib due to an assertion failure.
-
 
 ## Step 4: Ground truth generation
 
@@ -175,7 +167,7 @@ ignore `empty_ground_truth_info_2.json` because it is empty).
 
 Another file generated at this phase
 is [predicate_bug_info.json](predicate_bug_info.json)
-that show which bugs are predicate bugs.
+that shows which bugs are predicate bugs.
 We use this file also at the metric computation phase.
 
 
