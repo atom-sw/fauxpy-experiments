@@ -75,33 +75,33 @@ to directory `inputs_from_combine_fl`
 in [metric_computation](/metric_computation).
 
 1.File [results_python_statement_alfa.json](results_python_statement_alfa.json)
-contains the results of running CombineFL on Python, at the statement
+contains the results of running CombineFL on Python bugs, at the statement
 level granularity, while combining all families.
 
 2.File [results_python_function_alfa.json](results_python_function_alfa.json)
-contains the results of running CombineFL on Python, at the function
+contains the results of running CombineFL on Python bugs, at the function
 level granularity, while combining all families.
 
 3.File [results_python_module_alfa.json](results_python_module_alfa.json)
-contains the results of running CombineFL on Python, at the module
+contains the results of running CombineFL on Python bugs, at the module
 level granularity, while combining all families.
 
 4.File [results_python_statement_sbst.json](results_python_statement_sbst.json)
-contains the results of running CombineFL on Python, at the statement
+contains the results of running CombineFL on Python bugs, at the statement
 level granularity, while combining SBFL and ST.
 
 5.File [results_python_function_sbst.json](results_python_function_sbst.json)
-contains the results of running CombineFL on Python, at the function
+contains the results of running CombineFL on Python bugs, at the function
 level granularity, while combining SBFL and ST.
 
 6.File [results_python_module_sbst.json](results_python_module_sbst.json)
-contains the results of running CombineFL on Python, at the module
+contains the results of running CombineFL on Python bugs, at the module
 level granularity, while combining SBFL and ST.
 
 7.File [results_java_statement_alfa.json](results_java_statement_alfa.json)
-contains the results of running CombineFL on Java, at the statement
+contains the results of running CombineFL on Java bugs, at the statement
 level granularity, while combining all families.
 
 8.File [results_java_statement_sbst.json](results_java_statement_sbst.json)
-contains the results of running CombineFL on Java, at the statement
+contains the results of running CombineFL on Java bugs, at the statement
 level granularity, while combining SBFL and ST.
