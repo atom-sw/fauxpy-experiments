@@ -1732,7 +1732,9 @@ dest.deltas <- function(row)
   r2 <- get_estimate_row(g2, row)
   logdelta <- r1$estimate - r2$estimate
   delta <- r1$outcome.estimate - r2$outcome.estimate
-  data.frame(coef.delta=logdelta, outcome.delta=delta)
+  rd <- data.frame(outcome=r1$outcome, estimate=logdelta)
+  ratio.delta <- exp(logdelta)
+  data.frame(coef.delta=logdelta, outcome.delta=delta, ratio.delta=ratio.delta)
 }
 
 df.deltas <- apply(df.preds, 1, dest.deltas)
