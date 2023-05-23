@@ -36,7 +36,8 @@ Then, we copy `manually_removed_bugs.json` to the
 first round selection directory and run the simulation again
 to find replacements for the ones that were removed at this phase.
 
-To perform this phase, we followed [the rules](https://github.com/mohrez86/fauxpy_experiments/blob/main/second_round_selection/check_experimental_results.py#L195-L201)
+To perform this phase, we followed
+[the rules](https://github.com/mohrez86/fauxpy_experiments/blob/main/second_round_selection/check_experimental_results.py#L195-L201)
 in script [check_experimental_results.py](check_experimental_results.py).
 
 Before running this phase, set the variables in [path_items.json](path_items.json).
