@@ -111,7 +111,7 @@ def get_avg_csv_score_items(fauxpy_csv_score_items, tech_name: FLTechnique):
     all_ochiai_csv_list = list(
         filter(lambda x: x.get_technique() == FLTechnique.Ochiai, fauxpy_csv_score_items))
     for ochiai_csv in tqdm(all_ochiai_csv_list):
-        print(ochiai_csv.get_bug_key())
+        print("\n" + ochiai_csv.get_bug_key())
         dstar_csv = get_csv_technique(FLTechnique.DStar, ochiai_csv.get_bug_key())
         st_csv = get_csv_technique(FLTechnique.ST, ochiai_csv.get_bug_key())
         techniques_csv_list = [
@@ -185,8 +185,8 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     predicate_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_predicate()]
     crashing_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_crashing()]
     mutable_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_is_mutable_bug()]
-    non_empty_critical_predicate_csv_items = get_non_empty_critical_predicate_csv_items(
-        fauxpy_statement_csv_score_items)
+    # non_empty_critical_predicate_csv_items = get_non_empty_critical_predicate_csv_items(
+    #     fauxpy_statement_csv_score_items)
 
     dev_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.Dev]
     ds_csv_items = [x for x in fauxpy_statement_csv_score_items if x.get_project_type() == ProjectType.DS]
@@ -197,7 +197,7 @@ def calc_fauxpy_statement_and_save(fauxpy_statement_csv_score_items, ground_trut
     compute_metrics(predicate_csv_items, "predicate")
     compute_metrics(crashing_csv_items, "crashing")
     compute_metrics(mutable_csv_items, "mutable")
-    compute_metrics(non_empty_critical_predicate_csv_items, "non_empty_critical_predicate")
+    # compute_metrics(non_empty_critical_predicate_csv_items, "non-empty-critical-predicate")
 
     compute_metrics(dev_csv_items, "dev")
     compute_metrics(ds_csv_items, "ds")
