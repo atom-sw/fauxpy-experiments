@@ -148,7 +148,7 @@ an iterative process, through the following three phases:
 3. [second round selection](second_round_selection)
 
 We have already generated these scripts. So, it is not needed 
-to go throw this process. But, to replicate the process one 
+to go through this process. But, to replicate the process one 
 can follow the instructions below, which is a loop:
 
 - S1. Go to [first round selection](first_round_selection), run
@@ -178,7 +178,6 @@ new version of `subject_info.csv`.
 
 - S6. Go to S2.
 
-At the end of this process, you end up with the results directory,
-which is the second part of our replication package. You can use
-the [metric_computation](/metric_computation) phase to generate
-the results presented in the paper.
+## 5. Metric computation
+
+
