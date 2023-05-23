@@ -7,26 +7,41 @@ properly on other versions of Python.*
 
 ## Purpose
 
-The purpose of this phase is to produce three files. The first file is 
-the [subject_info.csv](subject_info.csv) file that
-contains all the information about the benchmarks that are used in the experiments. 
+The purpose of this phase is to produce four files:
+
+1. File [subject_info.csv](subject_info.csv) that
+contains all the information about the benchmarks 
+that are used in the experiments. 
 The `subject_info.csv` file can then be used to automatically generate the 
 bash scripts in
 the [bash_script_generator/scripts](/bash_script_generator/scripts) directory.
-The second file is the [ground_truth_info.json](ground_truth_info.json) file
+
+2. File [ground_truth_info.json](ground_truth_info.json)
 that contains information
 about the changes in the commits representing the bugs in BugsInPy.
-The third file is the [size_counts.json](size_counts.json) file,
+
+3. File [size_counts.json](size_counts.json),
 which contains the number of lines, functions, and modules in each
 buggy version.
-The files `ground_truth_info.json` and `size_counts.json` are used 
-in the [metric_computation](/metric_computation) phase.
+
+4. File [predicate_bug_info.json](predicate_bug_info.json)
+that indicates which bugs in BugsInPy are predicate-related bugs.
+
+File `subject_info.csv` is used
+in the [bash_script_generator](/bash_script_generator) phase 
+to automatically generate the 
+bash scripts in
+the [bash_script_generator/scripts](/bash_script_generator/scripts) directory, 
+and the three files `ground_truth_info.json`, `size_counts.json`, and
+`predicate_bug_info.json` are used 
+in the [metric_computation](/metric_computation) phase
+to compute the metrics.
+
 We have already generated these three files, and they exist in this directory.
 So, you do not need to go through this process. 
 But, if you want to replicate the process, you can follow the
 instructions below.
-Keep in mind that going through the whole process can take up to
-seven 10 days and nights.
+Keep in mind that going through the whole process can take up to 10 days and nights.
 
 ## Introduction
 
