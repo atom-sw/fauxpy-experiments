@@ -27,7 +27,7 @@ file we generated at the [first round selection](/first_round_selection) phase.
 
 
 
-## 2. Running the script
+## 2. Running the scripts
 
 To run this phase, first copy file `ground_truth_info.json`, file
 `size_counts.json`, and file `predicate_bug_info.json`
@@ -110,3 +110,18 @@ python replicate.py 6
 
 **Output**: directory [output_avg_module](output_avg_module)
 contains the metrics.
+
+### Generating inputs for CombineFL
+
+To run CombineFL on BugsInPy, first generate
+the data in directory [inputs_to_combine_fl](inputs_to_combine_fl).
+To generate the data, run the following command:
+
+```
+python replicate.py 7
+```
+
+Afterwards, go to directory [combinefl](/combinefl), follow
+the instructions, and copy the
+results from `combinefl` to directory [inputs_from_combine_fl](inputs_from_combine_fl).
+
