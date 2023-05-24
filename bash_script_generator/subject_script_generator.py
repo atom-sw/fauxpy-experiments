@@ -2,6 +2,7 @@ import csv
 import shutil
 from pathlib import Path
 from string import Template
+from distutils.dir_util import copy_tree
 
 TEMPLATE_DIR = Path("template")
 TEMPLATE_BODY = TEMPLATE_DIR / Path("faux-in-py-body-template.sh")
@@ -25,6 +26,8 @@ STATEMENT = "statement"
 FUNCTION = "function"
 
 OUTPUT_DIRECTORY = Path("scripts")
+
+DATA_DIRECTORY_NAME = "data"
 
 
 def read_template_to_string(template_path):
@@ -159,6 +162,11 @@ def remove_output():
         shutil.rmtree(OUTPUT_DIRECTORY.absolute().resolve())
 
 
+def copy_fixes_directory_to_scripts_directory():
+    copy_tree(DATA_DIRECTORY_NAME,
+              str(OUTPUT_DIRECTORY.absolute().resolve()))
+
+
 def main():
     remove_output()
     subject_info_table = read_csv_as_dict_list(SUBJECT_INFO_FILE)
@@ -184,6 +192,8 @@ def main():
         _, function = get_script(ST, item)
         index += 1
         save_script(function, item, ST, FUNCTION, index)
+
+    copy_fixes_directory_to_scripts_directory()
 
 
 if __name__ == '__main__':
