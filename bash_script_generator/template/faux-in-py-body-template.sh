@@ -143,7 +143,9 @@ then
     if [ "$BUG_NUMBER" == "4" ]
     then
         # For bug number 4, I had to make this file from tox.ini.
-        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
+        # wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
+        cp "$SCRIPT_DIR/fixes/subjects/cookiecutter/B4/test_requirements.txt" "test_requirements.txt"
+
     fi
 
     pip install -r test_requirements.txt
@@ -177,6 +179,7 @@ fi
 if [ "$BENCHMARK_NAME" == "thefuck" ]
 then
     echo "------- Running thefuck specific commands"
+    # NOTE: Since we are doing test selection, this change is not needed.
     # Replace conftest.py with the fixed one.
     # The version of Pytest that FauxPy uses is higher than the one used
     # by these subject. Read the following post for more information.
@@ -194,7 +197,8 @@ then
     [ "$BUG_NUMBER" == "20" ]
     then
         rm -f "tests/conftest.py"
-        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
+        # wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
+        cp "$SCRIPT_DIR/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py" "conftest.py"
     fi
 fi
 
