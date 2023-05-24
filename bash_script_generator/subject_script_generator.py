@@ -27,7 +27,7 @@ FUNCTION = "function"
 
 OUTPUT_DIRECTORY = Path("scripts")
 
-DATA_DIRECTORY_NAME = "data"
+DATA_DIRECTORY_NAME = "data_files"
 
 
 def read_template_to_string(template_path):
