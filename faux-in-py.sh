@@ -7,29 +7,18 @@ set -e
 # Inputs for the current buggy program
 #--------------------------------------------
 
-PYTHON_V="3.8"
-BENCHMARK_NAME="luigi"
-BUG_NUMBER="13"
-TARGET_DIR="."
+PYTHON_V="3.7"
+BENCHMARK_NAME="thefuck"
+BUG_NUMBER="4"
+TARGET_DIR="thefuck"
 TEST_SUITE=(
-"test/cmdline_test.py"
-"test/contrib/hdfs_test.py"
-"test/contrib/hive_test.py"
-"test/contrib/opener_test.py"
-"test/contrib/test_ssh.py"
-"test/file_test.py"
-"test/scheduler_visualisation_test.py"
-"test/task_test.py"
-"test/test_ssh.py"
-"test/worker_external_task_test.py"
-"test/wrap_test.py"
+"tests/shells/test_fish.py"
 )
 EXCLUDE=(
-"env"
-"test"
+
 )
 TARGET_FAILING_TESTS=(
-"test/file_test.py::FileSystemTest::test_move_to_new_dir"
+"tests/shells/test_fish.py::TestFish::test_get_aliases"
 )
 FAMILY="sbfl"
 GRANULARITY="statement"
@@ -154,7 +143,8 @@ then
     if [ "$BUG_NUMBER" == "4" ]
     then
         # For bug number 4, I had to make this file from tox.ini.
-        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
+        # wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/cookiecutter/B4/test_requirements.txt"
+        cp "$SCRIPT_DIR/fixes/subjects/cookiecutter/B4/test_requirements.txt" "test_requirements.txt"
     fi
 
     pip install -r test_requirements.txt
@@ -220,7 +210,8 @@ then
     [ "$BUG_NUMBER" == "20" ]
     then
         rm -f "tests/conftest.py"
-        wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
+        # wget "https://raw.githubusercontent.com/mohrez86/faux_in_py_subject_fixes/main/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py"
+        cp "$SCRIPT_DIR/fixes/subjects/thefuck/B$BUG_NUMBER/conftest.py" "conftest.py"
     fi
 fi
 
@@ -338,4 +329,4 @@ find "$TEMP_DIR" -type d -name "FauxPyReport*" -exec cp -Rp {} "$SCRIPT_DIR/$BEN
 
 # Delete scratch data
 echo rm -rf "$TEMP_DIR/"
-rm -rf "$TEMP_DIR/"
+# rm -rf "$TEMP_DIR/"
