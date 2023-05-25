@@ -26,7 +26,7 @@ reported in different tables and figures within the paper.
 7. [results](results): the scripts and the results of our statistical analyses within the paper.
 
 Every one of the directories mentioned above has its own detailed readme file
-explaining how each process can be replicated.
+or instructions explaining how each process can be replicated.
 
 ## 2. Requirements
 BugsInPy requires 3 Python Interpreters (3.6, 3.7, 3.8), since there are different projects
