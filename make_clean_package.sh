@@ -45,6 +45,7 @@ done
 
 # Remove CLEAN_PACKAGE_DIR in the tmp version
 if [ -d "$CLEAN_PACKAGE_DIR" ]; then
+  "$CLEAN_PACKAGE_DIR"
   rm -rf "$CLEAN_PACKAGE_DIR"
 fi
 
