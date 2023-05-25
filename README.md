@@ -1,7 +1,7 @@
 # FauxPy experiments on BugsInPy
 
 This repository is the first part of the replication package 
-for our paper "An Empirical Study of Fault Localization in Python Programs".
+for the paper "An Empirical Study of Fault Localization in Python Programs" by Mohammad Rezaalipour and Carlo A. Furia.
 This repository contains all the materials needed to replicate all the experiments
 and produced all the results provided in the paper.
 
