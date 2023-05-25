@@ -23,7 +23,7 @@ scripts generated at `bash_script_generator`.
 that we modified and extended to be able to run it on BugsInPy subjects.
 6. [metric_computation](/metric_computation): the scripts to generated the metric values
 reported in different tables and figures within the paper.
-7. [results](results): ???
+7. [results](results): the scripts and the results of our statistical analyses within the paper.
 
 Every one of the directories mentioned above has its own detailed readme file
 explaining how each process can be replicated.
