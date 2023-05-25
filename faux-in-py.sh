@@ -329,4 +329,4 @@ find "$TEMP_DIR" -type d -name "FauxPyReport*" -exec cp -Rp {} "$SCRIPT_DIR/$BEN
 
 # Delete scratch data
 echo rm -rf "$TEMP_DIR/"
-# rm -rf "$TEMP_DIR/"
+rm -rf "$TEMP_DIR/"
