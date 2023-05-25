@@ -1,7 +1,8 @@
 # FauxPy experiments on BugsInPy
 
 This repository is the first part of the replication package 
-for the paper "An Empirical Study of Fault Localization in Python Programs" by Mohammad Rezaalipour and Carlo A. Furia.
+for the paper "An Empirical Study of Fault Localization in Python Programs" 
+by Mohammad Rezaalipour and Carlo A. Furia.
 This repository contains all the materials needed to replicate all the experiments
 and produced all the results provided in the paper.
 
@@ -23,7 +24,7 @@ scripts generated at `bash_script_generator`.
 that we modified and extended to be able to run it on BugsInPy subjects.
 6. [metric_computation](/metric_computation): the scripts to generated the metric values
 reported in different tables and figures within the paper.
-7. [results](results): the scripts and the results of our statistical analyses within the paper.
+7. [stats](stats): the scripts and the results of our statistical analyses within the paper.
 
 Every one of the directories mentioned above has its own detailed readme file
 or instructions explaining how each process can be replicated.
