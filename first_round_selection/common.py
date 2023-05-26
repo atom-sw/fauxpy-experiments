@@ -244,6 +244,13 @@ def get_diff_commit(benchmark_name: str,
             print("Using sha of the fixed version!")
             buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_info}^").decoded_content.decode('utf-8')
 
+        # The buggy_commit_info of Keras 12 and PySnooper 2
+        # in BugsInPy are wrong.
+        # We do the following to fix it.
+        if ((benchmark_name == "keras" and bug_num == 12) or
+                (benchmark_name == "PySnooper" and bug_num == 2)):
+            buggy_content = repo.get_contents(filename, ref=f"{fixed_commit_info}^").decoded_content.decode('utf-8')
+
         python_none_test_files[ind].buggy_content = buggy_content
         python_none_test_files[ind].fixed_content = fixed_content
 
