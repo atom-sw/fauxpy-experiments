@@ -410,6 +410,7 @@ def main():
             print(benchmark_name, bug_number)
             bug_patch_info, is_predicate_bug, is_project_bug_of_omission = get_bug_ground_truth(benchmark_name, bug_number)
             if is_project_bug_of_omission:
+                print(benchmark_name, bug_number, "bug of omission")
                 num_bugs_of_omission += 1
             all_line_nums = count_all_line_nums(bug_patch_info)
             all_functions = count_all_functions(bug_patch_info)
@@ -432,6 +433,7 @@ def main():
             print(benchmark_name, bug_number)
             bug_patch_info, is_predicate_bug, is_project_bug_of_omission = get_bug_ground_truth(benchmark_name, bug_number)
             if is_project_bug_of_omission:
+                print(benchmark_name, bug_number, "bug of omission")
                 num_bugs_of_omission += 1
             all_line_nums = count_all_line_nums(bug_patch_info)
             all_functions = count_all_functions(bug_patch_info)
@@ -444,6 +446,8 @@ def main():
             ground_truth_info_dict[f"{benchmark_name}:{bug_number}"] = bug_patch_info
             predicate_bug_info_dict[f"{benchmark_name}:{bug_number}"] = is_predicate_bug
 
+    print("num_all_bugs", num_all_bugs)
+    print("num_bugs_of_omission", num_bugs_of_omission)
     print(f"Bugs of omission: ", (num_bugs_of_omission / num_all_bugs) * 100)
 
     common.save_object_to_json(ground_truth_info_dict, Path(GROUND_TRUTH_INFO_FILE_NAME))
