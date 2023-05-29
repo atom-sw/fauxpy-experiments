@@ -46,6 +46,8 @@ library(ggplot2)
 # More complicated plots
 library(GGally)
 ## ggpairs extensive documentation: https://ggobi.github.io/ggally/articles/ggpairs.html
+## Pseudo log scales
+library(scales)
 
 # Beautiful, readable color palettes
 library(MetBrewer)
@@ -466,12 +468,50 @@ points_abline <- function(data, mapping, ...)
   pp
 }
 
-#' Helper function to set the scale to a ggpairs bar plot.
-bar_scale <- function(data, mapping)
+#' Helper function to build bar plots of percentage counts, using the exact same bins in all plots.
+bar_scale <- function(data, mapping, ...)
 {
-  pp <- ggally_barDiag(data, mapping, bins=15)
-  # pp <- pp + scale_x_continuous(limits=statement.einspect.limits)
-  pp
+  extra.params <- list(...)
+  if (hasArg("lower_limits")) {
+    # Use the same limits as for lower diagonal plots, if available
+    lower_limits <- extra.params$lower_limits
+  } else {
+    # Otherwise, just pick the range of values as limits
+    xs <- data[[as_label(mapping$x)]]
+    lower_limits <- c(min(xs), max(xs))
+  }
+  # Number of bins, with default
+  nbins <- if (hasArg("bins")) extra.params$bins else 20
+  # Number of bins with displayed label, with default
+  nlabels <- if (hasArg("n_labels")) extra.params$n_labels else 5
+  # Boundary values between bins
+  bin_breaks <- round(seq(lower_limits[1], lower_limits[2], length.out=nbins))
+  # Each pair of bins is a bin range. We use the upper bound of the bin as bin label
+  bin_labels <- bin_breaks[2:length(bin_breaks)]
+  # Classify each data point in a bin under column `bin.max`
+  data <- data %>% mutate(bin.max = cut(.data[[as_label(mapping$x)]],  # column currently plotted
+                                       breaks=bin_breaks,
+                                       labels=bin_labels))
+  # Overwrite current data column...
+  data[[as_label(mapping$x)]] <- data$bin.max
+  # ... so that I can pass the same data frame to ggplot as usual
+  pp <- (ggplot(data, mapping) 
+         # histogram with percentages: count is the number of elements in the bin, normalized by total count
+         # https://stackoverflow.com/a/31201910
+         + geom_bar(aes(y=after_stat(count/sum(count)))))
+  # Labels as strings
+  text_labels <- as.character(bin_labels)
+  # Indexes of bins with displayed label
+  idx_labels <- round(seq(from=1, to=length(labels), length.out=nlabels))
+  # Displayed labels only
+  display_labels <- text_labels[idx_labels]
+  # All other bins get an empty label
+  text_labels[-idx_labels] <- ""
+  # Keep all bins, but display fewer labels
+  pp <- pp + scale_x_discrete(drop=FALSE, labels=text_labels)
+  # Display y as percentages, force full 0-100% scale
+  pp <- pp + scale_y_continuous(labels=scales::percent, limits=c(0, 1))
+  return(pp)
 }
 
 
@@ -491,8 +531,8 @@ pairwise.comparison.plot <- function(data, columns,
                 legend=1,
                 lower=list(mapping=aes(color=.data[[color_var]]),
                            continuous=wrap(points_abline, ...)),
-                diag=list(continuous=wrap(bar_scale),
-                          mapping=aes(color=.data[[color_var]])),
+                diag=list(continuous=wrap(bar_scale, ...),
+                          mapping=aes(color=.data[[color_var]], fill=.data[[color_var]])),
                 upper=list(continuous=wrap(pairs.stats)))
   if (!is.null(palette))
     pp <- pp + scale_color_met_d(palette) + scale_fill_met_d(palette)
@@ -522,7 +562,8 @@ p.einspect <- pairwise.comparison.plot(
   statement.by.family.einspect, 
   columns=which(names(statement.by.family.einspect) %in% names(FAMILIES)),
   color_var="category", palette=C.PALETTE,
-  lower_limits=statement.einspect.limits)
+  lower_limits=statement.einspect.limits
+  )
 p.einspect
 
 f.p.einspect <- file.path(PAPER.DIR, "statement-family-einspect.pdf") 
