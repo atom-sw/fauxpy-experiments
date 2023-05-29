@@ -480,12 +480,27 @@ bar_scale <- function(data, mapping, ...)
     xs <- data[[as_label(mapping$x)]]
     lower_limits <- c(min(xs), max(xs))
   }
-  # Number of bins, with default
+  # Number of bins, with default 20
   nbins <- if (hasArg("bins")) extra.params$bins else 20
-  # Number of bins with displayed label, with default
+  # Number of bins with displayed label, with default 5
   nlabels <- if (hasArg("n_labels")) extra.params$n_labels else 5
-  # Boundary values between bins
-  bin_breaks <- round(seq(lower_limits[1], lower_limits[2], length.out=nbins))
+  # Argument boundary_mult ensures that all boundaries between bins are unique
+  if (hasArg("boundary_mult")) {
+    # Each bin boundary is a multiple of this, with default 10
+    boundary_mult <- if (is.numeric(extra.params$boundary_mult)) extra.params$boundary_mult else 10
+    # Only split bins at multiples of 10
+    potential_breaks <- round(seq(lower_limits[1], 
+                                  # Add the remainder of the difference divided by boundary_mult, so that
+                                  # the last element of the sequence is always lower_limits[2]
+                                  lower_limits[2] + (lower_limits[2] - lower_limits[2])%%boundary_mult,
+                                  by=boundary_mult))
+    # Select a subset of nbins elements
+    idx_breaks <- round(seq(from=1, to=length(potential_breaks), length.out=nbins))
+    # These are the boundary values between bins
+    bin_breaks <- potential_breaks[idx_breaks]
+  } else {
+    bin_breaks <- round(seq(lower_limits[1], lower_limits[2], length.out=nbins))
+  }
   # Each pair of bins is a bin range. We use the upper bound of the bin as bin label
   bin_labels <- bin_breaks[2:length(bin_breaks)]
   # Classify each data point in a bin under column `bin.max`
@@ -502,13 +517,18 @@ bar_scale <- function(data, mapping, ...)
   # Labels as strings
   text_labels <- as.character(bin_labels)
   # Indexes of bins with displayed label
-  idx_labels <- round(seq(from=1, to=length(labels), length.out=nlabels))
+  idx_labels <- round(seq(from=1, to=length(bin_labels), length.out=nlabels))
   # Displayed labels only
   display_labels <- text_labels[idx_labels]
   # All other bins get an empty label
   text_labels[-idx_labels] <- ""
+  # Same labeling behavior as a function, so that it can be combined with a different number of breaks
+  label_func <- function(labs) {
+    labs[!(labs %in% display_labels)] <- ""
+    return(labs)
+  }
   # Keep all bins, but display fewer labels
-  pp <- pp + scale_x_discrete(drop=FALSE, labels=text_labels)
+  pp <- pp + scale_x_discrete(drop=FALSE, breaks=bin_labels[idx_labels], labels=label_func)
   # Display y as percentages, force full 0-100% scale
   pp <- pp + scale_y_continuous(labels=scales::percent, limits=c(0, 1))
   return(pp)
@@ -562,7 +582,8 @@ p.einspect <- pairwise.comparison.plot(
   statement.by.family.einspect, 
   columns=which(names(statement.by.family.einspect) %in% names(FAMILIES)),
   color_var="category", palette=C.PALETTE,
-  lower_limits=statement.einspect.limits
+  lower_limits=statement.einspect.limits,
+  boundary_mult=10
   )
 p.einspect
 
