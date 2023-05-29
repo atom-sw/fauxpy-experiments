@@ -633,7 +633,9 @@ p.time <- pairwise.comparison.plot(
   statement.by.family.time, 
   columns=which(names(statement.by.family.time) %in% names(FAMILIES)),
   color_var="category", palette=C.PALETTE,
-  lower_limits=statement.time.limits)
+  lower_limits=statement.time.limits,
+  boundary_mult=100
+  )
 # p.time <- p.time + theme(axis.text.x=element_text(angle=90))
 p.time
 
@@ -684,7 +686,7 @@ for (FAM in c("SBFL", "MBFL")) {
     intrafamily.einspect, 
     columns=which(names(intrafamily.einspect) %in% FAMILIES[[FAM]]),
     color_var="category", palette=C.PALETTE,
-    lower_limits=intrafamily.limits)
+    lower_limits=intrafamily.limits, boundary_mult=10)
   print(p.intrafamily)
   
   f.p.intrafamily <- file.path(PAPER.DIR, str_c("statement-", FAM, "-einspect.pdf")) 
