@@ -44,6 +44,7 @@ robust_install_version('posterior', version='1.4.1')
 robust_install_version('readr', version='2.1.4')
 remotes::install_github('rmcelreath/rethinking@2acf2fd7b01718cf66a8352c52d001886c7d3c4c') # package rethinking
 robust_install_version('rmarkdown', version='2.20')
+robust_install_version('scales', version='1.2.1')
 robust_install_version('seqinr', version='4.2-23')
 robust_install_version('stringr', version='1.5.0')
 robust_install_version('tidyr', version='1.3.0')
@@ -58,12 +59,12 @@ tinytex::tlmgr_install('pdfcrop')
 requirements <- structure(list(package = c("GGally", "MetBrewer", "assertthat", 
 "bookdown", "brms", "cmdstanr", "dplyr", "effsize", "emmeans", 
 "ggplot2", "knitr", "marginaleffects", "posterior", "readr", 
-"rethinking", "rmarkdown", "rstan", "seqinr", "stringr", "tidyr", 
-"tinytex"), version = c("2.1.2", "0.2.0", "0.2.1", "0.33", "2.19.0", 
-"0.5.3", "1.1.0", "0.8.1", "1.8.5", "3.4.1", "1.42", "0.11.0", 
-"1.4.1", "2.1.4", "2.13", "2.20", "2.21.8", "4.2-23", "1.5.0", 
-"1.3.0", "0.44")), class = "data.frame", row.names = c(NA, -21L
-))
+"rethinking", "rmarkdown", "rstan", "scales", "seqinr", "stringr", 
+"tidyr", "tinytex"), version = c("2.1.2", "0.2.0", "0.2.1", "0.33", 
+"2.19.0", "0.5.3", "1.1.0", "0.8.1", "1.8.5", "3.4.1", "1.42", 
+"0.11.0", "1.4.1", "2.1.4", "2.13", "2.20", "2.21.8", "1.2.1", 
+"4.2-23", "1.5.0", "1.3.0", "0.44")), class = "data.frame", row.names = c(NA, 
+-22L))
 check_installed_packages <- function (requirements) 
 {
     session <- devtools::session_info(pkgs = "installed")
