@@ -487,15 +487,19 @@ bar_scale <- function(data, mapping, ...)
   # Argument boundary_mult ensures that all boundaries between bins are unique
   if (hasArg("boundary_mult")) {
     # Each bin boundary is a multiple of this, with default 10
-    boundary_mult <- if (is.numeric(extra.params$boundary_mult)) extra.params$boundary_mult else 10
+    boundary_mult <- if (is.numeric(extra.params$boundary_mult)) 
+      extra.params$boundary_mult else 10
     # Only split bins at multiples of 10
     potential_breaks <- round(seq(lower_limits[1], 
-                                  # Add the remainder of the difference divided by boundary_mult, so that
-                                  # the last element of the sequence is always lower_limits[2]
-                                  lower_limits[2] + (lower_limits[2] - lower_limits[2])%%boundary_mult,
+                    # Add the remainder of the difference divided by boundary_mult, so that
+                    # the last element of the sequence is always lower_limits[2]
+                                  lower_limits[2] 
+                    + (lower_limits[2] - lower_limits[2])%%boundary_mult,
                                   by=boundary_mult))
+    # Because of rounding, you may end up with duplicates, so let's remove them
+    potential_breaks <- unique(potential_breaks)
     # Select a subset of nbins elements
-    idx_breaks <- round(seq(from=1, to=length(potential_breaks), length.out=nbins))
+    idx_breaks <- unique(round(seq(from=1, to=length(potential_breaks), length.out=nbins)))
     # These are the boundary values between bins
     bin_breaks <- potential_breaks[idx_breaks]
   } else {
