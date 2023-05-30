@@ -92,7 +92,7 @@ stored.values <- list()
 stored.values.str <- list()
 
 PAPER.DIR <- file.path("paper")
-PAPER.FNAME <- "data.tex"
+PAPER.FNAME <- "stats.tex"
 
 STORED.NUMS <- list()
 STORED.STRINGS <- list()
@@ -1866,9 +1866,10 @@ store.results_(res.m6.einspect.logmutability)
 store.results_(res.m6.einspect.crashing)
 store.results_(res.m6.einspect.predicate)
 
-row_id <- function(row) str_c(row[1:(length(row)-2)], collapse="/")
+n.deltas <- 3
+row_id <- function(row) str_c(row[1:(length(row)-n.deltas)], collapse="/")
 row_names <- apply(df.deltas, 1, row_id)
-sdf.deltas <- as.data.frame(df.deltas[(ncol(df.deltas)-2+1):ncol(df.deltas)])
+sdf.deltas <- as.data.frame(df.deltas[(ncol(df.deltas)-n.deltas+1):ncol(df.deltas)])
 rownames(sdf.deltas) <- row_names
 store.table_(sdf.deltas, "deltas")
 ```
