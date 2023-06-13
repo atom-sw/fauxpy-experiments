@@ -1,0 +1,12 @@
+{
+     "BENCHMARK_NAME": "cookiecutter",
+     "NUM_ACCEPTED": 4,
+     "ACCEPTED": [
+          1,
+          2,
+          3,
+          4
+     ],
+     "NUM_REJECTED": 0,
+     "REJECTED": []
+}

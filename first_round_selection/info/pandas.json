@@ -1,0 +1,11 @@
+{
+    "BENCHMARK_NAME": "pandas",
+    "BUG_NUMBER_START": 1,
+    "BUG_NUMBER_END": 169,
+    "PYTHON_V": 3.8,
+    "TARGET_DIR": "pandas",
+    "TEST_SUITE": ["pandas/tests"],
+    "EXCLUDE": ["pandas/tests"],
+    "VIRTUAL_ENV": "/home/moe/bugsinpyenv38"
+}
+  

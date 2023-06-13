@@ -1,0 +1,13 @@
+{
+     "BENCHMARK_NAME": "httpie",
+     "NUM_ACCEPTED": 5,
+     "ACCEPTED": [
+          1,
+          2,
+          3,
+          4,
+          5
+     ],
+     "NUM_REJECTED": 0,
+     "REJECTED": []
+}
