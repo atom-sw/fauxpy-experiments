@@ -1,0 +1,15 @@
+Entity,Score
+fastapi/applications.py::openapi::67::77,0.0
+fastapi/dependencies/utils.py::get_flat_dependant::64::81,0.0
+fastapi/encoders.py::jsonable_encoder::9::97,0.0
+fastapi/openapi/utils.py::get_openapi_operation_request_body::91::111,0.0
+fastapi/openapi/utils.py::generate_operation_id::114::121,0.0
+fastapi/openapi/utils.py::generate_operation_summary::124::127,0.0
+fastapi/openapi/utils.py::get_openapi_operation_metadata::130::140,0.0
+fastapi/openapi/utils.py::get_openapi_path::143::209,0.0
+fastapi/openapi/utils.py::get_openapi::212::250,0.0
+fastapi/openapi/utils.py::get_openapi_params::42::49,0.0
+fastapi/openapi/utils.py::get_openapi_security_definitions::52::64,0.0
+fastapi/openapi/utils.py::get_openapi_operation_parameters::67::88,0.0
+fastapi/utils.py::get_flat_models_from_routes::17::36,0.0
+fastapi/utils.py::get_model_definitions::39::50,0.0

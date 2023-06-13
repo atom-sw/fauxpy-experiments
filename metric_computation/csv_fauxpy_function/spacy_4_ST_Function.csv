@@ -1,0 +1,3 @@
+Entity,Score
+spacy/cli/converters/conllu2json.py::read_conllx::57::86,1.0
+spacy/cli/converters/conllu2json.py::conllu2json::9::40,0.5

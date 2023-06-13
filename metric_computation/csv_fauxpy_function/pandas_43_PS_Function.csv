@@ -1,0 +1,6 @@
+Entity,Score
+pandas/core/dtypes/missing.py::array_equivalent::403::497,1.0
+pandas/core/construction.py::sanitize_array::390::507,0.9090909090909091
+pandas/core/ops/__init__.py::f::779::814,0.8264462809917354
+pandas/core/ops/__init__.py::_should_reindex_frame_op::713::730,0.7513148009015777
+pandas/core/indexes/base.py::equals::4198::4226,0.6209213230591549

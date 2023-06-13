@@ -1,0 +1,1907 @@
+{
+     "black:1": {
+          "LINE_COUNT": 92891,
+          "FUNCTION_COUNT": 404,
+          "MODULE_COUNT": 24
+     },
+     "black:3": {
+          "LINE_COUNT": 91324,
+          "FUNCTION_COUNT": 333,
+          "MODULE_COUNT": 24
+     },
+     "black:4": {
+          "LINE_COUNT": 90508,
+          "FUNCTION_COUNT": 308,
+          "MODULE_COUNT": 23
+     },
+     "black:6": {
+          "LINE_COUNT": 90376,
+          "FUNCTION_COUNT": 302,
+          "MODULE_COUNT": 23
+     },
+     "black:7": {
+          "LINE_COUNT": 90329,
+          "FUNCTION_COUNT": 300,
+          "MODULE_COUNT": 23
+     },
+     "black:8": {
+          "LINE_COUNT": 90323,
+          "FUNCTION_COUNT": 300,
+          "MODULE_COUNT": 23
+     },
+     "black:10": {
+          "LINE_COUNT": 90253,
+          "FUNCTION_COUNT": 295,
+          "MODULE_COUNT": 23
+     },
+     "black:11": {
+          "LINE_COUNT": 90237,
+          "FUNCTION_COUNT": 294,
+          "MODULE_COUNT": 23
+     },
+     "black:14": {
+          "LINE_COUNT": 89987,
+          "FUNCTION_COUNT": 284,
+          "MODULE_COUNT": 22
+     },
+     "black:15": {
+          "LINE_COUNT": 90058,
+          "FUNCTION_COUNT": 292,
+          "MODULE_COUNT": 22
+     },
+     "black:18": {
+          "LINE_COUNT": 5136,
+          "FUNCTION_COUNT": 279,
+          "MODULE_COUNT": 15
+     },
+     "black:19": {
+          "LINE_COUNT": 4478,
+          "FUNCTION_COUNT": 254,
+          "MODULE_COUNT": 15
+     },
+     "black:20": {
+          "LINE_COUNT": 4451,
+          "FUNCTION_COUNT": 253,
+          "MODULE_COUNT": 15
+     },
+     "black:22": {
+          "LINE_COUNT": 4009,
+          "FUNCTION_COUNT": 228,
+          "MODULE_COUNT": 15
+     },
+     "black:23": {
+          "LINE_COUNT": 3660,
+          "FUNCTION_COUNT": 212,
+          "MODULE_COUNT": 14
+     },
+     "cookiecutter:1": {
+          "LINE_COUNT": 1527,
+          "FUNCTION_COUNT": 61,
+          "MODULE_COUNT": 18
+     },
+     "cookiecutter:2": {
+          "LINE_COUNT": 1499,
+          "FUNCTION_COUNT": 61,
+          "MODULE_COUNT": 18
+     },
+     "cookiecutter:3": {
+          "LINE_COUNT": 1461,
+          "FUNCTION_COUNT": 57,
+          "MODULE_COUNT": 18
+     },
+     "cookiecutter:4": {
+          "LINE_COUNT": 902,
+          "FUNCTION_COUNT": 37,
+          "MODULE_COUNT": 12
+     },
+     "fastapi:1": {
+          "LINE_COUNT": 4462,
+          "FUNCTION_COUNT": 154,
+          "MODULE_COUNT": 40
+     },
+     "fastapi:2": {
+          "LINE_COUNT": 4454,
+          "FUNCTION_COUNT": 154,
+          "MODULE_COUNT": 40
+     },
+     "fastapi:3": {
+          "LINE_COUNT": 4426,
+          "FUNCTION_COUNT": 153,
+          "MODULE_COUNT": 40
+     },
+     "fastapi:4": {
+          "LINE_COUNT": 4413,
+          "FUNCTION_COUNT": 149,
+          "MODULE_COUNT": 27
+     },
+     "fastapi:5": {
+          "LINE_COUNT": 4409,
+          "FUNCTION_COUNT": 146,
+          "MODULE_COUNT": 27
+     },
+     "fastapi:6": {
+          "LINE_COUNT": 4402,
+          "FUNCTION_COUNT": 146,
+          "MODULE_COUNT": 27
+     },
+     "fastapi:7": {
+          "LINE_COUNT": 4295,
+          "FUNCTION_COUNT": 143,
+          "MODULE_COUNT": 26
+     },
+     "fastapi:8": {
+          "LINE_COUNT": 3868,
+          "FUNCTION_COUNT": 133,
+          "MODULE_COUNT": 25
+     },
+     "fastapi:9": {
+          "LINE_COUNT": 3795,
+          "FUNCTION_COUNT": 129,
+          "MODULE_COUNT": 25
+     },
+     "fastapi:10": {
+          "LINE_COUNT": 3783,
+          "FUNCTION_COUNT": 129,
+          "MODULE_COUNT": 25
+     },
+     "fastapi:11": {
+          "LINE_COUNT": 3761,
+          "FUNCTION_COUNT": 129,
+          "MODULE_COUNT": 25
+     },
+     "fastapi:12": {
+          "LINE_COUNT": 3565,
+          "FUNCTION_COUNT": 126,
+          "MODULE_COUNT": 25
+     },
+     "fastapi:13": {
+          "LINE_COUNT": 2815,
+          "FUNCTION_COUNT": 96,
+          "MODULE_COUNT": 23
+     },
+     "fastapi:14": {
+          "LINE_COUNT": 2645,
+          "FUNCTION_COUNT": 96,
+          "MODULE_COUNT": 23
+     },
+     "fastapi:15": {
+          "LINE_COUNT": 2607,
+          "FUNCTION_COUNT": 96,
+          "MODULE_COUNT": 23
+     },
+     "fastapi:16": {
+          "LINE_COUNT": 2537,
+          "FUNCTION_COUNT": 92,
+          "MODULE_COUNT": 21
+     },
+     "httpie:1": {
+          "LINE_COUNT": 2921,
+          "FUNCTION_COUNT": 182,
+          "MODULE_COUNT": 25
+     },
+     "httpie:2": {
+          "LINE_COUNT": 2742,
+          "FUNCTION_COUNT": 173,
+          "MODULE_COUNT": 25
+     },
+     "httpie:3": {
+          "LINE_COUNT": 2713,
+          "FUNCTION_COUNT": 173,
+          "MODULE_COUNT": 25
+     },
+     "httpie:4": {
+          "LINE_COUNT": 2567,
+          "FUNCTION_COUNT": 165,
+          "MODULE_COUNT": 25
+     },
+     "httpie:5": {
+          "LINE_COUNT": 603,
+          "FUNCTION_COUNT": 15,
+          "MODULE_COUNT": 6
+     },
+     "keras:1": {
+          "LINE_COUNT": 38326,
+          "FUNCTION_COUNT": 1914,
+          "MODULE_COUNT": 138
+     },
+     "keras:2": {
+          "LINE_COUNT": 38315,
+          "FUNCTION_COUNT": 1902,
+          "MODULE_COUNT": 135
+     },
+     "keras:3": {
+          "LINE_COUNT": 38294,
+          "FUNCTION_COUNT": 1902,
+          "MODULE_COUNT": 134
+     },
+     "keras:4": {
+          "LINE_COUNT": 37836,
+          "FUNCTION_COUNT": 1882,
+          "MODULE_COUNT": 133
+     },
+     "keras:5": {
+          "LINE_COUNT": 37416,
+          "FUNCTION_COUNT": 1854,
+          "MODULE_COUNT": 133
+     },
+     "keras:6": {
+          "LINE_COUNT": 37071,
+          "FUNCTION_COUNT": 1830,
+          "MODULE_COUNT": 131
+     },
+     "keras:7": {
+          "LINE_COUNT": 36998,
+          "FUNCTION_COUNT": 1815,
+          "MODULE_COUNT": 128
+     },
+     "keras:8": {
+          "LINE_COUNT": 37758,
+          "FUNCTION_COUNT": 1881,
+          "MODULE_COUNT": 133
+     },
+     "keras:9": {
+          "LINE_COUNT": 37433,
+          "FUNCTION_COUNT": 1856,
+          "MODULE_COUNT": 133
+     },
+     "keras:10": {
+          "LINE_COUNT": 37091,
+          "FUNCTION_COUNT": 1831,
+          "MODULE_COUNT": 131
+     },
+     "keras:11": {
+          "LINE_COUNT": 36110,
+          "FUNCTION_COUNT": 1718,
+          "MODULE_COUNT": 127
+     },
+     "keras:13": {
+          "LINE_COUNT": 35972,
+          "FUNCTION_COUNT": 1717,
+          "MODULE_COUNT": 127
+     },
+     "keras:14": {
+          "LINE_COUNT": 35843,
+          "FUNCTION_COUNT": 1715,
+          "MODULE_COUNT": 127
+     },
+     "keras:16": {
+          "LINE_COUNT": 35666,
+          "FUNCTION_COUNT": 1716,
+          "MODULE_COUNT": 127
+     },
+     "keras:17": {
+          "LINE_COUNT": 35416,
+          "FUNCTION_COUNT": 1696,
+          "MODULE_COUNT": 127
+     },
+     "keras:18": {
+          "LINE_COUNT": 35382,
+          "FUNCTION_COUNT": 1696,
+          "MODULE_COUNT": 127
+     },
+     "keras:19": {
+          "LINE_COUNT": 35417,
+          "FUNCTION_COUNT": 1697,
+          "MODULE_COUNT": 127
+     },
+     "keras:20": {
+          "LINE_COUNT": 35408,
+          "FUNCTION_COUNT": 1697,
+          "MODULE_COUNT": 127
+     },
+     "keras:24": {
+          "LINE_COUNT": 39294,
+          "FUNCTION_COUNT": 1736,
+          "MODULE_COUNT": 124
+     },
+     "keras:25": {
+          "LINE_COUNT": 39175,
+          "FUNCTION_COUNT": 1732,
+          "MODULE_COUNT": 124
+     },
+     "keras:26": {
+          "LINE_COUNT": 39043,
+          "FUNCTION_COUNT": 1730,
+          "MODULE_COUNT": 124
+     },
+     "keras:27": {
+          "LINE_COUNT": 38973,
+          "FUNCTION_COUNT": 1744,
+          "MODULE_COUNT": 121
+     },
+     "keras:28": {
+          "LINE_COUNT": 38755,
+          "FUNCTION_COUNT": 1743,
+          "MODULE_COUNT": 116
+     },
+     "keras:29": {
+          "LINE_COUNT": 38704,
+          "FUNCTION_COUNT": 1742,
+          "MODULE_COUNT": 116
+     },
+     "keras:30": {
+          "LINE_COUNT": 38662,
+          "FUNCTION_COUNT": 1743,
+          "MODULE_COUNT": 116
+     },
+     "keras:31": {
+          "LINE_COUNT": 38566,
+          "FUNCTION_COUNT": 1740,
+          "MODULE_COUNT": 116
+     },
+     "keras:32": {
+          "LINE_COUNT": 38552,
+          "FUNCTION_COUNT": 1740,
+          "MODULE_COUNT": 116
+     },
+     "keras:33": {
+          "LINE_COUNT": 38345,
+          "FUNCTION_COUNT": 1740,
+          "MODULE_COUNT": 116
+     },
+     "keras:34": {
+          "LINE_COUNT": 38199,
+          "FUNCTION_COUNT": 1735,
+          "MODULE_COUNT": 116
+     },
+     "keras:35": {
+          "LINE_COUNT": 37576,
+          "FUNCTION_COUNT": 1705,
+          "MODULE_COUNT": 116
+     },
+     "keras:36": {
+          "LINE_COUNT": 37019,
+          "FUNCTION_COUNT": 1687,
+          "MODULE_COUNT": 115
+     },
+     "keras:37": {
+          "LINE_COUNT": 36978,
+          "FUNCTION_COUNT": 1686,
+          "MODULE_COUNT": 115
+     },
+     "keras:38": {
+          "LINE_COUNT": 36544,
+          "FUNCTION_COUNT": 1684,
+          "MODULE_COUNT": 113
+     },
+     "keras:39": {
+          "LINE_COUNT": 36499,
+          "FUNCTION_COUNT": 1686,
+          "MODULE_COUNT": 113
+     },
+     "keras:40": {
+          "LINE_COUNT": 35380,
+          "FUNCTION_COUNT": 1650,
+          "MODULE_COUNT": 111
+     },
+     "keras:41": {
+          "LINE_COUNT": 34637,
+          "FUNCTION_COUNT": 1648,
+          "MODULE_COUNT": 110
+     },
+     "keras:42": {
+          "LINE_COUNT": 34503,
+          "FUNCTION_COUNT": 1644,
+          "MODULE_COUNT": 110
+     },
+     "keras:43": {
+          "LINE_COUNT": 34461,
+          "FUNCTION_COUNT": 1644,
+          "MODULE_COUNT": 110
+     },
+     "keras:44": {
+          "LINE_COUNT": 34204,
+          "FUNCTION_COUNT": 1640,
+          "MODULE_COUNT": 110
+     },
+     "keras:45": {
+          "LINE_COUNT": 34056,
+          "FUNCTION_COUNT": 1637,
+          "MODULE_COUNT": 109
+     },
+     "pandas:1": {
+          "LINE_COUNT": 128400,
+          "FUNCTION_COUNT": 5542,
+          "MODULE_COUNT": 234
+     },
+     "pandas:2": {
+          "LINE_COUNT": 128445,
+          "FUNCTION_COUNT": 5533,
+          "MODULE_COUNT": 234
+     },
+     "pandas:3": {
+          "LINE_COUNT": 128382,
+          "FUNCTION_COUNT": 5541,
+          "MODULE_COUNT": 234
+     },
+     "pandas:4": {
+          "LINE_COUNT": 128178,
+          "FUNCTION_COUNT": 5550,
+          "MODULE_COUNT": 232
+     },
+     "pandas:6": {
+          "LINE_COUNT": 128272,
+          "FUNCTION_COUNT": 5539,
+          "MODULE_COUNT": 233
+     },
+     "pandas:7": {
+          "LINE_COUNT": 125497,
+          "FUNCTION_COUNT": 5529,
+          "MODULE_COUNT": 226
+     },
+     "pandas:8": {
+          "LINE_COUNT": 127878,
+          "FUNCTION_COUNT": 5553,
+          "MODULE_COUNT": 232
+     },
+     "pandas:9": {
+          "LINE_COUNT": 127822,
+          "FUNCTION_COUNT": 5552,
+          "MODULE_COUNT": 232
+     },
+     "pandas:10": {
+          "LINE_COUNT": 127817,
+          "FUNCTION_COUNT": 5552,
+          "MODULE_COUNT": 232
+     },
+     "pandas:11": {
+          "LINE_COUNT": 127803,
+          "FUNCTION_COUNT": 5557,
+          "MODULE_COUNT": 232
+     },
+     "pandas:12": {
+          "LINE_COUNT": 127725,
+          "FUNCTION_COUNT": 5557,
+          "MODULE_COUNT": 232
+     },
+     "pandas:13": {
+          "LINE_COUNT": 127785,
+          "FUNCTION_COUNT": 5563,
+          "MODULE_COUNT": 232
+     },
+     "pandas:14": {
+          "LINE_COUNT": 127783,
+          "FUNCTION_COUNT": 5563,
+          "MODULE_COUNT": 232
+     },
+     "pandas:16": {
+          "LINE_COUNT": 127492,
+          "FUNCTION_COUNT": 5557,
+          "MODULE_COUNT": 232
+     },
+     "pandas:18": {
+          "LINE_COUNT": 127446,
+          "FUNCTION_COUNT": 5563,
+          "MODULE_COUNT": 232
+     },
+     "pandas:19": {
+          "LINE_COUNT": 127472,
+          "FUNCTION_COUNT": 5564,
+          "MODULE_COUNT": 232
+     },
+     "pandas:20": {
+          "LINE_COUNT": 127361,
+          "FUNCTION_COUNT": 5557,
+          "MODULE_COUNT": 231
+     },
+     "pandas:21": {
+          "LINE_COUNT": 127257,
+          "FUNCTION_COUNT": 5546,
+          "MODULE_COUNT": 231
+     },
+     "pandas:22": {
+          "LINE_COUNT": 127301,
+          "FUNCTION_COUNT": 5547,
+          "MODULE_COUNT": 231
+     },
+     "pandas:23": {
+          "LINE_COUNT": 127301,
+          "FUNCTION_COUNT": 5547,
+          "MODULE_COUNT": 231
+     },
+     "pandas:24": {
+          "LINE_COUNT": 127341,
+          "FUNCTION_COUNT": 5552,
+          "MODULE_COUNT": 231
+     },
+     "pandas:25": {
+          "LINE_COUNT": 127347,
+          "FUNCTION_COUNT": 5560,
+          "MODULE_COUNT": 231
+     },
+     "pandas:26": {
+          "LINE_COUNT": 127353,
+          "FUNCTION_COUNT": 5560,
+          "MODULE_COUNT": 231
+     },
+     "pandas:27": {
+          "LINE_COUNT": 127348,
+          "FUNCTION_COUNT": 5560,
+          "MODULE_COUNT": 231
+     },
+     "pandas:28": {
+          "LINE_COUNT": 127153,
+          "FUNCTION_COUNT": 5558,
+          "MODULE_COUNT": 231
+     },
+     "pandas:29": {
+          "LINE_COUNT": 127129,
+          "FUNCTION_COUNT": 5554,
+          "MODULE_COUNT": 231
+     },
+     "pandas:30": {
+          "LINE_COUNT": 127108,
+          "FUNCTION_COUNT": 5551,
+          "MODULE_COUNT": 231
+     },
+     "pandas:31": {
+          "LINE_COUNT": 127099,
+          "FUNCTION_COUNT": 5551,
+          "MODULE_COUNT": 231
+     },
+     "pandas:32": {
+          "LINE_COUNT": 127107,
+          "FUNCTION_COUNT": 5551,
+          "MODULE_COUNT": 231
+     },
+     "pandas:33": {
+          "LINE_COUNT": 126826,
+          "FUNCTION_COUNT": 5543,
+          "MODULE_COUNT": 231
+     },
+     "pandas:34": {
+          "LINE_COUNT": 126790,
+          "FUNCTION_COUNT": 5543,
+          "MODULE_COUNT": 231
+     },
+     "pandas:35": {
+          "LINE_COUNT": 126503,
+          "FUNCTION_COUNT": 5547,
+          "MODULE_COUNT": 231
+     },
+     "pandas:36": {
+          "LINE_COUNT": 126533,
+          "FUNCTION_COUNT": 5546,
+          "MODULE_COUNT": 231
+     },
+     "pandas:37": {
+          "LINE_COUNT": 126408,
+          "FUNCTION_COUNT": 5540,
+          "MODULE_COUNT": 230
+     },
+     "pandas:38": {
+          "LINE_COUNT": 126389,
+          "FUNCTION_COUNT": 5547,
+          "MODULE_COUNT": 230
+     },
+     "pandas:39": {
+          "LINE_COUNT": 126388,
+          "FUNCTION_COUNT": 5547,
+          "MODULE_COUNT": 230
+     },
+     "pandas:40": {
+          "LINE_COUNT": 126339,
+          "FUNCTION_COUNT": 5547,
+          "MODULE_COUNT": 230
+     },
+     "pandas:41": {
+          "LINE_COUNT": 126264,
+          "FUNCTION_COUNT": 5543,
+          "MODULE_COUNT": 230
+     },
+     "pandas:42": {
+          "LINE_COUNT": 126294,
+          "FUNCTION_COUNT": 5550,
+          "MODULE_COUNT": 227
+     },
+     "pandas:43": {
+          "LINE_COUNT": 126293,
+          "FUNCTION_COUNT": 5551,
+          "MODULE_COUNT": 227
+     },
+     "pandas:44": {
+          "LINE_COUNT": 126301,
+          "FUNCTION_COUNT": 5553,
+          "MODULE_COUNT": 227
+     },
+     "pandas:45": {
+          "LINE_COUNT": 126136,
+          "FUNCTION_COUNT": 5550,
+          "MODULE_COUNT": 227
+     },
+     "pandas:46": {
+          "LINE_COUNT": 126109,
+          "FUNCTION_COUNT": 5549,
+          "MODULE_COUNT": 227
+     },
+     "pandas:47": {
+          "LINE_COUNT": 126047,
+          "FUNCTION_COUNT": 5548,
+          "MODULE_COUNT": 227
+     },
+     "pandas:48": {
+          "LINE_COUNT": 125980,
+          "FUNCTION_COUNT": 5545,
+          "MODULE_COUNT": 227
+     },
+     "pandas:49": {
+          "LINE_COUNT": 125878,
+          "FUNCTION_COUNT": 5539,
+          "MODULE_COUNT": 227
+     },
+     "pandas:50": {
+          "LINE_COUNT": 125893,
+          "FUNCTION_COUNT": 5545,
+          "MODULE_COUNT": 227
+     },
+     "pandas:51": {
+          "LINE_COUNT": 125837,
+          "FUNCTION_COUNT": 5544,
+          "MODULE_COUNT": 227
+     },
+     "pandas:52": {
+          "LINE_COUNT": 125784,
+          "FUNCTION_COUNT": 5544,
+          "MODULE_COUNT": 227
+     },
+     "pandas:53": {
+          "LINE_COUNT": 125785,
+          "FUNCTION_COUNT": 5544,
+          "MODULE_COUNT": 227
+     },
+     "pandas:54": {
+          "LINE_COUNT": 125779,
+          "FUNCTION_COUNT": 5543,
+          "MODULE_COUNT": 227
+     },
+     "pandas:55": {
+          "LINE_COUNT": 125772,
+          "FUNCTION_COUNT": 5542,
+          "MODULE_COUNT": 227
+     },
+     "pandas:56": {
+          "LINE_COUNT": 125769,
+          "FUNCTION_COUNT": 5541,
+          "MODULE_COUNT": 227
+     },
+     "pandas:57": {
+          "LINE_COUNT": 125794,
+          "FUNCTION_COUNT": 5543,
+          "MODULE_COUNT": 226
+     },
+     "pandas:58": {
+          "LINE_COUNT": 125549,
+          "FUNCTION_COUNT": 5536,
+          "MODULE_COUNT": 226
+     },
+     "pandas:59": {
+          "LINE_COUNT": 125481,
+          "FUNCTION_COUNT": 5534,
+          "MODULE_COUNT": 226
+     },
+     "pandas:60": {
+          "LINE_COUNT": 125515,
+          "FUNCTION_COUNT": 5535,
+          "MODULE_COUNT": 226
+     },
+     "pandas:61": {
+          "LINE_COUNT": 125428,
+          "FUNCTION_COUNT": 5530,
+          "MODULE_COUNT": 226
+     },
+     "pandas:62": {
+          "LINE_COUNT": 125424,
+          "FUNCTION_COUNT": 5530,
+          "MODULE_COUNT": 226
+     },
+     "pandas:63": {
+          "LINE_COUNT": 125447,
+          "FUNCTION_COUNT": 5527,
+          "MODULE_COUNT": 226
+     },
+     "pandas:64": {
+          "LINE_COUNT": 125469,
+          "FUNCTION_COUNT": 5531,
+          "MODULE_COUNT": 226
+     },
+     "pandas:65": {
+          "LINE_COUNT": 125441,
+          "FUNCTION_COUNT": 5531,
+          "MODULE_COUNT": 226
+     },
+     "pandas:66": {
+          "LINE_COUNT": 125448,
+          "FUNCTION_COUNT": 5529,
+          "MODULE_COUNT": 226
+     },
+     "pandas:67": {
+          "LINE_COUNT": 125485,
+          "FUNCTION_COUNT": 5530,
+          "MODULE_COUNT": 226
+     },
+     "pandas:68": {
+          "LINE_COUNT": 125462,
+          "FUNCTION_COUNT": 5529,
+          "MODULE_COUNT": 226
+     },
+     "pandas:69": {
+          "LINE_COUNT": 125479,
+          "FUNCTION_COUNT": 5534,
+          "MODULE_COUNT": 226
+     },
+     "pandas:70": {
+          "LINE_COUNT": 125472,
+          "FUNCTION_COUNT": 5534,
+          "MODULE_COUNT": 226
+     },
+     "pandas:71": {
+          "LINE_COUNT": 125369,
+          "FUNCTION_COUNT": 5529,
+          "MODULE_COUNT": 226
+     },
+     "pandas:72": {
+          "LINE_COUNT": 125361,
+          "FUNCTION_COUNT": 5529,
+          "MODULE_COUNT": 226
+     },
+     "pandas:73": {
+          "LINE_COUNT": 125264,
+          "FUNCTION_COUNT": 5522,
+          "MODULE_COUNT": 226
+     },
+     "pandas:74": {
+          "LINE_COUNT": 125303,
+          "FUNCTION_COUNT": 5524,
+          "MODULE_COUNT": 226
+     },
+     "pandas:75": {
+          "LINE_COUNT": 125292,
+          "FUNCTION_COUNT": 5524,
+          "MODULE_COUNT": 226
+     },
+     "pandas:76": {
+          "LINE_COUNT": 125300,
+          "FUNCTION_COUNT": 5525,
+          "MODULE_COUNT": 226
+     },
+     "pandas:77": {
+          "LINE_COUNT": 125298,
+          "FUNCTION_COUNT": 5525,
+          "MODULE_COUNT": 226
+     },
+     "pandas:78": {
+          "LINE_COUNT": 125064,
+          "FUNCTION_COUNT": 5520,
+          "MODULE_COUNT": 226
+     },
+     "pandas:79": {
+          "LINE_COUNT": 125060,
+          "FUNCTION_COUNT": 5519,
+          "MODULE_COUNT": 226
+     },
+     "pandas:80": {
+          "LINE_COUNT": 125018,
+          "FUNCTION_COUNT": 5512,
+          "MODULE_COUNT": 226
+     },
+     "pandas:81": {
+          "LINE_COUNT": 124960,
+          "FUNCTION_COUNT": 5509,
+          "MODULE_COUNT": 226
+     },
+     "pandas:82": {
+          "LINE_COUNT": 124964,
+          "FUNCTION_COUNT": 5511,
+          "MODULE_COUNT": 226
+     },
+     "pandas:83": {
+          "LINE_COUNT": 124941,
+          "FUNCTION_COUNT": 5511,
+          "MODULE_COUNT": 226
+     },
+     "pandas:84": {
+          "LINE_COUNT": 124870,
+          "FUNCTION_COUNT": 5502,
+          "MODULE_COUNT": 224
+     },
+     "pandas:85": {
+          "LINE_COUNT": 124879,
+          "FUNCTION_COUNT": 5502,
+          "MODULE_COUNT": 224
+     },
+     "pandas:86": {
+          "LINE_COUNT": 124865,
+          "FUNCTION_COUNT": 5505,
+          "MODULE_COUNT": 224
+     },
+     "pandas:87": {
+          "LINE_COUNT": 124887,
+          "FUNCTION_COUNT": 5506,
+          "MODULE_COUNT": 224
+     },
+     "pandas:88": {
+          "LINE_COUNT": 124625,
+          "FUNCTION_COUNT": 5508,
+          "MODULE_COUNT": 224
+     },
+     "pandas:89": {
+          "LINE_COUNT": 124667,
+          "FUNCTION_COUNT": 5521,
+          "MODULE_COUNT": 224
+     },
+     "pandas:90": {
+          "LINE_COUNT": 124630,
+          "FUNCTION_COUNT": 5519,
+          "MODULE_COUNT": 224
+     },
+     "pandas:91": {
+          "LINE_COUNT": 124430,
+          "FUNCTION_COUNT": 5510,
+          "MODULE_COUNT": 222
+     },
+     "pandas:92": {
+          "LINE_COUNT": 124404,
+          "FUNCTION_COUNT": 5510,
+          "MODULE_COUNT": 222
+     },
+     "pandas:94": {
+          "LINE_COUNT": 124460,
+          "FUNCTION_COUNT": 5520,
+          "MODULE_COUNT": 222
+     },
+     "pandas:95": {
+          "LINE_COUNT": 124709,
+          "FUNCTION_COUNT": 5527,
+          "MODULE_COUNT": 222
+     },
+     "pandas:96": {
+          "LINE_COUNT": 124694,
+          "FUNCTION_COUNT": 5527,
+          "MODULE_COUNT": 222
+     },
+     "pandas:97": {
+          "LINE_COUNT": 124708,
+          "FUNCTION_COUNT": 5527,
+          "MODULE_COUNT": 222
+     },
+     "pandas:98": {
+          "LINE_COUNT": 124468,
+          "FUNCTION_COUNT": 5530,
+          "MODULE_COUNT": 220
+     },
+     "pandas:99": {
+          "LINE_COUNT": 124345,
+          "FUNCTION_COUNT": 5537,
+          "MODULE_COUNT": 219
+     },
+     "pandas:100": {
+          "LINE_COUNT": 124347,
+          "FUNCTION_COUNT": 5537,
+          "MODULE_COUNT": 219
+     },
+     "pandas:101": {
+          "LINE_COUNT": 124316,
+          "FUNCTION_COUNT": 5555,
+          "MODULE_COUNT": 219
+     },
+     "pandas:102": {
+          "LINE_COUNT": 124312,
+          "FUNCTION_COUNT": 5555,
+          "MODULE_COUNT": 219
+     },
+     "pandas:103": {
+          "LINE_COUNT": 124189,
+          "FUNCTION_COUNT": 5564,
+          "MODULE_COUNT": 219
+     },
+     "pandas:104": {
+          "LINE_COUNT": 123826,
+          "FUNCTION_COUNT": 5553,
+          "MODULE_COUNT": 218
+     },
+     "pandas:105": {
+          "LINE_COUNT": 123803,
+          "FUNCTION_COUNT": 5551,
+          "MODULE_COUNT": 218
+     },
+     "pandas:106": {
+          "LINE_COUNT": 123736,
+          "FUNCTION_COUNT": 5550,
+          "MODULE_COUNT": 218
+     },
+     "pandas:107": {
+          "LINE_COUNT": 123798,
+          "FUNCTION_COUNT": 5552,
+          "MODULE_COUNT": 218
+     },
+     "pandas:108": {
+          "LINE_COUNT": 123826,
+          "FUNCTION_COUNT": 5555,
+          "MODULE_COUNT": 218
+     },
+     "pandas:109": {
+          "LINE_COUNT": 123781,
+          "FUNCTION_COUNT": 5555,
+          "MODULE_COUNT": 218
+     },
+     "pandas:110": {
+          "LINE_COUNT": 124667,
+          "FUNCTION_COUNT": 5584,
+          "MODULE_COUNT": 222
+     },
+     "pandas:111": {
+          "LINE_COUNT": 124639,
+          "FUNCTION_COUNT": 5586,
+          "MODULE_COUNT": 222
+     },
+     "pandas:112": {
+          "LINE_COUNT": 124636,
+          "FUNCTION_COUNT": 5586,
+          "MODULE_COUNT": 222
+     },
+     "pandas:114": {
+          "LINE_COUNT": 124711,
+          "FUNCTION_COUNT": 5590,
+          "MODULE_COUNT": 219
+     },
+     "pandas:115": {
+          "LINE_COUNT": 124646,
+          "FUNCTION_COUNT": 5597,
+          "MODULE_COUNT": 219
+     },
+     "pandas:116": {
+          "LINE_COUNT": 124802,
+          "FUNCTION_COUNT": 5598,
+          "MODULE_COUNT": 219
+     },
+     "pandas:117": {
+          "LINE_COUNT": 125100,
+          "FUNCTION_COUNT": 5619,
+          "MODULE_COUNT": 219
+     },
+     "pandas:118": {
+          "LINE_COUNT": 124961,
+          "FUNCTION_COUNT": 5594,
+          "MODULE_COUNT": 218
+     },
+     "pandas:119": {
+          "LINE_COUNT": 124958,
+          "FUNCTION_COUNT": 5594,
+          "MODULE_COUNT": 218
+     },
+     "pandas:120": {
+          "LINE_COUNT": 125370,
+          "FUNCTION_COUNT": 5623,
+          "MODULE_COUNT": 218
+     },
+     "pandas:121": {
+          "LINE_COUNT": 125388,
+          "FUNCTION_COUNT": 5623,
+          "MODULE_COUNT": 218
+     },
+     "pandas:122": {
+          "LINE_COUNT": 125307,
+          "FUNCTION_COUNT": 5621,
+          "MODULE_COUNT": 218
+     },
+     "pandas:123": {
+          "LINE_COUNT": 125302,
+          "FUNCTION_COUNT": 5620,
+          "MODULE_COUNT": 218
+     },
+     "pandas:124": {
+          "LINE_COUNT": 125293,
+          "FUNCTION_COUNT": 5620,
+          "MODULE_COUNT": 218
+     },
+     "pandas:125": {
+          "LINE_COUNT": 125237,
+          "FUNCTION_COUNT": 5619,
+          "MODULE_COUNT": 218
+     },
+     "pandas:126": {
+          "LINE_COUNT": 125234,
+          "FUNCTION_COUNT": 5619,
+          "MODULE_COUNT": 218
+     },
+     "pandas:127": {
+          "LINE_COUNT": 125255,
+          "FUNCTION_COUNT": 5619,
+          "MODULE_COUNT": 218
+     },
+     "pandas:128": {
+          "LINE_COUNT": 125202,
+          "FUNCTION_COUNT": 5613,
+          "MODULE_COUNT": 217
+     },
+     "pandas:129": {
+          "LINE_COUNT": 125200,
+          "FUNCTION_COUNT": 5613,
+          "MODULE_COUNT": 217
+     },
+     "pandas:130": {
+          "LINE_COUNT": 125253,
+          "FUNCTION_COUNT": 5614,
+          "MODULE_COUNT": 217
+     },
+     "pandas:131": {
+          "LINE_COUNT": 125071,
+          "FUNCTION_COUNT": 5604,
+          "MODULE_COUNT": 220
+     },
+     "pandas:132": {
+          "LINE_COUNT": 125077,
+          "FUNCTION_COUNT": 5603,
+          "MODULE_COUNT": 220
+     },
+     "pandas:133": {
+          "LINE_COUNT": 125250,
+          "FUNCTION_COUNT": 5610,
+          "MODULE_COUNT": 220
+     },
+     "pandas:134": {
+          "LINE_COUNT": 125328,
+          "FUNCTION_COUNT": 5613,
+          "MODULE_COUNT": 220
+     },
+     "pandas:135": {
+          "LINE_COUNT": 125299,
+          "FUNCTION_COUNT": 5613,
+          "MODULE_COUNT": 220
+     },
+     "pandas:136": {
+          "LINE_COUNT": 125298,
+          "FUNCTION_COUNT": 5610,
+          "MODULE_COUNT": 220
+     },
+     "pandas:137": {
+          "LINE_COUNT": 125222,
+          "FUNCTION_COUNT": 5607,
+          "MODULE_COUNT": 220
+     },
+     "pandas:138": {
+          "LINE_COUNT": 125224,
+          "FUNCTION_COUNT": 5608,
+          "MODULE_COUNT": 220
+     },
+     "pandas:139": {
+          "LINE_COUNT": 125213,
+          "FUNCTION_COUNT": 5608,
+          "MODULE_COUNT": 220
+     },
+     "pandas:140": {
+          "LINE_COUNT": 124888,
+          "FUNCTION_COUNT": 5587,
+          "MODULE_COUNT": 219
+     },
+     "pandas:141": {
+          "LINE_COUNT": 124835,
+          "FUNCTION_COUNT": 5588,
+          "MODULE_COUNT": 219
+     },
+     "pandas:142": {
+          "LINE_COUNT": 124801,
+          "FUNCTION_COUNT": 5589,
+          "MODULE_COUNT": 219
+     },
+     "pandas:143": {
+          "LINE_COUNT": 124774,
+          "FUNCTION_COUNT": 5585,
+          "MODULE_COUNT": 219
+     },
+     "pandas:144": {
+          "LINE_COUNT": 124754,
+          "FUNCTION_COUNT": 5587,
+          "MODULE_COUNT": 215
+     },
+     "pandas:145": {
+          "LINE_COUNT": 124655,
+          "FUNCTION_COUNT": 5583,
+          "MODULE_COUNT": 215
+     },
+     "pandas:146": {
+          "LINE_COUNT": 124639,
+          "FUNCTION_COUNT": 5584,
+          "MODULE_COUNT": 215
+     },
+     "pandas:147": {
+          "LINE_COUNT": 124639,
+          "FUNCTION_COUNT": 5584,
+          "MODULE_COUNT": 215
+     },
+     "pandas:148": {
+          "LINE_COUNT": 124616,
+          "FUNCTION_COUNT": 5584,
+          "MODULE_COUNT": 215
+     },
+     "pandas:150": {
+          "LINE_COUNT": 126252,
+          "FUNCTION_COUNT": 5690,
+          "MODULE_COUNT": 217
+     },
+     "pandas:151": {
+          "LINE_COUNT": 126259,
+          "FUNCTION_COUNT": 5690,
+          "MODULE_COUNT": 217
+     },
+     "pandas:152": {
+          "LINE_COUNT": 126233,
+          "FUNCTION_COUNT": 5687,
+          "MODULE_COUNT": 217
+     },
+     "pandas:153": {
+          "LINE_COUNT": 126246,
+          "FUNCTION_COUNT": 5688,
+          "MODULE_COUNT": 217
+     },
+     "pandas:154": {
+          "LINE_COUNT": 126093,
+          "FUNCTION_COUNT": 5687,
+          "MODULE_COUNT": 217
+     },
+     "pandas:155": {
+          "LINE_COUNT": 126108,
+          "FUNCTION_COUNT": 5685,
+          "MODULE_COUNT": 217
+     },
+     "pandas:156": {
+          "LINE_COUNT": 125999,
+          "FUNCTION_COUNT": 5681,
+          "MODULE_COUNT": 217
+     },
+     "pandas:157": {
+          "LINE_COUNT": 125854,
+          "FUNCTION_COUNT": 5678,
+          "MODULE_COUNT": 217
+     },
+     "pandas:158": {
+          "LINE_COUNT": 125856,
+          "FUNCTION_COUNT": 5678,
+          "MODULE_COUNT": 217
+     },
+     "pandas:159": {
+          "LINE_COUNT": 125797,
+          "FUNCTION_COUNT": 5676,
+          "MODULE_COUNT": 217
+     },
+     "pandas:160": {
+          "LINE_COUNT": 125824,
+          "FUNCTION_COUNT": 5678,
+          "MODULE_COUNT": 217
+     },
+     "pandas:161": {
+          "LINE_COUNT": 125771,
+          "FUNCTION_COUNT": 5677,
+          "MODULE_COUNT": 216
+     },
+     "pandas:162": {
+          "LINE_COUNT": 125850,
+          "FUNCTION_COUNT": 5687,
+          "MODULE_COUNT": 211
+     },
+     "pandas:163": {
+          "LINE_COUNT": 125866,
+          "FUNCTION_COUNT": 5690,
+          "MODULE_COUNT": 211
+     },
+     "pandas:164": {
+          "LINE_COUNT": 125864,
+          "FUNCTION_COUNT": 5690,
+          "MODULE_COUNT": 211
+     },
+     "pandas:165": {
+          "LINE_COUNT": 125861,
+          "FUNCTION_COUNT": 5697,
+          "MODULE_COUNT": 210
+     },
+     "pandas:166": {
+          "LINE_COUNT": 125900,
+          "FUNCTION_COUNT": 5702,
+          "MODULE_COUNT": 210
+     },
+     "pandas:167": {
+          "LINE_COUNT": 125885,
+          "FUNCTION_COUNT": 5702,
+          "MODULE_COUNT": 210
+     },
+     "pandas:168": {
+          "LINE_COUNT": 125710,
+          "FUNCTION_COUNT": 5697,
+          "MODULE_COUNT": 210
+     },
+     "pandas:169": {
+          "LINE_COUNT": 125817,
+          "FUNCTION_COUNT": 5709,
+          "MODULE_COUNT": 211
+     },
+     "sanic:1": {
+          "LINE_COUNT": 13285,
+          "FUNCTION_COUNT": 798,
+          "MODULE_COUNT": 87
+     },
+     "sanic:3": {
+          "LINE_COUNT": 13605,
+          "FUNCTION_COUNT": 804,
+          "MODULE_COUNT": 87
+     },
+     "sanic:4": {
+          "LINE_COUNT": 13704,
+          "FUNCTION_COUNT": 779,
+          "MODULE_COUNT": 85
+     },
+     "sanic:5": {
+          "LINE_COUNT": 9550,
+          "FUNCTION_COUNT": 558,
+          "MODULE_COUNT": 66
+     },
+     "spacy:1": {
+          "LINE_COUNT": 106045,
+          "FUNCTION_COUNT": 934,
+          "MODULE_COUNT": 440
+     },
+     "spacy:2": {
+          "LINE_COUNT": 105895,
+          "FUNCTION_COUNT": 932,
+          "MODULE_COUNT": 439
+     },
+     "spacy:3": {
+          "LINE_COUNT": 106940,
+          "FUNCTION_COUNT": 979,
+          "MODULE_COUNT": 442
+     },
+     "spacy:4": {
+          "LINE_COUNT": 100412,
+          "FUNCTION_COUNT": 971,
+          "MODULE_COUNT": 420
+     },
+     "spacy:5": {
+          "LINE_COUNT": 99781,
+          "FUNCTION_COUNT": 969,
+          "MODULE_COUNT": 414
+     },
+     "spacy:6": {
+          "LINE_COUNT": 99554,
+          "FUNCTION_COUNT": 962,
+          "MODULE_COUNT": 410
+     },
+     "thefuck:1": {
+          "LINE_COUNT": 4583,
+          "FUNCTION_COUNT": 587,
+          "MODULE_COUNT": 195
+     },
+     "thefuck:2": {
+          "LINE_COUNT": 4343,
+          "FUNCTION_COUNT": 560,
+          "MODULE_COUNT": 184
+     },
+     "thefuck:3": {
+          "LINE_COUNT": 4297,
+          "FUNCTION_COUNT": 554,
+          "MODULE_COUNT": 181
+     },
+     "thefuck:4": {
+          "LINE_COUNT": 4134,
+          "FUNCTION_COUNT": 534,
+          "MODULE_COUNT": 176
+     },
+     "thefuck:5": {
+          "LINE_COUNT": 4091,
+          "FUNCTION_COUNT": 530,
+          "MODULE_COUNT": 174
+     },
+     "thefuck:6": {
+          "LINE_COUNT": 4090,
+          "FUNCTION_COUNT": 530,
+          "MODULE_COUNT": 174
+     },
+     "thefuck:7": {
+          "LINE_COUNT": 3951,
+          "FUNCTION_COUNT": 516,
+          "MODULE_COUNT": 168
+     },
+     "thefuck:8": {
+          "LINE_COUNT": 3809,
+          "FUNCTION_COUNT": 492,
+          "MODULE_COUNT": 162
+     },
+     "thefuck:9": {
+          "LINE_COUNT": 2938,
+          "FUNCTION_COUNT": 395,
+          "MODULE_COUNT": 132
+     },
+     "thefuck:10": {
+          "LINE_COUNT": 2930,
+          "FUNCTION_COUNT": 393,
+          "MODULE_COUNT": 131
+     },
+     "thefuck:12": {
+          "LINE_COUNT": 2656,
+          "FUNCTION_COUNT": 354,
+          "MODULE_COUNT": 115
+     },
+     "thefuck:13": {
+          "LINE_COUNT": 2635,
+          "FUNCTION_COUNT": 352,
+          "MODULE_COUNT": 115
+     },
+     "thefuck:14": {
+          "LINE_COUNT": 2547,
+          "FUNCTION_COUNT": 341,
+          "MODULE_COUNT": 111
+     },
+     "thefuck:15": {
+          "LINE_COUNT": 2527,
+          "FUNCTION_COUNT": 339,
+          "MODULE_COUNT": 110
+     },
+     "thefuck:16": {
+          "LINE_COUNT": 2468,
+          "FUNCTION_COUNT": 331,
+          "MODULE_COUNT": 107
+     },
+     "thefuck:17": {
+          "LINE_COUNT": 2449,
+          "FUNCTION_COUNT": 327,
+          "MODULE_COUNT": 105
+     },
+     "thefuck:18": {
+          "LINE_COUNT": 2317,
+          "FUNCTION_COUNT": 325,
+          "MODULE_COUNT": 96
+     },
+     "thefuck:19": {
+          "LINE_COUNT": 2244,
+          "FUNCTION_COUNT": 320,
+          "MODULE_COUNT": 92
+     },
+     "thefuck:20": {
+          "LINE_COUNT": 2231,
+          "FUNCTION_COUNT": 321,
+          "MODULE_COUNT": 92
+     },
+     "thefuck:21": {
+          "LINE_COUNT": 2175,
+          "FUNCTION_COUNT": 311,
+          "MODULE_COUNT": 91
+     },
+     "thefuck:22": {
+          "LINE_COUNT": 1999,
+          "FUNCTION_COUNT": 301,
+          "MODULE_COUNT": 89
+     },
+     "thefuck:23": {
+          "LINE_COUNT": 1998,
+          "FUNCTION_COUNT": 301,
+          "MODULE_COUNT": 89
+     },
+     "thefuck:24": {
+          "LINE_COUNT": 1975,
+          "FUNCTION_COUNT": 293,
+          "MODULE_COUNT": 88
+     },
+     "thefuck:25": {
+          "LINE_COUNT": 1818,
+          "FUNCTION_COUNT": 276,
+          "MODULE_COUNT": 81
+     },
+     "thefuck:26": {
+          "LINE_COUNT": 1824,
+          "FUNCTION_COUNT": 278,
+          "MODULE_COUNT": 82
+     },
+     "thefuck:27": {
+          "LINE_COUNT": 1807,
+          "FUNCTION_COUNT": 274,
+          "MODULE_COUNT": 80
+     },
+     "thefuck:28": {
+          "LINE_COUNT": 1799,
+          "FUNCTION_COUNT": 274,
+          "MODULE_COUNT": 80
+     },
+     "thefuck:29": {
+          "LINE_COUNT": 1797,
+          "FUNCTION_COUNT": 274,
+          "MODULE_COUNT": 80
+     },
+     "thefuck:30": {
+          "LINE_COUNT": 1627,
+          "FUNCTION_COUNT": 257,
+          "MODULE_COUNT": 76
+     },
+     "thefuck:31": {
+          "LINE_COUNT": 1417,
+          "FUNCTION_COUNT": 226,
+          "MODULE_COUNT": 67
+     },
+     "thefuck:32": {
+          "LINE_COUNT": 1141,
+          "FUNCTION_COUNT": 193,
+          "MODULE_COUNT": 59
+     },
+     "tornado:1": {
+          "LINE_COUNT": 17660,
+          "FUNCTION_COUNT": 1109,
+          "MODULE_COUNT": 39
+     },
+     "tornado:3": {
+          "LINE_COUNT": 17615,
+          "FUNCTION_COUNT": 1116,
+          "MODULE_COUNT": 39
+     },
+     "tornado:4": {
+          "LINE_COUNT": 17597,
+          "FUNCTION_COUNT": 1116,
+          "MODULE_COUNT": 39
+     },
+     "tornado:5": {
+          "LINE_COUNT": 18084,
+          "FUNCTION_COUNT": 1295,
+          "MODULE_COUNT": 44
+     },
+     "tornado:6": {
+          "LINE_COUNT": 18063,
+          "FUNCTION_COUNT": 1294,
+          "MODULE_COUNT": 44
+     },
+     "tornado:8": {
+          "LINE_COUNT": 17464,
+          "FUNCTION_COUNT": 1270,
+          "MODULE_COUNT": 44
+     },
+     "tornado:10": {
+          "LINE_COUNT": 17352,
+          "FUNCTION_COUNT": 1262,
+          "MODULE_COUNT": 44
+     },
+     "tornado:11": {
+          "LINE_COUNT": 16577,
+          "FUNCTION_COUNT": 1204,
+          "MODULE_COUNT": 43
+     },
+     "tornado:12": {
+          "LINE_COUNT": 16388,
+          "FUNCTION_COUNT": 1197,
+          "MODULE_COUNT": 43
+     },
+     "tqdm:1": {
+          "LINE_COUNT": 2535,
+          "FUNCTION_COUNT": 139,
+          "MODULE_COUNT": 21
+     },
+     "tqdm:2": {
+          "LINE_COUNT": 2314,
+          "FUNCTION_COUNT": 123,
+          "MODULE_COUNT": 18
+     },
+     "tqdm:3": {
+          "LINE_COUNT": 2067,
+          "FUNCTION_COUNT": 105,
+          "MODULE_COUNT": 12
+     },
+     "tqdm:4": {
+          "LINE_COUNT": 2025,
+          "FUNCTION_COUNT": 99,
+          "MODULE_COUNT": 12
+     },
+     "tqdm:5": {
+          "LINE_COUNT": 1932,
+          "FUNCTION_COUNT": 93,
+          "MODULE_COUNT": 11
+     },
+     "tqdm:6": {
+          "LINE_COUNT": 1884,
+          "FUNCTION_COUNT": 91,
+          "MODULE_COUNT": 10
+     },
+     "tqdm:7": {
+          "LINE_COUNT": 1825,
+          "FUNCTION_COUNT": 91,
+          "MODULE_COUNT": 9
+     },
+     "tqdm:8": {
+          "LINE_COUNT": 1133,
+          "FUNCTION_COUNT": 52,
+          "MODULE_COUNT": 8
+     },
+     "tqdm:9": {
+          "LINE_COUNT": 536,
+          "FUNCTION_COUNT": 14,
+          "MODULE_COUNT": 3
+     },
+     "youtube-dl:1": {
+          "LINE_COUNT": 108609,
+          "FUNCTION_COUNT": 2679,
+          "MODULE_COUNT": 787
+     },
+     "youtube-dl:2": {
+          "LINE_COUNT": 105289,
+          "FUNCTION_COUNT": 2594,
+          "MODULE_COUNT": 779
+     },
+     "youtube-dl:3": {
+          "LINE_COUNT": 102076,
+          "FUNCTION_COUNT": 2504,
+          "MODULE_COUNT": 764
+     },
+     "youtube-dl:6": {
+          "LINE_COUNT": 65126,
+          "FUNCTION_COUNT": 1745,
+          "MODULE_COUNT": 571
+     },
+     "youtube-dl:7": {
+          "LINE_COUNT": 62782,
+          "FUNCTION_COUNT": 1679,
+          "MODULE_COUNT": 565
+     },
+     "youtube-dl:13": {
+          "LINE_COUNT": 114821,
+          "FUNCTION_COUNT": 2802,
+          "MODULE_COUNT": 815
+     },
+     "youtube-dl:15": {
+          "LINE_COUNT": 106029,
+          "FUNCTION_COUNT": 2614,
+          "MODULE_COUNT": 780
+     },
+     "youtube-dl:17": {
+          "LINE_COUNT": 101679,
+          "FUNCTION_COUNT": 2495,
+          "MODULE_COUNT": 762
+     },
+     "youtube-dl:18": {
+          "LINE_COUNT": 101044,
+          "FUNCTION_COUNT": 2482,
+          "MODULE_COUNT": 761
+     },
+     "youtube-dl:19": {
+          "LINE_COUNT": 100680,
+          "FUNCTION_COUNT": 2472,
+          "MODULE_COUNT": 759
+     },
+     "youtube-dl:20": {
+          "LINE_COUNT": 100347,
+          "FUNCTION_COUNT": 2470,
+          "MODULE_COUNT": 758
+     },
+     "youtube-dl:21": {
+          "LINE_COUNT": 96111,
+          "FUNCTION_COUNT": 2400,
+          "MODULE_COUNT": 737
+     },
+     "youtube-dl:24": {
+          "LINE_COUNT": 89232,
+          "FUNCTION_COUNT": 2262,
+          "MODULE_COUNT": 701
+     },
+     "youtube-dl:25": {
+          "LINE_COUNT": 84289,
+          "FUNCTION_COUNT": 2180,
+          "MODULE_COUNT": 677
+     },
+     "youtube-dl:26": {
+          "LINE_COUNT": 80015,
+          "FUNCTION_COUNT": 2077,
+          "MODULE_COUNT": 644
+     },
+     "youtube-dl:27": {
+          "LINE_COUNT": 65131,
+          "FUNCTION_COUNT": 1745,
+          "MODULE_COUNT": 571
+     },
+     "youtube-dl:29": {
+          "LINE_COUNT": 63246,
+          "FUNCTION_COUNT": 1686,
+          "MODULE_COUNT": 567
+     },
+     "youtube-dl:31": {
+          "LINE_COUNT": 40214,
+          "FUNCTION_COUNT": 1143,
+          "MODULE_COUNT": 425
+     },
+     "youtube-dl:34": {
+          "LINE_COUNT": 36473,
+          "FUNCTION_COUNT": 1070,
+          "MODULE_COUNT": 389
+     },
+     "youtube-dl:35": {
+          "LINE_COUNT": 36392,
+          "FUNCTION_COUNT": 1069,
+          "MODULE_COUNT": 388
+     },
+     "youtube-dl:36": {
+          "LINE_COUNT": 30782,
+          "FUNCTION_COUNT": 955,
+          "MODULE_COUNT": 334
+     },
+     "youtube-dl:41": {
+          "LINE_COUNT": 20504,
+          "FUNCTION_COUNT": 743,
+          "MODULE_COUNT": 231
+     },
+     "youtube-dl:43": {
+          "LINE_COUNT": 17072,
+          "FUNCTION_COUNT": 651,
+          "MODULE_COUNT": 186
+     },
+     "ansible:1": {
+          "LINE_COUNT": 173547,
+          "FUNCTION_COUNT": 7825,
+          "MODULE_COUNT": 1055
+     },
+     "ansible:2": {
+          "LINE_COUNT": 173125,
+          "FUNCTION_COUNT": 7814,
+          "MODULE_COUNT": 1076
+     },
+     "ansible:3": {
+          "LINE_COUNT": 172752,
+          "FUNCTION_COUNT": 7801,
+          "MODULE_COUNT": 1072
+     },
+     "ansible:4": {
+          "LINE_COUNT": 172525,
+          "FUNCTION_COUNT": 7801,
+          "MODULE_COUNT": 1072
+     },
+     "ansible:5": {
+          "LINE_COUNT": 171944,
+          "FUNCTION_COUNT": 7795,
+          "MODULE_COUNT": 1069
+     },
+     "ansible:6": {
+          "LINE_COUNT": 2823185,
+          "FUNCTION_COUNT": 86388,
+          "MODULE_COUNT": 11113
+     },
+     "ansible:7": {
+          "LINE_COUNT": 2822082,
+          "FUNCTION_COUNT": 86374,
+          "MODULE_COUNT": 11111
+     },
+     "ansible:8": {
+          "LINE_COUNT": 2821345,
+          "FUNCTION_COUNT": 86322,
+          "MODULE_COUNT": 11187
+     },
+     "ansible:9": {
+          "LINE_COUNT": 2819364,
+          "FUNCTION_COUNT": 86295,
+          "MODULE_COUNT": 11176
+     },
+     "ansible:10": {
+          "LINE_COUNT": 2818587,
+          "FUNCTION_COUNT": 86276,
+          "MODULE_COUNT": 11172
+     },
+     "ansible:11": {
+          "LINE_COUNT": 2797191,
+          "FUNCTION_COUNT": 85714,
+          "MODULE_COUNT": 11157
+     },
+     "ansible:12": {
+          "LINE_COUNT": 2797155,
+          "FUNCTION_COUNT": 85714,
+          "MODULE_COUNT": 11157
+     },
+     "ansible:13": {
+          "LINE_COUNT": 2783386,
+          "FUNCTION_COUNT": 85361,
+          "MODULE_COUNT": 11101
+     },
+     "ansible:14": {
+          "LINE_COUNT": 2761343,
+          "FUNCTION_COUNT": 84774,
+          "MODULE_COUNT": 11033
+     },
+     "ansible:15": {
+          "LINE_COUNT": 2739235,
+          "FUNCTION_COUNT": 84202,
+          "MODULE_COUNT": 10993
+     },
+     "ansible:16": {
+          "LINE_COUNT": 2285452,
+          "FUNCTION_COUNT": 72530,
+          "MODULE_COUNT": 8930
+     },
+     "ansible:17": {
+          "LINE_COUNT": 2283898,
+          "FUNCTION_COUNT": 72490,
+          "MODULE_COUNT": 8916
+     },
+     "luigi:1": {
+          "LINE_COUNT": 22323,
+          "FUNCTION_COUNT": 1994,
+          "MODULE_COUNT": 119
+     },
+     "luigi:3": {
+          "LINE_COUNT": 21415,
+          "FUNCTION_COUNT": 1920,
+          "MODULE_COUNT": 115
+     },
+     "luigi:4": {
+          "LINE_COUNT": 19515,
+          "FUNCTION_COUNT": 1739,
+          "MODULE_COUNT": 104
+     },
+     "luigi:5": {
+          "LINE_COUNT": 19351,
+          "FUNCTION_COUNT": 1727,
+          "MODULE_COUNT": 103
+     },
+     "luigi:6": {
+          "LINE_COUNT": 19069,
+          "FUNCTION_COUNT": 1702,
+          "MODULE_COUNT": 102
+     },
+     "luigi:7": {
+          "LINE_COUNT": 18980,
+          "FUNCTION_COUNT": 1695,
+          "MODULE_COUNT": 104
+     },
+     "luigi:8": {
+          "LINE_COUNT": 18905,
+          "FUNCTION_COUNT": 1687,
+          "MODULE_COUNT": 104
+     },
+     "luigi:9": {
+          "LINE_COUNT": 18325,
+          "FUNCTION_COUNT": 1635,
+          "MODULE_COUNT": 104
+     },
+     "luigi:10": {
+          "LINE_COUNT": 17550,
+          "FUNCTION_COUNT": 1569,
+          "MODULE_COUNT": 101
+     },
+     "luigi:11": {
+          "LINE_COUNT": 17547,
+          "FUNCTION_COUNT": 1569,
+          "MODULE_COUNT": 101
+     },
+     "luigi:12": {
+          "LINE_COUNT": 17046,
+          "FUNCTION_COUNT": 1534,
+          "MODULE_COUNT": 104
+     },
+     "luigi:13": {
+          "LINE_COUNT": 16714,
+          "FUNCTION_COUNT": 1525,
+          "MODULE_COUNT": 102
+     },
+     "luigi:14": {
+          "LINE_COUNT": 16707,
+          "FUNCTION_COUNT": 1526,
+          "MODULE_COUNT": 102
+     },
+     "luigi:15": {
+          "LINE_COUNT": 16158,
+          "FUNCTION_COUNT": 1495,
+          "MODULE_COUNT": 101
+     },
+     "luigi:16": {
+          "LINE_COUNT": 15295,
+          "FUNCTION_COUNT": 1413,
+          "MODULE_COUNT": 99
+     },
+     "luigi:18": {
+          "LINE_COUNT": 14354,
+          "FUNCTION_COUNT": 1326,
+          "MODULE_COUNT": 97
+     },
+     "luigi:19": {
+          "LINE_COUNT": 14354,
+          "FUNCTION_COUNT": 1326,
+          "MODULE_COUNT": 97
+     },
+     "luigi:22": {
+          "LINE_COUNT": 13069,
+          "FUNCTION_COUNT": 1233,
+          "MODULE_COUNT": 89
+     },
+     "luigi:23": {
+          "LINE_COUNT": 13087,
+          "FUNCTION_COUNT": 1234,
+          "MODULE_COUNT": 89
+     },
+     "luigi:26": {
+          "LINE_COUNT": 12218,
+          "FUNCTION_COUNT": 1149,
+          "MODULE_COUNT": 86
+     },
+     "luigi:27": {
+          "LINE_COUNT": 12193,
+          "FUNCTION_COUNT": 1148,
+          "MODULE_COUNT": 86
+     },
+     "luigi:28": {
+          "LINE_COUNT": 11866,
+          "FUNCTION_COUNT": 1131,
+          "MODULE_COUNT": 74
+     },
+     "luigi:29": {
+          "LINE_COUNT": 11912,
+          "FUNCTION_COUNT": 1133,
+          "MODULE_COUNT": 74
+     },
+     "luigi:30": {
+          "LINE_COUNT": 11843,
+          "FUNCTION_COUNT": 1127,
+          "MODULE_COUNT": 74
+     },
+     "luigi:31": {
+          "LINE_COUNT": 11828,
+          "FUNCTION_COUNT": 1124,
+          "MODULE_COUNT": 74
+     },
+     "luigi:32": {
+          "LINE_COUNT": 11826,
+          "FUNCTION_COUNT": 1124,
+          "MODULE_COUNT": 74
+     },
+     "luigi:33": {
+          "LINE_COUNT": 11173,
+          "FUNCTION_COUNT": 1036,
+          "MODULE_COUNT": 67
+     },
+     "scrapy:3": {
+          "LINE_COUNT": 13674,
+          "FUNCTION_COUNT": 1399,
+          "MODULE_COUNT": 179
+     },
+     "scrapy:5": {
+          "LINE_COUNT": 13406,
+          "FUNCTION_COUNT": 1359,
+          "MODULE_COUNT": 248
+     },
+     "scrapy:7": {
+          "LINE_COUNT": 12557,
+          "FUNCTION_COUNT": 1303,
+          "MODULE_COUNT": 245
+     },
+     "scrapy:10": {
+          "LINE_COUNT": 17492,
+          "FUNCTION_COUNT": 1695,
+          "MODULE_COUNT": 250
+     },
+     "scrapy:13": {
+          "LINE_COUNT": 17553,
+          "FUNCTION_COUNT": 1698,
+          "MODULE_COUNT": 250
+     },
+     "scrapy:16": {
+          "LINE_COUNT": 17346,
+          "FUNCTION_COUNT": 1694,
+          "MODULE_COUNT": 250
+     },
+     "scrapy:24": {
+          "LINE_COUNT": 16973,
+          "FUNCTION_COUNT": 1671,
+          "MODULE_COUNT": 248
+     },
+     "scrapy:34": {
+          "LINE_COUNT": 16970,
+          "FUNCTION_COUNT": 1664,
+          "MODULE_COUNT": 255
+     },
+     "scrapy:35": {
+          "LINE_COUNT": 16413,
+          "FUNCTION_COUNT": 1668,
+          "MODULE_COUNT": 198
+     },
+     "scrapy:36": {
+          "LINE_COUNT": 14097,
+          "FUNCTION_COUNT": 1421,
+          "MODULE_COUNT": 179
+     },
+     "scrapy:37": {
+          "LINE_COUNT": 13668,
+          "FUNCTION_COUNT": 1399,
+          "MODULE_COUNT": 179
+     },
+     "scrapy:39": {
+          "LINE_COUNT": 12567,
+          "FUNCTION_COUNT": 1303,
+          "MODULE_COUNT": 245
+     }
+}

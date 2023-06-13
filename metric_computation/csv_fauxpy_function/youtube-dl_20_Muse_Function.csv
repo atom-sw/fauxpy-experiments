@@ -1,0 +1,4 @@
+Entity,Score
+youtube_dl/utils.py::get_element_by_attribute::348::350,0.0
+youtube_dl/utils.py::get_elements_by_attribute::360::382,0.0
+youtube_dl/utils.py::unescapeHTML::593::599,0.0

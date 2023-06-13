@@ -1,0 +1,16 @@
+Entity,Score
+luigi/task_register.py,1.1
+luigi/parameter.py,1.0040697674418604
+luigi/deprecate_kwarg.py,1.0040697674418604
+luigi/task.py,0.6408695652173912
+luigi/six.py,0.5936507936507937
+luigi/worker.py,0.1
+luigi/util.py,0.1
+luigi/task_history.py,0.1
+luigi/scheduler.py,0.1
+luigi/notifications.py,0.1
+luigi/mock.py,0.1
+luigi/interface.py,0.1
+luigi/format.py,0.1
+luigi/date_interval.py,0.1
+luigi/configuration.py,0.1

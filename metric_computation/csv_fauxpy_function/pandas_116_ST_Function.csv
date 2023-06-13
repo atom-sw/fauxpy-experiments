@@ -1,0 +1,6 @@
+Entity,Score
+pandas/core/reshape/merge.py::_get_merge_keys::1618::1691,1.0
+pandas/core/reshape/merge.py::__init__::549::632,0.5
+pandas/core/reshape/merge.py::__init__::1425::1455,0.3333333333333333
+pandas/core/reshape/merge.py::__init__::1523::1565,0.25
+pandas/core/reshape/merge.py::merge_asof::302::536,0.2

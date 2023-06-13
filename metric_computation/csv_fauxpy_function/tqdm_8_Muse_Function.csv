@@ -1,0 +1,4 @@
+Entity,Score
+tqdm/_tqdm.py::format_meter::103::265,0.0
+tqdm/_tqdm.py::format_sizeof::31::57,0.0
+tqdm/_tqdm.py::format_interval::59::78,0.0

@@ -1,0 +1,7 @@
+Entity,Score
+thefuck/rules/git_branch_exists.py::get_new_command::14::23,0.0
+thefuck/shells/generic.py::split_command::66::70,0.0
+thefuck/specific/git.py::git_support::7::32,0.0
+thefuck/types.py::script_parts::30::39,0.0
+thefuck/utils.py::is_app::158::169,0.0
+thefuck/utils.py::wrapper::33::44,0.0

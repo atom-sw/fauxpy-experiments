@@ -1,0 +1,9 @@
+Entity,Score
+spacy/language.py,1.0
+spacy/util.py,0.5773502691896258
+spacy/lookups.py,0.4082482904638631
+spacy/compat.py,0.3779644730092272
+spacy/__init__.py,0.0
+spacy/lang/en/lex_attrs.py,0.0
+spacy/lang/lex_attrs.py,0.0
+spacy/lemmatizer.py,0.0

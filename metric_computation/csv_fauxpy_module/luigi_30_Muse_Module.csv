@@ -1,0 +1,9 @@
+Entity,Score
+luigi/worker.py,0.9968339325962171
+luigi/task.py,0.9841696629810854
+luigi/interface.py,0.9366786519243417
+luigi/scheduler.py,0.8290323601957227
+luigi/notifications.py,0.0
+luigi/parameter.py,0.0
+luigi/task_register.py,-0.003166067403782913
+luigi/configuration.py,-0.10258058388256638

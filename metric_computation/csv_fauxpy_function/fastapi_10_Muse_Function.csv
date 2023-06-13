@@ -1,0 +1,6 @@
+Entity,Score
+fastapi/dependencies/utils.py::solve_dependencies::314::427,0.0
+fastapi/dependencies/utils.py::request_params_to_args::430::464,0.0
+fastapi/encoders.py::jsonable_encoder::9::111,0.0
+fastapi/routing.py::app::82::132,0.0
+fastapi/routing.py::serialize_response::37::63,0.0

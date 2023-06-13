@@ -1,0 +1,10 @@
+Entity,Score
+fastapi/utils.py::get_field_info::30::34,90.0
+fastapi/routing.py::app::100::150,90.0
+fastapi/exceptions.py::__init__::24::29,90.0
+fastapi/exception_handlers.py::request_validation_exception_handler::19::25,90.0
+fastapi/encoders.py::jsonable_encoder::29::156,90.0
+fastapi/dependencies/utils.py::request_body_to_args::617::685,90.0
+fastapi/dependencies/utils.py::request_params_to_args::569::614,90.0
+fastapi/dependencies/utils.py::solve_dependencies::433::566,90.0
+fastapi/applications.py::__call__::136::142,90.0

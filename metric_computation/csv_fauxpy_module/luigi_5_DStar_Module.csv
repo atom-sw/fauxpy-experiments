@@ -1,0 +1,16 @@
+Entity,Score
+luigi/util.py,0.4938271604938272
+luigi/task_register.py,0.4938271604938272
+luigi/task.py,0.4938271604938272
+luigi/worker.py,0.0
+luigi/task_history.py,0.0
+luigi/six.py,0.0
+luigi/scheduler.py,0.0
+luigi/parameter.py,0.0
+luigi/mock.py,0.0
+luigi/interface.py,0.0
+luigi/format.py,0.0
+luigi/execution_summary.py,0.0
+luigi/date_interval.py,0.0
+luigi/configuration.py,0.0
+luigi/cmdline_parser.py,0.0

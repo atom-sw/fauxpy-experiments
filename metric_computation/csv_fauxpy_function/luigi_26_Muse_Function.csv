@@ -1,0 +1,11 @@
+Entity,Score
+luigi/configuration.py::_get_with_default::66::82,0.0
+luigi/contrib/hadoop_jar.py::run_job::70::109,0.0
+luigi/parameter.py::_get_value::176::201,0.0
+luigi/parameter.py::has_task_value::235::236,0.0
+luigi/parameter.py::task_value::238::243,0.0
+luigi/task.py::get_param_values::184::234,0.0
+luigi/task.py::list_to_tuple::227::232,0.0
+luigi/task.py::__init__::236::268,0.0
+luigi/task_register.py::task_family::115::126,0.0
+luigi/task_register.py::__call__::70::99,0.0

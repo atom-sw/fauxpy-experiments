@@ -1,0 +1,14 @@
+Entity,Score
+luigi/task_register.py,1.1
+luigi/worker.py,0.1
+luigi/util.py,0.1
+luigi/tools/parse_task.py,0.1
+luigi/task_history.py,0.1
+luigi/task.py,0.1
+luigi/six.py,0.1
+luigi/scheduler.py,0.1
+luigi/parameter.py,0.1
+luigi/mock.py,0.1
+luigi/interface.py,0.1
+luigi/format.py,0.1
+luigi/configuration.py,0.1

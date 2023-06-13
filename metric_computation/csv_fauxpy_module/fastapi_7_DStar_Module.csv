@@ -1,0 +1,10 @@
+Entity,Score
+fastapi/routing.py,0.9090909090909091
+fastapi/exceptions.py,0.9090909090909091
+fastapi/exception_handlers.py,0.9090909090909091
+fastapi/dependencies/utils.py,0.9090909090909091
+fastapi/utils.py,0.3225806451612903
+fastapi/applications.py,0.3225806451612903
+fastapi/openapi/utils.py,0.0
+fastapi/encoders.py,0.0
+fastapi/dependencies/models.py,0.0

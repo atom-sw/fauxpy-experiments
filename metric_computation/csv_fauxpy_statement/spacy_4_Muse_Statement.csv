@@ -1,0 +1,12 @@
+Entity,Score
+spacy/cli/converters/conllu2json.py::25,0.783842204809511
+spacy/cli/converters/conllu2json.py::59,0.783842204809511
+spacy/cli/converters/conllu2json.py::61,0.783842204809511
+spacy/cli/converters/conllu2json.py::73,0.05545798432855993
+spacy/cli/converters/conllu2json.py::24,0.0
+spacy/cli/converters/conllu2json.py::58,0.0
+spacy/cli/converters/conllu2json.py::62,-0.10807889759524453
+spacy/cli/converters/conllu2json.py::69,-0.10807889759524453
+spacy/cli/converters/conllu2json.py::72,-0.21615779519048897
+spacy/cli/converters/conllu2json.py::23,-0.21615779519048905
+spacy/cli/converters/conllu2json.py::65,-0.21615779519048905

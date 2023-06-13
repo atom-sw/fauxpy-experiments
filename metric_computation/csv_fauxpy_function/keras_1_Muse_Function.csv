@@ -1,0 +1,12 @@
+Entity,Score
+keras/backend/tensorflow_backend.py::truncated_normal::4290::4318,2.0
+keras/backend/tensorflow_backend.py::random_uniform::4237::4262,1.0
+keras/backend/tensorflow_backend.py::random_normal::4210::4234,0.997513687152227
+keras/initializers.py::__call__::245::259,0.995027374304454
+keras/backend/tensorflow_backend.py::is_symbolic::79::80,0.0
+keras/initializers.py::__init__::180::199,0.0
+keras/initializers.py::__call__::201::218,0.0
+keras/initializers.py::_compute_fans::448::485,0.0
+keras/backend/tensorflow_backend.py::variable::578::616,-0.014917877086638057
+keras/backend/tensorflow_backend.py::int_shape::777::807,-0.03978100556436815
+keras/backend/tensorflow_backend.py::get_value::2823::2835,-0.24365865908175494

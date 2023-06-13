@@ -1,0 +1,4 @@
+Entity,Score
+youtube_dl/extractor/common.py,0.5
+youtube_dl/utils.py,0.5
+youtube_dl/YoutubeDL.py,0.08980265101338746

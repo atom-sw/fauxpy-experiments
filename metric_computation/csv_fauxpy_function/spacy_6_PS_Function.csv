@@ -1,0 +1,4 @@
+Entity,Score
+spacy/errors.py::_warn::610::626,1.0
+spacy/analysis.py::analyze_pipes::11::38,0.9090909090909091
+spacy/language.py::remove_pipe::395::407,0.7513148009015777

@@ -1,0 +1,6 @@
+Entity,Score
+keras/initializers.py::__call__::245::259,1.0
+keras/backend/tensorflow_backend.py::random_normal::4210::4234,1.0
+keras/backend/tensorflow_backend.py::random_uniform::4237::4262,1.0
+keras/backend/tensorflow_backend.py::truncated_normal::4290::4318,1.0
+keras/initializers.py::__call__::201::218,0.9090909090909091

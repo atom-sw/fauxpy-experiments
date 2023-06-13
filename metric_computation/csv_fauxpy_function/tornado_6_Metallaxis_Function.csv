@@ -1,0 +1,5 @@
+Entity,Score
+tornado/ioloop.py::current::254::296,0.06356417261637282
+tornado/ioloop.py::initialize::354::363,0.04767312946227962
+tornado/util.py::__new__::295::313,0.006881023532039754
+tornado/ioloop.py::clear_current::321::334,0.0

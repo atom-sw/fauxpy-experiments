@@ -1,0 +1,6 @@
+Entity,Score
+luigi/parameter.py::serialize::942::950,1.0
+luigi/task.py::to_str_params::472::482,0.5
+luigi/task.py::__init__::423::441,0.3333333333333333
+luigi/task_register.py::instantiate::79::80,0.25
+luigi/task_register.py::__call__::72::101,0.2
