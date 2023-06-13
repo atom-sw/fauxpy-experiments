@@ -1,0 +1,52 @@
+CombineFL - An infrastructure for evaluating and combining fault localization techniques.
+
+Usage:
+
+Use existing techniques:
+
+    $ python 1-combine.py
+    $ ./2-split.sh
+    $ ./3-crossvalidation.sh
+    $ python 4-calc-metric.py
+
+Add your technique(s) to the infrastructure:
+
+    $ python 1-combine.py -f <add-in-file-path>
+    $ ./2-split.sh
+    $ ./3-crossvalidation.sh
+    $ python 4-calc-metric.py
+
+------
+Format for add-in data file:
+
+    Standard JSON format.
+
+    For each fault in Defects4J dataset, use the project name and number.
+        Format: <project><fault_number>  Example: 'math1', 'time15'
+
+    For each suspicious statement, use the classname and line number. Such as:
+        Format: <classname>:<linenumber> Example: 'com.google.javascript.rhino.Node:393'
+
+    For suspicious score, use a float in range (0, 1).
+        Format: <method_name>: <score>
+
+An add-in example:
+{
+  "math1": {
+    "org.apache.commons.math3.exception.util.LocalizedFormats:95": {
+      "new_method1": 0.2,
+      "new_method2": 0.5
+    },
+    "org.apache.commoms.math3.fraction.BigFraction:90": {
+      "new_method1": 0.6,
+      "new_method2": 0.1
+    }
+  },
+  "time8": {
+    "org.joda.time.tz.ZoneInfoProvider:201": {
+      "new_method1": 0.1,
+      "new_method2": 0.3
+    }
+  }
+}
+

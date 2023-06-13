@@ -1,0 +1,5 @@
+data/cross_data
+data/l2r_format.dat
+data/exp_info.json
+
+*.pyc
