@@ -1,0 +1,1879 @@
+---
+title: "An Empirical Study of Fault Localization in Python Programs"
+author: "Mohammad Rezaalipour and Carlo A. Furia"
+header-includes:
+   - \usepackage[T1]{fontenc}
+   - \usepackage[scaled=0.81]{beramono}
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    df_print: paged
+link-citations: yes
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, cache=TRUE, cache.lazy=FALSE)
+```
+
+```{r render, eval=FALSE, include=FALSE}
+## Evaluate this snippet to knit this document.
+rmarkdown::render("pyfl.Rmd")
+```
+
+```{r include=FALSE}
+
+# Assertions
+library(assertthat)
+
+# Regex and string manipulation
+library(stringr)
+# Convenient text input output
+library(readr)
+
+# Powerful table manipulation
+library(dplyr)
+# Disable warning when summarize groups by default
+options(dplyr.summarise.inform=FALSE)
+library(tidyr)
+## Data reshaping documentation: https://uc-r.github.io/tidyr
+
+# Fancy, easy plots
+library(ggplot2)
+# Fancy plot text
+# library(ggtext)
+# More complicated plots
+library(GGally)
+## ggpairs extensive documentation: https://ggobi.github.io/ggally/articles/ggpairs.html
+## Pseudo log scales
+library(scales)
+
+# Beautiful, readable color palettes
+library(MetBrewer)
+
+# Various effect size calculations
+library(effsize)
+
+# Bayesian inference
+library(posterior)
+library(brms)
+library(rethinking)
+# Calculating estimated marginal means for mixed effects models
+library(emmeans)
+library(marginaleffects)
+
+
+## For determinism
+MY.SEED <- 73544204
+set.seed(MY.SEED)
+# No need to thread safe RNGs
+options(future.rng.onMisuse="ignore")
+# Use available CPUs
+options(mc.cores=parallel::detectCores())
+# Set cmdstanr as backend for brms if you have it
+options(brms.backend="cmdstanr")
+
+
+
+# Colors for projects
+P.PALETTE <- "Renoir"
+P.COLORS <- met.brewer(P.PALETTE, n=12)
+
+# Colors for categories
+C.PALETTE <- "Archambault"
+C.COLORS <- met.brewer(C.PALETTE, n=4)
+```
+
+```{r include=FALSE}
+
+KEY.FAMILY <- "flpy"
+stored.values <- list()
+stored.values.str <- list()
+
+PAPER.DIR <- file.path("paper")
+PAPER.FNAME <- "stats.tex"
+
+STORED.NUMS <- list()
+STORED.STRINGS <- list()
+
+sanitize_ <- function(name)
+{
+  res <- name
+  res <- gsub("&", "+", res)
+  res <- gsub("%", "p", res)
+  res
+}
+
+# Store `value` under `key` as numeric value.
+# If `as.string` store it as string value instead.
+# Use `family/group` as a hierarchical prefixes.
+store_ <- function(key, value, group="", family=KEY.FAMILY, as.string=FALSE)
+{
+  maybe.group <- if (group == "") "" else paste0(group, "/")
+  key <- sanitize_(paste0("/", family, "/", maybe.group, key))
+  if (as.string)
+    STORED.STRINGS[[key]] <<- seqinr::stresc(as.character(value))
+  else {
+    STORED.NUMS[[key]] <<- value
+  }
+}
+
+# Store all content of table `df` as numeric or string values,
+# under keys of the form `row.ids`:`col.ids`, using `tabname` as the group name.
+#
+# If `row.ids` is NULL and `df`'s row names are unique, use them as row identifiers;
+# if `row.ids` is NULL and `df`'s row names are NOT unique, use row numbers as row identifiers.
+# Argument `col.ids` works as `row.ids` but for column names.
+#
+# If `replace.probs` is TRUE and row identifiers are unique, change 
+# row identifiers that denote lower bounds "|0.p" to "lower p0", 
+# and row identifiers that denote upper bounds "0.p|" to "upper p0".
+#
+# If `vectorize` is TRUE and `df` consists of a single column, use keys 
+# of the form `row.ids` (i.e., a single index instead of a pair of indexes).
+store.table_ <- function(df, tabname, 
+                         replace.probs=FALSE, row.ids=NULL, col.ids=NULL, vectorize=TRUE)
+{
+  if (is.null(row.ids)) {
+    if (any(duplicated(rownames(df))))
+      row.ids <- 1:nrow(df)
+    else
+      row.ids <- rownames(df)
+  }
+  if (is.null(col.ids)) {
+    if (any(duplicated(colnames(df))))
+      col.ids <- 1:ncol(df)
+    else
+      col.ids <- colnames(df)
+  }
+  if (replace.probs && !any(duplicated(row.ids))) {
+    mo <- (row.ids %>% str_match("^[|]([0-9]+[.]?[0-9]*)$"))[, 2]
+    row.ids <- ifelse(is.na(mo), row.ids, paste0("lower ", 100*as.numeric(mo)))
+    mo <- (row.ids %>% str_match("^([0-9]+[.]?[0-9]*)[|]$"))[, 2]
+    row.ids <- ifelse(is.na(mo), row.ids, paste0("upper ", 100*as.numeric(mo)))
+  }
+  for (row in 1:length(row.ids)) {
+    for (col in 1:length(col.ids)) {
+      if (length(col.ids) == 1 && vectorize)
+        key <- paste0(row.ids[row])
+      else
+        key <- paste0(row.ids[row], ":", col.ids[col])
+      value <- df[row, col]
+      store_(key, value, group=tabname, as.string=!is.numeric(value))
+    }
+  }
+}
+
+# Write all numeric constants to `filename` in `out_dir`.
+# If `strings`, write all string constants instead.
+# If `reset`, empty the content of the variable store that has been dumped.
+dump.constants_ <- function(filename, out_dir="", strings=FALSE, append=FALSE, reset=FALSE)
+{
+   fn <- file.path(out_dir, filename)
+   if (strings)
+     to.store <- STORED.STRINGS
+   else
+     to.store <- STORED.NUMS
+   constants <- paste0("\\pgfkeyssetvalue{", names(to.store), "}{", unlist(to.store), "}")
+   write_lines(constants, fn, append=append)
+   if (reset) {
+     if (strings)
+       STORED.STRINGS <<- list()
+    else
+      STORED.NUMS <<- list()
+   }
+}
+
+# Write all stored constants into default file
+dump.all_ <- function(filename=PAPER.FNAME, out_dir=PAPER.DIR, append=TRUE, reset=TRUE)
+{
+  dump.constants_(filename, out_dir=out_dir, strings=FALSE, append=append)
+  dump.constants_(filename, out_dir=out_dir, strings=TRUE, append=TRUE)
+}
+```
+
+
+
+# Data input
+
+Let's start with reading the computed metrics for all projects.
+
+```{r data input, include=TRUE}
+metrics.dir <- "../metric_computation/"
+assertthat::assert_that(dir.exists(metrics.dir))
+
+GRANULARITIES <- factor(c("function", "statement", "module"))
+FAMILIES <- list(MBFL=c("Metallaxis", "Muse"), 
+                 PS=c("PS"), 
+                 ST=c("ST"),
+                 SBFL=c("DStar", "Ochiai", "Tarantula"))
+CATEGORIES <- list(DS=c("spacy", "keras", "pandas"),
+                   DEV=c("cookiecutter", "black", "luigi"),
+                   WEB=c("sanic", "fastapi", "tornado"),
+                   CL=c("httpie", "thefuck", "tqdm", "youtubedl"))
+  
+datas <- data.frame()
+for (granularity in GRANULARITIES) {
+  csvpath <- file.path(metrics.dir, 
+                       str_c("output_fauxpy_", granularity),
+                       str_c("fauxpy_", granularity, "_all_detailed.csv"))
+  cur.data <- read.csv(csvpath)
+  datas <- datas %>% bind_rows(cur.data)
+}
+
+# rename columns
+names(datas)[names(datas) == "project_name"] <- "project"
+names(datas)[names(datas) == "e_inspect"] <- "einspect"
+names(datas)[names(datas) == "experiment_time_seconds"] <- "time"
+names(datas)[names(datas) == "exam_score"] <- "exam"
+names(datas)[names(datas) == "cumulative_distance"] <- "cdist"
+names(datas)[names(datas) == "sv_comp_overall_score"] <- "svcomp"
+names(datas)[names(datas) == "mutable_bug"] <- "ismutable"
+names(datas)[names(datas) 
+             == "percentage_of_mutants_on_ground_truth"] <- "mutability"
+
+# rename to avoid - character
+datas$project[datas$project == "youtube-dl"] <- "youtubedl"
+
+# use booleans where appropriate
+datas$crashing <- as.logical(datas$crashing)
+datas$predicate <- as.logical(datas$predicate)
+datas$ismutable <- as.logical(datas$ismutable)
+
+# convert to factors
+datas$project <- factor(datas$project)
+datas$granularity <- factor(datas$granularity)
+levels(datas$granularity) <- GRANULARITIES
+datas$technique <- factor(datas$technique)
+# add time in minutes
+datas$minutes <- datas$time / 60
+# add log-transformed time
+datas$logtime <- log(datas$time)
+
+TECHNIQUES <- unique(datas$technique)
+PROJECTS <- unique(datas$project)
+
+#' Given a technique, which family it belongs to
+which.family <- function(t) names(FAMILIES)[sapply(FAMILIES, function(x) t %in% x)]
+
+# Derive each technique's family
+datas$family <- sapply(datas$technique, which.family)
+datas$family <- factor(datas$family)
+# Force order of families as in names(FAMILIES)
+datas <- (datas %>% mutate(family=factor(family, levels=names(FAMILIES))))
+
+#' Given a project, which category it belongs to
+which.category <- function(p) names(CATEGORIES)[sapply(CATEGORIES, 
+                                                       function(x) p %in% x)]
+
+# Derive each project's category
+datas$category <- sapply(datas$project, which.category)
+datas$category <- factor(datas$category)
+
+# Assign unique identifier to every bug
+bugs <- str_c(datas$project, datas$bug_number)
+bugs <- factor(bugs)
+datas$bugid <- bugs
+BUGS <- unique(datas$bug)
+
+#' Given a bug unique identifier, which category of programs it belongs to
+which.projcategory <- function(t) 
+  names(CATEGORIES)[sapply(CATEGORIES, 
+                           function(x) any(str_detect(t, x)))]
+
+# show some data
+str(datas)
+```
+
+We have data about `r length(unique(datas$bugid))` bugs 
+in `r `length(unique(datas$project))` analyzed projects.
+
+
+# Pairwise comparisons
+
+Let's see an example of visual and statistical comparison of two groups of experiments for the same bugs.
+
+To make the example concrete, let's pick two groups and compare their $E_{\text{inspect}}$ scores on statement-level fault localization:
+
+   - $S$ are the experiments done with any SBFL technique
+   - $M$ are the experiments done with any MBFL technique
+
+Since there are three experiments per bug using SBFL, 
+but only two experiments per bug using MBFL,
+we'll aggregate scores for the same bug by average.
+
+
+```{r group aggregation}
+statement.by.family.einspect <- (
+  datas 
+  %>% filter(granularity == "statement")
+  %>% group_by(family, category, project, bug_number)
+  %>% summarize(einspect=mean(einspect))
+  %>% spread(family, einspect)
+)
+
+statement.einspect.upper <- max(unlist(
+  statement.by.family.einspect[,
+                               length(names(FAMILIES)):ncol(statement.by.family.einspect)])
+  )
+
+S <- statement.by.family.einspect$SBFL
+M <- statement.by.family.einspect$MBFL
+```
+
+Let's start with some visualization: a scatterplot with a point for each bug;
+each point has coordinates $x, y$ where $x$ is its score in MBFL and $y$ its score in SBFL.
+
+```{r scatterplot}
+p <- ggplot(statement.by.family.einspect, 
+            aes(x=MBFL, y=SBFL, color=category)) + geom_point(size=3)
+p <- (p + scale_color_met_d(C.PALETTE) 
+      + scale_x_continuous(limits=c(0, statement.einspect.upper))
+      + scale_y_continuous(limits=c(0, statement.einspect.upper)))
+p <- p + theme_classic()
+
+# x = y reference line
+p <- p + geom_abline(slope=1, intercept=0)
+
+p
+```
+
+As you can see, 
+there are a bulk of bugs for which SBFL performs very similarly to MBFL 
+(points close to the $x = y$ straight line).
+However, for several other bugs, SBFL is much better (remember that lower is better for this score).
+
+Looking at the colors, we notice that several bugs in the CL (and possibly DS) category are overrepresented among the "harder" bugs on which SBFL behaves much better than MBFL.
+
+Analyzing the same data numerically, we can compute the correlation (Kendall's $\tau$) between $S$ and $M$:
+
+```{r correlation}
+(corr <- cor.test(S, M, method="kendall"))
+```
+
+A correlation of `r corr$estimate` is not super strong, but clearly defined.
+
+Finally, we may also perform a statistical test (Wilcoxon's paired test)
+and compute a matching effect size (Cliff's delta).
+
+```{r tests}
+wilcox.test(S, M, paired=TRUE)
+
+cliff.delta(S, M)
+```
+
+Cliff's delta, in particular, roughly measures how often the value in one set are larger than the value in the other set.
+Thus, the given value means that SBFL's $E_{\text{inspect}}$ score is smaller than MBFL's roughly in 18\% of the cases.
+
+
+These statistics, for what they're worth,
+seem to confirm that there is a noticeable difference in favor of SBFL.
+
+Now, let's generalize this to a scatterplot matrix to show the relations between all possible pairs of FL families.
+
+First, we define a bunch of helper functions.
+
+```{r scatterplot matrix funs, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+#' Compute statistics comparing data `x` and `y`.
+#'
+#' The function returns a vector of strings, each expressing a statistics and
+#' some kind of strength level with stars.
+#'
+#' @param x   A numeric vector with the first dataset.
+#' @param y   A numeric vector with the second dataset.
+#' @param digits   The number of decimal digits of the statistics.
+#' @param corr.method   The correlation method to be used (see `cor.test`).
+#' @param conf.level   The confidence level used for the significance tests.
+#' @param info  If not NULL (the default), a list with components `granularity`, 
+#'   `metric`, `g1`, `g2`, used to store key constants of the various stats.
+#'
+#' @return  Returns a vector of strings with correlation, p-value of 
+#'          a Wilcoxon paired test, and Cliff's delta.
+#'
+pairs_text_fn <- function(x, y, digits, corr.method, conf.level,
+                          info=NULL)
+{
+  alpha <- 1 - conf.level
+  # correlation
+  corObj <- stats::cor.test(x, y, method=corr.method, conf.level=conf.level)
+  cor_est <- as.numeric(corObj$estimate)
+  cor_txt <- formatC(cor_est, digits=digits, format="f")
+  cor_sig <- corObj$p.value < alpha
+  cor_abs <- abs(cor_est)
+  cor_stars <- ifelse(cor_abs <= 0.3, 0,
+                      ifelse(cor_abs <= 0.5, 1,
+                             ifelse(cor_abs <= 0.7, 2,
+                                    3)))
+  cor_txt <- str_c(cor_txt, strrep("*", cor_stars))
+  # Wilcoxon
+  sigObj <- wilcox.test(x, y, paired=TRUE, conf.level=conf.level)
+  sig_est <- as.numeric(sigObj$p.value)
+  sig_txt <- formatC(sig_est, digits=digits, format="f")
+  sig_sig <- sigObj$p.value < alpha
+  if (sig_sig)
+    sig_txt <- str_c(sig_txt, signif_stars(sigObj$p.value, point=NULL))
+  # Cliff's delta
+  deltaObj <- cliff.delta(x, y, conf.level=conf.level)
+  delta_est <- as.numeric(deltaObj$estimate)
+  delta_txt <- formatC(delta_est, digits=digits, format="f")
+  delta_sig <- deltaObj$magnitude
+  n_stars <- switch(as.character(delta_sig),
+                    "negligible"=0,
+                    "small"=1,
+                    "medium"=2,
+                    "large"=3)
+  delta_txt <- str_c(delta_txt, strrep("*", n_stars))
+  # add \n at the end of each statistic
+  res <- c(sapply(c(cor_txt, sig_txt), function(s) str_c(s, "\n")), delta_txt)
+  if (!is.null(info)) {
+    grp <- str_c(info$granularity, "/", info$metric, "/", info$g1,":", info$g2)
+    store_("corrTau", cor_est, grp)
+    store_("WilcoxonP", sig_est, grp)
+    store_("CliffD", delta_est, grp)
+    return(grp)
+  }
+  res
+}
+
+#' Helper function wrapping `pairs_text_fn` in a call to 
+#' `GGally::ggally_statistics`, providing sensible defaults.
+pairs.stats <- function (data, mapping, ..., 
+                         digits=2, na.rm=TRUE, 
+                         corr.method="kendall", conf.level=0.95)
+{
+    ggally_statistic(data=data, 
+                     mapping=mapping, 
+                     title=c("Corr", "p-value", "Effect"),
+                     na.rm=na.rm,
+                     justify_text="left", justify_labels="left", sep=": ",
+                     title_args=list(color="black"),
+                     text_fn=function(x, y) pairs_text_fn(x, y, 
+                                                          digits, 
+                                                          corr.method, 
+                                                          conf.level))
+}
+
+#' Helper function to add a line x = y to a ggpairs plot.
+points_abline <- function(data, mapping, ...)
+{
+  pp <- ggplot(data=data, mapping=mapping) + geom_point()
+  if (hasArg("lower_limits")) {
+    extra.params <- list(...)
+    pp <- (pp 
+           + scale_x_continuous(limits=extra.params$lower_limits) 
+           + scale_y_continuous(limits=extra.params$lower_limits))
+  }
+  pp <- pp + geom_abline(intercept=0, slope=1)
+  pp
+}
+
+#' Helper function to build bar plots of percentage counts, using the exact same bins in all plots.
+bar_scale <- function(data, mapping, ...)
+{
+  extra.params <- list(...)
+  if (hasArg("lower_limits")) {
+    # Use the same limits as for lower diagonal plots, if available
+    lower_limits <- extra.params$lower_limits
+  } else {
+    # Otherwise, just pick the range of values as limits
+    xs <- data[[as_label(mapping$x)]]
+    lower_limits <- c(min(xs), max(xs))
+  }
+  # Number of bins, with default 20
+  nbins <- if (hasArg("bins")) extra.params$bins else 20
+  # Number of bins with displayed label, with default 5
+  nlabels <- if (hasArg("n_labels")) extra.params$n_labels else 5
+  # Argument boundary_mult ensures that all boundaries between bins are unique
+  if (hasArg("boundary_mult")) {
+    # Each bin boundary is a multiple of this, with default 10
+    boundary_mult <- if (is.numeric(extra.params$boundary_mult)) 
+      extra.params$boundary_mult else 10
+    # Only split bins at multiples of 10
+    potential_breaks <- round(seq(lower_limits[1], 
+                    # Add the remainder of the difference divided by boundary_mult, so that
+                    # the last element of the sequence is always lower_limits[2]
+                                  lower_limits[2] 
+                    + (lower_limits[2] - lower_limits[2])%%boundary_mult,
+                                  by=boundary_mult))
+    # Because of rounding, you may end up with duplicates, so let's remove them
+    potential_breaks <- unique(potential_breaks)
+    # Select a subset of nbins elements
+    idx_breaks <- unique(round(seq(from=1, to=length(potential_breaks), length.out=nbins)))
+    # These are the boundary values between bins
+    bin_breaks <- potential_breaks[idx_breaks]
+  } else {
+    bin_breaks <- round(seq(lower_limits[1], lower_limits[2], length.out=nbins))
+  }
+  # Each pair of bins is a bin range. We use the upper bound of the bin as bin label
+  bin_labels <- bin_breaks[2:length(bin_breaks)]
+  # Classify each data point in a bin under column `bin.max`
+  data <- data %>% mutate(bin.max = cut(.data[[as_label(mapping$x)]],  # column currently plotted
+                                       breaks=bin_breaks,
+                                       labels=bin_labels))
+  # Overwrite current data column...
+  data[[as_label(mapping$x)]] <- data$bin.max
+  # ... so that I can pass the same data frame to ggplot as usual
+  pp <- (ggplot(data, mapping) 
+         # histogram with percentages: count is the number of elements in the bin, normalized by total count
+         # https://stackoverflow.com/a/31201910
+         + geom_bar(aes(y=after_stat(count/sum(count)))))
+  # Labels as strings
+  text_labels <- as.character(bin_labels)
+  # Indexes of bins with displayed label
+  idx_labels <- round(seq(from=1, to=length(bin_labels), length.out=nlabels))
+  # Displayed labels only
+  display_labels <- text_labels[idx_labels]
+  # All other bins get an empty label
+  text_labels[-idx_labels] <- ""
+  # Same labeling behavior as a function, so that it can be combined with a different number of breaks
+  label_func <- function(labs) {
+    labs[!(labs %in% display_labels)] <- ""
+    return(labs)
+  }
+  # Keep all bins, but display fewer labels
+  pp <- pp + scale_x_discrete(drop=FALSE, breaks=bin_labels[idx_labels], labels=label_func)
+  # Display y as percentages, force full 0-100% scale
+  pp <- pp + scale_y_continuous(labels=scales::percent, limits=c(0, 1))
+  return(pp)
+}
+
+
+#' Pairwise comparison plot with scatterplots on lower, bar charts on diagonal, 
+#' and statistics on upper.
+#' 
+#' @param data  The dataset used for plotting.
+#' @param columns  The indexes of columns to be compared pairwise.
+#' @param color_var  The column used to group the plotted data, as a string.
+#' @param palette  The name of the MetBrewer palette used to color groups.
+#'
+#' @return  Returns a ggplot2 plot object. 
+pairwise.comparison.plot <- function(data, columns, 
+                                     color_var="category", palette=NULL, ...)
+{
+  pp <- ggpairs(data, columns, 
+                legend=1,
+                lower=list(mapping=aes(color=.data[[color_var]]),
+                           continuous=wrap(points_abline, ...)),
+                diag=list(continuous=wrap(bar_scale, ...),
+                          mapping=aes(color=.data[[color_var]], fill=.data[[color_var]])),
+                upper=list(continuous=wrap(pairs.stats)))
+  if (!is.null(palette))
+    pp <- pp + scale_color_met_d(palette) + scale_fill_met_d(palette)
+  pp <- pp + theme_light() + theme(
+    legend.title=element_blank(),
+    legend.position="bottom",
+    legend.direction="horizontal"
+    # aspect.ratio=3/6
+  )
+  # change theme selectively for upper cells
+  # this only works if no other theme is set in the rest of the plot
+  # pp <- add_to_ggmatrix(pp, 
+  #                       # this "casting" is needed in my version of GGally
+  #                       ggproto(ggplot2::theme_minimal()), 
+  #                       location="upper")
+  return(pp)
+}
+```
+
+Then, we use them to generate plots for $E$.
+
+
+```{r scatterplot einspect, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+statement.einspect.limits <- c(0, statement.einspect.upper)
+
+p.einspect <- pairwise.comparison.plot(
+  statement.by.family.einspect, 
+  columns=which(names(statement.by.family.einspect) %in% names(FAMILIES)),
+  color_var="category", palette=C.PALETTE,
+  lower_limits=statement.einspect.limits,
+  boundary_mult=10
+  )
+p.einspect
+
+f.p.einspect <- file.path(PAPER.DIR, "statement-family-einspect.pdf") 
+ggsave(f.p.einspect, 
+       plot=p.einspect, 
+       device="pdf")
+knitr::plot_crop(f.p.einspect, quiet=TRUE)
+
+all.pairs <- statement.by.family.einspect[, 
+                                          (colnames(statement.by.family.einspect) 
+                                           %in% names(FAMILIES))]
+# generate all pairs
+all.pairs <- combn(all.pairs, 2, simplify=FALSE)
+
+# also save statistics as constants
+x_ <- lapply(all.pairs, 
+             function(p) 
+               pairs_text_fn(unlist(p[1]), unlist(p[2]), 2, "kendall", 0.95,
+                             info=list(
+                               granularity="statement", 
+                               metric="einspect", 
+                               g1=colnames(p)[1], 
+                               g2=colnames(p)[2])))
+```
+
+Now, it's easy to compute a similar plot for other metrics.
+For example, running time (in minutes):
+
+```{r scatterplot time, echo=FALSE, message=FALSE, results='hide', fig.keep='all'}
+
+statement.by.family.time <- (
+  datas 
+  %>% filter(granularity == "statement")
+  %>% group_by(family, category, project, bug_number)
+  %>% summarize(minutes=mean(minutes))
+  %>% spread(family, minutes)
+)
+
+statement.time.upper <- max(unlist(
+  statement.by.family.time[, length(names(FAMILIES)):ncol(statement.by.family.time)])
+  )
+
+statement.time.limits <- c(0, statement.time.upper)
+
+p.time <- pairwise.comparison.plot(
+  statement.by.family.time, 
+  columns=which(names(statement.by.family.time) %in% names(FAMILIES)),
+  color_var="category", palette=C.PALETTE,
+  lower_limits=statement.time.limits,
+  boundary_mult=100
+  )
+# p.time <- p.time + theme(axis.text.x=element_text(angle=90))
+p.time
+
+f.p.time <- file.path(PAPER.DIR, "statement-family-time.pdf") 
+ggsave(f.p.time, 
+       plot=p.time, 
+       device="pdf")
+knitr::plot_crop(f.p.time, quiet=TRUE)
+
+all.pairs <- statement.by.family.time[, 
+                                      (colnames(statement.by.family.time) 
+                                       %in% names(FAMILIES))]
+# generate all pairs
+all.pairs <- combn(all.pairs, 2, simplify=FALSE)
+
+# also save statistics as constants
+x_ <- lapply(all.pairs, 
+             function(p) 
+               pairs_text_fn(unlist(p[1]), unlist(p[2]), 2, "kendall", 0.95,
+                             info=list(
+                               granularity="statement", 
+                               metric="time", 
+                               g1=colnames(p)[1], 
+                               g2=colnames(p)[2])))
+```
+
+And also for technique in the SBFL and MBFL families
+(those where there is more than one technique of the same family).
+
+```{r scatterplot intra-family, echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
+for (FAM in c("SBFL", "MBFL")) {
+  intrafamily.einspect <- (
+    datas 
+    %>% filter(granularity == "statement", family == FAM)
+    # grouping and summary actually not needed
+    %>% group_by(technique, category, project, bug_number)
+    %>% summarize(einspect=mean(einspect))
+    %>% spread(technique, einspect)
+  )
+  
+  intrafamily.upper <- max(unlist(
+    intrafamily.einspect[, length(FAMILIES[[FAM]]):ncol(intrafamily.einspect)]
+  ))
+  
+  intrafamily.limits <- c(0, intrafamily.upper)
+  
+  p.intrafamily <- pairwise.comparison.plot(
+    intrafamily.einspect, 
+    columns=which(names(intrafamily.einspect) %in% FAMILIES[[FAM]]),
+    color_var="category", palette=C.PALETTE,
+    lower_limits=intrafamily.limits, boundary_mult=10)
+  print(p.intrafamily)
+  
+  f.p.intrafamily <- file.path(PAPER.DIR, str_c("statement-", FAM, "-einspect.pdf")) 
+  ggsave(f.p.intrafamily, 
+         plot=p.intrafamily, 
+         device="pdf")
+  knitr::plot_crop(f.p.intrafamily, quiet=TRUE)
+  
+  all.pairs <- intrafamily.einspect[, 
+                                    (colnames(intrafamily.einspect) 
+                                     %in% FAMILIES[[FAM]])]
+  # generate all pairs
+  all.pairs <- combn(all.pairs, 2, simplify=FALSE)
+  
+  # also save statistics as constants
+  x_ <- lapply(all.pairs, 
+               function(p) 
+                 pairs_text_fn(unlist(p[1]), unlist(p[2]), 2, "kendall", 0.95,
+                               info=list(
+                                 granularity=str_c("statement-intra-", FAM), 
+                                 metric="einspect", 
+                                 g1=colnames(p)[1], 
+                                 g2=colnames(p)[2])))
+}
+```
+
+# Regression models
+
+Let's build a simple multivariate regression model, 
+where we predict `einspect` and `logtime` from bug and technique.
+
+Notice that we found it preferable to log-transform `time` (in seconds),
+since this helps with the wide range of variability of running times among techniques.
+In particular, ST runs in a matter of seconds, two order of magnitudes
+faster than the next fastest family SBFL. If we do not
+log-transform `time`, we still get generally sensible results,
+but the advantage of ST over SBFL becomes watered down
+and less clear. Thus, we stick with the log-transformed `time`.
+
+Before proceeding with fitting, 
+we standardize both predictors, so that it's much easier to set sensible priors.
+
+```{r bug identifiers}
+by.statement <- (datas %>% filter(granularity=="statement"))
+
+by.statement$timeS <- ((by.statement$logtime - mean(by.statement$logtime))
+                       / sd(by.statement$logtime))
+by.statement$einspectS <- ((by.statement$einspect - mean(by.statement$einspect))
+                           / sd(by.statement$einspect))
+```
+
+## Model $m_1$: baseline multivariate regression
+
+Here's a basic regression model, where the only unusual aspects
+are that it's multivariate, and log-transforms the mean (since both outcome variables must be nonnegative).
+
+```{r m1 formula, echo=TRUE}
+eq.m1 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 0 + family + category,
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp1.check <- get_prior(eq.m1, data=by.statement)
+
+pp1 <- c(
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 1)", class="sigma", resp=c("einspectS", "timeS"))
+)
+```
+
+
+## Fitting $m_1$
+
+Let's do the usual checks to make sure that everything is fine with the fitting.
+
+Prior checks, confirming that the sampled priors span a wide range of values, 
+amply including the data.
+
+```{r m1 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m1.priors <- brm(eq.m1,
+                 prior=pp1,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(prior1.check.einspect <- (pp_check(m1.priors, draw_ids=1:100, resp="einspectS") 
+                           + scale_x_log10()))
+(prior1.check.time <- (pp_check(m1.priors, draw_ids=1:100, resp="timeS") 
+                       + scale_x_log10()))
+```
+
+Now we fit the actual model.
+
+```{r m1 fit}
+m1 <- brm(eq.m1, data=by.statement, prior=pp1, refresh=0,
+          control=list(adapt_delta=0.95), seed=MY.SEED)
+```
+
+Next, we check the usual diagnostics:
+
+   - No (or at most a few) divergent transitions
+   - $\widehat{R}$ ratio below $1.01$
+   - Effective sample size (ESS), as a ratio of the total sample size, at least 10%
+
+```{r m1 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m1)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m1), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m1), na.rm = TRUE)
+```
+
+Finally, we check the posteriors, to ensure that we have a decent approximation of the data.
+
+```{r m1 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m1, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m1, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+As you can see, the simulated posteriors are decent given that 
+the data is complex, whereas the model is quite simplistic 
+(we'll improve it soon).
+
+
+## Analyzing $m_1$
+
+
+```{r m1 summary}
+summary(m1)
+```
+What's noticeable here is the residual correlation
+between the two outcomes `einspect` and `time` is smallish (10%), 
+which means that there is not much of a consistent dependency 
+between these two variables.
+
+Let's set up some functions to analyze the posterior samples of `m1` (and similar models).
+
+```{r m1 difference analysis defs, warning=FALSE}
+PROBABILITIES <- c(0.5, 0.7, 0.9, 0.95, 0.99)
+
+interval.results <- function(fit, response, which.group, predictor)
+{
+  # posterior draws
+  post <- posterior::as_draws_df(fit)
+  # get columns of coefficients corresponding to `response` and `predictor`
+  post <- post[, grep(str_c("^b_", response, "_", predictor), colnames(post))]
+  # overall mean of posterior draws
+  grand.mean <- mean(unlist(post))
+  # difference to mean
+  diffs <- apply(post, 2, function(x) x - grand.mean)
+  # keep only the predictor's names
+  colnames(diffs) <- str_extract(colnames(diffs), 
+                                 str_c("^b_", response, "_", predictor, "(.*)$"),
+                                 group=1)
+  # reshape
+  diffs <- data.frame(diffs) %>% gather(predictor, response)
+  # add group column
+  diffs$group <- sapply(diffs$predictor, which.group)
+  # compute HPDIs
+  intervals <- (diffs
+                %>% group_by(group) 
+                %>% reframe(response=HPDI(response, prob=rev(PROBABILITIES)), 
+                            prob=names(HPDI(response, prob=rev(PROBABILITIES)))))
+  # reshape back and sort in inclusion interval order
+  intervals <- intervals %>% spread(group, response)
+  # sort in inclusion interval order
+  nrow.2 <- round(nrow(intervals)/2)
+  res <- rbind(intervals[1:nrow.2, ], intervals[nrow(intervals):(nrow.2+1), ])
+  rnms <- res$prob
+  res <- as.data.frame(res[, 2:ncol(res)])
+  rownames(res) <- rnms
+  list(ints=res, est=NULL)
+}
+```
+
+Let's use these functions to first analyze the effects per *family*
+of FL techniques.
+
+```{r m1 per family, warning=FALSE}
+(res.m1.einspect.family <- interval.results(m1, "einspectS", 
+                                            identity, "family"))
+(res.m1.time.family <- interval.results(m1, "timeS", 
+                                        identity, "family"))
+```
+It's clear that for both outcomes, `e_inspect` and `time`,
+there are clear differences (with high probability) 
+in the contribution over the mean from different families of techniques.
+
+Looking at the effects by category of project does not
+yeld as strong differences, but we can see that `DS` projects tend to be associated with worse (higher) `e_inspect`.
+
+```{r m1 per category, warning=FALSE}
+(res.m1.einspect.category <- interval.results(m1, "einspectS", 
+                                              identity, "category"))
+(res.m1.time.category <- interval.results(m1, "timeS", 
+                                          identity, "category"))
+```
+
+## Model $m_2$: multivariate varying effects
+
+Let's make the model more sophisticated, with varying effects,
+and modeling these effects as [possibly correlated](https://cran.r-project.org/web/packages/brms/vignettes/brms_multivariate.html) 
+(which makes sense,
+since we have two model parts)
+
+```{r m2 formula, echo=TRUE}
+eq.m2 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 1 + (1|p|family) + (1|q|category),
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp2.check <- get_prior(eq.m2, data=by.statement)
+
+pp2 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family", resp=c("einspectS", "timeS")),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS"))
+)
+```
+
+
+## Fitting $m_2$
+
+Let's fit $m_2$ and check the fit.
+
+Prior checks:
+
+```{r m2 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m2.priors <- brm(eq.m2,
+                 prior=pp2,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m2.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m2.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+```
+
+We fit model $m_2$.
+
+```{r m2 fit}
+m2 <- brm(eq.m2, data=by.statement, prior=pp2, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m2 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m2)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m2), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m2), na.rm = TRUE)
+```
+
+Posterior checks:
+
+```{r m2 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m2, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m2, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+We can perhaps glean a small improvement compared to $m_1$.
+Let's compare the two models using LOO.
+
+```{r model comparison m1 m2, warning=FALSE}
+m1 <- add_criterion(m1, criterion = "loo")
+m2 <- add_criterion(m2, criterion = "loo")
+
+(lc.m1m2 <- loo(m1, m2, moment_match = TRUE))
+```
+
+$m_1$'s score is more than 2.6 standard deviations worse than $m_2$'s,
+which is a significant difference in favor of $m_2$
+in terms of predictive capabilities.
+
+## Analyzing $m_2$
+
+
+```{r m2 summary}
+summary(m2)
+```
+By `category`, there is a slight inverse correlation between
+the two outcomes `einspect` and `time`; this correlation disappears 
+if we look at the `family` terms. 
+The residual correlation is the same as in `m_1`.
+
+Let's now perform an effects analysis 
+on the fitted coefficients of `m2`.
+First we introduce a summary function suitable for varying effects models.
+
+```{r m2 difference analysis defs, warning=FALSE}
+interval.results.ranef <- function(fit, response, predictor, probs, 
+                                   multivariate=TRUE)
+{
+  # probability intervals and their labels
+  ps.low <- rev(1-probs)/2
+  ps.high <- rev(1-ps.low)
+  ps <- rev(c(ps.high, ps.low))
+  cnams <- c(paste("|", probs, sep=""), paste(rev(probs), "|", sep=""))
+  # random effects
+  post <- ranef(fit, probs=ps)
+  if (multivariate) {
+    # keep only predictor/response data
+    post <- post[[predictor]]
+    est <- post[, "Estimate", grep(response, dimnames(post)[[3]])]
+    post <- post[, , grep(str_c("^", response), dimnames(post)[[3]])]
+  } else {
+    post <- post[[predictor]]
+    post <- post[, , grep("Intercept", dimnames(post)[[3]])]
+    est <- post[, grep("Estimate", colnames(post))]
+  }
+  if (dims(post) > 2 && !("matrix" %in% class(post)))
+    post <- post[, , 1]
+  res <- as.data.frame(post)
+  res <- res[, grep("^Q", colnames(res))]
+  colnames(res) <- cnams
+  res <- t(res)
+  
+  list(ints=res, est=est)
+}
+```
+
+Then we use the summary function to analyze the effects
+of the FL techniques.
+
+```{r m2 per family, warning=FALSE}
+(res.m2.einspect.family <- interval.results.ranef(
+  m2, "einspectS",  "family", PROBABILITIES
+ ))
+(res.m2.time.family <- interval.results.ranef(
+  m2, "timeS",  "family", PROBABILITIES
+ ))
+```
+The results are generally consistent with those of model $m_1$,
+although some effects slightly weaken or strengthen.
+
+Let's see what happens for the bug/category of projects.
+
+```{r m2 per category, warning=FALSE}
+(res.m2.einspect.category <- interval.results.ranef(
+  m2, "einspectS", "category", PROBABILITIES)
+ )
+(res.m2.time.category <- interval.results.ranef(
+  m2, "timeS", "category", PROBABILITIES)
+  )
+```
+Here we see some differences, which may partly be due
+to the fact that $m_2$ models the different categories
+more uniformly. Furthermore, some changes may simply mean
+that the per-category effects are small, and hence likely to fluctuate
+with inconsequential changes to the model.
+
+
+## Model $m_3$: interactions
+
+Now, let's try a variant of $m_2$ where we go back to
+fixed intercepts but add an interaction term between `family` of FL techniques
+and `category` of projects.
+
+```{r m3 formula, echo=TRUE}
+eq.m3 <- brmsformula(
+  mvbind(einspectS, timeS) ~ 
+    0 + family + category + (0 + family|r|category),
+  family=brmsfamily("gaussian", link="log")
+) + set_rescor(TRUE)
+
+pp3.check <- get_prior(eq.m3, data=by.statement)
+
+pp3 <- c(
+  set_prior("normal(0, 1.0)", class="b", resp=c("einspectS", "timeS")),
+  set_prior("gamma(0.01, 0.01)", class="sigma", resp=c("einspectS", "timeS")),
+  set_prior("lkj(1)", class="cor"),
+  set_prior("weibull(2, 0.3)", class="sd", resp=c("einspectS", "timeS"))
+)
+```
+
+
+## Fitting $m_3$
+
+Let's fit $m_3$ and check the fit.
+
+Prior checks:
+
+```{r m3 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m3.priors <- brm(eq.m3,
+                 prior=pp3,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m3.priors, draw_ids=1:100, resp="einspectS") + scale_x_log10())
+(pp_check(m3.priors, draw_ids=1:100, resp="timeS") + scale_x_log10())
+```
+
+We fit model $m_3$.
+
+```{r m3 fit}
+m3 <- brm(eq.m3, data=by.statement, prior=pp3, 
+          refresh=0,
+          control=list(adapt_delta=0.95),
+          seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m3 diagnostics}
+# Divergent transitions
+np <- nuts_params(m3)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m3), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m3), na.rm = TRUE)
+```
+Posterior checks:
+
+```{r m3 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m3, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m3, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+In line with what seen before, possibly a bit better.
+
+Model comparison:
+
+```{r model comparison m1 m2 m3, warning=FALSE}
+m3 <- add_criterion(m3, criterion = "loo")
+
+(lc.m1m2m3 <- loo(m1, m2, m3, moment_match = TRUE))
+```
+
+$m_2$'s score is 0.76 standard deviations worse than $m_3$'s.
+This is not a significant improvement, not worth 
+the additional complexity of model $m_3$ (which also results in it being
+harder to interpret).
+Thus, we stick with $m_2$ as our selected model.
+
+## Analyzing $m_3$
+
+
+```{r m3 summary}
+summary(m3)
+```
+
+Instead of considering the fixed and varying effects of
+$m_3$, we may estimate the marginal means for each family of FL techniques
+(results omitted for brevity, since we'll focus on $m_2$ anyway).
+
+```{r m3 per family, warning=FALSE}
+cnams.lows <- paste("|", PROBABILITIES, sep="")
+cnams.highs <- paste(PROBABILITIES, "|", sep="")
+cnams <- c(cnams.lows, cnams.highs)[order(
+  c(seq_along(cnams.lows), seq_along(cnams.highs)
+    ))]
+
+# Very similar results with: 
+# marginaleffects::avg_predictions(m3, by="family", conf_level=p)
+ems <- lapply(PROBABILITIES, 
+              function(p) as.data.frame(emmeans(m3, "family", level=p)))
+ests <- ems[[1]][, 1:2]
+ints <- lapply(ems, function(df) df[, 3:ncol(df)])
+# merge dataframes in list
+ints <- do.call("cbind", ints)
+colnames(ints) <- cnams
+# resort columns according to prob order
+idxs <- c(seq(1, length(cnams), by=2), rev(1 + seq(1, length(cnams), by=2)))
+ints <- ints[, idxs]
+# add names of families
+rownames(ints) <- ests$family
+# transpose
+ints <- t(ints)
+# get vector of estimates
+est <- ests$emmean
+names(est) <- ests$family
+res.m3.einspect.family <- list(ints=ints, est=est)
+```
+
+
+## Model $m_4$: bug-kind-specific interaction effects
+
+Let's now add predictors to $m_2$, so as to study 
+any effect of the kinds of bugs:
+
+   - `predicate` is a Boolean value that identifies predicate-related bugs
+   - `crashing` is a Boolean value that identifies crashing bugs
+   - `mutability` is a nonnegative score that denotes the percentage of
+     mutants that mutate a line in a bug's ground truth
+   - `mutable` is a Boolean that identifies the bugs with a 
+     positive mutability score
+     
+Since `mutability`/`mutable` are likely affecting `category`
+and `einspect`, it makes sense to add the predictor,
+so as to close the possible backdoor path $\textrm{category} \leftarrow \textrm{mutable} \rightarrow \textrm{einspect}$.
+
+We are only interested in controlling for bug kind for `einspect`, 
+thus switch to an univariate model where `einspect` is the only outcome variable.
+     
+```{r m4 formula, echo=TRUE}
+eq.m4.einspect <- brmsformula(einspectS ~ 1 
+                              + (1|p|family) + (1|q|category) 
+                              + predicate*family 
+                              + crashing*family 
+                              + ismutable*family,
+                              family=brmsfamily("gaussian", link="log"))
+
+eq.m4 <- eq.m4.einspect
+
+pp4.check <- get_prior(eq.m4, data=by.statement)
+
+pp4 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family"),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
+)
+```
+
+
+## Fitting $m_4$
+
+Prior checks:
+
+```{r m4 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m4.priors <- brm(eq.m4,
+                 prior=pp4,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m4.priors, draw_ids=1:100) + scale_x_log10())
+```
+
+We fit model $m_4$.
+
+```{r m4 fit}
+m4 <- brm(eq.m4, data=by.statement, prior=pp4, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m4 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m4)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m4), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m4), na.rm = TRUE)
+```
+
+Posterior checks:
+
+```{r m4 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m4, ndraws=100) + scale_x_log10())
+```
+
+Since $m_4$ uses less data than the previous models
+(it doesn't consider outcome `time`), we cannot it compare it to
+the other models using LOO (or any information criterion, for that matter).
+
+
+## Analyzing $m_4$
+
+
+```{r m4 summary}
+summary(m4)
+```
+
+Let's now perform an effects analysis 
+on the fitted coefficients of `m4`.
+
+Specifically, we look at the (fixed) effects
+of the families associated with certain categories of bugs,
+for response `einspect`.
+
+```{r m4 analysis, warning=FALSE}
+interval.results.interacts <- function(fit, response, predictor, probs, 
+                                       bool=TRUE, multivariate=TRUE)
+{
+  ps.low <- rev(1-probs)/2
+  ps.high <- rev(1-ps.low)
+  ps <- rev(c(ps.high, ps.low))
+  cnams <- c(paste("|", probs, sep=""), paste(rev(probs), "|", sep=""))
+  post <- fixef(fit, probs=ps)
+  if (multivariate)
+    pat <- str_c("^", response, "_.*", predictor, if (bool) "TRUE" else "")
+  else
+    pat <- str_c("^.*", predictor, if (bool) "TRUE" else "")
+  post <- post[grep(pat, rownames(post)), ]
+  ints <- post[, 3:ncol(post)]
+  ests <- post[, 1]
+  labs <- str_c(predictor, " ", names(FAMILIES))
+  names(ests) <- labs
+  colnames(ints) <- cnams
+  rownames(ints) <- labs
+  ints <- t(ints)
+  res <- list(ints=ints, est=ests)
+  res
+}
+
+(res.m4.einspect.crashing <- interval.results.interacts(m4, "einspectS", 
+                                                        "crashing", PROBABILITIES,
+                                                        multivariate=FALSE))
+(res.m4.einspect.predicate <- interval.results.interacts(m4, "einspectS", 
+                                                         "predicate",
+                                                         PROBABILITIES,
+                                                         multivariate=FALSE))
+(res.m4.einspect.mutable <- interval.results.interacts(m4, "einspectS", 
+                                                       "ismutable", PROBABILITIES,
+                                                       multivariate=FALSE))
+```
+So, crashing bugs are indeed easier for ST.
+In contrast, predicate-related bugs do not seem to be simpler
+for PS.
+
+For the mutability bugs, we don't find any consistent
+association. Thus, let's try to add to the model 
+a finer-grained dependency on `mutability`
+rather than just the boolean indicator `mutable`.
+
+
+## Model $m_5$: mutability slope (failed attempt)
+
+A simple way would be to introduce an interaction `mutability`$\times$`family`.
+
+```{r m5 formula, echo=TRUE}
+eq.m5.einspect <- brmsformula(einspectS ~ 1 
+                              + (1|p|family) + (1|q|category) 
+                              + predicate*family 
+                              + crashing*family 
+                              + mutability*family,
+                              family=brmsfamily("gaussian", link="log"))
+
+eq.m5 <- eq.m5.einspect
+
+pp5.check <- get_prior(eq.m5, data=by.statement)
+
+pp5 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family"),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
+)
+```
+
+We could get passable (not great)
+prior checks, but let's cut to the chase
+and fit model $m_5$.
+
+```{r m5 fit}
+m5 <- brm(eq.m5, data=by.statement, prior=pp5, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+The first thing that we notice is that two of the four chains
+terminated very quickly (suspiciously fast),
+whereas the other two 
+went awry and spinned for much longer.
+In addition, we got a number of scary warnings.
+This points to some region of the posterior that could not be sampled
+effectively.
+
+Let's see the diagnostics:
+
+```{r m5 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m5)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m5), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m5), na.rm = TRUE)
+```
+
+A disaster. Let's also plot the trace plots.
+
+```{r m5 trace plot, message=FALSE}
+traceplot(m5$fit)
+```
+
+Two chains are straight lines, and hence did not mix at all with the others!
+
+Notice that the distribution of `mutability` is very skewed,
+which explains the difficulties in fitting $m_5$.
+
+```{r mutability plot}
+(p.mutability <- (ggplot(by.statement, aes(x=mutability))
+                  + geom_histogram(binwidth=1, fill="orange2")))
+```
+
+## Models $m_6$: mutability slope (successful attempt)
+
+The most straightforward way out of this ditch
+is to simply log-transform `mutability` (after adding 1 to all percentages
+so that all logs are defined).
+
+```{r m6 formula, echo=TRUE}
+by.statement$logmutability <- log(1 + by.statement$mutability)
+
+eq.m6.einspect <- brmsformula(einspectS ~ 1 
+                              + (1|p|family) + (1|q|category) 
+                              + predicate*family 
+                              + crashing*family 
+                              + logmutability*family,
+                              family=brmsfamily("gaussian", link="log"))
+
+eq.m6 <- eq.m6.einspect
+
+pp6.check <- get_prior(eq.m6, data=by.statement)
+
+pp6 <- c(
+  set_prior("normal(0, 1.0)", class="Intercept"),
+  set_prior("normal(0, 1.0)", class="b"),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="family"),
+  set_prior("weibull(2, 0.3)", class="sd", coef="Intercept", 
+            group="category"),
+  set_prior("gamma(0.01, 0.01)", class="sigma")
+)
+```
+
+Alternative ways to modif $m_5$ so that it can be analyzed 
+(which we mention but don't further explore here):
+
+   - Introducing a multi-level term, with `einspect ~ log(x)*family`,
+     and `log(x) = log(y) + a`, where $x/y = \textrm{mutability}$.
+     This is based on rewriting $\log(a/b) = \alpha$ 
+     into $\log(a) = \alpha + \log(b)$.
+     
+   - The approach followed in [this paper](https://arxiv.org/abs/2007.09394).
+
+## Fitting $m_6$
+
+Prior checks:
+
+```{r m6 priors check, warning=FALSE, message=FALSE, error=FALSE, results='hide'}
+m6.priors <- brm(eq.m6,
+                 prior=pp6,
+                 data=by.statement,
+                 chains=1, iter=1000,
+                 sample_prior="only",
+                 refresh=0, 
+                 control=list(adapt_delta=0.95),
+                 seed=MY.SEED)
+
+(pp_check(m6.priors, draw_ids=1:100) + scale_x_log10())
+```
+
+We fit model $m_6$.
+
+```{r m6 fit}
+m6 <- brm(eq.m6, data=by.statement, prior=pp6, 
+          refresh=0,
+          control=list(adapt_delta=0.95), 
+          seed=MY.SEED)
+```
+
+Diagnostics:
+
+```{r m6 diagnostics}
+
+# Divergent transitions
+np <- nuts_params(m6)
+print(sum(subset(np, Parameter == "divergent__")$Value))
+
+# \hat{R} ratio
+print(max(brms::rhat(m6), na.rm = TRUE))
+
+# ESS
+min(neff_ratio(m6), na.rm = TRUE)
+```
+
+Posterior checks:
+
+```{r m6 posterior checks, warning=FALSE, message=FALSE}
+print(pp_check(m6, ndraws=100, resp="einspectS") + scale_x_log10())
+print(pp_check(m6, ndraws=100, resp="timeS") + scale_x_log10())
+```
+
+Everything is A-OK now.
+
+Let's compare the models $m_4$ and $m_6$ using LOO.
+
+```{r all model comparison, warning=FALSE}
+m4 <- add_criterion(m4, criterion = "loo")
+m6 <- add_criterion(m6, criterion = "loo")
+
+(lc.m4m6 <- loo(m4, m6, moment_match = TRUE))
+```
+
+$m_6$ and $m_4$ are very close 
+in terms of predictive capabilities.
+
+
+## Analyzing $m_6$
+
+```{r m6 summary}
+summary(m6)
+```
+
+```{r m6 analysis}
+extra.prob <- 0.87
+store_("significant", extra.prob, group="m6/mutability/mbfl")
+
+MORE.PROBS <- c(0.5, 0.7, 0.8, extra.prob, 0.9, 0.95, 0.99)
+(res.m6.einspect.logmutability <- interval.results.interacts(
+  m6, "einspectS", "logmutability",
+  MORE.PROBS,
+  bool=FALSE, multivariate=FALSE
+  ))
+
+# Check that the extra probability makes the interval completely below zero
+assertthat::assert_that(all(res.m6.einspect.logmutability$ints[
+  c(str_c("|", extra.prob), str_c(extra.prob, "|")), 
+  "logmutability MBFL"] < 0))
+
+# We can use m6's estimates for all these interactions,
+# since they are very close to m4's
+res.m6.einspect.crashing <- interval.results.interacts(
+  m6, "einspectS", "crashing",
+  MORE.PROBS,
+  bool=TRUE, multivariate=FALSE
+  )
+
+res.m6.einspect.predicate <- interval.results.interacts(
+  m6, "einspectS", "predicate",
+  MORE.PROBS,
+  bool=TRUE, multivariate=FALSE
+  )
+```
+
+There is a weak tendency for MBFL to do better on mutable bugs, 
+but it can only be detected with `r round(100*extra.prob)`%
+confidence (which is still decent).
+Incidentally, PS (and, to a lesser degree, ST) 
+tends to perform *worse* on the same kinds of bugs,
+whereas SBFL is agnostic.
+
+Finally, let's also collect the varying intercepts
+estimates and intervals for the group-level terms 
+for `family` and `category`. In $m_6$ these now correspond
+to the effects on bugs that are in none of the special categories
+(crashing, predicate, mutable); since this is a relatively set,
+we don't expect any very strong tendency (simply because the data is limited).
+
+```{r m6 per family, warning=FALSE}
+(res.m6.einspect.family <- interval.results.ranef(
+  m6, "einspectS",  "family", PROBABILITIES,
+  multivariate=FALSE
+ ))
+
+(res.m6.einspect.category <- interval.results.ranef(
+  m6, "einspectS",  "category", PROBABILITIES,
+  multivariate=FALSE
+ ))
+```
+
+```{r merge all data}
+all.models <- list(m1=m1, m2=m2, m3=m3, m4=m4, m6=m6)
+df.res <- data.frame(model=character(0),
+                     outcome=character(0),
+                     predictor=character(0),
+                     group=character(0),
+                     estimate=numeric(0),
+                     probability=character(0),
+                     lower=numeric(0),
+                     upper=numeric(0))
+vars <- ls(pattern="res[.]")
+for (k in 1:length(all.models)) {
+  m <- names(all.models)[k]
+  vs <- grep(m, vars, value=TRUE)
+  pat <- str_c("res.", m, ".(\\w+).(\\w+)")
+  matches <- str_match_all(vs, pat)
+  components <- sapply(matches, function(x)x[, -1])
+  for (j in 1:ncol(components)) {
+    comps <- components[, j]
+    res <- get(vs[j])
+    ints <- res$ints
+    est <- res$est
+    if (is.null(est) || !all(names(est) == colnames(ints)))
+      next
+    d <- as.data.frame(t(ints))
+    d$group <- rownames(d)
+    d$estimate <- est
+    d$model <- m
+    d$outcome <- comps[1]
+    d$predictor <- comps[2]
+    nc <- 3
+    # resort columns, putting model, outcome, group, and predictor in front
+    d <- d[, c((ncol(d)-nc+1):ncol(d), 
+               (ncol(d)-nc-1):(ncol(d)-nc), 
+               1:(ncol(d)-nc-2))]
+    # reshape by putting probability levels on different rows
+    d <- d %>% gather(probability, value, 6:ncol(d))
+    # now regroup on the same row the lower and upper bounds
+    d <- d %>% separate(probability, c("left", "right"), sep="[|]")
+    d$kind <- ifelse(d$left == "", "lower", "upper")
+    d$probability <- ifelse(d$left == "", d$right, d$left)
+    d <- d %>% select(-left, -right)
+    d <- d %>% spread(kind, value)
+    df.res <- rbind(df.res, d)
+  }
+}
+```
+
+# Summary plots
+
+Let's prepare and print some plots of the overall results
+for model $m_6$.
+
+```{r exported plots}
+palette.outcomes <- "Set1"
+labs.outcomes <- c(expression("E"["inspect"]), "Time")
+
+pinterval.plot <- function(df, model.name, probability.str, predictor.name,
+                           palette, group.labels, 
+                           x.lab=NULL, y.lab="", leg.lab="", trim.preds=FALSE)
+{
+  df.plot <- subset(df, 
+                    model == model.name 
+                    & probability == probability.str 
+                    & predictor == predictor.name)
+  if (trim.preds)
+    df.plot[, "group"] <- str_remove(
+      df.plot[, "group"], fixed(str_c(predictor.name, " "))
+    )
+  p <- ggplot(df.plot, aes(x=group, y=estimate, color=outcome))
+  p <- p + geom_pointrange(aes(ymin=lower, ymax=upper),
+                           position=position_dodge(width=0.6),
+                           size=1.5, linewidth=3, fatten=3.0, shape=15)
+  p <- p + geom_hline(yintercept=0, color="black", size=1.0)
+  
+  p <- p + ylab(y.lab)
+  if (is.null(x.lab))
+    x.lab = predictor
+  p <- p + xlab(x.lab)
+  p <- (p + theme_classic() 
+        + scale_color_brewer(name=leg.lab, palette=palette, labels=group.labels)
+        + scale_fill_brewer(palette=palette))
+  p <- p + theme(axis.text=element_text(size=20, color="black"))
+  p <- p + theme(axis.title.x=element_text(size=20, color="black"),
+                 axis.title.y=element_text(size=20),
+                 legend.title=element_text(size=20, color="black"),
+                 legend.text=element_text(size=20, color="black"),
+                 legend.position="top")
+  return(p)
+}
+
+p.family <- pinterval.plot(df.res, "m2", "0.95", "family", 
+                           palette.outcomes, labs.outcomes, 
+                           x.lab="fault localization family",
+                           y.lab=expression(alpha["family"]~"/"~beta["family"]),
+                           leg.lab="All bugs")
+p.category <- pinterval.plot(df.res, "m2", "0.95", "category", 
+                             palette.outcomes, labs.outcomes, 
+                             x.lab="project category",
+                             y.lab=expression(alpha["category"]~"/"~beta["category"]),
+                             leg.lab="All bugs")
+print(p.family)
+print(p.category)
+
+p.crashing <- pinterval.plot(df.res, "m6", "0.95", "crashing", 
+                             palette.outcomes, labs.outcomes, 
+                             x.lab="fault localization family",
+                             y.lab=expression("c"["family"]),
+                             leg.lab="Crashing bugs", trim.preds=TRUE)
+p.predicate <- pinterval.plot(df.res, "m6", "0.95", "predicate", 
+                              palette.outcomes, labs.outcomes, 
+                              x.lab="fault localization family",
+                              y.lab=expression("p"["family"]),
+                              leg.lab="Predicate bugs", trim.preds=TRUE)
+p.mutable <- pinterval.plot(df.res, "m6", "0.95", "logmutability", 
+                            palette.outcomes, labs.outcomes, 
+                            x.lab="fault localization family",
+                            y.lab=expression("m"["family"]),
+                            leg.lab="Mutable bugs", trim.preds=TRUE)
+
+print(p.crashing)
+print(p.predicate)
+print(p.category)
+```
+
+In order to more clearly read the plots, let's also
+save the various interval endpoints in absolute units,
+that is, convert them to the outcome scale,
+both in standardized units and in absolute units.
+
+```{r destandardize coefficients}
+destandardize <- function(row, mult.sd=TRUE, add.mean=FALSE)
+{
+  est <- as.numeric(row[["estimate"]])
+  outcome <- row[["outcome"]]
+  if (outcome == "einspect") {
+    res <- exp(est)
+    if (mult.sd)
+      res <- res * sd(by.statement$einspect)
+    if (add.mean)
+      res <- res + mean(by.statement$einspect)
+  } else {
+    assert_that(outcome == "time")
+    res <- exp(est)
+    if (mult.sd)
+      res <- res * sd(by.statement$logtime)
+    if (add.mean)
+      res <- res + mean(by.statement$logtime)
+    res <- exp(res)
+  }
+  return(res)
+}
+
+df.res$centered.estimate <- apply(df.res, 1, destandardize, mult.sd=TRUE, add.mean=FALSE)
+df.res$outcome.estimate <- apply(df.res, 1, destandardize, mult.sd=TRUE, add.mean=TRUE)
+
+# check that the estimate is the same within every group
+df.estimates <- (df.res 
+                 %>% group_by(model, outcome, predictor, group) 
+                 %>% summarize(
+                   centered.estimate=first(centered.estimate),
+                   outcome.estimate=first(outcome.estimate),
+                   estimate=first(estimate),
+                   check=all(estimate == first(estimate))))
+assert_that(all(df.estimates$check))
+
+# Get unique predictors
+unique_predictors <- unique(df.estimates$predictor)
+
+df.pairs <- cbind(df.estimates[0, "predictor"], group1=character(0), group2=character(0))
+
+for (pr in unique_predictors) {
+  unique_groups <- unlist(unique(df.estimates[df.estimates$predictor == pr, "group"]))
+  # Create all possible pairs of unique groups
+  group_pairs <- expand.grid(group1=unique_groups, group2=unique_groups)
+  group_pairs$predictor <- pr
+  df.pairs <- rbind(df.pairs, group_pairs)
+}
+
+# remove duplicates
+df.preds <- (df.estimates 
+             %>% select(-estimate, -centered.estimate, -outcome.estimate, -check, -group) 
+             %>% distinct())
+# add all pairs
+df.preds <- df.preds %>% left_join(df.pairs, by="predictor", multiple="all")
+
+get_estimate_row <- function(group_name, row) {
+  r <- df.estimates %>% filter(
+    model == row[["model"]],
+    outcome == row[["outcome"]],
+    predictor == row[["predictor"]],
+    group == group_name
+  )
+  are_equal(nrow(r), 1)
+  r
+}
+
+dest.deltas <- function(row)
+{
+  g1 <- row[["group1"]]
+  g2 <- row[["group2"]]
+  r1 <- get_estimate_row(g1, row)
+  r2 <- get_estimate_row(g2, row)
+  logdelta <- r1$estimate - r2$estimate
+  delta <- r1$outcome.estimate - r2$outcome.estimate
+  rd <- data.frame(outcome=r1$outcome, estimate=logdelta)
+  ratio.delta <- exp(logdelta)
+  data.frame(coef.delta=logdelta, outcome.delta=delta, ratio.delta=ratio.delta)
+}
+
+df.deltas <- apply(df.preds, 1, dest.deltas)
+are_equal(length(df.deltas), nrow(df.preds))
+
+df.deltas <- bind_rows(
+  lapply(seq_along(df.deltas), function(i) cbind(df.preds[i, ], df.deltas[[i]]))
+         )
+are_equal(nrow(df.deltas), nrow(df.preds))
+```
+
+
+# Dump all data and plots
+
+```{r storage}
+
+fname <- file.path(PAPER.DIR, "m2-family.pdf")
+ggsave(fname, p.family + theme(aspect.ratio=3/3), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m2-category.pdf")
+ggsave(fname, p.category + theme(aspect.ratio=3/3), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m6-crashing.pdf")
+ggsave(fname, p.crashing + theme(aspect.ratio=3/2), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m6-predicate.pdf")
+ggsave(fname, p.predicate + theme(aspect.ratio=3/2), device="pdf")
+knitr::plot_crop(fname)
+
+fname <- file.path(PAPER.DIR, "m6-mutable.pdf")
+ggsave(fname, p.mutable + theme(aspect.ratio=3/2), device="pdf")
+knitr::plot_crop(fname)
+
+
+store.results_ <- function(res)
+{
+  res_str <- str_split(deparse(substitute(res)), "[.]")[[1]]
+  m <- res_str[2]
+  outcome <- res_str[3]
+  predictor <- res_str[4]
+  ints <- res[["ints"]]
+  est <- res[["est"]]
+  cns <- colnames(ints)
+  rws <- rownames(ints)
+  percs <- round(100*as.numeric(str_extract(rws, "([0-9]+[.][0-9]+)")))
+  tabname <- str_c(m, outcome, predictor, sep="/")
+  store.table_(ints, tabname, replace.probs=TRUE)
+  if (!is.null(est))
+    store.table_(as.data.frame(est), tabname, replace.probs=TRUE, vectorize=TRUE)
+}
+
+store.results_(res.m2.einspect.family)
+store.results_(res.m2.einspect.category)
+store.results_(res.m2.time.family)
+store.results_(res.m2.time.category)
+
+store.results_(res.m6.einspect.logmutability)
+store.results_(res.m6.einspect.crashing)
+store.results_(res.m6.einspect.predicate)
+
+n.deltas <- 3
+row_id <- function(row) str_c(row[1:(length(row)-n.deltas)], collapse="/")
+row_names <- apply(df.deltas, 1, row_id)
+sdf.deltas <- as.data.frame(df.deltas[(ncol(df.deltas)-n.deltas+1):ncol(df.deltas)])
+rownames(sdf.deltas) <- row_names
+store.table_(sdf.deltas, "deltas")
+```
+
+```{r epilogue}
+dump.all_(append=FALSE)
+```
