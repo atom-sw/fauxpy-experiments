@@ -1,10 +1,18 @@
 # FauxPy experiments on BugsInPy
 
-This repository is the first part of the replication package 
+The current repository is the first part of the replication package 
 for the paper "An Empirical Study of Fault Localization in Python Programs" 
 by Mohammad Rezaalipour and Carlo A. Furia.
 This repository contains all the materials needed to replicate all the experiments
-and produced all the results provided in the paper.
+and produce all the results provided in the paper.
+
+The official replication package of our paper, which also includes this 
+repository, is on FigShare and accessible through the following link.
+For convenience, we are making this repository 
+publicly available on GitHub, as well.
+
+Link to the official replication package:
+https://figshare.com/s/f2668e8902eb8b9d154c
 
 ## 1. Structure
 
@@ -228,5 +236,11 @@ You must do this step for every script you run.
 cp -r cookiecutter/B2/ results/20020_1h_32g_cookiecutter_2_sbfl_statement_1231242
 ```
 
+# Mirrors
 
+The current repository is a public mirror of
+our internal private repository.
+We have two public mirrors, which are as follows:
 
+- https://github.com/atom-sw/fauxpy-experiments
+- https://github.com/mohrez86/fauxpy-experiments
