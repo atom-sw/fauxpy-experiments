@@ -745,7 +745,7 @@ by.statement$einspectS <- ((by.statement$einspect - mean(by.statement$einspect))
 ## Model $m_1$: baseline multivariate regression
 
 Here's a basic regression model, where the only unusual aspects
-are that it's multivariate, and log-transforms the mean (since both outcome variables must be nonnegative).
+are that it's multivariate, and uses a log-link function.
 
 ```{r m1 formula, echo=TRUE}
 eq.m1 <- brmsformula(
