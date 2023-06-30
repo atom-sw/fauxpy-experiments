@@ -4,6 +4,7 @@ from typing import List, Dict, Tuple
 from tqdm import tqdm
 
 import file_manager
+import latex_inf_generator_tool_demo
 import mathematics
 from average_fault_localization import AverageFaultLocalization
 from combine_fl_manager import CombineFlManager
@@ -646,6 +647,62 @@ def get_within_text_statistics():
     print("number of crashing_critical_predicate", len(crashing_critical_predicate))
 
 
+def get_tool_demo_paper_table_info():
+    def compute_metrics(csv_items, bug_type):
+        fauxpy_statement_result_manager = ResultManager(csv_items,
+                                                        ground_truth_info,
+                                                        size_counts_info)
+        _, all_overall_table = fauxpy_statement_result_manager.get_metric_results()
+        save_overall(all_overall_table, "fauxpy", "statement", bug_type, dir_name)
+
+        technique_overall_file_name = f"fauxpy_statement_{bug_type}_overall.json"
+        file_path = Path(dir_name) / technique_overall_file_name
+        file_manager.save_object_to_json(all_overall_table, file_path)
+
+    path_manager = file_manager.PathManager()
+    ground_truth_info = file_manager.load_json_to_object(path_manager.get_ground_truth_file_name())
+    size_counts_info = file_manager.load_json_to_object(path_manager.get_size_counts_file_name())
+    statement_csv_score_items = get_fauxpy_statement_csv_score_items(path_manager)
+
+    httpie = [x for x in statement_csv_score_items if x.get_project_name() == "httpie"]
+    thefuck = [x for x in statement_csv_score_items if x.get_project_name() == "thefuck"]
+    tqdm = [x for x in statement_csv_score_items if x.get_project_name() == "tqdm"]
+    youtube_dl = [x for x in statement_csv_score_items if x.get_project_name() == "youtube-dl"]
+    black = [x for x in statement_csv_score_items if x.get_project_name() == "black"]
+    cookiecutter = [x for x in statement_csv_score_items if x.get_project_name() == "cookiecutter"]
+    luigi = [x for x in statement_csv_score_items if x.get_project_name() == "luigi"]
+    keras = [x for x in statement_csv_score_items if x.get_project_name() == "keras"]
+    pandas = [x for x in statement_csv_score_items if x.get_project_name() == "pandas"]
+    spacy = [x for x in statement_csv_score_items if x.get_project_name() == "spacy"]
+    fastapi = [x for x in statement_csv_score_items if x.get_project_name() == "fastapi"]
+    sanic = [x for x in statement_csv_score_items if x.get_project_name() == "sanic"]
+    tornado = [x for x in statement_csv_score_items if x.get_project_name() == "tornado"]
+
+    all_csv_subject_list = [(httpie, "httpie"), (thefuck, "thefuck"),
+                            (tqdm, "tqdm"), (youtube_dl, "youtube_dl"),
+                            (black, "black"), (cookiecutter, "cookiecutter"),
+                            (luigi, "luigi"), (keras, "keras"),
+                            (pandas, "pandas"), (spacy, "spacy"),
+                            (fastapi, "fastapi"), (sanic, "sanic"),
+                            (tornado, "tornado")]
+
+    dir_name = "tool_demo_paper"
+    project_count_file_path = Path(dir_name) / "project_count.json"
+    file_manager.make_if_not_dir(dir_name)
+
+    project_count_dict = {}
+
+    for subject_csv, subject_name in all_csv_subject_list:
+        project_count_dict[subject_name] = int(len(subject_csv) / 7)
+        compute_metrics(subject_csv, subject_name)
+
+    file_manager.save_object_to_json(project_count_dict, project_count_file_path)
+
+    latex_info_object = latex_inf_generator_tool_demo.LatexInfo(Path(dir_name),
+                                                                project_count_file_path)
+    latex_info_object.generate()
+
+
 if __name__ == '__main__':
     # generate_metrics()
     # generate_combine_fl_data_input()
@@ -653,4 +710,5 @@ if __name__ == '__main__':
     # get_bug_statistics()
     # get_project_statistics()
     # get_ground_truth_statistics()
-    get_within_text_statistics()
+    # get_within_text_statistics()
+    get_tool_demo_paper_table_info()
