@@ -85,8 +85,6 @@ class PathManager:
         return report_dir_path
 
 
-
-
 def load_json_to_object(file_name: str):
     with open(file_name) as file:
         data_dict = json.load(file)
