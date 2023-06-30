@@ -1,0 +1,15 @@
+{
+     "httpie": 4,
+     "thefuck": 16,
+     "tqdm": 7,
+     "youtube_dl": 16,
+     "black": 13,
+     "cookiecutter": 4,
+     "luigi": 13,
+     "keras": 18,
+     "pandas": 18,
+     "spacy": 6,
+     "fastapi": 13,
+     "sanic": 3,
+     "tornado": 4
+}
