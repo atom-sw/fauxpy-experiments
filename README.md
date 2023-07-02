@@ -1,5 +1,9 @@
 # FauxPy experiments on BugsInPy
 
+![GitHub](https://img.shields.io/github/license/atom-sw/fauxpy-experiments)
+[![Hits-of-Code](https://hitsofcode.com/github/atom-sw/fauxpy-experiments?branch=main)](https://hitsofcode.com/github/atom-sw/fauxpy-experiments/view?branch=main)
+
+
 The current repository is the first part of the replication package 
 for the paper "An Empirical Study of Fault Localization in Python Programs" 
 by Mohammad Rezaalipour and Carlo A. Furia.
